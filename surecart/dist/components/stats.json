@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-09-17T20:36:16",
+  "timestamp": "2024-10-10T18:19:08",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -2621,8 +2621,6 @@
           "./dist/surecart/p-0a86636b.js.map",
           "./dist/surecart/p-0aa53c84.entry.js",
           "./dist/surecart/p-0aa53c84.entry.js.map",
-          "./dist/surecart/p-0c257cd6.entry.js",
-          "./dist/surecart/p-0c257cd6.entry.js.map",
           "./dist/surecart/p-0ceeb8f9.js",
           "./dist/surecart/p-0ceeb8f9.js.map",
           "./dist/surecart/p-0e3ce5b1.entry.js",
@@ -2909,6 +2907,8 @@
           "./dist/surecart/p-c3d54c20.js.map",
           "./dist/surecart/p-c3f18359.entry.js",
           "./dist/surecart/p-c3f18359.entry.js.map",
+          "./dist/surecart/p-c615d84d.entry.js",
+          "./dist/surecart/p-c615d84d.entry.js.map",
           "./dist/surecart/p-c75b8d7f.entry.js",
           "./dist/surecart/p-c75b8d7f.entry.js.map",
           "./dist/surecart/p-c7f48cc7.entry.js",
@@ -2931,8 +2931,6 @@
           "./dist/surecart/p-cd5ca715.entry.js.map",
           "./dist/surecart/p-cd5e8447.entry.js",
           "./dist/surecart/p-cd5e8447.entry.js.map",
-          "./dist/surecart/p-cdce66b2.entry.js",
-          "./dist/surecart/p-cdce66b2.entry.js.map",
           "./dist/surecart/p-cf82debc.entry.js",
           "./dist/surecart/p-cf82debc.entry.js.map",
           "./dist/surecart/p-cf9590b4.entry.js",
@@ -3011,6 +3009,8 @@
           "./dist/surecart/p-f44ff36a.entry.js.map",
           "./dist/surecart/p-f4b40d59.entry.js",
           "./dist/surecart/p-f4b40d59.entry.js.map",
+          "./dist/surecart/p-f4cb3d38.entry.js",
+          "./dist/surecart/p-f4cb3d38.entry.js.map",
           "./dist/surecart/p-f5237f7a.entry.js",
           "./dist/surecart/p-f5237f7a.entry.js.map",
           "./dist/surecart/p-f5a2278e.entry.js",
@@ -3057,8 +3057,6 @@
           "./www/build/p-0a86636b.js.map",
           "./www/build/p-0aa53c84.entry.js",
           "./www/build/p-0aa53c84.entry.js.map",
-          "./www/build/p-0c257cd6.entry.js",
-          "./www/build/p-0c257cd6.entry.js.map",
           "./www/build/p-0ceeb8f9.js",
           "./www/build/p-0ceeb8f9.js.map",
           "./www/build/p-0e3ce5b1.entry.js",
@@ -3345,6 +3343,8 @@
           "./www/build/p-c3d54c20.js.map",
           "./www/build/p-c3f18359.entry.js",
           "./www/build/p-c3f18359.entry.js.map",
+          "./www/build/p-c615d84d.entry.js",
+          "./www/build/p-c615d84d.entry.js.map",
           "./www/build/p-c75b8d7f.entry.js",
           "./www/build/p-c75b8d7f.entry.js.map",
           "./www/build/p-c7f48cc7.entry.js",
@@ -3367,8 +3367,6 @@
           "./www/build/p-cd5ca715.entry.js.map",
           "./www/build/p-cd5e8447.entry.js",
           "./www/build/p-cd5e8447.entry.js.map",
-          "./www/build/p-cdce66b2.entry.js",
-          "./www/build/p-cdce66b2.entry.js.map",
           "./www/build/p-cf82debc.entry.js",
           "./www/build/p-cf82debc.entry.js.map",
           "./www/build/p-cf9590b4.entry.js",
@@ -3447,6 +3445,8 @@
           "./www/build/p-f44ff36a.entry.js.map",
           "./www/build/p-f4b40d59.entry.js",
           "./www/build/p-f4b40d59.entry.js.map",
+          "./www/build/p-f4cb3d38.entry.js",
+          "./www/build/p-f4cb3d38.entry.js.map",
           "./www/build/p-f5237f7a.entry.js",
           "./www/build/p-f5237f7a.entry.js.map",
           "./www/build/p-f5a2278e.entry.js",
@@ -5824,8 +5824,8 @@
           "sc-radio-group",
           "sc-shipping-choices"
         ],
-        "bundleId": "p-0c257cd6",
-        "fileName": "p-0c257cd6.entry.js",
+        "bundleId": "p-c615d84d",
+        "fileName": "p-c615d84d.entry.js",
         "imports": [
           "p-cc7ce8c7.js",
           "p-e64f9fcd.js",
@@ -5852,7 +5852,7 @@
           "p-7ef0f71c.js",
           "p-18e45a13.js"
         ],
-        "originalByteSize": 51282
+        "originalByteSize": 51279
       },
       {
         "key": "sc-line-item-total.entry",
@@ -6173,14 +6173,14 @@
           "sc-product-line-item",
           "sc-quantity-select"
         ],
-        "bundleId": "p-cdce66b2",
-        "fileName": "p-cdce66b2.entry.js",
+        "bundleId": "p-f4cb3d38",
+        "fileName": "p-f4cb3d38.entry.js",
         "imports": [
           "p-cc7ce8c7.js",
           "p-d556eec7.js",
           "p-296b7340.js"
         ],
-        "originalByteSize": 17289
+        "originalByteSize": 17295
       },
       {
         "key": "sc-choice-container.entry",
@@ -8741,7 +8741,7 @@
           "currency-728311ef.js",
           "fetch-2525e763.js"
         ],
-        "originalByteSize": 51441
+        "originalByteSize": 51438
       },
       {
         "key": "sc-line-item-total.entry",
@@ -9069,7 +9069,7 @@
           "page-align-8602c4c7.js",
           "media-8435dec0.js"
         ],
-        "originalByteSize": 17306
+        "originalByteSize": 17312
       },
       {
         "key": "sc-choice-container.entry",
@@ -11632,7 +11632,7 @@
           "currency-ba038e2f.js",
           "fetch-2dba325c.js"
         ],
-        "originalByteSize": 52762
+        "originalByteSize": 52759
       },
       {
         "key": "sc-line-item-total.entry",
@@ -11960,7 +11960,7 @@
           "page-align-bf197eb4.js",
           "media-71bcf49e.js"
         ],
-        "originalByteSize": 17662
+        "originalByteSize": 17668
       },
       {
         "key": "sc-choice-container.entry",
@@ -41210,7 +41210,6 @@
           "mutable": false,
           "required": false,
           "optional": false,
-          "defaultValue": "100",
           "complexType": {
             "original": "number",
             "resolved": "number",
@@ -105880,7 +105879,6 @@
               "mutable": false,
               "required": false,
               "optional": false,
-              "defaultValue": "100",
               "complexType": {
                 "original": "number",
                 "resolved": "number",

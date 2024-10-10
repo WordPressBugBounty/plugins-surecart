@@ -25,7 +25,7 @@ const ScProductLineItem = class {
     this.trialDurationDays = undefined;
     this.removable = undefined;
     this.editable = true;
-    this.max = 100;
+    this.max = undefined;
     this.sku = '';
     this.purchasableStatusDisplay = undefined;
   }

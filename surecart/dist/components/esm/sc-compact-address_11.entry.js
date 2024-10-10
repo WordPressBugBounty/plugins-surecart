@@ -360,7 +360,7 @@ const ScOrderBump = class {
     if (!!((_a = this.bump) === null || _a === void 0 ? void 0 : _a.amount_off)) {
       return (h("div", { class: "bump__tag", "aria-label": 
         /** translators: %1$s: amount off, %2$s: currency */
-        wp.i18n.sprintf(wp.i18n.__('You save %1$s%2$s.', 'surecart'), (_b = this.bump) === null || _b === void 0 ? void 0 : _b.amount_off, ((_c = this.bump) === null || _c === void 0 ? void 0 : _c.price).currency) }, h("span", { "aria-hidden": "true" }, wp.i18n.__('Save', 'surecart'), " ", h("sc-format-number", { type: "currency", value: -((_d = this.bump) === null || _d === void 0 ? void 0 : _d.amount_off), currency: ((_e = this.bump) === null || _e === void 0 ? void 0 : _e.price).currency }))));
+        wp.i18n.sprintf(wp.i18n.__('You save %1$s%2$s.', 'surecart'), (_b = this.bump) === null || _b === void 0 ? void 0 : _b.amount_off, ((_c = this.bump) === null || _c === void 0 ? void 0 : _c.price).currency) }, h("span", { "aria-hidden": "true" }, wp.i18n.__('Save', 'surecart'), " ", h("sc-format-number", { type: "currency", value: (_d = this.bump) === null || _d === void 0 ? void 0 : _d.amount_off, currency: ((_e = this.bump) === null || _e === void 0 ? void 0 : _e.price).currency }))));
     }
     if (!!((_f = this.bump) === null || _f === void 0 ? void 0 : _f.percent_off)) {
       return (h("div", { class: "bump__tag", "aria-label": 
