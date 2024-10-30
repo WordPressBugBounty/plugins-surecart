@@ -8,6 +8,7 @@ export declare class ScInvoicesList {
   };
   allLink: string;
   heading: string;
+  isCustomer: boolean;
   invoices: Array<Invoice>;
   /** Loading state */
   loading: boolean;
@@ -21,14 +22,14 @@ export declare class ScInvoicesList {
   /** Only fetch if visible */
   componentWillLoad(): void;
   initialFetch(): Promise<void>;
-  fetchItems(): Promise<void>;
-  /** Get all orders */
-  getItems(): Promise<Invoice[]>;
+  fetchInvoices(): Promise<void>;
+  /** Get all invoices */
+  getInvoices(): Promise<Invoice[]>;
   nextPage(): void;
   prevPage(): void;
-  renderStatusBadge(invoice: Invoice): any;
   renderLoading(): any;
   renderEmpty(): any;
+  getInvoiceRedirectUrl(invoice: Invoice): string;
   renderList(): any[];
   renderContent(): any;
   render(): any;

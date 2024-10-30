@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
-const mutations = require('./mutations-164b66b1.js');
-require('./watchers-7fad5b15.js');
-const getters = require('./getters-f0495158.js');
+const mutations = require('./mutations-7e4b52d0.js');
+require('./watchers-f01db294.js');
+const getters = require('./getters-ead5771c.js');
 const watchers = require('./watchers-fecceee2.js');
 const MockProcessor = require('./MockProcessor-3e4abd31.js');
 const addQueryArgs = require('./add-query-args-17c551b6.js');
@@ -15,6 +15,7 @@ require('./get-query-arg-53bf21e2.js');
 require('./index-fb76df07.js');
 require('./google-62bdaeea.js');
 require('./currency-ba038e2f.js');
+require('./store-47c25b3d.js');
 require('./price-f1f1114d.js');
 require('./util-efd68af1.js');
 

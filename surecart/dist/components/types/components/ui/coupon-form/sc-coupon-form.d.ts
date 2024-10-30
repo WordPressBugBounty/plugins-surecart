@@ -22,6 +22,7 @@ import { DiscountResponse } from '../../../types';
  * @part block-ui__content - The block ui content (spinner).
  */
 export declare class ScCouponForm {
+  el: HTMLScCouponFormElement;
   private input;
   private couponTag;
   private addCouponTrigger;
@@ -54,9 +55,10 @@ export declare class ScCouponForm {
   scApplyCoupon: EventEmitter<string>;
   /** The text for apply button */
   buttonText: string;
+  /** Is the form editable */
+  editable: boolean;
   /** Auto focus the input when opened. */
   handleOpenChange(val: any): void;
-  handleDiscountChange(newValue: DiscountResponse, oldValue: DiscountResponse): void;
   /** Close it when blurred and no value. */
   handleBlur(): void;
   getHumanReadableDiscount(): string;
@@ -64,5 +66,7 @@ export declare class ScCouponForm {
   applyCoupon(): void;
   handleKeyDown(e: any): void;
   translateHumanDiscountWithDuration(humanDiscount: any): any;
+  /** Focus the input. */
+  triggerFocus(): Promise<void>;
   render(): any;
 }

@@ -3,20 +3,19 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
-const mutations = require('./mutations-164b66b1.js');
-const index$1 = require('./index-a9c75016.js');
-const getters = require('./getters-1e382cac.js');
-const getters$1 = require('./getters-8b2c88a6.js');
-const store = require('./store-96a02d63.js');
-const mutations$1 = require('./mutations-7113e932.js');
+const mutations = require('./mutations-7e4b52d0.js');
+const index$1 = require('./index-66aef213.js');
+const getters = require('./getters-bc8b9726.js');
+const getters$1 = require('./getters-0b130c1f.js');
+const store = require('./store-47c25b3d.js');
 const fetch = require('./fetch-2dba325c.js');
 const index$2 = require('./index-fb76df07.js');
-const mutations$2 = require('./mutations-8d7c4499.js');
-const mutations$3 = require('./mutations-8260a74b.js');
+const mutations$1 = require('./mutations-8d7c4499.js');
+const mutations$2 = require('./mutations-e524b8cd.js');
 const addQueryArgs = require('./add-query-args-17c551b6.js');
 const watchers = require('./watchers-fecceee2.js');
-require('./watchers-7fad5b15.js');
-const getters$2 = require('./getters-f0495158.js');
+require('./watchers-f01db294.js');
+const getters$2 = require('./getters-ead5771c.js');
 const formData = require('./form-data-69000afe.js');
 const getQueryArg = require('./get-query-arg-53bf21e2.js');
 require('./index-00f0fc21.js');
@@ -163,9 +162,11 @@ const ScFormComponentsValidator = class {
     this.hasBumpLine = undefined;
     this.hasShippingChoices = undefined;
     this.hasShippingAmount = undefined;
+    this.hasInvoiceDetails = undefined;
+    this.hasInvoiceMemo = undefined;
   }
   handleOrderChange() {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     // bail if we don't have address invalid error or disabled.
     if (this.disabled)
       return;
@@ -187,6 +188,11 @@ const ScFormComponentsValidator = class {
     if (!!((_g = mutations.state.checkout) === null || _g === void 0 ? void 0 : _g.shipping_amount)) {
       this.addShippingAmount();
     }
+    // automatically add invoice details if we have an invoice.
+    if (!!((_h = mutations.state.checkout) === null || _h === void 0 ? void 0 : _h.invoice)) {
+      this.addInvoiceDetails();
+      this.addInvoiceMemo();
+    }
   }
   handleHasAddressChange() {
     if (!this.hasAddress)
@@ -201,6 +207,8 @@ const ScFormComponentsValidator = class {
     this.hasTaxLine = !!this.el.querySelector('sc-line-item-tax');
     this.hasShippingChoices = !!this.el.querySelector('sc-shipping-choices');
     this.hasShippingAmount = !!this.el.querySelector('sc-line-item-shipping');
+    this.hasInvoiceDetails = !!this.el.querySelector('sc-invoice-details');
+    this.hasInvoiceMemo = !!this.el.querySelector('sc-invoice-memo');
     // automatically add address field if tax is enabled.
     if ((_a = this.taxProtocol) === null || _a === void 0 ? void 0 : _a.tax_enabled) {
       this.addAddressField();
@@ -305,6 +313,38 @@ const ScFormComponentsValidator = class {
     insertBeforeElement.parentNode.insertBefore(shippingAmount, insertBeforeElement);
     this.hasShippingAmount = true;
   }
+  addInvoiceDetails() {
+    if (this.hasInvoiceDetails)
+      return;
+    let lineItems = this.el.querySelector('sc-line-items');
+    const invoiceDetails = document.createElement('sc-invoice-details');
+    lineItems.parentNode.insertBefore(invoiceDetails, lineItems);
+    // Add sc-line-item-invoice-number inside sc-invoice-details.
+    const invoiceNumber = document.createElement('sc-line-item-invoice-number');
+    invoiceDetails.appendChild(invoiceNumber);
+    // Add sc-line-item-invoice-due-date inside sc-invoice-details.
+    const invoiceDueDate = document.createElement('sc-line-item-invoice-due-date');
+    invoiceDetails.appendChild(invoiceDueDate);
+    // Add invoice sc-line-item-invoice-receipt-download inside sc-invoice-details.
+    const invoiceReceiptDownload = document.createElement('sc-line-item-invoice-receipt-download');
+    invoiceDetails.appendChild(invoiceReceiptDownload);
+    // Add sc-divider inside sc-invoice-details.
+    const divider = document.createElement('sc-divider');
+    invoiceDetails.appendChild(divider);
+    this.hasInvoiceDetails = true;
+  }
+  addInvoiceMemo() {
+    if (this.hasInvoiceMemo)
+      return;
+    const orderSummary = this.el.querySelector('sc-order-summary');
+    const invoiceDetails = document.createElement('sc-invoice-details');
+    // Add sc-divider inside sc-invoice-details.
+    orderSummary.parentNode.insertBefore(invoiceDetails, orderSummary.nextSibling);
+    // Add sc-invoice-memo inside sc-invoice-details.
+    const invoiceMemo = document.createElement('sc-invoice-memo');
+    invoiceDetails.appendChild(invoiceMemo);
+    this.hasInvoiceMemo = true;
+  }
   render() {
     return index.h("slot", null);
   }
@@ -345,7 +385,7 @@ const ScFormStateProvider = class {
   /** Set the state. */
   setState(name) {
     const { send } = this._stateService;
-    mutations$1.updateFormState(name);
+    mutations.updateFormState(name);
     return send(name);
   }
   /** Watch for checkout state changes and emit to listeners. */
@@ -496,7 +536,7 @@ const ScOrderConfirmProvider = class {
     }
     catch (e) {
       console.error(e);
-      mutations$2.createErrorNotice(e);
+      mutations$1.createErrorNotice(e);
     }
     finally {
       this.manualPaymentMethod = ((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.manual_payment_method) || null;
@@ -511,7 +551,7 @@ const ScOrderConfirmProvider = class {
             sc_form_id: formId,
           }));
         }, 50);
-        mutations$3.clearCheckout();
+        mutations$2.clearCheckout();
         return;
       }
       // get success url.
@@ -525,7 +565,7 @@ const ScOrderConfirmProvider = class {
       else {
         this.showSuccessModal = true;
       }
-      mutations$3.clearCheckout();
+      mutations$2.clearCheckout();
     }
   }
   getSuccessUrl() {
@@ -594,12 +634,12 @@ const ScSessionProvider = class {
    */
   async handleFormSubmit() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
-    mutations$2.removeNotice();
-    mutations$1.updateFormState('FINALIZE');
+    mutations$1.removeNotice();
+    mutations.updateFormState('FINALIZE');
     if (((_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.payment_method_required) && (watchers.state === null || watchers.state === void 0 ? void 0 : watchers.state.id) === 'stripe' && getters$2.state.config.stripe.paymentElement) {
       // not initialized.
       if (!((_b = getters$2.state === null || getters$2.state === void 0 ? void 0 : getters$2.state.instances) === null || _b === void 0 ? void 0 : _b.stripeElements)) {
-        mutations$1.updateFormState('REJECT');
+        mutations.updateFormState('REJECT');
         this.handleErrorResponse({ message: 'Stripe Elements not found.', code: 'stripe_elements_not_found' });
         return new Error('Stripe Elements not found.');
       }
@@ -607,8 +647,8 @@ const ScSessionProvider = class {
       const { error } = await ((_c = getters$2.state === null || getters$2.state === void 0 ? void 0 : getters$2.state.instances) === null || _c === void 0 ? void 0 : _c.stripeElements.submit());
       if (error) {
         console.error({ error });
-        mutations$1.updateFormState('REJECT');
-        mutations$2.createErrorNotice(error);
+        mutations.updateFormState('REJECT');
+        mutations$1.createErrorNotice(error);
         return;
       }
     }
@@ -620,7 +660,7 @@ const ScSessionProvider = class {
       }
       catch (e) {
         console.error(e);
-        mutations$1.updateFormState('REJECT');
+        mutations.updateFormState('REJECT');
         this.handleErrorResponse(e);
         return new Error(e === null || e === void 0 ? void 0 : e.message);
       }
@@ -631,7 +671,7 @@ const ScSessionProvider = class {
     }
     catch (e) {
       console.error(e);
-      mutations$1.updateFormState('REJECT');
+      mutations.updateFormState('REJECT');
       this.handleErrorResponse(e);
     }
     // first validate server-side and get key
@@ -652,7 +692,7 @@ const ScSessionProvider = class {
         },
       });
       if ((_l = (_k = (_j = (_h = mutations.state.checkout) === null || _h === void 0 ? void 0 : _h.payment_intent) === null || _j === void 0 ? void 0 : _j.processor_data) === null || _k === void 0 ? void 0 : _k.mollie) === null || _l === void 0 ? void 0 : _l.checkout_url) {
-        mutations$1.updateFormState('PAYING');
+        mutations.updateFormState('PAYING');
         return setTimeout(() => { var _a, _b, _c, _d; return window.location.assign((_d = (_c = (_b = (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.payment_intent) === null || _b === void 0 ? void 0 : _b.processor_data) === null || _c === void 0 ? void 0 : _c.mollie) === null || _d === void 0 ? void 0 : _d.checkout_url); }, 50);
       }
       // the checkout is paid.
@@ -660,7 +700,7 @@ const ScSessionProvider = class {
         this.scPaid.emit();
       }
       setTimeout(() => {
-        mutations$1.updateFormState('PAYING');
+        mutations.updateFormState('PAYING');
       }, 50);
       return mutations.state.checkout;
     }
@@ -674,22 +714,12 @@ const ScSessionProvider = class {
    * Handle paid event and update the
    */
   async handlePaid() {
-    mutations$1.updateFormState('PAID');
+    mutations.updateFormState('PAID');
   }
   async handleAbandonedCartUpdate(e) {
     const abandoned_checkout_enabled = e.detail;
     this.loadUpdate({
       abandoned_checkout_enabled,
-    });
-  }
-  /** Handles coupon updates. */
-  async handleCouponApply(e) {
-    const promotion_code = e.detail;
-    mutations$2.removeNotice();
-    this.loadUpdate({
-      discount: {
-        ...(promotion_code ? { promotion_code } : {}),
-      },
     });
   }
   /** Find or create session on load. */
@@ -705,8 +735,8 @@ const ScSessionProvider = class {
     window.history.replaceState({}, document.title, mutations.removeQueryArgs(window.location.href, 'redirect_status', 'coupon', 'line_items', 'confirm_checkout_id', 'checkout_id', 'no_cart'));
     // handle abandoned checkout.
     if (!!is_surecart_payment_redirect && !!checkout_id) {
-      mutations$1.updateFormState('FINALIZE');
-      mutations$1.updateFormState('PAYING');
+      mutations.updateFormState('FINALIZE');
+      mutations.updateFormState('PAYING');
       return this.handleCheckoutIdFromUrl(checkout_id, coupon);
     }
     // handle redirect status.
@@ -734,17 +764,17 @@ const ScSessionProvider = class {
     console.info('Handling payment redirect.');
     // status failed.
     if (status === 'failed') {
-      mutations$2.createErrorNotice(wp.i18n.__('Payment unsuccessful. Please try again.', 'surecart'));
+      mutations$1.createErrorNotice(wp.i18n.__('Payment unsuccessful. Please try again.', 'surecart'));
       return;
     }
     // get the
     if (!id) {
-      mutations$2.createErrorNotice(wp.i18n.__('Could not find checkout. Please contact us before attempting to purchase again.', 'surecart'));
+      mutations$1.createErrorNotice(wp.i18n.__('Could not find checkout. Please contact us before attempting to purchase again.', 'surecart'));
       return;
     }
     // success, refetch the checkout
     try {
-      mutations$1.updateFormState('FINALIZE');
+      mutations.updateFormState('FINALIZE');
       mutations.state.checkout = (await index$1.fetchCheckout({
         id,
         query: {
@@ -754,7 +784,7 @@ const ScSessionProvider = class {
       // TODO: should we even check this?
       if (((_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.status) && ['paid', 'processing'].includes((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.status)) {
         setTimeout(() => {
-          mutations$1.updateFormState('PAID');
+          mutations.updateFormState('PAID');
           this.scPaid.emit();
         }, 100);
       }
@@ -765,7 +795,7 @@ const ScSessionProvider = class {
   }
   /** Handle abandoned checkout from URL */
   async handleCheckoutIdFromUrl(id, promotion_code = '') {
-    var _a, _b;
+    var _a;
     console.info('Handling existing checkout from url.', promotion_code, id);
     // if coupon code, load the checkout with the code.
     if (promotion_code) {
@@ -776,57 +806,43 @@ const ScSessionProvider = class {
       });
     }
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       mutations.state.checkout = (await index$1.fetchCheckout({
         id,
         query: {
-          refresh_status: true,
+          refresh_line_items: true,
         },
       }));
-      const isModeMismatch = mutations.state.mode !== (((_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.live_mode) ? 'live' : 'test');
-      if (isModeMismatch) {
-        console.info('Mode mismatch, creating new checkout.');
-        mutations$3.clearCheckout();
-        mutations.state.checkout = null;
-        await this.handleNewCheckout(promotion_code);
-        return;
-      }
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
     }
     catch (e) {
       this.handleErrorResponse(e);
     }
     // handle status.
-    switch ((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.status) {
+    switch ((_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.status) {
       case 'paid':
       case 'processing':
         return setTimeout(() => {
-          mutations$1.updateFormState('FINALIZE');
-          mutations$1.updateFormState('PAID');
+          mutations.updateFormState('FINALIZE');
+          mutations.updateFormState('PAID');
           this.scPaid.emit();
         }, 100);
       case 'payment_failed':
-        mutations$3.clearCheckout();
-        mutations$2.createErrorNotice({
+        mutations$2.clearCheckout();
+        mutations$1.createErrorNotice({
           message: wp.i18n.__('Payment unsuccessful.', 'surecart'),
         });
-        mutations$1.updateFormState('REJECT');
+        mutations.updateFormState('REJECT');
         return;
       case 'payment_intent_canceled':
-        mutations$1.updateFormState('REJECT');
+        mutations.updateFormState('REJECT');
         return;
       case 'canceled':
-        mutations$3.clearCheckout();
-        mutations$2.createErrorNotice({
+        mutations$2.clearCheckout();
+        mutations$1.createErrorNotice({
           message: wp.i18n.__('Payment canceled. Please try again.', 'surecart'),
         });
-        mutations$1.updateFormState('REJECT');
-        return;
-      case 'finalized':
-        mutations$2.createErrorNotice({
-          message: wp.i18n.__('Payment unsuccessful. Please try again.', 'surecart'),
-        });
-        mutations$1.updateFormState('REJECT');
+        mutations.updateFormState('REJECT');
         return;
     }
   }
@@ -835,7 +851,7 @@ const ScSessionProvider = class {
     console.info('Handling initial line items.');
     // TODO: move this to central store.
     const address = this.el.querySelector('sc-order-shipping-address');
-    mutations$3.clearCheckout();
+    mutations$2.clearCheckout();
     return this.loadUpdate({
       line_items,
       refresh_line_items: true,
@@ -857,7 +873,7 @@ const ScSessionProvider = class {
     let line_items = mutations.state.initialLineItems || [];
     const address = this.el.querySelector('sc-order-shipping-address');
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       mutations.state.checkout = (await index$1.createCheckout({
         data: {
           ...data,
@@ -873,7 +889,7 @@ const ScSessionProvider = class {
           ...(((_a = mutations.state.taxProtocol) === null || _a === void 0 ? void 0 : _a.eu_vat_required) ? { tax_identifier: { number_type: 'eu_vat' } } : {}),
         },
       }));
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
     }
     catch (e) {
       console.error(e);
@@ -881,7 +897,7 @@ const ScSessionProvider = class {
       // Handle any invalid coupon set on checkout URL.
       if (((_c = (_b = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.code) === 'checkout.discount.coupon.blank') {
         await this.handleNewCheckout(false);
-        mutations$2.createErrorNotice(e);
+        mutations$1.createErrorNotice(e);
       }
     }
   }
@@ -892,7 +908,7 @@ const ScSessionProvider = class {
       return this.handleNewCheckout(promotion_code);
     console.info('Handling existing checkout.');
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       mutations.state.checkout = (await index$1.createOrUpdateCheckout({
         id,
         data: {
@@ -901,7 +917,7 @@ const ScSessionProvider = class {
           refresh_line_items: true,
         },
       }));
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
     }
     catch (e) {
       console.error(e);
@@ -909,7 +925,7 @@ const ScSessionProvider = class {
       // Handle any invalid coupon set on checkout URL.
       if (((_c = (_b = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.code) === 'checkout.discount.coupon.blank') {
         await this.handleExistingCheckout(id, false);
-        mutations$2.createErrorNotice(e);
+        mutations$1.createErrorNotice(e);
       }
     }
   }
@@ -918,7 +934,7 @@ const ScSessionProvider = class {
     var _a, _b, _c, _d, _e, _f;
     // reinitalize if order not found.
     if (['checkout.not_found'].includes(e === null || e === void 0 ? void 0 : e.code)) {
-      mutations$3.clearCheckout();
+      mutations$2.clearCheckout();
       return this.handleNewCheckout(false);
     }
     const hasPriceVersionChangeError = ((e === null || e === void 0 ? void 0 : e.additional_errors) || []).some(error => {
@@ -932,15 +948,15 @@ const ScSessionProvider = class {
         refresh_line_items: true,
         status: 'draft',
       });
-      mutations$2.createInfoNotice(((_c = (_b = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.message) ||
+      mutations$1.createInfoNotice(((_c = (_b = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.message) ||
         wp.i18n.__('Some products in your order were outdated and have been updated. Please review your order summary before proceeding to payment.', 'surecart'));
-      mutations$1.updateFormState('REJECT');
+      mutations.updateFormState('REJECT');
       return;
     }
     // If got Product out of stock error, then fetch the checkout again.
     if (((_e = (_d = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _d === void 0 ? void 0 : _d[0]) === null || _e === void 0 ? void 0 : _e.code) === 'checkout.product.out_of_stock') {
       this.fetch();
-      mutations$1.updateFormState('REJECT');
+      mutations.updateFormState('REJECT');
       return;
     }
     if (['order.invalid_status_transition'].includes(e === null || e === void 0 ? void 0 : e.code)) {
@@ -953,17 +969,17 @@ const ScSessionProvider = class {
     }
     // expired
     if ((e === null || e === void 0 ? void 0 : e.code) === 'rest_cookie_invalid_nonce') {
-      mutations$1.updateFormState('EXPIRE');
+      mutations.updateFormState('EXPIRE');
       return;
     }
     // paid
     if ((e === null || e === void 0 ? void 0 : e.code) === 'readonly') {
-      mutations$3.clearCheckout();
+      mutations$2.clearCheckout();
       window.location.assign(mutations.removeQueryArgs(window.location.href, 'order'));
       return;
     }
-    mutations$2.createErrorNotice(e);
-    mutations$1.updateFormState('REJECT');
+    mutations$1.createErrorNotice(e);
+    mutations.updateFormState('REJECT');
   }
   /** Looks through children and finds items needed for initial session. */
   async initialize(args = {}) {
@@ -1027,13 +1043,13 @@ const ScSessionProvider = class {
   }
   async fetchCheckout(id, { query = {}, data = {} } = {}) {
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       const checkout = (await index$1.createOrUpdateCheckout({
         id,
         query,
         data,
       }));
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
       return checkout;
     }
     catch (e) {
@@ -1043,12 +1059,12 @@ const ScSessionProvider = class {
   /** Fetch a session. */
   async fetch(query = {}) {
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       mutations.state.checkout = (await index$1.fetchCheckout({
         id: this.getSessionId(),
         query,
       }));
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
     }
     catch (e) {
       this.handleErrorResponse(e);
@@ -1066,7 +1082,7 @@ const ScSessionProvider = class {
     catch (e) {
       // reinitalize if order not found.
       if (['checkout.not_found'].includes(e === null || e === void 0 ? void 0 : e.code)) {
-        mutations$3.clearCheckout();
+        mutations$2.clearCheckout();
         return this.initialize();
       }
       console.error(e);
@@ -1076,9 +1092,9 @@ const ScSessionProvider = class {
   /** Updates a session with loading status changes. */
   async loadUpdate(data = {}) {
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       await this.update(data);
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
     }
     catch (e) {
       this.handleErrorResponse(e);

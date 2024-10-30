@@ -1,5 +1,5 @@
 import { r as registerInstance, c as createEvent, h } from './index-644f5478.js';
-import { s as state } from './mutations-b8f9af9f.js';
+import { s as state } from './mutations-52c77df8.js';
 import './index-1046c77e.js';
 import './utils-00526fde.js';
 import './get-query-arg-cb6b8763.js';
@@ -7,6 +7,7 @@ import './add-query-args-f4c5962b.js';
 import './index-c5a96d53.js';
 import './google-357f4c4c.js';
 import './currency-728311ef.js';
+import './store-bccb89b4.js';
 import './price-178c2e2b.js';
 
 const scCartHeaderCss = ".cart-header{display:flex;align-items:center;justify-content:space-between;width:100%;font-size:1em}.cart-title{text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 var(--sc-spacing-small)}.cart__close{cursor:pointer}";

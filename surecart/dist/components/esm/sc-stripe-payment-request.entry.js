@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-644f5478.js';
 import { p as pure } from './pure-4f52cebf.js';
-import { s as state, o as onChange } from './mutations-b8f9af9f.js';
-import { c as createOrUpdateCheckout, f as finalizeCheckout } from './index-d7508e37.js';
+import { s as state, o as onChange } from './mutations-52c77df8.js';
+import { c as createOrUpdateCheckout, f as finalizeCheckout } from './index-c21232cf.js';
 import { c as createErrorNotice } from './mutations-0a628afa.js';
 import { o as openWormhole } from './consumer-32cc6385.js';
 import './_commonjsHelpers-9943807e.js';
@@ -12,6 +12,7 @@ import './add-query-args-f4c5962b.js';
 import './index-c5a96d53.js';
 import './google-357f4c4c.js';
 import './currency-728311ef.js';
+import './store-bccb89b4.js';
 import './price-178c2e2b.js';
 import './fetch-2525e763.js';
 

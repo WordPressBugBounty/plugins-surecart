@@ -5,14 +5,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-f1e4d53b.js');
 const pure = require('./pure-5be33f24.js');
 const watchers = require('./watchers-fecceee2.js');
-const mutations = require('./mutations-164b66b1.js');
-const store = require('./store-96a02d63.js');
-require('./watchers-7fad5b15.js');
-const getters = require('./getters-f0495158.js');
-const getters$1 = require('./getters-1e382cac.js');
-const mutations$2 = require('./mutations-8d7c4499.js');
-const mutations$1 = require('./mutations-7113e932.js');
-const getters$2 = require('./getters-8b2c88a6.js');
+const mutations = require('./mutations-7e4b52d0.js');
+const store = require('./store-47c25b3d.js');
+require('./watchers-f01db294.js');
+const getters = require('./getters-ead5771c.js');
+const getters$1 = require('./getters-bc8b9726.js');
+const mutations$1 = require('./mutations-8d7c4499.js');
+const getters$2 = require('./getters-0b130c1f.js');
 const addQueryArgs = require('./add-query-args-17c551b6.js');
 require('./_commonjsHelpers-537d719a.js');
 require('./index-00f0fc21.js');
@@ -221,8 +220,8 @@ const ScStripePaymentElement = class {
     const { error } = await getters.state.instances.stripeElements.submit();
     if (error) {
       console.error({ error });
-      mutations$1.updateFormState('REJECT');
-      mutations$2.createErrorNotice(error);
+      mutations.updateFormState('REJECT');
+      mutations$1.createErrorNotice(error);
       this.error = error.message;
       return;
     }
@@ -286,8 +285,8 @@ const ScStripePaymentElement = class {
     }
     catch (e) {
       console.error(e);
-      mutations$1.updateFormState('REJECT');
-      mutations$2.createErrorNotice(e);
+      mutations.updateFormState('REJECT');
+      mutations$1.createErrorNotice(e);
       if (e.message) {
         this.error = e.message;
       }

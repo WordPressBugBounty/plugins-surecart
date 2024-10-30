@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
-const index$1 = require('./index-a9c75016.js');
+const index$1 = require('./index-66aef213.js');
 const util = require('./util-efd68af1.js');
 const store = require('./store-73afe412.js');
-const mutations = require('./mutations-164b66b1.js');
+const mutations = require('./mutations-7e4b52d0.js');
 require('./fetch-2dba325c.js');
 require('./add-query-args-17c551b6.js');
 require('./get-query-arg-53bf21e2.js');
@@ -15,6 +15,7 @@ require('./utils-a086ed6e.js');
 require('./index-fb76df07.js');
 require('./google-62bdaeea.js');
 require('./currency-ba038e2f.js');
+require('./store-47c25b3d.js');
 require('./price-f1f1114d.js');
 
 const scCustomerEmailCss = ":host{display:block}a{color:var(--sc-color-primary-500)}a.customer-email__login-link{color:var(--sc-customer-login-link-color, var(--sc-input-placeholder-color));text-decoration:none;font-size:var(--sc-font-size-small)}.tracking-confirmation-message{font-size:var(--sc-font-size-xx-small)}.tracking-confirmation-message span{opacity:0.75}";
@@ -100,7 +101,7 @@ const ScCustomerEmail = class {
   }
   render() {
     var _a;
-    return (index.h(index.Host, null, index.h("sc-input", { exportparts: "base, input, form-control, label, help-text, prefix, suffix", type: "email", name: "email", ref: el => (this.input = el), value: this.value, help: this.help, label: this.label, autocomplete: 'email', placeholder: this.placeholder, disabled: !!store.state.loggedIn && !!((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) && !this.invalid, readonly: this.readonly, required: true, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }), this.renderOptIn()));
+    return (index.h(index.Host, null, index.h("sc-input", { exportparts: "base, input, form-control, label, help-text, prefix, suffix", type: "email", name: "email", ref: el => (this.input = el), value: this.value, help: this.help, label: this.label, autocomplete: 'email', placeholder: this.placeholder, disabled: this.disabled || (!!store.state.loggedIn && !!((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) && !this.invalid), readonly: this.readonly, required: true, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }), this.renderOptIn()));
   }
 };
 ScCustomerEmail.style = scCustomerEmailCss;

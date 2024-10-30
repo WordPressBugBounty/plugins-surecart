@@ -5,8 +5,8 @@ export declare class ScOrderSummary {
   el: HTMLScOrderSummaryElement;
   order: Checkout;
   busy: boolean;
-  closedText: string;
-  openText: string;
+  orderSummaryText: string;
+  invoiceSummaryText: string;
   collapsible: boolean;
   collapsedOnMobile: boolean;
   collapsedOnDesktop: boolean;
@@ -20,6 +20,7 @@ export declare class ScOrderSummary {
   handleClick(e: any): void;
   /** It's empty if there are no items or the mode does not match. */
   empty(): boolean;
+  getSummaryText(): string;
   renderHeader(): any;
   handleOpenChange(): Promise<void>;
   render(): any;

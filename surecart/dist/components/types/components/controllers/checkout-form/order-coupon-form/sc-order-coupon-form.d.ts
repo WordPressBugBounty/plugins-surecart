@@ -1,5 +1,5 @@
-import { EventEmitter } from '../../../../stencil-public-runtime';
 export declare class ScOrderCouponForm {
+  private couponForm;
   label: string;
   loading: boolean;
   collapsed: boolean;
@@ -7,6 +7,7 @@ export declare class ScOrderCouponForm {
   buttonText: string;
   open: boolean;
   value: string;
-  scApplyCoupon: EventEmitter<string>;
+  error: string;
+  handleCouponApply(e: any): Promise<void>;
   render(): any;
 }

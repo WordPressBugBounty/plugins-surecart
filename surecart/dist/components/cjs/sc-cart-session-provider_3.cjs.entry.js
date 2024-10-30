@@ -3,11 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
-const mutations$3 = require('./mutations-164b66b1.js');
-const index$1 = require('./index-a9c75016.js');
-const mutations = require('./mutations-8d7c4499.js');
-const mutations$2 = require('./mutations-7113e932.js');
-const mutations$1 = require('./mutations-8260a74b.js');
+const mutations$1 = require('./mutations-7e4b52d0.js');
+const index$1 = require('./index-66aef213.js');
+const mutations$2 = require('./mutations-8d7c4499.js');
+const mutations = require('./mutations-e524b8cd.js');
 const animationRegistry = require('./animation-registry-d7c0b19d.js');
 const getters = require('./getters-20c3c3fd.js');
 require('./index-00f0fc21.js');
@@ -17,9 +16,9 @@ require('./add-query-args-17c551b6.js');
 require('./index-fb76df07.js');
 require('./google-62bdaeea.js');
 require('./currency-ba038e2f.js');
+require('./store-47c25b3d.js');
 require('./price-f1f1114d.js');
 require('./fetch-2dba325c.js');
-require('./store-96a02d63.js');
 
 const ScCartSessionProvider = class {
   constructor(hostRef) {
@@ -35,34 +34,24 @@ const ScCartSessionProvider = class {
       this.loadUpdate(data);
     }
   }
-  /** Handles coupon updates. */
-  async handleCouponApply(e) {
-    const promotion_code = e.detail;
-    mutations.removeNotice();
-    this.loadUpdate({
-      discount: {
-        ...(promotion_code ? { promotion_code } : {}),
-      },
-    });
-  }
   /** Handle the error response. */
   handleErrorResponse(e) {
     var _a, _b;
     if ((e === null || e === void 0 ? void 0 : e.code) === 'readonly' || ((_b = (_a = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.code) === 'checkout.customer.account_mismatch') {
-      mutations$1.clearCheckout();
+      mutations.clearCheckout();
     }
     // expired
     if ((e === null || e === void 0 ? void 0 : e.code) === 'rest_cookie_invalid_nonce') {
-      mutations$2.updateFormState('EXPIRE');
+      mutations$1.updateFormState('EXPIRE');
       return;
     }
     // something went wrong
     if (e === null || e === void 0 ? void 0 : e.message) {
-      mutations.createErrorNotice(e);
+      mutations$2.createErrorNotice(e);
     }
     // handle curl timeout errors.
     if ((e === null || e === void 0 ? void 0 : e.code) === 'http_request_failed') {
-      mutations.createErrorNotice(wp.i18n.__('Something went wrong. Please reload the page and try again.', 'surecart'));
+      mutations$2.createErrorNotice(wp.i18n.__('Something went wrong. Please reload the page and try again.', 'surecart'));
     }
   }
   /** Fetch a session. */
@@ -73,8 +62,8 @@ const ScCartSessionProvider = class {
   async update(data = {}, query = {}) {
     var _a;
     try {
-      mutations$3.state.checkout = (await index$1.updateCheckout({
-        id: (_a = mutations$3.state.checkout) === null || _a === void 0 ? void 0 : _a.id,
+      mutations$1.state.checkout = (await index$1.updateCheckout({
+        id: (_a = mutations$1.state.checkout) === null || _a === void 0 ? void 0 : _a.id,
         data: {
           ...data,
         },
@@ -91,17 +80,17 @@ const ScCartSessionProvider = class {
   /** Updates a session with loading status changes. */
   async loadUpdate(data = {}) {
     try {
-      mutations$2.updateFormState('FETCH');
+      mutations$1.updateFormState('FETCH');
       await this.update(data);
-      mutations$2.updateFormState('RESOLVE');
+      mutations$1.updateFormState('RESOLVE');
     }
     catch (e) {
-      mutations$2.updateFormState('REJECT');
+      mutations$1.updateFormState('REJECT');
       this.handleErrorResponse(e);
     }
   }
   render() {
-    return (index.h("sc-line-items-provider", { order: mutations$3.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", null)));
+    return (index.h("sc-line-items-provider", { order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", null)));
   }
   get el() { return index.getElement(this); }
 };
@@ -335,7 +324,7 @@ const ScFormErrorProvider = class {
     this.scUpdateError.emit(val);
   }
   render() {
-    return !!(mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.message) ? (index.h("sc-alert", { exportparts: "base, icon, text, title, message, close", type: "danger", scrollOnOpen: true, open: !!(mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.message), closable: !!(mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.dismissible) }, (mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.message) && index.h("span", { slot: "title", innerHTML: mutations.state.message }), (getters.getAdditionalErrorMessages() || []).map((message, index$1) => (index.h("div", { innerHTML: message, key: index$1 }))))) : null;
+    return !!(mutations$2.state === null || mutations$2.state === void 0 ? void 0 : mutations$2.state.message) ? (index.h("sc-alert", { exportparts: "base, icon, text, title, message, close", type: "danger", scrollOnOpen: true, open: !!(mutations$2.state === null || mutations$2.state === void 0 ? void 0 : mutations$2.state.message), closable: !!(mutations$2.state === null || mutations$2.state === void 0 ? void 0 : mutations$2.state.dismissible) }, (mutations$2.state === null || mutations$2.state === void 0 ? void 0 : mutations$2.state.message) && index.h("span", { slot: "title", innerHTML: mutations$2.state.message }), (getters.getAdditionalErrorMessages() || []).map((message, index$1) => (index.h("div", { innerHTML: message, key: index$1 }))))) : null;
   }
   static get watchers() { return {
     "error": ["handleErrorUpdate"]

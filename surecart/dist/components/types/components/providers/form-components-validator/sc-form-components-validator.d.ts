@@ -21,6 +21,10 @@ export declare class ScFormComponentsValidator {
   hasShippingChoices: boolean;
   /** Is there a shipping amount */
   hasShippingAmount: boolean;
+  /** Is there an invoice details */
+  hasInvoiceDetails: boolean;
+  /** Is there an invoice memo */
+  hasInvoiceMemo: boolean;
   handleOrderChange(): void;
   handleHasAddressChange(): void;
   componentWillLoad(): void;
@@ -32,5 +36,7 @@ export declare class ScFormComponentsValidator {
   addTaxLine(): void;
   addShippingChoices(): void;
   addShippingAmount(): void;
+  addInvoiceDetails(): void;
+  addInvoiceMemo(): void;
   render(): any;
 }

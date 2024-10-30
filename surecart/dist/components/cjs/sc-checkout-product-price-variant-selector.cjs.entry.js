@@ -3,12 +3,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
-const getters = require('./getters-8b2c88a6.js');
-const mutations$1 = require('./mutations-164b66b1.js');
+const getters = require('./getters-0b130c1f.js');
+const mutations = require('./mutations-7e4b52d0.js');
 const util = require('./util-efd68af1.js');
-const index$1 = require('./index-a9c75016.js');
-const mutations = require('./mutations-7113e932.js');
-const mutations$2 = require('./mutations-8d7c4499.js');
+const index$1 = require('./index-66aef213.js');
+const mutations$1 = require('./mutations-8d7c4499.js');
 const utils = require('./utils-a086ed6e.js');
 require('./address-07819c5b.js');
 require('./index-00f0fc21.js');
@@ -17,9 +16,9 @@ require('./add-query-args-17c551b6.js');
 require('./index-fb76df07.js');
 require('./google-62bdaeea.js');
 require('./currency-ba038e2f.js');
+require('./store-47c25b3d.js');
 require('./price-f1f1114d.js');
 require('./fetch-2dba325c.js');
-require('./store-96a02d63.js');
 
 const scCheckoutProductPriceVariantSelectorCss = "sc-checkout-product-price-variant-selector{display:block}.sc-checkout-product-price-variant-selector{position:relative}.sc-checkout-product-price-variant-selector>*:not(:last-child){display:block;margin-bottom:var(--sc-form-row-spacing, 0.75em)}.sc-checkout-product-price-variant-selector__pills-wrapper{display:flex;flex-wrap:wrap;gap:var(--sc-spacing-x-small)}.sc-checkout-product-price-variant-selector__hidden-input{position:absolute !important;top:0 !important;left:0 !important;opacity:0 !important;padding:0px !important;margin:0px !important;pointer-events:none !important;width:0 !important}";
 
@@ -112,7 +111,7 @@ const ScProductCheckoutSelectVariantOption = class {
     try {
       mutations.updateFormState('FETCH');
       if (lineItem === null || lineItem === void 0 ? void 0 : lineItem.id) {
-        mutations$1.state.checkout = await index$1.updateLineItem({
+        mutations.state.checkout = await index$1.updateLineItem({
           id: lineItem === null || lineItem === void 0 ? void 0 : lineItem.id,
           data: {
             variant: (_d = this.selectedVariant) === null || _d === void 0 ? void 0 : _d.id,
@@ -122,8 +121,8 @@ const ScProductCheckoutSelectVariantOption = class {
         });
       }
       else {
-        mutations$1.state.checkout = await index$1.addLineItem({
-          checkout: mutations$1.state.checkout,
+        mutations.state.checkout = await index$1.addLineItem({
+          checkout: mutations.state.checkout,
           data: {
             variant: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id,
             price: selectedPrice === null || selectedPrice === void 0 ? void 0 : selectedPrice.id,
@@ -135,13 +134,13 @@ const ScProductCheckoutSelectVariantOption = class {
     }
     catch (e) {
       console.error(e);
-      mutations$2.createErrorNotice(e);
+      mutations$1.createErrorNotice(e);
       mutations.updateFormState('REJECT');
     }
   }
   componentWillLoad() {
     // when checkout changes, update the selected variant and price.
-    this.removeListener = mutations$1.onChange('checkout', () => {
+    this.removeListener = mutations.onChange('checkout', () => {
       var _a, _b, _c;
       const lineItem = this.lineItem();
       this.selectedVariant = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant;

@@ -3,11 +3,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
-const mutations = require('./mutations-164b66b1.js');
-const store = require('./store-96a02d63.js');
+const mutations = require('./mutations-7e4b52d0.js');
+const store = require('./store-47c25b3d.js');
 const store$1 = require('./store-73afe412.js');
-require('./watchers-7fad5b15.js');
-const getters = require('./getters-f0495158.js');
+require('./watchers-f01db294.js');
+const getters = require('./getters-ead5771c.js');
 const universe = require('./universe-739a1804.js');
 require('./index-00f0fc21.js');
 require('./utils-a086ed6e.js');
@@ -161,7 +161,7 @@ const ScCheckout = class {
         'sc-align-center': this.alignment === 'center',
         'sc-align-wide': this.alignment === 'wide',
         'sc-align-full': this.alignment === 'full',
-      } }, index.h("sc-checkout-unsaved-changes-warning", { state: this.checkoutState }), mutations.state.validateStock && index.h("sc-checkout-stock-alert", null), index.h(universe.Universe.Provider, { state: this.state() }, index.h("sc-login-provider", { loggedIn: store$1.state.loggedIn, onScSetCustomer: e => (this.customer = e.detail), onScSetLoggedIn: e => (store$1.state.loggedIn = e.detail), order: mutations.state.checkout }, index.h("sc-form-state-provider", { onScSetCheckoutFormState: e => (this.checkoutState = e.detail) }, index.h("sc-form-error-provider", null, index.h("sc-form-components-validator", { disabled: this.disableComponentsValidation, taxProtocol: mutations.state.taxProtocol }, index.h("sc-order-confirm-provider", { "checkout-status": store.state.formState.value, "success-url": this.successUrl }, index.h("sc-session-provider", { ref: el => (this.sessionProvider = el), prices: this.prices, persist: this.persistSession }, index.h("slot", null))))))), this.state().busy && index.h("sc-block-ui", { class: "busy-block-ui", style: { 'z-index': '30' } }), ['finalizing', 'paying', 'confirming', 'confirmed', 'redirecting'].includes(store.state.formState.value) && (index.h("sc-block-ui", { spinner: true, style: { '--sc-block-ui-opacity': '0.75', 'z-index': '30' } }, store.state.text.loading[store.state.formState.value] || wp.i18n.__('Processing payment...', 'surecart'))))));
+      } }, index.h("sc-checkout-unsaved-changes-warning", { state: this.checkoutState }), mutations.state.validateStock && index.h("sc-checkout-stock-alert", null), index.h(universe.Universe.Provider, { state: this.state() }, index.h("sc-login-provider", { loggedIn: store$1.state.loggedIn, onScSetCustomer: e => (this.customer = e.detail), onScSetLoggedIn: e => (store$1.state.loggedIn = e.detail), order: mutations.state.checkout }, index.h("sc-form-state-provider", { onScSetCheckoutFormState: e => (this.checkoutState = e.detail) }, index.h("sc-form-error-provider", null, index.h("sc-form-components-validator", { disabled: this.disableComponentsValidation, taxProtocol: mutations.state.taxProtocol }, index.h("sc-order-confirm-provider", { "checkout-status": store.state.formState.value, "success-url": this.successUrl }, index.h("sc-session-provider", { ref: el => (this.sessionProvider = el), prices: this.prices, persist: this.persistSession }, index.h("slot", null))))))), this.state().busy && index.h("sc-block-ui", { class: "busy-block-ui", style: { 'z-index': '30' } }), ['finalizing', 'paying', 'confirming', 'confirmed', 'redirecting'].includes(store.state.formState.value) && (index.h("sc-block-ui", { spinner: true, style: { '--sc-block-ui-opacity': '0.75', 'z-index': '30' } }, store.state.text.loading[store.state.formState.value] || wp.i18n.__('Processing payment...', 'surecart'))), ['locked'].includes(store.state.formState.value) && (index.h("sc-block-ui", { style: { '--sc-block-ui-opacity': '1', 'z-index': '30', '--sc-block-ui-position': 'fixed', '--sc-block-ui-cursor': 'normal' } }, index.h("div", { style: { 'text-align': 'center', 'padding': '2rem', 'max-width': '600px' } }, wp.i18n.__('This invoice is not currently available for payment. If you have any questions, please contact us.', 'surecart')))))));
   }
   get el() { return index.getElement(this); }
 };

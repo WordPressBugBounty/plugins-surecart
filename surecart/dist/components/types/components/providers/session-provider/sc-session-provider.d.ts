@@ -33,8 +33,6 @@ export declare class ScSessionProvider {
    */
   handlePaid(): Promise<void>;
   handleAbandonedCartUpdate(e: any): Promise<void>;
-  /** Handles coupon updates. */
-  handleCouponApply(e: any): Promise<void>;
   /** Find or create session on load. */
   componentDidLoad(): void;
   /** Find or create an order */

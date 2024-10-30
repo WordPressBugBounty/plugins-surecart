@@ -18,6 +18,7 @@ const ScInvoicesList = class {
     };
     this.allLink = undefined;
     this.heading = undefined;
+    this.isCustomer = undefined;
     this.invoices = [];
     this.loading = undefined;
     this.busy = undefined;
@@ -36,7 +37,7 @@ const ScInvoicesList = class {
   async initialFetch() {
     try {
       this.loading = true;
-      await this.getItems();
+      await this.getInvoices();
     }
     catch (e) {
       console.error(this.error);
@@ -46,10 +47,10 @@ const ScInvoicesList = class {
       this.loading = false;
     }
   }
-  async fetchItems() {
+  async fetchInvoices() {
     try {
       this.busy = true;
-      await this.getItems();
+      await this.getInvoices();
     }
     catch (e) {
       console.error(this.error);
@@ -59,11 +60,14 @@ const ScInvoicesList = class {
       this.busy = false;
     }
   }
-  /** Get all orders */
-  async getItems() {
+  /** Get all invoices */
+  async getInvoices() {
+    if (!this.isCustomer) {
+      return;
+    }
     const response = (await await fetch.apiFetch({
       path: addQueryArgs.addQueryArgs(`surecart/v1/invoices/`, {
-        expand: ['invoice_items', 'charge'],
+        expand: ['checkout'],
         ...this.query,
       }),
       parse: false,
@@ -77,37 +81,39 @@ const ScInvoicesList = class {
   }
   nextPage() {
     this.query.page = this.query.page + 1;
-    this.fetchItems();
+    this.fetchInvoices();
   }
   prevPage() {
     this.query.page = this.query.page - 1;
-    this.fetchItems();
-  }
-  renderStatusBadge(invoice) {
-    const { status, charge } = invoice;
-    if (typeof charge === 'object') {
-      if (charge === null || charge === void 0 ? void 0 : charge.fully_refunded) {
-        return index.h("sc-tag", { type: "danger" }, wp.i18n.__('Refunded', 'surecart'));
-      }
-      if (charge === null || charge === void 0 ? void 0 : charge.refunded_amount) {
-        return index.h("sc-tag", { type: "info" }, wp.i18n.__('Partially Refunded', 'surecart'));
-      }
-    }
-    return index.h("sc-order-status-badge", { status: status });
+    this.fetchInvoices();
   }
   renderLoading() {
     return (index.h("sc-card", { noPadding: true }, index.h("sc-stacked-list", null, index.h("sc-stacked-list-row", { style: { '--columns': '4' }, "mobile-size": 500 }, [...Array(4)].map(() => (index.h("sc-skeleton", { style: { width: '100px', display: 'inline-block' } })))))));
   }
   renderEmpty() {
-    return (index.h("div", null, index.h("sc-divider", { style: { '--spacing': '0' } }), index.h("slot", { name: "empty" }, index.h("sc-empty", { icon: "tag" }, wp.i18n.__("You don't have any invoices.", 'surecart')))));
+    return (index.h("div", null, index.h("sc-divider", { style: { '--spacing': '0' } }), index.h("slot", { name: "empty" }, index.h("sc-empty", { icon: "shopping-bag" }, wp.i18n.__("You don't have any invoices.", 'surecart')))));
+  }
+  getInvoiceRedirectUrl(invoice) {
+    var _a, _b, _c;
+    // if it's open, redirect to checkout for payment.
+    if (invoice.status === 'open') {
+      return `${window.scData.pages.checkout}?checkout_id=${(_a = invoice === null || invoice === void 0 ? void 0 : invoice.checkout) === null || _a === void 0 ? void 0 : _a.id}`;
+    }
+    // else it's paid(as we're fetching only open/paid), redirect to order detail page.
+    return addQueryArgs.addQueryArgs(window.location.href, {
+      action: 'show',
+      model: 'order',
+      id: (_c = (_b = invoice === null || invoice === void 0 ? void 0 : invoice.checkout) === null || _b === void 0 ? void 0 : _b.order) === null || _c === void 0 ? void 0 : _c.id,
+    });
   }
   renderList() {
     return this.invoices.map(invoice => {
-      var _a, _b;
-      const { invoice_items, total_amount, currency, created_at, url } = invoice;
-      return (index.h("sc-stacked-list-row", { href: url, style: { '--columns': '4' }, "mobile-size": 500 }, index.h("div", null, index.h("sc-format-date", { class: "order__date", date: created_at, type: "timestamp", month: "short", day: "numeric", year: "numeric" })), index.h("div", null, index.h("sc-text", { truncate: true, style: {
-          '--color': 'var(--sc-color-gray-500)',
-        } }, wp.i18n.sprintf(wp.i18n._n('%s item', '%s items', ((_a = invoice_items === null || invoice_items === void 0 ? void 0 : invoice_items.pagination) === null || _a === void 0 ? void 0 : _a.count) || 0, 'surecart'), ((_b = invoice_items === null || invoice_items === void 0 ? void 0 : invoice_items.pagination) === null || _b === void 0 ? void 0 : _b.count) || 0))), index.h("div", null, this.renderStatusBadge(invoice)), index.h("div", null, index.h("sc-format-number", { type: "currency", currency: currency, value: total_amount }))));
+      const { checkout } = invoice;
+      if (!checkout)
+        return null;
+      const { amount_due, currency } = checkout;
+      return (index.h("sc-stacked-list-row", { href: this.getInvoiceRedirectUrl(invoice), style: { '--columns': '4' }, "mobile-size": 500 }, index.h("div", null, "#", invoice === null || invoice === void 0 ? void 0 :
+        invoice.order_number), index.h("div", null, (invoice === null || invoice === void 0 ? void 0 : invoice.due_date) ? (index.h(index.Fragment, null, wp.i18n.__('Due on', 'surecart'), " ", index.h("sc-format-date", { class: "invoice__date", date: (invoice === null || invoice === void 0 ? void 0 : invoice.due_date) * 1000, month: "short", day: "numeric", year: "numeric" }))) : ('—')), index.h("div", { class: "invoices-list__status" }, index.h("sc-invoice-status-badge", { status: invoice === null || invoice === void 0 ? void 0 : invoice.status })), index.h("div", null, index.h("sc-format-number", { type: "currency", currency: currency, value: amount_due }))));
     });
   }
   renderContent() {
@@ -122,7 +128,7 @@ const ScInvoicesList = class {
   }
   render() {
     var _a, _b;
-    return (index.h("sc-dashboard-module", { class: "invoices-list", error: this.error }, index.h("span", { slot: "heading" }, index.h("slot", { name: "heading" }, this.heading || wp.i18n.__('Invoice History', 'surecart'))), !!this.allLink && !!((_a = this.invoices) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.invoices) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", null)));
+    return (index.h("sc-dashboard-module", { class: "invoices-list", error: this.error }, index.h("span", { slot: "heading" }, index.h("slot", { name: "heading" }, this.heading || wp.i18n.__('Invoices', 'surecart'))), !!this.allLink && !!((_a = this.invoices) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Invoices', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.invoices) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", null)));
   }
   get el() { return index.getElement(this); }
 };

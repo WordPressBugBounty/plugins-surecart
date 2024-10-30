@@ -5,8 +5,6 @@ export declare class ScCartSessionProvider {
   /** Set the state */
   scSetState: EventEmitter<'loading' | 'busy' | 'navigating' | 'idle'>;
   handleUpdateSession(e: any): void;
-  /** Handles coupon updates. */
-  handleCouponApply(e: any): Promise<void>;
   /** Handle the error response. */
   handleErrorResponse(e: any): void;
   /** Fetch a session. */

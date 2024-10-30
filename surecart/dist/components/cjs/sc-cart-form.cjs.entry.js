@@ -4,9 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-f1e4d53b.js');
 const index$1 = require('./index-f9d999d6.js');
-const index$2 = require('./index-a9c75016.js');
-const mutations = require('./mutations-164b66b1.js');
-const mutations$1 = require('./mutations-7113e932.js');
+const index$2 = require('./index-66aef213.js');
+const mutations = require('./mutations-7e4b52d0.js');
 require('./fetch-2dba325c.js');
 require('./add-query-args-17c551b6.js');
 require('./get-query-arg-53bf21e2.js');
@@ -15,8 +14,8 @@ require('./utils-a086ed6e.js');
 require('./index-fb76df07.js');
 require('./google-62bdaeea.js');
 require('./currency-ba038e2f.js');
+require('./store-47c25b3d.js');
 require('./price-f1f1114d.js');
-require('./store-96a02d63.js');
 
 const query = {
   expand: [
@@ -67,18 +66,18 @@ const ScCartForm = class {
   async addToCart() {
     const { price } = await this.form.getFormJson();
     try {
-      mutations$1.updateFormState('FETCH');
+      mutations.updateFormState('FETCH');
       // if it's ad_hoc, update the amount. Otherwise increment the quantity.
       mutations.state.checkout = await this.addOrUpdateLineItem({
         ...(!!price ? { ad_hoc_amount: parseInt(price) || null } : {}),
         ...(!!this.variantId ? { variant_id: this.variantId || null } : {}),
       });
-      mutations$1.updateFormState('RESOLVE');
+      mutations.updateFormState('RESOLVE');
       // store the checkout in localstorage and open the cart
       mutations.store.set('cart', { ...mutations.store.state.cart, ...{ open: true } });
     }
     catch (e) {
-      mutations$1.updateFormState('REJECT');
+      mutations.updateFormState('REJECT');
       console.error(e);
       this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
     }

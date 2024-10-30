@@ -38,6 +38,8 @@ const ScOrderStatusBadge = class {
         return wp.i18n.__('Canceled', 'surecart');
       case 'void':
         return wp.i18n.__('Canceled', 'surecart');
+      case 'draft':
+        return wp.i18n.__('Draft', 'surecart');
       default:
         return this.status;
     }

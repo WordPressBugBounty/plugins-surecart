@@ -1,10 +1,10 @@
-import { r as registerInstance, c as createEvent, h, F as Fragment } from './index-644f5478.js';
+import { r as registerInstance, c as createEvent, h, F as Fragment, a as getElement } from './index-644f5478.js';
 import { s as speak } from './index-c5a96d53.js';
 import { i as isRtl } from './page-align-8602c4c7.js';
 import { a as getHumanDiscount, c as getHumanDiscountRedeemableStatus } from './price-178c2e2b.js';
 import './currency-728311ef.js';
 
-const scCouponFormCss = ":host {\n  display: block;\n}\n\nsc-button {\n  color: var(--sc-color-primary-500);\n}\n\n.coupon-form {\n  position: relative;\n  container-type: inline-size;\n}\n.coupon-form .coupon-button {\n  opacity: 0;\n  visibility: hidden;\n  transform: scale(0.9);\n  transition: all var(--sc-transition-fast) ease;\n  color: var(--sc-input-color);\n}\n.coupon-form .coupon-button-mobile {\n  margin-top: var(--sc-input-label-margin);\n  display: none;\n}\n.coupon-form--has-value .coupon-button {\n  opacity: 1;\n  visibility: visible;\n  transform: scale(1);\n}\n\n@container (max-width: 320px) {\n  .coupon-form .coupon-button {\n    display: none;\n  }\n  .coupon-form .coupon-button-mobile {\n    display: block;\n  }\n}\n.form {\n  opacity: 0;\n  visibility: hidden;\n  height: 0;\n  transform: translateY(5px);\n  transition: opacity var(--sc-transition-medium) ease, transform var(--sc-transition-medium) ease;\n  position: relative;\n  gap: var(--sc-spacing-small);\n}\n\n.coupon-form--is-open .form {\n  opacity: 1;\n  visibility: visible;\n  transform: translateY(0);\n  height: auto;\n  margin: var(--sc-spacing-small) 0;\n}\n.coupon-form--is-open .trigger {\n  display: none;\n}\n\n.trigger {\n  cursor: pointer;\n  font-size: var(--sc-font-size-small);\n  line-height: var(--sc-line-height-dense);\n  color: var(--sc-input-label-color);\n  user-select: none;\n}\n.trigger:hover {\n  text-decoration: underline;\n}\n\n.coupon-form--is-rtl .trigger {\n  text-align: right;\n}\n\n.coupon__status {\n  font-size: var(--sc-font-size-small);\n  line-height: var(--sc-line-height-dense);\n  color: var(--sc-color-warning-700);\n  display: inline-flex;\n  gap: var(--sc-spacing-x-small);\n  align-items: flex-start;\n  text-align: left;\n}\n.coupon__status sc-icon {\n  flex: 0 0 1em;\n  margin-top: 0.25em;\n}";
+const scCouponFormCss = ":host {\n  display: block;\n}\n\nsc-button {\n  color: var(--sc-color-primary-500);\n}\n\nsc-alert {\n  margin-top: var(--sc-spacing-small);\n}\n\n.coupon-form {\n  position: relative;\n  container-type: inline-size;\n}\n.coupon-form .coupon-button {\n  opacity: 0;\n  visibility: hidden;\n  transform: scale(0.9);\n  transition: all var(--sc-transition-fast) ease;\n  color: var(--sc-input-color);\n}\n.coupon-form .coupon-button-mobile {\n  margin-top: var(--sc-input-label-margin);\n  display: none;\n}\n.coupon-form--has-value .coupon-button {\n  opacity: 1;\n  visibility: visible;\n  transform: scale(1);\n}\n\n@container (max-width: 320px) {\n  .coupon-form .coupon-button {\n    display: none;\n  }\n  .coupon-form .coupon-button-mobile {\n    display: block;\n  }\n}\n.form {\n  opacity: 0;\n  visibility: hidden;\n  height: 0;\n  transform: translateY(5px);\n  transition: opacity var(--sc-transition-medium) ease, transform var(--sc-transition-medium) ease;\n  position: relative;\n  gap: var(--sc-spacing-small);\n}\n\n.coupon-form--is-open .form {\n  opacity: 1;\n  visibility: visible;\n  transform: translateY(0);\n  height: auto;\n  margin: var(--sc-spacing-small) 0;\n}\n.coupon-form--is-open .trigger {\n  display: none;\n}\n\n.trigger {\n  cursor: pointer;\n  font-size: var(--sc-font-size-small);\n  line-height: var(--sc-line-height-dense);\n  color: var(--sc-input-label-color);\n  user-select: none;\n}\n.trigger:hover {\n  text-decoration: underline;\n}\n\n.coupon-form--is-rtl .trigger {\n  text-align: right;\n}\n\n.coupon__status {\n  font-size: var(--sc-font-size-small);\n  line-height: var(--sc-line-height-dense);\n  color: var(--sc-color-warning-700);\n  display: inline-flex;\n  gap: var(--sc-spacing-x-small);\n  align-items: flex-start;\n  text-align: left;\n}\n.coupon__status sc-icon {\n  flex: 0 0 1em;\n  margin-top: 0.25em;\n}";
 
 const ScCouponForm = class {
   constructor(hostRef) {
@@ -24,27 +24,13 @@ const ScCouponForm = class {
     this.collapsed = undefined;
     this.value = undefined;
     this.buttonText = undefined;
+    this.editable = true;
   }
   /** Auto focus the input when opened. */
   handleOpenChange(val) {
     if (val) {
       setTimeout(() => this.input.triggerFocus(), 50);
     }
-  }
-  // Focus the coupon tag when a coupon is applied & Focus the trigger when coupon is removed.
-  handleDiscountChange(newValue, oldValue) {
-    var _a, _b;
-    if (((_a = newValue === null || newValue === void 0 ? void 0 : newValue.promotion) === null || _a === void 0 ? void 0 : _a.code) === ((_b = oldValue === null || oldValue === void 0 ? void 0 : oldValue.promotion) === null || _b === void 0 ? void 0 : _b.code))
-      return;
-    setTimeout(() => {
-      var _a, _b;
-      if ((_b = (_a = this === null || this === void 0 ? void 0 : this.discount) === null || _a === void 0 ? void 0 : _a.promotion) === null || _b === void 0 ? void 0 : _b.code) {
-        this.couponTag.shadowRoot.querySelector('*').focus();
-      }
-      else {
-        this.addCouponTrigger.focus();
-      }
-    }, 50);
   }
   /** Close it when blurred and no value. */
   handleBlur() {
@@ -62,7 +48,7 @@ const ScCouponForm = class {
   }
   /** Apply the coupon. */
   applyCoupon() {
-    this.scApplyCoupon.emit(this.input.value.toUpperCase());
+    this.scApplyCoupon.emit(this.value);
   }
   handleKeyDown(e) {
     if ((e === null || e === void 0 ? void 0 : e.code) === 'Enter') {
@@ -90,6 +76,17 @@ const ScCouponForm = class {
         return humanDiscount;
     }
   }
+  /** Focus the input. */
+  async triggerFocus() {
+    var _a, _b, _c;
+    await new Promise(resolve => requestAnimationFrame(resolve));
+    if ((_b = (_a = this === null || this === void 0 ? void 0 : this.discount) === null || _a === void 0 ? void 0 : _a.promotion) === null || _b === void 0 ? void 0 : _b.code) {
+      (_c = this.couponTag.shadowRoot.querySelector('*')) === null || _c === void 0 ? void 0 : _c.focus();
+    }
+    else if (this.addCouponTrigger) {
+      this.addCouponTrigger.focus();
+    }
+  }
   render() {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     if (this.loading) {
@@ -97,10 +94,14 @@ const ScCouponForm = class {
     }
     if ((_b = (_a = this === null || this === void 0 ? void 0 : this.discount) === null || _a === void 0 ? void 0 : _a.promotion) === null || _b === void 0 ? void 0 : _b.code) {
       let humanDiscount = this.getHumanReadableDiscount();
-      return (h("sc-line-item", { exportparts: "description:info, price-description:discount, price:amount" }, h("span", { slot: "description" }, h("div", { part: "discount-label" }, wp.i18n.__('Discount', 'surecart')), h("sc-tag", { exportparts: "base:coupon-tag", type: 'redeemable' === ((_c = this.discount) === null || _c === void 0 ? void 0 : _c.redeemable_status) ? 'success' : 'warning', class: "coupon-tag", clearable: true, onScClear: () => {
+      return (h("sc-line-item", { exportparts: "description:info, price-description:discount, price:amount" }, h("span", { slot: "description" }, h("div", { part: "discount-label" }, wp.i18n.__('Discount', 'surecart')), h("sc-tag", { exportparts: "base:coupon-tag", type: 'redeemable' === ((_c = this.discount) === null || _c === void 0 ? void 0 : _c.redeemable_status) ? 'success' : 'warning', class: "coupon-tag", clearable: this.editable, onScClear: () => {
+          if (!this.editable)
+            return;
           this.scApplyCoupon.emit(null);
           this.open = false;
         }, onKeyDown: e => {
+          if (!this.editable)
+            return;
           if (e.key === 'Enter' || e.key === 'Escape') {
             speak(wp.i18n.__('Coupon was removed.', 'surecart'), 'assertive');
             this.scApplyCoupon.emit(null);
@@ -133,9 +134,9 @@ const ScCouponForm = class {
         'coupon-form--is-rtl': isRtl(),
       } }, h("sc-input", { label: this.label, exportparts: "base:input__base, input, form-control:input__form-control", value: this.value, onScInput: (e) => (this.value = e.target.value), placeholder: this.placeholder, onScBlur: () => this.handleBlur(), onKeyDown: e => this.handleKeyDown(e), ref: el => (this.input = el) }, h("sc-button", { exportparts: "base:button__base, label:button_label", slot: "suffix", type: "text", loading: this.busy, size: "medium", class: "coupon-button", onClick: () => this.applyCoupon() }, h("slot", null, this.buttonText))), h("sc-button", { exportparts: "base:button__base, label:button_label", type: "primary", outline: true, loading: this.busy, size: "medium", class: "coupon-button-mobile", onClick: () => this.applyCoupon() }, h("slot", null, this.buttonText)), !!this.error && (h("sc-alert", { exportparts: "base:error__base, icon:error__icon, text:error__text, title:error_title, message:error__message", type: "danger", open: true }, h("span", { slot: "title" }, this.error)))));
   }
+  get el() { return getElement(this); }
   static get watchers() { return {
-    "open": ["handleOpenChange"],
-    "discount": ["handleDiscountChange"]
+    "open": ["handleOpenChange"]
   }; }
 };
 ScCouponForm.style = scCouponFormCss;

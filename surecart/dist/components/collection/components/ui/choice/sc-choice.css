@@ -43,6 +43,7 @@
   cursor: pointer;
   display: flex;
   gap: 0.75em;
+  align-items: center;
 }
 .choice--checked {
   border-color: var(--sc-color-primary-500);

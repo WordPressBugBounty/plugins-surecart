@@ -5,8 +5,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-f1e4d53b.js');
 const util = require('./util-efd68af1.js');
 const store = require('./store-73afe412.js');
-const mutations = require('./mutations-164b66b1.js');
-const index$1 = require('./index-a9c75016.js');
+const mutations = require('./mutations-7e4b52d0.js');
+const index$1 = require('./index-66aef213.js');
 require('./index-00f0fc21.js');
 require('./utils-a086ed6e.js');
 require('./get-query-arg-53bf21e2.js');
@@ -14,6 +14,7 @@ require('./add-query-args-17c551b6.js');
 require('./index-fb76df07.js');
 require('./google-62bdaeea.js');
 require('./currency-ba038e2f.js');
+require('./store-47c25b3d.js');
 require('./price-f1f1114d.js');
 require('./fetch-2dba325c.js');
 
@@ -85,7 +86,7 @@ const ScCustomerFirstname = class {
     this.removeCheckoutListener();
   }
   render() {
-    return (index.h("sc-input", { type: "text", name: "first_name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "first_name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }));
+    return (index.h("sc-input", { type: "text", name: "first_name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "first_name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
   }
 };
 ScCustomerFirstname.style = scCustomerFirstnameCss;

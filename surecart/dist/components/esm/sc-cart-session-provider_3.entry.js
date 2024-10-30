@@ -1,9 +1,8 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-644f5478.js';
-import { s as state } from './mutations-b8f9af9f.js';
-import { d as updateCheckout } from './index-d7508e37.js';
-import { r as removeNotice, c as createErrorNotice, s as state$1 } from './mutations-0a628afa.js';
-import { u as updateFormState } from './mutations-8871d02a.js';
-import { c as clearCheckout } from './mutations-8c68bd4f.js';
+import { u as updateFormState, s as state } from './mutations-52c77df8.js';
+import { d as updateCheckout } from './index-c21232cf.js';
+import { c as createErrorNotice, s as state$1 } from './mutations-0a628afa.js';
+import { c as clearCheckout } from './mutations-22fc1fe0.js';
 import { g as getAnimation, a as animateTo, s as stopAnimations, b as setDefaultAnimation } from './animation-registry-41d06a50.js';
 import { g as getAdditionalErrorMessages } from './getters-b0a0a490.js';
 import './index-1046c77e.js';
@@ -13,9 +12,9 @@ import './add-query-args-f4c5962b.js';
 import './index-c5a96d53.js';
 import './google-357f4c4c.js';
 import './currency-728311ef.js';
+import './store-bccb89b4.js';
 import './price-178c2e2b.js';
 import './fetch-2525e763.js';
-import './store-dde63d4d.js';
 
 const ScCartSessionProvider = class {
   constructor(hostRef) {
@@ -30,16 +29,6 @@ const ScCartSessionProvider = class {
     else {
       this.loadUpdate(data);
     }
-  }
-  /** Handles coupon updates. */
-  async handleCouponApply(e) {
-    const promotion_code = e.detail;
-    removeNotice();
-    this.loadUpdate({
-      discount: {
-        ...(promotion_code ? { promotion_code } : {}),
-      },
-    });
   }
   /** Handle the error response. */
   handleErrorResponse(e) {

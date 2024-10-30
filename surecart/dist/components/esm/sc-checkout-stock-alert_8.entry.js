@@ -1,18 +1,17 @@
 import { r as registerInstance, c as createEvent, h, H as Host, a as getElement } from './index-644f5478.js';
-import { s as state, o as onChange, r as removeQueryArgs } from './mutations-b8f9af9f.js';
-import { d as updateCheckout, e as expand, f as finalizeCheckout, g as fetchCheckout, h as createCheckout, c as createOrUpdateCheckout } from './index-d7508e37.js';
-import { c as currentFormState } from './getters-2c9ecd8c.js';
-import { s as shippingAddressRequired } from './getters-c162c255.js';
-import { v, c as checkoutMachine, s as state$1 } from './store-dde63d4d.js';
-import { u as updateFormState } from './mutations-8871d02a.js';
+import { s as state, o as onChange, u as updateFormState, r as removeQueryArgs } from './mutations-52c77df8.js';
+import { d as updateCheckout, e as expand, f as finalizeCheckout, g as fetchCheckout, h as createCheckout, c as createOrUpdateCheckout } from './index-c21232cf.js';
+import { c as currentFormState } from './getters-b67a901b.js';
+import { s as shippingAddressRequired } from './getters-9f0e346e.js';
+import { v, c as checkoutMachine, s as state$1 } from './store-bccb89b4.js';
 import { a as apiFetch } from './fetch-2525e763.js';
 import { s as speak } from './index-c5a96d53.js';
 import { c as createErrorNotice, r as removeNotice, a as createInfoNotice } from './mutations-0a628afa.js';
-import { c as clearCheckout } from './mutations-8c68bd4f.js';
+import { c as clearCheckout } from './mutations-22fc1fe0.js';
 import { a as addQueryArgs, g as getQueryArgs } from './add-query-args-f4c5962b.js';
 import { s as state$2 } from './watchers-7ddfd1b5.js';
-import './watchers-ecff8a65.js';
-import { s as state$3 } from './getters-a6a88dc4.js';
+import './watchers-d8fc722c.js';
+import { s as state$3 } from './getters-d8bafba5.js';
 import { p as parseFormData } from './form-data-dd63c61f.js';
 import { g as getQueryArg } from './get-query-arg-cb6b8763.js';
 import './index-1046c77e.js';
@@ -159,9 +158,11 @@ const ScFormComponentsValidator = class {
     this.hasBumpLine = undefined;
     this.hasShippingChoices = undefined;
     this.hasShippingAmount = undefined;
+    this.hasInvoiceDetails = undefined;
+    this.hasInvoiceMemo = undefined;
   }
   handleOrderChange() {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     // bail if we don't have address invalid error or disabled.
     if (this.disabled)
       return;
@@ -183,6 +184,11 @@ const ScFormComponentsValidator = class {
     if (!!((_g = state.checkout) === null || _g === void 0 ? void 0 : _g.shipping_amount)) {
       this.addShippingAmount();
     }
+    // automatically add invoice details if we have an invoice.
+    if (!!((_h = state.checkout) === null || _h === void 0 ? void 0 : _h.invoice)) {
+      this.addInvoiceDetails();
+      this.addInvoiceMemo();
+    }
   }
   handleHasAddressChange() {
     if (!this.hasAddress)
@@ -197,6 +203,8 @@ const ScFormComponentsValidator = class {
     this.hasTaxLine = !!this.el.querySelector('sc-line-item-tax');
     this.hasShippingChoices = !!this.el.querySelector('sc-shipping-choices');
     this.hasShippingAmount = !!this.el.querySelector('sc-line-item-shipping');
+    this.hasInvoiceDetails = !!this.el.querySelector('sc-invoice-details');
+    this.hasInvoiceMemo = !!this.el.querySelector('sc-invoice-memo');
     // automatically add address field if tax is enabled.
     if ((_a = this.taxProtocol) === null || _a === void 0 ? void 0 : _a.tax_enabled) {
       this.addAddressField();
@@ -300,6 +308,38 @@ const ScFormComponentsValidator = class {
     const shippingAmount = document.createElement('sc-line-item-shipping');
     insertBeforeElement.parentNode.insertBefore(shippingAmount, insertBeforeElement);
     this.hasShippingAmount = true;
+  }
+  addInvoiceDetails() {
+    if (this.hasInvoiceDetails)
+      return;
+    let lineItems = this.el.querySelector('sc-line-items');
+    const invoiceDetails = document.createElement('sc-invoice-details');
+    lineItems.parentNode.insertBefore(invoiceDetails, lineItems);
+    // Add sc-line-item-invoice-number inside sc-invoice-details.
+    const invoiceNumber = document.createElement('sc-line-item-invoice-number');
+    invoiceDetails.appendChild(invoiceNumber);
+    // Add sc-line-item-invoice-due-date inside sc-invoice-details.
+    const invoiceDueDate = document.createElement('sc-line-item-invoice-due-date');
+    invoiceDetails.appendChild(invoiceDueDate);
+    // Add invoice sc-line-item-invoice-receipt-download inside sc-invoice-details.
+    const invoiceReceiptDownload = document.createElement('sc-line-item-invoice-receipt-download');
+    invoiceDetails.appendChild(invoiceReceiptDownload);
+    // Add sc-divider inside sc-invoice-details.
+    const divider = document.createElement('sc-divider');
+    invoiceDetails.appendChild(divider);
+    this.hasInvoiceDetails = true;
+  }
+  addInvoiceMemo() {
+    if (this.hasInvoiceMemo)
+      return;
+    const orderSummary = this.el.querySelector('sc-order-summary');
+    const invoiceDetails = document.createElement('sc-invoice-details');
+    // Add sc-divider inside sc-invoice-details.
+    orderSummary.parentNode.insertBefore(invoiceDetails, orderSummary.nextSibling);
+    // Add sc-invoice-memo inside sc-invoice-details.
+    const invoiceMemo = document.createElement('sc-invoice-memo');
+    invoiceDetails.appendChild(invoiceMemo);
+    this.hasInvoiceMemo = true;
   }
   render() {
     return h("slot", null);
@@ -678,16 +718,6 @@ const ScSessionProvider = class {
       abandoned_checkout_enabled,
     });
   }
-  /** Handles coupon updates. */
-  async handleCouponApply(e) {
-    const promotion_code = e.detail;
-    removeNotice();
-    this.loadUpdate({
-      discount: {
-        ...(promotion_code ? { promotion_code } : {}),
-      },
-    });
-  }
   /** Find or create session on load. */
   componentDidLoad() {
     this.findOrCreateOrder();
@@ -761,7 +791,7 @@ const ScSessionProvider = class {
   }
   /** Handle abandoned checkout from URL */
   async handleCheckoutIdFromUrl(id, promotion_code = '') {
-    var _a, _b;
+    var _a;
     console.info('Handling existing checkout from url.', promotion_code, id);
     // if coupon code, load the checkout with the code.
     if (promotion_code) {
@@ -776,24 +806,16 @@ const ScSessionProvider = class {
       state.checkout = (await fetchCheckout({
         id,
         query: {
-          refresh_status: true,
+          refresh_line_items: true,
         },
       }));
-      const isModeMismatch = state.mode !== (((_a = state.checkout) === null || _a === void 0 ? void 0 : _a.live_mode) ? 'live' : 'test');
-      if (isModeMismatch) {
-        console.info('Mode mismatch, creating new checkout.');
-        clearCheckout();
-        state.checkout = null;
-        await this.handleNewCheckout(promotion_code);
-        return;
-      }
       updateFormState('RESOLVE');
     }
     catch (e) {
       this.handleErrorResponse(e);
     }
     // handle status.
-    switch ((_b = state.checkout) === null || _b === void 0 ? void 0 : _b.status) {
+    switch ((_a = state.checkout) === null || _a === void 0 ? void 0 : _a.status) {
       case 'paid':
       case 'processing':
         return setTimeout(() => {
@@ -815,12 +837,6 @@ const ScSessionProvider = class {
         clearCheckout();
         createErrorNotice({
           message: wp.i18n.__('Payment canceled. Please try again.', 'surecart'),
-        });
-        updateFormState('REJECT');
-        return;
-      case 'finalized':
-        createErrorNotice({
-          message: wp.i18n.__('Payment unsuccessful. Please try again.', 'surecart'),
         });
         updateFormState('REJECT');
         return;

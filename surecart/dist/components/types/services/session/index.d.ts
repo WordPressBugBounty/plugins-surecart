@@ -16,6 +16,7 @@ export declare const withDefaultData: (data?: {
 };
 /** Default query we send with every request. */
 export declare const withDefaultQuery: (query?: {}) => {
+  type: string;
   product_id: string;
   form_id: string | number;
 };
