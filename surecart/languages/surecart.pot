@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-30T18:19:46+00:00\n"
+"POT-Creation-Date: 2024-10-30T23:31:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -20155,28 +20155,28 @@ msgstr ""
 msgid "This offer has expired."
 msgstr ""
 
-#: mutations2.js:178
+#: mutations2.js:180
 msgid "Coupon code removed."
 msgstr ""
 
 #. Translators: %1$s is the coupon code, %2$s is the human readable discount.
-#: mutations2.js:183
+#: mutations2.js:185
 msgid "Coupon code %1$s added. %2$s applied."
 msgstr ""
 
-#: mutations2.js:187
+#: mutations2.js:189
 msgid "Checkout updated. The amount due is %1$s."
 msgstr ""
 
-#: mutations2.js:188
+#: mutations2.js:190
 msgid "Checkout updated. The total amount for the checkout is %1$s and the amount due is %1$s."
 msgstr ""
 
-#: mutations2.js:207
+#: mutations2.js:209
 msgid "Cart Opened"
 msgstr ""
 
-#: mutations2.js:210
+#: mutations2.js:212
 msgid "Cart Closed"
 msgstr ""
 

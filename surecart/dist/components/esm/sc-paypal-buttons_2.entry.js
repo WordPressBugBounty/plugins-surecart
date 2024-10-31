@@ -1,10 +1,10 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-644f5478.js';
 import { l as loadScript, g as getScriptLoadParams } from './functions-b67a547b.js';
 import { a as apiFetch } from './fetch-2525e763.js';
-import { g as fetchCheckout } from './index-c21232cf.js';
+import { g as fetchCheckout } from './index-90ce0612.js';
 import { c as createErrorNotice } from './mutations-0a628afa.js';
 import './add-query-args-f4c5962b.js';
-import './mutations-52c77df8.js';
+import './mutations-d03185e9.js';
 import './index-1046c77e.js';
 import './utils-00526fde.js';
 import './get-query-arg-cb6b8763.js';
