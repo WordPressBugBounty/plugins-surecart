@@ -2,8 +2,8 @@ import type { Components, JSX } from "../types/components";
 
 interface ScBreadcrumb extends Components.ScBreadcrumb, HTMLElement {}
 export const ScBreadcrumb: {
-  prototype: ScBreadcrumb;
-  new (): ScBreadcrumb;
+    prototype: ScBreadcrumb;
+    new (): ScBreadcrumb;
 };
 /**
  * Used to define this component and all nested components recursively.

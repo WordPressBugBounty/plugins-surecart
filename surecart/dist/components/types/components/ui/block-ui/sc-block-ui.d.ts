@@ -3,8 +3,8 @@
  * @part content - The content (spinner)
  */
 export declare class ScBlockUi {
-  zIndex: number;
-  transparent: boolean;
-  spinner: boolean;
-  render(): any;
+    zIndex: number;
+    transparent: boolean;
+    spinner: boolean;
+    render(): any;
 }

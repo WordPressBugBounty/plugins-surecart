@@ -1,5 +1,5 @@
 import { EventEmitter } from '../../../stencil-public-runtime';
-import { Fee } from '../../../types';
+import { Fee, ImageAttributes } from '../../../types';
 /**
  * @part base - The component base
  * @part product-line-item - The product line item
@@ -22,50 +22,46 @@ import { Fee } from '../../../types';
  * @part line-item__price-description - The line item price description
  */
 export declare class ScProductLineItem {
-  el: HTMLScProductLineItemElement;
-  /** Url for the product image */
-  imageUrl: string;
-  /** Title for the product image */
-  imageTitle: string;
-  /** Alternative description for the product image */
-  imageAlt: string;
-  /** Product name */
-  name: string;
-  /** Price name */
-  priceName?: string;
-  /** Product variant label */
-  variantLabel: string;
-  /** Quantity */
-  quantity: number;
-  /** Product monetary amount */
-  amount: number;
-  /** Product line item fees. */
-  fees: Fee[];
-  /** Is the setup fee not included in the free trial? */
-  setupFeeTrialEnabled: boolean;
-  /** The line item scratch amount */
-  scratchAmount: number;
-  /** Currency for the product */
-  currency: string;
-  /** Recurring interval (i.e. monthly, once, etc.) */
-  interval: string;
-  /** Trial duration days */
-  trialDurationDays: number;
-  /** Is the line item removable */
-  removable: boolean;
-  /** Can we select the quantity */
-  editable: boolean;
-  /** The max allowed. */
-  max: number;
-  /** The SKU. */
-  sku: string;
-  /** The purchasable status display */
-  purchasableStatusDisplay: string;
-  /** Emitted when the quantity changes. */
-  scUpdateQuantity: EventEmitter<number>;
-  /** Emitted when the quantity changes. */
-  scRemove: EventEmitter<void>;
-  renderPriceAndInterval(): any;
-  renderPurchasableStatus(): any;
-  render(): any;
+    el: HTMLScProductLineItemElement;
+    /** Image attributes. */
+    image: ImageAttributes;
+    /** Product name */
+    name: string;
+    /** Price name */
+    priceName?: string;
+    /** Product variant label */
+    variantLabel: string;
+    /** Quantity */
+    quantity: number;
+    /** Product monetary amount */
+    amount: number;
+    /** Product line item fees. */
+    fees: Fee[];
+    /** Is the setup fee not included in the free trial? */
+    setupFeeTrialEnabled: boolean;
+    /** The line item scratch amount */
+    scratchAmount: number;
+    /** Currency for the product */
+    currency: string;
+    /** Recurring interval (i.e. monthly, once, etc.) */
+    interval: string;
+    /** Trial duration days */
+    trialDurationDays: number;
+    /** Is the line item removable */
+    removable: boolean;
+    /** Can we select the quantity */
+    editable: boolean;
+    /** The max allowed. */
+    max: number;
+    /** The SKU. */
+    sku: string;
+    /** The purchasable status display */
+    purchasableStatusDisplay: string;
+    /** Emitted when the quantity changes. */
+    scUpdateQuantity: EventEmitter<number>;
+    /** Emitted when the quantity changes. */
+    scRemove: EventEmitter<void>;
+    renderPriceAndInterval(): any;
+    renderPurchasableStatus(): any;
+    render(): any;
 }

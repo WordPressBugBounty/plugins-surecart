@@ -1,5 +1,5 @@
 export declare class ScHeading {
-  el: HTMLElement;
-  size: 'small' | 'medium' | 'large';
-  render(): any;
+    el: HTMLElement;
+    size: 'small' | 'medium' | 'large';
+    render(): any;
 }

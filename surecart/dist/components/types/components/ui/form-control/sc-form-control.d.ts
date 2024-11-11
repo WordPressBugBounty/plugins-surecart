@@ -7,24 +7,24 @@
  * @part tooltip-text - Tooltip text.
  */
 export declare class ScFormControl {
-  el: HTMLScFormControlElement;
-  /** Size of the label */
-  size: 'small' | 'medium' | 'large';
-  /** Name for the input. Used for validation errors. */
-  name: string;
-  /** Show the label. */
-  showLabel: boolean;
-  /** Input label. */
-  label: string;
-  /** Input label id. */
-  labelId: string;
-  /** Input id. */
-  inputId: string;
-  /** Whether the input is required. */
-  required: boolean;
-  /** Help text */
-  help: string;
-  /** Help id */
-  helpId: string;
-  render(): any;
+    el: HTMLScFormControlElement;
+    /** Size of the label */
+    size: 'small' | 'medium' | 'large';
+    /** Name for the input. Used for validation errors. */
+    name: string;
+    /** Show the label. */
+    showLabel: boolean;
+    /** Input label. */
+    label: string;
+    /** Input label id. */
+    labelId: string;
+    /** Input id. */
+    inputId: string;
+    /** Whether the input is required. */
+    required: boolean;
+    /** Help text */
+    help: string;
+    /** Help id */
+    helpId: string;
+    render(): any;
 }

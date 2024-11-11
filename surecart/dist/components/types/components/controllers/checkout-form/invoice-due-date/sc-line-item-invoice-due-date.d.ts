@@ -1,3 +1,3 @@
 export declare class ScLineItemInvoiceDueDate {
-  render(): any;
+    render(): any;
 }

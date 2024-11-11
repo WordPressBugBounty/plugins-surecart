@@ -1,6 +1,6 @@
 export declare class ScPillOption {
-  /** Label */
-  isSelected: boolean;
-  isUnavailable: boolean;
-  render(): any;
+    /** Label */
+    isSelected: boolean;
+    isUnavailable: boolean;
+    render(): any;
 }

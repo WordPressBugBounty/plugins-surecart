@@ -2,13 +2,14 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-f1e4d53b.js');
-const consumer = require('./consumer-21fdeb72.js');
-const index$1 = require('./index-f9d999d6.js');
-const price$1 = require('./price-f1f1114d.js');
-const fetch = require('./fetch-2dba325c.js');
-const addQueryArgs = require('./add-query-args-17c551b6.js');
-require('./currency-ba038e2f.js');
+const index = require('./index-8acc3c89.js');
+const consumer = require('./consumer-9f4ee0e3.js');
+const index$1 = require('./index-21f8920e.js');
+const price$1 = require('./price-653ec1cb.js');
+const fetch = require('./fetch-f25a0cb0.js');
+const addQueryArgs = require('./add-query-args-49dcb630.js');
+require('./currency-71fce0f0.js');
+require('./remove-query-args-b57e8cd3.js');
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
@@ -639,189 +640,190 @@ const normalizeEntities = (data) => {
 };
 
 const getPricesAndProducts = async ({ ids, archived = false }) => {
-  const prices = (await fetch.apiFetch({
-    path: addQueryArgs.addQueryArgs('surecart/v1/prices/', {
-      ids,
-      archived,
-      expand: ['product'],
-    }),
-  }));
-  return normalizePrices(prices);
+    const prices = (await fetch.apiFetch({
+        path: addQueryArgs.addQueryArgs('surecart/v1/prices/', {
+            ids,
+            archived,
+            expand: ['product'],
+        }),
+    }));
+    return normalizePrices(prices);
 };
 const normalizePrices = (prices) => {
-  const { entities } = normalizeEntities(prices);
-  return {
-    prices: entities === null || entities === void 0 ? void 0 : entities.price,
-    products: entities === null || entities === void 0 ? void 0 : entities.product,
-  };
+    const { entities } = normalizeEntities(prices);
+    return {
+        prices: entities === null || entities === void 0 ? void 0 : entities.price,
+        products: entities === null || entities === void 0 ? void 0 : entities.product,
+    };
 };
 
 const scPriceChoiceCss = ":host {\n  display: block;\n  min-width: 0;\n  width: 100%;\n}\n\nsc-choice-container {\n  container-type: inline-size;\n}\n\n.price-choice {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  line-height: var(--sc-line-height-dense);\n  gap: var(--sc-spacing-small);\n}\n.price-choice__name {\n  color: var(--sc-price-choice-name-color, var(--sc-input-label-color));\n  font-size: var(--sc-price-choice-name-size, var(--sc-input-label-font-size-medium));\n  font-weight: var(--sc-price-choice-name-font-weight, var(--sc-font-weight-bold));\n  text-transform: var(--sc-price-choice-text-transform, var(--sc-input-label-text-transform, none));\n  display: -webkit-box;\n  display: -moz-box;\n  -webkit-box-orient: vertical;\n  -moz-box-orient: vertical;\n  -webkit-line-clamp: 3;\n  -moz-box-lines: 3;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.price-choice__description {\n  color: var(--sc-input-help-text-color);\n}\n.price-choice > *:not(:first-child):last-child {\n  text-align: right;\n}\n.price-choice__details {\n  flex: 1 0 50%;\n  display: grid;\n  gap: var(--sc-spacing-xxx-small);\n}\n.price-choice__trial, .price-choice__setup-fee, .price-choice__price {\n  font-size: var(--sc-font-size-small);\n  color: var(--sc-input-help-text-color);\n}\n.price-choice__price {\n  color: var(--sc-input-label-color);\n  font-weight: var(--sc-price-choice-price-font-weight, var(--sc-font-weight-normal));\n}\n\n@container (max-width: 325px) {\n  .price-choice {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: var(--sc-spacing-xx-small);\n  }\n  .price-choice > *:not(:first-child):last-child {\n    text-align: initial;\n  }\n}";
+const ScPriceChoiceStyle0 = scPriceChoiceCss;
 
 const ScPriceChoice = class {
-  constructor(hostRef) {
-    index.registerInstance(this, hostRef);
-    this.scUpdateLineItem = index.createEvent(this, "scUpdateLineItem", 7);
-    this.scRemoveLineItem = index.createEvent(this, "scRemoveLineItem", 7);
-    this.scAddEntities = index.createEvent(this, "scAddEntities", 7);
-    this.priceId = undefined;
-    this.price = undefined;
-    this.product = undefined;
-    this.loading = false;
-    this.label = undefined;
-    this.showLabel = true;
-    this.showPrice = true;
-    this.showControl = true;
-    this.description = undefined;
-    this.prices = {};
-    this.products = {};
-    this.order = undefined;
-    this.quantity = 1;
-    this.type = undefined;
-    this.checked = false;
-    this.error = undefined;
-    this.isAdHoc = undefined;
-    this.blank = false;
-    this.errorMessage = undefined;
-    this.adHocErrorMessage = undefined;
-  }
-  /** Refetch if price changes */
-  handlePriceIdChage() {
-    var _a;
-    if (this.price && ((_a = this.price) === null || _a === void 0 ? void 0 : _a.id) === this.priceId)
-      return;
-    this.fetchPriceWithProduct();
-  }
-  /** Keep price up to date. */
-  handlePricesChange() {
-    var _a, _b, _c;
-    if (!Object.keys(this.prices || {}).length || !Object.keys(this.products || {}).length)
-      return;
-    this.price = (_a = this === null || this === void 0 ? void 0 : this.prices) === null || _a === void 0 ? void 0 : _a[this.priceId];
-    this.product = (_b = this === null || this === void 0 ? void 0 : this.products) === null || _b === void 0 ? void 0 : _b[(_c = this === null || this === void 0 ? void 0 : this.price) === null || _c === void 0 ? void 0 : _c.product];
-  }
-  handlePriseChange() {
-    var _a;
-    this.isAdHoc = (_a = this === null || this === void 0 ? void 0 : this.price) === null || _a === void 0 ? void 0 : _a.ad_hoc;
-  }
-  handleErrorsChange() {
-    var _a;
-    const error = (((_a = this === null || this === void 0 ? void 0 : this.error) === null || _a === void 0 ? void 0 : _a.additional_errors) || []).find(error => { var _a; return ((_a = error === null || error === void 0 ? void 0 : error.data) === null || _a === void 0 ? void 0 : _a.attribute) === 'line_items.ad_hoc_amount'; });
-    this.adHocErrorMessage = (error === null || error === void 0 ? void 0 : error.message) ? error === null || error === void 0 ? void 0 : error.message : '';
-  }
-  handleCheckedChange() {
-    var _a;
-    if (((_a = this.price) === null || _a === void 0 ? void 0 : _a.ad_hoc) && this.choice.checked) {
-      setTimeout(() => {
-        this.adHocInput.triggerFocus();
-      }, 50);
-      return;
+    constructor(hostRef) {
+        index.registerInstance(this, hostRef);
+        this.scUpdateLineItem = index.createEvent(this, "scUpdateLineItem", 7);
+        this.scRemoveLineItem = index.createEvent(this, "scRemoveLineItem", 7);
+        this.scAddEntities = index.createEvent(this, "scAddEntities", 7);
+        this.priceId = undefined;
+        this.price = undefined;
+        this.product = undefined;
+        this.loading = false;
+        this.label = undefined;
+        this.showLabel = true;
+        this.showPrice = true;
+        this.showControl = true;
+        this.description = undefined;
+        this.prices = {};
+        this.products = {};
+        this.order = undefined;
+        this.quantity = 1;
+        this.type = undefined;
+        this.checked = false;
+        this.error = undefined;
+        this.isAdHoc = undefined;
+        this.blank = false;
+        this.errorMessage = undefined;
+        this.adHocErrorMessage = undefined;
     }
-  }
-  /** Fetch on load */
-  componentWillLoad() {
-    if (!this.price) {
-      this.fetchPriceWithProduct();
+    /** Refetch if price changes */
+    handlePriceIdChage() {
+        var _a;
+        if (this.price && ((_a = this.price) === null || _a === void 0 ? void 0 : _a.id) === this.priceId)
+            return;
+        this.fetchPriceWithProduct();
     }
-  }
-  /** Fetch prices and products */
-  async fetchPriceWithProduct() {
-    if (!this.priceId)
-      return;
-    try {
-      this.loading = true;
-      const { products, prices } = await getPricesAndProducts({
-        archived: false,
-        ids: [this.priceId],
-      });
-      // add to central store.
-      this.scAddEntities.emit({ prices, products });
+    /** Keep price up to date. */
+    handlePricesChange() {
+        var _a, _b, _c;
+        if (!Object.keys(this.prices || {}).length || !Object.keys(this.products || {}).length)
+            return;
+        this.price = (_a = this === null || this === void 0 ? void 0 : this.prices) === null || _a === void 0 ? void 0 : _a[this.priceId];
+        this.product = (_b = this === null || this === void 0 ? void 0 : this.products) === null || _b === void 0 ? void 0 : _b[(_c = this === null || this === void 0 ? void 0 : this.price) === null || _c === void 0 ? void 0 : _c.product];
     }
-    catch (err) {
+    handlePriseChange() {
+        var _a;
+        this.isAdHoc = (_a = this === null || this === void 0 ? void 0 : this.price) === null || _a === void 0 ? void 0 : _a.ad_hoc;
     }
-    finally {
-      this.loading = false;
+    handleErrorsChange() {
+        var _a;
+        const error = (((_a = this === null || this === void 0 ? void 0 : this.error) === null || _a === void 0 ? void 0 : _a.additional_errors) || []).find(error => { var _a; return ((_a = error === null || error === void 0 ? void 0 : error.data) === null || _a === void 0 ? void 0 : _a.attribute) === 'line_items.ad_hoc_amount'; });
+        this.adHocErrorMessage = (error === null || error === void 0 ? void 0 : error.message) ? error === null || error === void 0 ? void 0 : error.message : '';
     }
-  }
-  /** Is this price in the checkout session. */
-  isInOrder() {
-    return index$1.isPriceInOrder(this.price, this.order);
-  }
-  /** Is this checked */
-  isChecked() {
-    return this.isInOrder();
-  }
-  onChangeAdHoc(e) {
-    this.scUpdateLineItem.emit({ price_id: this.priceId, quantity: this.quantity, ad_hoc_amount: e.target.value });
-  }
-  getLineItem() {
-    var _a, _b;
-    return (((_b = (_a = this.order) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).find(lineItem => lineItem.price.id === this.priceId);
-  }
-  /** Show we show the ad hoc price box */
-  showAdHoc() {
-    var _a, _b;
-    if (!((_a = this.price) === null || _a === void 0 ? void 0 : _a.ad_hoc)) {
-      return false;
+    handleCheckedChange() {
+        var _a;
+        if (((_a = this.price) === null || _a === void 0 ? void 0 : _a.ad_hoc) && this.choice.checked) {
+            setTimeout(() => {
+                this.adHocInput.triggerFocus();
+            }, 50);
+            return;
+        }
     }
-    if (this.isInOrder()) {
-      return true;
+    /** Fetch on load */
+    componentWillLoad() {
+        if (!this.price) {
+            this.fetchPriceWithProduct();
+        }
     }
-    return (_b = this === null || this === void 0 ? void 0 : this.choice) === null || _b === void 0 ? void 0 : _b.checked;
-  }
-  renderEmpty() {
-    var _a;
-    if ((_a = window === null || window === void 0 ? void 0 : window.wp) === null || _a === void 0 ? void 0 : _a.blocks) {
-      return (index.h("sc-alert", { type: "danger", open: true, style: { margin: '0px' } }, wp.i18n.__('This product has been archived.', 'surecart')));
+    /** Fetch prices and products */
+    async fetchPriceWithProduct() {
+        if (!this.priceId)
+            return;
+        try {
+            this.loading = true;
+            const { products, prices } = await getPricesAndProducts({
+                archived: false,
+                ids: [this.priceId],
+            });
+            // add to central store.
+            this.scAddEntities.emit({ prices, products });
+        }
+        catch (err) {
+        }
+        finally {
+            this.loading = false;
+        }
     }
-    return index.h(index.Host, { style: { display: 'none' } });
-  }
-  renderPrice() {
-    return (index.h(index.Fragment, null, index.h("sc-format-number", { type: "currency", value: this.price.amount, currency: this.price.currency }), price$1.intervalString(this.price, {
-      showOnce: true,
-      abbreviate: true,
-      labels: {
-        interval: '/',
-        period: 
-        /** translators: used as in time period: "for 3 months" */
-        wp.i18n.__('for', 'surecart'),
-      },
-    })));
-  }
-  render() {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
-    if (this.loading) {
-      return (index.h("sc-choice-container", { showControl: this.showControl, name: "loading", disabled: true }, index.h("div", { class: "price-choice" }, index.h("sc-skeleton", { style: { width: '60px', display: 'inline-block' } }), index.h("sc-skeleton", { style: { width: '80px', display: 'inline-block' } }))));
+    /** Is this price in the checkout session. */
+    isInOrder() {
+        return index$1.isPriceInOrder(this.price, this.order);
     }
-    // we need an active price.
-    if (!((_a = this === null || this === void 0 ? void 0 : this.price) === null || _a === void 0 ? void 0 : _a.id) || ((_b = this.price) === null || _b === void 0 ? void 0 : _b.archived))
-      return this.renderEmpty();
-    // product needs to be active
-    if ((_c = this.product) === null || _c === void 0 ? void 0 : _c.archived) {
-      return this.renderEmpty();
+    /** Is this checked */
+    isChecked() {
+        return this.isInOrder();
     }
-    return (index.h("sc-choice-container", { ref: el => (this.choice = el), value: this.priceId, type: this.type, showControl: this.showControl, checked: this.isChecked() }, index.h("div", { class: "price-choice" }, this.showLabel && (index.h("div", { class: "price-choice__title" }, index.h("div", { class: "price-choice__name" }, this.label || ((_d = this === null || this === void 0 ? void 0 : this.price) === null || _d === void 0 ? void 0 : _d.name) || ((_e = this === null || this === void 0 ? void 0 : this.product) === null || _e === void 0 ? void 0 : _e.name)), !!this.description && index.h("div", { class: "price-choice__description" }, this.description))), this.showPrice && (index.h("div", { class: "price-choice__details" }, index.h("div", { class: "price-choice__price" }, ((_f = this.price) === null || _f === void 0 ? void 0 : _f.ad_hoc) ? (wp.i18n.__('Custom Amount', 'surecart')) : (index.h(index.Fragment, null, index.h("sc-format-number", { type: "currency", value: this.price.amount, currency: this.price.currency }), price$1.intervalString(this.price, {
-      showOnce: true,
-      abbreviate: true,
-      labels: {
-        interval: '/',
-        period: 
-        /** translators: used as in time period: "for 3 months" */
-        wp.i18n.__('for', 'surecart'),
-      },
-    })))), !!this.price.trial_duration_days && (index.h("div", { class: "price-choice__trial" }, wp.i18n.sprintf(wp.i18n._n('Starting in %s day', 'Starting in %s days', this.price.trial_duration_days, 'surecart'), this.price.trial_duration_days))), !!this.price.setup_fee_enabled && ((_g = this.price) === null || _g === void 0 ? void 0 : _g.setup_fee_amount) && (index.h("div", { class: "price-choice__setup-fee" }, index.h("sc-format-number", { type: "currency", value: Math.abs(this.price.setup_fee_amount), currency: this.price.currency }), ' ', this.price.setup_fee_name || (((_h = this.price) === null || _h === void 0 ? void 0 : _h.setup_fee_amount) < 0 ? wp.i18n.__('Discount', 'surecart') : wp.i18n.__('Setup Fee', 'surecart')))))))));
-  }
-  static get watchers() { return {
-    "priceId": ["handlePriceIdChage"],
-    "prices": ["handlePricesChange"],
-    "products": ["handlePricesChange"],
-    "price": ["handlePriseChange"],
-    "error": ["handleErrorsChange"],
-    "checked": ["handleCheckedChange"]
-  }; }
+    onChangeAdHoc(e) {
+        this.scUpdateLineItem.emit({ price_id: this.priceId, quantity: this.quantity, ad_hoc_amount: e.target.value });
+    }
+    getLineItem() {
+        var _a, _b;
+        return (((_b = (_a = this.order) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).find(lineItem => lineItem.price.id === this.priceId);
+    }
+    /** Show we show the ad hoc price box */
+    showAdHoc() {
+        var _a, _b;
+        if (!((_a = this.price) === null || _a === void 0 ? void 0 : _a.ad_hoc)) {
+            return false;
+        }
+        if (this.isInOrder()) {
+            return true;
+        }
+        return (_b = this === null || this === void 0 ? void 0 : this.choice) === null || _b === void 0 ? void 0 : _b.checked;
+    }
+    renderEmpty() {
+        var _a;
+        if ((_a = window === null || window === void 0 ? void 0 : window.wp) === null || _a === void 0 ? void 0 : _a.blocks) {
+            return (index.h("sc-alert", { type: "danger", open: true, style: { margin: '0px' } }, wp.i18n.__('This product has been archived.', 'surecart')));
+        }
+        return index.h(index.Host, { style: { display: 'none' } });
+    }
+    renderPrice() {
+        return (index.h(index.Fragment, null, index.h("sc-format-number", { type: "currency", value: this.price.amount, currency: this.price.currency }), price$1.intervalString(this.price, {
+            showOnce: true,
+            abbreviate: true,
+            labels: {
+                interval: '/',
+                period: 
+                /** translators: used as in time period: "for 3 months" */
+                wp.i18n.__('for', 'surecart'),
+            },
+        })));
+    }
+    render() {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        if (this.loading) {
+            return (index.h("sc-choice-container", { showControl: this.showControl, name: "loading", disabled: true }, index.h("div", { class: "price-choice" }, index.h("sc-skeleton", { style: { width: '60px', display: 'inline-block' } }), index.h("sc-skeleton", { style: { width: '80px', display: 'inline-block' } }))));
+        }
+        // we need an active price.
+        if (!((_a = this === null || this === void 0 ? void 0 : this.price) === null || _a === void 0 ? void 0 : _a.id) || ((_b = this.price) === null || _b === void 0 ? void 0 : _b.archived))
+            return this.renderEmpty();
+        // product needs to be active
+        if ((_c = this.product) === null || _c === void 0 ? void 0 : _c.archived) {
+            return this.renderEmpty();
+        }
+        return (index.h("sc-choice-container", { ref: el => (this.choice = el), value: this.priceId, type: this.type, showControl: this.showControl, checked: this.isChecked() }, index.h("div", { class: "price-choice" }, this.showLabel && (index.h("div", { class: "price-choice__title" }, index.h("div", { class: "price-choice__name" }, this.label || ((_d = this === null || this === void 0 ? void 0 : this.price) === null || _d === void 0 ? void 0 : _d.name) || ((_e = this === null || this === void 0 ? void 0 : this.product) === null || _e === void 0 ? void 0 : _e.name)), !!this.description && index.h("div", { class: "price-choice__description" }, this.description))), this.showPrice && (index.h("div", { class: "price-choice__details" }, index.h("div", { class: "price-choice__price" }, ((_f = this.price) === null || _f === void 0 ? void 0 : _f.ad_hoc) ? (wp.i18n.__('Custom Amount', 'surecart')) : (index.h(index.Fragment, null, index.h("sc-format-number", { type: "currency", value: this.price.amount, currency: this.price.currency }), price$1.intervalString(this.price, {
+            showOnce: true,
+            abbreviate: true,
+            labels: {
+                interval: '/',
+                period: 
+                /** translators: used as in time period: "for 3 months" */
+                wp.i18n.__('for', 'surecart'),
+            },
+        })))), !!this.price.trial_duration_days && (index.h("div", { class: "price-choice__trial" }, wp.i18n.sprintf(wp.i18n._n('Starting in %s day', 'Starting in %s days', this.price.trial_duration_days, 'surecart'), this.price.trial_duration_days))), !!this.price.setup_fee_enabled && ((_g = this.price) === null || _g === void 0 ? void 0 : _g.setup_fee_amount) && (index.h("div", { class: "price-choice__setup-fee" }, index.h("sc-format-number", { type: "currency", value: Math.abs(this.price.setup_fee_amount), currency: this.price.currency }), ' ', this.price.setup_fee_name || (((_h = this.price) === null || _h === void 0 ? void 0 : _h.setup_fee_amount) < 0 ? wp.i18n.__('Discount', 'surecart') : wp.i18n.__('Setup Fee', 'surecart')))))))));
+    }
+    static get watchers() { return {
+        "priceId": ["handlePriceIdChage"],
+        "prices": ["handlePricesChange"],
+        "products": ["handlePricesChange"],
+        "price": ["handlePriseChange"],
+        "error": ["handleErrorsChange"],
+        "checked": ["handleCheckedChange"]
+    }; }
 };
 consumer.openWormhole(ScPriceChoice, ['prices', 'products', 'order', 'error'], false);
-ScPriceChoice.style = scPriceChoiceCss;
+ScPriceChoice.style = ScPriceChoiceStyle0;
 
 exports.sc_price_choice = ScPriceChoice;
 

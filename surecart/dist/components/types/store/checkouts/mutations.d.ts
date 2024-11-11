@@ -1,4 +1,4 @@
-import { Checkout } from 'src/types';
+import { Checkout } from "../../types";
 /** Get the checkout. */
 export declare const getCheckout: (formId: number | string, mode: 'live' | 'test') => any;
 /** Set the checkout. */

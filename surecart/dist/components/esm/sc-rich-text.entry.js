@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, H as Host } from './index-644f5478.js';
+import { r as registerInstance, c as createEvent, h, H as Host } from './index-745b6bec.js';
 
 // ::- Persistent data structure representing an ordered mapping from
 // strings to values, with some convenient update methods.
@@ -241,25 +241,20 @@ class Fragment {
     [`Node`](https://prosemirror.net/docs/ref/#model.Node.textBetween).
     */
     textBetween(from, to, blockSeparator, leafText) {
-        let text = "", separated = true;
+        let text = "", first = true;
         this.nodesBetween(from, to, (node, pos) => {
-            if (node.isText) {
-                text += node.text.slice(Math.max(from, pos) - pos, to - pos);
-                separated = !blockSeparator;
+            let nodeText = node.isText ? node.text.slice(Math.max(from, pos) - pos, to - pos)
+                : !node.isLeaf ? ""
+                    : leafText ? (typeof leafText === "function" ? leafText(node) : leafText)
+                        : node.type.spec.leafText ? node.type.spec.leafText(node)
+                            : "";
+            if (node.isBlock && (node.isLeaf && nodeText || node.isTextblock) && blockSeparator) {
+                if (first)
+                    first = false;
+                else
+                    text += blockSeparator;
             }
-            else if (node.isLeaf) {
-                if (leafText) {
-                    text += typeof leafText === "function" ? leafText(node) : leafText;
-                }
-                else if (node.type.spec.leafText) {
-                    text += node.type.spec.leafText(node);
-                }
-                separated = !blockSeparator;
-            }
-            else if (!separated && node.isBlock) {
-                text += blockSeparator;
-                separated = true;
-            }
+            text += nodeText;
         }, 0);
         return text;
     }
@@ -1338,10 +1333,11 @@ class Node$1 {
     Invoke a callback for all descendant nodes recursively between
     the given two positions that are relative to start of this
     node's content. The callback is invoked with the node, its
-    parent-relative position, its parent node, and its child index.
-    When the callback returns false for a given node, that node's
-    children will not be recursed over. The last parameter can be
-    used to specify a starting position to count from.
+    position relative to the original node (method receiver),
+    its parent node, and its child index. When the callback returns
+    false for a given node, that node's children will not be
+    recursed over. The last parameter can be used to specify a
+    starting position to count from.
     */
     nodesBetween(from, to, f, startPos = 0) {
         this.content.nodesBetween(from, to, f, startPos, this);
@@ -2315,7 +2311,7 @@ class NodeType$1 {
     }
     /**
     Returns true if the given fragment is valid content for this node
-    type with the given attributes.
+    type.
     */
     validContent(content) {
         let result = this.contentMatch.matchFragment(content);
@@ -2494,6 +2490,12 @@ class Schema {
     */
     constructor(spec) {
         /**
+        The [linebreak
+        replacement](https://prosemirror.net/docs/ref/#model.NodeSpec.linebreakReplacement) node defined
+        in this schema, if any.
+        */
+        this.linebreakReplacement = null;
+        /**
         An object for storing whatever values modules may want to
         compute and cache per schema. (If you want to store something
         in it, try to use property names unlikely to clash.)
@@ -2514,6 +2516,13 @@ class Schema {
             type.contentMatch = contentExprCache[contentExpr] ||
                 (contentExprCache[contentExpr] = ContentMatch.parse(contentExpr, this.nodes));
             type.inlineContent = type.contentMatch.inlineContent;
+            if (type.spec.linebreakReplacement) {
+                if (this.linebreakReplacement)
+                    throw new RangeError("Multiple linebreak nodes defined");
+                if (!type.isInline || !type.isLeaf)
+                    throw new RangeError("Linebreak replacement nodes must be inline leaf nodes");
+                this.linebreakReplacement = type;
+            }
             type.markSet = markExpr == "_" ? null :
                 markExpr ? gatherMarks(this, markExpr.split(" ")) :
                     markExpr == "" || !type.inlineContent ? [] : null;
@@ -2602,6 +2611,8 @@ function gatherMarks(schema, marks) {
     return found;
 }
 
+function isTagRule(rule) { return rule.tag != null; }
+function isStyleRule(rule) { return rule.style != null; }
 /**
 A DOM parser represents a strategy for parsing DOM content into a
 ProseMirror document conforming to a given schema. Its behavior is
@@ -2633,9 +2644,9 @@ class DOMParser {
         */
         this.styles = [];
         rules.forEach(rule => {
-            if (rule.tag)
+            if (isTagRule(rule))
                 this.tags.push(rule);
-            else if (rule.style)
+            else if (isStyleRule(rule))
                 this.styles.push(rule);
         });
         // Only normalize list elements when lists in the schema can't directly contain themselves
@@ -2880,30 +2891,28 @@ class ParseContext {
     // otherwise, the node is passed to `addElement` or, if it has a
     // `style` attribute, `addElementWithStyles`.
     addDOM(dom) {
-        if (dom.nodeType == 3) {
+        if (dom.nodeType == 3)
             this.addTextNode(dom);
-        }
-        else if (dom.nodeType == 1) {
-            let style = dom.getAttribute("style");
-            if (!style) {
-                this.addElement(dom);
-            }
-            else {
-                let marks = this.readStyles(parseStyles(style));
-                if (!marks)
-                    return; // A style with ignore: true
-                let [addMarks, removeMarks] = marks, top = this.top;
-                for (let i = 0; i < removeMarks.length; i++)
-                    this.removePendingMark(removeMarks[i], top);
-                for (let i = 0; i < addMarks.length; i++)
-                    this.addPendingMark(addMarks[i]);
-                this.addElement(dom);
-                for (let i = 0; i < addMarks.length; i++)
-                    this.removePendingMark(addMarks[i], top);
-                for (let i = 0; i < removeMarks.length; i++)
-                    this.addPendingMark(removeMarks[i]);
-            }
-        }
+        else if (dom.nodeType == 1)
+            this.addElement(dom);
+    }
+    withStyleRules(dom, f) {
+        let style = dom.style;
+        if (!style || !style.length)
+            return f();
+        let marks = this.readStyles(dom.style);
+        if (!marks)
+            return; // A style with ignore: true
+        let [addMarks, removeMarks] = marks, top = this.top;
+        for (let i = 0; i < removeMarks.length; i++)
+            this.removePendingMark(removeMarks[i], top);
+        for (let i = 0; i < addMarks.length; i++)
+            this.addPendingMark(addMarks[i]);
+        f();
+        for (let i = 0; i < addMarks.length; i++)
+            this.removePendingMark(addMarks[i], top);
+        for (let i = 0; i < removeMarks.length; i++)
+            this.addPendingMark(removeMarks[i]);
     }
     addTextNode(dom) {
         let value = dom.nodeValue;
@@ -2970,13 +2979,18 @@ class ParseContext {
                 this.leafFallback(dom);
                 return;
             }
-            this.addAll(dom);
+            if (rule && rule.skip)
+                this.addAll(dom);
+            else
+                this.withStyleRules(dom, () => this.addAll(dom));
             if (sync)
                 this.sync(top);
             this.needsBlock = oldNeedsBlock;
         }
         else {
-            this.addElementByRule(dom, rule, rule.consuming === false ? ruleID : undefined);
+            this.withStyleRules(dom, () => {
+                this.addElementByRule(dom, rule, rule.consuming === false ? ruleID : undefined);
+            });
         }
     }
     // Called for leaf DOM nodes that would otherwise be ignored
@@ -2995,15 +3009,16 @@ class ParseContext {
     // had a rule with `ignore` set.
     readStyles(styles) {
         let add = Mark$1.none, remove = Mark$1.none;
-        style: for (let i = 0; i < styles.length; i += 2) {
+        for (let i = 0, l = styles.length; i < l; i++) {
+            let name = styles.item(i);
             for (let after = undefined;;) {
-                let rule = this.parser.matchStyle(styles[i], styles[i + 1], this, after);
+                let rule = this.parser.matchStyle(name, styles.getPropertyValue(name), this, after);
                 if (!rule)
-                    continue style;
+                    break;
                 if (rule.ignore)
                     return null;
                 if (rule.clearMark) {
-                    this.top.pendingMarks.forEach(m => {
+                    this.top.pendingMarks.concat(this.top.activeMarks).forEach(m => {
                         if (rule.clearMark(m))
                             remove = m.addToSet(remove);
                     });
@@ -3299,13 +3314,6 @@ function normalizeList(dom) {
 // Apply a CSS selector.
 function matches(dom, selector) {
     return (dom.matches || dom.msMatchesSelector || dom.webkitMatchesSelector || dom.mozMatchesSelector).call(dom, selector);
-}
-// Tokenize a style attribute into property/value pairs.
-function parseStyles(style) {
-    let re = /\s*([\w-]+)\s*:\s*([^;]+)/g, m, result = [];
-    while (m = re.exec(style))
-        result.push(m[1], m[2].trim());
-    return result;
 }
 function copy(obj) {
     let copy = {};
@@ -4358,7 +4366,8 @@ class ReplaceAroundStep extends Step {
     }
     map(mapping) {
         let from = mapping.mapResult(this.from, 1), to = mapping.mapResult(this.to, -1);
-        let gapFrom = mapping.map(this.gapFrom, -1), gapTo = mapping.map(this.gapTo, 1);
+        let gapFrom = this.from == this.gapFrom ? from.pos : mapping.map(this.gapFrom, -1);
+        let gapTo = this.to == this.gapTo ? to.pos : mapping.map(this.gapTo, 1);
         if ((from.deletedAcross && to.deletedAcross) || gapFrom < from.pos || gapTo > to.pos)
             return null;
         return new ReplaceAroundStep(from.pos, to.pos, gapFrom, gapTo, this.slice, this.insert, this.structure);
@@ -4470,20 +4479,28 @@ function removeMark(tr, from, to, mark) {
     });
     matched.forEach(m => tr.step(new RemoveMarkStep(m.from, m.to, m.style)));
 }
-function clearIncompatible(tr, pos, parentType, match = parentType.contentMatch) {
+function clearIncompatible(tr, pos, parentType, match = parentType.contentMatch, clearNewlines = true) {
     let node = tr.doc.nodeAt(pos);
-    let delSteps = [], cur = pos + 1;
+    let replSteps = [], cur = pos + 1;
     for (let i = 0; i < node.childCount; i++) {
         let child = node.child(i), end = cur + child.nodeSize;
         let allowed = match.matchType(child.type);
         if (!allowed) {
-            delSteps.push(new ReplaceStep(cur, end, Slice.empty));
+            replSteps.push(new ReplaceStep(cur, end, Slice.empty));
         }
         else {
             match = allowed;
             for (let j = 0; j < child.marks.length; j++)
                 if (!parentType.allowsMarkType(child.marks[j].type))
                     tr.step(new RemoveMarkStep(cur, end, child.marks[j]));
+            if (clearNewlines && child.isText && parentType.whitespace != "pre") {
+                let m, newline = /\r?\n|\r/g, slice;
+                while (m = newline.exec(child.text)) {
+                    if (!slice)
+                        slice = new Slice(Fragment.from(parentType.schema.text(" ", parentType.allowedMarks(child.marks))), 0, 0);
+                    replSteps.push(new ReplaceStep(cur + m.index, cur + m.index + m[0].length, slice));
+                }
+            }
         }
         cur = end;
     }
@@ -4491,8 +4508,8 @@ function clearIncompatible(tr, pos, parentType, match = parentType.contentMatch)
         let fill = match.fillBefore(Fragment.empty, true);
         tr.replace(cur, cur, new Slice(fill, 0, 0));
     }
-    for (let i = delSteps.length - 1; i >= 0; i--)
-        tr.step(delSteps[i]);
+    for (let i = replSteps.length - 1; i >= 0; i--)
+        tr.step(replSteps[i]);
 }
 
 function canCut(node, start, end) {
@@ -4601,12 +4618,43 @@ function setBlockType$1(tr, from, to, type, attrs) {
     let mapFrom = tr.steps.length;
     tr.doc.nodesBetween(from, to, (node, pos) => {
         if (node.isTextblock && !node.hasMarkup(type, attrs) && canChangeType(tr.doc, tr.mapping.slice(mapFrom).map(pos), type)) {
+            let convertNewlines = null;
+            if (type.schema.linebreakReplacement) {
+                let pre = type.whitespace == "pre", supportLinebreak = !!type.contentMatch.matchType(type.schema.linebreakReplacement);
+                if (pre && !supportLinebreak)
+                    convertNewlines = false;
+                else if (!pre && supportLinebreak)
+                    convertNewlines = true;
+            }
             // Ensure all markup that isn't allowed in the new node type is cleared
-            tr.clearIncompatible(tr.mapping.slice(mapFrom).map(pos, 1), type);
+            if (convertNewlines === false)
+                replaceLinebreaks(tr, node, pos, mapFrom);
+            clearIncompatible(tr, tr.mapping.slice(mapFrom).map(pos, 1), type, undefined, convertNewlines === null);
             let mapping = tr.mapping.slice(mapFrom);
             let startM = mapping.map(pos, 1), endM = mapping.map(pos + node.nodeSize, 1);
             tr.step(new ReplaceAroundStep(startM, endM, startM + 1, endM - 1, new Slice(Fragment.from(type.create(attrs, null, node.marks)), 0, 0), 1, true));
+            if (convertNewlines === true)
+                replaceNewlines(tr, node, pos, mapFrom);
             return false;
+        }
+    });
+}
+function replaceNewlines(tr, node, pos, mapFrom) {
+    node.forEach((child, offset) => {
+        if (child.isText) {
+            let m, newline = /\r?\n|\r/g;
+            while (m = newline.exec(child.text)) {
+                let start = tr.mapping.slice(mapFrom).map(pos + 1 + offset + m.index);
+                tr.replaceWith(start, start + 1, node.type.schema.linebreakReplacement.create());
+            }
+        }
+    });
+}
+function replaceLinebreaks(tr, node, pos, mapFrom) {
+    node.forEach((child, offset) => {
+        if (child.type == child.type.schema.linebreakReplacement) {
+            let start = tr.mapping.slice(mapFrom).map(pos + 1 + offset);
+            tr.replaceWith(start, start + 1, node.type.schema.text("\n"));
         }
     });
 }
@@ -4646,9 +4694,10 @@ function canSplit(doc, pos, depth = 1, typesAfter) {
         if (node.type.spec.isolating)
             return false;
         let rest = node.content.cutByIndex(index, node.childCount);
+        let overrideChild = typesAfter && typesAfter[i + 1];
+        if (overrideChild)
+            rest = rest.replaceChild(0, overrideChild.type.create(overrideChild.attrs));
         let after = (typesAfter && typesAfter[i]) || node;
-        if (after != node)
-            rest = rest.replaceChild(0, after.type.create(after.attrs));
         if (!node.canReplace(index + 1, node.childCount) || !after.type.validContent(rest))
             return false;
     }
@@ -5126,10 +5175,10 @@ function replaceRange(tr, from, to, slice) {
     // Back up preferredDepth to cover defining textblocks directly
     // above it, possibly skipping a non-defining textblock.
     for (let d = preferredDepth - 1; d >= 0; d--) {
-        let type = leftNodes[d].type, def = definesContent(type);
-        if (def && $from.node(preferredTargetIndex).type != type)
+        let leftNode = leftNodes[d], def = definesContent(leftNode.type);
+        if (def && !leftNode.sameMarkup($from.node(Math.abs(preferredTarget) - 1)))
             preferredDepth = d;
-        else if (def || !type.isTextblock)
+        else if (def || !leftNode.type.isTextblock)
             break;
     }
     for (let j = slice.openStart; j >= 0; j--) {
@@ -5271,6 +5320,51 @@ class AttrStep extends Step {
     }
 }
 Step.jsonID("attr", AttrStep);
+/**
+Update an attribute in the doc node.
+*/
+class DocAttrStep extends Step {
+    /**
+    Construct an attribute step.
+    */
+    constructor(
+    /**
+    The attribute to set.
+    */
+    attr, 
+    // The attribute's new value.
+    value) {
+        super();
+        this.attr = attr;
+        this.value = value;
+    }
+    apply(doc) {
+        let attrs = Object.create(null);
+        for (let name in doc.attrs)
+            attrs[name] = doc.attrs[name];
+        attrs[this.attr] = this.value;
+        let updated = doc.type.create(attrs, doc.content, doc.marks);
+        return StepResult.ok(updated);
+    }
+    getMap() {
+        return StepMap.empty;
+    }
+    invert(doc) {
+        return new DocAttrStep(this.attr, doc.attrs[this.attr]);
+    }
+    map(mapping) {
+        return this;
+    }
+    toJSON() {
+        return { stepType: "docAttr", attr: this.attr, value: this.value };
+    }
+    static fromJSON(schema, json) {
+        if (typeof json.attr != "string")
+            throw new RangeError("Invalid input for DocAttrStep.fromJSON");
+        return new DocAttrStep(json.attr, json.value);
+    }
+}
+Step.jsonID("docAttr", DocAttrStep);
 
 /**
 @internal
@@ -5475,9 +5569,18 @@ class Transform {
     }
     /**
     Set a single attribute on a given node to a new value.
+    The `pos` addresses the document content. Use `setDocAttribute`
+    to set attributes on the document itself.
     */
     setNodeAttribute(pos, attr, value) {
         this.step(new AttrStep(pos, attr, value));
+        return this;
+    }
+    /**
+    Set a single attribute on the document to a new value.
+    */
+    setDocAttribute(attr, value) {
+        this.step(new DocAttrStep(attr, value));
         return this;
     }
     /**
@@ -6028,10 +6131,13 @@ information that client code or plugins can use to describe what a
 transaction represents, so that they can update their [own
 state](https://prosemirror.net/docs/ref/#state.StateField) accordingly.
 
-The [editor view](https://prosemirror.net/docs/ref/#view.EditorView) uses a few metadata properties:
-it will attach a property `"pointer"` with the value `true` to
-selection transactions directly caused by mouse or touch input, and
-a `"uiEvent"` property of that may be `"paste"`, `"cut"`, or `"drop"`.
+The [editor view](https://prosemirror.net/docs/ref/#view.EditorView) uses a few metadata
+properties: it will attach a property `"pointer"` with the value
+`true` to selection transactions directly caused by mouse or touch
+input, a `"composition"` property holding an ID identifying the
+composition that caused it to transactions caused by composed DOM
+input, and a `"uiEvent"` property of that may be `"paste"`,
+`"cut"`, or `"drop"`.
 */
 class Transaction extends Transform {
     /**
@@ -6560,6 +6666,9 @@ const textRange = function (node, from, to) {
     range.setStart(node, from || 0);
     return range;
 };
+const clearReusedRange = function () {
+    reusedRange = null;
+};
 // Scans forward and backward through DOM positions equivalent to the
 // given one to see if the two are in the same place (i.e. after a
 // text node vs at the end of that text node)
@@ -6593,6 +6702,44 @@ function scanFor(node, off, targetNode, targetOff, dir) {
 }
 function nodeSize(node) {
     return node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length;
+}
+function textNodeBefore$1(node, offset) {
+    for (;;) {
+        if (node.nodeType == 3 && offset)
+            return node;
+        if (node.nodeType == 1 && offset > 0) {
+            if (node.contentEditable == "false")
+                return null;
+            node = node.childNodes[offset - 1];
+            offset = nodeSize(node);
+        }
+        else if (node.parentNode && !hasBlockDesc(node)) {
+            offset = domIndex(node);
+            node = node.parentNode;
+        }
+        else {
+            return null;
+        }
+    }
+}
+function textNodeAfter$1(node, offset) {
+    for (;;) {
+        if (node.nodeType == 3 && offset < node.nodeValue.length)
+            return node;
+        if (node.nodeType == 1 && offset < node.childNodes.length) {
+            if (node.contentEditable == "false")
+                return null;
+            node = node.childNodes[offset];
+            offset = 0;
+        }
+        else if (node.parentNode && !hasBlockDesc(node)) {
+            offset = domIndex(node) + 1;
+            node = node.parentNode;
+        }
+        else {
+            return null;
+        }
+    }
 }
 function isOnEdge(node, offset, parent) {
     for (let atStart = offset == 0, atEnd = offset == nodeSize(node); atStart || atEnd;) {
@@ -6631,6 +6778,21 @@ function deepActiveElement(doc) {
         elt = elt.shadowRoot.activeElement;
     return elt;
 }
+function caretFromPoint(doc, x, y) {
+    if (doc.caretPositionFromPoint) {
+        try { // Firefox throws for this call in hard-to-predict circumstances (#994)
+            let pos = doc.caretPositionFromPoint(x, y);
+            if (pos)
+                return { node: pos.offsetNode, offset: pos.offset };
+        }
+        catch (_) { }
+    }
+    if (doc.caretRangeFromPoint) {
+        let range = doc.caretRangeFromPoint(x, y);
+        if (range)
+            return { node: range.startContainer, offset: range.startOffset };
+    }
+}
 
 const nav = typeof navigator != "undefined" ? navigator : null;
 const doc = typeof document != "undefined" ? document : null;
@@ -6643,17 +6805,24 @@ const ie_version = ie_upto10 ? document.documentMode : ie_11up ? +ie_11up[1] : i
 const gecko = !ie$1 && /gecko\/(\d+)/i.test(agent);
 gecko && +(/Firefox\/(\d+)/.exec(agent) || [0, 0])[1];
 const _chrome = !ie$1 && /Chrome\/(\d+)/.exec(agent);
-const chrome$1 = !!_chrome;
+const chrome = !!_chrome;
 const chrome_version = _chrome ? +_chrome[1] : 0;
 const safari = !ie$1 && !!nav && /Apple Computer/.test(nav.vendor);
 // Is true for both iOS and iPadOS for convenience
 const ios = safari && (/Mobile\/\w+/.test(agent) || !!nav && nav.maxTouchPoints > 2);
 const mac$2 = ios || (nav ? /Mac/.test(nav.platform) : false);
+const windows = nav ? /Win/.test(nav.platform) : false;
 const android = /Android \d/.test(agent);
 const webkit = !!doc && "webkitFontSmoothing" in doc.documentElement.style;
 const webkit_version = webkit ? +(/\bAppleWebKit\/(\d+)/.exec(navigator.userAgent) || [0, 0])[1] : 0;
 
 function windowRect(doc) {
+    let vp = doc.defaultView && doc.defaultView.visualViewport;
+    if (vp)
+        return {
+            left: 0, right: vp.width,
+            top: 0, bottom: vp.height
+        };
     return { left: 0, right: doc.documentElement.clientWidth,
         top: 0, bottom: doc.documentElement.clientHeight };
 }
@@ -6684,7 +6853,9 @@ function scrollRectIntoView(view, rect, startDOM) {
         if (rect.top < bounding.top + getSide(scrollThreshold, "top"))
             moveY = -(bounding.top - rect.top + getSide(scrollMargin, "top"));
         else if (rect.bottom > bounding.bottom - getSide(scrollThreshold, "bottom"))
-            moveY = rect.bottom - bounding.bottom + getSide(scrollMargin, "bottom");
+            moveY = rect.bottom - rect.top > bounding.bottom - bounding.top
+                ? rect.top + getSide(scrollMargin, "top") - bounding.top
+                : rect.bottom - bounding.bottom + getSide(scrollMargin, "bottom");
         if (rect.left < bounding.left + getSide(scrollThreshold, "left"))
             moveX = -(bounding.left - rect.left + getSide(scrollMargin, "left"));
         else if (rect.right > bounding.right - getSide(scrollThreshold, "right"))
@@ -6703,7 +6874,7 @@ function scrollRectIntoView(view, rect, startDOM) {
                 rect = { left: rect.left - dX, top: rect.top - dY, right: rect.right - dX, bottom: rect.bottom - dY };
             }
         }
-        if (atTop)
+        if (atTop || /^(fixed|sticky)$/.test(getComputedStyle(parent).position))
             break;
     }
 }
@@ -6774,6 +6945,7 @@ function focusPreventScroll(dom) {
 function findOffsetInNode(node, coords) {
     let closest, dxClosest = 2e8, coordsClosest, offset = 0;
     let rowBot = coords.top, rowTop = coords.top;
+    let firstBelow, coordsBelow;
     for (let child = node.firstChild, childIndex = 0; child; child = child.nextSibling, childIndex++) {
         let rects;
         if (child.nodeType == 1)
@@ -6801,10 +6973,19 @@ function findOffsetInNode(node, coords) {
                     continue;
                 }
             }
+            else if (rect.top > coords.top && !firstBelow && rect.left <= coords.left && rect.right >= coords.left) {
+                firstBelow = child;
+                coordsBelow = { left: Math.max(rect.left, Math.min(rect.right, coords.left)), top: rect.top };
+            }
             if (!closest && (coords.left >= rect.right && coords.top >= rect.top ||
                 coords.left >= rect.left && coords.top >= rect.bottom))
                 offset = childIndex + 1;
         }
+    }
+    if (!closest && firstBelow) {
+        closest = firstBelow;
+        coordsClosest = coordsBelow;
+        dxClosest = 0;
     }
     if (closest && closest.nodeType == 3)
         return findOffsetInText(closest, coordsClosest);
@@ -6852,7 +7033,7 @@ function posFromCaret(view, node, offset, coords) {
     // fall outside of. If so, we take the position before/after that
     // block. If not, we call `posFromDOM` on the raw node/offset.
     let outsideBlock = -1;
-    for (let cur = node;;) {
+    for (let cur = node, sawBlock = false;;) {
         if (cur == view.dom)
             break;
         let desc = view.docView.nearestDesc(cur, true);
@@ -6861,12 +7042,14 @@ function posFromCaret(view, node, offset, coords) {
         if (desc.dom.nodeType == 1 && (desc.node.isBlock && desc.parent || !desc.contentDOM)) {
             let rect = desc.dom.getBoundingClientRect();
             if (desc.node.isBlock && desc.parent) {
-                if (rect.left > coords.left || rect.top > coords.top)
+                // Only apply the horizontal test to the innermost block. Vertical for any parent.
+                if (!sawBlock && rect.left > coords.left || rect.top > coords.top)
                     outsideBlock = desc.posBefore;
-                else if (rect.right < coords.left || rect.bottom < coords.top)
+                else if (!sawBlock && rect.right < coords.left || rect.bottom < coords.top)
                     outsideBlock = desc.posAfter;
+                sawBlock = true;
             }
-            if (!desc.contentDOM && outsideBlock < 0) {
+            if (!desc.contentDOM && outsideBlock < 0 && !desc.node.isText) {
                 // If we are inside a leaf, return the side of the leaf closer to the coords
                 let before = desc.node.isBlock ? coords.top < (rect.top + rect.bottom) / 2
                     : coords.left < (rect.left + rect.right) / 2;
@@ -6899,19 +7082,9 @@ function elementFromPoint(element, coords, box) {
 // Given an x,y position on the editor, get the position in the document.
 function posAtCoords(view, coords) {
     let doc = view.dom.ownerDocument, node, offset = 0;
-    if (doc.caretPositionFromPoint) {
-        try { // Firefox throws for this call in hard-to-predict circumstances (#994)
-            let pos = doc.caretPositionFromPoint(coords.left, coords.top);
-            if (pos)
-                ({ offsetNode: node, offset } = pos);
-        }
-        catch (_) { }
-    }
-    if (!node && doc.caretRangeFromPoint) {
-        let range = doc.caretRangeFromPoint(coords.left, coords.top);
-        if (range)
-            ({ startContainer: node, startOffset: offset } = range);
-    }
+    let caret = caretFromPoint(doc, coords.left, coords.top);
+    if (caret)
+        ({ node, offset } = caret);
     let elt = (view.root.elementFromPoint ? view.root : doc)
         .elementFromPoint(coords.left, coords.top);
     let pos;
@@ -6944,6 +7117,11 @@ function posAtCoords(view, coords) {
                     offset++;
             }
         }
+        let prev;
+        // When clicking above the right side of an uneditable node, Chrome will report a cursor position after that node.
+        if (webkit && offset && node.nodeType == 1 && (prev = node.childNodes[offset - 1]).nodeType == 1 &&
+            prev.contentEditable == "false" && prev.getBoundingClientRect().top >= coords.top)
+            offset--;
         // Suspiciously specific kludge to work around caret*FromPoint
         // never returning a position at the end of the document
         if (node == view.dom && offset == node.childNodes.length - 1 && node.lastChild.nodeType == 1 &&
@@ -6960,9 +7138,17 @@ function posAtCoords(view, coords) {
     let desc = view.docView.nearestDesc(elt, true);
     return { pos, inside: desc ? desc.posAtStart - desc.border : -1 };
 }
+function nonZero(rect) {
+    return rect.top < rect.bottom || rect.left < rect.right;
+}
 function singleRect(target, bias) {
     let rects = target.getClientRects();
-    return !rects.length ? target.getBoundingClientRect() : rects[bias < 0 ? 0 : rects.length - 1];
+    if (rects.length) {
+        let first = rects[bias < 0 ? 0 : rects.length - 1];
+        if (nonZero(first))
+            return first;
+    }
+    return Array.prototype.find.call(rects, nonZero) || target.getBoundingClientRect();
 }
 const BIDI = /[\u0590-\u05f4\u0600-\u06ff\u0700-\u08ac]/;
 // Given a position in the document model, get a bounding box of the
@@ -7004,7 +7190,7 @@ function coordsAtPos(view, pos, side) {
             else {
                 to++;
             }
-            return flattenV(singleRect(textRange(node, from, to), 1), takeSide < 0);
+            return flattenV(singleRect(textRange(node, from, to), takeSide), takeSide < 0);
         }
     }
     let $dom = view.state.doc.resolve(pos - (atom || 0));
@@ -7573,6 +7759,7 @@ class ViewDesc {
     }
     get domAtom() { return false; }
     get ignoreForCoords() { return false; }
+    isText(text) { return false; }
 }
 // A widget desc represents a widget decoration, which is a DOM node
 // drawn between the document nodes.
@@ -7657,7 +7844,7 @@ class MarkViewDesc extends ViewDesc {
     parseRule() {
         if ((this.dirty & NODE_DIRTY) || this.mark.type.spec.reparseInView)
             return null;
-        return { mark: this.mark.type.name, attrs: this.mark.attrs, contentElement: this.contentDOM || undefined };
+        return { mark: this.mark.type.name, attrs: this.mark.attrs, contentElement: this.contentDOM };
     }
     matchesMark(mark) { return this.dirty != NODE_DIRTY && this.mark.eq(mark); }
     markDirty(from, to) {
@@ -7695,8 +7882,6 @@ class NodeViewDesc extends ViewDesc {
         this.outerDeco = outerDeco;
         this.innerDeco = innerDeco;
         this.nodeDOM = nodeDOM;
-        if (contentDOM)
-            this.updateChildren(view, pos);
     }
     // By default, a node is rendered using the `toDOM` method from the
     // node type spec. But client code can use the `nodeViews` spec to
@@ -7809,7 +7994,7 @@ class NodeViewDesc extends ViewDesc {
                 view.state.selection.to < off + child.nodeSize &&
                 (compIndex = updater.findIndexWithChild(composition.node)) > -1 &&
                 updater.updateNodeAt(child, outerDeco, innerDeco, compIndex, view)) ;
-            else if (updater.updateNextNode(child, outerDeco, innerDeco, view, i)) ;
+            else if (updater.updateNextNode(child, outerDeco, innerDeco, view, i, off)) ;
             else {
                 // Add it as a new view
                 updater.addNode(child, outerDeco, innerDeco, view, off);
@@ -7837,8 +8022,7 @@ class NodeViewDesc extends ViewDesc {
         let { from, to } = view.state.selection;
         if (!(view.state.selection instanceof TextSelection) || from < pos || to > pos + this.node.content.size)
             return null;
-        let sel = view.domSelectionRange();
-        let textNode = nearbyTextNode(sel.focusNode, sel.focusOffset);
+        let textNode = view.input.compositionNode;
         if (!textNode || !this.dom.contains(textNode.parentNode))
             return null;
         if (this.node.inlineContent) {
@@ -7912,10 +8096,11 @@ class NodeViewDesc extends ViewDesc {
     }
     // Remove selected node marking from this node.
     deselectNode() {
-        if (this.nodeDOM.nodeType == 1)
+        if (this.nodeDOM.nodeType == 1) {
             this.nodeDOM.classList.remove("ProseMirror-selectednode");
-        if (this.contentDOM || !this.node.type.spec.draggable)
-            this.dom.removeAttribute("draggable");
+            if (this.contentDOM || !this.node.type.spec.draggable)
+                this.dom.removeAttribute("draggable");
+        }
     }
     get domAtom() { return this.node.isAtom; }
 }
@@ -7923,7 +8108,10 @@ class NodeViewDesc extends ViewDesc {
 // and used by the view class.
 function docViewDesc(doc, outerDeco, innerDeco, dom, view) {
     applyOuterDeco(dom, outerDeco, doc);
-    return new NodeViewDesc(undefined, doc, outerDeco, innerDeco, dom, dom, dom, view, 0);
+    let docView = new NodeViewDesc(undefined, doc, outerDeco, innerDeco, dom, dom, dom, view, 0);
+    if (docView.contentDOM)
+        docView.updateChildren(view, 0);
+    return docView;
 }
 class TextViewDesc extends NodeViewDesc {
     constructor(parent, node, outerDeco, innerDeco, dom, nodeDOM, view) {
@@ -7977,6 +8165,7 @@ class TextViewDesc extends NodeViewDesc {
             this.dirty = NODE_DIRTY;
     }
     get domAtom() { return false; }
+    isText(text) { return this.node.text == text; }
 }
 // A dummy desc used to tag trailing BR or IMG nodes created to work
 // around contentEditable terribleness.
@@ -8296,14 +8485,14 @@ class ViewTreeUpdater {
     }
     // Try to update the next node, if any, to the given data. Checks
     // pre-matches to avoid overwriting nodes that could still be used.
-    updateNextNode(node, outerDeco, innerDeco, view, index) {
+    updateNextNode(node, outerDeco, innerDeco, view, index, pos) {
         for (let i = this.index; i < this.top.children.length; i++) {
             let next = this.top.children[i];
             if (next instanceof NodeViewDesc) {
                 let preMatch = this.preMatch.matched.get(next);
                 if (preMatch != null && preMatch != index)
                     return false;
-                let nextDOM = next.dom;
+                let nextDOM = next.dom, updated;
                 // Can't update if nextDOM is or contains this.lock, except if
                 // it's a text node whose content already matches the new text
                 // and whose decorations match the new ones.
@@ -8317,14 +8506,44 @@ class ViewTreeUpdater {
                     this.index++;
                     return true;
                 }
+                else if (!locked && (updated = this.recreateWrapper(next, node, outerDeco, innerDeco, view, pos))) {
+                    this.top.children[this.index] = updated;
+                    if (updated.contentDOM) {
+                        updated.dirty = CONTENT_DIRTY;
+                        updated.updateChildren(view, pos + 1);
+                        updated.dirty = NOT_DIRTY;
+                    }
+                    this.changed = true;
+                    this.index++;
+                    return true;
+                }
                 break;
             }
         }
         return false;
     }
+    // When a node with content is replaced by a different node with
+    // identical content, move over its children.
+    recreateWrapper(next, node, outerDeco, innerDeco, view, pos) {
+        if (next.dirty || node.isAtom || !next.children.length ||
+            !next.node.content.eq(node.content))
+            return null;
+        let wrapper = NodeViewDesc.create(this.top, node, outerDeco, innerDeco, view, pos);
+        if (wrapper.contentDOM) {
+            wrapper.children = next.children;
+            next.children = [];
+            for (let ch of wrapper.children)
+                ch.parent = wrapper;
+        }
+        next.destroy();
+        return wrapper;
+    }
     // Insert the node as a newly created node desc.
     addNode(node, outerDeco, innerDeco, view, pos) {
-        this.top.children.splice(this.index++, 0, NodeViewDesc.create(this.top, node, outerDeco, innerDeco, view, pos));
+        let desc = NodeViewDesc.create(this.top, node, outerDeco, innerDeco, view, pos);
+        if (desc.contentDOM)
+            desc.updateChildren(view, pos + 1);
+        this.top.children.splice(this.index++, 0, desc);
         this.changed = true;
     }
     placeWidget(widget, view, pos) {
@@ -8352,7 +8571,7 @@ class ViewTreeUpdater {
             /\n$/.test(lastChild.node.text) ||
             (this.view.requiresGeckoHackNode && /\s$/.test(lastChild.node.text))) {
             // Avoid bugs in Safari's cursor drawing (#1165) and Chrome's mouse selection (#1152)
-            if ((safari || chrome$1) && lastChild && lastChild.dom.contentEditable == "false")
+            if ((safari || chrome) && lastChild && lastChild.dom.contentEditable == "false")
                 this.addHackNode("IMG", parent);
             this.addHackNode("BR", this.top);
         }
@@ -8444,10 +8663,17 @@ function iterDeco(parent, deco, onWidget, onNode) {
     }
     let decoIndex = 0, active = [], restNode = null;
     for (let parentIndex = 0;;) {
-        if (decoIndex < locals.length && locals[decoIndex].to == offset) {
-            let widget = locals[decoIndex++], widgets;
-            while (decoIndex < locals.length && locals[decoIndex].to == offset)
-                (widgets || (widgets = [widget])).push(locals[decoIndex++]);
+        let widget, widgets;
+        while (decoIndex < locals.length && locals[decoIndex].to == offset) {
+            let next = locals[decoIndex++];
+            if (next.widget) {
+                if (!widget)
+                    widget = next;
+                else
+                    (widgets || (widgets = [widget])).push(next);
+            }
+        }
+        if (widget) {
             if (widgets) {
                 widgets.sort(compareSide);
                 for (let i = 0; i < widgets.length; i++)
@@ -8490,6 +8716,10 @@ function iterDeco(parent, deco, onWidget, onNode) {
                 index = -1;
             }
         }
+        else {
+            while (decoIndex < locals.length && locals[decoIndex].to < end)
+                decoIndex++;
+        }
         let outerDeco = child.isInline && !child.isLeaf ? active.filter(d => !d.inline) : active.slice();
         onNode(child, outerDeco, deco.forChild(offset, child), index);
         offset = end;
@@ -8503,25 +8733,6 @@ function iosHacks(dom) {
         dom.style.cssText = oldCSS + "; list-style: square !important";
         window.getComputedStyle(dom).listStyle;
         dom.style.cssText = oldCSS;
-    }
-}
-function nearbyTextNode(node, offset) {
-    for (;;) {
-        if (node.nodeType == 3)
-            return node;
-        if (node.nodeType == 1 && offset > 0) {
-            if (node.childNodes.length > offset && node.childNodes[offset].nodeType == 3)
-                return node.childNodes[offset];
-            node = node.childNodes[offset - 1];
-            offset = nodeSize(node);
-        }
-        else if (node.nodeType == 1 && offset < node.childNodes.length) {
-            node = node.childNodes[offset];
-            offset = 0;
-        }
-        else {
-            return null;
-        }
     }
 }
 // Find a piece of text in an inline fragment, overlapping from-to
@@ -8540,6 +8751,8 @@ function findTextInFragment(frag, text, from, to) {
             str += next.text;
         }
         if (pos >= from) {
+            if (pos >= to && str.slice(to - text.length - childStart, to - childStart) == text)
+                return to - text.length;
             let found = childStart < to ? str.lastIndexOf(text, to - childStart - 1) : -1;
             if (found >= 0 && found + text.length + childStart >= from)
                 return childStart + found;
@@ -8620,7 +8833,7 @@ function selectionToDOM(view, force = false) {
     // The delayed drag selection causes issues with Cell Selections
     // in Safari. And the drag selection delay is to workarond issues
     // which only present in Chrome.
-    if (!force && view.input.mouseDown && view.input.mouseDown.allowDefault && chrome$1) {
+    if (!force && view.input.mouseDown && view.input.mouseDown.allowDefault && chrome) {
         let domSel = view.domSelectionRange(), curSel = view.domObserver.currentSelection;
         if (domSel.anchorNode && curSel.anchorNode &&
             isEquivalentPosition(domSel.anchorNode, domSel.anchorOffset, curSel.anchorNode, curSel.anchorOffset)) {
@@ -8663,7 +8876,7 @@ function selectionToDOM(view, force = false) {
 // Kludge to work around Webkit not allowing a selection to start/end
 // between non-editable block nodes. We briefly make something
 // editable, set the selection, then set it uneditable again.
-const brokenSelectBetweenUneditable = safari || chrome$1 && chrome_version < 63;
+const brokenSelectBetweenUneditable = safari || chrome && chrome_version < 63;
 function temporarilyEditableNear(view, pos) {
     let { node, offset } = view.docView.domFromPos(pos, 0);
     let after = offset < node.childNodes.length ? node.childNodes[offset] : null;
@@ -8793,10 +9006,17 @@ function apply(view, sel) {
 function selectHorizontally(view, dir, mods) {
     let sel = view.state.selection;
     if (sel instanceof TextSelection) {
-        if (!sel.empty || mods.indexOf("s") > -1) {
+        if (mods.indexOf("s") > -1) {
+            let { $head } = sel, node = $head.textOffset ? null : dir < 0 ? $head.nodeBefore : $head.nodeAfter;
+            if (!node || node.isText || !node.isLeaf)
+                return false;
+            let $newHead = view.state.doc.resolve($head.pos + node.nodeSize * (dir < 0 ? -1 : 1));
+            return apply(view, new TextSelection(sel.$anchor, $newHead));
+        }
+        else if (!sel.empty) {
             return false;
         }
-        else if (view.endOfTextblock(dir > 0 ? "right" : "left")) {
+        else if (view.endOfTextblock(dir > 0 ? "forward" : "backward")) {
             let next = moveSelectionBlock(view.state, dir);
             if (next && (next instanceof NodeSelection))
                 return apply(view, next);
@@ -8836,13 +9056,16 @@ function selectHorizontally(view, dir, mods) {
 function nodeLen(node) {
     return node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length;
 }
-function isIgnorable(dom) {
+function isIgnorable(dom, dir) {
     let desc = dom.pmViewDesc;
-    return desc && desc.size == 0 && (dom.nextSibling || dom.nodeName != "BR");
+    return desc && desc.size == 0 && (dir < 0 || dom.nextSibling || dom.nodeName != "BR");
+}
+function skipIgnoredNodes(view, dir) {
+    return dir < 0 ? skipIgnoredNodesBefore(view) : skipIgnoredNodesAfter(view);
 }
 // Make sure the cursor isn't directly after one or more ignored
 // nodes, which will confuse the browser's cursor motion logic.
-function skipIgnoredNodesLeft(view) {
+function skipIgnoredNodesBefore(view) {
     let sel = view.domSelectionRange();
     let node = sel.focusNode, offset = sel.focusOffset;
     if (!node)
@@ -8851,7 +9074,7 @@ function skipIgnoredNodesLeft(view) {
     // Gecko will do odd things when the selection is directly in front
     // of a non-editable node, so in that case, move it into the next
     // node if possible. Issue prosemirror/prosemirror#832.
-    if (gecko && node.nodeType == 1 && offset < nodeLen(node) && isIgnorable(node.childNodes[offset]))
+    if (gecko && node.nodeType == 1 && offset < nodeLen(node) && isIgnorable(node.childNodes[offset], -1))
         force = true;
     for (;;) {
         if (offset > 0) {
@@ -8860,7 +9083,7 @@ function skipIgnoredNodesLeft(view) {
             }
             else {
                 let before = node.childNodes[offset - 1];
-                if (isIgnorable(before)) {
+                if (isIgnorable(before, -1)) {
                     moveNode = node;
                     moveOffset = --offset;
                 }
@@ -8877,7 +9100,7 @@ function skipIgnoredNodesLeft(view) {
         }
         else {
             let prev = node.previousSibling;
-            while (prev && isIgnorable(prev)) {
+            while (prev && isIgnorable(prev, -1)) {
                 moveNode = node.parentNode;
                 moveOffset = domIndex(prev);
                 prev = prev.previousSibling;
@@ -8901,7 +9124,7 @@ function skipIgnoredNodesLeft(view) {
 }
 // Make sure the cursor isn't directly before one or more ignored
 // nodes.
-function skipIgnoredNodesRight(view) {
+function skipIgnoredNodesAfter(view) {
     let sel = view.domSelectionRange();
     let node = sel.focusNode, offset = sel.focusOffset;
     if (!node)
@@ -8913,7 +9136,7 @@ function skipIgnoredNodesRight(view) {
             if (node.nodeType != 1)
                 break;
             let after = node.childNodes[offset];
-            if (isIgnorable(after)) {
+            if (isIgnorable(after, 1)) {
                 moveNode = node;
                 moveOffset = ++offset;
             }
@@ -8925,7 +9148,7 @@ function skipIgnoredNodesRight(view) {
         }
         else {
             let next = node.nextSibling;
-            while (next && isIgnorable(next)) {
+            while (next && isIgnorable(next, 1)) {
                 moveNode = next.parentNode;
                 moveOffset = domIndex(next) + 1;
                 next = next.nextSibling;
@@ -8950,7 +9173,48 @@ function isBlockNode(dom) {
     let desc = dom.pmViewDesc;
     return desc && desc.node && desc.node.isBlock;
 }
+function textNodeAfter(node, offset) {
+    while (node && offset == node.childNodes.length && !hasBlockDesc(node)) {
+        offset = domIndex(node) + 1;
+        node = node.parentNode;
+    }
+    while (node && offset < node.childNodes.length) {
+        let next = node.childNodes[offset];
+        if (next.nodeType == 3)
+            return next;
+        if (next.nodeType == 1 && next.contentEditable == "false")
+            break;
+        node = next;
+        offset = 0;
+    }
+}
+function textNodeBefore(node, offset) {
+    while (node && !offset && !hasBlockDesc(node)) {
+        offset = domIndex(node);
+        node = node.parentNode;
+    }
+    while (node && offset) {
+        let next = node.childNodes[offset - 1];
+        if (next.nodeType == 3)
+            return next;
+        if (next.nodeType == 1 && next.contentEditable == "false")
+            break;
+        node = next;
+        offset = node.childNodes.length;
+    }
+}
 function setSelFocus(view, node, offset) {
+    if (node.nodeType != 3) {
+        let before, after;
+        if (after = textNodeAfter(node, offset)) {
+            node = after;
+            offset = 0;
+        }
+        else if (before = textNodeBefore(node, offset)) {
+            node = before;
+            offset = before.nodeValue.length;
+        }
+    }
     let sel = view.domSelection();
     if (selectionCollapsed(sel)) {
         let range = document.createRange();
@@ -8969,6 +9233,26 @@ function setSelFocus(view, node, offset) {
         if (view.state == state)
             selectionToDOM(view);
     }, 50);
+}
+function findDirection(view, pos) {
+    let $pos = view.state.doc.resolve(pos);
+    if (!(chrome || windows) && $pos.parent.inlineContent) {
+        let coords = view.coordsAtPos(pos);
+        if (pos > $pos.start()) {
+            let before = view.coordsAtPos(pos - 1);
+            let mid = (before.top + before.bottom) / 2;
+            if (mid > coords.top && mid < coords.bottom && Math.abs(before.left - coords.left) > 1)
+                return before.left < coords.left ? "ltr" : "rtl";
+        }
+        if (pos < $pos.end()) {
+            let after = view.coordsAtPos(pos + 1);
+            let mid = (after.top + after.bottom) / 2;
+            if (mid > coords.top && mid < coords.bottom && Math.abs(after.left - coords.left) > 1)
+                return after.left > coords.left ? "ltr" : "rtl";
+        }
+    }
+    let computed = getComputedStyle(view.dom).direction;
+    return computed == "rtl" ? "rtl" : "ltr";
 }
 // Check whether vertical selection motion would involve node
 // selections. If so, apply it (if not, the result is left to the
@@ -9057,25 +9341,27 @@ function getMods(event) {
 function captureKeyDown(view, event) {
     let code = event.keyCode, mods = getMods(event);
     if (code == 8 || (mac$2 && code == 72 && mods == "c")) { // Backspace, Ctrl-h on Mac
-        return stopNativeHorizontalDelete(view, -1) || skipIgnoredNodesLeft(view);
+        return stopNativeHorizontalDelete(view, -1) || skipIgnoredNodes(view, -1);
     }
-    else if (code == 46 || (mac$2 && code == 68 && mods == "c")) { // Delete, Ctrl-d on Mac
-        return stopNativeHorizontalDelete(view, 1) || skipIgnoredNodesRight(view);
+    else if ((code == 46 && !event.shiftKey) || (mac$2 && code == 68 && mods == "c")) { // Delete, Ctrl-d on Mac
+        return stopNativeHorizontalDelete(view, 1) || skipIgnoredNodes(view, 1);
     }
     else if (code == 13 || code == 27) { // Enter, Esc
         return true;
     }
     else if (code == 37 || (mac$2 && code == 66 && mods == "c")) { // Left arrow, Ctrl-b on Mac
-        return selectHorizontally(view, -1, mods) || skipIgnoredNodesLeft(view);
+        let dir = code == 37 ? (findDirection(view, view.state.selection.from) == "ltr" ? -1 : 1) : -1;
+        return selectHorizontally(view, dir, mods) || skipIgnoredNodes(view, dir);
     }
     else if (code == 39 || (mac$2 && code == 70 && mods == "c")) { // Right arrow, Ctrl-f on Mac
-        return selectHorizontally(view, 1, mods) || skipIgnoredNodesRight(view);
+        let dir = code == 39 ? (findDirection(view, view.state.selection.from) == "ltr" ? 1 : -1) : 1;
+        return selectHorizontally(view, dir, mods) || skipIgnoredNodes(view, dir);
     }
     else if (code == 38 || (mac$2 && code == 80 && mods == "c")) { // Up arrow, Ctrl-p on Mac
-        return selectVertically(view, -1, mods) || skipIgnoredNodesLeft(view);
+        return selectVertically(view, -1, mods) || skipIgnoredNodes(view, -1);
     }
     else if (code == 40 || (mac$2 && code == 78 && mods == "c")) { // Down arrow, Ctrl-n on Mac
-        return safariDownArrowBug(view) || selectVertically(view, 1, mods) || skipIgnoredNodesRight(view);
+        return safariDownArrowBug(view) || selectVertically(view, 1, mods) || skipIgnoredNodes(view, 1);
     }
     else if (mods == (mac$2 ? "m" : "c") &&
         (code == 66 || code == 73 || code == 89 || code == 90)) { // Mod-[biyz]
@@ -9112,7 +9398,7 @@ function serializeForClipboard(view, slice) {
         firstChild.setAttribute("data-pm-slice", `${openStart} ${openEnd}${wrappers ? ` -${wrappers}` : ""} ${JSON.stringify(context)}`);
     let text = view.someProp("clipboardTextSerializer", f => f(slice, view)) ||
         slice.content.textBetween(0, slice.content.size, "\n\n");
-    return { dom: wrap, text };
+    return { dom: wrap, text, slice };
 }
 // Read a slice of content from the clipboard (or drop data).
 function parseFromClipboard(view, text, html, plainText, $context) {
@@ -9250,10 +9536,12 @@ function closeRight(node, depth) {
 }
 function closeRange(fragment, side, from, to, depth, openEnd) {
     let node = side < 0 ? fragment.firstChild : fragment.lastChild, inner = node.content;
+    if (fragment.childCount > 1)
+        openEnd = 0;
     if (depth < to - 1)
         inner = closeRange(inner, side, from, to, depth + 1, openEnd);
     if (depth >= from)
-        inner = side < 0 ? node.contentMatchAt(0).fillBefore(inner, fragment.childCount > 1 || openEnd <= depth).append(inner)
+        inner = side < 0 ? node.contentMatchAt(0).fillBefore(inner, openEnd <= depth).append(inner)
             : inner.append(node.contentMatchAt(node.childCount).fillBefore(Fragment.empty, true));
     return fragment.replaceChild(side < 0 ? 0 : fragment.childCount - 1, node.copy(inner));
 }
@@ -9302,7 +9590,7 @@ function readHTML(html) {
 // will be wrapped in a plain span on Chrome, a span with class
 // Apple-converted-space on Safari) back to regular spaces.
 function restoreReplacedSpaces(dom) {
-    let nodes = dom.querySelectorAll(chrome$1 ? "span:not([class]):not([style])" : "span.Apple-converted-space");
+    let nodes = dom.querySelectorAll(chrome ? "span:not([class]):not([style])" : "span.Apple-converted-space");
     for (let i = 0; i < nodes.length; i++) {
         let node = nodes[i];
         if (node.childNodes.length == 1 && node.textContent == "\u00a0" && node.parentNode)
@@ -9351,9 +9639,13 @@ class InputState {
         this.lastTouch = 0;
         this.lastAndroidDelete = 0;
         this.composing = false;
+        this.compositionNode = null;
         this.composingTimeout = -1;
         this.compositionNodes = [];
         this.compositionEndedAt = -2e8;
+        this.compositionID = 1;
+        // Set to a composition ID when there are pending changes at compositionend
+        this.compositionPendingChanges = 0;
         this.domChangeCount = 0;
         this.eventHandlers = Object.create(null);
         this.hideSelectionGuard = null;
@@ -9425,7 +9717,7 @@ editHandlers.keydown = (view, _event) => {
     // Suppress enter key events on Chrome Android, because those tend
     // to be part of a confused sequence of composition events fired,
     // and handling them eagerly tends to corrupt the input.
-    if (android && chrome$1 && event.keyCode == 13)
+    if (android && chrome && event.keyCode == 13)
         return;
     if (event.keyCode != 229)
         view.domObserver.forceFlush();
@@ -9623,7 +9915,7 @@ class MouseDown {
         }
         const target = flushed ? null : event.target;
         const targetDesc = target ? view.docView.nearestDesc(target, true) : null;
-        this.target = targetDesc ? targetDesc.dom : null;
+        this.target = targetDesc && targetDesc.dom.nodeType == 1 ? targetDesc.dom : null;
         let { selection } = view.state;
         if (event.button == 0 &&
             targetNode.type.spec.draggable && targetNode.type.spec.selectable !== false ||
@@ -9689,7 +9981,7 @@ class MouseDown {
                 // (hidden) cursor is doesn't change the selection, and
                 // thus doesn't get a reaction from ProseMirror. This
                 // works around that.
-                (chrome$1 && !this.view.state.selection.visible &&
+                (chrome && !this.view.state.selection.visible &&
                     Math.min(Math.abs(pos.pos - this.view.state.selection.from), Math.abs(pos.pos - this.view.state.selection.to)) <= 2))) {
             updateSelection(this.view, Selection.near(this.view.state.doc.resolve(pos.pos)), "pointer");
             event.preventDefault();
@@ -9783,6 +10075,11 @@ editHandlers.compositionend = (view, event) => {
     if (view.composing) {
         view.input.composing = false;
         view.input.compositionEndedAt = event.timeStamp;
+        view.input.compositionPendingChanges = view.domObserver.pendingRecords().length ? view.input.compositionID : 0;
+        view.input.compositionNode = null;
+        if (view.input.compositionPendingChanges)
+            Promise.resolve().then(() => view.domObserver.flush());
+        view.input.compositionID++;
         scheduleComposeEnd(view, 20);
     }
 };
@@ -9798,6 +10095,25 @@ function clearComposition(view) {
     }
     while (view.input.compositionNodes.length > 0)
         view.input.compositionNodes.pop().markParentsDirty();
+}
+function findCompositionNode(view) {
+    let sel = view.domSelectionRange();
+    if (!sel.focusNode)
+        return null;
+    let textBefore = textNodeBefore$1(sel.focusNode, sel.focusOffset);
+    let textAfter = textNodeAfter$1(sel.focusNode, sel.focusOffset);
+    if (textBefore && textAfter && textBefore != textAfter) {
+        let descAfter = textAfter.pmViewDesc;
+        if (!descAfter || !descAfter.isText(textAfter.nodeValue)) {
+            return textAfter;
+        }
+        else if (view.input.compositionNode == textAfter) {
+            let descBefore = textBefore.pmViewDesc;
+            if (!(!descBefore || !descBefore.isText(textBefore.nodeValue)))
+                return textAfter;
+        }
+    }
+    return textBefore || textAfter;
 }
 function timestampFromCustomEvent() {
     let event = document.createEvent("Event");
@@ -9881,14 +10197,15 @@ function capturePaste(view, event) {
         target.contentEditable = "true";
     target.style.cssText = "position: fixed; left: -10000px; top: 10px";
     target.focus();
+    let plain = view.input.shiftKey && view.input.lastKeyCode != 45;
     setTimeout(() => {
         view.focus();
         if (target.parentNode)
             target.parentNode.removeChild(target);
         if (plainText)
-            doPaste(view, target.value, null, view.input.shiftKey, event);
+            doPaste(view, target.value, null, plain, event);
         else
-            doPaste(view, target.textContent, target.innerHTML, view.input.shiftKey, event);
+            doPaste(view, target.textContent, target.innerHTML, plain, event);
     }, 50);
 }
 function doPaste(view, text, html, preferPlain, event) {
@@ -9899,10 +10216,17 @@ function doPaste(view, text, html, preferPlain, event) {
         return false;
     let singleNode = sliceSingleNode(slice);
     let tr = singleNode
-        ? view.state.tr.replaceSelectionWith(singleNode, view.input.shiftKey)
+        ? view.state.tr.replaceSelectionWith(singleNode, preferPlain)
         : view.state.tr.replaceSelection(slice);
     view.dispatch(tr.scrollIntoView().setMeta("paste", true).setMeta("uiEvent", "paste"));
     return true;
+}
+function getText$1(clipboardData) {
+    let text = clipboardData.getData("text/plain") || clipboardData.getData("Text");
+    if (text)
+        return text;
+    let uris = clipboardData.getData("text/uri-list");
+    return uris ? uris.replace(/\r?\n/g, " ") : "";
 }
 editHandlers.paste = (view, _event) => {
     let event = _event;
@@ -9913,15 +10237,17 @@ editHandlers.paste = (view, _event) => {
     if (view.composing && !android)
         return;
     let data = brokenClipboardAPI ? null : event.clipboardData;
-    if (data && doPaste(view, data.getData("text/plain"), data.getData("text/html"), view.input.shiftKey, event))
+    let plain = view.input.shiftKey && view.input.lastKeyCode != 45;
+    if (data && doPaste(view, getText$1(data), data.getData("text/html"), plain, event))
         event.preventDefault();
     else
         capturePaste(view, event);
 };
 class Dragging {
-    constructor(slice, move) {
+    constructor(slice, move, node) {
         this.slice = slice;
         this.move = move;
+        this.node = node;
     }
 }
 const dragCopyModifier = mac$2 ? "altKey" : "ctrlKey";
@@ -9934,23 +10260,25 @@ handlers.dragstart = (view, _event) => {
         return;
     let sel = view.state.selection;
     let pos = sel.empty ? null : view.posAtCoords(eventCoords(event));
+    let node;
     if (pos && pos.pos >= sel.from && pos.pos <= (sel instanceof NodeSelection ? sel.to - 1 : sel.to)) ;
     else if (mouseDown && mouseDown.mightDrag) {
-        view.dispatch(view.state.tr.setSelection(NodeSelection.create(view.state.doc, mouseDown.mightDrag.pos)));
+        node = NodeSelection.create(view.state.doc, mouseDown.mightDrag.pos);
     }
     else if (event.target && event.target.nodeType == 1) {
         let desc = view.docView.nearestDesc(event.target, true);
         if (desc && desc.node.type.spec.draggable && desc != view.docView)
-            view.dispatch(view.state.tr.setSelection(NodeSelection.create(view.state.doc, desc.posBefore)));
+            node = NodeSelection.create(view.state.doc, desc.posBefore);
     }
-    let slice = view.state.selection.content(), { dom, text } = serializeForClipboard(view, slice);
+    let draggedSlice = (node || view.state.selection).content();
+    let { dom, text, slice } = serializeForClipboard(view, draggedSlice);
     event.dataTransfer.clearData();
     event.dataTransfer.setData(brokenClipboardAPI ? "Text" : "text/html", dom.innerHTML);
     // See https://github.com/ProseMirror/prosemirror/issues/1156
     event.dataTransfer.effectAllowed = "copyMove";
     if (!brokenClipboardAPI)
         event.dataTransfer.setData("text/plain", text);
-    view.dragging = new Dragging(slice, !event[dragCopyModifier]);
+    view.dragging = new Dragging(slice, !event[dragCopyModifier], node);
 };
 handlers.dragend = view => {
     let dragging = view.dragging;
@@ -9975,7 +10303,7 @@ editHandlers.drop = (view, _event) => {
         view.someProp("transformPasted", f => { slice = f(slice, view); });
     }
     else {
-        slice = parseFromClipboard(view, event.dataTransfer.getData(brokenClipboardAPI ? "Text" : "text/plain"), brokenClipboardAPI ? null : event.dataTransfer.getData("text/html"), false, $mouse);
+        slice = parseFromClipboard(view, getText$1(event.dataTransfer), brokenClipboardAPI ? null : event.dataTransfer.getData("text/html"), false, $mouse);
     }
     let move = !!(dragging && !event[dragCopyModifier]);
     if (view.someProp("handleDrop", f => f(view, event, slice || Slice.empty, move))) {
@@ -9989,8 +10317,13 @@ editHandlers.drop = (view, _event) => {
     if (insertPos == null)
         insertPos = $mouse.pos;
     let tr = view.state.tr;
-    if (move)
-        tr.deleteSelection();
+    if (move) {
+        let { node } = dragging;
+        if (node)
+            node.replace(tr);
+        else
+            tr.deleteSelection();
+    }
     let pos = tr.mapping.map(insertPos);
     let isNode = slice.openStart == 0 && slice.openEnd == 0 && slice.content.childCount == 1;
     let beforeInsert = tr.doc;
@@ -10043,7 +10376,7 @@ handlers.beforeinput = (view, _event) => {
     // is so spotty that I'm still waiting to see where they are going.
     // Very specific hack to deal with backspace sometimes failing on
     // Chrome Android when after an uneditable node.
-    if (chrome$1 && android && event.inputType == "deleteContentBackward") {
+    if (chrome && android && event.inputType == "deleteContentBackward") {
         view.domObserver.flushSoon();
         let { domChangeCount } = view.input;
         setTimeout(() => {
@@ -10222,6 +10555,10 @@ class Decoration {
     @internal
     */
     get inline() { return this.type instanceof InlineType; }
+    /**
+    @internal
+    */
+    get widget() { return this.type instanceof WidgetType; }
 }
 const none = [], noSpec = {};
 /**
@@ -10240,7 +10577,8 @@ class DecorationSet {
     }
     /**
     Create a set of decorations, using the structure of the given
-    document.
+    document. This will consume (modify) the `decorations` array, so
+    you must make a copy if you want need to preserve that.
     */
     static create(doc, decorations) {
         return decorations.length ? buildTree(decorations, doc, 0, noSpec) : empty;
@@ -10299,8 +10637,9 @@ class DecorationSet {
     }
     /**
     Add the given array of decorations to the ones in the set,
-    producing a new set. Needs access to the current document to
-    create the appropriate tree structure.
+    producing a new set. Consumes the `decorations` array. Needs
+    access to the current document to create the appropriate tree
+    structure.
     */
     add(doc, decorations) {
         if (!decorations.length)
@@ -10379,9 +10718,6 @@ class DecorationSet {
             return this;
         return local.length || children.length ? new DecorationSet(local, children) : empty;
     }
-    /**
-    @internal
-    */
     forChild(offset, node) {
         if (this == empty)
             return this;
@@ -10542,7 +10878,7 @@ function mapChildren(oldChildren, newLocal, mapping, node, offset, oldOffset, op
                 if (oldEnd >= start) {
                     children[i + 1] = oldStart <= start ? -2 : -1;
                 }
-                else if (newStart >= offset && dSize) {
+                else if (oldStart >= baseOffset && dSize) {
                     children[i] += dSize;
                     children[i + 1] += dSize;
                 }
@@ -10884,15 +11220,19 @@ class DOMObserver {
             return true;
         }
     }
+    pendingRecords() {
+        if (this.observer)
+            for (let mut of this.observer.takeRecords())
+                this.queue.push(mut);
+        return this.queue;
+    }
     flush() {
         let { view } = this;
         if (!view.docView || this.flushingSoon > -1)
             return;
-        let mutations = this.observer ? this.observer.takeRecords() : [];
-        if (this.queue.length) {
-            mutations = this.queue.concat(mutations);
-            this.queue.length = 0;
-        }
+        let mutations = this.pendingRecords();
+        if (mutations.length)
+            this.queue = [];
         let sel = view.domSelectionRange();
         let newSel = !this.suppressingSelectionUpdates && !this.currentSelection.eq(sel) && hasFocusAndSelection(view) && !this.ignoreSelectionChange(sel);
         let from = -1, to = -1, typeOver = false, added = [];
@@ -10907,14 +11247,22 @@ class DOMObserver {
                 }
             }
         }
-        if (gecko && added.length > 1) {
+        if (gecko && added.length) {
             let brs = added.filter(n => n.nodeName == "BR");
             if (brs.length == 2) {
-                let a = brs[0], b = brs[1];
+                let [a, b] = brs;
                 if (a.parentNode && a.parentNode.parentNode == b.parentNode)
                     b.remove();
                 else
                     a.remove();
+            }
+            else {
+                let { focusNode } = this.currentSelection;
+                for (let br of brs) {
+                    let parent = br.parentNode;
+                    if (parent && parent.nodeName == "LI" && (!focusNode || blockParent(view, focusNode) != parent))
+                        br.remove();
+                }
             }
         }
         let readSel = null;
@@ -11010,9 +11358,25 @@ function checkCSS(view) {
         cssCheckWarned = true;
     }
 }
+function rangeToSelectionRange(view, range) {
+    let anchorNode = range.startContainer, anchorOffset = range.startOffset;
+    let focusNode = range.endContainer, focusOffset = range.endOffset;
+    let currentAnchor = view.domAtPos(view.state.selection.anchor);
+    // Since such a range doesn't distinguish between anchor and head,
+    // use a heuristic that flips it around if its end matches the
+    // current anchor.
+    if (isEquivalentPosition(currentAnchor.node, currentAnchor.offset, focusNode, focusOffset))
+        [anchorNode, anchorOffset, focusNode, focusOffset] = [focusNode, focusOffset, anchorNode, anchorOffset];
+    return { anchorNode, anchorOffset, focusNode, focusOffset };
+}
 // Used to work around a Safari Selection/shadow DOM bug
 // Based on https://github.com/codemirror/dev/issues/414 fix
-function safariShadowSelectionRange(view) {
+function safariShadowSelectionRange(view, selection) {
+    if (selection.getComposedRanges) {
+        let range = selection.getComposedRanges(view.root)[0];
+        if (range)
+            return rangeToSelectionRange(view, range);
+    }
     let found;
     function read(event) {
         event.preventDefault();
@@ -11027,15 +11391,15 @@ function safariShadowSelectionRange(view) {
     view.dom.addEventListener("beforeinput", read, true);
     document.execCommand("indent");
     view.dom.removeEventListener("beforeinput", read, true);
-    let anchorNode = found.startContainer, anchorOffset = found.startOffset;
-    let focusNode = found.endContainer, focusOffset = found.endOffset;
-    let currentAnchor = view.domAtPos(view.state.selection.anchor);
-    // Since such a range doesn't distinguish between anchor and head,
-    // use a heuristic that flips it around if its end matches the
-    // current anchor.
-    if (isEquivalentPosition(currentAnchor.node, currentAnchor.offset, focusNode, focusOffset))
-        [anchorNode, anchorOffset, focusNode, focusOffset] = [focusNode, focusOffset, anchorNode, anchorOffset];
-    return { anchorNode, anchorOffset, focusNode, focusOffset };
+    return found ? rangeToSelectionRange(view, found) : null;
+}
+function blockParent(view, node) {
+    for (let p = node.parentNode; p && p != view.dom; p = p.parentNode) {
+        let desc = view.docView.nearestDesc(p, true);
+        if (desc && desc.node.isBlock)
+            return p;
+    }
+    return null;
 }
 
 // Note that all referencing and parsing is done with the
@@ -11055,7 +11419,7 @@ function parseBetween(view, from_, to_) {
     }
     // Work around issue in Chrome where backspacing sometimes replaces
     // the deleted content with a random BR node (issues #799, #831)
-    if (chrome$1 && view.input.lastKeyCode === 8) {
+    if (chrome && view.input.lastKeyCode === 8) {
         for (let off = toOffset; off > fromOffset; off--) {
             let node = parent.childNodes[off - 1], desc = node.pmViewDesc;
             if (node.nodeName == "BR" && !desc) {
@@ -11111,12 +11475,15 @@ function ruleFromNode(dom) {
     }
     return null;
 }
+const isInline = /^(a|abbr|acronym|b|bd[io]|big|br|button|cite|code|data(list)?|del|dfn|em|i|ins|kbd|label|map|mark|meter|output|q|ruby|s|samp|small|span|strong|su[bp]|time|u|tt|var)$/i;
 function readDOMChange(view, from, to, typeOver, addedNodes) {
+    let compositionID = view.input.compositionPendingChanges || (view.composing ? view.input.compositionID : 0);
+    view.input.compositionPendingChanges = 0;
     if (from < 0) {
         let origin = view.input.lastSelectionTime > Date.now() - 50 ? view.input.lastSelectionOrigin : null;
         let newSel = selectionFromDOM(view, origin);
         if (newSel && !view.state.selection.eq(newSel)) {
-            if (chrome$1 && android &&
+            if (chrome && android &&
                 view.input.lastKeyCode === 13 && Date.now() - 100 < view.input.lastKeyCodeTime &&
                 view.someProp("handleKeyDown", f => f(view, keyEvent(13, "Enter"))))
                 return;
@@ -11125,6 +11492,8 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
                 tr.setMeta("pointer", true);
             else if (origin == "key")
                 tr.scrollIntoView();
+            if (compositionID)
+                tr.setMeta("composition", compositionID);
             view.dispatch(tr);
         }
         return;
@@ -11149,7 +11518,7 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
     view.input.lastKeyCode = null;
     let change = findDiff(compare.content, parse.doc.content, parse.from, preferredPos, preferredSide);
     if ((ios && view.input.lastIOSEnter > Date.now() - 225 || android) &&
-        addedNodes.some(n => n.nodeName == "DIV" || n.nodeName == "P" || n.nodeName == "LI") &&
+        addedNodes.some(n => n.nodeType == 1 && !isInline.test(n.nodeName)) &&
         (!change || change.endA >= change.endB) &&
         view.someProp("handleKeyDown", f => f(view, keyEvent(13, "Enter")))) {
         view.input.lastIOSEnter = 0;
@@ -11163,18 +11532,15 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
         else {
             if (parse.sel) {
                 let sel = resolveSelection(view, view.state.doc, parse.sel);
-                if (sel && !sel.eq(view.state.selection))
-                    view.dispatch(view.state.tr.setSelection(sel));
+                if (sel && !sel.eq(view.state.selection)) {
+                    let tr = view.state.tr.setSelection(sel);
+                    if (compositionID)
+                        tr.setMeta("composition", compositionID);
+                    view.dispatch(tr);
+                }
             }
             return;
         }
-    }
-    // Chrome sometimes leaves the cursor before the inserted text when
-    // composing after a cursor wrapper. This moves it forward.
-    if (chrome$1 && view.cursorWrapper && parse.sel && parse.sel.anchor == view.cursorWrapper.deco.from &&
-        parse.sel.head == parse.sel.anchor) {
-        let size = change.endB - change.start;
-        parse.sel = { anchor: parse.sel.anchor + size, head: parse.sel.anchor + size };
     }
     view.input.domChangeCount++;
     // Handle the case where overwriting a selection by typing matches
@@ -11212,7 +11578,7 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
     // as being an iOS enter press), just dispatch an Enter key instead.
     if (((ios && view.input.lastIOSEnter > Date.now() - 225 &&
         (!inlineChange || addedNodes.some(n => n.nodeName == "DIV" || n.nodeName == "P"))) ||
-        (!inlineChange && $from.pos < parse.doc.content.size &&
+        (!inlineChange && $from.pos < parse.doc.content.size && !$from.sameParent($to) &&
             (nextSel = Selection.findFrom(parse.doc.resolve($from.pos + 1), 1, true)) &&
             nextSel.head == $to.pos)) &&
         view.someProp("handleKeyDown", f => f(view, keyEvent(13, "Enter")))) {
@@ -11221,16 +11587,16 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
     }
     // Same for backspace
     if (view.state.selection.anchor > change.start &&
-        looksLikeJoin(doc, change.start, change.endA, $from, $to) &&
+        looksLikeBackspace(doc, change.start, change.endA, $from, $to) &&
         view.someProp("handleKeyDown", f => f(view, keyEvent(8, "Backspace")))) {
-        if (android && chrome$1)
+        if (android && chrome)
             view.domObserver.suppressSelectionUpdates(); // #820
         return;
     }
     // Chrome Android will occasionally, during composition, delete the
     // entire composition and then immediately insert it again. This is
     // used to detect that situation.
-    if (chrome$1 && android && change.endB == change.start)
+    if (chrome && android && change.endB == change.start)
         view.input.lastAndroidDelete = Date.now();
     // This tries to detect Android virtual keyboard
     // enter-and-pick-suggestion action. That sometimes (see issue
@@ -11287,7 +11653,7 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
         // happening, don't update the selection.
         // Edge just doesn't move the cursor forward when you start typing
         // in an empty block or between br nodes.
-        if (sel && !(chrome$1 && android && view.composing && sel.empty &&
+        if (sel && !(chrome && android && view.composing && sel.empty &&
             (change.start != change.endB || view.input.lastAndroidDelete < Date.now() - 100) &&
             (sel.head == chFrom || sel.head == tr.mapping.map(chTo) - 1) ||
             ie$1 && sel.empty && sel.head == chFrom))
@@ -11295,6 +11661,8 @@ function readDOMChange(view, from, to, typeOver, addedNodes) {
     }
     if (storedMarks)
         tr.ensureMarks(storedMarks);
+    if (compositionID)
+        tr.setMeta("composition", compositionID);
     view.dispatch(tr.scrollIntoView());
 }
 function resolveSelection(view, doc, parsedSel) {
@@ -11331,14 +11699,18 @@ function isMarkChange(cur, prev) {
     if (Fragment.from(updated).eq(cur))
         return { mark, type };
 }
-function looksLikeJoin(old, start, end, $newStart, $newEnd) {
-    if (!$newStart.parent.isTextblock ||
-        // The content must have shrunk
-        end - start <= $newEnd.pos - $newStart.pos ||
+function looksLikeBackspace(old, start, end, $newStart, $newEnd) {
+    if ( // The content must have shrunk
+    end - start <= $newEnd.pos - $newStart.pos ||
         // newEnd must point directly at or after the end of the block that newStart points into
         skipClosingAndOpening($newStart, true, false) < $newEnd.pos)
         return false;
     let $start = old.resolve(start);
+    // Handle the case where, rather than joining blocks, the change just removed an entire block
+    if (!$newStart.parent.isTextblock) {
+        let after = $start.nodeAfter;
+        return after != null && end == start + after.nodeSize;
+    }
     // Start must be at the end of a block
     if ($start.parentOffset < $start.parent.content.size || !$start.parent.isTextblock)
         return false;
@@ -11378,16 +11750,26 @@ function findDiff(a, b, pos, preferredPos, preferredSide) {
     if (endA < start && a.size < b.size) {
         let move = preferredPos <= start && preferredPos >= endA ? start - preferredPos : 0;
         start -= move;
+        if (start && start < b.size && isSurrogatePair(b.textBetween(start - 1, start + 1)))
+            start += move ? 1 : -1;
         endB = start + (endB - endA);
         endA = start;
     }
     else if (endB < start) {
         let move = preferredPos <= start && preferredPos >= endB ? start - preferredPos : 0;
         start -= move;
+        if (start && start < a.size && isSurrogatePair(a.textBetween(start - 1, start + 1)))
+            start += move ? 1 : -1;
         endA = start + (endA - endB);
         endB = start;
     }
     return { start, endA, endB };
+}
+function isSurrogatePair(str) {
+    if (str.length != 2)
+        return false;
+    let a = str.charCodeAt(0), b = str.charCodeAt(1);
+    return a >= 0xDC00 && a <= 0xDFFF && b >= 0xD800 && b <= 0xDBFF;
 }
 /**
 An editor view manages the DOM structure that represents an
@@ -11522,6 +11904,7 @@ class EditorView {
         this.updateStateInner(state, this._props);
     }
     updateStateInner(state, prevProps) {
+        var _a;
         let prev = this.state, redraw = false, updateSel = false;
         // When stored marks are added, stop composition, so that they can
         // be displayed.
@@ -11557,16 +11940,18 @@ class EditorView {
             // state where the thing the user sees differs from the
             // selection reported by the Selection object (#710, #973,
             // #1011, #1013, #1035).
-            let forceSelUpdate = updateDoc && (ie$1 || chrome$1) && !this.composing &&
+            let forceSelUpdate = updateDoc && (ie$1 || chrome) && !this.composing &&
                 !prev.selection.empty && !state.selection.empty && selectionContextChanged(prev.selection, state.selection);
             if (updateDoc) {
                 // If the node that the selection points into is written to,
                 // Chrome sometimes starts misreporting the selection, so this
                 // tracks that and forces a selection reset when our update
                 // did write to the node.
-                let chromeKludge = chrome$1 ? (this.trackWrites = this.domSelectionRange().focusNode) : null;
+                let chromeKludge = chrome ? (this.trackWrites = this.domSelectionRange().focusNode) : null;
+                if (this.composing)
+                    this.input.compositionNode = findCompositionNode(this);
                 if (redraw || !this.docView.update(state.doc, outerDeco, innerDeco, this)) {
-                    this.docView.updateOuterDeco([]);
+                    this.docView.updateOuterDeco(outerDeco);
                     this.docView.destroy();
                     this.docView = docViewDesc(state.doc, outerDeco, innerDeco, this.dom, this);
                 }
@@ -11589,6 +11974,8 @@ class EditorView {
             this.domObserver.start();
         }
         this.updatePluginViews(prev);
+        if (((_a = this.dragging) === null || _a === void 0 ? void 0 : _a.node) && !prev.doc.eq(state.doc))
+            this.updateDraggedNode(this.dragging, prev);
         if (scroll == "reset") {
             this.dom.scrollTop = 0;
         }
@@ -11642,6 +12029,19 @@ class EditorView {
                     pluginView.update(this, prevState);
             }
         }
+    }
+    updateDraggedNode(dragging, prev) {
+        let sel = dragging.node, found = -1;
+        if (this.state.doc.nodeAt(sel.from) == sel.node) {
+            found = sel.from;
+        }
+        else {
+            let movedPos = sel.from + (this.state.doc.content.size - prev.doc.content.size);
+            let moved = movedPos > 0 && this.state.doc.nodeAt(movedPos);
+            if (moved == sel.node)
+                found = movedPos;
+        }
+        this.dragging = new Dragging(dragging.slice, dragging.move, found < 0 ? undefined : NodeSelection.create(this.state.doc, found));
     }
     someProp(propName, f) {
         let prop = this._props && this._props[propName], value;
@@ -11711,6 +12111,13 @@ class EditorView {
                 }
             }
         return cached || document;
+    }
+    /**
+    When an existing editor view is moved to a new document or
+    shadow tree, call this to make it recompute its root.
+    */
+    updateRoot() {
+        this._root = null;
     }
     /**
     Given a pair of viewport coordinates, return the document
@@ -11821,6 +12228,7 @@ class EditorView {
         }
         this.docView.destroy();
         this.docView = null;
+        clearReusedRange();
     }
     /**
     This is true when the view has been
@@ -11856,8 +12264,9 @@ class EditorView {
     @internal
     */
     domSelectionRange() {
-        return safari && this.root.nodeType === 11 && deepActiveElement(this.dom.ownerDocument) == this.dom
-            ? safariShadowSelectionRange(this) : this.domSelection();
+        let sel = this.domSelection();
+        return safari && this.root.nodeType === 11 &&
+            deepActiveElement(this.dom.ownerDocument) == this.dom && safariShadowSelectionRange(this, sel) || sel;
     }
     /**
     @internal
@@ -11870,7 +12279,6 @@ function computeDocDeco(view) {
     let attrs = Object.create(null);
     attrs.class = "ProseMirror";
     attrs.contenteditable = String(view.editable);
-    attrs.translate = "no";
     view.someProp("attributes", value => {
         if (typeof value == "function")
             value = value(view.state);
@@ -11878,13 +12286,14 @@ function computeDocDeco(view) {
             for (let attr in value) {
                 if (attr == "class")
                     attrs.class += " " + value[attr];
-                if (attr == "style") {
+                else if (attr == "style")
                     attrs.style = (attrs.style ? attrs.style + ";" : "") + value[attr];
-                }
                 else if (!attrs[attr] && attr != "contenteditable" && attr != "nodeName")
                     attrs[attr] = String(value[attr]);
             }
     });
+    if (!attrs.translate)
+        attrs.translate = "no";
     return [Decoration.node(0, view.state.doc.content.size, attrs)];
 }
 function updateCursorWrapper(view) {
@@ -12015,11 +12424,8 @@ var shift = {
   222: "\""
 };
 
-var chrome = typeof navigator != "undefined" && /Chrome\/(\d+)/.exec(navigator.userAgent);
-typeof navigator != "undefined" && /Gecko\/\d+/.test(navigator.userAgent);
 var mac$1 = typeof navigator != "undefined" && /Mac/.test(navigator.platform);
 var ie = typeof navigator != "undefined" && /MSIE \d|Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(navigator.userAgent);
-var brokenModifierNames = mac$1 || chrome && +chrome[1] < 57;
 
 // Fill in the digit keys
 for (var i = 0; i < 10; i++) base[48 + i] = base[96 + i] = String(i);
@@ -12037,9 +12443,11 @@ for (var i = 65; i <= 90; i++) {
 for (var code in base) if (!shift.hasOwnProperty(code)) shift[code] = base[code];
 
 function keyName(event) {
-  var ignoreKey = brokenModifierNames && (event.ctrlKey || event.altKey || event.metaKey) ||
-    ie && event.shiftKey && event.key && event.key.length == 1 ||
-    event.key == "Unidentified";
+  // On macOS, keys held with Shift and Cmd don't reflect the effect of Shift in `.key`.
+  // On IE, shift effect is never included in `.key`.
+  var ignoreKey = mac$1 && event.metaKey && event.shiftKey && !event.ctrlKey && !event.altKey ||
+      ie && event.shiftKey && event.key && event.key.length == 1 ||
+      event.key == "Unidentified";
   var name = (!ignoreKey && event.key) ||
     (event.shiftKey ? shift : base)[event.keyCode] ||
     event.key || "Unidentified";
@@ -12242,6 +12650,60 @@ const joinBackward$1 = (state, dispatch, view) => {
     }
     return false;
 };
+/**
+A more limited form of [`joinBackward`]($commands.joinBackward)
+that only tries to join the current textblock to the one before
+it, if the cursor is at the start of a textblock.
+*/
+const joinTextblockBackward$1 = (state, dispatch, view) => {
+    let $cursor = atBlockStart(state, view);
+    if (!$cursor)
+        return false;
+    let $cut = findCutBefore($cursor);
+    return $cut ? joinTextblocksAround(state, $cut, dispatch) : false;
+};
+/**
+A more limited form of [`joinForward`]($commands.joinForward)
+that only tries to join the current textblock to the one after
+it, if the cursor is at the end of a textblock.
+*/
+const joinTextblockForward$1 = (state, dispatch, view) => {
+    let $cursor = atBlockEnd(state, view);
+    if (!$cursor)
+        return false;
+    let $cut = findCutAfter($cursor);
+    return $cut ? joinTextblocksAround(state, $cut, dispatch) : false;
+};
+function joinTextblocksAround(state, $cut, dispatch) {
+    let before = $cut.nodeBefore, beforeText = before, beforePos = $cut.pos - 1;
+    for (; !beforeText.isTextblock; beforePos--) {
+        if (beforeText.type.spec.isolating)
+            return false;
+        let child = beforeText.lastChild;
+        if (!child)
+            return false;
+        beforeText = child;
+    }
+    let after = $cut.nodeAfter, afterText = after, afterPos = $cut.pos + 1;
+    for (; !afterText.isTextblock; afterPos++) {
+        if (afterText.type.spec.isolating)
+            return false;
+        let child = afterText.firstChild;
+        if (!child)
+            return false;
+        afterText = child;
+    }
+    let step = replaceStep(state.doc, beforePos, afterPos, Slice.empty);
+    if (!step || step.from != beforePos ||
+        step instanceof ReplaceStep && step.slice.size >= afterPos - beforePos)
+        return false;
+    if (dispatch) {
+        let tr = state.tr.step(step);
+        tr.setSelection(TextSelection.create(tr.doc, beforePos));
+        dispatch(tr.scrollIntoView());
+    }
+    return true;
+}
 function textblockAt(node, side, only = false) {
     for (let scan = node; scan; scan = (side == "start" ? scan.firstChild : scan.lastChild)) {
         if (scan.isTextblock)
@@ -12923,6 +13385,11 @@ function sinkListItem$1(itemType) {
     };
 }
 
+/**
+ * Takes a Transaction & Editor State and turns it into a chainable state object
+ * @param config The transaction and state to create the chainable state from
+ * @returns A chainable Editor state object
+ */
 function createChainableState(config) {
     const { state, transaction } = config;
     let { selection } = transaction;
@@ -12932,7 +13399,6 @@ function createChainableState(config) {
         ...state,
         apply: state.apply.bind(state),
         applyTransaction: state.applyTransaction.bind(state),
-        filterTransaction: state.filterTransaction,
         plugins: state.plugins,
         schema: state.schema,
         reconfigure: state.reconfigure.bind(state),
@@ -13034,9 +13500,6 @@ class CommandManager {
     buildProps(tr, shouldDispatch = true) {
         const { rawCommands, editor, state } = this;
         const { view } = editor;
-        if (state.storedMarks) {
-            tr.setStoredMarks(state.storedMarks);
-        }
         const props = {
             tr,
             editor,
@@ -13046,7 +13509,7 @@ class CommandManager {
                 transaction: tr,
             }),
             dispatch: shouldDispatch ? () => undefined : undefined,
-            chain: () => this.createChain(tr),
+            chain: () => this.createChain(tr, shouldDispatch),
             can: () => this.createCan(tr),
             get commands() {
                 return Object.fromEntries(Object.entries(rawCommands).map(([name, command]) => {
@@ -13093,6 +13556,13 @@ class EventEmitter {
     }
 }
 
+/**
+ * Returns a field from an extension
+ * @param extension The Tiptap extension
+ * @param field The field, for example `renderHTML` or `priority`
+ * @param context The context object that should be passed as `this` into the function
+ * @returns The field value
+ */
 function getExtensionField(extension, field, context) {
     if (extension.config[field] === undefined && extension.parent) {
         return getExtensionField(extension.parent, field, context);
@@ -13184,7 +13654,10 @@ function getAttributesFromExtensions(extensions) {
                 ...defaultAttribute,
                 ...attribute,
             };
-            if ((attribute === null || attribute === void 0 ? void 0 : attribute.isRequired) && (attribute === null || attribute === void 0 ? void 0 : attribute.default) === undefined) {
+            if (typeof (mergedAttr === null || mergedAttr === void 0 ? void 0 : mergedAttr.default) === 'function') {
+                mergedAttr.default = mergedAttr.default();
+            }
+            if ((mergedAttr === null || mergedAttr === void 0 ? void 0 : mergedAttr.isRequired) && (mergedAttr === null || mergedAttr === void 0 ? void 0 : mergedAttr.default) === undefined) {
                 delete mergedAttr.default;
             }
             extensionAttributes.push({
@@ -13219,7 +13692,10 @@ function mergeAttributes(...objects) {
                 return;
             }
             if (key === 'class') {
-                mergedAttributes[key] = [mergedAttributes[key], value].join(' ');
+                const valueClasses = value ? value.split(' ') : [];
+                const existingClasses = mergedAttributes[key] ? mergedAttributes[key].split(' ') : [];
+                const insertClasses = valueClasses.filter(valueClass => !existingClasses.includes(valueClass));
+                mergedAttributes[key] = [...existingClasses, ...insertClasses].join(' ');
             }
             else if (key === 'style') {
                 mergedAttributes[key] = [mergedAttributes[key], value].join('; ');
@@ -13322,14 +13798,22 @@ function injectExtensionAttributesToParseRule(parseRule, extensionAttributes) {
 }
 
 function cleanUpSchemaItem(data) {
-    return Object.fromEntries(Object.entries(data).filter(([key, value]) => {
+    return Object.fromEntries(
+    // @ts-ignore
+    Object.entries(data).filter(([key, value]) => {
         if (key === 'attrs' && isEmptyObject(value)) {
             return false;
         }
         return value !== null && value !== undefined;
     }));
 }
-function getSchemaByResolvedExtensions(extensions) {
+/**
+ * Creates a new Prosemirror schema based on the given extensions.
+ * @param extensions An array of Tiptap extensions
+ * @param editor The editor instance
+ * @returns A Prosemirror schema
+ */
+function getSchemaByResolvedExtensions(extensions, editor) {
     var _a;
     const allAttributes = getAttributesFromExtensions(extensions);
     const { nodeExtensions, markExtensions } = splitExtensions(extensions);
@@ -13340,6 +13824,7 @@ function getSchemaByResolvedExtensions(extensions) {
             name: extension.name,
             options: extension.options,
             storage: extension.storage,
+            editor,
         };
         const extraNodeFields = extensions.reduce((fields, e) => {
             const extendNodeSchema = getExtensionField(e, 'extendNodeSchema', context);
@@ -13388,6 +13873,7 @@ function getSchemaByResolvedExtensions(extensions) {
             name: extension.name,
             options: extension.options,
             storage: extension.storage,
+            editor,
         };
         const extraMarkFields = extensions.reduce((fields, e) => {
             const extendMarkSchema = getExtensionField(e, 'extendMarkSchema', context);
@@ -13428,6 +13914,12 @@ function getSchemaByResolvedExtensions(extensions) {
     });
 }
 
+/**
+ * Tries to get a node or mark type by its name.
+ * @param name The name of the node or mark type
+ * @param schema The Prosemiror schema to search in
+ * @returns The node or mark type, or null if it doesn't exist
+ */
 function getSchemaTypeByName(name, schema) {
     return schema.nodes[name] || schema.marks[name] || null;
 }
@@ -13444,6 +13936,12 @@ function isExtensionRulesEnabled(extension, enabled) {
     return enabled;
 }
 
+/**
+ * Returns the text content of a resolved prosemirror position
+ * @param $from The resolved position to get the text content from
+ * @param maxMatch The maximum number of characters to match
+ * @returns The text content
+ */
 const getTextContentFromNodes = ($from, maxMatch = 500) => {
     let textBefore = '';
     const sliceEndPos = $from.parentOffset;
@@ -13572,6 +14070,23 @@ function inputRulesPlugin(props) {
                 if (stored) {
                     return stored;
                 }
+                // if InputRule is triggered by insertContent()
+                const simulatedInputMeta = tr.getMeta('applyInputRules');
+                const isSimulatedInput = !!simulatedInputMeta;
+                if (isSimulatedInput) {
+                    setTimeout(() => {
+                        const { from, text } = simulatedInputMeta;
+                        const to = from + text.length;
+                        run$1({
+                            editor,
+                            from,
+                            to,
+                            text,
+                            rules,
+                            plugin,
+                        });
+                    });
+                }
                 return tr.selectionSet || tr.docChanged ? null : prev;
             },
         },
@@ -13634,17 +14149,21 @@ function isNumber(value) {
     return typeof value === 'number';
 }
 
+/**
+ * Paste rules are used to react to pasted content.
+ * @see https://tiptap.dev/guide/custom-extensions/#paste-rules
+ */
 class PasteRule {
     constructor(config) {
         this.find = config.find;
         this.handler = config.handler;
     }
 }
-const pasteRuleMatcherHandler = (text, find) => {
+const pasteRuleMatcherHandler = (text, find, event) => {
     if (isRegExp(find)) {
         return [...text.matchAll(find)];
     }
-    const matches = find(text);
+    const matches = find(text, event);
     if (!matches) {
         return [];
     }
@@ -13663,7 +14182,7 @@ const pasteRuleMatcherHandler = (text, find) => {
     });
 };
 function run(config) {
-    const { editor, state, from, to, rule, } = config;
+    const { editor, state, from, to, rule, pasteEvent, dropEvent, } = config;
     const { commands, chain, can } = new CommandManager({
         editor,
         state,
@@ -13676,7 +14195,7 @@ function run(config) {
         const resolvedFrom = Math.max(from, pos);
         const resolvedTo = Math.min(to, pos + node.content.size);
         const textToMatch = node.textBetween(resolvedFrom - pos, resolvedTo - pos, undefined, '\ufffc');
-        const matches = pasteRuleMatcherHandler(textToMatch, rule.find);
+        const matches = pasteRuleMatcherHandler(textToMatch, rule.find, pasteEvent);
         matches.forEach(match => {
             if (match.index === undefined) {
                 return;
@@ -13694,6 +14213,8 @@ function run(config) {
                 commands,
                 chain,
                 can,
+                pasteEvent,
+                dropEvent,
             });
             handlers.push(handler);
         });
@@ -13701,6 +14222,14 @@ function run(config) {
     const success = handlers.every(handler => handler !== null);
     return success;
 }
+const createClipboardPasteEvent = (text) => {
+    var _a;
+    const event = new ClipboardEvent('paste', {
+        clipboardData: new DataTransfer(),
+    });
+    (_a = event.clipboardData) === null || _a === void 0 ? void 0 : _a.setData('text/html', text);
+    return event;
+};
 /**
  * Create an paste rules plugin. When enabled, it will cause pasted
  * text that matches any of the given rules to trigger the rule’s
@@ -13711,6 +14240,30 @@ function pasteRulesPlugin(props) {
     let dragSourceElement = null;
     let isPastedFromProseMirror = false;
     let isDroppedFromProseMirror = false;
+    let pasteEvent = typeof ClipboardEvent !== 'undefined' ? new ClipboardEvent('paste') : null;
+    let dropEvent = typeof DragEvent !== 'undefined' ? new DragEvent('drop') : null;
+    const processEvent = ({ state, from, to, rule, pasteEvt, }) => {
+        const tr = state.tr;
+        const chainableState = createChainableState({
+            state,
+            transaction: tr,
+        });
+        const handler = run({
+            editor,
+            state: chainableState,
+            from: Math.max(from - 1, 0),
+            to: to.b - 1,
+            rule,
+            pasteEvent: pasteEvt,
+            dropEvent,
+        });
+        if (!handler || !tr.steps.length) {
+            return;
+        }
+        dropEvent = typeof DragEvent !== 'undefined' ? new DragEvent('drop') : null;
+        pasteEvent = typeof ClipboardEvent !== 'undefined' ? new ClipboardEvent('paste') : null;
+        return tr;
+    };
     const plugins = rules.map(rule => {
         return new Plugin({
             // we register a global drag handler to track the current drag source element
@@ -13730,13 +14283,15 @@ function pasteRulesPlugin(props) {
             },
             props: {
                 handleDOMEvents: {
-                    drop: view => {
+                    drop: (view, event) => {
                         isDroppedFromProseMirror = dragSourceElement === view.dom.parentElement;
+                        dropEvent = event;
                         return false;
                     },
-                    paste: (view, event) => {
+                    paste: (_view, event) => {
                         var _a;
                         const html = (_a = event.clipboardData) === null || _a === void 0 ? void 0 : _a.getData('text/html');
+                        pasteEvent = event;
                         isPastedFromProseMirror = !!(html === null || html === void 0 ? void 0 : html.includes('data-pm-slice'));
                         return false;
                     },
@@ -13746,34 +14301,39 @@ function pasteRulesPlugin(props) {
                 const transaction = transactions[0];
                 const isPaste = transaction.getMeta('uiEvent') === 'paste' && !isPastedFromProseMirror;
                 const isDrop = transaction.getMeta('uiEvent') === 'drop' && !isDroppedFromProseMirror;
-                if (!isPaste && !isDrop) {
+                // if PasteRule is triggered by insertContent()
+                const simulatedPasteMeta = transaction.getMeta('applyPasteRules');
+                const isSimulatedPaste = !!simulatedPasteMeta;
+                if (!isPaste && !isDrop && !isSimulatedPaste) {
                     return;
                 }
-                // stop if there is no changed range
+                // Handle simulated paste
+                if (isSimulatedPaste) {
+                    const { from, text } = simulatedPasteMeta;
+                    const to = from + text.length;
+                    const pasteEvt = createClipboardPasteEvent(text);
+                    return processEvent({
+                        rule,
+                        state,
+                        from,
+                        to: { b: to },
+                        pasteEvt,
+                    });
+                }
+                // handle actual paste/drop
                 const from = oldState.doc.content.findDiffStart(state.doc.content);
                 const to = oldState.doc.content.findDiffEnd(state.doc.content);
+                // stop if there is no changed range
                 if (!isNumber(from) || !to || from === to.b) {
                     return;
                 }
-                // build a chainable state
-                // so we can use a single transaction for all paste rules
-                const tr = state.tr;
-                const chainableState = createChainableState({
-                    state,
-                    transaction: tr,
-                });
-                const handler = run({
-                    editor,
-                    state: chainableState,
-                    from: Math.max(from - 1, 0),
-                    to: to.b - 1,
+                return processEvent({
                     rule,
+                    state,
+                    from,
+                    to,
+                    pasteEvt: pasteEvent,
                 });
-                // stop if there are no changes
-                if (!handler || !tr.steps.length) {
-                    return;
-                }
-                return tr;
             },
         });
     });
@@ -13790,58 +14350,15 @@ class ExtensionManager {
         this.splittableMarks = [];
         this.editor = editor;
         this.extensions = ExtensionManager.resolve(extensions);
-        this.schema = getSchemaByResolvedExtensions(this.extensions);
-        this.extensions.forEach(extension => {
-            var _a;
-            // store extension storage in editor
-            this.editor.extensionStorage[extension.name] = extension.storage;
-            const context = {
-                name: extension.name,
-                options: extension.options,
-                storage: extension.storage,
-                editor: this.editor,
-                type: getSchemaTypeByName(extension.name, this.schema),
-            };
-            if (extension.type === 'mark') {
-                const keepOnSplit = (_a = callOrReturn(getExtensionField(extension, 'keepOnSplit', context))) !== null && _a !== void 0 ? _a : true;
-                if (keepOnSplit) {
-                    this.splittableMarks.push(extension.name);
-                }
-            }
-            const onBeforeCreate = getExtensionField(extension, 'onBeforeCreate', context);
-            if (onBeforeCreate) {
-                this.editor.on('beforeCreate', onBeforeCreate);
-            }
-            const onCreate = getExtensionField(extension, 'onCreate', context);
-            if (onCreate) {
-                this.editor.on('create', onCreate);
-            }
-            const onUpdate = getExtensionField(extension, 'onUpdate', context);
-            if (onUpdate) {
-                this.editor.on('update', onUpdate);
-            }
-            const onSelectionUpdate = getExtensionField(extension, 'onSelectionUpdate', context);
-            if (onSelectionUpdate) {
-                this.editor.on('selectionUpdate', onSelectionUpdate);
-            }
-            const onTransaction = getExtensionField(extension, 'onTransaction', context);
-            if (onTransaction) {
-                this.editor.on('transaction', onTransaction);
-            }
-            const onFocus = getExtensionField(extension, 'onFocus', context);
-            if (onFocus) {
-                this.editor.on('focus', onFocus);
-            }
-            const onBlur = getExtensionField(extension, 'onBlur', context);
-            if (onBlur) {
-                this.editor.on('blur', onBlur);
-            }
-            const onDestroy = getExtensionField(extension, 'onDestroy', context);
-            if (onDestroy) {
-                this.editor.on('destroy', onDestroy);
-            }
-        });
+        this.schema = getSchemaByResolvedExtensions(this.extensions, editor);
+        this.setupExtensions();
     }
+    /**
+     * Returns a flattened and sorted extension list while
+     * also checking for duplicated extensions and warns the user.
+     * @param extensions An array of Tiptap extensions
+     * @returns An flattened and sorted array of Tiptap extensions
+     */
     static resolve(extensions) {
         const resolvedExtensions = ExtensionManager.sort(ExtensionManager.flatten(extensions));
         const duplicatedNames = findDuplicates(resolvedExtensions.map(extension => extension.name));
@@ -13852,6 +14369,11 @@ class ExtensionManager {
         }
         return resolvedExtensions;
     }
+    /**
+     * Create a flattened array of extensions by traversing the `addExtensions` field.
+     * @param extensions An array of Tiptap extensions
+     * @returns A flattened array of Tiptap extensions
+     */
     static flatten(extensions) {
         return (extensions
             .map(extension => {
@@ -13869,6 +14391,11 @@ class ExtensionManager {
             // `Infinity` will break TypeScript so we set a number that is probably high enough
             .flat(10));
     }
+    /**
+     * Sort extensions by priority.
+     * @param extensions An array of Tiptap extensions
+     * @returns A sorted array of Tiptap extensions by priority
+     */
     static sort(extensions) {
         const defaultPriority = 100;
         return extensions.sort((a, b) => {
@@ -13883,6 +14410,10 @@ class ExtensionManager {
             return 0;
         });
     }
+    /**
+     * Get all commands from the extensions.
+     * @returns An object with all commands where the key is the command name and the value is the command function
+     */
     get commands() {
         return this.extensions.reduce((commands, extension) => {
             const context = {
@@ -13902,10 +14433,14 @@ class ExtensionManager {
             };
         }, {});
     }
+    /**
+     * Get all registered Prosemirror plugins from the extensions.
+     * @returns An array of Prosemirror plugins
+     */
     get plugins() {
         const { editor } = this;
         // With ProseMirror, first plugins within an array are executed first.
-        // In tiptap, we provide the ability to override plugins,
+        // In Tiptap, we provide the ability to override plugins,
         // so it feels more natural to run plugins at the end of an array first.
         // That’s why we have to reverse the `extensions` array and sort again
         // based on the `priority` option.
@@ -13964,9 +14499,17 @@ class ExtensionManager {
             ...allPlugins,
         ];
     }
+    /**
+     * Get all attributes from the extensions.
+     * @returns An array of attributes
+     */
     get attributes() {
         return getAttributesFromExtensions(this.extensions);
     }
+    /**
+     * Get all node views from the extensions.
+     * @returns An object with all node views where the key is the node name and the value is the node view function
+     */
     get nodeViews() {
         const { editor } = this;
         const { nodeExtensions } = splitExtensions(this.extensions);
@@ -13998,6 +14541,62 @@ class ExtensionManager {
             };
             return [extension.name, nodeview];
         }));
+    }
+    /**
+     * Go through all extensions, create extension storages & setup marks
+     * & bind editor event listener.
+     */
+    setupExtensions() {
+        this.extensions.forEach(extension => {
+            var _a;
+            // store extension storage in editor
+            this.editor.extensionStorage[extension.name] = extension.storage;
+            const context = {
+                name: extension.name,
+                options: extension.options,
+                storage: extension.storage,
+                editor: this.editor,
+                type: getSchemaTypeByName(extension.name, this.schema),
+            };
+            if (extension.type === 'mark') {
+                const keepOnSplit = (_a = callOrReturn(getExtensionField(extension, 'keepOnSplit', context))) !== null && _a !== void 0 ? _a : true;
+                if (keepOnSplit) {
+                    this.splittableMarks.push(extension.name);
+                }
+            }
+            const onBeforeCreate = getExtensionField(extension, 'onBeforeCreate', context);
+            const onCreate = getExtensionField(extension, 'onCreate', context);
+            const onUpdate = getExtensionField(extension, 'onUpdate', context);
+            const onSelectionUpdate = getExtensionField(extension, 'onSelectionUpdate', context);
+            const onTransaction = getExtensionField(extension, 'onTransaction', context);
+            const onFocus = getExtensionField(extension, 'onFocus', context);
+            const onBlur = getExtensionField(extension, 'onBlur', context);
+            const onDestroy = getExtensionField(extension, 'onDestroy', context);
+            if (onBeforeCreate) {
+                this.editor.on('beforeCreate', onBeforeCreate);
+            }
+            if (onCreate) {
+                this.editor.on('create', onCreate);
+            }
+            if (onUpdate) {
+                this.editor.on('update', onUpdate);
+            }
+            if (onSelectionUpdate) {
+                this.editor.on('selectionUpdate', onSelectionUpdate);
+            }
+            if (onTransaction) {
+                this.editor.on('transaction', onTransaction);
+            }
+            if (onFocus) {
+                this.editor.on('focus', onFocus);
+            }
+            if (onBlur) {
+                this.editor.on('blur', onBlur);
+            }
+            if (onDestroy) {
+                this.editor.on('destroy', onDestroy);
+            }
+        });
     }
 }
 
@@ -14032,6 +14631,10 @@ function mergeDeep(target, source) {
     return output;
 }
 
+/**
+ * The Extension class is the base class for all extensions.
+ * @see https://tiptap.dev/api/extensions#create-a-new-extension
+ */
 class Extension {
     constructor(config = {}) {
         this.type = 'extension';
@@ -14047,7 +14650,7 @@ class Extension {
             ...config,
         };
         this.name = this.config.name;
-        if (config.defaultOptions) {
+        if (config.defaultOptions && Object.keys(config.defaultOptions).length > 0) {
             console.warn(`[tiptap warn]: BREAKING CHANGE: "defaultOptions" is deprecated. Please use "addOptions" instead. Found in extension: "${this.name}".`);
         }
         // TODO: remove `addOptions` fallback
@@ -14069,6 +14672,7 @@ class Extension {
         // return a new instance so we can use the same extension
         // with different calls of `configure`
         const extension = this.extend();
+        extension.parent = this.parent;
         extension.options = mergeDeep(this.options, options);
         extension.storage = callOrReturn(getExtensionField(extension, 'addStorage', {
             name: extension.name,
@@ -14077,7 +14681,7 @@ class Extension {
         return extension;
     }
     extend(extendedConfig = {}) {
-        const extension = new Extension(extendedConfig);
+        const extension = new Extension({ ...this.config, ...extendedConfig });
         extension.parent = this;
         this.child = extension;
         extension.name = extendedConfig.name ? extendedConfig.name : extension.parent.name;
@@ -14095,19 +14699,25 @@ class Extension {
     }
 }
 
+/**
+ * Gets the text between two positions in a Prosemirror node
+ * and serializes it using the given text serializers and block separator (see getText)
+ * @param startNode The Prosemirror node to start from
+ * @param range The range of the text to get
+ * @param options Options for the text serializer & block separator
+ * @returns The text between the two positions
+ */
 function getTextBetween(startNode, range, options) {
     const { from, to } = range;
     const { blockSeparator = '\n\n', textSerializers = {} } = options || {};
     let text = '';
-    let separated = true;
     startNode.nodesBetween(from, to, (node, pos, parent, index) => {
         var _a;
+        if (node.isBlock && pos > from) {
+            text += blockSeparator;
+        }
         const textSerializer = textSerializers === null || textSerializers === void 0 ? void 0 : textSerializers[node.type.name];
         if (textSerializer) {
-            if (node.isBlock && !separated) {
-                text += blockSeparator;
-                separated = true;
-            }
             if (parent) {
                 text += textSerializer({
                     node,
@@ -14117,19 +14727,21 @@ function getTextBetween(startNode, range, options) {
                     range,
                 });
             }
+            // do not descend into child nodes when there exists a serializer
+            return false;
         }
-        else if (node.isText) {
+        if (node.isText) {
             text += (_a = node === null || node === void 0 ? void 0 : node.text) === null || _a === void 0 ? void 0 : _a.slice(Math.max(from, pos) - pos, to - pos); // eslint-disable-line
-            separated = false;
-        }
-        else if (node.isBlock && !separated) {
-            text += blockSeparator;
-            separated = true;
         }
     });
     return text;
 }
 
+/**
+ * Find text serializers `toText` in a Prosemirror schema
+ * @param schema The Prosemirror schema to search in
+ * @returns A record of text serializers by node name
+ */
 function getTextSerializersFromSchema(schema) {
     return Object.fromEntries(Object.entries(schema.nodes)
         .filter(([, node]) => node.spec.toText)
@@ -14138,6 +14750,11 @@ function getTextSerializersFromSchema(schema) {
 
 const ClipboardTextSerializer = Extension.create({
     name: 'clipboardTextSerializer',
+    addOptions() {
+        return {
+            blockSeparator: undefined,
+        };
+    },
     addProseMirrorPlugins() {
         return [
             new Plugin({
@@ -14153,6 +14770,9 @@ const ClipboardTextSerializer = Extension.create({
                         const textSerializers = getTextSerializersFromSchema(schema);
                         const range = { from, to };
                         return getTextBetween(doc, range, {
+                            ...(this.options.blockSeparator !== undefined
+                                ? { blockSeparator: this.options.blockSeparator }
+                                : {}),
                             textSerializers,
                         });
                     },
@@ -14216,6 +14836,16 @@ const command = fn => props => {
 
 const createParagraphNear = () => ({ state, dispatch }) => {
     return createParagraphNear$1(state, dispatch);
+};
+
+const cut = (originRange, targetPos) => ({ editor, tr }) => {
+    const { state } = editor;
+    const contentSlice = state.doc.slice(originRange.from, originRange.to);
+    tr.deleteRange(originRange.from, originRange.to);
+    const newPos = tr.mapping.map(targetPos);
+    tr.insert(newPos, contentSlice.content);
+    tr.setSelection(new TextSelection(tr.doc.resolve(newPos - 1)));
+    return true;
 };
 
 const deleteCurrentNode = () => ({ tr, dispatch }) => {
@@ -14474,21 +15104,46 @@ const insertContent = (value, options) => ({ tr, commands }) => {
     return commands.insertContentAt({ from: tr.selection.from, to: tr.selection.to }, value, options);
 };
 
+const removeWhitespaces = (node) => {
+    const children = node.childNodes;
+    for (let i = children.length - 1; i >= 0; i -= 1) {
+        const child = children[i];
+        if (child.nodeType === 3 && child.nodeValue && /^(\n\s\s|\n)$/.test(child.nodeValue)) {
+            node.removeChild(child);
+        }
+        else if (child.nodeType === 1) {
+            removeWhitespaces(child);
+        }
+    }
+    return node;
+};
 function elementFromString(value) {
     // add a wrapper to preserve leading and trailing whitespace
     const wrappedValue = `<body>${value}</body>`;
-    return new window.DOMParser().parseFromString(wrappedValue, 'text/html').body;
+    const html = new window.DOMParser().parseFromString(wrappedValue, 'text/html').body;
+    return removeWhitespaces(html);
 }
 
+/**
+ * Takes a JSON or HTML content and creates a Prosemirror node or fragment from it.
+ * @param content The JSON or HTML content to create the node from
+ * @param schema The Prosemirror schema to use for the node
+ * @param options Options for the parser
+ * @returns The created Prosemirror node or fragment
+ */
 function createNodeFromContent(content, schema, options) {
     options = {
         slice: true,
         parseOptions: {},
         ...options,
     };
-    if (typeof content === 'object' && content !== null) {
+    const isJSONContent = typeof content === 'object' && content !== null;
+    const isTextContent = typeof content === 'string';
+    if (isJSONContent) {
         try {
-            if (Array.isArray(content)) {
+            const isArrayContent = Array.isArray(content) && content.length > 0;
+            // if the JSON Content is an array of nodes, create a fragment for each node
+            if (isArrayContent) {
                 return Fragment.fromArray(content.map(item => schema.nodeFromJSON(item)));
             }
             return schema.nodeFromJSON(content);
@@ -14498,7 +15153,7 @@ function createNodeFromContent(content, schema, options) {
             return createNodeFromContent('', schema, options);
         }
     }
-    if (typeof content === 'string') {
+    if (isTextContent) {
         const parser = DOMParser.fromSchema(schema);
         return options.slice
             ? parser.parseSlice(elementFromString(content), options.parseOptions).content
@@ -14535,6 +15190,8 @@ const insertContentAt = (position, value, options) => ({ tr, dispatch, editor })
         options = {
             parseOptions: {},
             updateSelection: true,
+            applyInputRules: false,
+            applyPasteRules: false,
             ...options,
         };
         const content = createNodeFromContent(value, editor.schema, {
@@ -14547,7 +15204,7 @@ const insertContentAt = (position, value, options) => ({ tr, dispatch, editor })
         if (content.toString() === '<>') {
             return true;
         }
-        let { from, to } = typeof position === 'number' ? { from: position, to: position } : position;
+        let { from, to } = typeof position === 'number' ? { from: position, to: position } : { from: position.from, to: position.to };
         let isOnlyTextContent = true;
         let isOnlyBlockContent = true;
         const nodes = isFragment(content) ? content : [content];
@@ -14570,17 +15227,36 @@ const insertContentAt = (position, value, options) => ({ tr, dispatch, editor })
                 to += 1;
             }
         }
+        let newContent;
         // if there is only plain text we have to use `insertText`
         // because this will keep the current marks
         if (isOnlyTextContent) {
-            tr.insertText(value, from, to);
+            // if value is string, we can use it directly
+            // otherwise if it is an array, we have to join it
+            if (Array.isArray(value)) {
+                newContent = value.map(v => v.text || '').join('');
+            }
+            else if (typeof value === 'object' && !!value && !!value.text) {
+                newContent = value.text;
+            }
+            else {
+                newContent = value;
+            }
+            tr.insertText(newContent, from, to);
         }
         else {
-            tr.replaceWith(from, to, content);
+            newContent = content;
+            tr.replaceWith(from, to, newContent);
         }
         // set cursor at end of inserted content
         if (options.updateSelection) {
             selectionToInsertionEnd(tr, tr.steps.length - 1, -1);
+        }
+        if (options.applyInputRules) {
+            tr.setMeta('applyInputRules', { from, text: newContent });
+        }
+        if (options.applyPasteRules) {
+            tr.setMeta('applyPasteRules', { from, text: newContent });
         }
     }
     return true;
@@ -14597,6 +15273,48 @@ const joinBackward = () => ({ state, dispatch }) => {
 };
 const joinForward = () => ({ state, dispatch }) => {
     return joinForward$1(state, dispatch);
+};
+
+const joinItemBackward = () => ({ tr, state, dispatch, }) => {
+    try {
+        const point = joinPoint(state.doc, state.selection.$from.pos, -1);
+        if (point === null || point === undefined) {
+            return false;
+        }
+        tr.join(point, 2);
+        if (dispatch) {
+            dispatch(tr);
+        }
+        return true;
+    }
+    catch {
+        return false;
+    }
+};
+
+const joinItemForward = () => ({ state, dispatch, tr, }) => {
+    try {
+        const point = joinPoint(state.doc, state.selection.$from.pos, +1);
+        if (point === null || point === undefined) {
+            return false;
+        }
+        tr.join(point, 2);
+        if (dispatch) {
+            dispatch(tr);
+        }
+        return true;
+    }
+    catch (e) {
+        return false;
+    }
+};
+
+const joinTextblockBackward = () => ({ state, dispatch }) => {
+    return joinTextblockBackward$1(state, dispatch);
+};
+
+const joinTextblockForward = () => ({ state, dispatch }) => {
+    return joinTextblockForward$1(state, dispatch);
 };
 
 function isMacOS() {
@@ -14735,6 +15453,12 @@ const newlineInCode = () => ({ state, dispatch }) => {
     return newlineInCode$1(state, dispatch);
 };
 
+/**
+ * Get the type of a schema item by its name.
+ * @param name The name of the schema item
+ * @param schema The Prosemiror schema to search in
+ * @returns The type of the schema item (`node` or `mark`), or null if it doesn't exist
+ */
 function getSchemaTypeNameByName(name, schema) {
     if (schema.nodes[name]) {
         return 'node';
@@ -14832,6 +15556,13 @@ const selectTextblockStart = () => ({ state, dispatch }) => {
     return selectTextblockStart$1(state, dispatch);
 };
 
+/**
+ * Create a new Prosemirror document node from content.
+ * @param content The JSON or HTML content to create the document from
+ * @param schema The Prosemirror schema to use for the document
+ * @param parseOptions Options for the parser
+ * @returns The created Prosemirror document node
+ */
 function createDocument(content, schema, parseOptions = {}) {
     return createNodeFromContent(content, schema, { slice: false, parseOptions });
 }
@@ -14844,50 +15575,6 @@ const setContent = (content, emitUpdate = false, parseOptions = {}) => ({ tr, ed
     }
     return true;
 };
-
-function defaultBlockAt(match) {
-    for (let i = 0; i < match.edgeCount; i += 1) {
-        const { type } = match.edge(i);
-        if (type.isTextblock && !type.hasRequiredAttrs()) {
-            return type;
-        }
-    }
-    return null;
-}
-
-function findParentNodeClosestToPos($pos, predicate) {
-    for (let i = $pos.depth; i > 0; i -= 1) {
-        const node = $pos.node(i);
-        if (predicate(node)) {
-            return {
-                pos: i > 0 ? $pos.before(i) : 0,
-                start: $pos.start(i),
-                depth: i,
-                node,
-            };
-        }
-    }
-}
-
-function findParentNode(predicate) {
-    return (selection) => findParentNodeClosestToPos(selection.$from, predicate);
-}
-
-function getHTMLFromFragment(fragment, schema) {
-    const documentFragment = DOMSerializer.fromSchema(schema).serializeFragment(fragment);
-    const temporaryDocument = document.implementation.createHTMLDocument();
-    const container = temporaryDocument.createElement('div');
-    container.appendChild(documentFragment);
-    return container.innerHTML;
-}
-
-function getText(node, options) {
-    const range = {
-        from: 0,
-        to: node.content.size,
-    };
-    return getTextBetween(node, range, options);
-}
 
 function getMarkAttributes(state, typeOrName) {
     const type = getMarkType(typeOrName, state.schema);
@@ -14911,6 +15598,81 @@ function getMarkAttributes(state, typeOrName) {
     return { ...mark.attrs };
 }
 
+/**
+ * Gets the default block type at a given match
+ * @param match The content match to get the default block type from
+ * @returns The default block type or null
+ */
+function defaultBlockAt(match) {
+    for (let i = 0; i < match.edgeCount; i += 1) {
+        const { type } = match.edge(i);
+        if (type.isTextblock && !type.hasRequiredAttrs()) {
+            return type;
+        }
+    }
+    return null;
+}
+
+/**
+ * Finds the closest parent node to a resolved position that matches a predicate.
+ * @param $pos The resolved position to search from
+ * @param predicate The predicate to match
+ * @returns The closest parent node to the resolved position that matches the predicate
+ * @example ```js
+ * findParentNodeClosestToPos($from, node => node.type.name === 'paragraph')
+ * ```
+ */
+function findParentNodeClosestToPos($pos, predicate) {
+    for (let i = $pos.depth; i > 0; i -= 1) {
+        const node = $pos.node(i);
+        if (predicate(node)) {
+            return {
+                pos: i > 0 ? $pos.before(i) : 0,
+                start: $pos.start(i),
+                depth: i,
+                node,
+            };
+        }
+    }
+}
+
+/**
+ * Finds the closest parent node to the current selection that matches a predicate.
+ * @param predicate The predicate to match
+ * @returns A command that finds the closest parent node to the current selection that matches the predicate
+ * @example ```js
+ * findParentNode(node => node.type.name === 'paragraph')
+ * ```
+ */
+function findParentNode(predicate) {
+    return (selection) => findParentNodeClosestToPos(selection.$from, predicate);
+}
+
+function getHTMLFromFragment(fragment, schema) {
+    const documentFragment = DOMSerializer.fromSchema(schema).serializeFragment(fragment);
+    const temporaryDocument = document.implementation.createHTMLDocument();
+    const container = temporaryDocument.createElement('div');
+    container.appendChild(documentFragment);
+    return container.innerHTML;
+}
+
+/**
+ * Gets the text of a Prosemirror node
+ * @param node The Prosemirror node
+ * @param options Options for the text serializer & block separator
+ * @returns The text of the node
+ * @example ```js
+ * const text = getText(node, { blockSeparator: '\n' })
+ * ```
+ */
+function getText(node, options) {
+    const range = {
+        from: 0,
+        to: node.content.size,
+    };
+    return getTextBetween(node, range, options);
+}
+
 function getNodeAttributes(state, typeOrName) {
     const type = getNodeType(typeOrName, state.schema);
     const { from, to } = state.selection;
@@ -14925,6 +15687,12 @@ function getNodeAttributes(state, typeOrName) {
     return { ...node.attrs };
 }
 
+/**
+ * Get node or mark attributes by type or name on the current editor state
+ * @param state The current editor state
+ * @param typeOrName The node or mark type or name
+ * @returns The attributes of the node or mark or an empty object
+ */
 function getAttributes(state, typeOrName) {
     const schemaType = getSchemaTypeNameByName(typeof typeOrName === 'string' ? typeOrName : typeOrName.name, state.schema);
     if (schemaType === 'node') {
@@ -14957,6 +15725,9 @@ function getMarksBetween(from, to, doc) {
     }
     else {
         doc.nodesBetween(from, to, (node, pos) => {
+            if (!node || (node === null || node === void 0 ? void 0 : node.nodeSize) === undefined) {
+                return;
+            }
             marks.push(...node.marks.map(mark => ({
                 from: pos,
                 to: pos + node.nodeSize,
@@ -14965,6 +15736,27 @@ function getMarksBetween(from, to, doc) {
         });
     }
     return marks;
+}
+
+/**
+ * Return attributes of an extension that should be splitted by keepOnSplit flag
+ * @param extensionAttributes Array of extension attributes
+ * @param typeName The type of the extension
+ * @param attributes The attributes of the extension
+ * @returns The splitted attributes
+ */
+function getSplittedAttributes(extensionAttributes, typeName, attributes) {
+    return Object.fromEntries(Object
+        .entries(attributes)
+        .filter(([name]) => {
+        const extensionAttribute = extensionAttributes.find(item => {
+            return item.type === typeName && item.name === name;
+        });
+        if (!extensionAttribute) {
+            return false;
+        }
+        return extensionAttribute.attribute.keepOnSplit;
+    }));
 }
 
 function isMarkActive(state, typeOrName, attributes = {}) {
@@ -15201,20 +15993,6 @@ const sinkListItem = typeOrName => ({ state, dispatch }) => {
     return sinkListItem$1(type)(state, dispatch);
 };
 
-function getSplittedAttributes(extensionAttributes, typeName, attributes) {
-    return Object.fromEntries(Object
-        .entries(attributes)
-        .filter(([name]) => {
-        const extensionAttribute = extensionAttributes.find(item => {
-            return item.type === typeName && item.name === name;
-        });
-        if (!extensionAttribute) {
-            return false;
-        }
-        return extensionAttribute.attribute.keepOnSplit;
-    }));
-}
-
 function ensureMarks(state, splittableMarks) {
     const marks = state.storedMarks || (state.selection.$to.parentOffset && state.selection.$from.marks());
     if (marks) {
@@ -15361,7 +16139,15 @@ const splitListItem = typeOrName => ({ tr, state, dispatch, editor, }) => {
         return false;
     }
     if (dispatch) {
+        const { selection, storedMarks } = state;
+        const { splittableMarks } = editor.extensionManager;
+        const marks = storedMarks || (selection.$to.parentOffset && selection.$from.marks());
         tr.split($from.pos, 2, types).scrollIntoView();
+        if (!marks || !dispatch) {
+            return true;
+        }
+        const filteredMarks = marks.filter(mark => splittableMarks.includes(mark.type.name));
+        tr.ensureMarks(filteredMarks);
     }
     return true;
 };
@@ -15400,13 +16186,14 @@ const joinListForwards = (tr, listType) => {
     tr.join(after);
     return true;
 };
-const toggleList = (listTypeOrName, itemTypeOrName) => ({ editor, tr, state, dispatch, chain, commands, can, }) => {
-    const { extensions } = editor.extensionManager;
+const toggleList = (listTypeOrName, itemTypeOrName, keepMarks, attributes = {}) => ({ editor, tr, state, dispatch, chain, commands, can, }) => {
+    const { extensions, splittableMarks } = editor.extensionManager;
     const listType = getNodeType(listTypeOrName, state.schema);
     const itemType = getNodeType(itemTypeOrName, state.schema);
-    const { selection } = state;
+    const { selection, storedMarks } = state;
     const { $from, $to } = selection;
     const range = $from.blockRange($to);
+    const marks = storedMarks || (selection.$to.parentOffset && selection.$from.marks());
     if (!range) {
         return false;
     }
@@ -15430,16 +16217,33 @@ const toggleList = (listTypeOrName, itemTypeOrName) => ({ editor, tr, state, dis
                 .run();
         }
     }
+    if (!keepMarks || !marks || !dispatch) {
+        return chain()
+            // try to convert node to default node if needed
+            .command(() => {
+            const canWrapInList = can().wrapInList(listType, attributes);
+            if (canWrapInList) {
+                return true;
+            }
+            return commands.clearNodes();
+        })
+            .wrapInList(listType, attributes)
+            .command(() => joinListBackwards(tr, listType))
+            .command(() => joinListForwards(tr, listType))
+            .run();
+    }
     return (chain()
         // try to convert node to default node if needed
         .command(() => {
-        const canWrapInList = can().wrapInList(listType);
+        const canWrapInList = can().wrapInList(listType, attributes);
+        const filteredMarks = marks.filter(mark => splittableMarks.includes(mark.type.name));
+        tr.ensureMarks(filteredMarks);
         if (canWrapInList) {
             return true;
         }
         return commands.clearNodes();
     })
-        .wrapInList(listType)
+        .wrapInList(listType, attributes)
         .command(() => joinListBackwards(tr, listType))
         .command(() => joinListForwards(tr, listType))
         .run());
@@ -15603,6 +16407,7 @@ var commands = /*#__PURE__*/Object.freeze({
   clearNodes: clearNodes,
   command: command,
   createParagraphNear: createParagraphNear,
+  cut: cut,
   deleteCurrentNode: deleteCurrentNode,
   deleteNode: deleteNode,
   deleteRange: deleteRange,
@@ -15619,6 +16424,10 @@ var commands = /*#__PURE__*/Object.freeze({
   joinDown: joinDown,
   joinBackward: joinBackward,
   joinForward: joinForward,
+  joinItemBackward: joinItemBackward,
+  joinItemForward: joinItemForward,
+  joinTextblockBackward: joinTextblockBackward,
+  joinTextblockForward: joinTextblockForward,
   keyboardShortcut: keyboardShortcut,
   lift: lift,
   liftEmptyBlock: liftEmptyBlock,
@@ -15718,8 +16527,18 @@ const Keymap = Extension.create({
                 const { selection, doc } = tr;
                 const { empty, $anchor } = selection;
                 const { pos, parent } = $anchor;
-                const isAtStart = Selection.atStart(doc).from === pos;
-                if (!empty || !isAtStart || !parent.type.isTextblock || parent.textContent.length) {
+                const $parentPos = $anchor.parent.isTextblock && pos > 0 ? tr.doc.resolve(pos - 1) : $anchor;
+                const parentIsIsolating = $parentPos.parent.type.spec.isolating;
+                const parentPos = $anchor.pos - $anchor.parentOffset;
+                const isAtStart = (parentIsIsolating && $parentPos.parent.childCount === 1)
+                    ? parentPos === $anchor.pos
+                    : Selection.atStart(doc).from === pos;
+                if (!empty
+                    || !parent.type.isTextblock
+                    || parent.textContent.length
+                    || !isAtStart
+                    || (isAtStart && $anchor.parent.type.name === 'paragraph') // prevent clearNodes when no nodes to clear, otherwise history stack is appended
+                ) {
                     return false;
                 }
                 return commands.clearNodes();
@@ -15788,8 +16607,11 @@ const Keymap = Extension.create({
                     const allFrom = Selection.atStart(oldState.doc).from;
                     const allEnd = Selection.atEnd(oldState.doc).to;
                     const allWasSelected = from === allFrom && to === allEnd;
+                    if (empty || !allWasSelected) {
+                        return;
+                    }
                     const isEmpty = newState.doc.textBetween(0, newState.doc.content.size, ' ', ' ').length === 0;
-                    if (empty || !allWasSelected || !isEmpty) {
+                    if (!isEmpty) {
                         return;
                     }
                     const tr = newState.tr;
@@ -15826,15 +16648,172 @@ const Tabindex = Extension.create({
     },
 });
 
-var extensions = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  ClipboardTextSerializer: ClipboardTextSerializer,
-  Commands: Commands,
-  Editable: Editable,
-  FocusEvents: FocusEvents,
-  Keymap: Keymap,
-  Tabindex: Tabindex
-});
+class NodePos {
+    constructor(pos, editor, isBlock = false, node = null) {
+        this.currentNode = null;
+        this.actualDepth = null;
+        this.isBlock = isBlock;
+        this.resolvedPos = pos;
+        this.editor = editor;
+        this.currentNode = node;
+    }
+    get name() {
+        return this.node.type.name;
+    }
+    get node() {
+        return this.currentNode || this.resolvedPos.node();
+    }
+    get element() {
+        return this.editor.view.domAtPos(this.pos).node;
+    }
+    get depth() {
+        var _a;
+        return (_a = this.actualDepth) !== null && _a !== void 0 ? _a : this.resolvedPos.depth;
+    }
+    get pos() {
+        return this.resolvedPos.pos;
+    }
+    get content() {
+        return this.node.content;
+    }
+    set content(content) {
+        let from = this.from;
+        let to = this.to;
+        if (this.isBlock) {
+            if (this.content.size === 0) {
+                console.error(`You can’t set content on a block node. Tried to set content on ${this.name} at ${this.pos}`);
+                return;
+            }
+            from = this.from + 1;
+            to = this.to - 1;
+        }
+        this.editor.commands.insertContentAt({ from, to }, content);
+    }
+    get attributes() {
+        return this.node.attrs;
+    }
+    get textContent() {
+        return this.node.textContent;
+    }
+    get size() {
+        return this.node.nodeSize;
+    }
+    get from() {
+        if (this.isBlock) {
+            return this.pos;
+        }
+        return this.resolvedPos.start(this.resolvedPos.depth);
+    }
+    get range() {
+        return {
+            from: this.from,
+            to: this.to,
+        };
+    }
+    get to() {
+        if (this.isBlock) {
+            return this.pos + this.size;
+        }
+        return this.resolvedPos.end(this.resolvedPos.depth) + (this.node.isText ? 0 : 1);
+    }
+    get parent() {
+        if (this.depth === 0) {
+            return null;
+        }
+        const parentPos = this.resolvedPos.start(this.resolvedPos.depth - 1);
+        const $pos = this.resolvedPos.doc.resolve(parentPos);
+        return new NodePos($pos, this.editor);
+    }
+    get before() {
+        let $pos = this.resolvedPos.doc.resolve(this.from - (this.isBlock ? 1 : 2));
+        if ($pos.depth !== this.depth) {
+            $pos = this.resolvedPos.doc.resolve(this.from - 3);
+        }
+        return new NodePos($pos, this.editor);
+    }
+    get after() {
+        let $pos = this.resolvedPos.doc.resolve(this.to + (this.isBlock ? 2 : 1));
+        if ($pos.depth !== this.depth) {
+            $pos = this.resolvedPos.doc.resolve(this.to + 3);
+        }
+        return new NodePos($pos, this.editor);
+    }
+    get children() {
+        const children = [];
+        this.node.content.forEach((node, offset) => {
+            const isBlock = node.isBlock && !node.isTextblock;
+            const targetPos = this.pos + offset + 1;
+            const $pos = this.resolvedPos.doc.resolve(targetPos);
+            if (!isBlock && $pos.depth <= this.depth) {
+                return;
+            }
+            const childNodePos = new NodePos($pos, this.editor, isBlock, isBlock ? node : null);
+            if (isBlock) {
+                childNodePos.actualDepth = this.depth + 1;
+            }
+            children.push(new NodePos($pos, this.editor, isBlock, isBlock ? node : null));
+        });
+        return children;
+    }
+    get firstChild() {
+        return this.children[0] || null;
+    }
+    get lastChild() {
+        const children = this.children;
+        return children[children.length - 1] || null;
+    }
+    closest(selector, attributes = {}) {
+        let node = null;
+        let currentNode = this.parent;
+        while (currentNode && !node) {
+            if (currentNode.node.type.name === selector) {
+                if (Object.keys(attributes).length > 0) ;
+                else {
+                    node = currentNode;
+                }
+            }
+            currentNode = currentNode.parent;
+        }
+        return node;
+    }
+    querySelector(selector, attributes = {}) {
+        return this.querySelectorAll(selector, attributes, true)[0] || null;
+    }
+    querySelectorAll(selector, attributes = {}, firstItemOnly = false) {
+        let nodes = [];
+        if (!this.children || this.children.length === 0) {
+            return nodes;
+        }
+        const attrKeys = Object.keys(attributes);
+        /**
+         * Finds all children recursively that match the selector and attributes
+         * If firstItemOnly is true, it will return the first item found
+         */
+        this.children.forEach(childPos => {
+            // If we already found a node and we only want the first item, we dont need to keep going
+            if (firstItemOnly && nodes.length > 0) {
+                return;
+            }
+            if (childPos.node.type.name === selector) {
+                const doesAllAttributesMatch = attrKeys.every(key => attributes[key] === childPos.node.attrs[key]);
+                if (doesAllAttributesMatch) {
+                    nodes.push(childPos);
+                }
+            }
+            // If we already found a node and we only want the first item, we can stop here and skip the recursion
+            if (firstItemOnly && nodes.length > 0) {
+                return;
+            }
+            nodes = nodes.concat(childPos.querySelectorAll(selector, attributes, firstItemOnly));
+        });
+        return nodes;
+    }
+    setAttribute(attributes) {
+        const oldSelection = this.editor.state.selection;
+        this.editor.chain().setTextSelection(this.from).updateAttributes(this.node.type.name, attributes).setTextSelection(oldSelection.from)
+            .run();
+    }
+}
 
 const style = `.ProseMirror {
   position: relative;
@@ -15912,16 +16891,16 @@ img.ProseMirror-separator {
   opacity: 0
 }`;
 
-function createStyleTag(style, nonce) {
-    const tipTapStyleTag = document.querySelector('style[data-tiptap-style]');
-    if (tipTapStyleTag !== null) {
-        return tipTapStyleTag;
+function createStyleTag(style, nonce, suffix) {
+    const tiptapStyleTag = document.querySelector(`style[data-tiptap-style${suffix ? `-${suffix}` : ''}]`);
+    if (tiptapStyleTag !== null) {
+        return tiptapStyleTag;
     }
     const styleNode = document.createElement('style');
     if (nonce) {
         styleNode.setAttribute('nonce', nonce);
     }
-    styleNode.setAttribute('data-tiptap-style', '');
+    styleNode.setAttribute(`data-tiptap-style${suffix ? `-${suffix}` : ''}`, '');
     styleNode.innerHTML = style;
     document.getElementsByTagName('head')[0].appendChild(styleNode);
     return styleNode;
@@ -15942,6 +16921,7 @@ class Editor extends EventEmitter {
             editable: true,
             editorProps: {},
             parseOptions: {},
+            coreExtensionOptions: {},
             enableInputRules: true,
             enablePasteRules: true,
             enableCoreExtensions: true,
@@ -16087,7 +17067,17 @@ class Editor extends EventEmitter {
      * Creates an extension manager.
      */
     createExtensionManager() {
-        const coreExtensions = this.options.enableCoreExtensions ? Object.values(extensions) : [];
+        var _a, _b;
+        const coreExtensions = this.options.enableCoreExtensions ? [
+            Editable,
+            ClipboardTextSerializer.configure({
+                blockSeparator: (_b = (_a = this.options.coreExtensionOptions) === null || _a === void 0 ? void 0 : _a.clipboardTextSerializer) === null || _b === void 0 ? void 0 : _b.blockSeparator,
+            }),
+            Commands,
+            FocusEvents,
+            Keymap,
+            Tabindex,
+        ] : [];
         const allExtensions = [...coreExtensions, ...this.options.extensions].filter(extension => {
             return ['extension', 'node', 'mark'].includes(extension === null || extension === void 0 ? void 0 : extension.type);
         });
@@ -16128,6 +17118,7 @@ class Editor extends EventEmitter {
         });
         this.view.updateState(newState);
         this.createNodeViews();
+        this.prependClass();
         // Let’s store the editor instance in the DOM element.
         // So we’ll have access to it for tests.
         const dom = this.view.dom;
@@ -16140,6 +17131,12 @@ class Editor extends EventEmitter {
         this.view.setProps({
             nodeViews: this.extensionManager.nodeViews,
         });
+    }
+    /**
+     * Prepend class name to element.
+     */
+    prependClass() {
+        this.view.dom.className = `tiptap ${this.view.dom.className}`;
     }
     captureTransaction(fn) {
         this.isCapturingTransaction = true;
@@ -16155,6 +17152,11 @@ class Editor extends EventEmitter {
      * @param transaction An editor state transaction
      */
     dispatchTransaction(transaction) {
+        // if the editor / the view of the editor was destroyed
+        // the transaction should not be dispatched as there is no view anymore.
+        if (this.view.isDestroyed) {
+            return;
+        }
         if (this.isCapturingTransaction) {
             if (!this.capturedTransaction) {
                 this.capturedTransaction = transaction;
@@ -16231,8 +17233,8 @@ class Editor extends EventEmitter {
         return getText(this.state.doc, {
             blockSeparator,
             textSerializers: {
-                ...textSerializers,
                 ...getTextSerializersFromSchema(this.schema),
+                ...textSerializers,
             },
         });
     }
@@ -16269,11 +17271,27 @@ class Editor extends EventEmitter {
         // @ts-ignore
         return !((_a = this.view) === null || _a === void 0 ? void 0 : _a.docView);
     }
+    $node(selector, attributes) {
+        var _a;
+        return ((_a = this.$doc) === null || _a === void 0 ? void 0 : _a.querySelector(selector, attributes)) || null;
+    }
+    $nodes(selector, attributes) {
+        var _a;
+        return ((_a = this.$doc) === null || _a === void 0 ? void 0 : _a.querySelectorAll(selector, attributes)) || null;
+    }
+    $pos(pos) {
+        const $pos = this.state.doc.resolve(pos);
+        return new NodePos($pos, this);
+    }
+    get $doc() {
+        return this.$pos(0);
+    }
 }
 
 /**
  * Build an input rule that adds a mark when the
  * matched text is typed into it.
+ * @see https://tiptap.dev/guide/custom-extensions/#input-rules
  */
 function markInputRule(config) {
     return new InputRule({
@@ -16286,7 +17304,6 @@ function markInputRule(config) {
             const { tr } = state;
             const captureGroup = match[match.length - 1];
             const fullMatch = match[0];
-            let markEnd = range.to;
             if (captureGroup) {
                 const startSpaces = fullMatch.search(/\S/);
                 const textStart = range.from + fullMatch.indexOf(captureGroup);
@@ -16307,7 +17324,7 @@ function markInputRule(config) {
                 if (textStart > range.from) {
                     tr.delete(range.from + startSpaces, textStart);
                 }
-                markEnd = range.from + startSpaces + captureGroup.length;
+                const markEnd = range.from + startSpaces + captureGroup.length;
                 tr.addMark(range.from + startSpaces, markEnd, config.type.create(attributes || {}));
                 tr.removeStoredMark(config.type);
             }
@@ -16318,6 +17335,7 @@ function markInputRule(config) {
 /**
  * Build an input rule that adds a node when the
  * matched text is typed into it.
+ * @see https://tiptap.dev/guide/custom-extensions/#input-rules
  */
 function nodeInputRule(config) {
     return new InputRule({
@@ -16327,6 +17345,7 @@ function nodeInputRule(config) {
             const { tr } = state;
             const start = range.from;
             let end = range.to;
+            const newNode = config.type.create(attributes);
             if (match[1]) {
                 const offset = match[0].lastIndexOf(match[1]);
                 let matchStart = start + offset;
@@ -16340,11 +17359,12 @@ function nodeInputRule(config) {
                 const lastChar = match[0][match[0].length - 1];
                 tr.insertText(lastChar, start + match[0].length - 1);
                 // insert node from input rule
-                tr.replaceWith(matchStart, end, config.type.create(attributes));
+                tr.replaceWith(matchStart, end, newNode);
             }
             else if (match[0]) {
-                tr.replaceWith(start, end, config.type.create(attributes));
+                tr.insert(start - 1, config.type.create(attributes)).delete(tr.mapping.map(start), tr.mapping.map(end));
             }
+            tr.scrollIntoView();
         },
     });
 }
@@ -16354,6 +17374,7 @@ function nodeInputRule(config) {
  * matched text is typed into it. When using a regular expresion you’ll
  * probably want the regexp to start with `^`, so that the pattern can
  * only occur at the start of a textblock.
+ * @see https://tiptap.dev/guide/custom-extensions/#input-rules
  */
 function textblockTypeInputRule(config) {
     return new InputRule({
@@ -16384,11 +17405,12 @@ function textblockTypeInputRule(config) {
  * two nodes. You can pass a join predicate, which takes a regular
  * expression match and the node before the wrapped node, and can
  * return a boolean to indicate whether a join should happen.
+ * @see https://tiptap.dev/guide/custom-extensions/#input-rules
  */
 function wrappingInputRule(config) {
     return new InputRule({
         find: config.find,
-        handler: ({ state, range, match }) => {
+        handler: ({ state, range, match, chain, }) => {
             const attributes = callOrReturn(config.getAttributes, undefined, match) || {};
             const tr = state.tr.delete(range.from, range.to);
             const $start = tr.doc.resolve(range.from);
@@ -16398,6 +17420,20 @@ function wrappingInputRule(config) {
                 return null;
             }
             tr.wrap(blockRange, wrapping);
+            if (config.keepMarks && config.editor) {
+                const { selection, storedMarks } = state;
+                const { splittableMarks } = config.editor.extensionManager;
+                const marks = storedMarks || (selection.$to.parentOffset && selection.$from.marks());
+                if (marks) {
+                    const filteredMarks = marks.filter(mark => splittableMarks.includes(mark.type.name));
+                    tr.ensureMarks(filteredMarks);
+                }
+            }
+            if (config.keepAttributes) {
+                /** If the nodeType is `bulletList` or `orderedList` set the `nodeType` as `listItem` */
+                const nodeType = config.type.name === 'bulletList' || config.type.name === 'orderedList' ? 'listItem' : 'taskList';
+                chain().updateAttributes(nodeType, attributes).run();
+            }
             const before = tr.doc.resolve(range.from - 1).nodeBefore;
             if (before
                 && before.type === config.type
@@ -16409,6 +17445,10 @@ function wrappingInputRule(config) {
     });
 }
 
+/**
+ * The Mark class is used to create custom mark extensions.
+ * @see https://tiptap.dev/api/extensions#create-a-new-extension
+ */
 class Mark {
     constructor(config = {}) {
         this.type = 'mark';
@@ -16424,7 +17464,7 @@ class Mark {
             ...config,
         };
         this.name = this.config.name;
-        if (config.defaultOptions) {
+        if (config.defaultOptions && Object.keys(config.defaultOptions).length > 0) {
             console.warn(`[tiptap warn]: BREAKING CHANGE: "defaultOptions" is deprecated. Please use "addOptions" instead. Found in extension: "${this.name}".`);
         }
         // TODO: remove `addOptions` fallback
@@ -16454,7 +17494,7 @@ class Mark {
         return extension;
     }
     extend(extendedConfig = {}) {
-        const extension = new Mark(extendedConfig);
+        const extension = new Mark({ ...this.config, ...extendedConfig });
         extension.parent = this;
         this.child = extension;
         extension.name = extendedConfig.name ? extendedConfig.name : extension.parent.name;
@@ -16492,6 +17532,10 @@ class Mark {
     }
 }
 
+/**
+ * The Node class is used to create custom node extensions.
+ * @see https://tiptap.dev/api/extensions#create-a-new-extension
+ */
 class Node {
     constructor(config = {}) {
         this.type = 'node';
@@ -16507,7 +17551,7 @@ class Node {
             ...config,
         };
         this.name = this.config.name;
-        if (config.defaultOptions) {
+        if (config.defaultOptions && Object.keys(config.defaultOptions).length > 0) {
             console.warn(`[tiptap warn]: BREAKING CHANGE: "defaultOptions" is deprecated. Please use "addOptions" instead. Found in extension: "${this.name}".`);
         }
         // TODO: remove `addOptions` fallback
@@ -16537,7 +17581,7 @@ class Node {
         return extension;
     }
     extend(extendedConfig = {}) {
-        const extension = new Node(extendedConfig);
+        const extension = new Node({ ...this.config, ...extendedConfig });
         extension.parent = this;
         this.child = extension;
         extension.name = extendedConfig.name ? extendedConfig.name : extension.parent.name;
@@ -16558,12 +17602,13 @@ class Node {
 /**
  * Build an paste rule that adds a mark when the
  * matched text is pasted into it.
+ * @see https://tiptap.dev/guide/custom-extensions/#paste-rules
  */
 function markPasteRule(config) {
     return new PasteRule({
         find: config.find,
-        handler: ({ state, range, match }) => {
-            const attributes = callOrReturn(config.getAttributes, undefined, match);
+        handler: ({ state, range, match, pasteEvent, }) => {
+            const attributes = callOrReturn(config.getAttributes, undefined, match, pasteEvent);
             if (attributes === false || attributes === null) {
                 return null;
             }
@@ -16599,6 +17644,10 @@ function markPasteRule(config) {
     });
 }
 
+/**
+ * This extension allows you to count the characters and words of your document.
+ * @see https://tiptap.dev/api/extensions/character-count
+ */
 const CharacterCount = Extension.create({
     name: 'characterCount',
     addOptions() {
@@ -16682,6 +17731,11 @@ const CharacterCount = Extension.create({
     },
 });
 
+/**
+ * This extension allows you to add a placeholder to your editor.
+ * A placeholder is a text that appears when the editor or a node is empty.
+ * @see https://www.tiptap.dev/api/extensions/placeholder
+ */
 const Placeholder = Extension.create({
     name: 'placeholder',
     addOptions() {
@@ -16690,6 +17744,7 @@ const Placeholder = Extension.create({
             emptyNodeClass: 'is-empty',
             placeholder: 'Write something …',
             showOnlyWhenEditable: true,
+            considerAnyAsEmpty: false,
             showOnlyCurrent: true,
             includeChildren: false,
         };
@@ -16700,6 +17755,7 @@ const Placeholder = Extension.create({
                 key: new PluginKey('placeholder'),
                 props: {
                     decorations: ({ doc, selection }) => {
+                        var _a;
                         const active = this.editor.isEditable || !this.options.showOnlyWhenEditable;
                         const { anchor } = selection;
                         const decorations = [];
@@ -16707,15 +17763,22 @@ const Placeholder = Extension.create({
                             return null;
                         }
                         // only calculate isEmpty once due to its performance impacts (see issue #3360)
-                        const emptyDocInstance = doc.type.createAndFill();
-                        const isEditorEmpty = (emptyDocInstance === null || emptyDocInstance === void 0 ? void 0 : emptyDocInstance.sameMarkup(doc))
-                            && emptyDocInstance.content.findDiffStart(doc.content) === null;
+                        const { firstChild } = doc.content;
+                        const isLeaf = firstChild && firstChild.type.isLeaf;
+                        const isAtom = firstChild && firstChild.isAtom;
+                        const isValidNode = this.options.considerAnyAsEmpty
+                            ? true
+                            : firstChild && firstChild.type.name === ((_a = doc.type.contentMatch.defaultType) === null || _a === void 0 ? void 0 : _a.name);
+                        const isEmptyDoc = doc.content.childCount <= 1
+                            && firstChild
+                            && isValidNode
+                            && (firstChild.nodeSize <= 2 && (!isLeaf || !isAtom));
                         doc.descendants((node, pos) => {
                             const hasAnchor = anchor >= pos && anchor <= pos + node.nodeSize;
                             const isEmpty = !node.isLeaf && !node.childCount;
                             if ((hasAnchor || !this.options.showOnlyCurrent) && isEmpty) {
                                 const classes = [this.options.emptyNodeClass];
-                                if (isEditorEmpty) {
+                                if (isEmptyDoc) {
                                     classes.push(this.options.emptyEditorClass);
                                 }
                                 const decoration = Decoration.node(pos, pos + node.nodeSize, {
@@ -16741,7 +17804,14 @@ const Placeholder = Extension.create({
     },
 });
 
+/**
+ * Matches a blockquote to a `>` as input.
+ */
 const inputRegex$4 = /^\s*>\s$/;
+/**
+ * This extension allows you to create blockquotes.
+ * @see https://tiptap.dev/api/nodes/blockquote
+ */
 const Blockquote = Node.create({
     name: 'blockquote',
     addOptions() {
@@ -16788,10 +17858,26 @@ const Blockquote = Node.create({
     },
 });
 
-const starInputRegex$1 = /(?:^|\s)((?:\*\*)((?:[^*]+))(?:\*\*))$/;
-const starPasteRegex$1 = /(?:^|\s)((?:\*\*)((?:[^*]+))(?:\*\*))/g;
-const underscoreInputRegex$1 = /(?:^|\s)((?:__)((?:[^__]+))(?:__))$/;
-const underscorePasteRegex$1 = /(?:^|\s)((?:__)((?:[^__]+))(?:__))/g;
+/**
+ * Matches bold text via `**` as input.
+ */
+const starInputRegex$1 = /(?:^|\s)(\*\*(?!\s+\*\*)((?:[^*]+))\*\*(?!\s+\*\*))$/;
+/**
+ * Matches bold text via `**` while pasting.
+ */
+const starPasteRegex$1 = /(?:^|\s)(\*\*(?!\s+\*\*)((?:[^*]+))\*\*(?!\s+\*\*))/g;
+/**
+ * Matches bold text via `__` as input.
+ */
+const underscoreInputRegex$1 = /(?:^|\s)(__(?!\s+__)((?:[^_]+))__(?!\s+__))$/;
+/**
+ * Matches bold text via `__` while pasting.
+ */
+const underscorePasteRegex$1 = /(?:^|\s)(__(?!\s+__)((?:[^_]+))__(?!\s+__))/g;
+/**
+ * This extension allows you to mark text as bold.
+ * @see https://tiptap.dev/api/marks/bold
+ */
 const Bold = Mark.create({
     name: 'bold',
     addOptions() {
@@ -16862,13 +17948,101 @@ const Bold = Mark.create({
     },
 });
 
+/**
+ * This extension allows you to create list items.
+ * @see https://www.tiptap.dev/api/nodes/list-item
+ */
+const ListItem$2 = Node.create({
+    name: 'listItem',
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+            bulletListTypeName: 'bulletList',
+            orderedListTypeName: 'orderedList',
+        };
+    },
+    content: 'paragraph block*',
+    defining: true,
+    parseHTML() {
+        return [
+            {
+                tag: 'li',
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['li', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addKeyboardShortcuts() {
+        return {
+            Enter: () => this.editor.commands.splitListItem(this.name),
+            Tab: () => this.editor.commands.sinkListItem(this.name),
+            'Shift-Tab': () => this.editor.commands.liftListItem(this.name),
+        };
+    },
+});
+
+/**
+ * This extension allows you to create text styles. It is required by default
+ * for the `textColor` and `backgroundColor` extensions.
+ * @see https://www.tiptap.dev/api/marks/text-style
+ */
+const TextStyle$1 = Mark.create({
+    name: 'textStyle',
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+        };
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 'span',
+                getAttrs: element => {
+                    const hasStyles = element.hasAttribute('style');
+                    if (!hasStyles) {
+                        return false;
+                    }
+                    return {};
+                },
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            removeEmptyTextStyle: () => ({ state, commands }) => {
+                const attributes = getMarkAttributes(state, this.type);
+                const hasStyles = Object.entries(attributes).some(([, value]) => !!value);
+                if (hasStyles) {
+                    return true;
+                }
+                return commands.unsetMark(this.name);
+            },
+        };
+    },
+});
+
+/**
+ * Matches a bullet list to a dash or asterisk.
+ */
 const inputRegex$3 = /^\s*([-+*])\s$/;
+/**
+ * This extension allows you to create bullet lists.
+ * This requires the ListItem extension
+ * @see https://tiptap.dev/api/nodes/bullet-list
+ * @see https://tiptap.dev/api/nodes/list-item.
+ */
 const BulletList = Node.create({
     name: 'bulletList',
     addOptions() {
         return {
             itemTypeName: 'listItem',
             HTMLAttributes: {},
+            keepMarks: false,
+            keepAttributes: false,
         };
     },
     group: 'block list',
@@ -16885,8 +18059,11 @@ const BulletList = Node.create({
     },
     addCommands() {
         return {
-            toggleBulletList: () => ({ commands }) => {
-                return commands.toggleList(this.name, this.options.itemTypeName);
+            toggleBulletList: () => ({ commands, chain }) => {
+                if (this.options.keepAttributes) {
+                    return chain().toggleList(this.name, this.options.itemTypeName, this.options.keepMarks).updateAttributes(ListItem$2.name, this.editor.getAttributes(TextStyle$1.name)).run();
+                }
+                return commands.toggleList(this.name, this.options.itemTypeName, this.options.keepMarks);
             },
         };
     },
@@ -16896,17 +18073,38 @@ const BulletList = Node.create({
         };
     },
     addInputRules() {
-        return [
-            wrappingInputRule({
+        let inputRule = wrappingInputRule({
+            find: inputRegex$3,
+            type: this.type,
+        });
+        if (this.options.keepMarks || this.options.keepAttributes) {
+            inputRule = wrappingInputRule({
                 find: inputRegex$3,
                 type: this.type,
-            }),
+                keepMarks: this.options.keepMarks,
+                keepAttributes: this.options.keepAttributes,
+                getAttributes: () => { return this.editor.getAttributes(TextStyle$1.name); },
+                editor: this.editor,
+            });
+        }
+        return [
+            inputRule,
         ];
     },
 });
 
-const inputRegex$2 = /(?:^|\s)((?:`)((?:[^`]+))(?:`))$/;
-const pasteRegex$1 = /(?:^|\s)((?:`)((?:[^`]+))(?:`))/g;
+/**
+ * Matches inline code.
+ */
+const inputRegex$2 = /(?:^|\s)(`(?!\s+`)((?:[^`]+))`(?!\s+`))$/;
+/**
+ * Matches inline code while pasting.
+ */
+const pasteRegex$1 = /(?:^|\s)(`(?!\s+`)((?:[^`]+))`(?!\s+`))/g;
+/**
+ * This extension allows you to mark text as inline code.
+ * @see https://tiptap.dev/api/marks/code
+ */
 const Code = Mark.create({
     name: 'code',
     addOptions() {
@@ -16961,8 +18159,18 @@ const Code = Mark.create({
     },
 });
 
+/**
+ * Matches a code block with backticks.
+ */
 const backtickInputRegex = /^```([a-z]+)?[\s\n]$/;
+/**
+ * Matches a code block with tildes.
+ */
 const tildeInputRegex = /^~~~([a-z]+)?[\s\n]$/;
+/**
+ * This extension allows you to create code blocks.
+ * @see https://tiptap.dev/api/nodes/code-block
+ */
 const CodeBlock = Node.create({
     name: 'codeBlock',
     addOptions() {
@@ -17140,8 +18348,16 @@ const CodeBlock = Node.create({
                             return false;
                         }
                         const { tr } = view.state;
-                        // create an empty code block
-                        tr.replaceSelectionWith(this.type.create({ language }));
+                        // create an empty code block´
+                        // if the cursor is at the absolute end of the document, insert the code block before the cursor instead
+                        // of replacing the selection as the replaceSelectionWith function will cause the insertion to
+                        // happen at the previous node
+                        if (view.state.selection.from === view.state.doc.nodeSize - (1 + (view.state.selection.$to.depth * 2))) {
+                            tr.insert(view.state.selection.from - 1, this.type.create({ language }));
+                        }
+                        else {
+                            tr.replaceSelectionWith(this.type.create({ language }));
+                        }
                         // put cursor inside the newly created code block
                         tr.setSelection(TextSelection.near(tr.doc.resolve(Math.max(0, tr.selection.from - 2))));
                         // add text to code block
@@ -17161,6 +18377,10 @@ const CodeBlock = Node.create({
     },
 });
 
+/**
+ * The default document node which represents the top level node of the editor.
+ * @see https://tiptap.dev/api/nodes/document
+ */
 const Document = Node.create({
     name: 'doc',
     topNode: true,
@@ -17184,12 +18404,13 @@ function dropCursor(options = {}) {
 }
 class DropCursorView {
     constructor(editorView, options) {
+        var _a;
         this.editorView = editorView;
         this.cursorPos = null;
         this.element = null;
         this.timeout = -1;
-        this.width = options.width || 1;
-        this.color = options.color || "black";
+        this.width = (_a = options.width) !== null && _a !== void 0 ? _a : 1;
+        this.color = options.color === false ? undefined : (options.color || "black");
         this.class = options.class;
         this.handlers = ["dragover", "dragend", "drop", "dragleave"].map(name => {
             let handler = (e) => { this[name](e); };
@@ -17245,7 +18466,10 @@ class DropCursorView {
             this.element = parent.appendChild(document.createElement("div"));
             if (this.class)
                 this.element.className = this.class;
-            this.element.style.cssText = "position: absolute; z-index: 50; pointer-events: none; background-color: " + this.color;
+            this.element.style.cssText = "position: absolute; z-index: 50; pointer-events: none;";
+            if (this.color) {
+                this.element.style.backgroundColor = this.color;
+            }
         }
         this.element.classList.toggle("prosemirror-dropcursor-block", isBlock);
         this.element.classList.toggle("prosemirror-dropcursor-inline", !isBlock);
@@ -17278,9 +18502,9 @@ class DropCursorView {
         if (pos && !disabled) {
             let target = pos.pos;
             if (this.editorView.dragging && this.editorView.dragging.slice) {
-                target = dropPoint(this.editorView.state.doc, target, this.editorView.dragging.slice);
-                if (target == null)
-                    return this.setCursor(null);
+                let point = dropPoint(this.editorView.state.doc, target, this.editorView.dragging.slice);
+                if (point != null)
+                    target = point;
             }
             this.setCursor(target);
             this.scheduleRemoval(5000);
@@ -17298,6 +18522,12 @@ class DropCursorView {
     }
 }
 
+/**
+ * This extension allows you to add a drop cursor to your editor.
+ * A drop cursor is a line that appears when you drag and drop content
+ * inbetween nodes.
+ * @see https://tiptap.dev/api/extensions/dropcursor
+ */
 const Dropcursor = Extension.create({
     name: 'dropCursor',
     addOptions() {
@@ -17544,6 +18774,12 @@ function drawGapCursor(state) {
     return DecorationSet.create(state.doc, [Decoration.widget(state.selection.head, node, { key: "gapcursor" })]);
 }
 
+/**
+ * This extension allows you to add a gap cursor to your editor.
+ * A gap cursor is a cursor that appears when you click on a place
+ * where no content is present, for example inbetween nodes.
+ * @see https://tiptap.dev/api/extensions/gapcursor
+ */
 const Gapcursor = Extension.create({
     name: 'gapCursor',
     addProseMirrorPlugins() {
@@ -17564,6 +18800,10 @@ const Gapcursor = Extension.create({
     },
 });
 
+/**
+ * This extension allows you to insert hard breaks.
+ * @see https://www.tiptap.dev/api/nodes/hard-break
+ */
 const HardBreak = Node.create({
     name: 'hardBreak',
     addOptions() {
@@ -17624,6 +18864,10 @@ const HardBreak = Node.create({
     },
 });
 
+/**
+ * This extension allows you to create headings.
+ * @see https://www.tiptap.dev/api/nodes/heading
+ */
 const Heading = Node.create({
     name: 'heading',
     addOptions() {
@@ -17900,8 +19144,6 @@ var Append = /*@__PURE__*/(function (RopeSequence) {
   return Append;
 }(RopeSequence));
 
-var ropeSequence = RopeSequence;
-
 // ProseMirror's history isn't simply a way to roll back to a previous
 // state, because ProseMirror supports applying changes without adding
 // them to the history (for example during collaboration).
@@ -18101,10 +19343,10 @@ class Branch {
                 mapFrom--;
             }
         }, this.items.length, 0);
-        return new Branch(ropeSequence.from(items.reverse()), events);
+        return new Branch(RopeSequence.from(items.reverse()), events);
     }
 }
-Branch.empty = new Branch(ropeSequence.empty, 0);
+Branch.empty = new Branch(RopeSequence.empty, 0);
 function cutOffEvents(items, n) {
     let cutPoint;
     items.forEach((item, i) => {
@@ -18145,11 +19387,12 @@ class Item {
 // state. Will be stored in the plugin state when the history plugin
 // is active.
 class HistoryState {
-    constructor(done, undone, prevRanges, prevTime) {
+    constructor(done, undone, prevRanges, prevTime, prevComposition) {
         this.done = done;
         this.undone = undone;
         this.prevRanges = prevRanges;
         this.prevTime = prevTime;
+        this.prevComposition = prevComposition;
     }
 }
 const DEPTH_OVERFLOW = 20;
@@ -18159,31 +19402,33 @@ function applyTransaction(history, state, tr, options) {
     if (historyTr)
         return historyTr.historyState;
     if (tr.getMeta(closeHistoryKey))
-        history = new HistoryState(history.done, history.undone, null, 0);
+        history = new HistoryState(history.done, history.undone, null, 0, -1);
     let appended = tr.getMeta("appendedTransaction");
     if (tr.steps.length == 0) {
         return history;
     }
     else if (appended && appended.getMeta(historyKey)) {
         if (appended.getMeta(historyKey).redo)
-            return new HistoryState(history.done.addTransform(tr, undefined, options, mustPreserveItems(state)), history.undone, rangesFor(tr.mapping.maps[tr.steps.length - 1]), history.prevTime);
+            return new HistoryState(history.done.addTransform(tr, undefined, options, mustPreserveItems(state)), history.undone, rangesFor(tr.mapping.maps[tr.steps.length - 1]), history.prevTime, history.prevComposition);
         else
-            return new HistoryState(history.done, history.undone.addTransform(tr, undefined, options, mustPreserveItems(state)), null, history.prevTime);
+            return new HistoryState(history.done, history.undone.addTransform(tr, undefined, options, mustPreserveItems(state)), null, history.prevTime, history.prevComposition);
     }
     else if (tr.getMeta("addToHistory") !== false && !(appended && appended.getMeta("addToHistory") === false)) {
         // Group transforms that occur in quick succession into one event.
-        let newGroup = history.prevTime == 0 || !appended && (history.prevTime < (tr.time || 0) - options.newGroupDelay ||
-            !isAdjacentTo(tr, history.prevRanges));
+        let composition = tr.getMeta("composition");
+        let newGroup = history.prevTime == 0 ||
+            (!appended && history.prevComposition != composition &&
+                (history.prevTime < (tr.time || 0) - options.newGroupDelay || !isAdjacentTo(tr, history.prevRanges)));
         let prevRanges = appended ? mapRanges(history.prevRanges, tr.mapping) : rangesFor(tr.mapping.maps[tr.steps.length - 1]);
-        return new HistoryState(history.done.addTransform(tr, newGroup ? state.selection.getBookmark() : undefined, options, mustPreserveItems(state)), Branch.empty, prevRanges, tr.time);
+        return new HistoryState(history.done.addTransform(tr, newGroup ? state.selection.getBookmark() : undefined, options, mustPreserveItems(state)), Branch.empty, prevRanges, tr.time, composition == null ? history.prevComposition : composition);
     }
     else if (rebased = tr.getMeta("rebased")) {
         // Used by the collab module to tell the history that some of its
         // content has been rebased.
-        return new HistoryState(history.done.rebased(tr, rebased), history.undone.rebased(tr, rebased), mapRanges(history.prevRanges, tr.mapping), history.prevTime);
+        return new HistoryState(history.done.rebased(tr, rebased), history.undone.rebased(tr, rebased), mapRanges(history.prevRanges, tr.mapping), history.prevTime, history.prevComposition);
     }
     else {
-        return new HistoryState(history.done.addMaps(tr.mapping.maps), history.undone.addMaps(tr.mapping.maps), mapRanges(history.prevRanges, tr.mapping), history.prevTime);
+        return new HistoryState(history.done.addMaps(tr.mapping.maps), history.undone.addMaps(tr.mapping.maps), mapRanges(history.prevRanges, tr.mapping), history.prevTime, history.prevComposition);
     }
 }
 function isAdjacentTo(transform, prevRanges) {
@@ -18217,16 +19462,16 @@ function mapRanges(ranges, mapping) {
 }
 // Apply the latest event from one branch to the document and shift the event
 // onto the other branch.
-function histTransaction(history, state, dispatch, redo) {
+function histTransaction(history, state, redo) {
     let preserveItems = mustPreserveItems(state);
     let histOptions = historyKey.get(state).spec.config;
     let pop = (redo ? history.undone : history.done).popEvent(state, preserveItems);
     if (!pop)
-        return;
+        return null;
     let selection = pop.selection.resolve(pop.transform.doc);
     let added = (redo ? history.done : history.undone).addTransform(pop.transform, state.selection.getBookmark(), histOptions, preserveItems);
-    let newHist = new HistoryState(redo ? added : pop.remaining, redo ? pop.remaining : added, null, 0);
-    dispatch(pop.transform.setSelection(selection).setMeta(historyKey, { redo, historyState: newHist }).scrollIntoView());
+    let newHist = new HistoryState(redo ? added : pop.remaining, redo ? pop.remaining : added, null, 0, -1);
+    return pop.transform.setSelection(selection).setMeta(historyKey, { redo, historyState: newHist });
 }
 let cachedPreserveItems = false, cachedPreserveItemsPlugins = null;
 // Check whether any plugin in the given state has a
@@ -18264,7 +19509,7 @@ function history(config = {}) {
         key: historyKey,
         state: {
             init() {
-                return new HistoryState(Branch.empty, Branch.empty, null, 0);
+                return new HistoryState(Branch.empty, Branch.empty, null, 0, -1);
             },
             apply(tr, hist, state) {
                 return applyTransaction(hist, state, tr, config);
@@ -18285,29 +19530,37 @@ function history(config = {}) {
         }
     });
 }
+function buildCommand(redo, scroll) {
+    return (state, dispatch) => {
+        let hist = historyKey.getState(state);
+        if (!hist || (redo ? hist.undone : hist.done).eventCount == 0)
+            return false;
+        if (dispatch) {
+            let tr = histTransaction(hist, state, redo);
+            if (tr)
+                dispatch(scroll ? tr.scrollIntoView() : tr);
+        }
+        return true;
+    };
+}
 /**
 A command function that undoes the last change, if any.
 */
-const undo = (state, dispatch) => {
-    let hist = historyKey.getState(state);
-    if (!hist || hist.done.eventCount == 0)
-        return false;
-    if (dispatch)
-        histTransaction(hist, state, dispatch, false);
-    return true;
-};
+const undo = buildCommand(false, true);
 /**
 A command function that redoes the last undone change, if any.
 */
-const redo = (state, dispatch) => {
-    let hist = historyKey.getState(state);
-    if (!hist || hist.undone.eventCount == 0)
-        return false;
-    if (dispatch)
-        histTransaction(hist, state, dispatch, true);
-    return true;
-};
+const redo = buildCommand(true, true);
 
+/**
+ * This extension allows you to undo and redo recent changes.
+ * @see https://www.tiptap.dev/api/extensions/history
+ *
+ * **Important**: If the `@tiptap/extension-collaboration` package is used, make sure to remove
+ * the `history` extension, as it is not compatible with the `collaboration` extension.
+ *
+ * `@tiptap/extension-collaboration` uses its own history implementation.
+ */
 const History = Extension.create({
     name: 'history',
     addOptions() {
@@ -18334,8 +19587,8 @@ const History = Extension.create({
     addKeyboardShortcuts() {
         return {
             'Mod-z': () => this.editor.commands.undo(),
-            'Mod-y': () => this.editor.commands.redo(),
             'Shift-Mod-z': () => this.editor.commands.redo(),
+            'Mod-y': () => this.editor.commands.redo(),
             // Russian keyboard layouts
             'Mod-я': () => this.editor.commands.undo(),
             'Shift-Mod-я': () => this.editor.commands.redo(),
@@ -18343,6 +19596,10 @@ const History = Extension.create({
     },
 });
 
+/**
+ * This extension allows you to insert horizontal rules.
+ * @see https://www.tiptap.dev/api/nodes/horizontal-rule
+ */
 const HorizontalRule = Node.create({
     name: 'horizontalRule',
     addOptions() {
@@ -18359,9 +19616,16 @@ const HorizontalRule = Node.create({
     },
     addCommands() {
         return {
-            setHorizontalRule: () => ({ chain }) => {
-                return (chain()
-                    .insertContent({ type: this.name })
+            setHorizontalRule: () => ({ chain, state }) => {
+                const { $to: $originTo } = state.selection;
+                const currentChain = chain();
+                if ($originTo.parentOffset === 0) {
+                    currentChain.insertContentAt(Math.max($originTo.pos - 2, 0), { type: this.name });
+                }
+                else {
+                    currentChain.insertContent({ type: this.name });
+                }
+                return (currentChain
                     // set cursor after horizontal rule
                     .command(({ tr, dispatch }) => {
                     var _a;
@@ -18369,14 +19633,22 @@ const HorizontalRule = Node.create({
                         const { $to } = tr.selection;
                         const posAfter = $to.end();
                         if ($to.nodeAfter) {
-                            tr.setSelection(TextSelection.create(tr.doc, $to.pos));
+                            if ($to.nodeAfter.isTextblock) {
+                                tr.setSelection(TextSelection.create(tr.doc, $to.pos + 1));
+                            }
+                            else if ($to.nodeAfter.isBlock) {
+                                tr.setSelection(NodeSelection.create(tr.doc, $to.pos));
+                            }
+                            else {
+                                tr.setSelection(TextSelection.create(tr.doc, $to.pos));
+                            }
                         }
                         else {
                             // add node after horizontal rule if it’s the end of the document
                             const node = (_a = $to.parent.type.contentMatch.defaultType) === null || _a === void 0 ? void 0 : _a.create();
                             if (node) {
                                 tr.insert(posAfter, node);
-                                tr.setSelection(TextSelection.create(tr.doc, posAfter));
+                                tr.setSelection(TextSelection.create(tr.doc, posAfter + 1));
                             }
                         }
                         tr.scrollIntoView();
@@ -18397,10 +19669,26 @@ const HorizontalRule = Node.create({
     },
 });
 
-const starInputRegex = /(?:^|\s)((?:\*)((?:[^*]+))(?:\*))$/;
-const starPasteRegex = /(?:^|\s)((?:\*)((?:[^*]+))(?:\*))/g;
-const underscoreInputRegex = /(?:^|\s)((?:_)((?:[^_]+))(?:_))$/;
-const underscorePasteRegex = /(?:^|\s)((?:_)((?:[^_]+))(?:_))/g;
+/**
+ * Matches an italic to a *italic* on input.
+ */
+const starInputRegex = /(?:^|\s)(\*(?!\s+\*)((?:[^*]+))\*(?!\s+\*))$/;
+/**
+ * Matches an italic to a *italic* on paste.
+ */
+const starPasteRegex = /(?:^|\s)(\*(?!\s+\*)((?:[^*]+))\*(?!\s+\*))/g;
+/**
+ * Matches an italic to a _italic_ on input.
+ */
+const underscoreInputRegex = /(?:^|\s)(_(?!\s+_)((?:[^_]+))_(?!\s+_))$/;
+/**
+ * Matches an italic to a _italic_ on paste.
+ */
+const underscorePasteRegex = /(?:^|\s)(_(?!\s+_)((?:[^_]+))_(?!\s+_))/g;
+/**
+ * This extension allows you to create italic text.
+ * @see https://www.tiptap.dev/api/marks/italic
+ */
 const Italic = Mark.create({
     name: 'italic',
     addOptions() {
@@ -18470,11 +19758,17 @@ const Italic = Mark.create({
     },
 });
 
-const ListItem = Node.create({
+/**
+ * This extension allows you to create list items.
+ * @see https://www.tiptap.dev/api/nodes/list-item
+ */
+const ListItem$1 = Node.create({
     name: 'listItem',
     addOptions() {
         return {
             HTMLAttributes: {},
+            bulletListTypeName: 'bulletList',
+            orderedListTypeName: 'orderedList',
         };
     },
     content: 'paragraph block*',
@@ -18498,13 +19792,101 @@ const ListItem = Node.create({
     },
 });
 
+/**
+ * This extension allows you to create list items.
+ * @see https://www.tiptap.dev/api/nodes/list-item
+ */
+const ListItem = Node.create({
+    name: 'listItem',
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+            bulletListTypeName: 'bulletList',
+            orderedListTypeName: 'orderedList',
+        };
+    },
+    content: 'paragraph block*',
+    defining: true,
+    parseHTML() {
+        return [
+            {
+                tag: 'li',
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['li', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addKeyboardShortcuts() {
+        return {
+            Enter: () => this.editor.commands.splitListItem(this.name),
+            Tab: () => this.editor.commands.sinkListItem(this.name),
+            'Shift-Tab': () => this.editor.commands.liftListItem(this.name),
+        };
+    },
+});
+
+/**
+ * This extension allows you to create text styles. It is required by default
+ * for the `textColor` and `backgroundColor` extensions.
+ * @see https://www.tiptap.dev/api/marks/text-style
+ */
+const TextStyle = Mark.create({
+    name: 'textStyle',
+    addOptions() {
+        return {
+            HTMLAttributes: {},
+        };
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 'span',
+                getAttrs: element => {
+                    const hasStyles = element.hasAttribute('style');
+                    if (!hasStyles) {
+                        return false;
+                    }
+                    return {};
+                },
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            removeEmptyTextStyle: () => ({ state, commands }) => {
+                const attributes = getMarkAttributes(state, this.type);
+                const hasStyles = Object.entries(attributes).some(([, value]) => !!value);
+                if (hasStyles) {
+                    return true;
+                }
+                return commands.unsetMark(this.name);
+            },
+        };
+    },
+});
+
+/**
+ * Matches an ordered list to a 1. on input (or any number followed by a dot).
+ */
 const inputRegex$1 = /^(\d+)\.\s$/;
+/**
+ * This extension allows you to create ordered lists.
+ * This requires the ListItem extension
+ * @see https://www.tiptap.dev/api/nodes/ordered-list
+ * @see https://www.tiptap.dev/api/nodes/list-item
+ */
 const OrderedList = Node.create({
     name: 'orderedList',
     addOptions() {
         return {
             itemTypeName: 'listItem',
             HTMLAttributes: {},
+            keepMarks: false,
+            keepAttributes: false,
         };
     },
     group: 'block list',
@@ -18538,8 +19920,11 @@ const OrderedList = Node.create({
     },
     addCommands() {
         return {
-            toggleOrderedList: () => ({ commands }) => {
-                return commands.toggleList(this.name, this.options.itemTypeName);
+            toggleOrderedList: () => ({ commands, chain }) => {
+                if (this.options.keepAttributes) {
+                    return chain().toggleList(this.name, this.options.itemTypeName, this.options.keepMarks).updateAttributes(ListItem.name, this.editor.getAttributes(TextStyle.name)).run();
+                }
+                return commands.toggleList(this.name, this.options.itemTypeName, this.options.keepMarks);
             },
         };
     },
@@ -18549,17 +19934,33 @@ const OrderedList = Node.create({
         };
     },
     addInputRules() {
-        return [
-            wrappingInputRule({
+        let inputRule = wrappingInputRule({
+            find: inputRegex$1,
+            type: this.type,
+            getAttributes: match => ({ start: +match[1] }),
+            joinPredicate: (match, node) => node.childCount + node.attrs.start === +match[1],
+        });
+        if (this.options.keepMarks || this.options.keepAttributes) {
+            inputRule = wrappingInputRule({
                 find: inputRegex$1,
                 type: this.type,
-                getAttributes: match => ({ start: +match[1] }),
+                keepMarks: this.options.keepMarks,
+                keepAttributes: this.options.keepAttributes,
+                getAttributes: match => ({ start: +match[1], ...this.editor.getAttributes(TextStyle.name) }),
                 joinPredicate: (match, node) => node.childCount + node.attrs.start === +match[1],
-            }),
+                editor: this.editor,
+            });
+        }
+        return [
+            inputRule,
         ];
     },
 });
 
+/**
+ * This extension allows you to create paragraphs.
+ * @see https://www.tiptap.dev/api/nodes/paragraph
+ */
 const Paragraph = Node.create({
     name: 'paragraph',
     priority: 1000,
@@ -18592,8 +19993,18 @@ const Paragraph = Node.create({
     },
 });
 
-const inputRegex = /(?:^|\s)((?:~~)((?:[^~]+))(?:~~))$/;
-const pasteRegex = /(?:^|\s)((?:~~)((?:[^~]+))(?:~~))/g;
+/**
+ * Matches a strike to a ~~strike~~ on input.
+ */
+const inputRegex = /(?:^|\s)(~~(?!\s+~~)((?:[^~]+))~~(?!\s+~~))$/;
+/**
+ * Matches a strike to a ~~strike~~ on paste.
+ */
+const pasteRegex = /(?:^|\s)(~~(?!\s+~~)((?:[^~]+))~~(?!\s+~~))/g;
+/**
+ * This extension allows you to create strike text.
+ * @see https://www.tiptap.dev/api/marks/strike
+ */
 const Strike = Mark.create({
     name: 'strike',
     addOptions() {
@@ -18637,7 +20048,7 @@ const Strike = Mark.create({
     },
     addKeyboardShortcuts() {
         return {
-            'Mod-Shift-x': () => this.editor.commands.toggleStrike(),
+            'Mod-Shift-s': () => this.editor.commands.toggleStrike(),
         };
     },
     addInputRules() {
@@ -18658,11 +20069,20 @@ const Strike = Mark.create({
     },
 });
 
+/**
+ * This extension allows you to create text nodes.
+ * @see https://www.tiptap.dev/api/nodes/text
+ */
 const Text = Node.create({
     name: 'text',
     group: 'inline',
 });
 
+/**
+ * The starter kit is a collection of essential editor extensions.
+ *
+ * It’s a good starting point for building your own editor.
+ */
 const StarterKit = Extension.create({
     name: 'starterKit',
     addExtensions() {
@@ -18708,7 +20128,7 @@ const StarterKit = Extension.create({
             extensions.push(Italic.configure((_o = this.options) === null || _o === void 0 ? void 0 : _o.italic));
         }
         if (this.options.listItem !== false) {
-            extensions.push(ListItem.configure((_p = this.options) === null || _p === void 0 ? void 0 : _p.listItem));
+            extensions.push(ListItem$1.configure((_p = this.options) === null || _p === void 0 ? void 0 : _p.listItem));
         }
         if (this.options.orderedList !== false) {
             extensions.push(OrderedList.configure((_q = this.options) === null || _q === void 0 ? void 0 : _q.orderedList));
@@ -18727,121 +20147,122 @@ const StarterKit = Extension.create({
 });
 
 const scRichTextCss = "@charset \"UTF-8\";\n:host {\n  display: block;\n}\n\n.ProseMirror p.is-editor-empty:first-child::before {\n  color: var(--sc-input-placeholder-color);\n  content: attr(data-placeholder);\n  float: left;\n  height: 0;\n  pointer-events: none;\n}\n\n.ProseMirror [class~=lead] {\n  color: var(--sc-input-color);\n  font-size: var(--sc-input-spacing-small);\n  line-height: 1.6;\n  margin-top: 1.2em;\n  margin-bottom: 1.2em;\n}\n\n.ProseMirror a {\n  position: relative;\n}\n\n.ProseMirror a::before {\n  content: \"\";\n  position: absolute;\n  bottom: -0.3em;\n  left: 0;\n  right: 0;\n  height: 3px;\n  width: 100%;\n  @apply bg-gradient-to-r bg-gradient-teal transition-transform duration-200 transform;\n  pointer-events: none;\n}\n\n.ProseMirror a:hover::before,\n.ProseMirror a:focus::before {\n  transform: scaleX(0.95);\n}\n\n.ProseMirror strong {\n  font-weight: 600;\n}\n\n.ProseMirror ol {\n  counter-reset: list-counter;\n  margin-top: var(--sc-input-spacing-small);\n  margin-bottom: var(--sc-input-spacing-small);\n}\n\n.ProseMirror ol > li {\n  position: relative;\n}\n\n.ProseMirror ul > li {\n  position: relative;\n}\n\n.ProseMirror ul > li::before {\n  content: \"\";\n  position: absolute;\n  background-color: var(--sc-color-gray-400);\n  border-radius: 50%;\n  width: 0.375em;\n  height: 0.375em;\n  top: 0.6875em;\n  left: -1rem;\n}\n\n.ProseMirror hr {\n  border-color: var(--sc-color-gray-400);\n  border-top-width: 1px;\n  margin-top: 3em;\n  margin-bottom: 3em;\n}\n\n.ProseMirror blockquote {\n  font-weight: 500;\n  font-style: italic;\n  color: #1a202c;\n  border-left-width: 0.25rem;\n  border-left-color: var(--sc-color-gray-400);\n  quotes: \"“\" \"”\" \"‘\" \"’\";\n  margin-top: 1.6em;\n  margin-bottom: 1.6em;\n  padding-left: 1em;\n}\n\n.ProseMirror blockquote p:first-of-type::before {\n  content: open-quote;\n}\n\n.ProseMirror blockquote p:last-of-type::after {\n  content: close-quote;\n}\n\n.ProseMirror h1 {\n  font-weight: 800;\n  font-size: 2.25em;\n  margin-top: 0;\n  margin-bottom: 0.8888889em;\n  line-height: 1.1111111;\n}\n\n.ProseMirror h2 {\n  font-weight: 700;\n  font-size: 1.5em;\n  margin-top: 2em;\n  margin-bottom: 1em;\n  line-height: 1.3333333;\n}\n\n.ProseMirror h3 {\n  font-weight: 600;\n  font-size: var(--sc-input-spacing-small);\n  margin-top: 1.6em;\n  margin-bottom: 0.6em;\n  line-height: 1.6;\n}\n\n.ProseMirror h4 {\n  font-weight: 600;\n  margin-top: 1.5em;\n  margin-bottom: 0.5em;\n  line-height: 1.5;\n}\n\n.ProseMirror figure figcaption {\n  color: var(--sc-color-gray-600);\n  font-size: 0.875em;\n  line-height: 1.4285714;\n  margin-top: 0.8571429em;\n}\n\n.ProseMirror code {\n  color: var(--sc-color-gray-900);\n  font-weight: 600;\n  font-size: 0.875em;\n}\n\n.ProseMirror code::before {\n  content: \"`\";\n}\n\n.ProseMirror code::after {\n  content: \"`\";\n}\n\n.ProseMirror pre {\n  color: var(--sc-color-gray-300);\n  background-color: var(--sc-color-gray-800);\n  overflow-x: auto;\n  font-size: 0.875em;\n  line-height: 1.7142857;\n  margin-top: 1.7142857em;\n  margin-bottom: 1.7142857em;\n  border-radius: 0.375rem;\n  padding-top: 0.8571429em;\n  padding-right: 1.1428571em;\n  padding-bottom: 0.8571429em;\n  padding-left: 1.1428571em;\n}\n\n.ProseMirror pre code {\n  background-color: transparent;\n  border-width: 0;\n  border-radius: 0;\n  padding: 0;\n  font-weight: 400;\n  color: inherit;\n  font-size: inherit;\n  font-family: inherit;\n  line-height: inherit;\n}\n\n.ProseMirror pre code::before {\n  content: \"\";\n}\n\n.ProseMirror pre code::after {\n  content: \"\";\n}\n\n.ProseMirror table {\n  width: 100%;\n  table-layout: auto;\n  text-align: left;\n  margin-top: 2em;\n  margin-bottom: 2em;\n  font-size: 0.875em;\n  line-height: 1.7142857;\n}\n\n.ProseMirror thead {\n  color: #1a202c;\n  font-weight: 600;\n  border-bottom-width: 1px;\n  border-bottom-color: var(--sc-color-gray-400);\n}\n\n.ProseMirror thead th {\n  vertical-align: bottom;\n  padding-right: 0.5714286em;\n  padding-bottom: 0.5714286em;\n  padding-left: 0.5714286em;\n}\n\n.ProseMirror tbody tr {\n  border-bottom-width: 1px;\n  border-bottom-color: var(--sc-color-gray-400);\n}\n\n.ProseMirror tbody tr:last-child {\n  border-bottom-width: 0;\n}\n\n.ProseMirror tbody td {\n  vertical-align: top;\n  padding-top: 0.5714286em;\n  padding-right: 0.5714286em;\n  padding-bottom: 0.5714286em;\n  padding-left: 0.5714286em;\n}\n\n.ProseMirror {\n  font-size: var(--sc-font-size-medium);\n  color: var(--sc-input-color);\n  line-height: 1.75;\n}\n\n.ProseMirror p {\n  margin-top: var(--sc-input-spacing-small);\n  margin-bottom: var(--sc-input-spacing-small);\n}\n\n.ProseMirror img {\n  margin-top: 2em;\n  margin-bottom: 2em;\n}\n\n.ProseMirror video {\n  margin-top: 2em;\n  margin-bottom: 2em;\n}\n\n.ProseMirror figure {\n  margin-top: 2em;\n  margin-bottom: 2em;\n}\n\n.ProseMirror figure > * {\n  margin-top: 0;\n  margin-bottom: 0;\n}\n\n.ProseMirror h2 code {\n  font-size: 0.875em;\n}\n\n.ProseMirror h3 code {\n  font-size: 0.9em;\n}\n\n.ProseMirror ul {\n  margin-top: var(--sc-input-spacing-small);\n  margin-bottom: var(--sc-input-spacing-small);\n  list-style: none;\n}\n\n.ProseMirror li {\n  margin-top: 0.5em;\n  margin-bottom: 0.5em;\n}\n\n.ProseMirror ol > li:before {\n  left: 0;\n}\n\n.ProseMirror > ul > li p {\n  margin-top: 0.75em;\n  margin-bottom: 0.75em;\n}\n\n.ProseMirror > ul > li > *:first-child {\n  margin-top: var(--sc-input-spacing-small);\n}\n\n.ProseMirror > ul > li > *:last-child {\n  margin-bottom: var(--sc-input-spacing-small);\n}\n\n.ProseMirror > ol > li > *:first-child {\n  margin-top: var(--sc-input-spacing-small);\n}\n\n.ProseMirror > ol > li > *:last-child {\n  margin-bottom: var(--sc-input-spacing-small);\n}\n\n.ProseMirror ul ul,\n.ProseMirror ul ol,\n.ProseMirror ol ul,\n.ProseMirror ol ol {\n  margin-top: 0.75em;\n  margin-bottom: 0.75em;\n}\n\n.ProseMirror hr + * {\n  margin-top: 0;\n}\n\n.ProseMirror h2 + * {\n  margin-top: 0;\n}\n\n.ProseMirror h3 + * {\n  margin-top: 0;\n}\n\n.ProseMirror h4 + * {\n  margin-top: 0;\n}\n\n.ProseMirror thead th:first-child {\n  padding-left: 0;\n}\n\n.ProseMirror thead th:last-child {\n  padding-right: 0;\n}\n\n.ProseMirror tbody td:first-child {\n  padding-left: 0;\n}\n\n.ProseMirror tbody td:last-child {\n  padding-right: 0;\n}\n\n.ProseMirror > :first-child {\n  margin-top: 0;\n}\n\n.ProseMirror > :last-child {\n  margin-bottom: 0;\n}\n\n.editor-base {\n  position: relative;\n  width: 100%;\n  font-family: var(--sc-input-font-family);\n  font-weight: var(--sc-input-font-weight);\n  line-height: var(--sc-line-height-normal);\n  letter-spacing: var(--sc-input-letter-spacing);\n  vertical-align: middle;\n  transition: var(--sc-transition-fast) color, var(--sc-transition-fast) border, var(--sc-transition-fast) box-shadow, var(--sc-transition-fast) background-color;\n  cursor: text;\n  background-color: var(--sc-input-background-color);\n  border: solid var(--sc-input-border-width) var(--sc-input-border-color);\n}\n\n[contenteditable] {\n  position: relative;\n  outline: none;\n  width: 100%;\n  box-sizing: border-box;\n  border-top: solid var(--sc-input-border-width) var(--sc-input-border-color);\n  padding: var(--sc-input-spacing-medium);\n  overflow-y: auto;\n  max-height: var(--sc-rich-text-max-height, none);\n}\n\n.menu {\n  display: flex;\n  line-height: 0;\n  gap: var(--sc-spacing-xx-small);\n  padding: var(--sc-spacing-x-small);\n}\n\n.editor-base {\n  display: grid;\n  gap: 0;\n}\n\n.right {\n  margin-left: auto;\n}\n\n.textarea__char-limit-warning {\n  margin-top: var(--sc-input-spacing-small);\n  color: var(--sc-input-help-text-color);\n  font-size: var(--sc-input-help-text-font-size-medium);\n}";
+const ScRichTextStyle0 = scRichTextCss;
 
 let id = 0;
 const ScRichText = class {
-  constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.scChange = createEvent(this, "scChange", 7);
-    this.scInput = createEvent(this, "scInput", 7);
-    this.scBlur = createEvent(this, "scBlur", 7);
-    this.scFocus = createEvent(this, "scFocus", 7);
-    this.inputId = `sc-richtext-${++id}`;
-    this.helpId = `sc-richtext-help-text-${id}`;
-    this.labelId = `sc-richtext-label-${id}`;
-    this.size = 'medium';
-    this.name = undefined;
-    this.value = '';
-    this.label = '';
-    this.showLabel = true;
-    this.help = '';
-    this.placeholder = undefined;
-    this.maxlength = undefined;
-    this.disabled = false;
-    this.readonly = false;
-    this.required = false;
-    this.updatedAt = Date.now();
-    this.hasFocus = undefined;
-  }
-  componentDidLoad() {
-    if (this.editor)
-      return;
-    this.editor = new Editor({
-      element: this.element,
-      extensions: [
-        StarterKit,
-        Placeholder.configure({
-          // Use a placeholder:
-          placeholder: this.placeholder,
-        }),
-        ...((this === null || this === void 0 ? void 0 : this.maxlength) > 0
-          ? [
-            CharacterCount.configure({
-              limit: this.maxlength,
-              mode: 'nodeSize',
-            }),
-          ]
-          : []),
-      ],
-      content: this.value,
-      onCreate: ({ editor }) => {
-        this.value = editor.getHTML();
-      },
-      onUpdate: ({ editor }) => {
-        this.value = editor.getHTML();
-        this.scInput.emit();
-        this.scChange.emit();
-      },
-      onSelectionUpdate: () => {
+    constructor(hostRef) {
+        registerInstance(this, hostRef);
+        this.scChange = createEvent(this, "scChange", 7);
+        this.scInput = createEvent(this, "scInput", 7);
+        this.scBlur = createEvent(this, "scBlur", 7);
+        this.scFocus = createEvent(this, "scFocus", 7);
+        this.inputId = `sc-richtext-${++id}`;
+        this.helpId = `sc-richtext-help-text-${id}`;
+        this.labelId = `sc-richtext-label-${id}`;
+        this.size = 'medium';
+        this.name = undefined;
+        this.value = '';
+        this.label = '';
+        this.showLabel = true;
+        this.help = '';
+        this.placeholder = undefined;
+        this.maxlength = undefined;
+        this.disabled = false;
+        this.readonly = false;
+        this.required = false;
         this.updatedAt = Date.now();
-      },
-      onFocus: () => {
-        this.handleFocus();
-      },
-      onBlur: () => {
-        this.handleBlur();
-      },
-    });
-  }
-  handleFocus() {
-    this.hasFocus = true;
-    this.scFocus.emit();
-  }
-  handleBlur() {
-    this.hasFocus = false;
-    this.scBlur.emit();
-  }
-  isActive(type, opts = {}) {
-    var _a, _b;
-    return (_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.isActive) === null || _b === void 0 ? void 0 : _b.call(_a, type, opts);
-  }
-  toggleHeading(opts) {
-    this.editor.chain().toggleHeading(opts).focus().run();
-  }
-  toggleBold() {
-    this.editor.chain().toggleBold().focus().run();
-  }
-  toggleItalic() {
-    this.editor.chain().toggleItalic().focus().run();
-  }
-  can(property) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    return (_j = (_h = (_g = (_f = (_e = (_d = (_c = (_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.can()) === null || _b === void 0 ? void 0 : _b.chain) === null || _c === void 0 ? void 0 : _c.call(_b)) === null || _d === void 0 ? void 0 : _d.focus) === null || _e === void 0 ? void 0 : _e.call(_d)) === null || _f === void 0 ? void 0 : _f[property]) === null || _g === void 0 ? void 0 : _g.call(_f)) === null || _h === void 0 ? void 0 : _h.run) === null || _j === void 0 ? void 0 : _j.call(_h);
-  }
-  run(property) {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
-    return (_h = (_g = (_f = (_e = (_d = (_c = (_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.chain) === null || _b === void 0 ? void 0 : _b.call(_a)) === null || _c === void 0 ? void 0 : _c.focus) === null || _d === void 0 ? void 0 : _d.call(_c)) === null || _e === void 0 ? void 0 : _e[property]) === null || _f === void 0 ? void 0 : _f.call(_e)) === null || _g === void 0 ? void 0 : _g.run) === null || _h === void 0 ? void 0 : _h.call(_g);
-  }
-  remainingCharacters() {
-    var _a, _b;
-    if (!this.maxlength)
-      return 1000;
-    return this.maxlength - (((_b = (_a = this === null || this === void 0 ? void 0 : this.editor) === null || _a === void 0 ? void 0 : _a.storage) === null || _b === void 0 ? void 0 : _b.characterCount.characters()) || 0);
-  }
-  handleKeyDown(event) {
-    // Prevent keyboard propagation for Jetpack's notification shortcut, which is 'n'.
-    if (event.key === 'n') {
-      event.stopPropagation();
+        this.hasFocus = undefined;
     }
-  }
-  render() {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
-    return (h(Host, null, h("sc-form-control", { exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("div", { part: "base", class: { 'editor-base': true, 'editor--focused': this.hasFocus } }, h("div", { class: "menu" }, h("sc-button", { size: "small", type: ((_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.isActive) === null || _b === void 0 ? void 0 : _b.call(_a, 'bold')) ? 'default' : 'text', onClick: () => this.run('toggleBold'), disabled: !this.can('toggleBold') }, h("sc-icon", { name: "bold" })), h("sc-button", { size: "small", type: ((_d = (_c = this.editor) === null || _c === void 0 ? void 0 : _c.isActive) === null || _d === void 0 ? void 0 : _d.call(_c, 'italic')) ? 'default' : 'text', onClick: () => this.run('toggleItalic'), disabled: !this.can('toggleItalic') }, h("sc-icon", { name: "italic" })), h("sc-button", { size: "small", type: ((_f = (_e = this.editor) === null || _e === void 0 ? void 0 : _e.isActive) === null || _f === void 0 ? void 0 : _f.call(_e, 'bulletList')) ? 'default' : 'text', onClick: () => this.run('toggleBulletList') }, h("sc-icon", { name: "list" })), h("sc-button", { size: "small", type: ((_h = (_g = this.editor) === null || _g === void 0 ? void 0 : _g.isActive) === null || _h === void 0 ? void 0 : _h.call(_g, 'strike')) ? 'default' : 'text', onClick: () => this.run('toggleStrike') }, h("sc-icon", { name: "minus" })), h("sc-button", { class: "right", size: "small", type: "text", onClick: () => this.run('undo'), disabled: !this.can('undo') }, h("sc-icon", { name: "corner-up-left" })), h("sc-button", { size: "small", type: "text", onClick: () => this.run('redo'), disabled: !this.can('redo') }, h("sc-icon", { name: "corner-up-right" }))), h("div", { part: "editor", class: {
-        editor: true,
-      }, ref: el => (this.element = el) })), this.remainingCharacters() < 20 && h("div", { class: 'textarea__char-limit-warning' }, wp.i18n.sprintf(wp.i18n.__('%d characters remaining', 'surecart'), this.remainingCharacters())))));
-  }
+    componentDidLoad() {
+        if (this.editor)
+            return;
+        this.editor = new Editor({
+            element: this.element,
+            extensions: [
+                StarterKit,
+                Placeholder.configure({
+                    // Use a placeholder:
+                    placeholder: this.placeholder,
+                }),
+                ...((this === null || this === void 0 ? void 0 : this.maxlength) > 0
+                    ? [
+                        CharacterCount.configure({
+                            limit: this.maxlength,
+                            mode: 'nodeSize',
+                        }),
+                    ]
+                    : []),
+            ],
+            content: this.value,
+            onCreate: ({ editor }) => {
+                this.value = editor.getHTML();
+            },
+            onUpdate: ({ editor }) => {
+                this.value = editor.getHTML();
+                this.scInput.emit();
+                this.scChange.emit();
+            },
+            onSelectionUpdate: () => {
+                this.updatedAt = Date.now();
+            },
+            onFocus: () => {
+                this.handleFocus();
+            },
+            onBlur: () => {
+                this.handleBlur();
+            },
+        });
+    }
+    handleFocus() {
+        this.hasFocus = true;
+        this.scFocus.emit();
+    }
+    handleBlur() {
+        this.hasFocus = false;
+        this.scBlur.emit();
+    }
+    isActive(type, opts = {}) {
+        var _a, _b;
+        return (_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.isActive) === null || _b === void 0 ? void 0 : _b.call(_a, type, opts);
+    }
+    toggleHeading(opts) {
+        this.editor.chain().toggleHeading(opts).focus().run();
+    }
+    toggleBold() {
+        this.editor.chain().toggleBold().focus().run();
+    }
+    toggleItalic() {
+        this.editor.chain().toggleItalic().focus().run();
+    }
+    can(property) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        return (_j = (_h = (_g = (_f = (_e = (_d = (_c = (_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.can()) === null || _b === void 0 ? void 0 : _b.chain) === null || _c === void 0 ? void 0 : _c.call(_b)) === null || _d === void 0 ? void 0 : _d.focus) === null || _e === void 0 ? void 0 : _e.call(_d)) === null || _f === void 0 ? void 0 : _f[property]) === null || _g === void 0 ? void 0 : _g.call(_f)) === null || _h === void 0 ? void 0 : _h.run) === null || _j === void 0 ? void 0 : _j.call(_h);
+    }
+    run(property) {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        return (_h = (_g = (_f = (_e = (_d = (_c = (_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.chain) === null || _b === void 0 ? void 0 : _b.call(_a)) === null || _c === void 0 ? void 0 : _c.focus) === null || _d === void 0 ? void 0 : _d.call(_c)) === null || _e === void 0 ? void 0 : _e[property]) === null || _f === void 0 ? void 0 : _f.call(_e)) === null || _g === void 0 ? void 0 : _g.run) === null || _h === void 0 ? void 0 : _h.call(_g);
+    }
+    remainingCharacters() {
+        var _a, _b;
+        if (!this.maxlength)
+            return 1000;
+        return this.maxlength - (((_b = (_a = this === null || this === void 0 ? void 0 : this.editor) === null || _a === void 0 ? void 0 : _a.storage) === null || _b === void 0 ? void 0 : _b.characterCount.characters()) || 0);
+    }
+    handleKeyDown(event) {
+        // Prevent keyboard propagation for Jetpack's notification shortcut, which is 'n'.
+        if (event.key === 'n') {
+            event.stopPropagation();
+        }
+    }
+    render() {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        return (h(Host, { key: 'a5a935eb44d3e61cdd964a0fafcb4b348d1db736' }, h("sc-form-control", { key: '084d082134d21f1633f486d23eb725cd1882e8b2', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("div", { key: 'b81aa656b62415b93edab3428195da5029176c58', part: "base", class: { 'editor-base': true, 'editor--focused': this.hasFocus } }, h("div", { key: '09d18f1b56948df81f2a9530b0fe555bb3e38ebd', class: "menu" }, h("sc-button", { key: '7e15f8035a56b6b05c6274b66191d3afd067228e', size: "small", type: ((_b = (_a = this.editor) === null || _a === void 0 ? void 0 : _a.isActive) === null || _b === void 0 ? void 0 : _b.call(_a, 'bold')) ? 'default' : 'text', onClick: () => this.run('toggleBold'), disabled: !this.can('toggleBold') }, h("sc-icon", { key: 'b0b551d25240c2feb80324361c1a66c432517a24', name: "bold" })), h("sc-button", { key: '604ca60faa97739ee87e589c3725cc9fa67b40eb', size: "small", type: ((_d = (_c = this.editor) === null || _c === void 0 ? void 0 : _c.isActive) === null || _d === void 0 ? void 0 : _d.call(_c, 'italic')) ? 'default' : 'text', onClick: () => this.run('toggleItalic'), disabled: !this.can('toggleItalic') }, h("sc-icon", { key: 'a27afcf2842b257c497556a3580d7b9890b1245f', name: "italic" })), h("sc-button", { key: 'c029a524863913845e584db0e96e74b48f9a208f', size: "small", type: ((_f = (_e = this.editor) === null || _e === void 0 ? void 0 : _e.isActive) === null || _f === void 0 ? void 0 : _f.call(_e, 'bulletList')) ? 'default' : 'text', onClick: () => this.run('toggleBulletList') }, h("sc-icon", { key: '18ab6cd733c1f74660c6678f575bb3facba915f4', name: "list" })), h("sc-button", { key: '80ceb3aec166e36ecb9dba3b336a10528856d447', size: "small", type: ((_h = (_g = this.editor) === null || _g === void 0 ? void 0 : _g.isActive) === null || _h === void 0 ? void 0 : _h.call(_g, 'strike')) ? 'default' : 'text', onClick: () => this.run('toggleStrike') }, h("sc-icon", { key: '41ecbd32b34ccecaa2f1dbbb4a1ac85af18b090d', name: "minus" })), h("sc-button", { key: '94ba63f9be11b643f3403f33ab30a07217a6dd03', class: "right", size: "small", type: "text", onClick: () => this.run('undo'), disabled: !this.can('undo') }, h("sc-icon", { key: 'ac4e9b4f9ef36f5453247590c2d873272bc35925', name: "corner-up-left" })), h("sc-button", { key: 'fa829fe73ef89a9783efc464b84a3edfd041ab1b', size: "small", type: "text", onClick: () => this.run('redo'), disabled: !this.can('redo') }, h("sc-icon", { key: 'eed8a15f97c497250c3009670688fdbdc1dc8763', name: "corner-up-right" }))), h("div", { key: '4975852cdb5575710553becd81872e3381ff5731', part: "editor", class: {
+                editor: true,
+            }, ref: el => (this.element = el) })), this.remainingCharacters() < 20 && h("div", { key: 'b56a6b5860f39158d98d1209c7d48c3d5350a8f4', class: 'textarea__char-limit-warning' }, wp.i18n.sprintf(wp.i18n.__('%d characters remaining', 'surecart'), this.remainingCharacters())))));
+    }
 };
-ScRichText.style = scRichTextCss;
+ScRichText.style = ScRichTextStyle0;
 
 export { ScRichText as sc_rich_text };
 

@@ -1,4 +1,4 @@
-import { Checkout } from 'src/types';
+import { Checkout } from "../../types";
 /**
  * Add to cart/remove from cart, cart updated events.
  */

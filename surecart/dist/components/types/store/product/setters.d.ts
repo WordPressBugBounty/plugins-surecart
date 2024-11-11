@@ -1,4 +1,4 @@
-import { ProductState } from 'src/types';
+import { ProductState } from "../../types";
 /**
  * Set the product
  *

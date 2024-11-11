@@ -1,4 +1,4 @@
-import { Price, ProductState } from 'src/types';
+import { Price, ProductState } from "../../types";
 /**
  * Available product prices
  *
@@ -41,7 +41,7 @@ export declare const isSelectedVariantMissing: (productId: string) => boolean;
  * @returns {ProductState} - Returns the product state
  */
 export declare const getDefaultState: () => {
-  [key: string]: ProductState;
+    [key: string]: ProductState;
 };
 export declare const availableSubscriptionPrices: (productId: string) => Price[];
 export declare const availableNonSubscriptionPrices: (productId: string) => Price[];

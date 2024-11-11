@@ -1,4 +1,4 @@
 export declare class ScTableRow {
-  href: string;
-  render(): any;
+    href: string;
+    render(): any;
 }

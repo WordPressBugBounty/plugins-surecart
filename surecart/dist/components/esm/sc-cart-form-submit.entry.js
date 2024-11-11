@@ -1,24 +1,25 @@
-import { r as registerInstance, h } from './index-644f5478.js';
-import { f as formBusy } from './getters-b67a901b.js';
-import './store-bccb89b4.js';
-import './index-1046c77e.js';
-import './utils-00526fde.js';
+import { r as registerInstance, h } from './index-745b6bec.js';
+import { f as formBusy } from './getters-cf357ed2.js';
+import './store-eb9dd43c.js';
+import './index-06061d4e.js';
+import './utils-e9ee502a.js';
 
 const scCartFormSubmitCss = "sc-order-submit{display:block;width:auto}";
+const ScCartFormSubmitStyle0 = scCartFormSubmitCss;
 
 const ScCartFormSubmit = class {
-  constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.type = 'primary';
-    this.size = 'medium';
-    this.full = true;
-    this.icon = undefined;
-  }
-  render() {
-    return (h("sc-button", { submit: true, type: this.type, size: this.size, full: this.full, loading: formBusy(), disabled: formBusy() }, !!this.icon && h("sc-icon", { name: this.icon, slot: "prefix" }), h("slot", null)));
-  }
+    constructor(hostRef) {
+        registerInstance(this, hostRef);
+        this.type = 'primary';
+        this.size = 'medium';
+        this.full = true;
+        this.icon = undefined;
+    }
+    render() {
+        return (h("sc-button", { key: '0271855c9ef605213b047fa5efd8ba751c680004', submit: true, type: this.type, size: this.size, full: this.full, loading: formBusy(), disabled: formBusy() }, !!this.icon && h("sc-icon", { key: 'e59ce21998399b6a77636b0a32e53f92f67eaf0f', name: this.icon, slot: "prefix" }), h("slot", { key: '1575bba984f73e6e4ab160599871b073caf4d0e6' })));
+    }
 };
-ScCartFormSubmit.style = scCartFormSubmitCss;
+ScCartFormSubmit.style = ScCartFormSubmitStyle0;
 
 export { ScCartFormSubmit as sc_cart_form_submit };
 

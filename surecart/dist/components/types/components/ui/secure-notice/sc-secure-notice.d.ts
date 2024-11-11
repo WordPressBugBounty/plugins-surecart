@@ -1,3 +1,3 @@
 export declare class ScSecureNotice {
-  render(): any;
+    render(): any;
 }

@@ -1,5 +1,5 @@
 export declare class ScLineItemShipping {
-  /**Label */
-  label: string;
-  render(): any;
+    /**Label */
+    label: string;
+    render(): any;
 }

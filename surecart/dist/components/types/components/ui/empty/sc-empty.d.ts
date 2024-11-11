@@ -3,6 +3,6 @@
  * @part icon - The icon.
  */
 export declare class ScEmpty {
-  icon: string;
-  render(): any;
+    icon: string;
+    render(): any;
 }

@@ -16,8 +16,8 @@ export declare const unLockCheckout: (lockName?: string) => string[];
  * Update the checkout line item
  */
 export declare const updateCheckoutLineItem: ({ id, data }: {
-  id: any;
-  data: any;
+    id: any;
+    data: any;
 }) => Promise<void>;
 /**
  * Remove the checkout line item.

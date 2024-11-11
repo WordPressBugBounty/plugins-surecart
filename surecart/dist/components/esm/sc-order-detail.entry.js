@@ -1,5 +1,5 @@
-import { r as registerInstance, h } from './index-644f5478.js';
-import { o as openWormhole } from './consumer-32cc6385.js';
+import { r as registerInstance, h } from './index-745b6bec.js';
+import { o as openWormhole } from './consumer-e06b16d3.js';
 
 /**
  * Set a value by a dot path.
@@ -7,6 +7,7 @@ import { o as openWormhole } from './consumer-32cc6385.js';
  * @param prop The path to be set.
  * @param value The value to set.
  */
+
 function set(obj, prop, value) {
 	prop = typeof prop === 'number' ? propToArray(prop.toString()) : typeof prop === 'string' ? propToArray(prop) : prop;
 
@@ -176,59 +177,60 @@ var lib = {
 };
 
 const scOrderDetailCss = ":host{display:block}.order-detail__value{display:block;font-weight:var(--sc-font-weight-semibold);line-height:var(--sc-line-height-dense)}.order-detail__label{display:block;color:var(--sc-color-gray-500);line-height:var(--sc-line-height-dense)}";
+const ScOrderDetailStyle0 = scOrderDetailCss;
 
 const ScSessionDetail = class {
-  constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.order = undefined;
-    this.value = undefined;
-    this.fallback = undefined;
-    this.metaKey = undefined;
-    this.loading = undefined;
-    this.label = undefined;
-  }
-  getPropByPath(object, path, defaultValue) {
-    if (object && path.length)
-      return this.getPropByPath(object[path.shift()], path, defaultValue);
-    return object === undefined ? defaultValue : object;
-  }
-  getValue() {
-    var _a, _b;
-    if (!this.value) {
-      return;
+    constructor(hostRef) {
+        registerInstance(this, hostRef);
+        this.order = undefined;
+        this.value = undefined;
+        this.fallback = undefined;
+        this.metaKey = undefined;
+        this.loading = undefined;
+        this.label = undefined;
     }
-    let value = '';
-    // get metadata value
-    if (this.value === 'metadata') {
-      return lib.get((_a = this === null || this === void 0 ? void 0 : this.order) === null || _a === void 0 ? void 0 : _a.metadata, this.value || '');
+    getPropByPath(object, path, defaultValue) {
+        if (object && path.length)
+            return this.getPropByPath(object[path.shift()], path, defaultValue);
+        return object === undefined ? defaultValue : object;
     }
-    // get value
-    value = lib.get(this === null || this === void 0 ? void 0 : this.order, this.value || '');
-    // if number, format it
-    if (typeof value === 'number') {
-      value = h("sc-format-number", { type: "currency", currency: (_b = this === null || this === void 0 ? void 0 : this.order) === null || _b === void 0 ? void 0 : _b.currency, value: value });
+    getValue() {
+        var _a, _b;
+        if (!this.value) {
+            return;
+        }
+        let value = '';
+        // get metadata value
+        if (this.value === 'metadata') {
+            return lib.get((_a = this === null || this === void 0 ? void 0 : this.order) === null || _a === void 0 ? void 0 : _a.metadata, this.value || '');
+        }
+        // get value
+        value = lib.get(this === null || this === void 0 ? void 0 : this.order, this.value || '');
+        // if number, format it
+        if (typeof value === 'number') {
+            value = h("sc-format-number", { type: "currency", currency: (_b = this === null || this === void 0 ? void 0 : this.order) === null || _b === void 0 ? void 0 : _b.currency, value: value });
+        }
+        return value;
     }
-    return value;
-  }
-  render() {
-    if (this.loading) {
-      return (h("div", { part: "base", class: {
-          'order-detail': true,
-        } }, h("span", { part: "label", class: "order-detail__label" }, h("sc-skeleton", { style: { width: '60px', height: '8px', display: 'inline-block' } })), h("span", { part: "value", class: "order-detail__value" }, h("sc-skeleton", { style: { width: '120px', display: 'inline-block' } }))));
+    render() {
+        if (this.loading) {
+            return (h("div", { part: "base", class: {
+                    'order-detail': true,
+                } }, h("span", { part: "label", class: "order-detail__label" }, h("sc-skeleton", { style: { width: '60px', height: '8px', display: 'inline-block' } })), h("span", { part: "value", class: "order-detail__value" }, h("sc-skeleton", { style: { width: '120px', display: 'inline-block' } }))));
+        }
+        const value = this.getValue();
+        if (!value) {
+            if (!this.fallback) {
+                return;
+            }
+        }
+        return (h("div", { part: "base", class: {
+                'order-detail': true,
+            } }, h("span", { part: "label", class: "order-detail__label" }, h("slot", { name: "label" }, this.label)), h("span", { part: "value", class: "order-detail__value" }, h("slot", { name: "value" }, value || this.fallback))));
     }
-    const value = this.getValue();
-    if (!value) {
-      if (!this.fallback) {
-        return;
-      }
-    }
-    return (h("div", { part: "base", class: {
-        'order-detail': true,
-      } }, h("span", { part: "label", class: "order-detail__label" }, h("slot", { name: "label" }, this.label)), h("span", { part: "value", class: "order-detail__value" }, h("slot", { name: "value" }, value || this.fallback))));
-  }
 };
 openWormhole(ScSessionDetail, ['order', 'loading'], false);
-ScSessionDetail.style = scOrderDetailCss;
+ScSessionDetail.style = ScOrderDetailStyle0;
 
 export { ScSessionDetail as sc_order_detail };
 

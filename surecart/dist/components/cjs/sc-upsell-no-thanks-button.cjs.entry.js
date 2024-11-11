@@ -2,32 +2,34 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-f1e4d53b.js');
-const mutations = require('./mutations-2558dfa8.js');
-require('./fetch-2dba325c.js');
-require('./add-query-args-17c551b6.js');
-require('./store-1aade79c.js');
-require('./utils-a086ed6e.js');
-require('./index-00f0fc21.js');
-require('./watchers-51b054bd.js');
-require('./google-55083ae7.js');
-require('./currency-ba038e2f.js');
-require('./google-62bdaeea.js');
-require('./util-efd68af1.js');
+const index = require('./index-8acc3c89.js');
+const mutations = require('./mutations-ca288ff4.js');
+require('./fetch-f25a0cb0.js');
+require('./add-query-args-49dcb630.js');
+require('./remove-query-args-b57e8cd3.js');
+require('./store-d24717c6.js');
+require('./utils-ee1bb9d3.js');
+require('./index-bcdafe6e.js');
+require('./watchers-cb566474.js');
+require('./google-03835677.js');
+require('./currency-71fce0f0.js');
+require('./google-59d23803.js');
+require('./util-b877b2bd.js');
 require('./index-fb76df07.js');
-require('./mutations-8d7c4499.js');
+require('./mutations-11c8f9a8.js');
 
 const scUpsellNoThanksButtonCss = "sc-upsell-no-thanks-button{display:block}sc-upsell-no-thanks-button p{margin-block-start:0;margin-block-end:1em}sc-upsell-no-thanks-button .wp-block-button__link{position:relative;text-decoration:none}";
+const ScUpsellNoThanksButtonStyle0 = scUpsellNoThanksButtonCss;
 
 const ScUpsellNoThanksButton = class {
-  constructor(hostRef) {
-    index.registerInstance(this, hostRef);
-  }
-  render() {
-    return (index.h(index.Host, { onClick: () => mutations.decline() }, index.h("slot", null)));
-  }
+    constructor(hostRef) {
+        index.registerInstance(this, hostRef);
+    }
+    render() {
+        return (index.h(index.Host, { key: '03f84cb5ae3de9d1852387e9b1841ca04cef6ba4', onClick: () => mutations.decline() }, index.h("slot", { key: '5cafc814e0c5d1a3932da889cdf7a9eebff08ed0' })));
+    }
 };
-ScUpsellNoThanksButton.style = scUpsellNoThanksButtonCss;
+ScUpsellNoThanksButton.style = ScUpsellNoThanksButtonStyle0;
 
 exports.sc_upsell_no_thanks_button = ScUpsellNoThanksButton;
 

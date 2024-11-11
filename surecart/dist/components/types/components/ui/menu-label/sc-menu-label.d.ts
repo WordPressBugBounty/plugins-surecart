@@ -1,3 +1,3 @@
 export declare class ScMenuLabel {
-  render(): any;
+    render(): any;
 }

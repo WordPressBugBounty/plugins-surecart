@@ -2,26 +2,27 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-f1e4d53b.js');
-const formData = require('./form-data-69000afe.js');
-const util = require('./util-efd68af1.js');
+const index = require('./index-8acc3c89.js');
+const formData = require('./form-data-0da9940f.js');
+const util = require('./util-b877b2bd.js');
 
 const scMenuLabelCss = ":host{display:block}.menu-label{font-family:var(--sc-font-sans);font-size:var(--sc-font-size-x-small);font-weight:var(--sc-font-weight-semibold);line-height:var(--sc-line-height-normal);letter-spacing:var(--sc-letter-spacing-normal);color:var(--sc-color-gray-500);padding:var(--sc-spacing-small) var(--sc-spacing-large);user-select:none;text-transform:uppercase}";
+const ScMenuLabelStyle0 = scMenuLabelCss;
 
 const ScMenuLabel = class {
-  constructor(hostRef) {
-    index.registerInstance(this, hostRef);
-  }
-  render() {
-    return (index.h("div", { part: "base", class: "menu-label" }, index.h("slot", null)));
-  }
+    constructor(hostRef) {
+        index.registerInstance(this, hostRef);
+    }
+    render() {
+        return (index.h("div", { key: 'e1c80d0c3268929e0a3a76139e0812ff62f625a5', part: "base", class: "menu-label" }, index.h("slot", { key: 'ac88b266cde98759f6cf8156b86fde385de50108' })));
+    }
 };
-ScMenuLabel.style = scMenuLabelCss;
+ScMenuLabel.style = ScMenuLabelStyle0;
 
 /**
- * Fuse.js v6.5.3 - Lightweight fuzzy-search (http://fusejs.io)
+ * Fuse.js v6.6.2 - Lightweight fuzzy-search (http://fusejs.io)
  *
- * Copyright (c) 2021 Kiro Risk (http://kiro.me)
+ * Copyright (c) 2022 Kiro Risk (http://kiro.me)
  * All Rights Reserved. Apache Software License 2.0
  *
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -148,6 +149,7 @@ function createKey(key) {
   let id = null;
   let src = null;
   let weight = 1;
+  let getFn = null;
 
   if (isString(key) || isArray(key)) {
     src = key;
@@ -171,9 +173,10 @@ function createKey(key) {
 
     path = createKeyPath(name);
     id = createKeyId(name);
+    getFn = key.getFn;
   }
 
-  return { path, id, weight, src }
+  return { path, id, weight, src, getFn }
 }
 
 function createKeyPath(key) {
@@ -416,8 +419,7 @@ class FuseIndex {
 
     // Iterate over every key (i.e, path), and fetch the value at that key
     this.keys.forEach((key, keyIndex) => {
-      // console.log(key)
-      let value = this.getFn(doc, key.path);
+      let value = key.getFn ? key.getFn(doc) : this.getFn(doc, key.path);
 
       if (!isDefined(value)) {
         return
@@ -452,7 +454,7 @@ class FuseIndex {
           } else ;
         }
         record.$[keyIndex] = subRecords;
-      } else if (!isBlank(value)) {
+      } else if (isString(value) && !isBlank(value)) {
         let subRecord = {
           v: value,
           n: this.norm.get(value)
@@ -1147,7 +1149,7 @@ const searchers = [
 const searchersLen = searchers.length;
 
 // Regex to split by spaces, but keep anything in quotes together
-const SPACE_RE = / +(?=([^\"]*\"[^\"]*\")*[^\"]*$)/;
+const SPACE_RE = / +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/;
 const OR_TOKEN = '|';
 
 // Return a 2D array representation of the query, for simpler parsing.
@@ -1783,7 +1785,7 @@ class Fuse {
   }
 }
 
-Fuse.version = '6.5.3';
+Fuse.version = '6.6.2';
 Fuse.createIndex = createIndex;
 Fuse.parseIndex = parseIndex;
 Fuse.config = Config;
@@ -1797,299 +1799,300 @@ Fuse.config = Config;
 }
 
 const scSelectCss = ":host{display:block;--focus-ring:0 0 0 var(--sc-focus-ring-width) var(--sc-focus-ring-color-primary)}.search{margin:var(--sc-spacing-x-small) var(--sc-spacing-x-small) 0 var(--sc-spacing-x-small)}.loading{text-align:center;margin:var(--sc-spacing-small)}.select{font-family:var(--sc-input-font-family);font-weight:var(--sc-font-weight-normal)}sc-dropdown{display:block}.trigger{overflow:hidden;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;width:100%;border-style:solid;border-width:var(--sc-input-border-width);background-color:var(--sc-select-background-color, var(--sc-color-white));border-color:var(--sc-select-border-color, var(--sc-color-gray-300));color:var(--sc-input-color);text-decoration:none;user-select:none;white-space:nowrap;vertical-align:middle;padding:0;transition:var(--sc-input-transition, var(--sc-transition-medium)) background-color, var(--sc-input-transition, var(--sc-transition-medium)) color, var(--sc-input-transition, var(--sc-transition-medium)) border, var(--sc-input-transition, var(--sc-transition-medium)) box-shadow;cursor:inherit;box-shadow:var(--sc-shadow-small);font-size:var(--sc-button-font-size-medium);min-height:var(--sc-input-height-medium);line-height:calc(var(--sc-input-height-medium) - var(--sc-input-border-width) * 2);border-radius:var(--sc-input-border-radius-medium);padding:0 var(--sc-spacing-small)}.trigger svg{display:block;width:1em;height:1em}.select.select--focused:not(.select--disabled) .trigger{background-color:var(--sc-input-background-color-focus);border-color:var(--sc-input-border-color-focus);box-shadow:var(--focus-ring);z-index:2}.select--disabled{cursor:not-allowed}.select--disabled sc-dropdown{opacity:0.65}.select__value{overflow:hidden;text-overflow:ellipsis}.select__empty{text-align:center;margin:var(--sc-spacing-small);color:var(--sc-color-gray-400)}.select--placeholder .trigger{color:var(--sc-input-placeholder-color)}.select__hidden-input{position:absolute;opacity:0;padding:0px;margin:0px;pointer-events:none;width:0}.select__suffix-description,.select__description{font-size:var(--sc-input-help-text-font-size-medium);opacity:0.65}.select__caret{transition:transform 0.25s ease;line-height:0}.select--is-open .select__caret{transform:rotate(180deg)}.select--squared .trigger{border-radius:0}.select--squared-top .trigger{border-top-left-radius:0;border-top-right-radius:0}.select--squared-bottom .trigger{border-bottom-left-radius:0;border-bottom-right-radius:0}.select--squared-left .trigger{border-top-left-radius:0;border-bottom-left-radius:0}.select--squared-right .trigger{border-top-right-radius:0;border-bottom-right-radius:0}.choice__icon--image{width:18px;height:18px;object-fit:contain}sc-menu-item.is-unavailable{--sc-menu-item-color:var(--sc-color-gray-500)}";
+const ScSelectStyle0 = scSelectCss;
 
 let id = 0;
 let itemIndex = 0;
 let arrowFlag = '';
 const ScSelectDropdown = class {
-  constructor(hostRef) {
-    index.registerInstance(this, hostRef);
-    this.scSearch = index.createEvent(this, "scSearch", 7);
-    this.scOpen = index.createEvent(this, "scOpen", 7);
-    this.scClose = index.createEvent(this, "scClose", 7);
-    this.scBlur = index.createEvent(this, "scBlur", 7);
-    this.scFocus = index.createEvent(this, "scFocus", 7);
-    this.scChange = index.createEvent(this, "scChange", 7);
-    this.scScrollEnd = index.createEvent(this, "scScrollEnd", 7);
-    this.inputId = `select-${++id}`;
-    this.helpId = `select-help-text-${id}`;
-    this.labelId = `select-label-${id}`;
-    this.autocomplete = undefined;
-    this.placeholder = '';
-    this.searchPlaceholder = '';
-    this.value = '';
-    this.choices = [];
-    this.unselect = true;
-    this.required = undefined;
-    this.loading = undefined;
-    this.search = undefined;
-    this.closeOnSelect = true;
-    this.name = undefined;
-    this.help = undefined;
-    this.label = undefined;
-    this.size = 'medium';
-    this.position = 'bottom-right';
-    this.placement = 'bottom-start';
-    this.invalid = false;
-    this.open = undefined;
-    this.disabled = undefined;
-    this.showParentLabel = true;
-    this.hoist = false;
-    this.squared = undefined;
-    this.squaredBottom = undefined;
-    this.squaredTop = undefined;
-    this.squaredLeft = undefined;
-    this.squaredRight = undefined;
-    this.hasFocus = false;
-    this.searchTerm = '';
-    this.filteredChoices = [];
-  }
-  /** Trigger focus on show */
-  handleShow() {
-    this.open = true;
-    setTimeout(() => {
-      this.searchInput && this.searchInput.triggerFocus();
-    }, 50);
-  }
-  handleHide() {
-    this.open = false;
-    itemIndex = 0;
-    this.scClose.emit();
-  }
-  handleBlur() {
-    this.hasFocus = false;
-    this.scBlur.emit();
-  }
-  handleFocus() {
-    this.hasFocus = true;
-    this.el.focus();
-    this.scFocus.emit();
-  }
-  /** Get the display value of the item. */
-  displayValue() {
-    var _a;
-    if (!this.value)
-      return false;
-    let chosen = this.choices.find(choice => choice.value == this.value);
-    let append = '';
-    if (!chosen) {
-      if (this.showParentLabel) {
-        append = (_a = this.choices.find(choice => { var _a, _b; return (_b = (_a = choice === null || choice === void 0 ? void 0 : choice.choices) === null || _a === void 0 ? void 0 : _a.some) === null || _b === void 0 ? void 0 : _b.call(_a, subChoice => subChoice.value === this.value); })) === null || _a === void 0 ? void 0 : _a.label;
-      }
-      const subchoices = (this.choices || []).map(choice => choice.choices).flat();
-      chosen = subchoices.find(choice => (choice === null || choice === void 0 ? void 0 : choice.value) == this.value);
+    constructor(hostRef) {
+        index.registerInstance(this, hostRef);
+        this.scSearch = index.createEvent(this, "scSearch", 7);
+        this.scOpen = index.createEvent(this, "scOpen", 7);
+        this.scClose = index.createEvent(this, "scClose", 7);
+        this.scBlur = index.createEvent(this, "scBlur", 7);
+        this.scFocus = index.createEvent(this, "scFocus", 7);
+        this.scChange = index.createEvent(this, "scChange", 7);
+        this.scScrollEnd = index.createEvent(this, "scScrollEnd", 7);
+        this.inputId = `select-${++id}`;
+        this.helpId = `select-help-text-${id}`;
+        this.labelId = `select-label-${id}`;
+        this.autocomplete = undefined;
+        this.placeholder = '';
+        this.searchPlaceholder = '';
+        this.value = '';
+        this.choices = [];
+        this.unselect = true;
+        this.required = undefined;
+        this.loading = undefined;
+        this.search = undefined;
+        this.closeOnSelect = true;
+        this.name = undefined;
+        this.help = undefined;
+        this.label = undefined;
+        this.size = 'medium';
+        this.position = 'bottom-right';
+        this.placement = 'bottom-start';
+        this.invalid = false;
+        this.open = undefined;
+        this.disabled = undefined;
+        this.showParentLabel = true;
+        this.hoist = false;
+        this.squared = undefined;
+        this.squaredBottom = undefined;
+        this.squaredTop = undefined;
+        this.squaredLeft = undefined;
+        this.squaredRight = undefined;
+        this.hasFocus = false;
+        this.searchTerm = '';
+        this.filteredChoices = [];
     }
-    if (chosen) {
-      return `${append ? append + ' — ' : ''}${chosen === null || chosen === void 0 ? void 0 : chosen.label}`;
+    /** Trigger focus on show */
+    handleShow() {
+        this.open = true;
+        setTimeout(() => {
+            this.searchInput && this.searchInput.triggerFocus();
+        }, 50);
     }
-    return false;
-  }
-  isChecked({ value, checked = false }) {
-    if (checked) {
-      return true;
+    handleHide() {
+        this.open = false;
+        itemIndex = 0;
+        this.scClose.emit();
     }
-    return !!value && this.value === value;
-  }
-  /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
-  async setCustomValidity(message) {
-    this.input.setCustomValidity(message);
-    this.invalid = !this.input.checkValidity();
-  }
-  async reportValidity() {
-    return this.input.reportValidity();
-  }
-  handleQuery(e) {
-    this.searchTerm = e.target.value;
-    this.scSearch.emit(this.searchTerm);
-  }
-  handleSelect(choice) {
-    const { value } = choice;
-    if (this.value === value && this.unselect) {
-      this.value = '';
+    handleBlur() {
+        this.hasFocus = false;
+        this.scBlur.emit();
     }
-    else {
-      this.value = value;
+    handleFocus() {
+        this.hasFocus = true;
+        this.el.focus();
+        this.scFocus.emit();
     }
-    if (this.closeOnSelect) {
-      this.searchTerm = '';
-    }
-    this.scChange.emit(choice);
-  }
-  handleSearchChange() {
-    const fuse = new Fuse(this.choices, {
-      keys: ['value', 'label'],
-    });
-    if (this.searchTerm) {
-      const results = fuse.search(this.searchTerm);
-      this.filteredChoices = results.map(result => result.item);
-    }
-    else {
-      this.filteredChoices = this.choices;
-    }
-  }
-  handleValueChange() {
-    if (this.input) {
-      this.invalid = !this.input.checkValidity();
-    }
-  }
-  handleOpenChange() {
-    if (this.open) {
-      this.scOpen.emit();
-      this.searchInput && this.searchInput.triggerFocus();
-    }
-    else {
-      this.scClose.emit();
-    }
-  }
-  handleMenuScroll(e) {
-    const scrollTop = e.target.scrollTop;
-    const scrollHeight = e.target.scrollHeight;
-    const offsetHeight = e.target.offsetHeight;
-    const contentHeight = scrollHeight - offsetHeight;
-    if (contentHeight - scrollTop < 5)
-      this.scScrollEnd.emit();
-  }
-  componentWillLoad() {
-    this.handleSearchChange();
-  }
-  componentDidLoad() {
-    this.formController = new formData.FormSubmitController(this.el).addFormData();
-    if (this.open) {
-      this.searchInput && this.searchInput.triggerFocus();
-    }
-  }
-  getItems() {
-    return [...this.el.shadowRoot.querySelectorAll('sc-menu-item')];
-  }
-  handleKeyDown(event) {
-    var _a, _b;
-    const target = event.target;
-    const items = this.getItems();
-    // Ignore key presses on tags
-    if (target.tagName.toLowerCase() === 'sc-tag') {
-      return;
-    }
-    // Tabbing out of the control closes it
-    if (event.key === 'Tab') {
-      if (this.open) {
-        this.handleHide();
-      }
-      return;
-    }
-    // Up/down opens the menu
-    if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
-      event.preventDefault();
-      // Show the menu if it's not already open
-      if (!this.open) {
-        this.handleShow();
-      }
-      // Focus on a menu item
-      if (event.key === 'ArrowDown') {
-        if (arrowFlag == 'up') {
-          itemIndex = itemIndex + 2;
+    /** Get the display value of the item. */
+    displayValue() {
+        var _a;
+        if (!this.value)
+            return false;
+        let chosen = this.choices.find(choice => choice.value == this.value);
+        let append = '';
+        if (!chosen) {
+            if (this.showParentLabel) {
+                append = (_a = this.choices.find(choice => { var _a, _b; return (_b = (_a = choice === null || choice === void 0 ? void 0 : choice.choices) === null || _a === void 0 ? void 0 : _a.some) === null || _b === void 0 ? void 0 : _b.call(_a, subChoice => subChoice.value === this.value); })) === null || _a === void 0 ? void 0 : _a.label;
+            }
+            const subchoices = (this.choices || []).map(choice => choice.choices).flat();
+            chosen = subchoices.find(choice => (choice === null || choice === void 0 ? void 0 : choice.value) == this.value);
         }
-        if (itemIndex > items.length - 1) {
-          itemIndex = 0;
+        if (chosen) {
+            return `${append ? append + ' — ' : ''}${chosen === null || chosen === void 0 ? void 0 : chosen.label}`;
         }
-        items[itemIndex].setFocus();
-        arrowFlag = 'down';
-        itemIndex++;
-        return;
-      }
-      if (event.key === 'ArrowUp') {
-        if (arrowFlag == 'down') {
-          itemIndex = itemIndex - 2;
+        return false;
+    }
+    isChecked({ value, checked = false }) {
+        if (checked) {
+            return true;
         }
-        if (itemIndex < 0) {
-          itemIndex = items.length - 1;
+        return !!value && this.value === value;
+    }
+    /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */
+    async setCustomValidity(message) {
+        this.input.setCustomValidity(message);
+        this.invalid = !this.input.checkValidity();
+    }
+    async reportValidity() {
+        return this.input.reportValidity();
+    }
+    handleQuery(e) {
+        this.searchTerm = e.target.value;
+        this.scSearch.emit(this.searchTerm);
+    }
+    handleSelect(choice) {
+        const { value } = choice;
+        if (this.value === value && this.unselect) {
+            this.value = '';
         }
-        items[itemIndex].setFocus();
-        arrowFlag = 'up';
-        itemIndex--;
-        return;
-      }
-    }
-    // Close select dropdown on Esc/Escape key
-    if (event.key === 'Escape') {
-      if (this.open) {
-        this.input.focus();
-        this.handleHide();
-      }
-      return;
-    }
-    // Open select dropdown with Enter
-    if (event.key === 'Enter') {
-      if (this.open) {
-        (_b = (_a = items[itemIndex - 1]) === null || _a === void 0 ? void 0 : _a.click) === null || _b === void 0 ? void 0 : _b.call(_a);
-        this.handleHide();
-        this.input.focus();
-      }
-      else {
-        this.handleShow();
-      }
-    }
-    // don't open the menu when a CTRL/Command key is pressed
-    if (event.ctrlKey || event.metaKey) {
-      return;
-    }
-    // All other "printable" keys open the menu and initiate type to select
-    // TODO: this is closing out the dropdown during typing events.
-    // FIX: It must have focus as well. And it fix the random closing issue.
-    if (!this.open && this.hasFocus && event.key.length === 1) {
-      this.handleShow();
-    }
-  }
-  disconnectedCallback() {
-    var _a;
-    (_a = this.formController) === null || _a === void 0 ? void 0 : _a.removeFormData();
-  }
-  renderIcon(icon) {
-    if (util.isValidURL(icon)) {
-      return index.h("img", { src: icon, alt: "icon", slot: "prefix", class: "choice__icon--image" });
-    }
-    return index.h("sc-icon", { name: icon, slot: "prefix", class: "choice__icon" });
-  }
-  renderItem(choice, index$1) {
-    var _a;
-    if ((_a = choice === null || choice === void 0 ? void 0 : choice.choices) === null || _a === void 0 ? void 0 : _a.length) {
-      return index.h("sc-menu-label", { key: index$1 }, choice.label);
-    }
-    return (index.h("sc-menu-item", { class: { 'is-unavailable': choice === null || choice === void 0 ? void 0 : choice.unavailable }, key: index$1, checked: this.isChecked(choice), value: choice === null || choice === void 0 ? void 0 : choice.value, onClick: () => !choice.disabled && this.handleSelect(choice), onKeyDown: event => {
-        if ((event.key === 'Enter' || event.key === ' ') && !choice.disabled) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          this.handleSelect(choice);
+        else {
+            this.value = value;
         }
-      }, disabled: choice.disabled, "aria-label": choice.label, "aria-selected": this.isChecked(choice) ? 'true' : 'false', role: "option" }, choice.label, !!(choice === null || choice === void 0 ? void 0 : choice.description) && index.h("div", { class: "select__description" }, choice === null || choice === void 0 ? void 0 : choice.description), index.h("div", { slot: "suffix" }, choice === null || choice === void 0 ? void 0 :
-      choice.suffix, " ", !!(choice === null || choice === void 0 ? void 0 : choice.suffixDescription) && index.h("div", { class: "select__suffix-description" }, choice === null || choice === void 0 ? void 0 : choice.suffixDescription)), !!(choice === null || choice === void 0 ? void 0 : choice.icon) && this.renderIcon(choice.icon)));
-  }
-  render() {
-    var _a;
-    return (index.h("div", { part: "base", class: {
-        'select': true,
-        'select--placeholder': !this.value,
-        'select--focused': this.hasFocus,
-        'select--is-open': !!this.open,
-        'select--disabled': this.disabled,
-        'select--has-choices': !!((_a = this === null || this === void 0 ? void 0 : this.choices) === null || _a === void 0 ? void 0 : _a.length),
-        'select--squared': this.squared,
-        'select--squared-bottom': this.squaredBottom,
-        'select--squared-top': this.squaredTop,
-        'select--squared-left': this.squaredLeft,
-        'select--squared-right': this.squaredRight,
-      } }, index.h("sc-form-control", { exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, index.h("input", { class: "select__hidden-input", name: this.name, ref: el => (this.input = el), value: this.value, required: this.required, disabled: this.disabled, "aria-hidden": "true", "aria-label": this.displayValue() || this.label || this.placeholder, onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() }), index.h("sc-dropdown", { exportparts: "trigger, panel", disabled: this.disabled, open: this.open, closeOnSelect: this.closeOnSelect, position: this.position, placement: this.placement, hoist: this.hoist, style: { '--panel-width': '100%' }, onScShow: () => this.handleShow(), onScHide: () => this.handleHide(), role: "select", "aria-open": this.open ? 'true' : 'false' }, index.h("slot", { name: "trigger", slot: "trigger" }, index.h("div", { class: "trigger", role: "button", tabIndex: -1, onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() }, index.h("div", { class: "select__value" }, index.h("slot", null, this.displayValue() || this.placeholder || wp.i18n.__('Select...', 'surecart'))), index.h("sc-icon", { exportparts: "base:caret", class: "select__caret", name: "chevron-down" }))), this.search && (index.h("sc-input", { exportparts: "base:search__base, input:search__input, form-control:search__form-control", placeholder: this.searchPlaceholder || wp.i18n.__('Search...', 'surecart'), onScInput: e => this.handleQuery(e), class: "search", clearable: true, part: "search", value: this.searchTerm, ref: el => (this.searchInput = el), "aria-label": wp.i18n.__('Type to search', 'surecart'), onKeyDown: e => e.stopPropagation() }, this.loading && index.h("sc-spinner", { exportparts: "base:spinner__base", style: { '--spinner-size': '0.5em' }, slot: "suffix" }))), index.h("sc-menu", { style: { maxHeight: '210px', overflow: 'auto' }, exportparts: "base:menu__base", onScroll: e => this.handleMenuScroll(e), "aria-multiselectable": "false" }, index.h("slot", { name: "prefix" }), (this.filteredChoices || []).map((choice, index) => {
-      return [this.renderItem(choice, index), (choice.choices || []).map(choice => this.renderItem(choice, index))];
-    }), this.loading && (index.h("div", { class: "loading" }, index.h("sc-spinner", { exportparts: "base:spinner__base" }))), !this.loading && !this.filteredChoices.length && (index.h("div", { class: "select__empty", part: "empty" }, wp.i18n.__('Nothing Found', 'surecart'))), index.h("slot", { name: "suffix" }))))));
-  }
-  get el() { return index.getElement(this); }
-  static get watchers() { return {
-    "searchTerm": ["handleSearchChange"],
-    "choices": ["handleSearchChange"],
-    "value": ["handleValueChange"],
-    "open": ["handleOpenChange"]
-  }; }
+        if (this.closeOnSelect) {
+            this.searchTerm = '';
+        }
+        this.scChange.emit(choice);
+    }
+    handleSearchChange() {
+        const fuse = new Fuse(this.choices, {
+            keys: ['value', 'label'],
+        });
+        if (this.searchTerm) {
+            const results = fuse.search(this.searchTerm);
+            this.filteredChoices = results.map(result => result.item);
+        }
+        else {
+            this.filteredChoices = this.choices;
+        }
+    }
+    handleValueChange() {
+        if (this.input) {
+            this.invalid = !this.input.checkValidity();
+        }
+    }
+    handleOpenChange() {
+        if (this.open) {
+            this.scOpen.emit();
+            this.searchInput && this.searchInput.triggerFocus();
+        }
+        else {
+            this.scClose.emit();
+        }
+    }
+    handleMenuScroll(e) {
+        const scrollTop = e.target.scrollTop;
+        const scrollHeight = e.target.scrollHeight;
+        const offsetHeight = e.target.offsetHeight;
+        const contentHeight = scrollHeight - offsetHeight;
+        if (contentHeight - scrollTop < 5)
+            this.scScrollEnd.emit();
+    }
+    componentWillLoad() {
+        this.handleSearchChange();
+    }
+    componentDidLoad() {
+        this.formController = new formData.FormSubmitController(this.el).addFormData();
+        if (this.open) {
+            this.searchInput && this.searchInput.triggerFocus();
+        }
+    }
+    getItems() {
+        return [...this.el.shadowRoot.querySelectorAll('sc-menu-item')];
+    }
+    handleKeyDown(event) {
+        var _a, _b;
+        const target = event.target;
+        const items = this.getItems();
+        // Ignore key presses on tags
+        if (target.tagName.toLowerCase() === 'sc-tag') {
+            return;
+        }
+        // Tabbing out of the control closes it
+        if (event.key === 'Tab') {
+            if (this.open) {
+                this.handleHide();
+            }
+            return;
+        }
+        // Up/down opens the menu
+        if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
+            event.preventDefault();
+            // Show the menu if it's not already open
+            if (!this.open) {
+                this.handleShow();
+            }
+            // Focus on a menu item
+            if (event.key === 'ArrowDown') {
+                if (arrowFlag == 'up') {
+                    itemIndex = itemIndex + 2;
+                }
+                if (itemIndex > items.length - 1) {
+                    itemIndex = 0;
+                }
+                items[itemIndex].setFocus();
+                arrowFlag = 'down';
+                itemIndex++;
+                return;
+            }
+            if (event.key === 'ArrowUp') {
+                if (arrowFlag == 'down') {
+                    itemIndex = itemIndex - 2;
+                }
+                if (itemIndex < 0) {
+                    itemIndex = items.length - 1;
+                }
+                items[itemIndex].setFocus();
+                arrowFlag = 'up';
+                itemIndex--;
+                return;
+            }
+        }
+        // Close select dropdown on Esc/Escape key
+        if (event.key === 'Escape') {
+            if (this.open) {
+                this.input.focus();
+                this.handleHide();
+            }
+            return;
+        }
+        // Open select dropdown with Enter
+        if (event.key === 'Enter') {
+            if (this.open) {
+                (_b = (_a = items[itemIndex - 1]) === null || _a === void 0 ? void 0 : _a.click) === null || _b === void 0 ? void 0 : _b.call(_a);
+                this.handleHide();
+                this.input.focus();
+            }
+            else {
+                this.handleShow();
+            }
+        }
+        // don't open the menu when a CTRL/Command key is pressed
+        if (event.ctrlKey || event.metaKey) {
+            return;
+        }
+        // All other "printable" keys open the menu and initiate type to select
+        // TODO: this is closing out the dropdown during typing events.
+        // FIX: It must have focus as well. And it fix the random closing issue.
+        if (!this.open && this.hasFocus && event.key.length === 1) {
+            this.handleShow();
+        }
+    }
+    disconnectedCallback() {
+        var _a;
+        (_a = this.formController) === null || _a === void 0 ? void 0 : _a.removeFormData();
+    }
+    renderIcon(icon) {
+        if (util.isValidURL(icon)) {
+            return index.h("img", { src: icon, alt: "icon", slot: "prefix", class: "choice__icon--image" });
+        }
+        return index.h("sc-icon", { name: icon, slot: "prefix", class: "choice__icon" });
+    }
+    renderItem(choice, index$1) {
+        var _a;
+        if ((_a = choice === null || choice === void 0 ? void 0 : choice.choices) === null || _a === void 0 ? void 0 : _a.length) {
+            return index.h("sc-menu-label", { key: index$1 }, choice.label);
+        }
+        return (index.h("sc-menu-item", { class: { 'is-unavailable': choice === null || choice === void 0 ? void 0 : choice.unavailable }, key: index$1, checked: this.isChecked(choice), value: choice === null || choice === void 0 ? void 0 : choice.value, onClick: () => !choice.disabled && this.handleSelect(choice), onKeyDown: event => {
+                if ((event.key === 'Enter' || event.key === ' ') && !choice.disabled) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    this.handleSelect(choice);
+                }
+            }, disabled: choice.disabled, "aria-label": choice.label, "aria-selected": this.isChecked(choice) ? 'true' : 'false', role: "option" }, choice.label, !!(choice === null || choice === void 0 ? void 0 : choice.description) && index.h("div", { class: "select__description" }, choice === null || choice === void 0 ? void 0 : choice.description), index.h("div", { slot: "suffix" }, choice === null || choice === void 0 ? void 0 :
+            choice.suffix, " ", !!(choice === null || choice === void 0 ? void 0 : choice.suffixDescription) && index.h("div", { class: "select__suffix-description" }, choice === null || choice === void 0 ? void 0 : choice.suffixDescription)), !!(choice === null || choice === void 0 ? void 0 : choice.icon) && this.renderIcon(choice.icon)));
+    }
+    render() {
+        var _a;
+        return (index.h("div", { key: '8a0a86190a33d43661fce46721263effa9bdae35', part: "base", class: {
+                'select': true,
+                'select--placeholder': !this.value,
+                'select--focused': this.hasFocus,
+                'select--is-open': !!this.open,
+                'select--disabled': this.disabled,
+                'select--has-choices': !!((_a = this === null || this === void 0 ? void 0 : this.choices) === null || _a === void 0 ? void 0 : _a.length),
+                'select--squared': this.squared,
+                'select--squared-bottom': this.squaredBottom,
+                'select--squared-top': this.squaredTop,
+                'select--squared-left': this.squaredLeft,
+                'select--squared-right': this.squaredRight,
+            } }, index.h("sc-form-control", { key: 'e2c90cf6a4d3b83ffe4d3f9eeb9ac1173d85a2d2', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, index.h("input", { key: 'db59f375e4e1d761e343b6539cce0a490fccca8f', class: "select__hidden-input", name: this.name, ref: el => (this.input = el), value: this.value, required: this.required, disabled: this.disabled, "aria-hidden": "true", "aria-label": this.displayValue() || this.label || this.placeholder, onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() }), index.h("sc-dropdown", { key: '8a112d34acb77f234a83aead13c52e18ab28c316', exportparts: "trigger, panel", disabled: this.disabled, open: this.open, closeOnSelect: this.closeOnSelect, position: this.position, placement: this.placement, hoist: this.hoist, style: { '--panel-width': '100%' }, onScShow: () => this.handleShow(), onScHide: () => this.handleHide(), role: "select", "aria-open": this.open ? 'true' : 'false' }, index.h("slot", { key: 'd739147043741554f88a25c658f52bc6207044a6', name: "trigger", slot: "trigger" }, index.h("div", { key: 'c619a3fbfe8702c5964e645d142418d5496f20e9', class: "trigger", role: "button", tabIndex: -1, onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() }, index.h("div", { key: '9602581c99d6d258ce935922d9f9aa46288471e6', class: "select__value" }, index.h("slot", { key: '8c7e0864001ddaecd4bc1a65b1119ac0ad169a30' }, this.displayValue() || this.placeholder || wp.i18n.__('Select...', 'surecart'))), index.h("sc-icon", { key: '81c08ede18555f83d49d74f50f5aaee3cc7bce00', exportparts: "base:caret", class: "select__caret", name: "chevron-down" }))), this.search && (index.h("sc-input", { key: 'e5975bd42c8e5e68e830b78912c6ce024bea80e9', exportparts: "base:search__base, input:search__input, form-control:search__form-control", placeholder: this.searchPlaceholder || wp.i18n.__('Search...', 'surecart'), onScInput: e => this.handleQuery(e), class: "search", clearable: true, part: "search", value: this.searchTerm, ref: el => (this.searchInput = el), "aria-label": wp.i18n.__('Type to search', 'surecart'), onKeyDown: e => e.stopPropagation() }, this.loading && index.h("sc-spinner", { key: '4f93ac498db9cd7a76af9057b1c4effc54277a14', exportparts: "base:spinner__base", style: { '--spinner-size': '0.5em' }, slot: "suffix" }))), index.h("sc-menu", { key: 'b92501c13cc0dd0a1648c27f76057d8a7feb2545', style: { maxHeight: '210px', overflow: 'auto' }, exportparts: "base:menu__base", onScroll: e => this.handleMenuScroll(e), "aria-multiselectable": "false" }, index.h("slot", { key: '40c8f56b498af3210eee0b0b9c30560568b16e4b', name: "prefix" }), (this.filteredChoices || []).map((choice, index) => {
+            return [this.renderItem(choice, index), (choice.choices || []).map(choice => this.renderItem(choice, index))];
+        }), this.loading && (index.h("div", { key: 'fec5e1be1094a5d0d71e6e8a0909ba6dc7ba0d61', class: "loading" }, index.h("sc-spinner", { key: '0af4150810b90a3d687995178d096a36dded2ae1', exportparts: "base:spinner__base" }))), !this.loading && !this.filteredChoices.length && (index.h("div", { key: '03eac5763288edf1588138a78a9c7e3ff4a56948', class: "select__empty", part: "empty" }, wp.i18n.__('Nothing Found', 'surecart'))), index.h("slot", { key: '5b58f5c6b624db90860747a88766eb55858faf8b', name: "suffix" }))))));
+    }
+    get el() { return index.getElement(this); }
+    static get watchers() { return {
+        "searchTerm": ["handleSearchChange"],
+        "choices": ["handleSearchChange"],
+        "value": ["handleValueChange"],
+        "open": ["handleOpenChange"]
+    }; }
 };
-ScSelectDropdown.style = scSelectCss;
+ScSelectDropdown.style = ScSelectStyle0;
 
 exports.sc_menu_label = ScMenuLabel;
 exports.sc_select = ScSelectDropdown;

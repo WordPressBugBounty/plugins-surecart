@@ -6,7 +6,7 @@ import { NoticeType, ScNoticeStore } from '../../types';
  * @param {ScNoticeStore} notice
  */
 export declare const createNotice: (status: NoticeType, notice: ScNoticeStore, options?: {
-  dismissible: boolean;
+    dismissible: boolean;
 }) => void;
 /**
  * Create an error notice.
@@ -15,7 +15,7 @@ export declare const createNotice: (status: NoticeType, notice: ScNoticeStore, o
  * @param {object} options
  */
 export declare const createErrorNotice: (notice: any, options?: {
-  dismissible: boolean;
+    dismissible: boolean;
 }) => void;
 /**
  * Create a success notice.
@@ -24,7 +24,7 @@ export declare const createErrorNotice: (notice: any, options?: {
  * @param {object} options
  */
 export declare const createSuccessNotice: (notice: any, options?: {
-  dismissible: boolean;
+    dismissible: boolean;
 }) => void;
 /**
  * Create an info notice.
@@ -33,7 +33,7 @@ export declare const createSuccessNotice: (notice: any, options?: {
  * @param {object} options
  */
 export declare const createInfoNotice: (notice: any, options?: {
-  dismissible: boolean;
+    dismissible: boolean;
 }) => void;
 /**
  * Create a warning notice.
@@ -42,7 +42,7 @@ export declare const createInfoNotice: (notice: any, options?: {
  * @param {object} options
  */
 export declare const createWarningNotice: (notice: any, options?: {
-  dismissible: boolean;
+    dismissible: boolean;
 }) => void;
 /**
  * Remove the notice.

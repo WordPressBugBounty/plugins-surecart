@@ -1,3 +1,3 @@
 export declare class ScProductItemTitle {
-  render(): any;
+    render(): any;
 }

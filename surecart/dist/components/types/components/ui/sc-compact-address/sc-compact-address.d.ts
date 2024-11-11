@@ -21,43 +21,43 @@ import { Address } from '../../../types';
  * @part block-ui__content - The block ui content (spinner).
  */
 export declare class ScCompactAddress {
-  el: HTMLScCompactAddressElement;
-  /** The address. */
-  address: Partial<Address>;
-  names: Partial<Address>;
-  /**Placeholders */
-  placeholders: Partial<Address>;
-  /** Label for the address */
-  label: string;
-  /** Is this required? */
-  required: boolean;
-  /** Is this loading */
-  loading: boolean;
-  /** Address change event. */
-  scChangeAddress: EventEmitter<Partial<Address>>;
-  /** Address input event. */
-  scInputAddress: EventEmitter<Partial<Address>>;
-  /** Holds our country choices. */
-  countryChoices: Array<{
-    value: string;
+    el: HTMLScCompactAddressElement;
+    /** The address. */
+    address: Partial<Address>;
+    names: Partial<Address>;
+    /**Placeholders */
+    placeholders: Partial<Address>;
+    /** Label for the address */
     label: string;
-  }>;
-  /** Holds the regions for a given country. */
-  regions: Array<{
-    value: string;
-    label: string;
-  }>;
-  showState: boolean;
-  showPostal: boolean;
-  /** When the state changes, we want to update city and postal fields. */
-  handleAddressChange(): void;
-  updateAddress(address: Partial<Address>): void;
-  handleAddressInput(address: Partial<Address>): void;
-  clearAddress(): void;
-  /** Set the regions based on the country. */
-  setRegions(): void;
-  componentWillLoad(): void;
-  reportValidity(): Promise<boolean>;
-  getStatePlaceholder(): string;
-  render(): any;
+    /** Is this required? */
+    required: boolean;
+    /** Is this loading */
+    loading: boolean;
+    /** Address change event. */
+    scChangeAddress: EventEmitter<Partial<Address>>;
+    /** Address input event. */
+    scInputAddress: EventEmitter<Partial<Address>>;
+    /** Holds our country choices. */
+    countryChoices: Array<{
+        value: string;
+        label: string;
+    }>;
+    /** Holds the regions for a given country. */
+    regions: Array<{
+        value: string;
+        label: string;
+    }>;
+    showState: boolean;
+    showPostal: boolean;
+    /** When the state changes, we want to update city and postal fields. */
+    handleAddressChange(): void;
+    updateAddress(address: Partial<Address>): void;
+    handleAddressInput(address: Partial<Address>): void;
+    clearAddress(): void;
+    /** Set the regions based on the country. */
+    setRegions(): void;
+    componentWillLoad(): void;
+    reportValidity(): Promise<boolean>;
+    getStatePlaceholder(): string;
+    render(): any;
 }

@@ -1,4 +1,4 @@
-import { Price, Product } from 'src/types';
+import { Price, Product } from "../../types";
 /**
  * Product viewed event.
  */

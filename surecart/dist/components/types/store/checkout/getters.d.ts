@@ -24,18 +24,18 @@ export declare const shippingAddressRequired: () => boolean;
  * Get Billing address
  */
 export declare const getCompleteAddress: (type?: string) => {
-  name?: string;
-  city?: string;
-  state?: string;
-  postal_code?: string;
-  country?: string;
-  constructor: Function;
-  toString(): string;
-  toLocaleString(): string;
-  valueOf(): Object;
-  hasOwnProperty(v: PropertyKey): boolean;
-  isPrototypeOf(v: Object): boolean;
-  propertyIsEnumerable(v: PropertyKey): boolean;
-  line1: string;
-  line2: string;
+    name?: string;
+    city?: string;
+    state?: string;
+    postal_code?: string;
+    country?: string;
+    constructor: Function;
+    toString(): string;
+    toLocaleString(): string;
+    valueOf(): Object;
+    hasOwnProperty(v: PropertyKey): boolean;
+    isPrototypeOf(v: Object): boolean;
+    propertyIsEnumerable(v: PropertyKey): boolean;
+    line1: string;
+    line2: string;
 };

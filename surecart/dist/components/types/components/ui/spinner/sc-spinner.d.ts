@@ -1,3 +1,3 @@
 export declare class ScSpinner {
-  render(): any;
+    render(): any;
 }

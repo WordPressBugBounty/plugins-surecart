@@ -1,3 +1,3 @@
 export declare class ScMenuDivider {
-  render(): any;
+    render(): any;
 }

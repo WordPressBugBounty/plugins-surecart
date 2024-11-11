@@ -22,17 +22,17 @@ import { LineItem } from '../../../../types';
  * @part line-item__price-description - The line item price description
  */
 export declare class ScLineItems {
-  /**
-   * Is the line item editable?
-   */
-  editable: boolean;
-  /**
-   * Is the line item removable?
-   */
-  removable: boolean;
-  /**
-   * Is the line item editable?
-   */
-  isEditable(item: LineItem): boolean;
-  render(): any;
+    /**
+     * Is the line item editable?
+     */
+    editable: boolean;
+    /**
+     * Is the line item removable?
+     */
+    removable: boolean;
+    /**
+     * Is the line item editable?
+     */
+    isEditable(item: LineItem): boolean;
+    render(): any;
 }

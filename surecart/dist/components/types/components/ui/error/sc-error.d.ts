@@ -12,11 +12,11 @@ import { ResponseError } from '../../../types';
  * @part close - The close icon.
  */
 export declare class ScFormErrorProvider {
-  /** Set the state. */
-  scUpdateError: EventEmitter<ResponseError>;
-  /** Error to display. */
-  error: ResponseError | null;
-  /** Trigger the error event when an error happens  */
-  handleErrorUpdate(val: any): void;
-  render(): any;
+    /** Set the state. */
+    scUpdateError: EventEmitter<ResponseError>;
+    /** Error to display. */
+    error: ResponseError | null;
+    /** Trigger the error event when an error happens  */
+    handleErrorUpdate(val: any): void;
+    render(): any;
 }

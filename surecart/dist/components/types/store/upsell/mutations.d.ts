@@ -1,7 +1,7 @@
 /**
  * Internal dependencies.
  */
-import { LineItem } from 'src/types';
+import { LineItem } from "../../types";
 /**
  * Update the upsell.
  */

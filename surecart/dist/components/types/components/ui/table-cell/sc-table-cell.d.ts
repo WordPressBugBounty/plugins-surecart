@@ -1,3 +1,3 @@
 export declare class ScTableScll {
-  render(): any;
+    render(): any;
 }

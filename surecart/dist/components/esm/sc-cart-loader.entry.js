@@ -1,38 +1,39 @@
-import { r as registerInstance, h } from './index-644f5478.js';
-import { s as state } from './mutations-d03185e9.js';
-import './index-1046c77e.js';
-import './utils-00526fde.js';
-import './get-query-arg-cb6b8763.js';
-import './add-query-args-f4c5962b.js';
+import { r as registerInstance, h } from './index-745b6bec.js';
+import { s as state } from './mutations-98df238e.js';
+import './index-06061d4e.js';
+import './utils-e9ee502a.js';
+import './remove-query-args-938c53ea.js';
+import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
-import './google-357f4c4c.js';
-import './currency-728311ef.js';
-import './store-bccb89b4.js';
-import './price-178c2e2b.js';
+import './google-a86aa761.js';
+import './currency-a0c9bff4.js';
+import './store-eb9dd43c.js';
+import './price-d5770168.js';
 
 const scCartLoaderCss = ":host{position:absolute;z-index:var(--sc-cart-z-index, 999999);font-family:var(--sc-font-sans)}";
+const ScCartLoaderStyle0 = scCartLoaderCss;
 
 const ScCartLoader = class {
-  constructor(hostRef) {
-    registerInstance(this, hostRef);
-    this.template = undefined;
-  }
-  render() {
-    var _a;
-    // check for forms.
-    if (document.querySelector('sc-checkout')) {
-      return;
+    constructor(hostRef) {
+        registerInstance(this, hostRef);
+        this.template = undefined;
     }
-    // clear the order if it's already paid.
-    if (((_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.status) === 'paid') {
-      state.checkout = null;
-      return null;
+    render() {
+        var _a;
+        // check for forms.
+        if (document.querySelector('sc-checkout')) {
+            return;
+        }
+        // clear the order if it's already paid.
+        if (((_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.status) === 'paid') {
+            state.checkout = null;
+            return null;
+        }
+        // return the loader.
+        return h("div", { innerHTML: this.template || '' });
     }
-    // return the loader.
-    return h("div", { innerHTML: this.template || '' });
-  }
 };
-ScCartLoader.style = scCartLoaderCss;
+ScCartLoader.style = ScCartLoaderStyle0;
 
 export { ScCartLoader as sc_cart_loader };
 

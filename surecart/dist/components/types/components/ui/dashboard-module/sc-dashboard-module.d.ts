@@ -11,8 +11,8 @@
  * @part error__ message - The alert message.
  */
 export declare class ScDashboardModule {
-  heading: string;
-  error: string;
-  loading: boolean;
-  render(): any;
+    heading: string;
+    error: string;
+    loading: boolean;
+    render(): any;
 }

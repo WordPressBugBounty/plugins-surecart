@@ -4,11 +4,11 @@
  * @part icon__base - The icon base wrapper.
  */
 export declare class ScCartIcon {
-  /** The icon to show. */
-  icon: string;
-  /** Count the number of items in the cart. */
-  getItemsCount(): number;
-  /** Toggle the cart in the ui. */
-  toggleCart(): void;
-  render(): any;
+    /** The icon to show. */
+    icon: string;
+    /** Count the number of items in the cart. */
+    getItemsCount(): number;
+    /** Toggle the cart in the ui. */
+    toggleCart(): void;
+    render(): any;
 }

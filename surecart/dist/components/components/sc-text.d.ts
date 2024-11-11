@@ -2,8 +2,8 @@ import type { Components, JSX } from "../types/components";
 
 interface ScText extends Components.ScText, HTMLElement {}
 export const ScText: {
-  prototype: ScText;
-  new (): ScText;
+    prototype: ScText;
+    new (): ScText;
 };
 /**
  * Used to define this component and all nested components recursively.

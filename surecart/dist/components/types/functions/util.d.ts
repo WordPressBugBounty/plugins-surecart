@@ -7,7 +7,7 @@ export declare const isValidURL: (str: any) => boolean;
 export declare const getValueFromUrl: (key: string) => string;
 export declare const sortByArray: (item: any, key: any, orderArray: any) => any;
 export declare const getVariantFromValues: ({ variants, values }: {
-  variants: any;
-  values: any;
+    variants: any;
+    values: any;
 }) => any;
 export declare const isInRange: (value: any, price: any) => boolean;

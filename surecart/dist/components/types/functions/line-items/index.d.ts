@@ -2,17 +2,17 @@ import { Bump, Checkout, ChoiceType, LineItemData, lineItems, Price, PriceChoice
 export declare const getEnabledPriceChoices: (choices: Array<PriceChoice>) => Array<PriceChoice>;
 export declare const convertPriceChoiceToLineItemData: (choice: PriceChoice) => LineItemData;
 export declare const convertLineItemsToLineItemData: (lineItems: RecursivePartial<lineItems>) => Array<{
-  price_id: string;
-  quantity: number;
-  variant_id?: string;
+    price_id: string;
+    quantity: number;
+    variant_id?: string;
 }>;
 export declare const addLineItem: (lineItems: RecursivePartial<lineItems>, data: {
-  price_id: string;
-  quantity: number;
+    price_id: string;
+    quantity: number;
 }) => {
-  price_id: string;
-  quantity: number;
-  variant_id?: string;
+    price_id: string;
+    quantity: number;
+    variant_id?: string;
 }[];
 /**
  * Calculates the initial line items for the session.

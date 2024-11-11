@@ -1,4 +1,4 @@
 export declare class ScUpsell {
-  componentWillLoad(): void;
-  render(): any;
+    componentWillLoad(): void;
+    render(): any;
 }

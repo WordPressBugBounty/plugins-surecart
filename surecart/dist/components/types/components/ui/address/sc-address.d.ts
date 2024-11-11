@@ -21,53 +21,53 @@ import { Address } from '../../../types';
  * @part block-ui__content - The block ui content (spinner).
  */
 export declare class ScAddress {
-  el: HTMLScAddressElement;
-  /** The address. */
-  address: Partial<Address>;
-  names: Partial<Address>;
-  placeholders: Partial<Address>;
-  /** Is this loading?  */
-  loading: boolean;
-  /** Is this disabled? */
-  disabled: boolean;
-  /** The label for the field. */
-  label: string;
-  /** Should we show name field? */
-  showName: boolean;
-  /** Should we show name field? */
-  showLine2: boolean;
-  /** Is this required? */
-  required: boolean;
-  /** Is the name required */
-  requireName: boolean;
-  /** Should we show the city field? */
-  showCity: boolean;
-  /** Should we show the postal field? */
-  showPostal: boolean;
-  /** Holds the regions for a given country. */
-  regions: Array<{
-    value: string;
+    el: HTMLScAddressElement;
+    /** The address. */
+    address: Partial<Address>;
+    names: Partial<Address>;
+    placeholders: Partial<Address>;
+    /** Is this loading?  */
+    loading: boolean;
+    /** Is this disabled? */
+    disabled: boolean;
+    /** The label for the field. */
     label: string;
-  }>;
-  /** Holds our country choices. */
-  countryChoices: Array<{
-    value: string;
-    label: string;
-  }>;
-  /** Address change event. */
-  scChangeAddress: EventEmitter<Partial<Address>>;
-  /** Address change event. */
-  scInputAddress: EventEmitter<Partial<Address>>;
-  /** When the state changes, we want to update city and postal fields. */
-  handleAddressChange(): void;
-  handleNameChange(): void;
-  decodeHtmlEntities(html: string): string;
-  updateAddress(address: Partial<Address>): void;
-  handleAddressInput(address: Partial<Address>): void;
-  clearAddress(): void;
-  /** Set the regions based on the country. */
-  setRegions(): void;
-  componentWillLoad(): void;
-  reportValidity(): Promise<boolean>;
-  render(): any;
+    /** Should we show name field? */
+    showName: boolean;
+    /** Should we show name field? */
+    showLine2: boolean;
+    /** Is this required? */
+    required: boolean;
+    /** Is the name required */
+    requireName: boolean;
+    /** Should we show the city field? */
+    showCity: boolean;
+    /** Should we show the postal field? */
+    showPostal: boolean;
+    /** Holds the regions for a given country. */
+    regions: Array<{
+        value: string;
+        label: string;
+    }>;
+    /** Holds our country choices. */
+    countryChoices: Array<{
+        value: string;
+        label: string;
+    }>;
+    /** Address change event. */
+    scChangeAddress: EventEmitter<Partial<Address>>;
+    /** Address change event. */
+    scInputAddress: EventEmitter<Partial<Address>>;
+    /** When the state changes, we want to update city and postal fields. */
+    handleAddressChange(): void;
+    handleNameChange(): void;
+    decodeHtmlEntities(html: string): string;
+    updateAddress(address: Partial<Address>): void;
+    handleAddressInput(address: Partial<Address>): void;
+    clearAddress(): void;
+    /** Set the regions based on the country. */
+    setRegions(): void;
+    componentWillLoad(): void;
+    reportValidity(): Promise<boolean>;
+    render(): any;
 }

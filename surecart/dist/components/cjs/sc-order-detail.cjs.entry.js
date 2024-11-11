@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-f1e4d53b.js');
-const consumer = require('./consumer-21fdeb72.js');
+const index = require('./index-8acc3c89.js');
+const consumer = require('./consumer-9f4ee0e3.js');
 
 /**
  * Set a value by a dot path.
@@ -11,6 +11,7 @@ const consumer = require('./consumer-21fdeb72.js');
  * @param prop The path to be set.
  * @param value The value to set.
  */
+
 function set(obj, prop, value) {
 	prop = typeof prop === 'number' ? propToArray(prop.toString()) : typeof prop === 'string' ? propToArray(prop) : prop;
 
@@ -180,59 +181,60 @@ var lib = {
 };
 
 const scOrderDetailCss = ":host{display:block}.order-detail__value{display:block;font-weight:var(--sc-font-weight-semibold);line-height:var(--sc-line-height-dense)}.order-detail__label{display:block;color:var(--sc-color-gray-500);line-height:var(--sc-line-height-dense)}";
+const ScOrderDetailStyle0 = scOrderDetailCss;
 
 const ScSessionDetail = class {
-  constructor(hostRef) {
-    index.registerInstance(this, hostRef);
-    this.order = undefined;
-    this.value = undefined;
-    this.fallback = undefined;
-    this.metaKey = undefined;
-    this.loading = undefined;
-    this.label = undefined;
-  }
-  getPropByPath(object, path, defaultValue) {
-    if (object && path.length)
-      return this.getPropByPath(object[path.shift()], path, defaultValue);
-    return object === undefined ? defaultValue : object;
-  }
-  getValue() {
-    var _a, _b;
-    if (!this.value) {
-      return;
+    constructor(hostRef) {
+        index.registerInstance(this, hostRef);
+        this.order = undefined;
+        this.value = undefined;
+        this.fallback = undefined;
+        this.metaKey = undefined;
+        this.loading = undefined;
+        this.label = undefined;
     }
-    let value = '';
-    // get metadata value
-    if (this.value === 'metadata') {
-      return lib.get((_a = this === null || this === void 0 ? void 0 : this.order) === null || _a === void 0 ? void 0 : _a.metadata, this.value || '');
+    getPropByPath(object, path, defaultValue) {
+        if (object && path.length)
+            return this.getPropByPath(object[path.shift()], path, defaultValue);
+        return object === undefined ? defaultValue : object;
     }
-    // get value
-    value = lib.get(this === null || this === void 0 ? void 0 : this.order, this.value || '');
-    // if number, format it
-    if (typeof value === 'number') {
-      value = index.h("sc-format-number", { type: "currency", currency: (_b = this === null || this === void 0 ? void 0 : this.order) === null || _b === void 0 ? void 0 : _b.currency, value: value });
+    getValue() {
+        var _a, _b;
+        if (!this.value) {
+            return;
+        }
+        let value = '';
+        // get metadata value
+        if (this.value === 'metadata') {
+            return lib.get((_a = this === null || this === void 0 ? void 0 : this.order) === null || _a === void 0 ? void 0 : _a.metadata, this.value || '');
+        }
+        // get value
+        value = lib.get(this === null || this === void 0 ? void 0 : this.order, this.value || '');
+        // if number, format it
+        if (typeof value === 'number') {
+            value = index.h("sc-format-number", { type: "currency", currency: (_b = this === null || this === void 0 ? void 0 : this.order) === null || _b === void 0 ? void 0 : _b.currency, value: value });
+        }
+        return value;
     }
-    return value;
-  }
-  render() {
-    if (this.loading) {
-      return (index.h("div", { part: "base", class: {
-          'order-detail': true,
-        } }, index.h("span", { part: "label", class: "order-detail__label" }, index.h("sc-skeleton", { style: { width: '60px', height: '8px', display: 'inline-block' } })), index.h("span", { part: "value", class: "order-detail__value" }, index.h("sc-skeleton", { style: { width: '120px', display: 'inline-block' } }))));
+    render() {
+        if (this.loading) {
+            return (index.h("div", { part: "base", class: {
+                    'order-detail': true,
+                } }, index.h("span", { part: "label", class: "order-detail__label" }, index.h("sc-skeleton", { style: { width: '60px', height: '8px', display: 'inline-block' } })), index.h("span", { part: "value", class: "order-detail__value" }, index.h("sc-skeleton", { style: { width: '120px', display: 'inline-block' } }))));
+        }
+        const value = this.getValue();
+        if (!value) {
+            if (!this.fallback) {
+                return;
+            }
+        }
+        return (index.h("div", { part: "base", class: {
+                'order-detail': true,
+            } }, index.h("span", { part: "label", class: "order-detail__label" }, index.h("slot", { name: "label" }, this.label)), index.h("span", { part: "value", class: "order-detail__value" }, index.h("slot", { name: "value" }, value || this.fallback))));
     }
-    const value = this.getValue();
-    if (!value) {
-      if (!this.fallback) {
-        return;
-      }
-    }
-    return (index.h("div", { part: "base", class: {
-        'order-detail': true,
-      } }, index.h("span", { part: "label", class: "order-detail__label" }, index.h("slot", { name: "label" }, this.label)), index.h("span", { part: "value", class: "order-detail__value" }, index.h("slot", { name: "value" }, value || this.fallback))));
-  }
 };
 consumer.openWormhole(ScSessionDetail, ['order', 'loading'], false);
-ScSessionDetail.style = scOrderDetailCss;
+ScSessionDetail.style = ScOrderDetailStyle0;
 
 exports.sc_order_detail = ScSessionDetail;
 

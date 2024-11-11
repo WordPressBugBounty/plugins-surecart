@@ -22,51 +22,51 @@ import { DiscountResponse } from '../../../types';
  * @part block-ui__content - The block ui content (spinner).
  */
 export declare class ScCouponForm {
-  el: HTMLScCouponFormElement;
-  private input;
-  private couponTag;
-  private addCouponTrigger;
-  /** The label for the coupon form */
-  label: string;
-  /** Is the form loading */
-  loading: boolean;
-  /** Is the form calculating */
-  busy: boolean;
-  /** The placeholder for the input */
-  placeholder: string;
-  /** The error message */
-  error: string;
-  /** Force the form to show */
-  forceOpen: boolean;
-  /** The discount */
-  discount: DiscountResponse;
-  /** Currency */
-  currency: string;
-  /** The discount amount */
-  discountAmount: number;
-  /** Has recurring */
-  showInterval: boolean;
-  /** Is it open */
-  open: boolean;
-  collapsed: boolean;
-  /** The value of the input */
-  value: string;
-  /** When the coupon is applied */
-  scApplyCoupon: EventEmitter<string>;
-  /** The text for apply button */
-  buttonText: string;
-  /** Is the form editable */
-  editable: boolean;
-  /** Auto focus the input when opened. */
-  handleOpenChange(val: any): void;
-  /** Close it when blurred and no value. */
-  handleBlur(): void;
-  getHumanReadableDiscount(): string;
-  /** Apply the coupon. */
-  applyCoupon(): void;
-  handleKeyDown(e: any): void;
-  translateHumanDiscountWithDuration(humanDiscount: any): any;
-  /** Focus the input. */
-  triggerFocus(): Promise<void>;
-  render(): any;
+    el: HTMLScCouponFormElement;
+    private input;
+    private couponTag;
+    private addCouponTrigger;
+    /** The label for the coupon form */
+    label: string;
+    /** Is the form loading */
+    loading: boolean;
+    /** Is the form calculating */
+    busy: boolean;
+    /** The placeholder for the input */
+    placeholder: string;
+    /** The error message */
+    error: string;
+    /** Force the form to show */
+    forceOpen: boolean;
+    /** The discount */
+    discount: DiscountResponse;
+    /** Currency */
+    currency: string;
+    /** The discount amount */
+    discountAmount: number;
+    /** Has recurring */
+    showInterval: boolean;
+    /** Is it open */
+    open: boolean;
+    collapsed: boolean;
+    /** The value of the input */
+    value: string;
+    /** When the coupon is applied */
+    scApplyCoupon: EventEmitter<string>;
+    /** The text for apply button */
+    buttonText: string;
+    /** Is the form editable */
+    editable: boolean;
+    /** Auto focus the input when opened. */
+    handleOpenChange(val: any): void;
+    /** Close it when blurred and no value. */
+    handleBlur(): void;
+    getHumanReadableDiscount(): string;
+    /** Apply the coupon. */
+    applyCoupon(): void;
+    handleKeyDown(e: any): void;
+    translateHumanDiscountWithDuration(humanDiscount: any): any;
+    /** Focus the input. */
+    triggerFocus(): Promise<void>;
+    render(): any;
 }

@@ -17,15 +17,15 @@ import { Address, Customer } from '../../../types';
  * @part button__prefix - The button prefix.
  */
 export declare class ScCustomerDetails {
-  el: HTMLScCustomerDetailsElement;
-  heading: string;
-  editLink: string;
-  customer: Customer;
-  loading: boolean;
-  error: string;
-  renderContent(): any;
-  renderAddress(label: string, address: Address): any;
-  renderEmpty(): any;
-  renderLoading(): any;
-  render(): any;
+    el: HTMLScCustomerDetailsElement;
+    heading: string;
+    editLink: string;
+    customer: Customer;
+    loading: boolean;
+    error: string;
+    renderContent(): any;
+    renderAddress(label: string, address: Address): any;
+    renderEmpty(): any;
+    renderLoading(): any;
+    render(): any;
 }

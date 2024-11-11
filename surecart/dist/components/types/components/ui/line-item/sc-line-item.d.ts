@@ -17,17 +17,17 @@
  * @part price-description - Description for the price (i.e. monthly)
  */
 export declare class ScLineItem {
-  hostElement: HTMLScLineItemElement;
-  /** Price of the item */
-  price: string;
-  /** Currency symbol */
-  currency: string;
-  hasImageSlot: boolean;
-  hasTitleSlot: boolean;
-  hasDescriptionSlot: boolean;
-  hasPriceSlot: boolean;
-  hasPriceDescriptionSlot: boolean;
-  hasCurrencySlot: boolean;
-  componentWillLoad(): void;
-  render(): any;
+    hostElement: HTMLScLineItemElement;
+    /** Price of the item */
+    price: string;
+    /** Currency symbol */
+    currency: string;
+    hasImageSlot: boolean;
+    hasTitleSlot: boolean;
+    hasDescriptionSlot: boolean;
+    hasPriceSlot: boolean;
+    hasPriceDescriptionSlot: boolean;
+    hasCurrencySlot: boolean;
+    componentWillLoad(): void;
+    render(): any;
 }

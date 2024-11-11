@@ -1,3 +1,3 @@
 export declare class ScLineItemInvoiceNumber {
-  render(): any;
+    render(): any;
 }

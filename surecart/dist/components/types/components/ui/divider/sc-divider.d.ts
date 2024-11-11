@@ -6,5 +6,5 @@
  * @part text - The text.
  */
 export declare class ScDivider {
-  render(): any;
+    render(): any;
 }

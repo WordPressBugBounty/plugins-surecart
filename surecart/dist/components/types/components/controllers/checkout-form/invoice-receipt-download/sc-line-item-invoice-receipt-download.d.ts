@@ -1,5 +1,5 @@
 import { Checkout } from '../../../../types';
 export declare class ScLineItemInvoiceReceiptDownload {
-  checkout: Checkout;
-  render(): any;
+    checkout: Checkout;
+    render(): any;
 }

@@ -3,9 +3,9 @@
  * and adds one if it's missing.
  */
 export declare class ScFormErrorProvider {
-  /** The element. */
-  el: HTMLScFormErrorProviderElement;
-  componentWillLoad(): void;
-  maybeAddErrorsComponent(): void;
-  render(): any;
+    /** The element. */
+    el: HTMLScFormErrorProviderElement;
+    componentWillLoad(): void;
+    maybeAddErrorsComponent(): void;
+    render(): any;
 }

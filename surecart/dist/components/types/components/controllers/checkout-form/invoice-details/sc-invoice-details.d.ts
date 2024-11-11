@@ -1,3 +1,3 @@
 export declare class ScInvoiceDetails {
-  render(): any;
+    render(): any;
 }

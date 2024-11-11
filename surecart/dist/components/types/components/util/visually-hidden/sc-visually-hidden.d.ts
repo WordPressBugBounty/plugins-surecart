@@ -1,3 +1,3 @@
 export declare class ScVisuallyHidden {
-  render(): any;
+    render(): any;
 }

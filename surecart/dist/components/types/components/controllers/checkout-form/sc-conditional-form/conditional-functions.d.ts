@@ -7,8 +7,8 @@ import { Checkout, Rule, RuleGroup } from '../../../../types';
  * @returns {boolean}
  */
 export declare const hasAnyRuleGroupPassed: (groups: RuleGroup[], props: {
-  checkout: Checkout;
-  processor: string;
+    checkout: Checkout;
+    processor: string;
 }) => boolean;
 /**
  * CHeck if all rules are passed or not.
@@ -18,8 +18,8 @@ export declare const hasAnyRuleGroupPassed: (groups: RuleGroup[], props: {
  * @returns {boolean}
  */
 export declare const hasRulesPassed: (rules: Rule[], { checkout, processor }: {
-  checkout: any;
-  processor: any;
+    checkout: any;
+    processor: any;
 }) => boolean;
 /**
  * Get array of products from checkout.

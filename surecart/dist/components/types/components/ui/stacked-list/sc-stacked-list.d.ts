@@ -1,3 +1,3 @@
 export declare class ScStackedList {
-  render(): any;
+    render(): any;
 }

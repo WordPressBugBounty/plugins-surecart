@@ -11,8 +11,8 @@ export declare const replaceAmountFromString: (amountStr: any, protocol: any) =>
  *
  */
 export declare const getCurrentBehaviourContent: (protocol: SubscriptionProtocol, hasDiscount: any) => {
-  title: any;
-  description: any;
-  button: string;
-  cancel_link: string;
+    title: any;
+    description: any;
+    button: string;
+    cancel_link: string;
 };
