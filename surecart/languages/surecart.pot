@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-11T17:48:38+00:00\n"
+"POT-Creation-Date: 2024-11-12T00:23:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -7028,6 +7028,14 @@ msgstr ""
 #. translators: %1$s Link open tag, %2$s: Link close tag.
 #: src/WordPress/UpgradeNoticeService.php:106
 msgid "To ensure a smooth update, please %1$sbackup your site%2$s before proceeding. For the safest experience, perform the update in a staging environment first. This helps prevent any unexpected issues and ensures your site remains up and running smoothly."
+msgstr ""
+
+#: src/WordPress/UpgradeNoticeService.php:113
+msgid "If you are updating from a version prior to 3.0.0, please read the upgrade guide for important information about the changes in this version."
+msgstr ""
+
+#: src/WordPress/UpgradeNoticeService.php:116
+msgid "Read the Upgrade Guide"
 msgstr ""
 
 #: src/WordPress/Users/UsersService.php:109
