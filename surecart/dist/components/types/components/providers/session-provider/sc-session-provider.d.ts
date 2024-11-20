@@ -40,7 +40,7 @@ export declare class ScSessionProvider {
     /** Handle payment instrument redirect status */
     handleRedirectStatus(status: any, id: any): Promise<void>;
     /** Handle abandoned checkout from URL */
-    handleCheckoutIdFromUrl(id: any, promotion_code?: string): Promise<void | NodeJS.Timeout>;
+    handleCheckoutIdFromUrl(id: any, promotion_code?: string, query?: {}): Promise<void | NodeJS.Timeout>;
     /** Handle line items (and maybe ) */
     handleInitialLineItems(line_items: any, promotion_code: any): Promise<void>;
     /** Handle a brand new checkout. */

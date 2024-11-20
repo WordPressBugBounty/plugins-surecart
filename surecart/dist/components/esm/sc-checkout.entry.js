@@ -1,9 +1,9 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
-import { s as state } from './mutations-98df238e.js';
-import { s as state$1 } from './store-eb9dd43c.js';
+import { s as state } from './mutations-d5e8faea.js';
+import { s as state$1 } from './store-7020541e.js';
 import { s as state$3 } from './store-a8bae355.js';
-import './watchers-680ae23c.js';
-import { s as state$2 } from './getters-01ae99ba.js';
+import './watchers-94c3ca47.js';
+import { s as state$2 } from './getters-ff7a502e.js';
 import { U as Universe } from './universe-5a73abb7.js';
 import './index-06061d4e.js';
 import './utils-e9ee502a.js';
@@ -158,7 +158,7 @@ const ScCheckout = class {
                 'sc-align-center': this.alignment === 'center',
                 'sc-align-wide': this.alignment === 'wide',
                 'sc-align-full': this.alignment === 'full',
-            } }, h("sc-checkout-unsaved-changes-warning", { state: this.checkoutState }), state.validateStock && h("sc-checkout-stock-alert", null), h(Universe.Provider, { state: this.state() }, h("sc-login-provider", { loggedIn: state$3.loggedIn, onScSetCustomer: e => (this.customer = e.detail), onScSetLoggedIn: e => (state$3.loggedIn = e.detail), order: state.checkout }, h("sc-form-state-provider", { onScSetCheckoutFormState: e => (this.checkoutState = e.detail) }, h("sc-form-error-provider", null, h("sc-form-components-validator", { disabled: this.disableComponentsValidation, taxProtocol: state.taxProtocol }, h("sc-order-confirm-provider", { "checkout-status": state$1.formState.value, "success-url": this.successUrl }, h("sc-session-provider", { ref: el => (this.sessionProvider = el), prices: this.prices, persist: this.persistSession }, h("slot", null))))))), this.state().busy && h("sc-block-ui", { class: "busy-block-ui", style: { 'z-index': '30' } }), ['finalizing', 'paying', 'confirming', 'confirmed', 'redirecting'].includes(state$1.formState.value) && (h("sc-block-ui", { spinner: true, style: { '--sc-block-ui-opacity': '0.75', 'z-index': '30' } }, state$1.text.loading[state$1.formState.value] || wp.i18n.__('Processing payment...', 'surecart'))), ['locked'].includes(state$1.formState.value) && (h("sc-block-ui", { style: { '--sc-block-ui-opacity': '1', 'z-index': '30', '--sc-block-ui-position': 'fixed', '--sc-block-ui-cursor': 'normal' } }, h("div", { style: { 'text-align': 'center', 'padding': '2rem', 'max-width': '600px' } }, wp.i18n.__('This invoice is not currently available for payment. If you have any questions, please contact us.', 'surecart')))))));
+            } }, h("sc-checkout-unsaved-changes-warning", { state: this.checkoutState }), state.validateStock && h("sc-checkout-stock-alert", null), h(Universe.Provider, { state: this.state() }, h("sc-login-provider", { loggedIn: state$3.loggedIn, onScSetCustomer: e => (this.customer = e.detail), onScSetLoggedIn: e => (state$3.loggedIn = e.detail), order: state.checkout }, h("sc-form-state-provider", { onScSetCheckoutFormState: e => (this.checkoutState = e.detail) }, h("sc-form-error-provider", null, h("sc-form-components-validator", { disabled: this.disableComponentsValidation, taxProtocol: state.taxProtocol }, h("sc-order-confirm-provider", { "checkout-status": state$1.formState.value, "success-url": this.successUrl }, h("sc-session-provider", { ref: el => (this.sessionProvider = el), prices: this.prices, persist: this.persistSession }, h("slot", null))))))), this.state().busy && h("sc-block-ui", { class: "busy-block-ui", style: { 'z-index': '30' } }), ['finalizing', 'paying', 'confirming', 'confirmed', 'redirecting'].includes(state$1.formState.value) && (h("sc-block-ui", { spinner: true, style: { '--sc-block-ui-opacity': '0.75', 'z-index': '30' } }, state$1.text.loading[state$1.formState.value] || wp.i18n.__('Processing payment...', 'surecart'))), ['locked'].includes(state$1.formState.value) && (h("sc-block-ui", { style: { '--sc-block-ui-opacity': '1', 'z-index': '30', '--sc-block-ui-position': 'fixed', '--sc-block-ui-cursor': 'normal' } }, h("div", { style: { 'text-align': 'center', 'padding': '2rem', 'max-width': '600px' } }, wp.i18n.__('This invoice is not currently available for payment. If you have any questions, please contact us.', 'surecart')))), h("sc-checkout-test-complete", { "checkout-status": state$1.formState.value, "success-url": this.successUrl }))));
     }
     get el() { return getElement(this); }
 };

@@ -49,21 +49,21 @@ const ScCancelDialog = class {
         this.reset();
     }
     render() {
-        return (index.h("sc-dialog", { key: 'ac95d364e36afff3ca01440d906d7b64e430cebc', style: {
+        return (index.h("sc-dialog", { key: '3de2271f2c7b0bde56b4f741740e037b3ed06504', style: {
                 '--width': this.step === 'survey' ? '675px' : '500px',
                 '--body-spacing': 'var(--sc-spacing-xxx-large)',
-            }, noHeader: true, open: this.open, onScRequestClose: () => this.close() }, index.h("div", { key: '3431872068cf3f33248f79aed510490fac542622', class: {
+            }, noHeader: true, open: this.open, onScRequestClose: () => this.close() }, index.h("div", { key: 'e79662fffed4c09b328a745c0159941d800fec91', class: {
                 cancel: true,
-            } }, index.h("sc-button", { key: '6b9bd56d3bc430623d79d84bbde02c7e655456fb', class: "close__button", type: "text", circle: true, onClick: () => this.close() }, index.h("sc-icon", { key: '1e03921294f537d5aaaa945125635a1bb6faa665', name: "x" })), this.step === 'cancel' && (index.h("sc-subscription-cancel", { key: '0ace732ea967c2c5d6c92562b2772e99e7da2c61', subscription: this.subscription, protocol: this.protocol, reason: this.reason, comment: this.comment, onScAbandon: () => this.close(), onScCancelled: () => {
+            } }, index.h("sc-button", { key: '46738c75e4938d3de3cf654b2642af3160ea3bb0', class: "close__button", type: "text", circle: true, onClick: () => this.close() }, index.h("sc-icon", { key: '65fa63e99b904b0e338b682fee1727f1c45c8b5f', name: "x" })), this.step === 'cancel' && (index.h("sc-subscription-cancel", { key: '30f84bba58ac9dc2080ac1a41ef759251b6a7495', subscription: this.subscription, protocol: this.protocol, reason: this.reason, comment: this.comment, onScAbandon: () => this.close(), onScCancelled: () => {
                 this.scRefresh.emit();
                 this.reset();
                 this.scRequestClose.emit('close-button');
-            } })), this.step === 'survey' && (index.h("sc-cancel-survey", { key: 'a5b80b6e54e0975b71b47a9eb9ab280df16b7056', protocol: this.protocol, onScAbandon: () => this.close(), onScSubmitReason: e => {
+            } })), this.step === 'survey' && (index.h("sc-cancel-survey", { key: 'ef6b2b395a3e881321915b24f7fe4fbf4a21307e', protocol: this.protocol, onScAbandon: () => this.close(), onScSubmitReason: e => {
                 const { comment, reason } = e.detail;
                 this.reason = reason;
                 this.comment = comment;
                 this.step = (reason === null || reason === void 0 ? void 0 : reason.coupon_enabled) ? 'discount' : 'cancel';
-            } })), this.step === 'discount' && (index.h("sc-cancel-discount", { key: 'e7313bc1344a639167d974ac80cf6d8df99249c6', protocol: this.protocol, subscription: this.subscription, reason: this.reason, comment: this.comment, onScCancel: () => (this.step = 'cancel'), onScPreserved: () => {
+            } })), this.step === 'discount' && (index.h("sc-cancel-discount", { key: '8c8bde15cc7a78d4b06f1902d1cfb68e92a73000', protocol: this.protocol, subscription: this.subscription, reason: this.reason, comment: this.comment, onScCancel: () => (this.step = 'cancel'), onScPreserved: () => {
                 this.scRefresh.emit();
                 this.reset();
                 this.scRequestClose.emit('close-button');

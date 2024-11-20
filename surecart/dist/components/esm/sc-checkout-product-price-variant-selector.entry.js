@@ -1,8 +1,8 @@
 import { r as registerInstance, h, F as Fragment, a as getElement } from './index-745b6bec.js';
-import { g as getLineItemByProductId } from './getters-b13c69fe.js';
-import { u as updateFormState, s as state, o as onChange } from './mutations-98df238e.js';
+import { g as getLineItemByProductId } from './getters-e4172581.js';
+import { u as updateFormState, s as state, o as onChange } from './mutations-d5e8faea.js';
 import { g as getVariantFromValues } from './util-50af2a83.js';
-import { u as updateLineItem, a as addLineItem } from './index-77fc24cf.js';
+import { u as updateLineItem, a as addLineItem } from './index-96490395.js';
 import { c as createErrorNotice } from './mutations-ed6d0770.js';
 import { i as isProductVariantOptionSoldOut, a as isProductVariantOptionMissing } from './utils-e9ee502a.js';
 import './address-b892540d.js';
@@ -12,7 +12,7 @@ import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
-import './store-eb9dd43c.js';
+import './store-7020541e.js';
 import './price-d5770168.js';
 import './fetch-2032d11d.js';
 
@@ -162,7 +162,7 @@ const ScProductCheckoutSelectVariantOption = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (h("sc-form-control", { key: '74f2ab18025f2d4c607b832818ad8a566b6c6051', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values }, index) => (h("sc-form-control", { label: name }, h("div", { class: "sc-checkout-product-price-variant-selector__pills-wrapper" }, (values || []).map(value => {
+        return (h("sc-form-control", { key: '681c7ac282ff7accf41f90dff4b8d1f3fd757cdc', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values }, index) => (h("sc-form-control", { label: name }, h("div", { class: "sc-checkout-product-price-variant-selector__pills-wrapper" }, (values || []).map(value => {
             const args = [
                 index + 1,
                 value,
@@ -175,7 +175,7 @@ const ScProductCheckoutSelectVariantOption = class {
             ];
             const isUnavailable = isProductVariantOptionSoldOut.apply(void 0, args) || isProductVariantOptionMissing.apply(void 0, args);
             return (h("sc-pill-option", { isUnavailable: isUnavailable, isSelected: this[`option${index + 1}`] === value, onClick: () => (this[`option${index + 1}`] = value) }, h("span", { "aria-hidden": "true" }, value), h("sc-visually-hidden", null, wp.i18n.sprintf(wp.i18n.__('Select %s: %s', 'surecart'), name, value), isUnavailable && h(Fragment, null, " ", wp.i18n.__('(option unavailable)', 'surecart')))));
-        }))))), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (h("sc-form-control", { key: '83e5beeaae1f7213af10131ab5a3087688c54002', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, h("sc-choices", { key: 'c84eb423473a4cafd097718c7577166f9f72f31c' }, (this.product.prices.data || [])
+        }))))), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (h("sc-form-control", { key: '95dd37f4a1ba6809c62fe98be4f92b4f72e37da4', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, h("sc-choices", { key: 'b19a8269112f6fdc975104c1bd9a2a294ce6e7bb' }, (this.product.prices.data || [])
             .sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position))
             .map(price => {
             var _a, _b, _c;
@@ -184,7 +184,7 @@ const ScProductCheckoutSelectVariantOption = class {
                         this.selectedPrice = price;
                     }
                 } }));
-        })))), h("input", { key: 'fd9b4567e3423a4308ff42a31789ff02422fc4ba', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
+        })))), h("input", { key: '4fdf82b33bcf54d440f1f279d3823f9e3469d93d', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

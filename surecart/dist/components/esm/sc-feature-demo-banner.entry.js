@@ -10,7 +10,7 @@ const ScFeatureDemoBanner = class {
         this.buttonText = wp.i18n.__('Upgrade Your Plan', 'surecart');
     }
     render() {
-        return (h("div", { key: '68394791af7d01498939176496db736811915097', class: { 'sc-banner': true } }, h("p", { key: '62db696c82c67d29bfe7f9d4f152a56112731624' }, h("slot", { key: 'faa4005a0d02a122e2ab74bbdafa22cdcfaad89e' }, wp.i18n.__('This is a feature demo. In order to use it, you must upgrade your plan.', 'surecart')), h("a", { key: '1ba532e47e7530abe710591d275264180a63ee7f', href: this.url, target: "_blank" }, h("slot", { key: '8a9ba51416eeee194257ac97c9c6c70702d74a95', name: "link" }, this.buttonText, " ", h("sc-icon", { key: 'f830bf78241e421a616a7be377dc4d2309446df3', name: "arrow-right" }))))));
+        return (h("div", { key: 'a414757e4faa901653e5c49cb54ed5cdc4881e6b', class: { 'sc-banner': true } }, h("p", { key: '6e64184b9e4616ae143e70cce53aac5e631d3385' }, h("slot", { key: '597a7b942c56000c29e7b78c16068f4c8f8cf373' }, wp.i18n.__('This is a feature demo. In order to use it, you must upgrade your plan.', 'surecart')), h("a", { key: 'e9341dea400e75d1b132ecfa83372c4c66edc5a2', href: this.url, target: "_blank" }, h("slot", { key: 'b6c7b47eb1993d8821af7d6641b3876cad1b9084', name: "link" }, this.buttonText, " ", h("sc-icon", { key: '5952e8d32d1881985fe59060858ef4a39a7d375f', name: "arrow-right" }))))));
     }
 };
 ScFeatureDemoBanner.style = ScFeatureDemoBannerStyle0;

@@ -1,5 +1,5 @@
 import { r as registerInstance, c as createEvent, h } from './index-745b6bec.js';
-import { o as onChange, s as state } from './mutations-98df238e.js';
+import { o as onChange, s as state } from './mutations-d5e8faea.js';
 import './index-06061d4e.js';
 import './utils-e9ee502a.js';
 import './remove-query-args-938c53ea.js';
@@ -7,7 +7,7 @@ import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
-import './store-eb9dd43c.js';
+import './store-7020541e.js';
 import './price-d5770168.js';
 
 const scCustomerPhoneCss = ":host{display:block}";
@@ -68,7 +68,7 @@ const ScCustomerPhone = class {
         }
     }
     render() {
-        return (h("sc-phone-input", { key: 'b1f24a64f0a12be35d51bd63191b9b1efe462b09', name: "phone", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "phone", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }));
+        return (h("sc-phone-input", { key: 'ffa46581cc85dead7a0ca10463dee021f0496ab4', name: "phone", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "phone", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }));
     }
 };
 ScCustomerPhone.style = ScCustomerPhoneStyle0;

@@ -1,13 +1,13 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
 import { p as pure } from './pure-963214cb.js';
 import { s as state$2 } from './watchers-38693c1f.js';
-import { o as onChange, s as state$1, u as updateFormState } from './mutations-98df238e.js';
-import { o as onChange$1 } from './store-eb9dd43c.js';
-import './watchers-680ae23c.js';
-import { g as getProcessorByType, s as state } from './getters-01ae99ba.js';
-import { c as currentFormState } from './getters-cf357ed2.js';
+import { o as onChange, s as state$1, u as updateFormState } from './mutations-d5e8faea.js';
+import { o as onChange$1 } from './store-7020541e.js';
+import './watchers-94c3ca47.js';
+import { g as getProcessorByType, s as state } from './getters-ff7a502e.js';
+import { c as currentFormState } from './getters-929aa1df.js';
 import { c as createErrorNotice } from './mutations-ed6d0770.js';
-import { b as getCompleteAddress } from './getters-b13c69fe.js';
+import { b as getCompleteAddress } from './getters-e4172581.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import './index-06061d4e.js';
 import './utils-e9ee502a.js';
@@ -292,11 +292,11 @@ const ScStripePaymentElement = class {
         }
     }
     render() {
-        return (h("div", { key: 'd31291ba629dcf363f8b5c231202c1166742965f', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (h("sc-text", { key: 'b1602237d416f85494bb6630bcfb2c2396b1342b', style: {
+        return (h("div", { key: '51340b38bf6a3b1756e4eeb1ad745c12276a8ec9', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (h("sc-text", { key: 'd6ae19c90d8cf0e61b4792e510dc11919987c66c', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginBottom': '0.5em',
-            } }, this.error)), h("div", { key: '17c4d6e2353446c56da0f2ddde9869513e99f4b4', class: "loader", hidden: this.loaded }, h("div", { key: 'cb52c0eee18d8a62da80fe1cd1417e5b750a99b9', class: "loader__row" }, h("div", { key: 'b2d6c8d7f0acb5f78392da16fb6e026e30e4ddce', style: { width: '50%' } }, h("sc-skeleton", { key: '8565eeca479818d92c9ef349db15bb962c7f16e2', style: { width: '50%', marginBottom: '0.5em' } }), h("sc-skeleton", { key: 'f4320a56550fabeb6687a03fbdd07e28c1bed6df' })), h("div", { key: '769427a51d33912113a4ba833b590b986072d0f7', style: { flex: '1' } }, h("sc-skeleton", { key: '7e8f4683c5a0f38ab611b68e21e3967f66a4eb34', style: { width: '50%', marginBottom: '0.5em' } }), h("sc-skeleton", { key: 'f64a4a6dce339504e2fbad725cd181fff1c0977e' })), h("div", { key: '4903d30ba13ba81f84b340afc33784a41ceadead', style: { flex: '1' } }, h("sc-skeleton", { key: 'df28de4016cce12d5978e56e464625341c41e7c4', style: { width: '50%', marginBottom: '0.5em' } }), h("sc-skeleton", { key: 'ce88ac4b64bf311f02abcd61babfd1fc238b30c4' }))), h("div", { key: '6ab830d7d970fe19447cdd6ed09a36ad38ede7fd', class: "loader__details" }, h("sc-skeleton", { key: '41515445e028ad10c52ac72ca1042fd4ad9fb6ae', style: { height: '1rem' } }), h("sc-skeleton", { key: 'e5e95b21ae87c0623e59f4cb4ac4d34cb4cbdbc9', style: { height: '1rem', width: '30%' } }))), h("div", { key: '6498f0f524d88800470b994ee1fa92e4fd041f9c', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
+            } }, this.error)), h("div", { key: '16877b04b62a471a1622c20455eed590509e304c', class: "loader", hidden: this.loaded }, h("div", { key: '912fc957a045e065c2990a193b7edecc4f70f802', class: "loader__row" }, h("div", { key: '7558062bd77d0bf57127a57b738a3d9155fb64bf', style: { width: '50%' } }, h("sc-skeleton", { key: 'b690ebd050c2a0915a4595bed6cf1f9c3a46b674', style: { width: '50%', marginBottom: '0.5em' } }), h("sc-skeleton", { key: '0475389fa3f4ad26a4d9dfeea57f01cce398089d' })), h("div", { key: '188116864da05517d67c900d348ec2b1e671daa6', style: { flex: '1' } }, h("sc-skeleton", { key: '43d4e870295a0c27be0f8a4a062e7190482e016a', style: { width: '50%', marginBottom: '0.5em' } }), h("sc-skeleton", { key: '887ac89e1a2aec4b3d71f31604ce899694a11f8d' })), h("div", { key: '62a4517c09f18f64a8a78622a16370391aef4e8c', style: { flex: '1' } }, h("sc-skeleton", { key: '8724f112a63e335618923b1f7fbd05f958b996d6', style: { width: '50%', marginBottom: '0.5em' } }), h("sc-skeleton", { key: '831be5169bb405976bd6bf159fcbb1e3abb89509' }))), h("div", { key: '9797bbfc92a1d2cdeb91bd068f6f67fe06599466', class: "loader__details" }, h("sc-skeleton", { key: '4c4eb2be142001a468ad6c121a7e987f5ee563e3', style: { height: '1rem' } }), h("sc-skeleton", { key: '939c821e0dc999927cfc8a4989a195f44c209bfa', style: { height: '1rem', width: '30%' } }))), h("div", { key: '097c7359f81285da209a01c1b8f0ea5e1ac20033', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

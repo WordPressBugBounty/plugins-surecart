@@ -1013,6 +1013,7 @@ return array(
     'SureCart\\WordPress\\StateService' => $baseDir . '/app/src/WordPress/StateService.php',
     'SureCart\\WordPress\\Taxonomies\\CollectionTaxonomyService' => $baseDir . '/app/src/WordPress/Taxonomies/CollectionTaxonomyService.php',
     'SureCart\\WordPress\\Taxonomies\\StoreTaxonomyService' => $baseDir . '/app/src/WordPress/Taxonomies/StoreTaxonomyService.php',
+    'SureCart\\WordPress\\Taxonomies\\TaxonomyService' => $baseDir . '/app/src/WordPress/Taxonomies/TaxonomyService.php',
     'SureCart\\WordPress\\Taxonomies\\TaxonomyServiceProvider' => $baseDir . '/app/src/WordPress/Taxonomies/TaxonomyServiceProvider.php',
     'SureCart\\WordPress\\Templates\\BlockTemplatesService' => $baseDir . '/app/src/WordPress/Templates/BlockTemplatesService.php',
     'SureCart\\WordPress\\Templates\\CollectionTemplateService' => $baseDir . '/app/src/WordPress/Templates/CollectionTemplateService.php',

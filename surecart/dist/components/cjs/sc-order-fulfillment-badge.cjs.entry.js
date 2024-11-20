@@ -30,7 +30,7 @@ const ScOrderFulFillmentBadge = class {
         this.clearable = false;
     }
     render() {
-        return (index.h("sc-tag", { key: '14fc29be42e6ec48331c079edda00382ea46d653', type: type === null || type === void 0 ? void 0 : type[this === null || this === void 0 ? void 0 : this.status], pill: this.pill }, (status === null || status === void 0 ? void 0 : status[this.status]) || this.status));
+        return (index.h("sc-tag", { key: '9b78285a5d96590658b5c25bb84a72bb0fda3016', type: type === null || type === void 0 ? void 0 : type[this === null || this === void 0 ? void 0 : this.status], pill: this.pill }, (status === null || status === void 0 ? void 0 : status[this.status]) || this.status));
     }
 };
 ScOrderFulFillmentBadge.style = ScOrderFulfillmentBadgeStyle0;

@@ -127,7 +127,7 @@ const ScLicense = class {
         return (h("sc-dialog", { open: this.showConfirmDelete, style: { '--body-spacing': 'var(--sc-spacing-x-large)' }, noHeader: true, onScRequestClose: this.onCloseDeleteModal }, h("sc-button", { class: "close__button", type: "text", circle: true, onClick: this.onCloseDeleteModal, disabled: this.loading }, h("sc-icon", { name: "x" })), h("sc-dashboard-module", { heading: wp.i18n.__('Delete Activation', 'surecart'), class: "license-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, h("span", { slot: "description" }, wp.i18n.__('Are you sure you want to delete activation?', 'surecart')), h("sc-flex", { justifyContent: "flex-start" }, h("sc-button", { type: "primary", disabled: this.loading || this.busy, onClick: this.deleteActivation }, wp.i18n.__('Delete Activation', 'surecart')), h("sc-button", { style: { color: 'var(--sc-color-gray-500' }, type: "text", onClick: this.onCloseDeleteModal, disabled: this.loading || this.busy }, wp.i18n.__('Cancel', 'surecart'))), this.busy && h("sc-block-ui", { style: { '--sc-block-ui-opacity': '0.75' }, spinner: true }))));
     }
     render() {
-        return (h("sc-spacing", { key: '357f6d10e22f25cb852ff95cae0512dd53e5908b', style: { '--spacing': 'var(--sc-spacing-large)' } }, this.renderContent(), this.renderConfirmDelete()));
+        return (h("sc-spacing", { key: '43cefcac974ad717fec5172b9398f1f27fbd9e8a', style: { '--spacing': 'var(--sc-spacing-large)' } }, this.renderContent(), this.renderConfirmDelete()));
     }
     get el() { return getElement(this); }
 };

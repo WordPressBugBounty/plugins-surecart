@@ -1,6 +1,6 @@
 import { r as registerInstance, c as createEvent, h, F as Fragment, a as getElement } from './index-745b6bec.js';
 import { g as getLineItemByPriceId } from './index-0202319f.js';
-import { s as state } from './mutations-98df238e.js';
+import { s as state } from './mutations-d5e8faea.js';
 import './index-06061d4e.js';
 import './utils-e9ee502a.js';
 import './remove-query-args-938c53ea.js';
@@ -8,7 +8,7 @@ import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
-import './store-eb9dd43c.js';
+import './store-7020541e.js';
 import './price-d5770168.js';
 
 const scPriceChoicesCss = "sc-price-choices{display:block;position:relative}sc-block-ui{z-index:9}";
@@ -37,7 +37,7 @@ const ScPriceChoices = class {
         });
     }
     render() {
-        return (h(Fragment, { key: '31046118d3afa382ed1b6a93e88f0a8f7143d969' }, h("sc-choices", { key: 'ccf67746f969ac61734bcf78c7a3ba3516853d09', label: this.label, required: this.required, class: "loaded price-selector", style: { '--columns': this.columns.toString() } }, h("slot", { key: 'aea190ea36bb8b63830483f5640b689c8b6eba56' }))));
+        return (h(Fragment, { key: 'e70d6ebfce58c91e8150b536e395b21da02229e9' }, h("sc-choices", { key: '0341d15d7b9f01bd49570f777bd411de318fa752', label: this.label, required: this.required, class: "loaded price-selector", style: { '--columns': this.columns.toString() } }, h("slot", { key: '9b74bb26fd5629592d460b36a847074eec60df5c' }))));
     }
     get el() { return getElement(this); }
 };

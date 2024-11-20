@@ -12,7 +12,7 @@ const ScSpacing = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: '43bcdddf2068d58e25fd9d8e00c901e8e9f914de' }, index.h("slot", { key: 'c8645f9807bf92480bef557b52c58a594f19f7b7' })));
+        return (index.h(index.Host, { key: '5f3c4a8928871fd96d152719324e577f423583dc' }, index.h("slot", { key: '7bde8828c21dfd2711ebc5364b1c7dda7d1773a5' })));
     }
 };
 ScSpacing.style = ScSpacingStyle0;

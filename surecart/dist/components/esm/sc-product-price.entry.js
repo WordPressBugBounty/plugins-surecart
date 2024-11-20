@@ -40,7 +40,7 @@ const ScProductPrice = class {
         return (h("sc-price", { currency: price === null || price === void 0 ? void 0 : price.currency, amount: amount, scratchAmount: scratch_amount, saleText: this.saleText, adHoc: price === null || price === void 0 ? void 0 : price.ad_hoc, trialDurationDays: price === null || price === void 0 ? void 0 : price.trial_duration_days, setupFeeAmount: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_amount : null, setupFeeName: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_name : null, recurringPeriodCount: price === null || price === void 0 ? void 0 : price.recurring_period_count, recurringInterval: price === null || price === void 0 ? void 0 : price.recurring_interval, recurringIntervalCount: price === null || price === void 0 ? void 0 : price.recurring_interval_count }));
     }
     render() {
-        return (h(Host, { key: '4ded515a6eeb3ba4d450ffac99eecd0b34726bf1', role: "paragraph" }, (() => {
+        return (h(Host, { key: '65a82c5bf3f74a35708473f60884739ea12b66a1', role: "paragraph" }, (() => {
             var _a, _b, _c, _d, _e;
             if ((_a = state[this.productId]) === null || _a === void 0 ? void 0 : _a.selectedVariant) {
                 return this.renderVariantPrice((_b = state[this.productId]) === null || _b === void 0 ? void 0 : _b.selectedVariant);

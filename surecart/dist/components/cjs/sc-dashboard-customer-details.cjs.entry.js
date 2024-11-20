@@ -51,7 +51,7 @@ const ScDashboardCustomerDetails = class {
         }
     }
     render() {
-        return (index.h("sc-customer-details", { key: '5b107385907f19b4fbc0792ecac7eba0a18203b9', customer: this.customer, loading: this.loading, error: this.error, heading: this.heading, "edit-link": addQueryArgs.addQueryArgs(window.location.href, {
+        return (index.h("sc-customer-details", { key: '1896331a0ec0570d43006588d70ed8bfa9d85b99', customer: this.customer, loading: this.loading, error: this.error, heading: this.heading, "edit-link": addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'edit',
                 model: 'customer',
                 id: this.customerId,

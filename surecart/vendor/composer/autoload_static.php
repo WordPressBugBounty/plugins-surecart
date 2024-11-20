@@ -1103,6 +1103,7 @@ class ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1
         'SureCart\\WordPress\\StateService' => __DIR__ . '/../..' . '/app/src/WordPress/StateService.php',
         'SureCart\\WordPress\\Taxonomies\\CollectionTaxonomyService' => __DIR__ . '/../..' . '/app/src/WordPress/Taxonomies/CollectionTaxonomyService.php',
         'SureCart\\WordPress\\Taxonomies\\StoreTaxonomyService' => __DIR__ . '/../..' . '/app/src/WordPress/Taxonomies/StoreTaxonomyService.php',
+        'SureCart\\WordPress\\Taxonomies\\TaxonomyService' => __DIR__ . '/../..' . '/app/src/WordPress/Taxonomies/TaxonomyService.php',
         'SureCart\\WordPress\\Taxonomies\\TaxonomyServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Taxonomies/TaxonomyServiceProvider.php',
         'SureCart\\WordPress\\Templates\\BlockTemplatesService' => __DIR__ . '/../..' . '/app/src/WordPress/Templates/BlockTemplatesService.php',
         'SureCart\\WordPress\\Templates\\CollectionTemplateService' => __DIR__ . '/../..' . '/app/src/WordPress/Templates/CollectionTemplateService.php',

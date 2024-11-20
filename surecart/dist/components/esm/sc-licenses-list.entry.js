@@ -113,7 +113,7 @@ const ScLicensesList = class {
     }
     render() {
         var _a;
-        return (h("sc-dashboard-module", { key: '1d4ae3e00f70151c1a676fe70e948a14139e5626', class: "purchase", part: "base", error: this.error }, h("span", { key: 'af8653ec0d7fb872f0e9c397699d0b5a416c30db', slot: "heading" }, h("slot", { key: '61374cf147cc0f30b239c4e9080e7105934c8563', name: "heading" }, this.heading || wp.i18n.__('License Keys', 'surecart'))), !!this.allLink && !!((_a = this.licenses) === null || _a === void 0 ? void 0 : _a.length) && (h("sc-button", { key: '8fe7267c9c84d3822bab7e9987c9548c0c175ac1', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '4a97b208eaf3608c5d4839831e3300e2f99a6f48', name: "chevron-right", slot: "suffix" }))), this.renderContent()));
+        return (h("sc-dashboard-module", { key: '5fca3fe2d936824b5a5d05cf056436d2618e37c5', class: "purchase", part: "base", error: this.error }, h("span", { key: 'f77dc153da8da257c194cda3cddd767a71f02dd8', slot: "heading" }, h("slot", { key: '5a7e5e54c9ad2d882b40f04e83302f2035103de1', name: "heading" }, this.heading || wp.i18n.__('License Keys', 'surecart'))), !!this.allLink && !!((_a = this.licenses) === null || _a === void 0 ? void 0 : _a.length) && (h("sc-button", { key: '8426296f2e7bb8c298672b67766286bc13a5aa51', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '2dbb9966fe39e845b7194f8576a01461df69ba0d', name: "chevron-right", slot: "suffix" }))), this.renderContent()));
     }
     get el() { return getElement(this); }
 };

@@ -12,6 +12,7 @@
     "components/controllers/checkout-form/checkout/sc-checkout.js",
     "components/controllers/checkout-form/checkout/checkout-stock-alert/sc-checkout-stock-alert.js",
     "components/controllers/checkout-form/checkout-form-errors/sc-checkout-form-errors.js",
+    "components/controllers/checkout-form/checkout-test-complete/checkout-test-complete.js",
     "components/controllers/checkout-form/custom-order-price-input/sc-custom-order-price-input.js",
     "components/controllers/checkout-form/customer-email/sc-customer-email.js",
     "components/controllers/checkout-form/customer-firstname/sc-customer-firstname.js",

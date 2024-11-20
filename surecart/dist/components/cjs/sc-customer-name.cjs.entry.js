@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const index$1 = require('./index-d86333db.js');
+const index$1 = require('./index-771f480e.js');
 const store = require('./store-34d62f12.js');
-const mutations = require('./mutations-076c4044.js');
+const mutations = require('./mutations-19357660.js');
 const util = require('./util-b877b2bd.js');
 require('./fetch-f25a0cb0.js');
 require('./add-query-args-49dcb630.js');
@@ -15,7 +15,7 @@ require('./utils-ee1bb9d3.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-97df0984.js');
+require('./store-1fb3d249.js');
 require('./price-653ec1cb.js');
 
 const scCustomerNameCss = ":host{display:block}";
@@ -85,7 +85,7 @@ const ScCustomerName = class {
         this.removeCheckoutListener();
     }
     render() {
-        return (index.h("sc-input", { key: '1f3f4707cdb83e3c5e9722a09ede715079786267', type: "text", name: "name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
+        return (index.h("sc-input", { key: '405c3f6ce8a692f29b4e85ac29bfdb9dba7d0f2e', type: "text", name: "name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
     }
 };
 ScCustomerName.style = ScCustomerNameStyle0;

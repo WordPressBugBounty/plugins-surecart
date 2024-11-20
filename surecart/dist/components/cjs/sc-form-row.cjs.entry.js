@@ -21,13 +21,13 @@ const ScFormRow = class {
         }
     }
     render() {
-        return (index.h("div", { key: '48aa2fc70e2bb0d413085e4b159f2f1fccb94e64', part: "base", class: {
+        return (index.h("div", { key: 'acde5fa60dd3083d7be57070037eb1b2265fa559', part: "base", class: {
                 'form-row': true,
                 'breakpoint-sm': this.width < 384,
                 'breakpoint-md': this.width >= 384 && this.width < 576,
                 'breakpoint-lg': this.width >= 576 && this.width < 768,
                 'breakpoint-xl': this.width >= 768,
-            } }, index.h("slot", { key: '213f9339dadf66345870a434de8129973069bb64' })));
+            } }, index.h("slot", { key: '4ffb49a0555e9401eeb3d72b0776a8f96e5ea531' })));
     }
     get el() { return index.getElement(this); }
 };

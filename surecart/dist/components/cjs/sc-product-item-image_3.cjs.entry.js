@@ -27,7 +27,7 @@ const ScProductItemImage = class {
     }
     render() {
         const { alt, title } = media.getFeaturedProductMediaAttributes(this.product);
-        return (index.h(index.Host, { key: '68eb931f6cd377b34fac464acc54dfb6c6bf8356', style: { borderStyle: 'none' } }, index.h("div", { key: 'd01bdf8272b12817e2a26062f228d241d9fba232', class: {
+        return (index.h(index.Host, { key: '775c243aedfbb0c60ee3b52d1b4d40aab264b833', style: { borderStyle: 'none' } }, index.h("div", { key: '4c704759ca73f506555aa5a611ba1dc1ddd5aeb7', class: {
                 'product-img': true,
                 'is_contained': this.sizing === 'contain',
                 'is_covered': this.sizing === 'cover',
@@ -65,7 +65,7 @@ const ScProductItemPrice = class {
     render() {
         var _a;
         const price = (this.prices || []).sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position)).find(price => !(price === null || price === void 0 ? void 0 : price.archived));
-        return (index.h("div", { key: '0f09a02359a611272dc7fc63391bdcedeac73202', class: "product-price", part: "base" }, !this.range && ((_a = this.prices) === null || _a === void 0 ? void 0 : _a.length) ? (index.h("sc-format-number", { type: "currency", currency: (price === null || price === void 0 ? void 0 : price.currency) || 'usd', value: price === null || price === void 0 ? void 0 : price.amount })) : (index.h("sc-price-range", { prices: this.prices }))));
+        return (index.h("div", { key: '0a0c25c85be003208ae05d90861b813bb7eb140c', class: "product-price", part: "base" }, !this.range && ((_a = this.prices) === null || _a === void 0 ? void 0 : _a.length) ? (index.h("sc-format-number", { type: "currency", currency: (price === null || price === void 0 ? void 0 : price.currency) || 'usd', value: price === null || price === void 0 ? void 0 : price.amount })) : (index.h("sc-price-range", { prices: this.prices }))));
     }
 };
 ScProductItemPrice.style = ScProductItemPriceStyle0;
@@ -78,9 +78,9 @@ const ScProductItemTitle = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: 'd0820b2c7cf534ffcb8614859051157be9a996cc' }, index.h("div", { key: 'f95cc63689b2540c324ded3e012153b01837312f', class: {
+        return (index.h(index.Host, { key: 'f4284ebdca4dbc6b7cbdd5f1bd3b53462992ded6' }, index.h("div", { key: 'da25e8ea0cee8a860ecc84caa8412449c4a49e55', class: {
                 'product-item-title': true,
-            } }, index.h("slot", { key: '88d45d258c112aa43cc269adcb5ee065db5a9d15' }))));
+            } }, index.h("slot", { key: '69aea2dc4562e2d963eb083607bde273d404967a' }))));
     }
 };
 ScProductItemTitle.style = ScProductItemTitleStyle0;

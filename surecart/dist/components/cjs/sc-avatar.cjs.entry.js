@@ -22,12 +22,12 @@ const ScAvatar = class {
         this.hasError = false;
     }
     render() {
-        return (index.h("div", { key: 'a15106cbd864b1229fb69f373f7dd9dc53a6c206', part: "base", class: {
+        return (index.h("div", { key: 'ee7ef03aa44c27af7255d070d102c93e0a6c1c1a', part: "base", class: {
                 'avatar': true,
                 'avatar--circle': this.shape === 'circle',
                 'avatar--rounded': this.shape === 'rounded',
                 'avatar--square': this.shape === 'square',
-            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: '54c6a83989cab31e0501a6603cfecbb52d4774ea', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
+            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: '122410026ec31bac9744563c4e286e8b497fd4ff', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
     }
     static get watchers() { return {
         "image": ["handleImageChange"]

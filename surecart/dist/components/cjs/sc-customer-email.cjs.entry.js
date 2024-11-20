@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const index$1 = require('./index-d86333db.js');
+const index$1 = require('./index-771f480e.js');
 const util = require('./util-b877b2bd.js');
 const store = require('./store-34d62f12.js');
-const mutations = require('./mutations-076c4044.js');
+const mutations = require('./mutations-19357660.js');
 require('./fetch-f25a0cb0.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -15,7 +15,7 @@ require('./utils-ee1bb9d3.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-97df0984.js');
+require('./store-1fb3d249.js');
 require('./price-653ec1cb.js');
 
 const scCustomerEmailCss = ":host{display:block}a{color:var(--sc-color-primary-500)}a.customer-email__login-link{color:var(--sc-customer-login-link-color, var(--sc-input-placeholder-color));text-decoration:none;font-size:var(--sc-font-size-small)}.tracking-confirmation-message{font-size:var(--sc-font-size-xx-small)}.tracking-confirmation-message span{opacity:0.75}";
@@ -102,7 +102,7 @@ const ScCustomerEmail = class {
     }
     render() {
         var _a;
-        return (index.h(index.Host, { key: 'a6b0ace5e6b613dd86624d757563e6004cb6676b' }, index.h("sc-input", { key: 'ec15d8dba0c615d14bf245c04447528f0c562f77', exportparts: "base, input, form-control, label, help-text, prefix, suffix", type: "email", name: "email", ref: el => (this.input = el), value: this.value, help: this.help, label: this.label, autocomplete: 'email', placeholder: this.placeholder, disabled: this.disabled || (!!store.state.loggedIn && !!((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) && !this.invalid), readonly: this.readonly, required: true, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }), this.renderOptIn()));
+        return (index.h(index.Host, { key: 'bc967aac9ef137a1aa3934eb69af1baea87c7179' }, index.h("sc-input", { key: '28c179e737e0286dda531acdf90c26531301d7de', exportparts: "base, input, form-control, label, help-text, prefix, suffix", type: "email", name: "email", ref: el => (this.input = el), value: this.value, help: this.help, label: this.label, autocomplete: 'email', placeholder: this.placeholder, disabled: this.disabled || (!!store.state.loggedIn && !!((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) && !this.invalid), readonly: this.readonly, required: true, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit() }), this.renderOptIn()));
     }
 };
 ScCustomerEmail.style = ScCustomerEmailStyle0;

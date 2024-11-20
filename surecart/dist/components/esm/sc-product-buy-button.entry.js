@@ -1,7 +1,7 @@
 import { r as registerInstance, h, H as Host, a as getElement } from './index-745b6bec.js';
-import { g as getProductBuyLink, s as submitCartForm, a as getTopLevelError, b as getAdditionalErrorMessages } from './error-c4a52d87.js';
+import { g as getProductBuyLink, s as submitCartForm, a as getTopLevelError, b as getAdditionalErrorMessages } from './error-ca32663d.js';
 import { s as state, b as setProduct, o as onChange, i as isProductOutOfStock, c as isSelectedVariantMissing } from './watchers-67501779.js';
-import './mutations-98df238e.js';
+import './mutations-d5e8faea.js';
 import './index-06061d4e.js';
 import './utils-e9ee502a.js';
 import './remove-query-args-938c53ea.js';
@@ -9,11 +9,11 @@ import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
-import './store-eb9dd43c.js';
+import './store-7020541e.js';
 import './price-d5770168.js';
-import './mutations-b95124b3.js';
+import './mutations-01792dfb.js';
 import './mutations-ed6d0770.js';
-import './index-77fc24cf.js';
+import './index-96490395.js';
 import './fetch-2032d11d.js';
 import './google-dd89f242.js';
 import './util-50af2a83.js';
@@ -73,14 +73,14 @@ const ScProductBuyButton = class {
     }
     render() {
         var _a, _b;
-        return (h(Host, { key: '9fa17df67d7aca8a091bc5ff74b93d939c377ae0', class: {
+        return (h(Host, { key: 'f0a2bcfca4d423833c052cf222864069893a1dbc', class: {
                 'is-busy': ((_a = state[this.productId]) === null || _a === void 0 ? void 0 : _a.busy) && !!this.addToCart,
                 'is-disabled': (_b = state[this.productId]) === null || _b === void 0 ? void 0 : _b.disabled,
                 'is-sold-out': isProductOutOfStock(this.productId) && !isSelectedVariantMissing(this.productId),
                 'is-unavailable': isSelectedVariantMissing(this.productId),
-            }, onClick: e => this.handleCartClick(e) }, !!this.error && (h("sc-alert", { key: '175ac8094c855476bcb1b3df25c11ec3b6bd3170', onClick: event => {
+            }, onClick: e => this.handleCartClick(e) }, !!this.error && (h("sc-alert", { key: '99f8fdeb43f53ec697114bdd2ea2fe2149847b71', onClick: event => {
                 event.stopPropagation();
-            }, type: "danger", scrollOnOpen: true, open: !!this.error, closable: false }, !!getTopLevelError(this.error) && h("span", { key: 'e7663742d33d60425d8235233106744b1f403321', slot: "title", innerHTML: getTopLevelError(this.error) }), (getAdditionalErrorMessages(this.error) || []).map((message, index) => (h("div", { innerHTML: message, key: index }))))), h("slot", { key: 'e44e8947ff278be4257e150ca920ffcac8492bc8' })));
+            }, type: "danger", scrollOnOpen: true, open: !!this.error, closable: false }, !!getTopLevelError(this.error) && h("span", { key: '96532621b9db52b646b0a1491f9cd80f42f0ec60', slot: "title", innerHTML: getTopLevelError(this.error) }), (getAdditionalErrorMessages(this.error) || []).map((message, index) => (h("div", { innerHTML: message, key: index }))))), h("slot", { key: '60ed01cfba9379cc0c6e63b1ecec78d88e3a2b5c' })));
     }
     get el() { return getElement(this); }
 };

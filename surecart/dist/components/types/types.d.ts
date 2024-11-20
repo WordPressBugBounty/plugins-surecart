@@ -46,6 +46,7 @@ declare global {
             account_id: string;
             account_slug: string;
             api_url: string;
+            home_url: string;
             plugin_url: string;
             page_id: string;
             persist_cart: 'browser' | 'url' | false;

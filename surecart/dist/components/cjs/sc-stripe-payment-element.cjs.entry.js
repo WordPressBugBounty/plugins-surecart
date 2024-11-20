@@ -5,13 +5,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-8acc3c89.js');
 const pure = require('./pure-bd6f0a6e.js');
 const watchers = require('./watchers-2ad3abd1.js');
-const mutations = require('./mutations-076c4044.js');
-const store = require('./store-97df0984.js');
-require('./watchers-48edf596.js');
-const getters = require('./getters-b1457ef2.js');
-const getters$1 = require('./getters-b93add03.js');
+const mutations = require('./mutations-19357660.js');
+const store = require('./store-1fb3d249.js');
+require('./watchers-9d0e8382.js');
+const getters = require('./getters-c1b89891.js');
+const getters$1 = require('./getters-690e042a.js');
 const mutations$1 = require('./mutations-11c8f9a8.js');
-const getters$2 = require('./getters-9c4b930e.js');
+const getters$2 = require('./getters-d2606216.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./index-bcdafe6e.js');
 require('./utils-ee1bb9d3.js');
@@ -296,11 +296,11 @@ const ScStripePaymentElement = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'd31291ba629dcf363f8b5c231202c1166742965f', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (index.h("sc-text", { key: 'b1602237d416f85494bb6630bcfb2c2396b1342b', style: {
+        return (index.h("div", { key: '51340b38bf6a3b1756e4eeb1ad745c12276a8ec9', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (index.h("sc-text", { key: 'd6ae19c90d8cf0e61b4792e510dc11919987c66c', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginBottom': '0.5em',
-            } }, this.error)), index.h("div", { key: '17c4d6e2353446c56da0f2ddde9869513e99f4b4', class: "loader", hidden: this.loaded }, index.h("div", { key: 'cb52c0eee18d8a62da80fe1cd1417e5b750a99b9', class: "loader__row" }, index.h("div", { key: 'b2d6c8d7f0acb5f78392da16fb6e026e30e4ddce', style: { width: '50%' } }, index.h("sc-skeleton", { key: '8565eeca479818d92c9ef349db15bb962c7f16e2', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'f4320a56550fabeb6687a03fbdd07e28c1bed6df' })), index.h("div", { key: '769427a51d33912113a4ba833b590b986072d0f7', style: { flex: '1' } }, index.h("sc-skeleton", { key: '7e8f4683c5a0f38ab611b68e21e3967f66a4eb34', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'f64a4a6dce339504e2fbad725cd181fff1c0977e' })), index.h("div", { key: '4903d30ba13ba81f84b340afc33784a41ceadead', style: { flex: '1' } }, index.h("sc-skeleton", { key: 'df28de4016cce12d5978e56e464625341c41e7c4', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'ce88ac4b64bf311f02abcd61babfd1fc238b30c4' }))), index.h("div", { key: '6ab830d7d970fe19447cdd6ed09a36ad38ede7fd', class: "loader__details" }, index.h("sc-skeleton", { key: '41515445e028ad10c52ac72ca1042fd4ad9fb6ae', style: { height: '1rem' } }), index.h("sc-skeleton", { key: 'e5e95b21ae87c0623e59f4cb4ac4d34cb4cbdbc9', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: '6498f0f524d88800470b994ee1fa92e4fd041f9c', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
+            } }, this.error)), index.h("div", { key: '16877b04b62a471a1622c20455eed590509e304c', class: "loader", hidden: this.loaded }, index.h("div", { key: '912fc957a045e065c2990a193b7edecc4f70f802', class: "loader__row" }, index.h("div", { key: '7558062bd77d0bf57127a57b738a3d9155fb64bf', style: { width: '50%' } }, index.h("sc-skeleton", { key: 'b690ebd050c2a0915a4595bed6cf1f9c3a46b674', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '0475389fa3f4ad26a4d9dfeea57f01cce398089d' })), index.h("div", { key: '188116864da05517d67c900d348ec2b1e671daa6', style: { flex: '1' } }, index.h("sc-skeleton", { key: '43d4e870295a0c27be0f8a4a062e7190482e016a', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '887ac89e1a2aec4b3d71f31604ce899694a11f8d' })), index.h("div", { key: '62a4517c09f18f64a8a78622a16370391aef4e8c', style: { flex: '1' } }, index.h("sc-skeleton", { key: '8724f112a63e335618923b1f7fbd05f958b996d6', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '831be5169bb405976bd6bf159fcbb1e3abb89509' }))), index.h("div", { key: '9797bbfc92a1d2cdeb91bd068f6f67fe06599466', class: "loader__details" }, index.h("sc-skeleton", { key: '4c4eb2be142001a468ad6c121a7e987f5ee563e3', style: { height: '1rem' } }), index.h("sc-skeleton", { key: '939c821e0dc999927cfc8a4989a195f44c209bfa', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: '097c7359f81285da209a01c1b8f0ea5e1ac20033', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
