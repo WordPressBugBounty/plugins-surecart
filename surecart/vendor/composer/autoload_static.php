@@ -4,11 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1
+class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '09274e489ba2f7aa73f570ebb25e818b' => __DIR__ . '/../..' . '/core/core/config.php',
         '9fd9118c4694682c5336fdfe5d3dc5f0' => __DIR__ . '/../..' . '/core/app-core/config.php',
         '37e6c5242b1b45513994b42aca1b8bbd' => __DIR__ . '/..' . '/woocommerce/action-scheduler/action-scheduler.php',
@@ -69,7 +68,8 @@ class ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -412,8 +412,10 @@ class ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1
         'SureCartVendors\\GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\DroppingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/DroppingStream.php',
+        'SureCartVendors\\GuzzleHttp\\Psr7\\Exception\\MalformedUriException' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Exception/MalformedUriException.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\FnStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/FnStream.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\Header' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Header.php',
+        'SureCartVendors\\GuzzleHttp\\Psr7\\HttpFactory' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/HttpFactory.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\InflateStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/InflateStream.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\LazyOpenStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LazyOpenStream.php',
         'SureCartVendors\\GuzzleHttp\\Psr7\\LimitStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LimitStream.php',
@@ -464,11 +466,17 @@ class ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1
         'SureCartVendors\\Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'SureCartVendors\\Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/..' . '/psr/http-message/src/MessageInterface.php',
+        'SureCartVendors\\Psr\\Http\\Message\\RequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/RequestFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/RequestInterface.php',
+        'SureCartVendors\\Psr\\Http\\Message\\ResponseFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ResponseFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\ResponseInterface' => __DIR__ . '/..' . '/psr/http-message/src/ResponseInterface.php',
+        'SureCartVendors\\Psr\\Http\\Message\\ServerRequestFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/ServerRequestFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\ServerRequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/ServerRequestInterface.php',
+        'SureCartVendors\\Psr\\Http\\Message\\StreamFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/StreamFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/..' . '/psr/http-message/src/StreamInterface.php',
+        'SureCartVendors\\Psr\\Http\\Message\\UploadedFileFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UploadedFileFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
+        'SureCartVendors\\Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
         'SureCart\\Account\\AccountService' => __DIR__ . '/../..' . '/app/src/Account/AccountService.php',
         'SureCart\\Account\\AccountServiceProvider' => __DIR__ . '/../..' . '/app/src/Account/AccountServiceProvider.php',
@@ -1142,10 +1150,10 @@ class ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitfbc4996dc8e3105a713b414036b6dbb1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$classMap;
 
         }, null, ClassLoader::class);
     }

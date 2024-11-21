@@ -12,7 +12,7 @@ return array(
     'SureCartCore\\' => array($baseDir . '/core/core/src'),
     'SureCartBlocks\\' => array($baseDir . '/packages/blocks'),
     'SureCartAppCore\\' => array($baseDir . '/core/app-core/src'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
