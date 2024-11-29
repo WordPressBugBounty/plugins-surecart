@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-11-26T19:19:02",
+  "timestamp": "2024-11-29T03:01:07",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -9,7 +9,7 @@
     "fsNamespace": "surecart",
     "components": 228,
     "entries": 228,
-    "bundles": 4062,
+    "bundles": 4072,
     "outputs": [
       {
         "name": "dist-collection",
@@ -1301,7 +1301,7 @@
       },
       {
         "name": "dist-custom-elements",
-        "files": 1035,
+        "files": 1037,
         "generatedFiles": [
           "./dist/components/add-query-args.js",
           "./dist/components/add-query-args.js.map",
@@ -1317,6 +1317,8 @@
           "./dist/components/countries.js.map",
           "./dist/components/currency.js",
           "./dist/components/currency.js.map",
+          "./dist/components/data.js",
+          "./dist/components/data.js.map",
           "./dist/components/dropdown.js",
           "./dist/components/dropdown.js.map",
           "./dist/components/error.js",
@@ -2342,7 +2344,7 @@
       },
       {
         "name": "dist-lazy",
-        "files": 1742,
+        "files": 1750,
         "generatedFiles": [
           "./dist/cjs/MockProcessor-48b83649.js",
           "./dist/cjs/MockProcessor-48b83649.js.map",
@@ -2360,6 +2362,8 @@
           "./dist/cjs/countries-367b507a.js.map",
           "./dist/cjs/currency-71fce0f0.js",
           "./dist/cjs/currency-71fce0f0.js.map",
+          "./dist/cjs/data-2282167f.js",
+          "./dist/cjs/data-2282167f.js.map",
           "./dist/cjs/error-0ea77dbe.js",
           "./dist/cjs/error-0ea77dbe.js.map",
           "./dist/cjs/fetch-f25a0cb0.js",
@@ -2796,6 +2800,8 @@
           "./dist/esm/countries-c2f41f03.js.map",
           "./dist/esm/currency-a0c9bff4.js",
           "./dist/esm/currency-a0c9bff4.js.map",
+          "./dist/esm/data-fed13839.js",
+          "./dist/esm/data-fed13839.js.map",
           "./dist/esm/error-ca32663d.js",
           "./dist/esm/error-ca32663d.js.map",
           "./dist/esm/fetch-2032d11d.js",
@@ -3228,8 +3234,6 @@
           "./dist/surecart/p-01833593.entry.js.map",
           "./dist/surecart/p-025d5d48.entry.js",
           "./dist/surecart/p-025d5d48.entry.js.map",
-          "./dist/surecart/p-02e53aaf.entry.js",
-          "./dist/surecart/p-02e53aaf.entry.js.map",
           "./dist/surecart/p-03631502.js",
           "./dist/surecart/p-03631502.js.map",
           "./dist/surecart/p-045f4836.entry.js",
@@ -3448,6 +3452,8 @@
           "./dist/surecart/p-9110e374.entry.js.map",
           "./dist/surecart/p-919e9e55.entry.js",
           "./dist/surecart/p-919e9e55.entry.js.map",
+          "./dist/surecart/p-92774318.js",
+          "./dist/surecart/p-92774318.js.map",
           "./dist/surecart/p-92857f87.entry.js",
           "./dist/surecart/p-92857f87.entry.js.map",
           "./dist/surecart/p-93127aa7.js",
@@ -3632,6 +3638,8 @@
           "./dist/surecart/p-f2463fc1.entry.js.map",
           "./dist/surecart/p-f467e8b8.entry.js",
           "./dist/surecart/p-f467e8b8.entry.js.map",
+          "./dist/surecart/p-f51a21d6.entry.js",
+          "./dist/surecart/p-f51a21d6.entry.js.map",
           "./dist/surecart/p-f6303e31.js",
           "./dist/surecart/p-f6303e31.js.map",
           "./dist/surecart/p-f6654b1f.entry.js",
@@ -3662,8 +3670,6 @@
           "./www/build/p-01833593.entry.js.map",
           "./www/build/p-025d5d48.entry.js",
           "./www/build/p-025d5d48.entry.js.map",
-          "./www/build/p-02e53aaf.entry.js",
-          "./www/build/p-02e53aaf.entry.js.map",
           "./www/build/p-03631502.js",
           "./www/build/p-03631502.js.map",
           "./www/build/p-045f4836.entry.js",
@@ -3882,6 +3888,8 @@
           "./www/build/p-9110e374.entry.js.map",
           "./www/build/p-919e9e55.entry.js",
           "./www/build/p-919e9e55.entry.js.map",
+          "./www/build/p-92774318.js",
+          "./www/build/p-92774318.js.map",
           "./www/build/p-92857f87.entry.js",
           "./www/build/p-92857f87.entry.js.map",
           "./www/build/p-93127aa7.js",
@@ -4066,6 +4074,8 @@
           "./www/build/p-f2463fc1.entry.js.map",
           "./www/build/p-f467e8b8.entry.js",
           "./www/build/p-f467e8b8.entry.js.map",
+          "./www/build/p-f51a21d6.entry.js",
+          "./www/build/p-f51a21d6.entry.js.map",
           "./www/build/p-f6303e31.js",
           "./www/build/p-f6303e31.js.map",
           "./www/build/p-f6654b1f.entry.js",
@@ -6721,8 +6731,8 @@
           "sc-checkbox",
           "sc-tax-id-input"
         ],
-        "bundleId": "p-02e53aaf",
-        "fileName": "p-02e53aaf.entry.js",
+        "bundleId": "p-f51a21d6",
+        "fileName": "p-f51a21d6.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-07b1b1ed.js",
@@ -6731,7 +6741,7 @@
           "p-830ab1a3.js",
           "p-710afbfa.js"
         ],
-        "originalByteSize": 26557
+        "originalByteSize": 26364
       },
       {
         "key": "sc-format-bytes.entry",
@@ -9667,7 +9677,7 @@
           "index-c5a96d53.js",
           "tax-d4911dbc.js"
         ],
-        "originalByteSize": 26598
+        "originalByteSize": 26400
       },
       {
         "key": "sc-format-bytes.entry",
@@ -12605,7 +12615,7 @@
           "index-fb76df07.js",
           "tax-736ff458.js"
         ],
-        "originalByteSize": 27021
+        "originalByteSize": 26830
       },
       {
         "key": "sc-format-bytes.entry",
