@@ -76,6 +76,9 @@ const ScSubscriptionSwitch = class {
         var _a, _b;
         this.filter = ((_b = (_a = this.subscription) === null || _a === void 0 ? void 0 : _a.price) === null || _b === void 0 ? void 0 : _b.recurring_interval) || 'month';
     }
+    hasMultipleFilters() {
+        return Object.values(this.hasFilters || {}).filter(v => !!v).length > 1;
+    }
     /** Get all subscriptions */
     async getGroup() {
         if (!this.productGroupId)
@@ -134,8 +137,7 @@ const ScSubscriptionSwitch = class {
         }));
     }
     renderSwitcher() {
-        const hasMultipleFilters = Object.values(this.hasFilters || {}).filter(v => !!v).length > 1;
-        if (!hasMultipleFilters)
+        if (!this.hasMultipleFilters())
             return;
         if (!this.showFilters)
             return;
@@ -146,8 +148,8 @@ const ScSubscriptionSwitch = class {
     }
     /** Is the price hidden or not */
     isHidden(price) {
-        // don't hide if no filters.
-        if (!this.showFilters)
+        // don't hide if no filters or has no multiple filters available.
+        if (!this.showFilters || !this.hasMultipleFilters())
             return false;
         // hide if the filter does not match the recurring interval.
         let hidden = this.filter !== price.recurring_interval;

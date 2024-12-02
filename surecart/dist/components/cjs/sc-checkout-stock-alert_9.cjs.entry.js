@@ -213,9 +213,10 @@ const ScFormComponentsValidator = class {
         this.hasShippingAmount = undefined;
         this.hasInvoiceDetails = undefined;
         this.hasInvoiceMemo = undefined;
+        this.hasTrialLineItem = undefined;
     }
     handleOrderChange() {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         // bail if we don't have address invalid error or disabled.
         if (this.disabled)
             return;
@@ -242,6 +243,10 @@ const ScFormComponentsValidator = class {
             this.addInvoiceDetails();
             this.addInvoiceMemo();
         }
+        // automatically add trial line item if we have a trial amount.
+        if (!!((_j = mutations.state.checkout) === null || _j === void 0 ? void 0 : _j.trial_amount)) {
+            this.addTrialLineItem();
+        }
     }
     handleHasAddressChange() {
         if (!this.hasAddress)
@@ -258,6 +263,7 @@ const ScFormComponentsValidator = class {
         this.hasShippingAmount = !!this.el.querySelector('sc-line-item-shipping');
         this.hasInvoiceDetails = !!this.el.querySelector('sc-invoice-details');
         this.hasInvoiceMemo = !!this.el.querySelector('sc-invoice-memo');
+        this.hasTrialLineItem = !!this.el.querySelector('sc-line-item-trial');
         // automatically add address field if tax is enabled.
         if ((_a = this.taxProtocol) === null || _a === void 0 ? void 0 : _a.tax_enabled) {
             this.addAddressField();
@@ -406,8 +412,19 @@ const ScFormComponentsValidator = class {
         invoiceDetails.appendChild(invoiceMemo);
         this.hasInvoiceMemo = true;
     }
+    addTrialLineItem() {
+        if (this.hasTrialLineItem)
+            return;
+        const subtotal = this.el.querySelector('sc-line-item-total[total=subtotal]');
+        const trialItem = document.createElement('sc-line-item-trial');
+        if (!subtotal)
+            return;
+        // Insert the trial item before the coupon form.
+        subtotal.parentNode.insertBefore(trialItem, subtotal.nextSibling);
+        this.hasTrialLineItem = true;
+    }
     render() {
-        return index.h("slot", { key: '024bf8232651b8f2dbe87b142bf0efc8402aadc0' });
+        return index.h("slot", { key: 'e66bd28dd1186def415bcd23fa32a6aa818ae5c0' });
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

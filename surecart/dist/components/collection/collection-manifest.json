@@ -28,6 +28,7 @@
     "components/controllers/checkout-form/invoice-receipt-download/sc-line-item-invoice-receipt-download.js",
     "components/controllers/checkout-form/line-item-tax/sc-line-item-tax.js",
     "components/controllers/checkout-form/line-item-total/sc-line-item-total.js",
+    "components/controllers/checkout-form/line-item-trial/sc-line-item-trial.js",
     "components/controllers/checkout-form/line-items/sc-line-items.js",
     "components/controllers/checkout-form/order-coupon-form/sc-order-coupon-form.js",
     "components/controllers/checkout-form/order-password/sc-order-password.js",

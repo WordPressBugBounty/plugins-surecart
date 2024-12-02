@@ -2,7 +2,14 @@ import { r as registerInstance, c as createEvent, h, F as Fragment, a as getElem
 import { s as speak } from './index-c5a96d53.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { a as getHumanDiscount, c as getHumanDiscountRedeemableStatus } from './price-d5770168.js';
+import { s as state } from './mutations-d5e8faea.js';
 import './currency-a0c9bff4.js';
+import './index-06061d4e.js';
+import './utils-e9ee502a.js';
+import './remove-query-args-938c53ea.js';
+import './add-query-args-0e2a8393.js';
+import './google-a86aa761.js';
+import './store-7020541e.js';
 
 const scCouponFormCss = ":host {\n  display: block;\n}\n\nsc-button {\n  color: var(--sc-color-primary-500);\n}\n\nsc-alert {\n  margin-top: var(--sc-spacing-small);\n}\n\n.coupon-form {\n  position: relative;\n  container-type: inline-size;\n}\n.coupon-form .coupon-button {\n  opacity: 0;\n  visibility: hidden;\n  transform: scale(0.9);\n  transition: all var(--sc-transition-fast) ease;\n  color: var(--sc-input-color);\n}\n.coupon-form .coupon-button-mobile {\n  margin-top: var(--sc-input-label-margin);\n  display: none;\n}\n.coupon-form--has-value .coupon-button {\n  opacity: 1;\n  visibility: visible;\n  transform: scale(1);\n}\n\n@container (max-width: 320px) {\n  .coupon-form .coupon-button {\n    display: none;\n  }\n  .coupon-form .coupon-button-mobile {\n    display: block;\n  }\n}\n.form {\n  opacity: 0;\n  visibility: hidden;\n  height: 0;\n  transform: translateY(5px);\n  transition: opacity var(--sc-transition-medium) ease, transform var(--sc-transition-medium) ease;\n  position: relative;\n  gap: var(--sc-spacing-small);\n}\n\n.coupon-form--is-open .form {\n  opacity: 1;\n  visibility: visible;\n  transform: translateY(0);\n  height: auto;\n  margin: var(--sc-spacing-small) 0;\n}\n.coupon-form--is-open .trigger {\n  display: none;\n}\n\n.trigger {\n  cursor: pointer;\n  font-size: var(--sc-font-size-small);\n  line-height: var(--sc-line-height-dense);\n  color: var(--sc-input-label-color);\n  user-select: none;\n}\n.trigger:hover {\n  text-decoration: underline;\n}\n\n.coupon-form--is-rtl .trigger {\n  text-align: right;\n}\n\n.coupon__status {\n  font-size: var(--sc-font-size-small);\n  line-height: var(--sc-line-height-dense);\n  color: var(--sc-color-warning-700);\n  display: inline-flex;\n  gap: var(--sc-spacing-x-small);\n  align-items: flex-start;\n  text-align: left;\n}\n.coupon__status sc-icon {\n  flex: 0 0 1em;\n  margin-top: 0.25em;\n}";
 const ScCouponFormStyle0 = scCouponFormCss;
@@ -88,14 +95,22 @@ const ScCouponForm = class {
             this.addCouponTrigger.focus();
         }
     }
+    renderTrialText() {
+        var _a, _b;
+        if (((_b = (_a = this.discount) === null || _a === void 0 ? void 0 : _a.coupon) === null || _b === void 0 ? void 0 : _b.duration) === 'once') {
+            return wp.i18n.__('Applies on first payment', 'surecart');
+        }
+        return wp.i18n.__('Starting on first payment', 'surecart');
+    }
     render() {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+        const isFreeTrial = !!((_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.trial_amount) && !((_b = state === null || state === void 0 ? void 0 : state.checkout) === null || _b === void 0 ? void 0 : _b.amount_due);
         if (this.loading) {
             return h("sc-skeleton", { style: { width: '120px', display: 'inline-block' } });
         }
-        if ((_b = (_a = this === null || this === void 0 ? void 0 : this.discount) === null || _a === void 0 ? void 0 : _a.promotion) === null || _b === void 0 ? void 0 : _b.code) {
+        if ((_d = (_c = this === null || this === void 0 ? void 0 : this.discount) === null || _c === void 0 ? void 0 : _c.promotion) === null || _d === void 0 ? void 0 : _d.code) {
             let humanDiscount = this.getHumanReadableDiscount();
-            return (h("sc-line-item", { exportparts: "description:info, price-description:discount, price:amount" }, h("span", { slot: "description" }, h("div", { part: "discount-label" }, wp.i18n.__('Discount', 'surecart')), h("sc-tag", { exportparts: "base:coupon-tag", type: 'redeemable' === ((_c = this.discount) === null || _c === void 0 ? void 0 : _c.redeemable_status) ? 'success' : 'warning', class: "coupon-tag", clearable: this.editable, onScClear: () => {
+            return (h("sc-line-item", { exportparts: "description:info, price-description:discount, price:amount" }, h("span", { slot: "description" }, h("div", { part: "discount-label" }, wp.i18n.__('Discount', 'surecart')), h("sc-tag", { exportparts: "base:coupon-tag", type: 'redeemable' === ((_e = this.discount) === null || _e === void 0 ? void 0 : _e.redeemable_status) ? 'success' : 'warning', class: "coupon-tag", clearable: this.editable, onScClear: () => {
                     if (!this.editable)
                         return;
                     this.scApplyCoupon.emit(null);
@@ -108,7 +123,7 @@ const ScCouponForm = class {
                         this.scApplyCoupon.emit(null);
                         this.open = false;
                     }
-                }, ref: el => (this.couponTag = el), role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Press enter to remove coupon code %s.', 'surecart'), ((_e = (_d = this === null || this === void 0 ? void 0 : this.discount) === null || _d === void 0 ? void 0 : _d.promotion) === null || _e === void 0 ? void 0 : _e.code) || this.input.value || '') }, (_g = (_f = this === null || this === void 0 ? void 0 : this.discount) === null || _f === void 0 ? void 0 : _f.promotion) === null || _g === void 0 ? void 0 : _g.code)), 'redeemable' === ((_h = this.discount) === null || _h === void 0 ? void 0 : _h.redeemable_status) ? (h(Fragment, null, humanDiscount && (h("span", { class: "coupon-human-discount", slot: "price-description" }, this.translateHumanDiscountWithDuration(humanDiscount))), h("span", { slot: "price" }, h("sc-format-number", { type: "currency", currency: this === null || this === void 0 ? void 0 : this.currency, value: this === null || this === void 0 ? void 0 : this.discountAmount })))) : (h("div", { class: "coupon__status", slot: "price-description" }, h("sc-icon", { name: "alert-triangle" }), getHumanDiscountRedeemableStatus((_j = this.discount) === null || _j === void 0 ? void 0 : _j.redeemable_status)))));
+                }, ref: el => (this.couponTag = el), role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Press enter to remove coupon code %s.', 'surecart'), ((_g = (_f = this === null || this === void 0 ? void 0 : this.discount) === null || _f === void 0 ? void 0 : _f.promotion) === null || _g === void 0 ? void 0 : _g.code) || this.input.value || '') }, (_j = (_h = this === null || this === void 0 ? void 0 : this.discount) === null || _h === void 0 ? void 0 : _h.promotion) === null || _j === void 0 ? void 0 : _j.code)), 'redeemable' === ((_k = this.discount) === null || _k === void 0 ? void 0 : _k.redeemable_status) ? (h(Fragment, null, humanDiscount && (h("span", { class: "coupon-human-discount", slot: "price-description" }, this.translateHumanDiscountWithDuration(humanDiscount))), h("span", { slot: isFreeTrial ? 'price-description' : 'price' }, isFreeTrial ? this.renderTrialText() : h("sc-format-number", { type: "currency", currency: this === null || this === void 0 ? void 0 : this.currency, value: this === null || this === void 0 ? void 0 : this.discountAmount })))) : (h("div", { class: "coupon__status", slot: "price-description" }, h("sc-icon", { name: "alert-triangle" }), getHumanDiscountRedeemableStatus((_l = this.discount) === null || _l === void 0 ? void 0 : _l.redeemable_status)))));
         }
         return this.collapsed ? (h("div", { part: "base", class: {
                 'coupon-form': true,

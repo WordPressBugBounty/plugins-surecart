@@ -57,10 +57,7 @@
   "editorStyle": [
     "surecart-image-slider"
   ],
-  "viewScriptModule": "@surecart/image-slider",
   "style": [
-    "file:./style-index.css",
-    "surecart-image-slider",
-    "surecart-product-media"
+    "file:./style-index.css"
   ]
 }

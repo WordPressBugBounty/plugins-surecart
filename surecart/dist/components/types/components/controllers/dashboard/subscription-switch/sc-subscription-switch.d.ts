@@ -35,6 +35,7 @@ export declare class ScSubscriptionSwitch {
     handleProductsChange(): void;
     handlePricesChange(val: any, prev: any): void;
     handleSubscriptionChange(): void;
+    hasMultipleFilters(): boolean;
     /** Get all subscriptions */
     getGroup(): Promise<void>;
     /** Get the product's prices. */

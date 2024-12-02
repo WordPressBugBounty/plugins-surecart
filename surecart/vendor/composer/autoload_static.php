@@ -285,6 +285,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCartBlocks\\Blocks\\Product\\Title\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/Product/Title/Block.php',
         'SureCartBlocks\\Blocks\\Product\\VariantChoices\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/Product/VariantChoices/Block.php',
         'SureCartBlocks\\Blocks\\StoreLogo\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/StoreLogo/Block.php',
+        'SureCartBlocks\\Blocks\\TrialLineItem\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/TrialLineItem/Block.php',
         'SureCartBlocks\\Blocks\\Upsell\\CountdownTimer\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/Upsell/CountdownTimer/Block.php',
         'SureCartBlocks\\Blocks\\Upsell\\NoThanksButton\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/Upsell/NoThanksButton/Block.php',
         'SureCartBlocks\\Blocks\\Upsell\\SubmitButton\\Block' => __DIR__ . '/../..' . '/packages/blocks/Blocks/Upsell/SubmitButton/Block.php',

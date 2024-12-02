@@ -195,6 +195,7 @@ return array(
     'SureCartBlocks\\Blocks\\Product\\Title\\Block' => $baseDir . '/packages/blocks/Blocks/Product/Title/Block.php',
     'SureCartBlocks\\Blocks\\Product\\VariantChoices\\Block' => $baseDir . '/packages/blocks/Blocks/Product/VariantChoices/Block.php',
     'SureCartBlocks\\Blocks\\StoreLogo\\Block' => $baseDir . '/packages/blocks/Blocks/StoreLogo/Block.php',
+    'SureCartBlocks\\Blocks\\TrialLineItem\\Block' => $baseDir . '/packages/blocks/Blocks/TrialLineItem/Block.php',
     'SureCartBlocks\\Blocks\\Upsell\\CountdownTimer\\Block' => $baseDir . '/packages/blocks/Blocks/Upsell/CountdownTimer/Block.php',
     'SureCartBlocks\\Blocks\\Upsell\\NoThanksButton\\Block' => $baseDir . '/packages/blocks/Blocks/Upsell/NoThanksButton/Block.php',
     'SureCartBlocks\\Blocks\\Upsell\\SubmitButton\\Block' => $baseDir . '/packages/blocks/Blocks/Upsell/SubmitButton/Block.php',

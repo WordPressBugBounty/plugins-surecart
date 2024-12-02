@@ -68,5 +68,6 @@ export declare class ScCouponForm {
     translateHumanDiscountWithDuration(humanDiscount: any): any;
     /** Focus the input. */
     triggerFocus(): Promise<void>;
+    renderTrialText(): string;
     render(): any;
 }
