@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-12-02T21:49:10",
+  "timestamp": "2024-12-09T19:01:26",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3455,6 +3455,8 @@
           "./dist/surecart/p-8f5fd692.entry.js.map",
           "./dist/surecart/p-8fa22f8b.entry.js",
           "./dist/surecart/p-8fa22f8b.entry.js.map",
+          "./dist/surecart/p-8fff028a.entry.js",
+          "./dist/surecart/p-8fff028a.entry.js.map",
           "./dist/surecart/p-900d257b.entry.js",
           "./dist/surecart/p-900d257b.entry.js.map",
           "./dist/surecart/p-9110e374.entry.js",
@@ -3593,8 +3595,6 @@
           "./dist/surecart/p-db4eb1a4.entry.js.map",
           "./dist/surecart/p-dbfbfc65.entry.js",
           "./dist/surecart/p-dbfbfc65.entry.js.map",
-          "./dist/surecart/p-dd4bb4c1.entry.js",
-          "./dist/surecart/p-dd4bb4c1.entry.js.map",
           "./dist/surecart/p-de6720f4.entry.js",
           "./dist/surecart/p-de6720f4.entry.js.map",
           "./dist/surecart/p-def9b7bf.entry.js",
@@ -3891,6 +3891,8 @@
           "./www/build/p-8f5fd692.entry.js.map",
           "./www/build/p-8fa22f8b.entry.js",
           "./www/build/p-8fa22f8b.entry.js.map",
+          "./www/build/p-8fff028a.entry.js",
+          "./www/build/p-8fff028a.entry.js.map",
           "./www/build/p-900d257b.entry.js",
           "./www/build/p-900d257b.entry.js.map",
           "./www/build/p-9110e374.entry.js",
@@ -4029,8 +4031,6 @@
           "./www/build/p-db4eb1a4.entry.js.map",
           "./www/build/p-dbfbfc65.entry.js",
           "./www/build/p-dbfbfc65.entry.js.map",
-          "./www/build/p-dd4bb4c1.entry.js",
-          "./www/build/p-dd4bb4c1.entry.js.map",
           "./www/build/p-de6720f4.entry.js",
           "./www/build/p-de6720f4.entry.js.map",
           "./www/build/p-def9b7bf.entry.js",
@@ -5699,8 +5699,8 @@
         "components": [
           "sc-stripe-payment-element"
         ],
-        "bundleId": "p-dd4bb4c1",
-        "fileName": "p-dd4bb4c1.entry.js",
+        "bundleId": "p-8fff028a",
+        "fileName": "p-8fff028a.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-9ef0f73f.js",
@@ -5723,7 +5723,7 @@
           "p-93127aa7.js",
           "p-07b1b1ed.js"
         ],
-        "originalByteSize": 16395
+        "originalByteSize": 16549
       },
       {
         "key": "sc-subscription.entry",
@@ -8667,7 +8667,7 @@
           "util-50af2a83.js",
           "address-b892540d.js"
         ],
-        "originalByteSize": 16520
+        "originalByteSize": 16674
       },
       {
         "key": "sc-subscription.entry",
@@ -11613,7 +11613,7 @@
           "util-b877b2bd.js",
           "address-4c70d641.js"
         ],
-        "originalByteSize": 17080
+        "originalByteSize": 17216
       },
       {
         "key": "sc-subscription.entry",
