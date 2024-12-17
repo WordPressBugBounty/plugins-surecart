@@ -1,7 +1,7 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { d as getFormattedRemainingTime } from './getters-b1d93841.js';
-import './store-dcefd119.js';
-import './utils-e9ee502a.js';
+import { d as getFormattedRemainingTime } from './getters-5ca0dc55.js';
+import './store-4bc13420.js';
+import './utils-cd1431df.js';
 import './index-06061d4e.js';
 
 const scUpsellCountdownTimerCss = ":host{display:flex;justify-content:var(--sc-upsell-countdown-timer-justify-content, center);align-items:var(--sc-upsell-countdown-timer-align-items, center);text-align:var(--sc-upsell-countdown-timer-text-align, center);flex-wrap:wrap;gap:var(--sc-upsell-countdown-timer-gap, 0.5em);line-height:1;padding:var(--sc-upsell-countdown-timer-padding, var(--sc-spacing-medium));border-radius:var(--sc-upsell-countdown-timer-border-radius, var(--sc-border-radius-pill));background-color:var(--sc-upsell-countdown-timer-background-color, rgb(226, 249, 235));color:var(--sc-upsell-countdown-timer-color, rgb(71, 91, 80))}";

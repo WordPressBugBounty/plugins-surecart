@@ -1,19 +1,19 @@
 import { r as registerInstance, c as createEvent, h, a as getElement, H as Host, F as Fragment } from './index-745b6bec.js';
 import { c as countryChoices, h as hasState } from './address-b892540d.js';
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
-import { s as state, o as onChange, u as updateFormState } from './mutations-d5e8faea.js';
-import { f as formBusy, a as formLoading } from './getters-929aa1df.js';
-import { s as state$1 } from './store-7020541e.js';
+import { s as state, o as onChange, u as updateFormState } from './mutations-4ce86b78.js';
+import { f as formBusy, a as formLoading } from './getters-487612aa.js';
+import { s as state$1 } from './store-627acec4.js';
 import { o as openWormhole } from './consumer-e06b16d3.js';
-import { l as lockCheckout, b as unLockCheckout, r as removeCheckoutLineItem, a as addCheckoutLineItem, t as trackOrderBump } from './mutations-01792dfb.js';
-import { c as createOrUpdateCheckout } from './index-96490395.js';
+import { l as lockCheckout, b as unLockCheckout, r as removeCheckoutLineItem, a as addCheckoutLineItem, t as trackOrderBump } from './mutations-72bc05f8.js';
+import { c as createOrUpdateCheckout } from './index-af03d92e.js';
 import { s as speak } from './index-c5a96d53.js';
 import { i as intervalString, g as getFormattedPrice } from './price-d5770168.js';
-import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-e4172581.js';
+import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-6b37a0b7.js';
 import { c as createErrorNotice } from './mutations-ed6d0770.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import './index-06061d4e.js';
-import './utils-e9ee502a.js';
+import './utils-cd1431df.js';
 import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
 import './google-a86aa761.js';
@@ -179,7 +179,7 @@ const ScLineItemInvoiceDueDate = class {
     render() {
         var _a;
         const checkout = state === null || state === void 0 ? void 0 : state.checkout;
-        const dueDate = ((_a = checkout === null || checkout === void 0 ? void 0 : checkout.invoice) === null || _a === void 0 ? void 0 : _a.due_date) || null;
+        const dueDate = ((_a = checkout === null || checkout === void 0 ? void 0 : checkout.invoice) === null || _a === void 0 ? void 0 : _a.due_date_date) || null;
         // Stop if checkout has no invoice due date.
         if (!dueDate) {
             return null;
@@ -188,7 +188,7 @@ const ScLineItemInvoiceDueDate = class {
         if (formBusy() && !(checkout === null || checkout === void 0 ? void 0 : checkout.invoice)) {
             return (h("sc-line-item", null, h("sc-skeleton", { slot: "title", style: { width: '120px', display: 'inline-block' } }), h("sc-skeleton", { slot: "price", style: { 'width': '50px', 'display': 'inline-block', '--border-radius': '6px' } })));
         }
-        return (h("sc-line-item", null, h("span", { slot: "description" }, h("slot", { name: "title" }, wp.i18n.__('Due Date', 'surecart'))), h("sc-format-date", { slot: "price-description", date: dueDate, type: "timestamp", month: "short", day: "numeric", year: "numeric" })));
+        return (h("sc-line-item", null, h("span", { slot: "description" }, h("slot", { name: "title" }, wp.i18n.__('Due Date', 'surecart'))), h("span", { slot: "price-description" }, dueDate)));
     }
 };
 ScLineItemInvoiceDueDate.style = ScLineItemInvoiceDueDateStyle0;

@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, H as Host } from './index-745b6bec.js';
 import { a as apiFetch } from './fetch-2032d11d.js';
 import { b as translateRemainingPayments, i as intervalString } from './price-d5770168.js';
-import { f as formatTaxDisplay } from './tax-d4911dbc.js';
+import { f as formatTaxDisplay } from './tax-a03623ca.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 import './currency-a0c9bff4.js';

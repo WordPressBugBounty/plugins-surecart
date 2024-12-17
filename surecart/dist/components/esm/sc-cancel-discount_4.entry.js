@@ -212,13 +212,13 @@ const ScSubscriptionCancel = class {
         if (this.loading) {
             return this.renderLoading();
         }
-        return (h(Fragment, null, ((_a = this === null || this === void 0 ? void 0 : this.protocol) === null || _a === void 0 ? void 0 : _a.cancel_behavior) === 'pending' ? (h("div", { slot: "description" }, wp.i18n.__('Your plan will be canceled, but is still available until the end of your billing period on', 'surecart'), ' ', h("strong", null, h("sc-format-date", { type: "timestamp", date: (_b = this === null || this === void 0 ? void 0 : this.subscription) === null || _b === void 0 ? void 0 : _b.current_period_end_at, month: "long", day: "numeric", year: "numeric" })), ". ", wp.i18n.__('If you change your mind, you can renew your subscription.', 'surecart'))) : (h("div", { slot: "description" }, wp.i18n.__('Your plan will be canceled immediately and cannot be modified later.', 'surecart')))));
+        return (h(Fragment, null, ((_a = this === null || this === void 0 ? void 0 : this.protocol) === null || _a === void 0 ? void 0 : _a.cancel_behavior) === 'pending' ? (h("div", { slot: "description" }, wp.i18n.__('Your plan will be canceled, but is still available until the end of your billing period on', 'surecart'), ' ', h("strong", null, (_b = this === null || this === void 0 ? void 0 : this.subscription) === null || _b === void 0 ? void 0 : _b.current_period_end_at_date), ". ", wp.i18n.__('If you change your mind, you can renew your subscription.', 'surecart'))) : (h("div", { slot: "description" }, wp.i18n.__('Your plan will be canceled immediately and cannot be modified later.', 'surecart')))));
     }
     renderLoading() {
         return (h("div", { style: { padding: '0.5em' } }, h("sc-skeleton", { style: { width: '30%', marginBottom: '0.75em' } }), h("sc-skeleton", { style: { width: '20%', marginBottom: '0.75em' } }), h("sc-skeleton", { style: { width: '40%' } })));
     }
     render() {
-        return (h("sc-dashboard-module", { key: '7ecc2ac3d8167387891f3e4174258e66a142df38', heading: this.heading || wp.i18n.__('Cancel your plan', 'surecart'), class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, this.renderContent(), h("sc-flex", { key: 'ba36f3ee98d08b7d0678386056c579d9fcb36c9b', justifyContent: "flex-start" }, h("sc-button", { key: '4ea27387f4c6984fe6f91fefe355f575b31c9fb9', type: "primary", loading: this.loading || this.busy, disabled: this.loading || this.busy, onClick: () => this.cancelSubscription() }, wp.i18n.__('Cancel Plan', 'surecart')), h("sc-button", { key: '1eb6efffea221b5c339f867e8185f62274e2e563', style: { color: 'var(--sc-color-gray-500' }, type: "text", onClick: () => this.scAbandon.emit(), loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Keep My Plan', 'surecart'))), this.busy && h("sc-block-ui", { key: 'a692166e215c820be2e09698266f62684d0a02fa' })));
+        return (h("sc-dashboard-module", { key: '915e0da3858552d79170106f78eb698b5202ccd6', heading: this.heading || wp.i18n.__('Cancel your plan', 'surecart'), class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, this.renderContent(), h("sc-flex", { key: '036032a82590c922b3167b7b87d3f140d2356dbb', justifyContent: "flex-start" }, h("sc-button", { key: 'ad2e297e2cca0db7fc215998cbab017cf19ed0bf', type: "primary", loading: this.loading || this.busy, disabled: this.loading || this.busy, onClick: () => this.cancelSubscription() }, wp.i18n.__('Cancel Plan', 'surecart')), h("sc-button", { key: '1ad0cbfe78e8c6664d6507f7cb39e30fc270c6b9', style: { color: 'var(--sc-color-gray-500' }, type: "text", onClick: () => this.scAbandon.emit(), loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Keep My Plan', 'surecart'))), this.busy && h("sc-block-ui", { key: '2aaa6e5bcde01d056c2edd146d7ddae84426bbd8' })));
     }
 };
 ScSubscriptionCancel.style = ScSubscriptionCancelStyle0;
@@ -268,8 +268,11 @@ const ScTextarea = class {
         this.setTextareaHeight();
     }
     handleValueChange() {
+        var _a;
         this.invalid = !this.input.checkValidity();
-        this.showCharLimit = this.maxlength - this.value.length <= CHAR_LIMIT_THRESHOLD;
+        const valueLength = ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) || 0;
+        const maxLength = this.maxlength || Number.MAX_SAFE_INTEGER;
+        this.showCharLimit = maxLength - valueLength <= CHAR_LIMIT_THRESHOLD;
     }
     handleDisabledChange() {
         // Disabled form controls are always valid, so we need to recheck validity when the state changes
@@ -380,12 +383,13 @@ const ScTextarea = class {
         }
     }
     render() {
-        return (h("div", { key: '9a7576679eabf4e8b396dd1de454fff1e6d28389', part: "form-control", class: {
+        var _a;
+        return (h("div", { key: '4248ae2284a2cb8e00caa2c72f136b56afa75bb3', part: "form-control", class: {
                 'form-control': true,
                 'form-control--small': this.size === 'small',
                 'form-control--medium': this.size === 'medium',
                 'form-control--large': this.size === 'large',
-            } }, h("sc-form-control", { key: 'cd75500e4b400e89a9012fe21ab5fcae1f89bfaa', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("div", { key: 'c1fec2f51128b4b0b1380f3365b636319c496c0f', part: "form-control-input", class: "form-control-input" }, h("div", { key: 'ac2d70bd454a113db36f476a3285817bed4c95d2', part: "base", class: {
+            } }, h("sc-form-control", { key: '450ff72a85f80d390925a283d454f9cbb2d0c7a9', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("div", { key: 'a2e325cc1836293c9b9e7e1568c0238d0d96bfd9', part: "form-control-input", class: "form-control-input" }, h("div", { key: '0bd99c323f098c3858c0be722b354948ae4af40f', part: "base", class: {
                 'textarea': true,
                 'textarea--small': this.size === 'small',
                 'textarea--medium': this.size === 'medium',
@@ -399,7 +403,7 @@ const ScTextarea = class {
                 'textarea--resize-none': this.resize === 'none',
                 'textarea--resize-vertical': this.resize === 'vertical',
                 'textarea--resize-auto': this.resize === 'auto',
-            } }, h("textarea", { key: '35562c78edd851ee4d6439a2d31c75026ef1b4e7', part: "textarea", ref: el => (this.input = el), id: "input", class: "textarea__control", name: this.name, value: this.value, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, rows: this.rows, minlength: this.minlength, maxlength: this.maxlength, autocapitalize: this.autocapitalize, autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, enterkeyhint: this.enterkeyhint, inputmode: this.inputmode, "aria-describedby": "help-text", onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), onKeyDown: (e) => e.stopPropagation() })), this.showCharLimit && (h("div", { key: '8664ee8e325031f4cec7a7597a89a0d70e0fa4cb', slot: "help", class: 'textarea__char-limit-warning' }, wp.i18n.sprintf(wp.i18n.__('%d characters remaining', 'surecart'), this.maxlength - this.input.value.length)))))));
+            } }, h("textarea", { key: '8998674cdd362594733d093288370f05c188c11d', part: "textarea", ref: el => (this.input = el), id: "input", class: "textarea__control", name: this.name, value: this.value, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, rows: this.rows, minlength: this.minlength, maxlength: this.maxlength, autocapitalize: this.autocapitalize, autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, enterkeyhint: this.enterkeyhint, inputmode: this.inputmode, "aria-describedby": "help-text", onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), onKeyDown: (e) => e.stopPropagation() })), this.showCharLimit && (h("div", { key: '3bf51bc2294f5196775dd1d8a840b57ad752b4e4', slot: "help", class: 'textarea__char-limit-warning' }, wp.i18n.sprintf(wp.i18n.__('%d characters remaining', 'surecart'), this.maxlength && ((_a = this.input) === null || _a === void 0 ? void 0 : _a.value) ? this.maxlength - this.input.value.length : this.maxlength)))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

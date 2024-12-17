@@ -2,7 +2,7 @@ import { r as registerInstance, h } from './index-745b6bec.js';
 import { o as openWormhole } from './consumer-e06b16d3.js';
 import { h as hasSubscription } from './index-0202319f.js';
 import { i as intervalString, a as getHumanDiscount } from './price-d5770168.js';
-import { f as formatTaxDisplay } from './tax-d4911dbc.js';
+import { f as formatTaxDisplay } from './tax-a03623ca.js';
 import './currency-a0c9bff4.js';
 
 const scOrderConfirmationLineItemsCss = ":host{display:block}.line-items{display:grid;gap:var(--sc-spacing-small)}.line-item{display:grid;gap:var(--sc-spacing-small)}.fee__description{opacity:0.75}";

@@ -110,12 +110,12 @@ const ScInvoicesList = class {
     }
     renderList() {
         return this.invoices.map(invoice => {
-            const { checkout } = invoice;
+            const { checkout, due_date_date } = invoice;
             if (!checkout)
                 return null;
             const { amount_due, currency } = checkout;
             return (index.h("sc-stacked-list-row", { href: this.getInvoiceRedirectUrl(invoice), style: { '--columns': '4' }, "mobile-size": 500 }, index.h("div", null, "#", invoice === null || invoice === void 0 ? void 0 :
-                invoice.order_number), index.h("div", null, (invoice === null || invoice === void 0 ? void 0 : invoice.due_date) ? (index.h(index.Fragment, null, wp.i18n.__('Due on', 'surecart'), " ", index.h("sc-format-date", { class: "invoice__date", date: (invoice === null || invoice === void 0 ? void 0 : invoice.due_date) * 1000, month: "short", day: "numeric", year: "numeric" }))) : ('—')), index.h("div", { class: "invoices-list__status" }, index.h("sc-invoice-status-badge", { status: invoice === null || invoice === void 0 ? void 0 : invoice.status })), index.h("div", null, index.h("sc-format-number", { type: "currency", currency: currency, value: amount_due }))));
+                invoice.order_number), index.h("div", null, due_date_date && (invoice === null || invoice === void 0 ? void 0 : invoice.status) === 'open' ? wp.i18n.sprintf(wp.i18n.__('Due %s', 'surecart'), due_date_date) : '—'), index.h("div", { class: "invoices-list__status" }, index.h("sc-invoice-status-badge", { status: invoice === null || invoice === void 0 ? void 0 : invoice.status })), index.h("div", null, index.h("sc-format-number", { type: "currency", currency: currency, value: amount_due }))));
         });
     }
     renderContent() {
@@ -130,7 +130,7 @@ const ScInvoicesList = class {
     }
     render() {
         var _a, _b;
-        return (index.h("sc-dashboard-module", { key: 'c9065ab8c3a0b8164b4d49672a263bcf17809d71', class: "invoices-list", error: this.error }, index.h("span", { key: 'dc07097e8a6ee410f91a120cef4fb52179809a20', slot: "heading" }, index.h("slot", { key: 'd077dce5380318014e648f6431613ab325cdb1f9', name: "heading" }, this.heading || wp.i18n.__('Invoices', 'surecart'))), !!this.allLink && !!((_a = this.invoices) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: '452452fdf73a8a10af318e6d20450d7e430906d3', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Invoices', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: 'bbcfe2fa7db49139167d3c7b3edc72950c349d8c', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '5044b700c7970d468bbe18e4953def7fa021f726', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.invoices) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: '926624b1b6a856fd299f0dc295b9529b4023e986' })));
+        return (index.h("sc-dashboard-module", { key: '0ddd647a474609a28ac2ad0d34c406a51fb08552', class: "invoices-list", error: this.error }, index.h("span", { key: '4e243def7f4d8b31c2dba44f46036f73568d5bec', slot: "heading" }, index.h("slot", { key: '837c2ce0dd715f6d8006169e28b7e94c223cbb72', name: "heading" }, this.heading || wp.i18n.__('Invoices', 'surecart'))), !!this.allLink && !!((_a = this.invoices) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: '7f39eca0203173351b193b2244ab072441e609d9', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Invoices', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: 'c5cda6c955a446aec12d96ec941d61c63f03871e', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '7e0296eb10b1ab1691f694672e0ee64111b912ab', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.invoices) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: '9f2ebb613f45525cd8202c1658e4778bfcb9da07' })));
     }
     get el() { return index.getElement(this); }
 };

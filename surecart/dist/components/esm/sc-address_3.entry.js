@@ -3,7 +3,7 @@ import { c as countryChoices, a as hasPostal, b as hasCity } from './address-b89
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { s as speak } from './index-c5a96d53.js';
-import { z as zones } from './tax-d4911dbc.js';
+import { z as zones } from './tax-a03623ca.js';
 
 const scAddressCss = ":host{display:block}.sc-address{display:block;position:relative}.sc-address [hidden]{display:none}.sc-address--loading{min-height:230px}.sc-address sc-skeleton{display:block;margin-bottom:1em}.sc-address__control{display:block}.sc-address__control>*{margin-bottom:var(--sc-address-column-spacing, -1px)}.sc-address__columns{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.sc-address__columns>*{flex:1;width:50%;margin-right:var(--sc-address-column-spacing, -1px)}.sc-address__columns>*:last-child{margin-right:0}";
 const ScAddressStyle0 = scAddressCss;

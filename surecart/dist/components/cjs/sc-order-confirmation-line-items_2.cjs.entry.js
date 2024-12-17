@@ -6,7 +6,7 @@ const index = require('./index-8acc3c89.js');
 const consumer = require('./consumer-9f4ee0e3.js');
 const index$1 = require('./index-21f8920e.js');
 const price = require('./price-653ec1cb.js');
-const tax = require('./tax-736ff458.js');
+const tax = require('./tax-a4582e73.js');
 require('./currency-71fce0f0.js');
 
 const scOrderConfirmationLineItemsCss = ":host{display:block}.line-items{display:grid;gap:var(--sc-spacing-small)}.line-item{display:grid;gap:var(--sc-spacing-small)}.fee__description{opacity:0.75}";

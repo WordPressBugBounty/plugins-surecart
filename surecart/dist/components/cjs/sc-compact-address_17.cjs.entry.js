@@ -5,19 +5,19 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-8acc3c89.js');
 const address = require('./address-4c70d641.js');
 const formData = require('./form-data-0da9940f.js');
-const mutations = require('./mutations-19357660.js');
-const getters = require('./getters-690e042a.js');
-const store = require('./store-1fb3d249.js');
+const mutations = require('./mutations-ddd639e5.js');
+const getters = require('./getters-87b7ef91.js');
+const store = require('./store-4a539aea.js');
 const consumer = require('./consumer-9f4ee0e3.js');
-const mutations$1 = require('./mutations-6484d4a1.js');
-const index$1 = require('./index-771f480e.js');
+const mutations$1 = require('./mutations-b1f799f9.js');
+const index$1 = require('./index-3ad2d5f0.js');
 const index$2 = require('./index-fb76df07.js');
 const price = require('./price-653ec1cb.js');
-const getters$1 = require('./getters-d2606216.js');
+const getters$1 = require('./getters-fbad8b87.js');
 const mutations$2 = require('./mutations-11c8f9a8.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./index-bcdafe6e.js');
-require('./utils-ee1bb9d3.js');
+require('./utils-2e91d46c.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./google-59d23803.js');
@@ -183,7 +183,7 @@ const ScLineItemInvoiceDueDate = class {
     render() {
         var _a;
         const checkout = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout;
-        const dueDate = ((_a = checkout === null || checkout === void 0 ? void 0 : checkout.invoice) === null || _a === void 0 ? void 0 : _a.due_date) || null;
+        const dueDate = ((_a = checkout === null || checkout === void 0 ? void 0 : checkout.invoice) === null || _a === void 0 ? void 0 : _a.due_date_date) || null;
         // Stop if checkout has no invoice due date.
         if (!dueDate) {
             return null;
@@ -192,7 +192,7 @@ const ScLineItemInvoiceDueDate = class {
         if (getters.formBusy() && !(checkout === null || checkout === void 0 ? void 0 : checkout.invoice)) {
             return (index.h("sc-line-item", null, index.h("sc-skeleton", { slot: "title", style: { width: '120px', display: 'inline-block' } }), index.h("sc-skeleton", { slot: "price", style: { 'width': '50px', 'display': 'inline-block', '--border-radius': '6px' } })));
         }
-        return (index.h("sc-line-item", null, index.h("span", { slot: "description" }, index.h("slot", { name: "title" }, wp.i18n.__('Due Date', 'surecart'))), index.h("sc-format-date", { slot: "price-description", date: dueDate, type: "timestamp", month: "short", day: "numeric", year: "numeric" })));
+        return (index.h("sc-line-item", null, index.h("span", { slot: "description" }, index.h("slot", { name: "title" }, wp.i18n.__('Due Date', 'surecart'))), index.h("span", { slot: "price-description" }, dueDate)));
     }
 };
 ScLineItemInvoiceDueDate.style = ScLineItemInvoiceDueDateStyle0;

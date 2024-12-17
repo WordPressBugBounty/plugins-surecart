@@ -225,7 +225,6 @@
     "components/ui/text/sc-text.js",
     "components/ui/tooltip/sc-tooltip.js",
     "components/util/format-bytes/sc-format-bytes.js",
-    "components/util/format-date/sc-format-date.js",
     "components/util/format-interval/sc-format-interval.js",
     "components/util/format-number/sc-format-number.js",
     "components/util/visually-hidden/sc-visually-hidden.js"

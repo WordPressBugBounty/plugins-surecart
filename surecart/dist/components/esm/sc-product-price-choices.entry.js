@@ -1,11 +1,11 @@
 import { r as registerInstance, h, F as Fragment, H as Host } from './index-745b6bec.js';
 import { i as intervalString } from './price-d5770168.js';
-import { j as availablePrices, s as state, b as setProduct } from './watchers-67501779.js';
+import { j as availablePrices, s as state, b as setProduct } from './watchers-fbf07f32.js';
 import './currency-a0c9bff4.js';
 import './index-06061d4e.js';
 import './google-dd89f242.js';
 import './google-a86aa761.js';
-import './utils-e9ee502a.js';
+import './utils-cd1431df.js';
 import './util-50af2a83.js';
 import './index-c5a96d53.js';
 

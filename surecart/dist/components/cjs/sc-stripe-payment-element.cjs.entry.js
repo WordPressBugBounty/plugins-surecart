@@ -5,16 +5,16 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-8acc3c89.js');
 const pure = require('./pure-bd6f0a6e.js');
 const watchers = require('./watchers-2ad3abd1.js');
-const mutations = require('./mutations-19357660.js');
-const store = require('./store-1fb3d249.js');
-require('./watchers-9d0e8382.js');
-const getters = require('./getters-c1b89891.js');
-const getters$1 = require('./getters-690e042a.js');
+const mutations = require('./mutations-ddd639e5.js');
+const store = require('./store-4a539aea.js');
+require('./watchers-3ad21bc5.js');
+const getters = require('./getters-532c91bd.js');
+const getters$1 = require('./getters-87b7ef91.js');
 const mutations$1 = require('./mutations-11c8f9a8.js');
-const getters$2 = require('./getters-d2606216.js');
+const getters$2 = require('./getters-fbad8b87.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./index-bcdafe6e.js');
-require('./utils-ee1bb9d3.js');
+require('./utils-2e91d46c.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
@@ -39,6 +39,7 @@ const ScStripePaymentElement = class {
     }
     async componentWillLoad() {
         this.fetchStyles();
+        this.syncCheckoutMode();
     }
     async handleStylesChange() {
         this.createOrUpdateElements();
@@ -62,11 +63,24 @@ const ScStripePaymentElement = class {
             }, 100);
         });
     }
-    /** Maybe load the stripe element on load. */
+    /** Sync the checkout mode */
+    async syncCheckoutMode() {
+        mutations.onChange('checkout', () => {
+            this.initializeStripe();
+        });
+    }
     async componentDidLoad() {
+        this.initializeStripe();
+    }
+    async initializeStripe() {
+        var _a, _b;
+        if (typeof ((_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.live_mode) === 'undefined' || ((_b = getters.state === null || getters.state === void 0 ? void 0 : getters.state.instances) === null || _b === void 0 ? void 0 : _b.stripe)) {
+            return;
+        }
         const { processor_data } = getters.getProcessorByType('stripe') || {};
         try {
             getters.state.instances.stripe = await pure.pure.loadStripe(processor_data === null || processor_data === void 0 ? void 0 : processor_data.publishable_key, { stripeAccount: processor_data === null || processor_data === void 0 ? void 0 : processor_data.account_id });
+            this.error = '';
         }
         catch (e) {
             this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Stripe could not be loaded', 'surecart');
@@ -296,11 +310,11 @@ const ScStripePaymentElement = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'fcc13637eac8869ed27f497006b3e3964d4ad82d', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (index.h("sc-text", { key: 'e5dffac1b707208a488ea98ae410e7e0d0499d9d', style: {
+        return (index.h("div", { key: 'aa70fadc7501c04584172115e3f73d6865372ed5', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (index.h("sc-text", { key: '37351735c30206e55ecb141c7a4b5a84944c59be', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginBottom': '0.5em',
-            } }, this.error)), index.h("div", { key: '9b14cf54ef99641a2ccdd9c0ce1e6fd6745e2944', class: "loader", hidden: this.loaded }, index.h("div", { key: '7604a836b25f5ad797c87735dee625272b5c7eb3', class: "loader__row" }, index.h("div", { key: 'e54990b98f5a85ca118db569993f2768957bf294', style: { width: '50%' } }, index.h("sc-skeleton", { key: '2206c79654a86c5c884d719bf6aeae61205ed2b9', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '73f6ee1dd46c60a6a3eea24421d8733b1966854c' })), index.h("div", { key: 'a8bec0353ff2aaced0612589b82743d3caf63554', style: { flex: '1' } }, index.h("sc-skeleton", { key: '9971026f89cc258e5c04e9b266e2527573f6fbad', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '82a6c65532925cd74fecefeebcd19e11f2b470b7' })), index.h("div", { key: 'a4c6f839490e3608d8de1e0f7ac1d8ac25a86936', style: { flex: '1' } }, index.h("sc-skeleton", { key: '706b9fb907c0c04b328aa043332eaaa9c968fb42', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'c7b91f0335893b6e28e24b5ff25dfda3045dc2b3' }))), index.h("div", { key: '09568cf01b15ddfa70e48a2806181bcc10809460', class: "loader__details" }, index.h("sc-skeleton", { key: '6fba8e4cd873c5cb6944da442f629f765ea2298c', style: { height: '1rem' } }), index.h("sc-skeleton", { key: '9fa9e1520796fb2d46f093a491c36b7c9e808064', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: '3175f587aa33bc7c5154173bed9c78f0f7120794', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
+            } }, this.error)), index.h("div", { key: '364a66d83bfed957b20bf45a6e80f2e21fc17064', class: "loader", hidden: this.loaded }, index.h("div", { key: 'd8864af904a928951abde5dbbe44fab5380ed4ed', class: "loader__row" }, index.h("div", { key: 'b9b9ec7a68265a0000282d08ab864a651391d6ab', style: { width: '50%' } }, index.h("sc-skeleton", { key: 'aea12029d0271e8787c66a94570189cd4a1d8a80', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'dcfc23fb8290afe66be9d3e19c4b6ea387b308b7' })), index.h("div", { key: '8b07295e238cb127b98fcbc2d2e912e4590e49ad', style: { flex: '1' } }, index.h("sc-skeleton", { key: '003bed770da61ffd13aa91cb572874015be49522', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '069a1a264cd25c5ad65eb751e9e38f0f180c5b4f' })), index.h("div", { key: '609c9f9141ba8eea038f301b0735fca4f400f7c2', style: { flex: '1' } }, index.h("sc-skeleton", { key: 'ddaf19df8c59309b7044aa0df90eda1229ce09f4', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'b75438ceb24e0f07d8d8a6efb5a8c68f7746bd37' }))), index.h("div", { key: 'db45c61d0703b89c129c1f4b1ef07ec0ec3e005c', class: "loader__details" }, index.h("sc-skeleton", { key: 'c5fd920a65c612be8358bd6eabc3aff1c537b1a9', style: { height: '1rem' } }), index.h("sc-skeleton", { key: '059d19e4da6d37bba59788a738ea6524c28f14dd', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: '5e3ef10ca63c79197ad11653ce702fcac7f7f17a', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

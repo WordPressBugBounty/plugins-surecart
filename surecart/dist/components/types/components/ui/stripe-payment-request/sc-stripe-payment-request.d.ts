@@ -47,7 +47,6 @@ export declare class ScStripePaymentRequest {
         total: {
             amount: number;
             label: string;
-            pending: boolean;
         };
         displayItems: {
             label: string;

@@ -30,8 +30,10 @@ export declare class ScStripePaymentElement {
      * This prevents the element appearance api being set before the styles are loaded.
      */
     getComputedStyles(): Promise<unknown>;
-    /** Maybe load the stripe element on load. */
+    /** Sync the checkout mode */
+    syncCheckoutMode(): Promise<void>;
     componentDidLoad(): Promise<void>;
+    initializeStripe(): Promise<void>;
     disconnectedCallback(): void;
     getElementsConfig(): {
         mode: string;

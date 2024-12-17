@@ -88,12 +88,12 @@ const ScChargesList = class {
         }
         return this.charges.map(charge => {
             var _a;
-            const { currency, amount, created_at } = charge;
+            const { currency, amount, created_at_date } = charge;
             return (h("sc-stacked-list-row", { style: { '--columns': '4' }, "mobile-size": 600, href: addQueryArgs(window.location.href, {
                     action: 'show',
                     model: 'order',
                     id: (_a = charge.checkout.order) === null || _a === void 0 ? void 0 : _a.id,
-                }) }, h("strong", null, h("sc-format-date", { date: created_at, type: "timestamp", month: "short", day: "numeric", year: "numeric" })), h("sc-text", { style: { '--color': 'var(--sc-color-gray-500)' } }, wp.i18n.sprintf(wp.i18n.__('#%s', 'surecart'), charge.checkout.order.number)), h("div", null, this.renderRefundStatus(charge)), h("strong", null, h("sc-format-number", { type: "currency", value: amount, currency: currency }))));
+                }) }, h("strong", null, created_at_date), h("sc-text", { style: { '--color': 'var(--sc-color-gray-500)' } }, wp.i18n.sprintf(wp.i18n.__('#%s', 'surecart'), charge.checkout.order.number)), h("div", null, this.renderRefundStatus(charge)), h("strong", null, h("sc-format-number", { type: "currency", value: amount, currency: currency }))));
         });
     }
     nextPage() {
@@ -106,7 +106,7 @@ const ScChargesList = class {
     }
     render() {
         var _a;
-        return (h("sc-dashboard-module", { key: '3536b6533dd11a1357c5ddb62df6851bcfeba518', class: "charges-list", error: this.error }, h("span", { key: '5361aed5f8fe0266586f0e0dd0b0a6d789b2ec66', slot: "heading" }, h("slot", { key: '2cac45865795138c4e160276d93d6a98eff3e1c0', name: "heading" }, this.heading || wp.i18n.__('Payment History', 'surecart'))), !!this.allLink && (h("sc-button", { key: '2e8f6ed1949eb7f96936d85f243106174455e893', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '29ff870d607af973fe665cfaacd365e722eda0de', name: "chevron-right", slot: "suffix" }))), h("sc-card", { key: 'b0561cb68a2cb875133b20702b4d782cef8fe910', "no-padding": true, style: { '--overflow': 'hidden' } }, h("sc-stacked-list", { key: '2621f0b9c97a0453509695f750fad09e4d6fc254' }, this.renderContent())), this.showPagination && (h("sc-pagination", { key: 'de77c0da048e6945ec401bdf7d22b25a4df48f34', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.charges) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.loading && this.loaded && h("sc-block-ui", { key: 'd990b9fe064915fa855bce2e50ce8b2e582dffef', spinner: true })));
+        return (h("sc-dashboard-module", { key: '932ef18bbc6c4f2964cbc9db6f4fa1356e3a6cfe', class: "charges-list", error: this.error }, h("span", { key: 'aed23eac26eca14ae80ccf9de99838d60c5cf32f', slot: "heading" }, h("slot", { key: 'ae4b87c5404c5dd22e72a936a13ded59a83ee063', name: "heading" }, this.heading || wp.i18n.__('Payment History', 'surecart'))), !!this.allLink && (h("sc-button", { key: '14dbf0f05d5d62ecb283df0f9341daf50298531b', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '0e3b91393f473a2675f76fe07020e10e20865d25', name: "chevron-right", slot: "suffix" }))), h("sc-card", { key: 'bee3f25c4b04e9e873254ba872e7be776e15725e', "no-padding": true, style: { '--overflow': 'hidden' } }, h("sc-stacked-list", { key: '93d1bec458065f27d30560cc891761a97fad9d91' }, this.renderContent())), this.showPagination && (h("sc-pagination", { key: 'bf7720349c3c3a9036f3c6cbc4d224652e884c80', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.charges) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.loading && this.loaded && h("sc-block-ui", { key: 'a4e0b4163265b7bf28379e2df25349864c0a0087', spinner: true })));
     }
     get el() { return getElement(this); }
 };

@@ -7,7 +7,7 @@ const address = require('./address-4c70d641.js');
 const formData = require('./form-data-0da9940f.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const index$1 = require('./index-fb76df07.js');
-const tax = require('./tax-736ff458.js');
+const tax = require('./tax-a4582e73.js');
 
 const scAddressCss = ":host{display:block}.sc-address{display:block;position:relative}.sc-address [hidden]{display:none}.sc-address--loading{min-height:230px}.sc-address sc-skeleton{display:block;margin-bottom:1em}.sc-address__control{display:block}.sc-address__control>*{margin-bottom:var(--sc-address-column-spacing, -1px)}.sc-address__columns{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.sc-address__columns>*{flex:1;width:50%;margin-right:var(--sc-address-column-spacing, -1px)}.sc-address__columns>*:last-child{margin-right:0}";
 const ScAddressStyle0 = scAddressCss;

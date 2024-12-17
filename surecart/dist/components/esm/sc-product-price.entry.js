@@ -1,14 +1,14 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { s as state } from './watchers-67501779.js';
-import { a as getDiscountedAmount, b as getScratchAmount } from './getters-b1d93841.js';
+import { s as state } from './watchers-fbf07f32.js';
+import { a as getDiscountedAmount, b as getScratchAmount } from './getters-5ca0dc55.js';
 import './index-06061d4e.js';
 import './google-dd89f242.js';
 import './currency-a0c9bff4.js';
 import './google-a86aa761.js';
-import './utils-e9ee502a.js';
+import './utils-cd1431df.js';
 import './util-50af2a83.js';
 import './index-c5a96d53.js';
-import './store-dcefd119.js';
+import './store-4bc13420.js';
 
 const scProductPriceCss = ":host{display:block}";
 const ScProductPriceStyle0 = scProductPriceCss;

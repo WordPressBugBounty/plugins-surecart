@@ -1,6 +1,6 @@
 import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
 import { c as countryChoices } from './address-b892540d.js';
-import { z as zones } from './tax-d4911dbc.js';
+import { z as zones } from './tax-a03623ca.js';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 

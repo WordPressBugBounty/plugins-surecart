@@ -111,7 +111,7 @@ const ScOrdersList = class {
     renderList() {
         return this.orders.map(order => {
             var _a, _b;
-            const { checkout, created_at, id } = order;
+            const { checkout, created_at_date, id } = order;
             if (!checkout)
                 return null;
             const { line_items, amount_due, currency, charge } = checkout;
@@ -119,7 +119,7 @@ const ScOrdersList = class {
                     action: 'show',
                     model: 'order',
                     id,
-                }), style: { '--columns': '4' }, "mobile-size": 500 }, index.h("div", null, typeof charge !== 'string' && (index.h("sc-format-date", { class: "order__date", date: ((charge === null || charge === void 0 ? void 0 : charge.created_at) || created_at) * 1000, month: "short", day: "numeric", year: "numeric" }))), index.h("div", null, index.h("sc-text", { truncate: true, style: {
+                }), style: { '--columns': '4' }, "mobile-size": 500 }, index.h("div", { class: "order__date" }, typeof charge !== 'string' && ((charge === null || charge === void 0 ? void 0 : charge.created_at_date) || created_at_date)), index.h("div", null, index.h("sc-text", { truncate: true, style: {
                     '--color': 'var(--sc-color-gray-500)',
                 } }, wp.i18n.sprintf(wp.i18n._n('%s item', '%s items', ((_a = line_items === null || line_items === void 0 ? void 0 : line_items.pagination) === null || _a === void 0 ? void 0 : _a.count) || 0, 'surecart'), ((_b = line_items === null || line_items === void 0 ? void 0 : line_items.pagination) === null || _b === void 0 ? void 0 : _b.count) || 0))), index.h("div", { class: "orders-list__status" }, this.renderStatusBadge(order), index.h("sc-order-shipment-badge", { status: order === null || order === void 0 ? void 0 : order.shipment_status })), index.h("div", null, index.h("sc-format-number", { type: "currency", currency: currency, value: amount_due }))));
         });
@@ -136,7 +136,7 @@ const ScOrdersList = class {
     }
     render() {
         var _a, _b;
-        return (index.h("sc-dashboard-module", { key: '81febd589198881547fad4fa01b1a23c8c9aa028', class: "orders-list", error: this.error }, index.h("span", { key: '57501cfa3f99a138c46d2e7b7223e24f2d4ad687', slot: "heading" }, index.h("slot", { key: '8ebd01686589d1ff033476683b66e300a1ffe6d8', name: "heading" }, this.heading || wp.i18n.__('Order History', 'surecart'))), !!this.allLink && !!((_a = this.orders) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: 'fa832436f13e2ba836498f923e50a308d66e5280', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Order History', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: 'b990e397c09ef824eebaa979ab33189d0126fe2a', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '33cc38ceaf851e6fca9e578c0afc3abe4185e6ab', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.orders) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: 'e7a9ca604e47bfaa10e694c3f1b50997ef9b370d' })));
+        return (index.h("sc-dashboard-module", { key: 'fd4c1303c73a0a23fdef5c52417ec5229d1c7362', class: "orders-list", error: this.error }, index.h("span", { key: '54097fb18cc0e695647aff256966c7e0ed428884', slot: "heading" }, index.h("slot", { key: '5b834ce675b49ea0f78a6a34f697c9e95138e605', name: "heading" }, this.heading || wp.i18n.__('Order History', 'surecart'))), !!this.allLink && !!((_a = this.orders) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: 'b3dc1da3deab5e79f38955175d009698afffcbe3', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Order History', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '04f728e7291ed1d8f76a567aeffb08d1f479f606', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '54deab6a17d534deb82f9dd5c4dd60358ad1ebde', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.orders) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: 'c7c57dbe43cb9bd8300e6f12a8fa85d9733a3677' })));
     }
     get el() { return index.getElement(this); }
 };
