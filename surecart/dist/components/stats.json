@@ -1,5 +1,5 @@
 {
-  "timestamp": "2024-12-17T20:51:34",
+  "timestamp": "2024-12-19T19:18:14",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3258,8 +3258,6 @@
           "./dist/surecart/p-0b12c5a0.entry.js.map",
           "./dist/surecart/p-100cb670.js",
           "./dist/surecart/p-100cb670.js.map",
-          "./dist/surecart/p-102d10d9.entry.js",
-          "./dist/surecart/p-102d10d9.entry.js.map",
           "./dist/surecart/p-117fcb6c.entry.js",
           "./dist/surecart/p-117fcb6c.entry.js.map",
           "./dist/surecart/p-13b1c9d6.entry.js",
@@ -3524,6 +3522,8 @@
           "./dist/surecart/p-bbdc2121.entry.js.map",
           "./dist/surecart/p-bc8715c9.entry.js",
           "./dist/surecart/p-bc8715c9.entry.js.map",
+          "./dist/surecart/p-bca046b4.entry.js",
+          "./dist/surecart/p-bca046b4.entry.js.map",
           "./dist/surecart/p-be1d8313.entry.js",
           "./dist/surecart/p-be1d8313.entry.js.map",
           "./dist/surecart/p-beb5fdce.entry.js",
@@ -3694,8 +3694,6 @@
           "./www/build/p-0b12c5a0.entry.js.map",
           "./www/build/p-100cb670.js",
           "./www/build/p-100cb670.js.map",
-          "./www/build/p-102d10d9.entry.js",
-          "./www/build/p-102d10d9.entry.js.map",
           "./www/build/p-117fcb6c.entry.js",
           "./www/build/p-117fcb6c.entry.js.map",
           "./www/build/p-13b1c9d6.entry.js",
@@ -3960,6 +3958,8 @@
           "./www/build/p-bbdc2121.entry.js.map",
           "./www/build/p-bc8715c9.entry.js",
           "./www/build/p-bc8715c9.entry.js.map",
+          "./www/build/p-bca046b4.entry.js",
+          "./www/build/p-bca046b4.entry.js.map",
           "./www/build/p-be1d8313.entry.js",
           "./www/build/p-be1d8313.entry.js.map",
           "./www/build/p-beb5fdce.entry.js",
@@ -6340,8 +6340,8 @@
         "components": [
           "sc-stripe-payment-request"
         ],
-        "bundleId": "p-102d10d9",
-        "fileName": "p-102d10d9.entry.js",
+        "bundleId": "p-bca046b4",
+        "fileName": "p-bca046b4.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-9ef0f73f.js",
@@ -6360,7 +6360,7 @@
           "p-6ec14893.js",
           "p-9a298389.js"
         ],
-        "originalByteSize": 17898
+        "originalByteSize": 17863
       },
       {
         "key": "sc-summary.entry",
@@ -9303,7 +9303,7 @@
           "price-d5770168.js",
           "fetch-2032d11d.js"
         ],
-        "originalByteSize": 17997
+        "originalByteSize": 17962
       },
       {
         "key": "sc-summary.entry",
@@ -12248,7 +12248,7 @@
           "price-653ec1cb.js",
           "fetch-f25a0cb0.js"
         ],
-        "originalByteSize": 18274
+        "originalByteSize": 18239
       },
       {
         "key": "sc-summary.entry",

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-17T20:55:22+00:00\n"
+"POT-Creation-Date: 2024-12-19T19:22:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -282,7 +282,7 @@ msgstr ""
 #: sc-order-confirmation-totals2.js:36
 #: sc-order.js:161
 #: sc-stripe-payment-request2.js:98
-#: sc-stripe-payment-request2.js:136
+#: sc-stripe-payment-request2.js:135
 #: sc-upsell-totals.js:30
 msgid "Total"
 msgstr ""
@@ -1467,8 +1467,8 @@ msgstr ""
 #: src/Controllers/Admin/Licenses/LicensesListTable.php:151
 #: src/Controllers/Admin/Products/ProductsListTable.php:474
 #: src/Controllers/Web/BuyPageController.php:56
-#: src/WordPress/PostTypes/ProductPostTypeService.php:345
-#: src/WordPress/PostTypes/ProductPostTypeService.php:942
+#: src/WordPress/PostTypes/ProductPostTypeService.php:346
+#: src/WordPress/PostTypes/ProductPostTypeService.php:943
 #: products/EditProduct.js:274
 #: components/PriceInfo.js:103
 msgid "Edit Product"
@@ -1722,7 +1722,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/Controllers/Admin/Products/ProductsController.php:241
-#: src/WordPress/PostTypes/ProductPostTypeService.php:943
+#: src/WordPress/PostTypes/ProductPostTypeService.php:944
 #: licenses/modules/Purchase.js:56
 #: products/components/Url/form.js:68
 msgid "View Product"
@@ -1780,6 +1780,7 @@ msgid "%d Available"
 msgstr ""
 
 #: src/Controllers/Admin/Products/ProductsListTable.php:305
+#: components/NewShopTemplate.js:252
 #: sc-product-item-list.js:276
 msgid "No products found."
 msgstr ""
@@ -2932,7 +2933,7 @@ msgstr ""
 
 #: src/Integrations/Elementor/Conditions/Conditions.php:47
 #: src/Integrations/Elementor/Conditions/ProductCondition.php:46
-#: src/WordPress/PostTypes/ProductPostTypeService.php:944
+#: src/WordPress/PostTypes/ProductPostTypeService.php:945
 #: Blocks/ProductItemList/edit.js:388
 #: Blocks/ProductItemList/edit.js:501
 msgid "All Products"
@@ -6643,21 +6644,21 @@ msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:251
 #: src/WordPress/PostTypes/FormPostTypeService.php:235
-#: src/WordPress/PostTypes/ProductPostTypeService.php:946
+#: src/WordPress/PostTypes/ProductPostTypeService.php:947
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:44
 msgid "No checkout forms found."
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:252
 #: src/WordPress/PostTypes/FormPostTypeService.php:236
-#: src/WordPress/PostTypes/ProductPostTypeService.php:947
+#: src/WordPress/PostTypes/ProductPostTypeService.php:948
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:45
 msgid "No checkout forms found in Trash."
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:253
 #: src/WordPress/PostTypes/FormPostTypeService.php:237
-#: src/WordPress/PostTypes/ProductPostTypeService.php:948
+#: src/WordPress/PostTypes/ProductPostTypeService.php:949
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:46
 msgid "Filter checkout forms list"
 msgstr ""
@@ -6773,90 +6774,90 @@ msgstr ""
 msgid "(no title)"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:267
+#: src/WordPress/PostTypes/ProductPostTypeService.php:268
 #: products/modules/Prices/Price/BuyLink.js:30
 #: products/modules/Variations/Variants.js:116
 #: store/add-entities.js:446
 msgid "Variant"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:271
+#: src/WordPress/PostTypes/ProductPostTypeService.php:272
 msgid "Enter the variant name as it appears in Option Values (e.g., Black, White, Light Green)."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:271
+#: src/WordPress/PostTypes/ProductPostTypeService.php:272
 msgid "Learn More."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:850
+#: src/WordPress/PostTypes/ProductPostTypeService.php:851
 msgid "Product gallery"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:937
+#: src/WordPress/PostTypes/ProductPostTypeService.php:938
 msgctxt "post type general name"
 msgid "SureCart Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:938
+#: src/WordPress/PostTypes/ProductPostTypeService.php:939
 msgctxt "post type singular name"
 msgid "SureCart Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:939
+#: src/WordPress/PostTypes/ProductPostTypeService.php:940
 msgctxt "Product"
 msgid "Add New"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:940
+#: src/WordPress/PostTypes/ProductPostTypeService.php:941
 msgid "Add new Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:941
+#: src/WordPress/PostTypes/ProductPostTypeService.php:942
 msgid "New Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:945
+#: src/WordPress/PostTypes/ProductPostTypeService.php:946
 #: admin/products/index.php:77
 msgid "Search Products"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:949
+#: src/WordPress/PostTypes/ProductPostTypeService.php:950
 msgid "Products list navigation"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:950
+#: src/WordPress/PostTypes/ProductPostTypeService.php:951
 msgid "Products list"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:951
+#: src/WordPress/PostTypes/ProductPostTypeService.php:952
 msgid "Product published."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:952
+#: src/WordPress/PostTypes/ProductPostTypeService.php:953
 msgid "Product published privately."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:953
+#: src/WordPress/PostTypes/ProductPostTypeService.php:954
 msgid "Product reverted to draft."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:954
+#: src/WordPress/PostTypes/ProductPostTypeService.php:955
 msgid "Product scheduled."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:955
+#: src/WordPress/PostTypes/ProductPostTypeService.php:956
 #: products/EditProduct.js:187
 #: products/modules/integrations/Integrations.js:41
 msgid "Product updated."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:991
+#: src/WordPress/PostTypes/ProductPostTypeService.php:992
 msgctxt "post"
 msgid "Archived"
 msgstr ""
 
 #. translators: %s: number of posts.
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1000
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1001
 msgid "Archived <span class=\"count\">(%s)</span>"
 msgid_plural "Archived <span class=\"count\">(%s)</span>"
 msgstr[0] ""
@@ -18098,6 +18099,10 @@ msgstr ""
 msgid "Product List (Migrated)"
 msgstr ""
 
+#: components/NewShopTemplate.js:247
+msgid "Add text or blocks that will display when a query returns no products."
+msgstr ""
+
 #: components/PriceChoices.js:54
 msgid "To add some default checkout products, click the \"Add Products\" button."
 msgstr ""
@@ -22067,15 +22072,15 @@ msgstr ""
 msgid "Save Payment Method"
 msgstr ""
 
-#: sc-stripe-payment-request2.js:165
+#: sc-stripe-payment-request2.js:164
 msgid "You must serve this page over HTTPS to display express payment buttons."
 msgstr ""
 
-#: sc-stripe-payment-request2.js:171
+#: sc-stripe-payment-request2.js:170
 msgid "You do not have any wallets set up in your browser."
 msgstr ""
 
-#: sc-stripe-payment-request2.js:290
+#: sc-stripe-payment-request2.js:289
 msgid "Express Payment"
 msgstr ""
 

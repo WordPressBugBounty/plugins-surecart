@@ -103,7 +103,6 @@ const ScStripePaymentRequest = class {
                 total: {
                     amount: (order === null || order === void 0 ? void 0 : order.amount_due) || 0,
                     label: wp.i18n.__('Total', 'surecart'),
-                    pending: true,
                 },
             });
         }
@@ -294,7 +293,7 @@ const ScStripePaymentRequest = class {
         this.removeCheckoutListener();
     }
     render() {
-        return (h("div", { key: '20f38dfb0ed92ea461e52896ed27f2ac0f301dc5', class: { 'request': true, 'request--loaded': this.loaded } }, this.debug && this.debugError && (h("div", { key: '9ad35e6d036c716335145c9e01e31d3b3cb500e9' }, h("slot", { key: '3e016b789f7559fa0bd8738a147693759a4f9ef4', name: "debug-fallback" }), h("sc-alert", { key: 'f55e2a6a14cbe0718b91db61897dbce3c372fefc', type: "info", open: true }, h("span", { key: '9b0bd18b5be5fee96584542166c9b8f925f00f93', slot: "title" }, wp.i18n.__('Express Payment', 'surecart')), this.debugError))), h("div", { key: '88e8feb78c8ca1ceadecff3033341c5b271d0f21', class: "sc-payment-request-button", part: "button", ref: el => (this.request = el) })));
+        return (h("div", { key: '0e3e8d97f5c0c298eed9df29bad862cc39d0e652', class: { 'request': true, 'request--loaded': this.loaded } }, this.debug && this.debugError && (h("div", { key: '5254e882fb3239550bac1aaa4ff641d480ba9a49' }, h("slot", { key: '2931e7f52ed3137cae4451f82cadcec48e17617a', name: "debug-fallback" }), h("sc-alert", { key: '7565c851cf20f10244232d0f3fd4dab545c24136', type: "info", open: true }, h("span", { key: '4d439acbcbbee078e5b03d3cb1707abccaf8be4c', slot: "title" }, wp.i18n.__('Express Payment', 'surecart')), this.debugError))), h("div", { key: 'd4b67ae676d5dc6c0e64b9015e90f266f4358cd4', class: "sc-payment-request-button", part: "button", ref: el => (this.request = el) })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
