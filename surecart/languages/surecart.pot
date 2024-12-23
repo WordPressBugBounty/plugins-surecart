@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-19T19:22:02+00:00\n"
+"POT-Creation-Date: 2024-12-23T19:11:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -8639,7 +8639,7 @@ msgid "Auto Apply Discount"
 msgstr ""
 
 #: bumps/modules/Behavior.js:14
-msgid "If enabled, the discount will be applied if the display conditions are satisfied, even if they do not click the bump. If disabled, the discount will only be applied if the customer clicks the order bump."
+msgid "If enabled, the discount will be applied if the price is already in the checkout and the display conditions are satisfied, even if they do not click the bump. If disabled, the discount will only be applied if the customer clicks the order bump."
 msgstr ""
 
 #: bumps/modules/Conditions.js:23
