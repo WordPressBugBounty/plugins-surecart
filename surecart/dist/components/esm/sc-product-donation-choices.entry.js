@@ -1,5 +1,5 @@
 import { r as registerInstance, h, a as getElement, H as Host } from './index-745b6bec.js';
-import { s as state } from './watchers-ab83bb34.js';
+import { s as state } from './watchers-f4cdbdea.js';
 import './index-06061d4e.js';
 import './utils-cd1431df.js';
 import './getters-6b37a0b7.js';
@@ -13,10 +13,10 @@ import './store-627acec4.js';
 import './price-d5770168.js';
 import './address-b892540d.js';
 import './util-50af2a83.js';
-import './mutations-72bc05f8.js';
+import './mutations-463c1508.js';
 import './mutations-ed6d0770.js';
-import './index-af03d92e.js';
-import './fetch-2032d11d.js';
+import './index-e528b663.js';
+import './fetch-2d92a73e.js';
 
 const scProductDonationChoicesCss = ":host{display:block}.sc-product-donation-choices{display:grid;gap:2em;position:relative;--columns:4}.sc-product-donation-choices__form{display:grid;gap:var(--sc-spacing-small)}.sc-donation-recurring-choices{display:grid;gap:var(--sc-spacing-small);position:relative;--columns:2}";
 const ScProductDonationChoicesStyle0 = scProductDonationChoicesCss;
