@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-01-13T22:33:28",
+  "timestamp": "2025-01-14T19:20:38",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3308,6 +3308,8 @@
           "./dist/surecart/p-28d98d61.js.map",
           "./dist/surecart/p-2927aec6.entry.js",
           "./dist/surecart/p-2927aec6.entry.js.map",
+          "./dist/surecart/p-29a38d1e.entry.js",
+          "./dist/surecart/p-29a38d1e.entry.js.map",
           "./dist/surecart/p-29a4a8bf.entry.js",
           "./dist/surecart/p-29a4a8bf.entry.js.map",
           "./dist/surecart/p-29f03c75.entry.js",
@@ -3318,8 +3320,6 @@
           "./dist/surecart/p-2cec7d46.entry.js.map",
           "./dist/surecart/p-2e13191a.entry.js",
           "./dist/surecart/p-2e13191a.entry.js.map",
-          "./dist/surecart/p-2fff316b.entry.js",
-          "./dist/surecart/p-2fff316b.entry.js.map",
           "./dist/surecart/p-323635ce.entry.js",
           "./dist/surecart/p-323635ce.entry.js.map",
           "./dist/surecart/p-36e59877.entry.js",
@@ -3744,6 +3744,8 @@
           "./www/build/p-28d98d61.js.map",
           "./www/build/p-2927aec6.entry.js",
           "./www/build/p-2927aec6.entry.js.map",
+          "./www/build/p-29a38d1e.entry.js",
+          "./www/build/p-29a38d1e.entry.js.map",
           "./www/build/p-29a4a8bf.entry.js",
           "./www/build/p-29a4a8bf.entry.js.map",
           "./www/build/p-29f03c75.entry.js",
@@ -3754,8 +3756,6 @@
           "./www/build/p-2cec7d46.entry.js.map",
           "./www/build/p-2e13191a.entry.js",
           "./www/build/p-2e13191a.entry.js.map",
-          "./www/build/p-2fff316b.entry.js",
-          "./www/build/p-2fff316b.entry.js.map",
           "./www/build/p-323635ce.entry.js",
           "./www/build/p-323635ce.entry.js.map",
           "./www/build/p-36e59877.entry.js",
@@ -6512,8 +6512,8 @@
           "sc-radio-group",
           "sc-shipping-choices"
         ],
-        "bundleId": "p-2fff316b",
-        "fileName": "p-2fff316b.entry.js",
+        "bundleId": "p-29a38d1e",
+        "fileName": "p-29a38d1e.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-07b1b1ed.js",
@@ -6537,7 +6537,7 @@
           "p-3f6362a4.js",
           "p-6135d661.js"
         ],
-        "originalByteSize": 65223
+        "originalByteSize": 65319
       },
       {
         "key": "sc-line-item-total.entry",
@@ -9480,7 +9480,7 @@
           "currency-a0c9bff4.js",
           "fetch-2d92a73e.js"
         ],
-        "originalByteSize": 65370
+        "originalByteSize": 65466
       },
       {
         "key": "sc-line-item-total.entry",
@@ -12425,7 +12425,7 @@
           "currency-71fce0f0.js",
           "fetch-aaab7645.js"
         ],
-        "originalByteSize": 67252
+        "originalByteSize": 67348
       },
       {
         "key": "sc-line-item-total.entry",
