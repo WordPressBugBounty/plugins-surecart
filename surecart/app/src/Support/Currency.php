@@ -534,10 +534,7 @@ class Currency {
 			return '0';
 		}
 		$amount = (float) $amount;
-		if ( in_array( strtoupper( $currency_code ), self::getZeroDecicalCurrencies(), true ) ) {
-			return self::formatCents( $amount, 1 );
-		}
-		return self::formatCents( $amount / 100, 1 );
+		return self::formatCents( $amount, 1 );
 	}
 
 	/**
