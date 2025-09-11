@@ -1,5 +1,5 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
-import { g as getIconLibrary } from './library-59d1c3bd.js';
+import { g as getIconLibrary } from './library-e110eea6.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 
 const iconFiles = new Map();
