@@ -1,8 +1,14 @@
 import { ObservableMap } from '@stencil/store';
 import { IconLibraryMutator, IconLibraryResolver } from './components/ui/icon/library';
 import { StripeElementChangeEvent } from '@stripe/stripe-js';
+export interface IconLibrary {
+    name: string;
+    resolver: IconLibraryResolver;
+    mutator?: IconLibraryMutator;
+}
 declare global {
     interface Window {
+        registry: IconLibrary[];
         grecaptcha: any;
         surecart?: {
             product?: {
@@ -497,6 +503,8 @@ export interface LineItem extends Object {
     fees_amount: number;
     scratch_amount: number;
     scratch_display_amount?: string;
+    subtotal_with_upsell_discount_display_amount?: string;
+    subtotal_with_upsell_discount_amount?: number;
     trial: boolean;
     total_savings_amount: number;
     created_at: number;
