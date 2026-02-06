@@ -125,7 +125,7 @@ const ScSubscriptionPayment = class {
         }))), h("sc-button", { type: "primary", full: true, submit: true, loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Update', 'surecart')), !!this.backUrl && (h("sc-button", { href: this.backUrl, full: true, loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Go Back', 'surecart')))));
     }
     render() {
-        return (h("sc-dashboard-module", { key: '27637122769659d56a2bd44f2fa7d0a2b1091092', heading: wp.i18n.__('Select a payment method', 'surecart'), class: "subscription-payment", error: this.error }, h("sc-form", { key: 'f90b106eb3f65adf55680c92897eac80bbca00e3', onScFormSubmit: e => this.handleSubmit(e) }, h("sc-card", { key: '865e06187c24b79d4e7d0dcb39a1543aa49f18fc' }, this.renderContent())), this.busy && h("sc-block-ui", { key: 'bf9eff732da72222e9d9eee9f2770acc1d0aea36' })));
+        return (h("sc-dashboard-module", { key: '25a7eabf7718bb4275a4cc66a5c8dafe900203cd', heading: wp.i18n.__('Select a payment method', 'surecart'), class: "subscription-payment", error: this.error }, h("sc-form", { key: '56d757e41617c4383712f2a08e7e4181ed3ece14', onScFormSubmit: e => this.handleSubmit(e) }, h("sc-card", { key: '0bb1c54e4b1149ed1599720072a04397b5647e12' }, this.renderContent())), this.busy && h("sc-block-ui", { key: '95e12d7cb8780363d80c67a01722e2c99eab3908' })));
     }
 };
 ScSubscriptionPayment.style = ScSubscriptionPaymentStyle0;

@@ -14,9 +14,10 @@ export declare const hasRequiredFields: ({ city, country, line_1, postal_code, s
     postal_code: any;
     state: any;
 }) => boolean;
-export declare const countryChoices: Array<{
+export declare const countryChoices: () => Promise<{
     value: string;
     label: string;
-}>;
+}[]>;
+export declare const getCountryDetails: (countryCode: string) => Promise<any>;
 export declare const isAddressComplete: (address: Partial<Address>) => string | boolean;
 export declare const isAddressCompleteEnough: (address: Partial<Address>) => string | boolean;

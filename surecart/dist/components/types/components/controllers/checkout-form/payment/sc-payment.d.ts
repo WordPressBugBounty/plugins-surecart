@@ -22,5 +22,6 @@ export declare class ScPayment {
     renderPayPal(processor: any): any;
     renderMock(processor: any): any;
     renderPaystack(processor: any): any;
+    renderRazorpay(processor: any): any;
     render(): any;
 }

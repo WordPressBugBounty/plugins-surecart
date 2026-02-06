@@ -664,7 +664,7 @@ class Product extends Model implements PageModel {
 		$gallery     = array_values( $this->gallery ?? array() );
 		$first_media = $gallery[0] ?? [];
 
-		if ( $first_media instanceof GalleryItemAttachment && $first_media->isVideo() ) {
+		if ( $first_media instanceof GalleryItemVideoAttachment ) {
 			return $this->getVideoThumbnailOrFallback( $first_media, $gallery );
 		}
 
@@ -993,9 +993,9 @@ class Product extends Model implements PageModel {
 						if ( is_int( $id ) ) {
 							$attachment = GalleryItemAttachment::create( $gallery_item, $product_featured_image );
 
-							// if the attachment does not exist, use the product featured image.
-							if ( ! $attachment->exists() ) {
-								$attachment = GalleryItemAttachment::create( $product_featured_image );
+							// If no attachment, return null.
+							if ( empty( $attachment ) || ! $attachment->exists() ) {
+								return null;
 							}
 
 							if ( is_object( $gallery_item ) || is_array( $gallery_item ) ) {
@@ -1003,6 +1003,10 @@ class Product extends Model implements PageModel {
 								$attachment->setMetadata( 'variant_option', $item->variant_option ?? null );
 								$attachment->setMetadata( 'thumbnail_image', $item->thumbnail_image ?? null );
 								$attachment->setMetadata( 'aspect_ratio', $item->aspect_ratio ?? null );
+								$attachment->setMetadata( 'controls', $item->controls ?? true );
+								$attachment->setMetadata( 'autoplay', $item->autoplay ?? false );
+								$attachment->setMetadata( 'loop', $item->loop ?? false );
+								$attachment->setMetadata( 'muted', $item->muted ?? false );
 							}
 
 							return $attachment;
@@ -1144,7 +1148,7 @@ class Product extends Model implements PageModel {
 				'checkoutUrl'     => \SureCart::pages()->url( 'checkout' ),
 				'variant_options' => $this->variant_options->data ?? [],
 				'variants'        => $this->variants->data ?? [],
-				'selectedVariant' => $this->first_variant_with_stock ?? null,
+				'selectedVariant' => $this->initial_variant ?? null,
 				'isProductPage'   => ! empty( get_query_var( 'surecart_current_product' )->id ),
 			]
 		);
@@ -1170,7 +1174,10 @@ class Product extends Model implements PageModel {
 	private function getVideoThumbnailOrFallback( $first_media, $gallery ) {
 		$thumbnail_image = $first_media->getMetadata( 'thumbnail_image' ) ?? null;
 		if ( ! empty( $thumbnail_image ) ) {
-			return GalleryItemAttachment::create( $thumbnail_image );
+			$attachment = GalleryItemAttachment::create( $thumbnail_image );
+			if ( ! empty( $attachment ) && $attachment->exists() ) {
+				return $attachment;
+			}
 		}
 
 		// If no thumbnail, look for next image in gallery.

@@ -3,6 +3,7 @@ import { IconLibraryMutator, IconLibraryResolver } from './components/ui/icon/li
 import { StripeElementChangeEvent } from '@stripe/stripe-js';
 declare global {
     interface Window {
+        registry: IconLibrary[];
         grecaptcha: any;
         surecart?: {
             product?: {
@@ -48,6 +49,7 @@ declare global {
             root_url: string;
             account_id: string;
             account_slug: string;
+            locale: string;
             api_url: string;
             home_url: string;
             plugin_url: string;
@@ -77,6 +79,7 @@ declare global {
             user_permissions: {
                 manage_sc_shop_settings: boolean;
             };
+            current_user_roles: string[];
         };
         ceRegisterIconLibrary: any;
         ResizeObserver: any;
@@ -88,6 +91,11 @@ export type RecursivePartial<T> = {
 interface Model {
     created_at: number;
     updated_at: number;
+}
+export interface IconLibrary {
+    name: string;
+    resolver: IconLibraryResolver;
+    mutator?: IconLibraryMutator;
 }
 export interface ChoiceItem extends Object {
     value: string;
@@ -759,6 +767,16 @@ export interface Checkout extends Object {
         pagination: Pagination;
         data: Array<Subscription>;
     };
+    checkout_fees: {
+        object: 'list';
+        pagination: Pagination;
+        data: Array<Fee>;
+    };
+    shipping_fees: {
+        object: 'list';
+        pagination: Pagination;
+        data: Array<Fee>;
+    };
     purchases: {
         object: 'list';
         pagination: Pagination;
@@ -839,7 +857,35 @@ export interface ProcessorData {
         public_key: string;
         access_code: string;
     };
+    razorpay?: {
+        account_id: string;
+        key_id: string;
+        order_id: string;
+        public_key: string;
+        access_code: string;
+        customer_id: string;
+    };
 }
+export interface RazorpayOptions {
+    key: string;
+    order_id: string;
+    prefill?: {
+        name?: string;
+        email?: string;
+        contact?: string;
+    };
+    customer_id?: string;
+    recurring?: boolean;
+    handler: (response: any) => void;
+    modal?: {
+        ondismiss: () => void;
+    };
+}
+export interface RazorpayInstance {
+    open: () => void;
+    on: (event: string, callback: (response: any) => void) => void;
+}
+export type RazorpayConstructor = new (options: RazorpayOptions) => RazorpayInstance;
 export interface ManualPaymentMethod {
     id: string;
     object: 'manual_payment_method';
@@ -1111,6 +1157,7 @@ export interface PaymentIntent extends Object {
     created_at: number;
     updated_at: number;
     payment_method: PaymentMethod | string;
+    reusable: boolean;
 }
 export interface PaymentIntents {
     stripe?: PaymentIntent;
@@ -1145,6 +1192,7 @@ export interface Customer extends Object {
     billing_address?: string | Address;
     billing_address_display?: string | Address;
     shipping_address?: string | Address;
+    shipping_address_display?: string | Address;
     billing_matches_shipping: boolean;
     live_mode: boolean;
     unsubscribed: boolean;
@@ -1345,8 +1393,8 @@ export interface CustomStripeElementChangeEvent extends StripeElementChangeEvent
 }
 export interface CountryLocaleFieldValue {
     name: string;
-    priority: number;
-    label: boolean;
+    priority?: number;
+    label: string;
 }
 export interface CountryLocaleField {
     [key: string]: {

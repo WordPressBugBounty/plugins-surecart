@@ -4,13 +4,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const mutations = require('./mutations-10a18c83.js');
-const index$1 = require('./index-1f9e4c8e.js');
+const index$1 = require('./index-e60e3177.js');
 const getters = require('./getters-87b7ef91.js');
 require('./watchers-06121df7.js');
 const getters$1 = require('./getters-ae03ef93.js');
 const watchers = require('./watchers-2ad3abd1.js');
-const mutations$1 = require('./mutations-2db027c4.js');
-const getters$2 = require('./getters-66ca11f9.js');
+const mutations$1 = require('./mutations-ee7893ba.js');
+const getters$2 = require('./getters-a5fb26bc.js');
 const store = require('./store-4a539aea.js');
 const fetch = require('./fetch-d374a251.js');
 const index$2 = require('./index-fb76df07.js');
@@ -24,9 +24,9 @@ require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./price-5b1afcfe.js');
 require('./util-b877b2bd.js');
-require('./address-4c70d641.js');
+require('./address-258a7497.js');
 
-const scCheckoutStockAlertCss = ":host{display:block}sc-table{height:auto}h4{display:block;margin:0;font-weight:var(--sc-font-weight-bold);font-size:var(--sc-font-size-medium)}.stock-alert{--body-spacing:var(--sc-spacing-x-large);--width:500px}.stock-alert__image{width:50px;height:50px;object-fit:cover;margin-right:10px;display:block}.stock-alert__quantity{color:var(--sc-color-gray-500);font-weight:var(--sc-font-weight-bold);display:flex;align-items:center;justify-content:flex-end;gap:var(--sc-spacing-xx-small)}";
+const scCheckoutStockAlertCss = ":host{display:block}sc-table{height:auto}h4{display:block;margin:0;font-weight:var(--sc-font-weight-bold);font-size:var(--sc-font-size-medium)}.stock-alert{--body-spacing:var(--sc-spacing-x-large);--width:500px}.stock-alert__image{width:50px;height:50px;object-fit:cover;margin-right:10px;display:block}.stock-alert__product-info{display:flex;flex-direction:column;gap:var(--sc-spacing-xx-small)}.stock-alert__variant{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small)}.stock-alert__quantity{color:var(--sc-color-gray-500);font-weight:var(--sc-font-weight-bold);display:flex;align-items:center;justify-content:flex-end;gap:var(--sc-spacing-xx-small)}";
 const ScCheckoutStockAlertStyle0 = scCheckoutStockAlertCss;
 
 const ScCheckoutStockAlert = class {
@@ -54,39 +54,42 @@ const ScCheckoutStockAlert = class {
         });
     }
     /**
+     * Build line items with adjusted quantities for out-of-stock items.
+     *
+     * Returns all line items, with out-of-stock items adjusted to max available stock.
+     */
+    getStockAdjustedLineItems() {
+        var _a, _b;
+        // Get the IDs of out-of-stock line items and their adjusted quantities.
+        const outOfStockItemsMap = new Map();
+        this.getOutOfStockLineItems().forEach(lineItem => {
+            var _a, _b, _c;
+            const product = (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.product;
+            const adjustedQuantity = ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? Math.max(((_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock) || 0, 0) : Math.max((product === null || product === void 0 ? void 0 : product.available_stock) || 0, 0);
+            outOfStockItemsMap.set(lineItem.id, adjustedQuantity);
+        });
+        // Build the complete line items array with all items, adjusting only the out-of-stock ones.
+        return (((_b = (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).map(lineItem => {
+            var _a, _b;
+            const adjustedQuantity = outOfStockItemsMap.get(lineItem.id);
+            return {
+                id: lineItem.id,
+                price_id: (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.id,
+                quantity: adjustedQuantity !== undefined ? adjustedQuantity : lineItem.quantity,
+                ...(((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? { variant: lineItem.variant.id } : {}),
+            };
+        });
+    }
+    /**
      * Update the checkout line items stock to the max available.
      */
     async onSubmit() {
-        const lineItems = this.getOutOfStockLineItems().map(lineItem => {
-            var _a, _b, _c;
-            const product = (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.product;
-            if ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) {
-                return {
-                    ...lineItem,
-                    quantity: Math.max(((_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock) || 0, 0),
-                };
-            }
-            return {
-                ...lineItem,
-                quantity: Math.max((product === null || product === void 0 ? void 0 : product.available_stock) || 0, 0),
-            };
-        });
         try {
             this.busy = true;
             mutations.state.checkout = (await index$1.updateCheckout({
                 id: mutations.state.checkout.id,
                 data: {
-                    line_items: (lineItems || [])
-                        .filter(lineItem => !!lineItem.quantity)
-                        .map(lineItem => {
-                        var _a, _b;
-                        return {
-                            id: lineItem.id,
-                            price_id: (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.id,
-                            quantity: lineItem.quantity,
-                            ...(((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? { variant: lineItem.variant.id } : {}),
-                        };
-                    }),
+                    line_items: this.getStockAdjustedLineItems().filter(lineItem => !!lineItem.quantity),
                 },
             }));
         }
@@ -106,6 +109,7 @@ const ScCheckoutStockAlert = class {
             const available_stock = ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? (_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock : product === null || product === void 0 ? void 0 : product.available_stock;
             return {
                 name: product === null || product === void 0 ? void 0 : product.name,
+                variant: lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant_display_options,
                 image: lineItem === null || lineItem === void 0 ? void 0 : lineItem.image,
                 quantity: lineItem.quantity,
                 available_stock,
@@ -120,7 +124,7 @@ const ScCheckoutStockAlert = class {
             return (index.h("sc-table-row", { style: {
                     '--columns': '2',
                     ...(isLastChild ? { border: 'none' } : {}),
-                } }, index.h("sc-table-cell", null, index.h("sc-flex", { justifyContent: "flex-start", alignItems: "center" }, (item === null || item === void 0 ? void 0 : item.image) && index.h("img", { ...item.image, class: "stock-alert__image" }), index.h("h4", null, item.name))), index.h("sc-table-cell", { style: { width: '100px', textAlign: 'right' } }, index.h("span", { class: "stock-alert__quantity" }, index.h("span", null, item === null || item === void 0 ? void 0 : item.quantity), " ", index.h("sc-icon", { name: "arrow-right" }), " ", index.h("span", null, Math.max(item === null || item === void 0 ? void 0 : item.available_stock, 0))))));
+                } }, index.h("sc-table-cell", null, index.h("sc-flex", { justifyContent: "flex-start", alignItems: "center" }, (item === null || item === void 0 ? void 0 : item.image) && index.h("img", { ...item.image, class: "stock-alert__image" }), index.h("div", { class: "stock-alert__product-info" }, index.h("h4", null, item.name), (item === null || item === void 0 ? void 0 : item.variant) && index.h("span", { class: "stock-alert__variant" }, item.variant)))), index.h("sc-table-cell", { style: { width: '100px', textAlign: 'right' } }, index.h("span", { class: "stock-alert__quantity" }, index.h("span", null, item === null || item === void 0 ? void 0 : item.quantity), " ", index.h("sc-icon", { name: "arrow-right" }), " ", index.h("span", null, Math.max(item === null || item === void 0 ? void 0 : item.available_stock, 0))))));
         })))), index.h("sc-button", { slot: "footer", type: "primary", loading: this.busy, onClick: () => this.onSubmit() }, wp.i18n.__('Continue', 'surecart'), index.h("sc-icon", { name: "arrow-right", slot: "suffix" })), this.busy && index.h("sc-block-ui", { spinner: true }))));
     }
 };
@@ -214,6 +218,7 @@ const ScFormComponentsValidator = class {
         this.hasInvoiceDetails = undefined;
         this.hasInvoiceMemo = undefined;
         this.hasTrialLineItem = undefined;
+        this.hasCustomerPhone = undefined;
     }
     handleOrderChange() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
@@ -264,9 +269,14 @@ const ScFormComponentsValidator = class {
         this.hasInvoiceDetails = !!this.el.querySelector('sc-invoice-details');
         this.hasInvoiceMemo = !!this.el.querySelector('sc-invoice-memo');
         this.hasTrialLineItem = !!this.el.querySelector('sc-line-item-trial');
+        this.hasCustomerPhone = !!this.el.querySelector('sc-customer-phone');
         // if eu vat is required, add the tax id field.
         if (((_a = this.taxProtocol) === null || _a === void 0 ? void 0 : _a.tax_enabled) && ((_b = this.taxProtocol) === null || _b === void 0 ? void 0 : _b.eu_vat_required)) {
             this.addTaxIDField();
+        }
+        // if razorpay is available, add the customer phone field.
+        if (getters$1.getAvailableProcessor('razorpay')) {
+            this.addCustomerPhone();
         }
         this.handleOrderChange();
         this.removeCheckoutListener = mutations.onChange('checkout', () => this.handleOrderChange());
@@ -332,6 +342,18 @@ const ScFormComponentsValidator = class {
         const taxInput = document.createElement('sc-order-tax-id-input');
         payment.parentNode.insertBefore(taxInput, payment);
         this.hasTaxIDField = true;
+    }
+    addCustomerPhone() {
+        if (this.hasCustomerPhone)
+            return;
+        const payment = this.el.querySelector('sc-payment');
+        if (!payment)
+            return;
+        const customerPhone = document.createElement('sc-customer-phone');
+        customerPhone.label = wp.i18n.__('Phone', 'surecart');
+        customerPhone.required = true;
+        payment.parentNode.insertBefore(customerPhone, payment);
+        this.hasCustomerPhone = true;
     }
     addBumps() {
         if (this.hasBumpsField)
@@ -424,7 +446,7 @@ const ScFormComponentsValidator = class {
         this.hasTrialLineItem = true;
     }
     render() {
-        return index.h("slot", { key: '1aeeef762063b3744670ce62d3028a82c6dafc3c' });
+        return index.h("slot", { key: '099e75171b953f9a65b3c111ad043b2acbe6d58a' });
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -447,7 +469,7 @@ const ScFormErrorProvider = class {
         (_b = (_a = this.el.querySelector('sc-form')) === null || _a === void 0 ? void 0 : _a.prepend) === null || _b === void 0 ? void 0 : _b.call(_a, errorsComponent);
     }
     render() {
-        return index.h("slot", { key: '34c29b55dc72b6c4d524eab8b4cd15bc85799f9e' });
+        return index.h("slot", { key: 'bb29bfa0c494d753a0b964d0cbec1fc93ec8d5e0' });
     }
     get el() { return index.getElement(this); }
 };
@@ -566,10 +588,10 @@ const ScLoginProvider = class {
         }
     }
     render() {
-        return (index.h(index.Host, { key: '4c5e121736909c4e3462f3a518103730c078d55d' }, !!this.notice && (index.h("sc-alert", { key: 'c0ca8a0477fc6c21452b25d321ff5a1c5cf24ad4', type: "success", open: true, style: { marginBottom: 'var(--sc-form-row-spacing)' }, closable: true }, index.h("span", { key: '71983897ddbb14fe8371077bef734f677b25ed72', slot: "title" }, wp.i18n.__('Welcome back!', 'surecart')), wp.i18n.__('You have logged in successfully.', 'surecart'))), index.h("slot", { key: '5181b5b557e88ea9c73dfdc366440120285f7f69' }), !this.loggedIn && (index.h("sc-dialog", { key: '9e680f662c0be234101926960a75858cbbc9f3d3', label: wp.i18n.__('Login to your account', 'surecart'), open: this.open, onScRequestClose: () => (this.open = false) }, index.h("sc-form", { key: '46b1dae6809de40d830278ee6c8fe69fef3a4d3c', ref: el => (this.loginForm = el), onScFormSubmit: e => {
+        return (index.h(index.Host, { key: 'e54205046a11c39f98eac2a9c5a4f30bab2c1931' }, !!this.notice && (index.h("sc-alert", { key: '9041d910aa94cb2c91fd69ff97f04c46e7c51f72', type: "success", open: true, style: { marginBottom: 'var(--sc-form-row-spacing)' }, closable: true }, index.h("span", { key: 'b3384064a6ce6eebd7be14ec8f8374cb9457a087', slot: "title" }, wp.i18n.__('Welcome back!', 'surecart')), wp.i18n.__('You have logged in successfully.', 'surecart'))), index.h("slot", { key: 'b922c3fc6fb15a5f88b2c50cfe1f433d6404249b' }), !this.loggedIn && (index.h("sc-dialog", { key: '9d2e8e3a786477d05180d3d9ce414ec93cad95bc', label: wp.i18n.__('Login to your account', 'surecart'), open: this.open, onScRequestClose: () => (this.open = false) }, index.h("sc-form", { key: '1ec530b705bdd0ba3e4818da54c1f155f4c3445c', ref: el => (this.loginForm = el), onScFormSubmit: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-            }, onScSubmit: e => this.handleFormSubmit(e) }, !!this.error && (index.h("sc-alert", { key: '64d295f44f8b6236a80d6344ceb899a6a4e475ee', type: "danger", open: !!this.error }, this.error)), index.h("sc-input", { key: '8a50f469d7f606debd6b29bf95344e4f1ba85d0b', label: wp.i18n.__('Email or Username', 'surecart'), type: "text", name: "login", required: true, autofocus: this.open }), index.h("sc-input", { key: '2ebc186a50e92e48f355aa651db98a9ee838d0d5', label: wp.i18n.__('Password', 'surecart'), type: "password", name: "password", required: true }), index.h("sc-button", { key: '6dc1d2df070be463e5b90fc007dfc0ce68e48820', type: "primary", full: true, loading: this.loading, submit: true }, wp.i18n.__('Login', 'surecart')))))));
+            }, onScSubmit: e => this.handleFormSubmit(e) }, !!this.error && (index.h("sc-alert", { key: '9146c9712d611da35a1e1831d633e81d34b4fd06', type: "danger", open: !!this.error }, this.error)), index.h("sc-input", { key: '6e00ad3cefb8736c5d79a15b6fb46a6070643691', label: wp.i18n.__('Email or Username', 'surecart'), type: "text", name: "login", required: true, autofocus: this.open }), index.h("sc-input", { key: '43d8ba821b58e951b9cee38a259989777a8f0247', label: wp.i18n.__('Password', 'surecart'), type: "password", name: "password", required: true }), index.h("sc-button", { key: '7f6689245aaf8f077a8994520b68f7081f5f5a45', type: "primary", full: true, loading: this.loading, submit: true }, wp.i18n.__('Login', 'surecart')))))));
     }
     static get watchers() { return {
         "open": ["handleLoginDialogChange"],
@@ -663,7 +685,7 @@ const ScOrderConfirmProvider = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-        return (index.h(index.Host, { key: '4384f70d5b8f8e0a41af91ecf23bb78b7c553ff3' }, index.h("slot", { key: '8ef9ef6e4bc086364989d78290a17ae0c46cb779' }), index.h("sc-dialog", { key: '7e40ebffe1522f2c68c01db6d15bcb2e11b78765', open: !!this.showSuccessModal, style: { '--body-spacing': 'var(--sc-spacing-xxx-large)', '--width': '400px' }, noHeader: true, onScRequestClose: e => e.preventDefault() }, index.h("div", { key: 'cd7e49ee98c6ced9ea55bb6276d56a8a2f91f882', class: "confirm__icon" }, index.h("div", { key: '220e52f385ba3e8f1993b6b8a18cdda812d4e113', class: "confirm__icon-container" }, index.h("sc-icon", { key: '0c7a00f086fa9a82670b0450090ec6c5618309b0', name: "check" }))), index.h("sc-dashboard-module", { key: '2a599f9af9af533ae97b8e164e9e777a92146456', heading: ((_b = (_a = store.state === null || store.state === void 0 ? void 0 : store.state.text) === null || _a === void 0 ? void 0 : _a.success) === null || _b === void 0 ? void 0 : _b.title) || wp.i18n.__('Thanks for your order!', 'surecart'), style: { '--sc-dashboard-module-spacing': 'var(--sc-spacing-x-large)', 'textAlign': 'center' } }, index.h("span", { key: '8d099f11e11fe65861ead8c9b21bc258f5b67da9', slot: "description" }, ((_d = (_c = store.state === null || store.state === void 0 ? void 0 : store.state.text) === null || _c === void 0 ? void 0 : _c.success) === null || _d === void 0 ? void 0 : _d.description) || wp.i18n.__('Your payment was successful. A receipt is on its way to your inbox.', 'surecart')), !!((_e = this.manualPaymentMethod) === null || _e === void 0 ? void 0 : _e.name) && !!((_f = this.manualPaymentMethod) === null || _f === void 0 ? void 0 : _f.instructions) && (index.h("sc-alert", { key: '78f370b58a2cbf0c5196e13f62a5708b15c6748f', type: "info", open: true, style: { 'text-align': 'left' } }, index.h("span", { key: 'dcefbd797b46f79465723fb7209da8583c43a6f7', slot: "title" }, (_g = this.manualPaymentMethod) === null || _g === void 0 ? void 0 : _g.name), index.h("div", { key: '49c00b04bcef2cae521b673c45bacacb3d040f08', innerHTML: (_h = this.manualPaymentMethod) === null || _h === void 0 ? void 0 : _h.instructions }))), index.h("sc-button", { key: '68997dd337047d7afe499ac89efcc33ade19121c', href: this.getSuccessUrl(), size: "large", type: "primary", ref: el => (this.continueButton = el) }, ((_k = (_j = store.state === null || store.state === void 0 ? void 0 : store.state.text) === null || _j === void 0 ? void 0 : _j.success) === null || _k === void 0 ? void 0 : _k.button) || wp.i18n.__('Continue', 'surecart'), index.h("sc-icon", { key: 'e4b6a695b971816e2bb00559cf3c8601997da1f1', name: "arrow-right", slot: "suffix" }))))));
+        return (index.h(index.Host, { key: '2f039b47359a7b44acc421c4ed6aee8edec18e0f' }, index.h("slot", { key: 'ff5fb55ecd4dbe3ab9b4d4aad5c2262dd7c8070d' }), index.h("sc-dialog", { key: '671a6a7955c4a63a08c81d34b2364f279478531f', open: !!this.showSuccessModal, style: { '--body-spacing': 'var(--sc-spacing-xxx-large)', '--width': '400px' }, noHeader: true, onScRequestClose: e => e.preventDefault() }, index.h("div", { key: '1d91cd7725d20e549af29735610909a22802d766', class: "confirm__icon" }, index.h("div", { key: 'd461a51c9ed720e126e27f76bdffedca2595962b', class: "confirm__icon-container" }, index.h("sc-icon", { key: 'f473b075eb82515dbcb1940b0bb85f3358485fc9', name: "check" }))), index.h("sc-dashboard-module", { key: 'd76a2d9f2a62c5b13744b228c9ab64fc59499ec6', heading: ((_b = (_a = store.state === null || store.state === void 0 ? void 0 : store.state.text) === null || _a === void 0 ? void 0 : _a.success) === null || _b === void 0 ? void 0 : _b.title) || wp.i18n.__('Thanks for your order!', 'surecart'), style: { '--sc-dashboard-module-spacing': 'var(--sc-spacing-x-large)', 'textAlign': 'center' } }, index.h("span", { key: '5e9585bf6dfad312a3b05f428d54e2390633e0c6', slot: "description" }, ((_d = (_c = store.state === null || store.state === void 0 ? void 0 : store.state.text) === null || _c === void 0 ? void 0 : _c.success) === null || _d === void 0 ? void 0 : _d.description) || wp.i18n.__('Your payment was successful. A receipt is on its way to your inbox.', 'surecart')), !!((_e = this.manualPaymentMethod) === null || _e === void 0 ? void 0 : _e.name) && !!((_f = this.manualPaymentMethod) === null || _f === void 0 ? void 0 : _f.instructions) && (index.h("sc-alert", { key: '1d627a98cdf1eb991a280ea4ec3349af9674c3fd', type: "info", open: true, style: { 'text-align': 'left' } }, index.h("span", { key: '9b4b38b3e6a6b7e3ad46a740543e6224d9876c43', slot: "title" }, (_g = this.manualPaymentMethod) === null || _g === void 0 ? void 0 : _g.name), index.h("div", { key: 'e48fe533c42e80696cce3847e54d82593d7eda94', innerHTML: (_h = this.manualPaymentMethod) === null || _h === void 0 ? void 0 : _h.instructions }))), index.h("sc-button", { key: '96730535f04c3c3b345e6cf787ad9cf6da22aa1a', href: this.getSuccessUrl(), size: "large", type: "primary", ref: el => (this.continueButton = el) }, ((_k = (_j = store.state === null || store.state === void 0 ? void 0 : store.state.text) === null || _j === void 0 ? void 0 : _j.success) === null || _k === void 0 ? void 0 : _k.button) || wp.i18n.__('Continue', 'surecart'), index.h("sc-icon", { key: '15c5f5c7e46648b027dfc2bdc821e09d7238c442', name: "arrow-right", slot: "suffix" }))))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -1187,7 +1209,7 @@ const ScSessionProvider = class {
         }
     }
     render() {
-        return (index.h("sc-line-items-provider", { key: '4a3533ae8d7a28a6c3fd06085e6495c49830764e', order: mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: 'a5d1623d04bc771f017020180b99114ef3751350' })));
+        return (index.h("sc-line-items-provider", { key: 'ec1fa7196e82cca6045528dcd6ef2875d5740200', order: mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: 'd6ca79d075366c663be423b202d27988cea962d4' })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

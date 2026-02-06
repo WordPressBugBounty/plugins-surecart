@@ -1,4 +1,4 @@
-import { Order, Purchase } from '../../../../types';
+import { Checkout, Order, Purchase } from '../../../../types';
 export declare class ScOrder {
     el: HTMLScOrdersListElement;
     orderId: string;
@@ -18,6 +18,8 @@ export declare class ScOrder {
     /** Get order */
     getOrder(): Promise<void>;
     renderLoading(): any;
+    renderCheckoutFees(checkout: Checkout): any;
+    renderShippingFees(checkout: Checkout): any;
     renderEmpty(): any;
     renderContent(): any;
     render(): any;

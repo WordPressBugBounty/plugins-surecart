@@ -23,6 +23,13 @@ export declare class ScCustomerDetails {
     customer: Customer;
     loading: boolean;
     error: string;
+    /** Holds our country choices. */
+    countryChoices: Array<{
+        value: string;
+        label: string;
+    }>;
+    componentWillLoad(): void;
+    initCountryChoices(): Promise<void>;
     renderContent(): any;
     renderAddress(label: string, address: Address): any;
     renderEmpty(): any;

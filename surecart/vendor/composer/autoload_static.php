@@ -14,81 +14,81 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
     );
 
     public static $prefixLengthsPsr4 = array (
-        'T' => 
+        'T' =>
         array (
             'TypistTech\\Imposter\\Plugin\\' => 27,
             'TypistTech\\Imposter\\' => 20,
         ),
-        'S' => 
+        'S' =>
         array (
             'SureCart\\' => 9,
             'SureCartCore\\' => 13,
             'SureCartBlocks\\' => 15,
             'SureCartAppCore\\' => 16,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
-        'G' => 
+        'G' =>
         array (
             'GuzzleHttp\\Psr7\\' => 16,
         ),
-        'C' => 
+        'C' =>
         array (
             'Composer\\Installers\\' => 20,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'TypistTech\\Imposter\\Plugin\\' => 
+        'TypistTech\\Imposter\\Plugin\\' =>
         array (
             0 => __DIR__ . '/..' . '/typisttech/imposter-plugin/src',
         ),
-        'TypistTech\\Imposter\\' => 
+        'TypistTech\\Imposter\\' =>
         array (
             0 => __DIR__ . '/..' . '/typisttech/imposter/src',
         ),
-        'SureCart\\' => 
+        'SureCart\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app/src',
         ),
-        'SureCartCore\\' => 
+        'SureCartCore\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/core/src',
         ),
-        'SureCartBlocks\\' => 
+        'SureCartBlocks\\' =>
         array (
             0 => __DIR__ . '/../..' . '/packages/blocks',
         ),
-        'SureCartAppCore\\' => 
+        'SureCartAppCore\\' =>
         array (
             0 => __DIR__ . '/../..' . '/core/app-core/src',
         ),
-        'Psr\\Http\\Message\\' => 
+        'Psr\\Http\\Message\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'Psr\\Container\\' => 
+        'Psr\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
+        'GuzzleHttp\\Psr7\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'Composer\\Installers\\' => 
+        'Composer\\Installers\\' =>
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
     );
 
     public static $prefixesPsr0 = array (
-        'P' => 
+        'P' =>
         array (
-            'Pimple' => 
+            'Pimple' =>
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
@@ -481,6 +481,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCartVendors\\Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
         'SureCart\\Account\\AccountService' => __DIR__ . '/../..' . '/app/src/Account/AccountService.php',
         'SureCart\\Account\\AccountServiceProvider' => __DIR__ . '/../..' . '/app/src/Account/AccountServiceProvider.php',
+        'SureCart\\Account\\ProvisionalAccountSeedService' => __DIR__ . '/../..' . '/app/src/Account/ProvisionalAccountSeedService.php',
         'SureCart\\Activation\\ActivationService' => __DIR__ . '/../..' . '/app/src/Activation/ActivationService.php',
         'SureCart\\Activation\\ActivationServiceProvider' => __DIR__ . '/../..' . '/app/src/Activation/ActivationServiceProvider.php',
         'SureCart\\Activation\\DeactivationSurveyForm' => __DIR__ . '/../..' . '/app/src/Activation/DeactivationSurveyForm.php',
@@ -539,6 +540,9 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Controllers\\Admin\\Affiliations\\AffiliationsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Affiliations/AffiliationsController.php',
         'SureCart\\Controllers\\Admin\\Affiliations\\AffiliationsListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Affiliations/AffiliationsListTable.php',
         'SureCart\\Controllers\\Admin\\Affiliations\\AffiliationsScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Affiliations/AffiliationsScriptsController.php',
+        'SureCart\\Controllers\\Admin\\AutoFees\\AutoFeesController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AutoFees/AutoFeesController.php',
+        'SureCart\\Controllers\\Admin\\AutoFees\\AutoFeesListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AutoFees/AutoFeesListTable.php',
+        'SureCart\\Controllers\\Admin\\AutoFees\\AutoFeesScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AutoFees/AutoFeesScriptsController.php',
         'SureCart\\Controllers\\Admin\\Bumps\\BumpScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Bumps/BumpScriptsController.php',
         'SureCart\\Controllers\\Admin\\Bumps\\BumpsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Bumps/BumpsController.php',
         'SureCart\\Controllers\\Admin\\Bumps\\BumpsListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Bumps/BumpsListTable.php',
@@ -589,6 +593,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Controllers\\Admin\\Settings\\ConnectionSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/ConnectionSettings.php',
         'SureCart\\Controllers\\Admin\\Settings\\CustomerSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/CustomerSettings.php',
         'SureCart\\Controllers\\Admin\\Settings\\DisplayCurrencySettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/DisplayCurrencySettings.php',
+        'SureCart\\Controllers\\Admin\\Settings\\DynamicPricingSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/DynamicPricingSettings.php',
         'SureCart\\Controllers\\Admin\\Settings\\ExportSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/ExportSettings.php',
         'SureCart\\Controllers\\Admin\\Settings\\Integrations' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/Integrations.php',
         'SureCart\\Controllers\\Admin\\Settings\\OrderSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/OrderSettings.php',
@@ -619,6 +624,8 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Controllers\\Rest\\AffiliationProtocolController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AffiliationProtocolController.php',
         'SureCart\\Controllers\\Rest\\AffiliationRequestsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AffiliationRequestsController.php',
         'SureCart\\Controllers\\Rest\\AffiliationsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AffiliationsController.php',
+        'SureCart\\Controllers\\Rest\\AutoFeeProtocolController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AutoFeeProtocolController.php',
+        'SureCart\\Controllers\\Rest\\AutoFeesController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AutoFeesController.php',
         'SureCart\\Controllers\\Rest\\BalanceTransactionsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BalanceTransactionsController.php',
         'SureCart\\Controllers\\Rest\\BrandController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BrandController.php',
         'SureCart\\Controllers\\Rest\\BumpsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BumpsController.php',
@@ -672,6 +679,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Controllers\\Rest\\ReturnItemsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ReturnItemsController.php',
         'SureCart\\Controllers\\Rest\\ReturnReasonsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ReturnReasonsController.php',
         'SureCart\\Controllers\\Rest\\ReturnRequestsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ReturnRequestsController.php',
+        'SureCart\\Controllers\\Rest\\RuleSchemaController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/RuleSchemaController.php',
         'SureCart\\Controllers\\Rest\\SettingsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/SettingsController.php',
         'SureCart\\Controllers\\Rest\\ShippingMethodController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ShippingMethodController.php',
         'SureCart\\Controllers\\Rest\\ShippingProfileController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ShippingProfileController.php',
@@ -717,7 +725,10 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Form\\FormValidationService' => __DIR__ . '/../..' . '/app/src/Form/FormValidationService.php',
         'SureCart\\Install\\InstallService' => __DIR__ . '/../..' . '/app/src/Install/InstallService.php',
         'SureCart\\Install\\InstallServiceProvider' => __DIR__ . '/../..' . '/app/src/Install/InstallServiceProvider.php',
+        'SureCart\\Integrations\\AIOSEO\\AIOSEOService' => __DIR__ . '/../..' . '/app/src/Integrations/AIOSEO/AIOSEOService.php',
+        'SureCart\\Integrations\\AIOSEO\\AIOSEOServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/AIOSEO/AIOSEOServiceProvider.php',
         'SureCart\\Integrations\\AbstractIntegration' => __DIR__ . '/../..' . '/app/src/Integrations/AbstractIntegration.php',
+        'SureCart\\Integrations\\Abstracts\\NoIndexService' => __DIR__ . '/../..' . '/app/src/Integrations/Abstracts/NoIndexService.php',
         'SureCart\\Integrations\\AffiliateWP\\AffiliateWPIntegration' => __DIR__ . '/../..' . '/app/src/Integrations/AffiliateWP/AffiliateWPIntegration.php',
         'SureCart\\Integrations\\AffiliateWP\\AffiliateWPRecurringIntegration' => __DIR__ . '/../..' . '/app/src/Integrations/AffiliateWP/AffiliateWPRecurringIntegration.php',
         'SureCart\\Integrations\\AffiliateWP\\AffiliateWPService' => __DIR__ . '/../..' . '/app/src/Integrations/AffiliateWP/AffiliateWPService.php',
@@ -816,6 +827,14 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Integrations\\LifterLMS\\LifterLMSServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/LifterLMS/LifterLMSServiceProvider.php',
         'SureCart\\Integrations\\MemberPress\\MemberPressService' => __DIR__ . '/../..' . '/app/src/Integrations/MemberPress/MemberPressService.php',
         'SureCart\\Integrations\\MemberPress\\MemberPressServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/MemberPress/MemberPressServiceProvider.php',
+        'SureCart\\Integrations\\RankMath\\RankMathService' => __DIR__ . '/../..' . '/app/src/Integrations/RankMath/RankMathService.php',
+        'SureCart\\Integrations\\RankMath\\RankMathServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/RankMath/RankMathServiceProvider.php',
+        'SureCart\\Integrations\\SEOPress\\SEOPressService' => __DIR__ . '/../..' . '/app/src/Integrations/SEOPress/SEOPressService.php',
+        'SureCart\\Integrations\\SEOPress\\SEOPressServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/SEOPress/SEOPressServiceProvider.php',
+        'SureCart\\Integrations\\SureRank\\SureRankService' => __DIR__ . '/../..' . '/app/src/Integrations/SureRank/SureRankService.php',
+        'SureCart\\Integrations\\SureRank\\SureRankServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/SureRank/SureRankServiceProvider.php',
+        'SureCart\\Integrations\\TheSEOFramework\\TheSEOFrameworkService' => __DIR__ . '/../..' . '/app/src/Integrations/TheSEOFramework/TheSEOFrameworkService.php',
+        'SureCart\\Integrations\\TheSEOFramework\\TheSEOFrameworkServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/TheSEOFramework/TheSEOFrameworkServiceProvider.php',
         'SureCart\\Integrations\\ThriveAutomator\\DataFields\\PreviousProductDataField' => __DIR__ . '/../..' . '/app/src/Integrations/ThriveAutomator/DataFields/PreviousProductDataField.php',
         'SureCart\\Integrations\\ThriveAutomator\\DataFields\\PreviousProductIDDataField' => __DIR__ . '/../..' . '/app/src/Integrations/ThriveAutomator/DataFields/PreviousProductIDDataField.php',
         'SureCart\\Integrations\\ThriveAutomator\\DataFields\\PreviousProductNameField' => __DIR__ . '/../..' . '/app/src/Integrations/ThriveAutomator/DataFields/PreviousProductNameField.php',
@@ -835,6 +854,8 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Integrations\\TutorLMS\\TutorLMSServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/TutorLMS/TutorLMSServiceProvider.php',
         'SureCart\\Integrations\\User\\UserService' => __DIR__ . '/../..' . '/app/src/Integrations/User/UserService.php',
         'SureCart\\Integrations\\User\\UserServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/User/UserServiceProvider.php',
+        'SureCart\\Integrations\\Yoast\\YoastService' => __DIR__ . '/../..' . '/app/src/Integrations/Yoast/YoastService.php',
+        'SureCart\\Integrations\\Yoast\\YoastServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/Yoast/YoastServiceProvider.php',
         'SureCart\\Middleware\\AccountClaimMiddleware' => __DIR__ . '/../..' . '/app/src/Middleware/AccountClaimMiddleware.php',
         'SureCart\\Middleware\\AdminColorMiddleware' => __DIR__ . '/../..' . '/app/src/Middleware/AdminColorMiddleware.php',
         'SureCart\\Middleware\\ArchiveModelMiddleware' => __DIR__ . '/../..' . '/app/src/Middleware/ArchiveModelMiddleware.php',
@@ -867,6 +888,8 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Models\\AffiliationProtocol' => __DIR__ . '/../..' . '/app/src/Models/AffiliationProtocol.php',
         'SureCart\\Models\\AffiliationRequest' => __DIR__ . '/../..' . '/app/src/Models/AffiliationRequest.php',
         'SureCart\\Models\\ApiToken' => __DIR__ . '/../..' . '/app/src/Models/ApiToken.php',
+        'SureCart\\Models\\AutoFee' => __DIR__ . '/../..' . '/app/src/Models/AutoFee.php',
+        'SureCart\\Models\\AutoFeeProtocol' => __DIR__ . '/../..' . '/app/src/Models/AutoFeeProtocol.php',
         'SureCart\\Models\\BalanceTransaction' => __DIR__ . '/../..' . '/app/src/Models/BalanceTransaction.php',
         'SureCart\\Models\\Blocks\\AbstractProductListBlock' => __DIR__ . '/../..' . '/app/src/Models/Blocks/AbstractProductListBlock.php',
         'SureCart\\Models\\Blocks\\ProductListBlock' => __DIR__ . '/../..' . '/app/src/Models/Blocks/ProductListBlock.php',
@@ -885,6 +908,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Models\\CommissionStructure' => __DIR__ . '/../..' . '/app/src/Models/CommissionStructure.php',
         'SureCart\\Models\\Component' => __DIR__ . '/../..' . '/app/src/Models/Component.php',
         'SureCart\\Models\\Concerns\\Facade' => __DIR__ . '/../..' . '/app/src/Models/Concerns/Facade.php',
+        'SureCart\\Models\\Concerns\\ImportModel' => __DIR__ . '/../..' . '/app/src/Models/Concerns/ImportModel.php',
         'SureCart\\Models\\Coupon' => __DIR__ . '/../..' . '/app/src/Models/Coupon.php',
         'SureCart\\Models\\Customer' => __DIR__ . '/../..' . '/app/src/Models/Customer.php',
         'SureCart\\Models\\CustomerLink' => __DIR__ . '/../..' . '/app/src/Models/CustomerLink.php',
@@ -908,6 +932,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Models\\GalleryItemMedia' => __DIR__ . '/../..' . '/app/src/Models/GalleryItemMedia.php',
         'SureCart\\Models\\GalleryItemProductMedia' => __DIR__ . '/../..' . '/app/src/Models/GalleryItemProductMedia.php',
         'SureCart\\Models\\GalleryItemVideoAttachment' => __DIR__ . '/../..' . '/app/src/Models/GalleryItemVideoAttachment.php',
+        'SureCart\\Models\\Import' => __DIR__ . '/../..' . '/app/src/Models/Import.php',
         'SureCart\\Models\\IncomingWebhook' => __DIR__ . '/../..' . '/app/src/Models/IncomingWebhook.php',
         'SureCart\\Models\\Integration' => __DIR__ . '/../..' . '/app/src/Models/Integration.php',
         'SureCart\\Models\\IntegrationCatalog' => __DIR__ . '/../..' . '/app/src/Models/IntegrationCatalog.php',
@@ -933,7 +958,9 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Models\\Processor' => __DIR__ . '/../..' . '/app/src/Models/Processor.php',
         'SureCart\\Models\\Product' => __DIR__ . '/../..' . '/app/src/Models/Product.php',
         'SureCart\\Models\\ProductCollection' => __DIR__ . '/../..' . '/app/src/Models/ProductCollection.php',
+        'SureCart\\Models\\ProductCollectionImport' => __DIR__ . '/../..' . '/app/src/Models/ProductCollectionImport.php',
         'SureCart\\Models\\ProductGroup' => __DIR__ . '/../..' . '/app/src/Models/ProductGroup.php',
+        'SureCart\\Models\\ProductImport' => __DIR__ . '/../..' . '/app/src/Models/ProductImport.php',
         'SureCart\\Models\\ProductMedia' => __DIR__ . '/../..' . '/app/src/Models/ProductMedia.php',
         'SureCart\\Models\\Promotion' => __DIR__ . '/../..' . '/app/src/Models/Promotion.php',
         'SureCart\\Models\\ProvisionalAccount' => __DIR__ . '/../..' . '/app/src/Models/ProvisionalAccount.php',
@@ -946,6 +973,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Models\\ReturnItem' => __DIR__ . '/../..' . '/app/src/Models/ReturnItem.php',
         'SureCart\\Models\\ReturnReason' => __DIR__ . '/../..' . '/app/src/Models/ReturnReason.php',
         'SureCart\\Models\\ReturnRequest' => __DIR__ . '/../..' . '/app/src/Models/ReturnRequest.php',
+        'SureCart\\Models\\RuleSchema' => __DIR__ . '/../..' . '/app/src/Models/RuleSchema.php',
         'SureCart\\Models\\ServiceFee' => __DIR__ . '/../..' . '/app/src/Models/ServiceFee.php',
         'SureCart\\Models\\ShippingChoice' => __DIR__ . '/../..' . '/app/src/Models/ShippingChoice.php',
         'SureCart\\Models\\ShippingMethod' => __DIR__ . '/../..' . '/app/src/Models/ShippingMethod.php',
@@ -966,6 +994,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Models\\Traits\\CanResendNotifications' => __DIR__ . '/../..' . '/app/src/Models/Traits/CanResendNotifications.php',
         'SureCart\\Models\\Traits\\HasAffiliation' => __DIR__ . '/../..' . '/app/src/Models/Traits/HasAffiliation.php',
         'SureCart\\Models\\Traits\\HasAttributes' => __DIR__ . '/../..' . '/app/src/Models/Traits/HasAttributes.php',
+        'SureCart\\Models\\Traits\\HasAutoFeeRules' => __DIR__ . '/../..' . '/app/src/Models/Traits/HasAutoFeeRules.php',
         'SureCart\\Models\\Traits\\HasBillingAddress' => __DIR__ . '/../..' . '/app/src/Models/Traits/HasBillingAddress.php',
         'SureCart\\Models\\Traits\\HasCharge' => __DIR__ . '/../..' . '/app/src/Models/Traits/HasCharge.php',
         'SureCart\\Models\\Traits\\HasCheckout' => __DIR__ . '/../..' . '/app/src/Models/Traits/HasCheckout.php',
@@ -1025,6 +1054,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Permissions\\Models\\ChargePermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/ChargePermissionsController.php',
         'SureCart\\Permissions\\Models\\CheckoutPermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/CheckoutPermissionsController.php',
         'SureCart\\Permissions\\Models\\CustomerPermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/CustomerPermissionsController.php',
+        'SureCart\\Permissions\\Models\\DownloadPermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/DownloadPermissionsController.php',
         'SureCart\\Permissions\\Models\\InvoicePermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/InvoicePermissionsController.php',
         'SureCart\\Permissions\\Models\\LicensePermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/LicensePermissionsController.php',
         'SureCart\\Permissions\\Models\\MediaPermissionsController' => __DIR__ . '/../..' . '/app/src/Permissions/Models/MediaPermissionsController.php',
@@ -1050,6 +1080,8 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Rest\\AffiliationProtocolRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AffiliationProtocolRestServiceProvider.php',
         'SureCart\\Rest\\AffiliationRequestsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AffiliationRequestsRestServiceProvider.php',
         'SureCart\\Rest\\AffiliationsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AffiliationsRestServiceProvider.php',
+        'SureCart\\Rest\\AutoFeeProtocolRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AutoFeeProtocolRestServiceProvider.php',
+        'SureCart\\Rest\\AutoFeeRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AutoFeeRestServiceProvider.php',
         'SureCart\\Rest\\BalanceTransactionRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BalanceTransactionRestServiceProvider.php',
         'SureCart\\Rest\\BlockPatternsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BlockPatternsRestServiceProvider.php',
         'SureCart\\Rest\\BrandRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BrandRestServiceProvider.php',
@@ -1105,6 +1137,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Rest\\ReturnItemsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ReturnItemsRestServiceProvider.php',
         'SureCart\\Rest\\ReturnReasonsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ReturnReasonsRestServiceProvider.php',
         'SureCart\\Rest\\ReturnRequestsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ReturnRequestsRestServiceProvider.php',
+        'SureCart\\Rest\\RuleSchemaRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/RuleSchemaRestServiceProvider.php',
         'SureCart\\Rest\\SettingsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/SettingsRestServiceProvider.php',
         'SureCart\\Rest\\ShippingMethodRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ShippingMethodRestServiceProvider.php',
         'SureCart\\Rest\\ShippingProfileRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ShippingProfileRestServiceProvider.php',
@@ -1158,6 +1191,9 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Support\\UtilityServiceProvider' => __DIR__ . '/../..' . '/app/src/Support/UtilityServiceProvider.php',
         'SureCart\\Svg\\Svg' => __DIR__ . '/../..' . '/app/src/Svg/Svg.php',
         'SureCart\\Svg\\SvgServiceProvider' => __DIR__ . '/../..' . '/app/src/Svg/SvgServiceProvider.php',
+        'SureCart\\Sync\\BatchCheckService' => __DIR__ . '/../..' . '/app/src/Sync/BatchCheckService.php',
+        'SureCart\\Sync\\Concerns\\HasLockProcess' => __DIR__ . '/../..' . '/app/src/Sync/Concerns/HasLockProcess.php',
+        'SureCart\\Sync\\ContentSyncService' => __DIR__ . '/../..' . '/app/src/Sync/ContentSyncService.php',
         'SureCart\\Sync\\CustomerSyncService' => __DIR__ . '/../..' . '/app/src/Sync/CustomerSyncService.php',
         'SureCart\\Sync\\Jobs\\CleanupJob' => __DIR__ . '/../..' . '/app/src/Sync/Jobs/CleanupJob.php',
         'SureCart\\Sync\\Jobs\\Cleanup\\CollectionsCleanupJob' => __DIR__ . '/../..' . '/app/src/Sync/Jobs/Cleanup/CollectionsCleanupJob.php',
@@ -1181,6 +1217,7 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\WordPress\\ActionsService' => __DIR__ . '/../..' . '/app/src/WordPress/ActionsService.php',
         'SureCart\\WordPress\\Admin\\Menus\\AdminMenuPageService' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/AdminMenuPageService.php',
         'SureCart\\WordPress\\Admin\\Menus\\AdminMenuPageServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/AdminMenuPageServiceProvider.php',
+        'SureCart\\WordPress\\Admin\\Menus\\AdminToolbarService' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/AdminToolbarService.php',
         'SureCart\\WordPress\\Admin\\Menus\\ProductCollectionsMenuService' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/ProductCollectionsMenuService.php',
         'SureCart\\WordPress\\Admin\\Notices\\AdminNoticesService' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Notices/AdminNoticesService.php',
         'SureCart\\WordPress\\Admin\\Notices\\AdminNoticesServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Notices/AdminNoticesServiceProvider.php',
@@ -1204,7 +1241,6 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\WordPress\\CurrencyService' => __DIR__ . '/../..' . '/app/src/WordPress/CurrencyService.php',
         'SureCart\\WordPress\\HealthService' => __DIR__ . '/../..' . '/app/src/WordPress/HealthService.php',
         'SureCart\\WordPress\\LineItemStateService' => __DIR__ . '/../..' . '/app/src/WordPress/LineItemStateService.php',
-        'SureCart\\WordPress\\LocalizationStateService' => __DIR__ . '/../..' . '/app/src/WordPress/LocalizationStateService.php',
         'SureCart\\WordPress\\Pages\\PageSeeder' => __DIR__ . '/../..' . '/app/src/WordPress/Pages/PageSeeder.php',
         'SureCart\\WordPress\\Pages\\PageService' => __DIR__ . '/../..' . '/app/src/WordPress/Pages/PageService.php',
         'SureCart\\WordPress\\Pages\\PageServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Pages/PageServiceProvider.php',

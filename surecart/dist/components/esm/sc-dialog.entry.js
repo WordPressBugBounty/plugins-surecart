@@ -133,19 +133,19 @@ const ScDialog = class {
         unlockBodyScrolling(this.el);
     }
     render() {
-        return (h("div", { key: 'e3d2957deb0ce0e6e9496c4f11ee015065dc7a3b', part: "base", ref: el => (this.dialog = el), class: {
+        return (h("div", { key: '8d3f7d20d6b22e0ad66907474b378f2228ea58d9', part: "base", ref: el => (this.dialog = el), class: {
                 'dialog': true,
                 'dialog--open': this.open,
                 'dialog--has-footer': this.hasFooter,
-            }, onKeyDown: e => this.handleKeyDown(e) }, h("div", { key: '8e23876797a2625f511512fe1e0e90cc3dd05676', part: "overlay", class: "dialog__overlay", onClick: e => {
+            }, onKeyDown: e => this.handleKeyDown(e) }, h("div", { key: '548999e48b22766cad918e63824e74987478df6a', part: "overlay", class: "dialog__overlay", onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.requestClose('overlay');
-            }, ref: el => (this.overlay = el), tabindex: "-1" }), h("div", { key: 'acf4d7b1091477670ec36b6e850b15802f39ceb1', part: "panel", class: "dialog__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader || this.label, "aria-labelledby": !this.noHeader || 'title', ref: el => (this.panel = el), tabindex: "0" }, !this.noHeader && (h("header", { key: 'dd9cccab7e4651a4451898f7e8d18bbb1597e133', part: "header", class: "dialog__header" }, h("h2", { key: '5180cf403fc5e66f5c7e326891b5d27f8347003b', part: "title", class: "dialog__title", id: "title" }, h("slot", { key: 'f68d10d477490eda4a429c77c09fffe149118fe7', name: "label" }, " ", this.label.length > 0 ? this.label : String.fromCharCode(65279), " ")), h("sc-button", { key: 'd05cd2c7dccdb4483b7641fb514bc37f326db05e', class: "dialog__close", type: "text", circle: true, part: "close-button", exportparts: "base:close-button__base", onClick: e => {
+            }, ref: el => (this.overlay = el), tabindex: "-1" }), h("div", { key: 'f8e8a8312f639fecac6e99efb0f6500992012179', part: "panel", class: "dialog__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader || this.label, "aria-labelledby": !this.noHeader || 'title', ref: el => (this.panel = el), tabindex: "0" }, !this.noHeader && (h("header", { key: '31199359bcf123b57a0c66fb029aa2e98013503d', part: "header", class: "dialog__header" }, h("h2", { key: '7e8eb83bb35b6b79c5fce8a4720f6abe06a61b81', part: "title", class: "dialog__title", id: "title" }, h("slot", { key: 'e44e3a262643cc0a1f0788eb66adeb4ece455855', name: "label" }, " ", this.label.length > 0 ? this.label : String.fromCharCode(65279), " ")), h("sc-button", { key: '0446495dcffd53b782b4c927fc4ea0f1b7d1e17f', class: "dialog__close", type: "text", circle: true, part: "close-button", exportparts: "base:close-button__base", onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.requestClose('close-button');
-            } }, h("sc-icon", { key: '019009a95b15db94bc23705d3304e11782241abd', name: "x", label: wp.i18n.__('Close', 'surecart') })))), h("div", { key: '3b9824a9835cec274032e0f1c6a5fa693263b059', part: "body", class: "dialog__body" }, h("slot", { key: '5fa374e7808b7dfbfc39167dd65b9b589325c914' })), h("footer", { key: '806411698ae12c422c736e137aeb193e5d48f34d', part: "footer", class: "dialog__footer" }, h("slot", { key: '6efcb9a4060af5c943a7f47e2c3efa3c001a4cb7', name: "footer" })))));
+            } }, h("sc-icon", { key: '50bf0a6fe4692c7a753f6dcb69b7a379c0c83e66', name: "x", label: wp.i18n.__('Close', 'surecart') })))), h("div", { key: '9d3b915fa63ec5ac16b7eb37afe371471f638c99', part: "body", class: "dialog__body" }, h("slot", { key: '2796493c1b65e16a13fda0480c0d0c8be14704f4' })), h("footer", { key: '21d5496268df167717357846c011b918dd19d1b3', part: "footer", class: "dialog__footer" }, h("slot", { key: '4f3b9218756de511ee0fc531fa10cfe6cdc229ac', name: "footer" })))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

@@ -11,6 +11,7 @@ export declare class ScLineItemTotal {
     hasInstallmentPlan(checkout: Checkout): boolean;
     hasSubscription(checkout: Checkout): boolean;
     renderLineItemTitle(checkout: Checkout): any;
+    renderCheckoutFees(checkout: Checkout): any;
     renderLineItemDescription(checkout: Checkout): any;
     getCurrencyToDisplay(): string;
     renderConversion(): any;

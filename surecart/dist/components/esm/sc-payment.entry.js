@@ -30,7 +30,7 @@ const ScPayment = class {
     componentWillLoad() {
         state.disabled = {
             ...state.disabled,
-            processors: this.disabledProcessorTypes
+            processors: this.disabledProcessorTypes,
         };
     }
     renderStripe(processor) {
@@ -52,6 +52,14 @@ const ScPayment = class {
         }
         return (h("sc-payment-method-choice", { key: processor === null || processor === void 0 ? void 0 : processor.id, "processor-id": "paystack" }, h("span", { slot: "summary", class: "sc-payment-toggle-summary" }, h("sc-icon", { name: "credit-card", style: { fontSize: '24px' }, "aria-hidden": "true" }), h("span", null, title)), h("sc-card", null, h("sc-payment-selected", { label: wp.i18n.__('Credit Card selected for check out.', 'surecart') }, h("sc-icon", { slot: "icon", name: "credit-card", "aria-hidden": "true" }), wp.i18n.__('Another step will appear after submitting your order to complete your purchase details.', 'surecart'))), h("sc-checkout-paystack-payment-provider", null)));
     }
+    renderRazorpay(processor) {
+        var _a, _b;
+        // if system currency is not in the supported currency list, then stop.
+        if (!((_a = processor === null || processor === void 0 ? void 0 : processor.supported_currencies) !== null && _a !== void 0 ? _a : []).includes((_b = window === null || window === void 0 ? void 0 : window.scData) === null || _b === void 0 ? void 0 : _b.currency)) {
+            return;
+        }
+        return (h("sc-payment-method-choice", { key: processor === null || processor === void 0 ? void 0 : processor.id, "processor-id": "razorpay" }, h("span", { slot: "summary", class: "sc-payment-toggle-summary" }, h("sc-icon", { name: "razorpay", style: { fontSize: '24px' }, "aria-hidden": "true" }), h("span", null, wp.i18n.__('Cards, Netbanking, Wallet & UPI', 'surecart'))), h("sc-card", null, h("sc-payment-selected", { label: wp.i18n.__('Credit Card selected for check out.', 'surecart') }, h("sc-icon", { slot: "icon", name: "credit-card", "aria-hidden": "true" }), wp.i18n.__('Another step will appear after submitting your order to complete your purchase details.', 'surecart'))), h("sc-checkout-razorpay-payment-provider", null)));
+    }
     render() {
         var _a, _b, _c, _d, _e, _f;
         // payment is not required for this order.
@@ -60,7 +68,7 @@ const ScPayment = class {
         }
         const Tag = hasMultipleProcessorChoices() || (state$2 === null || state$2 === void 0 ? void 0 : state$2.id) === 'paypal' ? 'sc-toggles' : 'div';
         const mollie = getAvailableProcessor('mollie');
-        return (h(Host, null, h("sc-form-control", { label: this.label, exportparts: "label, help-text, form-control" }, h("div", { class: "sc-payment-label", slot: "label" }, h("div", null, this.label), state$1.mode === 'test' && !this.hideTestModeBadge && (h("sc-tag", { type: "warning", size: "small", exportparts: "base:test-badge__base, content:test-badge__content" }, wp.i18n.__('Test Mode', 'surecart')))), (mollie === null || mollie === void 0 ? void 0 : mollie.id) ? (h("sc-checkout-mollie-payment", { "processor-id": mollie === null || mollie === void 0 ? void 0 : mollie.id })) : (h(Tag, { collapsible: false, theme: "container" }, !((_b = availableProcessors()) === null || _b === void 0 ? void 0 : _b.length) && !((_c = availableManualPaymentMethods()) === null || _c === void 0 ? void 0 : _c.length) && (h("sc-alert", { type: "info", open: true }, ((_e = (_d = window === null || window === void 0 ? void 0 : window.scData) === null || _d === void 0 ? void 0 : _d.user_permissions) === null || _e === void 0 ? void 0 : _e.manage_sc_shop_settings) ? (h(Fragment, null, wp.i18n.__('You do not have any processors enabled for this mode and cart. ', 'surecart'), h("a", { href: addQueryArgs(`${(_f = window === null || window === void 0 ? void 0 : window.scData) === null || _f === void 0 ? void 0 : _f.admin_url}admin.php`, {
+        return (h(Host, null, h("sc-form-control", { label: this.label, exportparts: "label, help-text, form-control" }, h("div", { class: "sc-payment-label", slot: "label" }, h("div", null, this.label), h("slot", { name: "label-end" })), (mollie === null || mollie === void 0 ? void 0 : mollie.id) ? (h("sc-checkout-mollie-payment", { "processor-id": mollie === null || mollie === void 0 ? void 0 : mollie.id })) : (h(Tag, { collapsible: false, theme: "container" }, !((_b = availableProcessors()) === null || _b === void 0 ? void 0 : _b.length) && !((_c = availableManualPaymentMethods()) === null || _c === void 0 ? void 0 : _c.length) && (h("sc-alert", { type: "info", open: true }, ((_e = (_d = window === null || window === void 0 ? void 0 : window.scData) === null || _d === void 0 ? void 0 : _d.user_permissions) === null || _e === void 0 ? void 0 : _e.manage_sc_shop_settings) ? (h(Fragment, null, wp.i18n.__('You do not have any processors enabled for this mode and cart. ', 'surecart'), h("a", { href: addQueryArgs(`${(_f = window === null || window === void 0 ? void 0 : window.scData) === null || _f === void 0 ? void 0 : _f.admin_url}admin.php`, {
                 page: 'sc-settings',
                 tab: 'processors',
             }), style: { color: 'var(--sc-color-gray-700)' } }, wp.i18n.__('Please configure your processors', 'surecart')), ".")) : (wp.i18n.__('Please contact us for payment.', 'surecart')))), (availableProcessors() || []).map(processor => {
@@ -71,6 +79,8 @@ const ScPayment = class {
                     return this.renderPayPal(processor);
                 case 'paystack':
                     return this.renderPaystack(processor);
+                case 'razorpay':
+                    return this.renderRazorpay(processor);
                 case 'mock':
                     return this.renderMock(processor);
             }

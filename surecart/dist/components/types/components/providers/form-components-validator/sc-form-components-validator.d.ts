@@ -27,6 +27,8 @@ export declare class ScFormComponentsValidator {
     hasInvoiceMemo: boolean;
     /** Is there a trial line item */
     hasTrialLineItem: boolean;
+    /** Is there a customer phone field? */
+    hasCustomerPhone: boolean;
     handleOrderChange(): void;
     handleHasAddressChange(): void;
     componentWillLoad(): void;
@@ -34,6 +36,7 @@ export declare class ScFormComponentsValidator {
     handleShippingAddressRequired(): void;
     addAddressField(): void;
     addTaxIDField(): void;
+    addCustomerPhone(): void;
     addBumps(): void;
     addTaxLine(): void;
     addShippingChoices(): void;

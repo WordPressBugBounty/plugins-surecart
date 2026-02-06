@@ -17,6 +17,8 @@ export declare class ScOrderTaxIdInput {
     helpText: string;
     /** Tax ID Types which will be shown Eg: '["eu_vat", "gb_vat"]' */
     taxIdTypes: string | string[];
+    /** Whether tax input is required */
+    required: boolean;
     /** Tax ID Types data as array */
     taxIdTypesData: string[];
     handleTaxIdTypesChange(): void;
@@ -27,6 +29,6 @@ export declare class ScOrderTaxIdInput {
         number_type: string;
     }): Promise<void>;
     componentWillLoad(): void;
-    required(): boolean;
+    isRequired(): boolean;
     render(): any;
 }

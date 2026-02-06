@@ -50,133 +50,6 @@ class AdminMenuPageService {
 		add_action( 'admin_head', array( $this, 'adminMenuCSS' ) );
 		add_filter( 'parent_file', array( $this, 'forceSelect' ) );
 		add_filter( 'parent_file', array( $this, 'applyMenuOverrides' ) );
-
-		// Admin bar menus.
-		if ( apply_filters( 'surecart_show_admin_bar_visit_store', true ) ) {
-			add_action( 'admin_bar_menu', array( $this, 'adminBarMenu' ), 31 );
-		}
-
-		// Admin toolbar new content menu.
-		if ( apply_filters( 'surecart_show_admin_bar_new_content', true ) ) {
-			add_action( 'admin_bar_menu', array( $this, 'adminBarNewContent' ), 71 );
-		}
-	}
-
-	/**
-	 * Add the "Visit Store" link in admin bar main menu.
-	 *
-	 * @since 2.4.0
-	 * @param \WP_Admin_Bar $wp_admin_bar Admin bar instance.
-	 */
-	public function adminBarMenu( $wp_admin_bar ) {
-		if ( ! is_admin() || ! is_admin_bar_showing() ) {
-			return;
-		}
-
-		// Show only when the user is a member of this site, or they're a super admin.
-		if ( ! is_user_member_of_blog() && ! is_super_admin() ) {
-			return;
-		}
-
-		// Don't display when shop page is the same of the page on front.
-		if ( intval( get_option( 'page_on_front' ) ) === \SureCart::pages()->getId( 'shop' ) ) {
-			return;
-		}
-
-		// Add an option to visit the store.
-		$wp_admin_bar->add_node(
-			array(
-				'parent' => 'site-name',
-				'id'     => 'view-sc-store',
-				'title'  => class_exists( 'WooCommerce' ) ? __( 'Visit SureCart Store', 'surecart' ) : __( 'Visit Store', 'surecart' ),
-				'href'   => \SureCart::pages()->url( 'shop' ),
-			)
-		);
-	}
-
-	/**
-	 * Add SureCart admin page links to the admin bar "+ New" menu.
-	 *
-	 * @param \WP_Admin_Bar $wp_admin_bar Admin bar instance.
-	 */
-	public function adminBarNewContent( $wp_admin_bar ) {
-		// Show only when the user is a member of this site, or they're a super admin.
-		if ( ! is_user_member_of_blog() && ! is_super_admin() ) {
-			return;
-		}
-
-		// Only show if user has API token connected.
-		if ( ! \SureCart::account()->isConnected() ) {
-			return;
-		}
-
-		$woocommerce_exists = class_exists( 'WooCommerce' );
-
-		if ( current_user_can( 'edit_sc_products' ) ) {
-			// Add Product link.
-			$wp_admin_bar->add_node(
-				array(
-					'parent' => 'new-content',
-					'id'     => 'new-sc-product',
-					'title'  => $woocommerce_exists ? __( 'SureCart Product', 'surecart' ) : __( 'Product', 'surecart' ),
-					'href'   => esc_url( admin_url( 'admin.php?page=sc-products&action=edit' ) ),
-				)
-			);
-
-			// Add Product Collection link.
-			$wp_admin_bar->add_node(
-				array(
-					'parent' => 'new-sc-product',
-					'id'     => 'new-sc-collection',
-					'title'  => $woocommerce_exists ? __( 'SureCart Collection', 'surecart' ) : __( 'Collection', 'surecart' ),
-					'href'   => esc_url( admin_url( 'admin.php?page=sc-product-collections&action=edit' ) ),
-				)
-			);
-
-			// Add Order Bump link.
-			$wp_admin_bar->add_node(
-				array(
-					'parent' => 'new-sc-product',
-					'id'     => 'new-sc-bump',
-					'title'  => $woocommerce_exists ? __( 'SureCart Order Bump', 'surecart' ) : __( 'Order Bump', 'surecart' ),
-					'href'   => esc_url( admin_url( 'admin.php?page=sc-bumps&action=edit' ) ),
-				)
-			);
-
-			// Add Upsell link.
-			$wp_admin_bar->add_node(
-				array(
-					'parent' => 'new-sc-product',
-					'id'     => 'new-sc-upsell',
-					'title'  => $woocommerce_exists ? __( 'SureCart Upsell', 'surecart' ) : __( 'Upsell', 'surecart' ),
-					'href'   => esc_url( admin_url( 'admin.php?page=sc-upsell-funnels&action=edit' ) ),
-				)
-			);
-		}
-
-		// Add Coupon link.
-		if ( current_user_can( 'edit_sc_coupons' ) ) {
-			$wp_admin_bar->add_node(
-				array(
-					'parent' => 'new-content',
-					'id'     => 'new-sc-coupon',
-					'title'  => $woocommerce_exists ? __( 'SureCart Coupon', 'surecart' ) : __( 'Coupon', 'surecart' ),
-					'href'   => esc_url( admin_url( 'admin.php?page=sc-coupons&action=edit' ) ),
-				)
-			);
-		}
-
-		// Add Invoice link.
-		if ( current_user_can( 'edit_sc_invoices' ) ) {
-			$wp_admin_bar->add_node(
-				array(
-					'parent' => 'new-content',
-					'id'     => 'new-sc-invoice',
-					'title'  => $woocommerce_exists ? __( 'SureCart Invoice', 'surecart' ) : __( 'Invoice', 'surecart' ),
-					'href'   => esc_url( \SureCart::getUrl()->create( 'invoices' ) ),
-				)
-			);
-		}
 	}
 
 	/**
@@ -232,6 +105,22 @@ class AdminMenuPageService {
 				margin: 13px -15px 8px;
 				content: "";
 				width: calc(100% + 26px);
+			}
+			.sc-new-badge {
+				background: var(--wp-admin-theme-color, #007cba);
+				color: #ffffff;
+				font-size: 9px;
+				font-weight: 600;
+				letter-spacing: 0.5px;
+				width: 6px;
+				height: 6px;
+				margin-top: -2px;
+				margin-left: 6px;
+				border-radius: 8px;
+				text-transform: uppercase;
+				vertical-align: middle;
+				align-self: center;
+				display: inline-block;
 			}
 		</style>';
 	}
@@ -307,7 +196,7 @@ class AdminMenuPageService {
 		// Product submenu pages.
 		$taxonomies = array_diff( get_object_taxonomies( 'sc_product' ), array( 'sc_account', 'sc_collection' ) );
 		sort( $taxonomies, SORT_STRING ); // Sort the taxonomies alphabetically.
-		$is_product_menu_opened = in_array( $_GET['page'] ?? '', array( 'sc-products', 'sc-product-groups', 'sc-bumps', 'sc-upsell-funnels', 'sc-product-collections' ), true ) || in_array( $_GET['taxonomy'] ?? '', array_merge( $taxonomies, array( 'sc_collection' ) ), true );
+		$is_product_menu_opened = in_array( $_GET['page'] ?? '', array( 'sc-products', 'sc-product-groups', 'sc-product-collections' ), true ) || in_array( $_GET['taxonomy'] ?? '', array_merge( $taxonomies, array( 'sc_collection' ) ), true );
 		if ( $is_product_menu_opened ) {
 			$this->pages += array(
 				'product-collections' => \add_submenu_page( $this->slug, __( 'Product Collections', 'surecart' ), '↳ ' . __( 'Collections', 'surecart' ), 'edit_sc_products', 'sc-product-collections', '__return_false' ),
@@ -326,17 +215,36 @@ class AdminMenuPageService {
 				);
 			}
 			$this->pages += array(
-				'bumps'          => \add_submenu_page( $this->slug, __( 'Order Bumps', 'surecart' ), '↳ ' . __( 'Order Bumps', 'surecart' ), 'edit_sc_products', 'sc-bumps', '__return_false' ),
-				'upsells'        => \add_submenu_page( $this->slug, __( 'Upsells', 'surecart' ), '↳ ' . __( 'Upsells', 'surecart' ), 'edit_sc_products', 'sc-upsell-funnels', '__return_false' ),
 				'product-groups' => \add_submenu_page( $this->slug, __( 'Upgrade Groups', 'surecart' ), '↳ ' . __( 'Upgrade Groups', 'surecart' ), 'edit_sc_products', 'sc-product-groups', '__return_false' ),
 			);
 		}
 
 		/**
-		 * Coupons
+		 * Promotions
 		 */
 		$this->pages += array(
-			'coupons'  => \add_submenu_page( $this->slug, __( 'Coupons', 'surecart' ), __( 'Coupons', 'surecart' ), 'edit_sc_coupons', 'sc-coupons', '__return_false' ),
+			'promotion' => \add_submenu_page( $this->slug, __( 'Promotions', 'surecart' ), __( 'Promotions', 'surecart' ), 'edit_sc_coupons', 'sc-coupons', '__return_false' ),
+		);
+
+		// Promotions submenu pages.
+		$is_promotion_menu_opened = in_array( $_GET['page'] ?? '', array( 'sc-coupons', 'sc-bumps', 'sc-upsell-funnels', 'sc-auto-fees' ), true );
+
+		if ( $is_promotion_menu_opened ) {
+			/**
+			 * Coupons
+			 */
+			$this->pages += array(
+				'coupons'  => \add_submenu_page( $this->slug, __( 'Coupons', 'surecart' ), '↳ ' . __( 'Coupons', 'surecart' ), 'edit_sc_coupons', 'sc-coupons', '__return_false' ),
+				'auto_fee' => \add_submenu_page( $this->slug, __( 'Dynamic Pricing', 'surecart' ), '↳ ' . __( 'Dynamic Pricing', 'surecart' ) . '<span class="sc-new-badge"><span>', 'edit_sc_products', 'sc-auto-fees', '__return_false' ),
+				'bumps'    => \add_submenu_page( $this->slug, __( 'Order Bumps', 'surecart' ), '↳ ' . __( 'Order Bumps', 'surecart' ), 'edit_sc_products', 'sc-bumps', '__return_false' ),
+				'upsells'  => \add_submenu_page( $this->slug, __( 'Upsells', 'surecart' ), '↳ ' . __( 'Upsells', 'surecart' ), 'edit_sc_products', 'sc-upsell-funnels', '__return_false' ),
+			);
+		}
+
+		/**
+		 * Licenses
+		 */
+		$this->pages += array(
 			'licenses' => \add_submenu_page( $this->slug, __( 'Licenses', 'surecart' ), __( 'Licenses', 'surecart' ), 'edit_sc_products', 'sc-licenses', '__return_false' ),
 		);
 

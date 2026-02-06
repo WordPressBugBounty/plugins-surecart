@@ -103,6 +103,7 @@ export declare class ScSelectDropdown {
     reportValidity(): Promise<boolean>;
     handleQuery(e: any): void;
     handleSelect(choice: any): void;
+    handleInputChange(): void;
     handleSearchChange(): void;
     handleValueChange(): void;
     handleOpenChange(): void;

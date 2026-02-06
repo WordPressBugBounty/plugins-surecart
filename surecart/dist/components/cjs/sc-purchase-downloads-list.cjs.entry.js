@@ -27,8 +27,9 @@ const ScPurchaseDownloadsList = class {
     }
     renderList() {
         return this.purchases.map(purchase => {
-            var _a, _b, _c;
+            var _a, _b, _c, _d, _e, _f;
             const downloads = (_b = (_a = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _a === void 0 ? void 0 : _a.downloads) === null || _b === void 0 ? void 0 : _b.data.filter((d) => !d.archived);
+            const totalDownloads = (_e = (_d = (_c = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _c === void 0 ? void 0 : _c.downloads) === null || _d === void 0 ? void 0 : _d.pagination) === null || _e === void 0 ? void 0 : _e.count;
             const mediaBytesList = (downloads || []).map(item => { var _a; return ((item === null || item === void 0 ? void 0 : item.media) ? (_a = item === null || item === void 0 ? void 0 : item.media) === null || _a === void 0 ? void 0 : _a.byte_size : 0); });
             const mediaByteTotalSize = mediaBytesList.reduce((prev, curr) => prev + curr, 0);
             return (index.h("sc-stacked-list-row", { href: !(purchase === null || purchase === void 0 ? void 0 : purchase.revoked)
@@ -40,7 +41,7 @@ const ScPurchaseDownloadsList = class {
                     })
                     : null, key: purchase.id, "mobile-size": 0 }, index.h("sc-spacing", { style: {
                     '--spacing': 'var(--sc-spacing-xx--small)',
-                } }, index.h("div", null, index.h("strong", null, (_c = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _c === void 0 ? void 0 : _c.name)), index.h("div", { class: "download__details" }, wp.i18n.sprintf(wp.i18n._n('%s file', '%s files', downloads === null || downloads === void 0 ? void 0 : downloads.length, 'surecart'), downloads === null || downloads === void 0 ? void 0 : downloads.length), !!mediaByteTotalSize && (index.h(index.Fragment, null, ' ', "\u2022 ", index.h("sc-format-bytes", { value: mediaByteTotalSize }))))), index.h("sc-icon", { name: "chevron-right", slot: "suffix" })));
+                } }, index.h("div", null, index.h("strong", null, (_f = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _f === void 0 ? void 0 : _f.name)), index.h("div", { class: "download__details" }, wp.i18n.sprintf(wp.i18n._n('%s file', '%s files', totalDownloads, 'surecart'), totalDownloads), !!mediaByteTotalSize && (index.h(index.Fragment, null, ' ', "\u2022 ", index.h("sc-format-bytes", { value: mediaByteTotalSize }))))), index.h("sc-icon", { name: "chevron-right", slot: "suffix" })));
         });
     }
     renderContent() {
@@ -54,7 +55,7 @@ const ScPurchaseDownloadsList = class {
         return (index.h("sc-card", { "no-padding": true, style: { '--overflow': 'hidden' } }, index.h("sc-stacked-list", null, this.renderList())));
     }
     render() {
-        return (index.h("sc-dashboard-module", { key: 'a3596953c831fa879ec38984ba837313b3337502', class: "downloads-list", error: this.error }, index.h("span", { key: '2255e5dfcbcd75f6c2edc01fdf6256aa09ede402', slot: "heading" }, index.h("slot", { key: '3802e6ab80501701f1ed3df72e1ace08727a71d8', name: "heading" }, this.heading || wp.i18n.__('Items', 'surecart'))), index.h("slot", { key: 'c82f93e3236f2b46638f1674b95347c6cee3e34b', name: "before" }), !!this.allLink && (index.h("sc-button", { key: '4064e359be396bfc58df886ae24f0b2349c035a1', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '65d89f5233a6cdfe4dad12dc9a49b3055dff3621', name: "chevron-right", slot: "suffix" }))), this.renderContent(), index.h("slot", { key: '9633da1edd000474dc842b108524690f1ccc96d2', name: "after" }), this.busy && index.h("sc-block-ui", { key: 'e7add549df149097bcd5ecfdcbccf83c70421f10' })));
+        return (index.h("sc-dashboard-module", { key: '796230103df2adc3575a3feef3b82d2b0a002712', class: "downloads-list", error: this.error }, index.h("span", { key: '2c7276a2fdd8e4f024c4aa0058fb2f6ead71ac93', slot: "heading" }, index.h("slot", { key: '0184630be5c40cfa585afdbbf8e6e20c693f35f1', name: "heading" }, this.heading || wp.i18n.__('Items', 'surecart'))), index.h("slot", { key: 'cbe96e175d6f7bed019fa50603ecf2f3a3fd394c', name: "before" }), !!this.allLink && (index.h("sc-button", { key: 'af7c5fea0b39cf5f3c3660c1ecf53555508f1f19', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '460e1db4ad93cbeaf3db0966f7eece766bccd1e5', name: "chevron-right", slot: "suffix" }))), this.renderContent(), index.h("slot", { key: '79ba385c68427b00fbaa9342198bfb484edbc81f', name: "after" }), this.busy && index.h("sc-block-ui", { key: '76a84722194b653b21cb6721c75390579ff0de89' })));
     }
     get el() { return index.getElement(this); }
 };

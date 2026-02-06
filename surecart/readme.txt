@@ -3,8 +3,8 @@ Contributors: 2winfactor, wpcrafter
 Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.6
-Tested up to: 6.8
-Stable tag: 3.15.2
+Tested up to: 6.9
+Stable tag: 3.19.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -233,6 +233,9 @@ The second type of integrations are done with [Ottokit](https://wordpress.org/pl
 ## Join The SureCart Facebook Group ##
 Join our [Facebook group community](https://www.facebook.com/groups/surecrafted): Learn the tricks and techniques that other SureCart users are using to grow their business. Also, get exciting insider information on upcoming feature releases.
 
+## Want to contribute to the plugin? ##
+You may now contribute to the plugin on Github: [SureCart WordPress Plugin on Github](https://github.com/surecart/surecart-wp-plugin)
+
 [Terms And Conditions](https://surecart.com/terms)
 [Privacy Policy](https://surecart.com/privacy)
 
@@ -312,6 +315,147 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 3.19.2 - February 5th, 2026 =
+- Change: Allow currency switching for active stores through settings page.
+
+= 3.19.1 - February 5th, 2026 =
+- Fix: Issue with line item images not appearing in some cases.
+
+= 3.19.0 - February 4th, 2026 =
+- New: Razorpay payment processor for India.
+- Improvement: Dedicated documentation for Lightspeed caching.
+- Improvement: Ability to edit order metadata on order administration screen.
+- Improvement: Update customer deletion warning to more accurately describe the asynchronous timeline for deleting related data.
+- Improvement: Move many blocks from v2 to v3 block API.
+- Improvement: Update total installment payments wording to be more accurate in the case of coupons or discounts.
+- Fix: Issue with incorrect currency for customer dashboard when updating Name Your Own Price.
+- Fix: Multicurrency overflow issue on full-site editing themes.
+- Fix: Shipping zone summary crashing for some countries due to country code mismatch.
+
+= 3.18.0 - January 28th, 2026 =
+- New: Dynamic Pricing. Automatically apply fees or discounts based on checkout conditions like user role, cart total, products, customer type and more.
+- New: Improved test mode indicator on checkout with quick switching between test and live modes.
+- New: Admins can now update affiliate email address and profile information on their behalf.
+- Improvement: Reorganized admin menu with new Promotions section for better navigation.
+- Improvement: Pagination support for promotion codes when you have more than 100 codes.
+- Improvement: Option to show line items count in the slide-out cart.
+- Fix: Better initial dark mode support for cart drawer background and count badge.
+- Fix: Bricks Cart Toggle Icon not rendering custom SVG icons properly if no SVG was initially selected.
+- Fix: Order metadata sometimes incorrectly including merchant's details when editing from admin.
+- Fix: Account transient storage format causing issues with certain cache configurations.
+
+= 3.17.6 - January 21st, 2026 =
+- Fix: SVG icons not rendering in the editor.
+- Fix: Order confirmation shortcode not rendering on the frontend.
+
+= 3.17.5 - January 7th, 2026 =
+- New: Option to make VAT & Tax ID field required on checkout.
+- New: Add a filter to customise the countries list selection for Shipping, Billing & Compact Address settings.
+- Improvement: Added offset support for related product list block.
+- Improvement: Refactored variant pills blocks for better performance and optimization.
+- Fix: Disallow changing renewal date when subscription is past due.
+- Fix: Resolved a TypeError that could occur when releasing sync locks on sites using certain object cache systems.
+
+= 3.17.4 - January 5th, 2026 =
+- Improvement: Pass noindex headers when currency parameters are present to prevent unintended indexing by Yoast, AIOSEO, SEOPress, and The SEO Framework.
+- Improvement: Provisional account product seeder enhancements and related improvements.
+- Fix: Price Selector Block in the editor occasionally loading cached products.
+- Fix: Issue with Product List bulk deletion causing problems with background sync.
+
+= 3.17.3 - December 29th, 2025 =
+- Fix: Issue with dashboard not loading if integration category is missing.
+- Fix: Default country not able to be selected for address block at checkout.
+- Fix: Issue with multiple related products pagination on the same page.
+- Fix: Show past due subscriptions in customer dashboard.
+
+= 3.17.2 - December 17th, 2025 =
+- Improvement: Add link to github repository.
+- Improvement: Include composer.json in released version to share more about used packages.
+- Fix: Some missing translation textdomains and invalid variable translations.
+
+= 3.17.1 - December 16th, 2025 =
+- Improvement: More specific error messages for address inputs that have the wrong format.
+- Fix: Issue with cart menu icon not rendering in WordPress 6.9 when used as a shortcode.
+- Fix: Quantity "Out of stock" modal on checkout page to properly account for variants.
+- Fix: Add validation to make sure stores cannot be created if site name is 2 letters or less.
+- Fix: Missing space in tax included settings for GST tax included.
+
+= 3.17.0 - December 8th, 2025 =
+- New: Product variant overrides. Customize variants with custom tax, shipping, weights, purchase limits and more.
+- New: Limit shipping to specific ZIP/postal codes, code ranges, or partial matches of codes.
+- New: Autoplay and loop options for product page video.
+- New: Order admin product list by name, cataloged_at.
+- Change: Updated address components for better internationalization.
+- Improvement: Clean up error keys to avoid duplicates.
+- Fix: Issue with loading icon not appearing on bricks add to cart.
+- Fix: Min/Max validation issue with bricks name your own price.
+- Fix: Issue where user role was not removed in some cases during plan downgrade.
+- Fix: Ensure filter urls have noindex when Rankmath or SureRank plugins may not be outputting canonical tag correctly.
+- Fix: Issue with Google trying to crawl menu cart button due to missing role.
+- Fix: Don't clear existing login cookies upon login to prevent issues where webservers will serve headers out of order.
+- Fix: Issue with Bricks not loading shortcode javascript files since WordPress 6.9 performance update.
+
+= 3.16.8 - December 3rd, 2025 =
+- Fix: Resolved internal errors on Dashboard with WordPress 6.9 compatibility.
+
+= 3.16.7 - December 1st, 2025 =
+- New: Internal product and collection seeding feature.
+- Fix: WordPress 6.9 compatibility.
+- Fix: Small Bricks css compatibility script was sometimes loading on non-Bricks themes.
+
+= 3.16.6 - Novermber 18th, 2025 =
+- Fix: Revert previous Stripe change as they are rolling out a fix on their end.
+
+= 3.16.5 - Novermber 18th, 2025 =
+- Fix: Issue with Stripe payment element not loading for non-recurring payments due to remote API change.
+
+= 3.16.4 - November 10th, 2025 =
+- New: Ability to bulk delete customers.
+- Fix: Issue where a user wants to override menu order on products.
+- Fix: Product search does not work inside product list sidebar.
+- Fix: Issue with FSE themes where the "Edit Template" button takes you to the default template instead of the assigned one.
+- Fix: Issue with the block variants block not rendering properly on the upsell edit UI.
+- Fix: Issue where attribute-related error messages were not being prioritized over specific error code messages.
+- Fix: Incorrect download file quantity on customer dashboard if more than 20 downloads.
+
+= 3.16.3 - October 30th, 2025 =
+- Change: Allow up to 300 variants per product.
+- Fix: Issue with Elementor form selection module not appearing when only the free version of Elementor is installed.
+- Fix: Error with product list shortcode when multiple collection IDs are passed.
+- Fix: Manual payment methods not appearing on the customer dashboard "Add Payment Methods" page.
+- Fix: Recurring commissions with AffiliateWP when a free trial becomes active.
+- Fix: Issue where tax override could not be set to 0%.
+
+= 3.16.2 - October 27th, 2025 =
+- Fix: Issue with dashboard charts not using correct currency.
+
+= 3.16.1 - October 24th, 2025 =
+- Fix: Issue with single product media getting squished on instant checkout page.
+
+= 3.16.0 - October 23rd, 2025 =
+- New: Refreshed admin dashboard page.
+- New: Admin toolbar content edit quicklinks.
+- New: Edit order metadata on admin.
+- Fix: Issue with quick add popup in Avada theme.
+- Fix: Add extra validation for currency switcher block.
+- Fix: Extra markup on product quick add admin UI.
+
+= 3.15.5 - October 22nd, 2025 =
+- Improvement: Add php filter to disable setting first price choice by default.
+- Improvement: Do not use "grab" cursor for video media.
+- Fix: Disputes incorrectly showing for manual payment methods.
+- Fix: Various edge cases with product, prices, customer dropdowns in admin.
+- Fix: Resubscribe button not opening popup after merchant cancels subscription manual payment method.
+- Fix: PHP error on collections page if collections page was not re-saved.
+
+= 3.15.4 - October 8th, 2025 =
+- Fix: Issue with downloads not being able to listed by customers with more restricted capabilities.
+
+= 3.15.3 - October 7th, 2025 =
+- Improvement: Increase automatic video poster quality generation.
+- Fix: Paginate download on customer dashboard if more than 20 downloads.
+- Fix: Issue with deleted WordPress media not able to be removed from product backend.
 
 = 3.15.2 - October 3rd, 2025 =
 - Fix: Auto-height issue with single media blocks.

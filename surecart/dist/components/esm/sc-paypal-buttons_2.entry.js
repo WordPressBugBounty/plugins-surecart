@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
 import { l as loadScript, g as getScriptLoadParams } from './functions-2a4a4ba3.js';
 import { a as apiFetch } from './fetch-bc141774.js';
-import { g as fetchCheckout } from './index-5c73a1a2.js';
+import { g as fetchCheckout } from './index-a7f5e198.js';
 import { c as createErrorNotice } from './mutations-ed6d0770.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
@@ -179,7 +179,7 @@ const ScPaypalButtons = class {
         }
     }
     render() {
-        return (h("div", { key: '62aecdab455a07e9286f19d6f0b31298978a9efc', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: 'b4aaa11f2e3d4d7ff35f484ae3616894b804cc53', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '8e77249632ca438f4e06237da587abf2ab039652', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: 'e9a6a8d1cbed9ac57e94e25bea93999b785de1b0', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: 'f47245d9e2c7324c82b64bdf42e6e143c6d8c609', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
+        return (h("div", { key: '423fea070c670a70ab08401b1d937ec41bf26aef', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '37e3e8e1dab18c60a1c43a961c8c9f8a8897b127', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '527b3150502b341e1629c9704b7d7c05edb818b9', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: 'b136b1aa61e84cc2eac5e7ad8225f3557e192104', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '3be9f1442d30734e1dd188faf6007b2dedd7d8df', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -196,7 +196,7 @@ const ScSecureNotice = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h("div", { key: 'a275d5ef1aa653b2f76bb8bf5a9b2fad6a93fb9e', class: "notice", part: "base" }, h("svg", { key: '492ec9dd223822133a633df5ebcb53da2c6686ac', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, h("path", { key: '2d01859df7a974d069d3e16bc950022488365950', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), h("span", { key: '6b80a7c1a455edd1011798dbe06dedb00f729611', class: "notice__text", part: "text" }, h("slot", { key: '449542355dfeed853f9176796db0e0bac5d1b06c', name: "prefix" }), h("slot", { key: 'cef20974c2988f0143771912a29e44727557a3de' }), h("slot", { key: '0b6b0a8e901f6a6cb76f5a1de050f72368f96084', name: "suffix" }))));
+        return (h("div", { key: '6d518d5ba659ee0cb408398a059705aba09c4257', class: "notice", part: "base" }, h("svg", { key: 'd4201472974f5dcc119f71b29152c587e86c548e', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, h("path", { key: 'f10fd8bf9de556dc124b8685b4abe18e50638776', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), h("span", { key: '15ec10685a2e1f07b4119ceb46a14d6b99fce932', class: "notice__text", part: "text" }, h("slot", { key: 'e189c0d0ebb21244b6a2d662babfadda6ab4be14', name: "prefix" }), h("slot", { key: 'ee6a711f5b182a844dfefa61921357b7c80b26d5' }), h("slot", { key: 'fa61b609c7cedc2c910ff4146c08d90b3148ba29', name: "suffix" }))));
     }
 };
 ScSecureNotice.style = ScSecureNoticeStyle0;

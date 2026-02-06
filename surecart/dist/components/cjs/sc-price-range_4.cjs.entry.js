@@ -67,7 +67,7 @@ const ScProductItemImage = class {
     }
     render() {
         const { alt, title } = media.getFeaturedProductMediaAttributes(this.product);
-        return (index.h(index.Host, { key: '5bd613f69d19051dacd95e8a6b2dc7bfd84267a1', style: { borderStyle: 'none' } }, index.h("div", { key: '1a5af991b3a135dc447123972f578e759ec56987', class: {
+        return (index.h(index.Host, { key: 'b5472ea098e3643ffe857812f22aa7cbc3efd32f', style: { borderStyle: 'none' } }, index.h("div", { key: 'daae02e761ce0bbcc6112a81cb4badb251a3ddfd', class: {
                 'product-img': true,
                 'is_contained': this.sizing === 'contain',
                 'is_covered': this.sizing === 'cover',
@@ -105,7 +105,7 @@ const ScProductItemPrice = class {
     render() {
         var _a;
         const price = (this.prices || []).sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position)).find(price => !(price === null || price === void 0 ? void 0 : price.archived));
-        return (index.h("div", { key: '2c23c0014eeebd56fdce7a40056ee927336b327a', class: "product-price", part: "base" }, !this.range && ((_a = this.prices) === null || _a === void 0 ? void 0 : _a.length) ? (index.h("sc-format-number", { type: "currency", currency: (price === null || price === void 0 ? void 0 : price.currency) || 'usd', value: price === null || price === void 0 ? void 0 : price.amount })) : (index.h("sc-price-range", { prices: this.prices }))));
+        return (index.h("div", { key: '300aae82a8e4a5f1dfad2e2cede9d68072abb40e', class: "product-price", part: "base" }, !this.range && ((_a = this.prices) === null || _a === void 0 ? void 0 : _a.length) ? (index.h("sc-format-number", { type: "currency", currency: (price === null || price === void 0 ? void 0 : price.currency) || 'usd', value: price === null || price === void 0 ? void 0 : price.amount })) : (index.h("sc-price-range", { prices: this.prices }))));
     }
 };
 ScProductItemPrice.style = ScProductItemPriceStyle0;
@@ -118,9 +118,9 @@ const ScProductItemTitle = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: '250612b2144c568ec4414f6aa5a5bb0ec3b4a9b7' }, index.h("div", { key: '5d81e3fecf5fa2b0fcad8b6f91ccc1e24ea40f4c', class: {
+        return (index.h(index.Host, { key: '8136c6647c878f6abcfeb77eff75c0fdbc34a199' }, index.h("div", { key: '661df8811c6d1bb5363a0d96a4fcc1729ca3ea0c', class: {
                 'product-item-title': true,
-            } }, index.h("slot", { key: 'e977eacdb5f2cd7065a325249427b7e586aa90fc' }))));
+            } }, index.h("slot", { key: 'd30b0361d16d73342c916bc08de1fe345ab699c6' }))));
     }
 };
 ScProductItemTitle.style = ScProductItemTitleStyle0;

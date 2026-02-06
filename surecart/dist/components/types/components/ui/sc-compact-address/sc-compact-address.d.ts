@@ -55,9 +55,9 @@ export declare class ScCompactAddress {
     handleAddressInput(address: Partial<Address>): void;
     clearAddress(): void;
     /** Set the regions based on the country. */
-    setRegions(): void;
+    setRegions(): Promise<void>;
     componentWillLoad(): void;
+    initCountryChoices(): Promise<void>;
     reportValidity(): Promise<boolean>;
-    getStatePlaceholder(): string;
     render(): any;
 }

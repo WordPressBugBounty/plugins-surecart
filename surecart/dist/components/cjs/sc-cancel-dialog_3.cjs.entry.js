@@ -47,21 +47,21 @@ const ScCancelDialog = class {
         this.reset();
     }
     render() {
-        return (index.h("sc-dialog", { key: '6a1a1a4379d2c99b6847e0ae8b037feaa698c154', style: {
+        return (index.h("sc-dialog", { key: '6eaf232211319195dcf4dbcb0ff88d051926b9d4', style: {
                 '--width': this.step === 'survey' ? '675px' : '500px',
                 '--body-spacing': 'var(--sc-spacing-xxx-large)',
-            }, noHeader: true, open: this.open, onScRequestClose: () => this.close() }, index.h("div", { key: 'dfb98bc6d30e449f28ccb316b00c456880b87d00', class: {
+            }, noHeader: true, open: this.open, onScRequestClose: () => this.close() }, index.h("div", { key: '43bf9d9266ef39b10c065915681ff66c17654e29', class: {
                 cancel: true,
-            } }, index.h("sc-button", { key: '086d8fb0853cd8f8c671aea90e288cb4813e9db1', class: "close__button", type: "text", circle: true, onClick: () => this.close() }, index.h("sc-icon", { key: '100737b99146c8aa43b48faf4bed304d5d8a705b', name: "x" })), this.step === 'cancel' && (index.h("sc-subscription-cancel", { key: 'c488704475b4f2fb81ef59d580ae9c681adadbaa', subscription: this.subscription, protocol: this.protocol, reason: this.reason, comment: this.comment, onScAbandon: () => this.close(), onScCancelled: () => {
+            } }, index.h("sc-button", { key: 'f4960b5bb3d4fae0157cd22e7fbc943daadd5471', class: "close__button", type: "text", circle: true, onClick: () => this.close() }, index.h("sc-icon", { key: '022f6a05319958949e16f15327fa4a8274ac3436', name: "x" })), this.step === 'cancel' && (index.h("sc-subscription-cancel", { key: '69eba1f3bd4d4acbc2bce804dbfba894e97a1a83', subscription: this.subscription, protocol: this.protocol, reason: this.reason, comment: this.comment, onScAbandon: () => this.close(), onScCancelled: () => {
                 this.scRefresh.emit();
                 this.reset();
                 this.scRequestClose.emit('close-button');
-            } })), this.step === 'survey' && (index.h("sc-cancel-survey", { key: '51f91fa18e4494add0ee114f6a9ff46b98c89d34', protocol: this.protocol, onScAbandon: () => this.close(), onScSubmitReason: e => {
+            } })), this.step === 'survey' && (index.h("sc-cancel-survey", { key: '39f74c743dd086dc5edb70a036c7982e74d08949', protocol: this.protocol, onScAbandon: () => this.close(), onScSubmitReason: e => {
                 const { comment, reason } = e.detail;
                 this.reason = reason;
                 this.comment = comment;
                 this.step = (reason === null || reason === void 0 ? void 0 : reason.coupon_enabled) ? 'discount' : 'cancel';
-            } })), this.step === 'discount' && (index.h("sc-cancel-discount", { key: '3edabe683561b6512b0e1a0830a4a341afd05981', protocol: this.protocol, subscription: this.subscription, reason: this.reason, comment: this.comment, onScCancel: () => (this.step = 'cancel'), onScPreserved: () => {
+            } })), this.step === 'discount' && (index.h("sc-cancel-discount", { key: '11b96e3b82b62cf248b1b2e40b8e95bb36f5fbfa', protocol: this.protocol, subscription: this.subscription, reason: this.reason, comment: this.comment, onScCancel: () => (this.step = 'cancel'), onScPreserved: () => {
                 this.scRefresh.emit();
                 this.reset();
                 this.scRequestClose.emit('close-button');
@@ -105,6 +105,8 @@ const ScSubscriptionNextPayment = class {
                     expand: [
                         'period.checkout',
                         'checkout.line_items',
+                        'checkout.checkout_fees',
+                        'checkout.shipping_fees',
                         'checkout.payment_method',
                         'checkout.manual_payment_method',
                         'payment_method.card',
@@ -112,6 +114,7 @@ const ScSubscriptionNextPayment = class {
                         'payment_method.paypal_account',
                         'payment_method.bank_account',
                         'line_item.price',
+                        'line_item.fees',
                         'price.product',
                         'period.subscription',
                     ],
@@ -130,7 +133,7 @@ const ScSubscriptionNextPayment = class {
         }
     }
     render() {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d, _e, _f, _g;
         if (this.loading) {
             return (index.h("sc-toggle", { borderless: true, disabled: true }, index.h("sc-flex", { slot: "summary", flexDirection: "column" }, index.h("sc-skeleton", { style: { width: '200px' } }), index.h("sc-skeleton", { style: { width: '400px' } }), index.h("sc-skeleton", { style: { width: '300px' } }))));
         }
@@ -139,22 +142,17 @@ const ScSubscriptionNextPayment = class {
             return (index.h("div", { style: { padding: 'var(--sc-spacing-medium)' } }, index.h("sc-subscription-details", { slot: "summary", subscription: this.subscription })));
         const manualPaymentMethod = (checkout === null || checkout === void 0 ? void 0 : checkout.manual_payment) ? checkout === null || checkout === void 0 ? void 0 : checkout.manual_payment_method : null;
         const paymentMethodExists = (this === null || this === void 0 ? void 0 : this.subscription.payment_method) || (this === null || this === void 0 ? void 0 : this.subscription.manual_payment);
-        return (index.h(index.Host, null, index.h("sc-toggle", { borderless: true, shady: true }, index.h("span", { slot: "summary" }, index.h("sc-subscription-details", { subscription: this.subscription }, index.h("div", { style: { fontSize: 'var(--sc-font-size-small)' } }, wp.i18n.__('Your next payment is', 'surecart'), " ", index.h("strong", null, checkout === null || checkout === void 0 ? void 0 : checkout.amount_due_display_amount), ' ', !!((_b = this.subscription) === null || _b === void 0 ? void 0 : _b.remaining_period_text) && `— ${(_c = this.subscription) === null || _c === void 0 ? void 0 : _c.remaining_period_text}`))), index.h("sc-card", { noPadding: true, borderless: true }, (_d = checkout === null || checkout === void 0 ? void 0 : checkout.line_items) === null || _d === void 0 ? void 0 :
-            _d.data.map(item => {
-                var _a, _b, _c, _d, _e, _f, _g;
-                return (index.h("sc-product-line-item", { image: (_b = (_a = item.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.line_item_image, name: (_d = (_c = item.price) === null || _c === void 0 ? void 0 : _c.product) === null || _d === void 0 ? void 0 : _d.name, price: (_e = item === null || item === void 0 ? void 0 : item.price) === null || _e === void 0 ? void 0 : _e.name, variant: item === null || item === void 0 ? void 0 : item.variant_display_options, editable: false, removable: false, note: item === null || item === void 0 ? void 0 : item.display_note, scratchDisplayAmount: item === null || item === void 0 ? void 0 : item.scratch_display_amount, displayAmount: item === null || item === void 0 ? void 0 : item.subtotal_display_amount, quantity: item === null || item === void 0 ? void 0 : item.quantity, amount: item === null || item === void 0 ? void 0 : item.subtotal_display_amount, interval: `${(_f = item === null || item === void 0 ? void 0 : item.price) === null || _f === void 0 ? void 0 : _f.short_interval_text} ${(_g = item === null || item === void 0 ? void 0 : item.price) === null || _g === void 0 ? void 0 : _g.short_interval_count_text}`, purchasableStatus: item === null || item === void 0 ? void 0 : item.purchasable_status_display }));
-            }), index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Subtotal', 'surecart')), checkout === null || checkout === void 0 ? void 0 :
-            checkout.subtotal_display_amount), !!checkout.proration_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Proration Credit', 'surecart')), checkout === null || checkout === void 0 ? void 0 :
-            checkout.proration_display_amount)), !!checkout.applied_balance_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Applied Balance', 'surecart')), checkout === null || checkout === void 0 ? void 0 :
-            checkout.applied_balance_display_amount)), !!checkout.trial_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Trial', 'surecart')), checkout === null || checkout === void 0 ? void 0 :
-            checkout.trial_display_amount)), !!(checkout === null || checkout === void 0 ? void 0 : checkout.discount_amount) && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Discounts', 'surecart')), checkout === null || checkout === void 0 ? void 0 :
-            checkout.discounts_display_amount)), !!(checkout === null || checkout === void 0 ? void 0 : checkout.shipping_amount) && (index.h("sc-line-item", { style: { marginTop: 'var(--sc-spacing-small)' } }, index.h("span", { slot: "description" }, wp.i18n.__('Shipping', 'surecart')), checkout === null || checkout === void 0 ? void 0 :
-            checkout.shipping_display_amount)), !!checkout.tax_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, tax.formatTaxDisplay(checkout === null || checkout === void 0 ? void 0 : checkout.tax_label)), checkout === null || checkout === void 0 ? void 0 :
-            checkout.tax_display_amount)), index.h("sc-divider", { style: { '--spacing': '0' } }), index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Payment', 'surecart')), paymentMethodExists && (index.h("a", { href: this.updatePaymentMethodUrl, slot: "price-description" }, index.h("sc-flex", { "justify-content": "flex-start", "align-items": "center", style: { '--spacing': '0.5em' } }, manualPaymentMethod ? index.h("sc-manual-payment-method", { paymentMethod: manualPaymentMethod }) : index.h("sc-payment-method", { paymentMethod: checkout === null || checkout === void 0 ? void 0 : checkout.payment_method }), index.h("sc-icon", { name: "edit-3" })))), !paymentMethodExists && (index.h("a", { href: addQueryArgs.addQueryArgs(window.location.href, {
+        const checkout_fees = (_b = checkout === null || checkout === void 0 ? void 0 : checkout.checkout_fees) === null || _b === void 0 ? void 0 : _b.data;
+        const shipping_fees = (_c = checkout === null || checkout === void 0 ? void 0 : checkout.shipping_fees) === null || _c === void 0 ? void 0 : _c.data;
+        return (index.h(index.Host, null, index.h("sc-toggle", { borderless: true, shady: true }, index.h("span", { slot: "summary" }, index.h("sc-subscription-details", { subscription: this.subscription }, index.h("div", { style: { fontSize: 'var(--sc-font-size-small)' } }, wp.i18n.__('Your next payment is', 'surecart'), " ", index.h("strong", null, checkout === null || checkout === void 0 ? void 0 : checkout.amount_due_display_amount), ' ', !!((_d = this.subscription) === null || _d === void 0 ? void 0 : _d.remaining_period_text) && `— ${(_e = this.subscription) === null || _e === void 0 ? void 0 : _e.remaining_period_text}`))), index.h("sc-card", { noPadding: true, borderless: true }, (_f = checkout === null || checkout === void 0 ? void 0 : checkout.line_items) === null || _f === void 0 ? void 0 :
+            _f.data.map(item => {
+                var _a, _b, _c, _d, _e, _f, _g, _h;
+                return (index.h("sc-product-line-item", { image: (_b = (_a = item.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.line_item_image, name: (_d = (_c = item.price) === null || _c === void 0 ? void 0 : _c.product) === null || _d === void 0 ? void 0 : _d.name, price: (_e = item === null || item === void 0 ? void 0 : item.price) === null || _e === void 0 ? void 0 : _e.name, variant: item === null || item === void 0 ? void 0 : item.variant_display_options, editable: false, removable: false, note: item === null || item === void 0 ? void 0 : item.display_note, scratchDisplayAmount: item === null || item === void 0 ? void 0 : item.scratch_display_amount, displayAmount: item === null || item === void 0 ? void 0 : item.subtotal_display_amount, quantity: item === null || item === void 0 ? void 0 : item.quantity, amount: item === null || item === void 0 ? void 0 : item.subtotal_display_amount, interval: `${(_f = item === null || item === void 0 ? void 0 : item.price) === null || _f === void 0 ? void 0 : _f.short_interval_text} ${(_g = item === null || item === void 0 ? void 0 : item.price) === null || _g === void 0 ? void 0 : _g.short_interval_count_text}`, purchasableStatus: item === null || item === void 0 ? void 0 : item.purchasable_status_display, fees: (_h = item === null || item === void 0 ? void 0 : item.fees) === null || _h === void 0 ? void 0 : _h.data }));
+            }), index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Subtotal', 'surecart')), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.subtotal_display_amount)), !!checkout.proration_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Proration Credit', 'surecart')), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.proration_display_amount))), !!checkout.applied_balance_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Applied Balance', 'surecart')), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.applied_balance_display_amount))), (checkout_fees === null || checkout_fees === void 0 ? void 0 : checkout_fees.length) > 0 && (index.h(index.Fragment, null, checkout_fees === null || checkout_fees === void 0 ? void 0 : checkout_fees.map(fee => (index.h("sc-line-item", null, index.h("span", { slot: "description" }, fee === null || fee === void 0 ? void 0 : fee.description), index.h("span", { slot: "price" }, fee === null || fee === void 0 ? void 0 : fee.display_amount)))))), !!checkout.trial_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Trial', 'surecart')), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.trial_display_amount))), !!(checkout === null || checkout === void 0 ? void 0 : checkout.discount_amount) && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Discounts', 'surecart')), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.discounts_display_amount))), !!(checkout === null || checkout === void 0 ? void 0 : checkout.shipping_amount) && (index.h(index.Fragment, null, index.h("sc-line-item", { style: { marginTop: 'var(--sc-spacing-small)' } }, index.h("span", { slot: "description" }, wp.i18n.__('Shipping', 'surecart')), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.shipping_display_amount)), (shipping_fees === null || shipping_fees === void 0 ? void 0 : shipping_fees.length) > 0 && (index.h(index.Fragment, null, shipping_fees === null || shipping_fees === void 0 ? void 0 : shipping_fees.map(fee => (index.h("sc-line-item", null, index.h("span", { slot: "description" }, fee === null || fee === void 0 ? void 0 : fee.description), index.h("span", { slot: "price" }, fee === null || fee === void 0 ? void 0 : fee.display_amount)))))))), !!checkout.tax_amount && (index.h("sc-line-item", null, index.h("span", { slot: "description" }, tax.formatTaxDisplay(checkout === null || checkout === void 0 ? void 0 : checkout.tax_label)), index.h("span", { slot: "price-description" }, checkout === null || checkout === void 0 ? void 0 : checkout.tax_display_amount))), index.h("sc-divider", { style: { '--spacing': '0' } }), index.h("sc-line-item", null, index.h("span", { slot: "description" }, wp.i18n.__('Payment', 'surecart')), paymentMethodExists && (index.h("a", { href: this.updatePaymentMethodUrl, slot: "price-description" }, index.h("sc-flex", { "justify-content": "flex-start", "align-items": "center", style: { '--spacing': '0.5em' } }, manualPaymentMethod ? index.h("sc-manual-payment-method", { paymentMethod: manualPaymentMethod }) : index.h("sc-payment-method", { paymentMethod: checkout === null || checkout === void 0 ? void 0 : checkout.payment_method }), index.h("sc-icon", { name: "edit-3" })))), !paymentMethodExists && (index.h("a", { href: addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'create',
                 model: 'payment_method',
                 id: this === null || this === void 0 ? void 0 : this.subscription.id,
-                ...(((_e = this === null || this === void 0 ? void 0 : this.subscription) === null || _e === void 0 ? void 0 : _e.live_mode) === false ? { live_mode: false } : {}),
+                ...(((_g = this === null || this === void 0 ? void 0 : this.subscription) === null || _g === void 0 ? void 0 : _g.live_mode) === false ? { live_mode: false } : {}),
             }), slot: "price-description" }, wp.i18n.__('Add Payment Method', 'surecart')))), index.h("sc-line-item", { style: { '--price-size': 'var(--sc-font-size-x-large)' } }, index.h("span", { slot: "title" }, wp.i18n.__('Total Due', 'surecart')), index.h("span", { slot: "price" }, checkout === null || checkout === void 0 ? void 0 : checkout.amount_due_display_amount), index.h("span", { slot: "currency" }, checkout.currency))))));
     }
     static get watchers() { return {
@@ -180,7 +178,7 @@ const ScSubscriptionReactivate = class {
         }
     }
     async fetchUpcoming() {
-        var _a;
+        var _a, _b;
         this.loading = true;
         try {
             this.upcomingPeriod = await fetch.apiFetch({
@@ -195,14 +193,14 @@ const ScSubscriptionReactivate = class {
             });
         }
         catch (e) {
-            this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
+            this.error = ((_b = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _b === void 0 ? void 0 : _b.length) ? e.additional_errors.map(err => err.message).join(', ') : (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
         }
         finally {
             this.loading = false;
         }
     }
     async reactivateSubscription() {
-        var _a;
+        var _a, _b;
         try {
             this.error = '';
             this.busy = true;
@@ -214,7 +212,7 @@ const ScSubscriptionReactivate = class {
             this.scRequestClose.emit('close-button');
         }
         catch (e) {
-            this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
+            this.error = ((_b = e === null || e === void 0 ? void 0 : e.additional_errors) === null || _b === void 0 ? void 0 : _b.length) ? e.additional_errors.map(err => err.message).join(', ') : (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
         }
         finally {
             this.busy = false;
@@ -225,13 +223,13 @@ const ScSubscriptionReactivate = class {
     }
     render() {
         var _a, _b, _c;
-        return (index.h("sc-dialog", { key: '90c7bda8e1fab2340e273607fcc8b357371a8223', noHeader: true, open: this.open, style: { '--width': '600px', '--body-spacing': 'var(--sc-spacing-xxx-large)' } }, index.h("sc-dashboard-module", { key: '4d94f9622a06df54d50e8425d490eff039e8d5aa', loading: this.loading, heading: wp.i18n.__('Resubscribe', 'surecart'), class: "subscription-reactivate", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, this.loading ? (this.renderLoading()) : (index.h(index.Fragment, null, index.h("div", { slot: "description" }, index.h("sc-alert", { open: true, type: "warning", title: wp.i18n.__('Confirm Charge', 'surecart') }, wp.i18n.__('You will be charged', 'surecart'), " ", (_b = (_a = this.upcomingPeriod) === null || _a === void 0 ? void 0 : _a.checkout) === null || _b === void 0 ? void 0 :
+        return (index.h("sc-dialog", { key: '6fdf846be161ede8705adc75eb28a20e34f77c05', noHeader: true, open: this.open, style: { '--width': '600px', '--body-spacing': 'var(--sc-spacing-xxx-large)' } }, index.h("sc-dashboard-module", { key: 'b12f075d9adca5adc19e8e45c680a1c1ac144450', loading: this.loading, heading: wp.i18n.__('Resubscribe', 'surecart'), class: "subscription-reactivate", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, this.loading ? (this.renderLoading()) : (index.h(index.Fragment, null, index.h("div", { slot: "description" }, index.h("sc-alert", { open: true, type: "warning", title: wp.i18n.__('Confirm Charge', 'surecart') }, wp.i18n.__('You will be charged', 'surecart'), " ", (_b = (_a = this.upcomingPeriod) === null || _a === void 0 ? void 0 : _a.checkout) === null || _b === void 0 ? void 0 :
             _b.amount_due_display_amount, ' ', wp.i18n.__('immediately for your subscription.', 'surecart')), index.h("sc-text", { style: {
                 '--font-size': 'var(--sc-font-size-medium)',
                 '--color': 'var(--sc-input-label-color)',
                 '--line-height': 'var(--sc-line-height-dense)',
                 'margin-top': 'var(--sc-spacing-medium)',
-            } }, wp.i18n.__('Your subscription will be reactivated and will renew automatically on', 'surecart'), " ", index.h("strong", null, (_c = this.upcomingPeriod) === null || _c === void 0 ? void 0 : _c.end_at_date))), index.h("sc-flex", { justifyContent: "flex-start" }, index.h("sc-button", { type: "primary", loading: this.busy, disabled: this.busy, onClick: () => this.reactivateSubscription() }, wp.i18n.__('Yes, Reactivate', 'surecart')), index.h("sc-button", { disabled: this.busy, style: { color: 'var(--sc-color-gray-500)' }, type: "text", onClick: () => this.scRequestClose.emit() }, wp.i18n.__('No, Keep Inactive', 'surecart'))))), this.busy && index.h("sc-block-ui", { key: 'aaece49196b03fdbcc195dd2995269d151c5dc3a' }))));
+            } }, wp.i18n.__('Your subscription will be reactivated and will renew automatically on', 'surecart'), " ", index.h("strong", null, (_c = this.upcomingPeriod) === null || _c === void 0 ? void 0 : _c.end_at_date))), index.h("sc-flex", { justifyContent: "flex-start" }, index.h("sc-button", { type: "primary", loading: this.busy, disabled: this.busy, onClick: () => this.reactivateSubscription() }, wp.i18n.__('Yes, Reactivate', 'surecart')), index.h("sc-button", { disabled: this.busy, style: { color: 'var(--sc-color-gray-500)' }, type: "text", onClick: () => this.scRequestClose.emit() }, wp.i18n.__('No, Keep Inactive', 'surecart'))))), this.busy && index.h("sc-block-ui", { key: '4fbe8d68b6bfbb349c6b65ecc95eaf50da326c31' }))));
     }
     static get watchers() { return {
         "open": ["openChanged"]

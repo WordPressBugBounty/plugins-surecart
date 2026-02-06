@@ -39,6 +39,8 @@ const ScOrderConfirmation = class {
             this.order = (await await apiFetch({
                 path: addQueryArgs(`surecart/v1/checkouts/${this.getSessionId()}`, {
                     expand: [
+                        'checkout_fees',
+                        'shipping_fees',
                         'line_items',
                         'line_item.price',
                         'line_item.fees',
@@ -99,10 +101,10 @@ const ScOrderConfirmation = class {
     }
     render() {
         var _a, _b;
-        return (h(Universe.Provider, { key: '0ec0bf6375a8d2984afd140641ff7aa0b08d2d6b', state: this.state() }, h("div", { key: '50ec95cac58659680f4c8d61125e038356fb4de3', class: { 'order-confirmation': true } }, h("div", { key: 'd857726a6d2674249d45a90a48af954ecaf1a75d', class: {
+        return (h(Universe.Provider, { key: '1d7b9de387c84b9490b84362607c2c1c921642e4', state: this.state() }, h("div", { key: 'b36d9210520c562f88266c8589e6bb801d8c7cf4', class: { 'order-confirmation': true } }, h("div", { key: '3fc37ba8fa7a90da751e775ab2aa717659d7a3c4', class: {
                 'order-confirmation__content': true,
                 'hidden': !((_a = this.order) === null || _a === void 0 ? void 0 : _a.id) && !this.loading,
-            } }, h("sc-order-confirm-components-validator", { key: 'ebaf4a3b890961683c7d1796487b331bc66f12af', checkout: this.order }, h("slot", { key: 'ce3115033f66d85a3b50eea57bd77d918c36dd0e' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (h("sc-heading", { key: 'dd906afd44fcca32c8415fa93d78aa8be39f0454' }, wp.i18n.__('Order not found.', 'surecart'), h("span", { key: '3f09d15923ae8b46a9accf76bd39ce99420c1313', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
+            } }, h("sc-order-confirm-components-validator", { key: '421cdfc8571238db8ed3e4f6586818fd7edaa77c', checkout: this.order }, h("slot", { key: 'aa1ce42db5b05f70771de5d2687d792bc9aa56af' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (h("sc-heading", { key: 'c368279e2cba021c385a5cbbf3be11c81d389101' }, wp.i18n.__('Order not found.', 'surecart'), h("span", { key: '43b29624fbce205aeb352a480023ebf5a4231ab3', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
     }
 };
 ScOrderConfirmation.style = ScOrderConfirmationStyle0;

@@ -23,7 +23,7 @@ const ScProductPillsVariantOption = class {
         this.productId = undefined;
     }
     render() {
-        return (index.h("sc-form-control", { key: '5355879a5bfdeaeea8fc17e077526e40d7367fcc', label: this.label }, index.h("span", { key: '0c7a42038c3b9caa06aeb482183097dec1ef8674', slot: "label" }, this.label), index.h("div", { key: 'ddc47926efc49346d0e34d306e8679047997b64e', class: "sc-product-pills-variant-option__wrapper" }, (watchers.state[this.productId].variant_options[this.optionNumber - 1].values || []).map(value => {
+        return (index.h("sc-form-control", { key: '090050c8c7f3466dd6e212884895d3cada6d33a1', label: this.label }, index.h("span", { key: 'e77fe8c017a7bcf90e04f1509b2dd5e7c7244395', slot: "label" }, this.label), index.h("div", { key: '46668cad85e2b72ab0320763ecc813f27e86bd09', class: "sc-product-pills-variant-option__wrapper" }, (watchers.state[this.productId].variant_options[this.optionNumber - 1].values || []).map(value => {
             const isUnavailable = watchers.isOptionSoldOut(this.productId, this.optionNumber, value) || watchers.isOptionMissing(this.productId, this.optionNumber, value);
             return (index.h("sc-pill-option", { isUnavailable: isUnavailable, isSelected: watchers.state[this.productId].variantValues[`option_${this.optionNumber}`] === value, onClick: () => watchers.setProduct(this.productId, {
                     variantValues: {

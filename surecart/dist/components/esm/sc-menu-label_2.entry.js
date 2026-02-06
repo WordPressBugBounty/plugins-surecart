@@ -10,7 +10,7 @@ const ScMenuLabel = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h("div", { key: '3155f6b714a66f72508f1d9b35879504b602ef40', part: "base", class: "menu-label" }, h("slot", { key: 'd2586133b2453370f714807d4413e1f9e95f527d' })));
+        return (h("div", { key: '1b972ae87780fbf0144451456046932169912b0b', part: "base", class: "menu-label" }, h("slot", { key: 'a28c1e64eb6008d5c19a2701d358314806e35d74' })));
     }
 };
 ScMenuLabel.style = ScMenuLabelStyle0;
@@ -1914,6 +1914,18 @@ const ScSelectDropdown = class {
         }
         this.scChange.emit(choice);
     }
+    handleInputChange() {
+        // Sync autofilled value to component state
+        if (!this.input || this.input.value === this.value)
+            return;
+        const inputValue = this.input.value;
+        // Match by value (code) or label (name) since Chrome may autofill either
+        const choice = this.choices.find(c => c.value === inputValue || c.label === inputValue);
+        if (choice) {
+            this.value = choice.value;
+            this.scChange.emit(choice);
+        }
+    }
     handleSearchChange() {
         const fuse = new Fuse(this.choices, {
             keys: ['value', 'label'],
@@ -2066,7 +2078,7 @@ const ScSelectDropdown = class {
     }
     render() {
         var _a;
-        return (h("div", { key: '14526a5a11199d0ef1baf5f967cca215999a447c', part: "base", class: {
+        return (h("div", { key: '232ff892d6d416420a021143968be1a02f5fea74', part: "base", class: {
                 'select': true,
                 'select--placeholder': !this.value,
                 'select--focused': this.hasFocus,
@@ -2078,9 +2090,9 @@ const ScSelectDropdown = class {
                 'select--squared-top': this.squaredTop,
                 'select--squared-left': this.squaredLeft,
                 'select--squared-right': this.squaredRight,
-            } }, h("sc-form-control", { key: '1a67fc2d54315b47729bc8d967c7c3a4d47ad93b', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("input", { key: 'ac9deff54011aae0afb895aa0c7a29faf1066f06', class: "select__hidden-input", name: this.name, ref: el => (this.input = el), value: this.value, required: this.required, disabled: this.disabled, "aria-hidden": "true", "aria-label": this.displayValue() || this.label || this.placeholder, onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() }), h("sc-dropdown", { key: '8adc72cb730e9854c7c5bcd3a8d2583aff727c3e', exportparts: "trigger, panel", disabled: this.disabled, open: this.open, closeOnSelect: this.closeOnSelect, position: this.position, placement: this.placement, hoist: this.hoist, style: { '--panel-width': '100%' }, onScShow: () => this.handleShow(), onScHide: () => this.handleHide(), role: "select", "aria-open": this.open ? 'true' : 'false' }, h("slot", { key: '8763eb7a5d825e2c13b87709aeba612590f0d354', name: "trigger", slot: "trigger" }, h("div", { key: 'b788452c8a7d631cb1d50225341f8fe236d6a7b8', class: "trigger", role: "button", tabIndex: -1, onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() }, h("div", { key: 'b69735fb0982b4bf7e3434402fc8edf4858c2a6e', class: "select__value" }, h("slot", { key: '857a3c7fc1783ad5d2e12bdd778f90d06552528e' }, this.displayValue() || this.placeholder || wp.i18n.__('Select...', 'surecart'))), h("sc-icon", { key: '274d6bfb7ca47e4d4cff0c86cfc1be3807e58572', exportparts: "base:caret", class: "select__caret", name: "chevron-down" }))), this.search && (h("sc-input", { key: '836e3fb27005d36fe51fbf827f463e8aaf876489', exportparts: "base:search__base, input:search__input, form-control:search__form-control", placeholder: this.searchPlaceholder || wp.i18n.__('Search...', 'surecart'), onScInput: e => this.handleQuery(e), class: "search", clearable: true, part: "search", value: this.searchTerm, ref: el => (this.searchInput = el), "aria-label": wp.i18n.__('Type to search', 'surecart') }, this.loading && h("sc-spinner", { key: '4ec6c08d3c9db7784e6af3f8402999815904435e', exportparts: "base:spinner__base", style: { '--spinner-size': '0.5em' }, slot: "suffix" }))), h("sc-menu", { key: '1062b972f57e0f6ca5e321800437124dba2eae02', style: { maxHeight: this.open ? '210px' : '0px', overflow: 'auto' }, exportparts: "base:menu__base", onScroll: e => this.handleMenuScroll(e), "aria-multiselectable": "false" }, h("slot", { key: 'ae387edeb8ba0bae87f44b6b7d164214a871085f', name: "prefix" }), (this.filteredChoices || []).map((choice, index) => {
+            } }, h("sc-form-control", { key: '878eb18d0f82c4328a240829f86ebc1d98353a0b', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("input", { key: 'e2586f125a9fbe47531a9716859cd3c94c353e06', class: "select__hidden-input", name: this.name, ref: el => (this.input = el), value: this.value, required: this.required, disabled: this.disabled, autocomplete: this.autocomplete, tabindex: "-1", "aria-label": this.displayValue() || this.label || this.placeholder, onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus(), onChange: () => this.handleInputChange() }), h("sc-dropdown", { key: 'dc589068b57799b193bc6e564b41343471d950d2', exportparts: "trigger, panel", disabled: this.disabled, open: this.open, closeOnSelect: this.closeOnSelect, position: this.position, placement: this.placement, hoist: this.hoist, style: { '--panel-width': '100%' }, onScShow: () => this.handleShow(), onScHide: () => this.handleHide(), role: "select", "aria-open": this.open ? 'true' : 'false' }, h("slot", { key: '2bb7197be0fd1950a625913c7d2f9435cc0839e0', name: "trigger", slot: "trigger" }, h("div", { key: 'ce5fd771e3557e7dce53da7fc280b7442930a1e5', class: "trigger", role: "button", tabIndex: -1, onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() }, h("div", { key: 'fd83d67c071824a7f7dad5fea342ac9628ec4fba', class: "select__value" }, h("slot", { key: '58764c40e1fa6e34d3eeb36d3bf46a0fe3d82da1' }, this.displayValue() || this.placeholder || wp.i18n.__('Select...', 'surecart'))), h("sc-icon", { key: 'f0129b9b2615155b6d2d92691737c1159181b911', exportparts: "base:caret", class: "select__caret", name: "chevron-down" }))), this.search && (h("sc-input", { key: 'e9591c4f5b05c8eab290d6dd60d9c52be00fc601', exportparts: "base:search__base, input:search__input, form-control:search__form-control", placeholder: this.searchPlaceholder || wp.i18n.__('Search...', 'surecart'), onScInput: e => this.handleQuery(e), class: "search", clearable: true, part: "search", value: this.searchTerm, ref: el => (this.searchInput = el), "aria-label": wp.i18n.__('Type to search', 'surecart') }, this.loading && h("sc-spinner", { key: '6d85c05eba8659d1ddb90347733d16b8770b6183', exportparts: "base:spinner__base", style: { '--spinner-size': '0.5em' }, slot: "suffix" }))), h("sc-menu", { key: '6a85cab13b03685304c0c06263de0d4a55e9dd32', style: { maxHeight: this.open ? '210px' : '0px', overflow: 'auto' }, exportparts: "base:menu__base", onScroll: e => this.handleMenuScroll(e), "aria-multiselectable": "false" }, h("slot", { key: '5c5ae15f9d12065a69cad50318786a53f2150818', name: "prefix" }), (this.filteredChoices || []).map((choice, index) => {
             return [this.renderItem(choice, index), (choice.choices || []).map(choice => this.renderItem(choice, index))];
-        }), this.loading && (h("div", { key: '8f7e53db925a23f43d1716778648f8ff240049e4', class: "loading" }, h("sc-spinner", { key: 'dd98e70723108031203def1ef4801a1030d640fa', exportparts: "base:spinner__base" }))), !this.loading && !this.filteredChoices.length && (h("div", { key: '90757a8bd921306aeddd4d6b135f39776ea5ce24', class: "select__empty", part: "empty" }, wp.i18n.__('Nothing Found', 'surecart'))), h("slot", { key: 'd9fe5443dd067ec1753208bfb0be837ff75cd22b', name: "suffix" }))))));
+        }), this.loading && (h("div", { key: 'e33cfa0f2a76f34b64416c61234374042125f622', class: "loading" }, h("sc-spinner", { key: 'c5d5cebcbbc7fc8fb5dbfd554a73be43bb3d53a9', exportparts: "base:spinner__base" }))), !this.loading && !this.filteredChoices.length && (h("div", { key: '65d96bd195f781c147befc339bcf0afe68f9aa9b', class: "select__empty", part: "empty" }, wp.i18n.__('Nothing Found', 'surecart'))), h("slot", { key: '65429dbc30fedeb7d9d779f62dac5b74275d9090', name: "suffix" }))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

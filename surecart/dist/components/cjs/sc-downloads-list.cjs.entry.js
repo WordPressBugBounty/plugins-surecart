@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const fetch = require('./fetch-d374a251.js');
+const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 
@@ -31,11 +32,68 @@ const ScDownloadsList = class {
             }
             return index.h("sc-icon", { name: "file" });
         };
-        this.downloads = undefined;
         this.customerId = undefined;
+        this.productId = undefined;
         this.heading = undefined;
+        this.downloads = undefined;
+        this.downloading = undefined;
         this.busy = undefined;
         this.error = undefined;
+        this.pagination = {
+            total: 0,
+            total_pages: 0,
+        };
+        this.query = {
+            page: 1,
+            per_page: 20,
+        };
+    }
+    componentWillLoad() {
+        lazy.onFirstVisible(this.el, () => {
+            this.fetchItems();
+        });
+    }
+    async fetchItems() {
+        if (!this.productId || !this.customerId) {
+            return;
+        }
+        try {
+            this.busy = true;
+            await this.getItems();
+        }
+        catch (e) {
+            console.error(this.error);
+            this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
+        }
+        finally {
+            this.busy = false;
+        }
+    }
+    /** Get all subscriptions */
+    async getItems() {
+        const response = (await fetch.apiFetch({
+            path: addQueryArgs.addQueryArgs(`surecart/v1/downloads/`, {
+                product_ids: [this.productId],
+                customer_ids: [this.customerId],
+                downloadable: true,
+                ...this.query,
+            }),
+            parse: false,
+        }));
+        this.pagination = {
+            total: parseInt(response.headers.get('X-WP-Total')),
+            total_pages: parseInt(response.headers.get('X-WP-TotalPages')),
+        };
+        this.downloads = (await response.json());
+        return this.downloads;
+    }
+    nextPage() {
+        this.query.page = this.query.page + 1;
+        this.fetchItems();
+    }
+    prevPage() {
+        this.query.page = this.query.page - 1;
+        this.fetchItems();
     }
     async downloadItem(download) {
         var _a, _b;
@@ -47,7 +105,7 @@ const ScDownloadsList = class {
         if (!mediaId)
             return;
         try {
-            this.busy = mediaId;
+            this.downloading = mediaId;
             const media = (await fetch.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/customers/${this.customerId}/expose/${mediaId}`, {
                     expose_for: 60,
@@ -65,7 +123,7 @@ const ScDownloadsList = class {
             this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Something went wrong', 'surecart');
         }
         finally {
-            this.busy = null;
+            this.downloading = null;
         }
     }
     downloadFile(path, filename) {
@@ -83,18 +141,36 @@ const ScDownloadsList = class {
             document.body.removeChild(anchor);
         }, 0);
     }
-    render() {
+    renderList() {
+        var _a, _b;
+        if ((this === null || this === void 0 ? void 0 : this.busy) && !((_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length)) {
+            return this.renderLoading();
+        }
+        if (!((_b = this === null || this === void 0 ? void 0 : this.downloads) === null || _b === void 0 ? void 0 : _b.length)) {
+            return this.renderEmpty();
+        }
         const downloads = this.downloads || [];
-        return (index.h("sc-dashboard-module", { key: 'd196699ab57f8c5b0bf1e6cc6316a482874f8fb7', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, index.h("span", { key: 'c10f6b05283169b1a1063f95bec9f7383a436a85', slot: "heading" }, index.h("slot", { key: '02ca1d2dce344829a9e433dd53d37feafafba681', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), index.h("sc-card", { key: '7bb86b53b50fd453205a2aec68fee232611f3a28', "no-padding": true }, index.h("sc-stacked-list", { key: '3e5600bd59a6cb1b2afc38b1b8ff9ff795b37232' }, downloads.map(download => {
+        return (index.h("sc-card", { "no-padding": true }, index.h("sc-stacked-list", null, downloads.map(download => {
             var _a, _b, _c, _d;
             const media = download === null || download === void 0 ? void 0 : download.media;
             return (index.h("sc-stacked-list-row", { style: { '--columns': '1' } }, index.h("sc-flex", { class: "single-download", justifyContent: "flex-start", alignItems: "center" }, index.h("div", { class: "single-download__preview" }, this.renderFileExt(download)), index.h("div", null, index.h("div", null, index.h("strong", null, (_b = (_a = media === null || media === void 0 ? void 0 : media.filename) !== null && _a !== void 0 ? _a : download === null || download === void 0 ? void 0 : download.name) !== null && _b !== void 0 ? _b : '')), index.h("sc-flex", { justifyContent: "flex-start", alignItems: "center", style: { gap: '0.5em' } }, (media === null || media === void 0 ? void 0 : media.byte_size) && index.h("sc-format-bytes", { value: media.byte_size }), !!((_c = media === null || media === void 0 ? void 0 : media.release_json) === null || _c === void 0 ? void 0 : _c.version) && (index.h("sc-tag", { type: "primary", size: "small", style: {
                     '--sc-tag-primary-background-color': '#f3e8ff',
                     '--sc-tag-primary-color': '#6b21a8',
                 } }, "v", (_d = media === null || media === void 0 ? void 0 : media.release_json) === null || _d === void 0 ? void 0 :
-                _d.version))))), index.h("sc-button", { size: "small", slot: "suffix", onClick: () => this.downloadItem(download), busy: (media === null || media === void 0 ? void 0 : media.id) ? this.busy == (media === null || media === void 0 ? void 0 : media.id) : false, disabled: (media === null || media === void 0 ? void 0 : media.id) ? this.busy == (media === null || media === void 0 ? void 0 : media.id) : false }, wp.i18n.__('Download', 'surecart'))));
-        })))));
+                _d.version))))), index.h("sc-button", { size: "small", slot: "suffix", onClick: () => this.downloadItem(download), busy: (media === null || media === void 0 ? void 0 : media.id) ? this.downloading == (media === null || media === void 0 ? void 0 : media.id) : false, disabled: (media === null || media === void 0 ? void 0 : media.id) ? this.downloading == (media === null || media === void 0 ? void 0 : media.id) : false }, wp.i18n.__('Download', 'surecart'))));
+        }))));
     }
+    renderLoading() {
+        return (index.h("sc-card", { "no-padding": true, style: { '--overflow': 'hidden' } }, index.h("sc-stacked-list", null, index.h("sc-stacked-list-row", { style: { '--columns': '2' }, "mobile-size": 0 }, index.h("div", { style: { padding: '0.5em' } }, index.h("sc-skeleton", { style: { width: '30%', marginBottom: '0.75em' } }), index.h("sc-skeleton", { style: { width: '20%' } }))))));
+    }
+    renderEmpty() {
+        return (index.h("div", null, index.h("sc-divider", { style: { '--spacing': '0' } }), index.h("slot", { name: "empty" }, index.h("sc-empty", { icon: "download" }, wp.i18n.__("You don't have any downloads.", 'surecart')))));
+    }
+    render() {
+        var _a;
+        return (index.h("sc-dashboard-module", { key: '2919e95b8f879c66ea808e3745420841f9526e2a', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, index.h("span", { key: '2ca6163969b60cd63fffd3891c831b7b3ab18faa', slot: "heading" }, index.h("slot", { key: '0a1e44db6c5ce4ef68019c7942a11bbe9e4680ff', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), index.h("sc-pagination", { key: '44763cf17f27deecad43c412468cc6cafdecf6ff', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && index.h("sc-block-ui", { key: 'd1772cc956ac0755905d0bcd1b071b77f25691dc' })));
+    }
+    get el() { return index.getElement(this); }
 };
 ScDownloadsList.style = ScDownloadsListStyle0;
 

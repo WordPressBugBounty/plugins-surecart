@@ -1,5 +1,5 @@
 import { EventEmitter } from '../../../stencil-public-runtime';
-import { Address, CountryLocaleField, CountryLocaleFieldValue } from '../../../types';
+import { Address, CountryLocaleFieldValue } from '../../../types';
 /**
  * @part base - The elements base wrapper.
  * @part input__base - The inputs base element.
@@ -39,19 +39,12 @@ export declare class ScAddress {
     required: boolean;
     /** Is the name required */
     requireName: boolean;
-    /** Default country fields */
-    defaultCountryFields: Array<CountryLocaleFieldValue>;
-    /** Country fields by country code */
-    countryFields: Array<CountryLocaleField>;
     /** Should we show the city field? */
     showCity: boolean;
     /** Should we show the postal field? */
     showPostal: boolean;
-    /** Holds the regions for a given country. */
-    regions: Array<{
-        value: string;
-        label: string;
-    }>;
+    /** Country details. */
+    countryDetails: any;
     /** Holds our country choices. */
     countryChoices: Array<{
         value: string;
@@ -62,21 +55,20 @@ export declare class ScAddress {
     /** Address change event. */
     scInputAddress: EventEmitter<Partial<Address>>;
     /** When the state changes, we want to update city and postal fields. */
-    handleAddressChange(): void;
+    handleAddressChange(): Promise<void>;
     handleNameChange(): void;
     decodeHtmlEntities(html: string): string;
     updateAddress(address: Partial<Address>): void;
     handleAddressInput(address: Partial<Address>): void;
     clearAddress(): void;
-    /** Set the regions based on the country. */
-    setRegions(): void;
     componentWillLoad(): void;
+    initCountryChoices(): Promise<void>;
     reportValidity(): Promise<boolean>;
-    /**
-     * Compute and return the sorted fields based on current country, defaultCountryFields and countryFields.
-     * This method can be used as a computed property.
-     */
-    sortedFields(): Array<CountryLocaleFieldValue>;
+    sortedFields(): CountryLocaleFieldValue[];
+    regions(): {
+        value: string;
+        label: string;
+    }[];
     getRoundedProps(index: number, length: number): {
         squaredTop: boolean;
         squaredBottom: boolean;

@@ -1,0 +1,2 @@
+import{r as a,h as e,H as s}from"./p-e97fde0a.js";const t=":host{display:table-header-group}::slotted(*){display:table-row}";const o=t;const r=class{constructor(e){a(this,e)}render(){return e(s,{key:"b64e2ab4a1caa1f705cb06891a882e39b7bb80f1"},e("slot",{key:"b4ff627f07c25e8c19147387d0851a9bdf97660b"}))}};r.style=o;export{r as sc_table_head};
+//# sourceMappingURL=p-d08485e4.entry.js.map

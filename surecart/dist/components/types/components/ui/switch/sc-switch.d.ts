@@ -37,6 +37,7 @@ export declare class ScSwitch {
     handleKeyDown(event: KeyboardEvent): boolean;
     handleMouseDown(event: MouseEvent): boolean;
     handleCheckedChange(): void;
+    componentWillLoad(): void;
     componentDidLoad(): void;
     disconnectedCallback(): void;
     render(): any;

@@ -404,6 +404,11 @@ class ProductPostTypeService {
 	 * @return void
 	 */
 	public function addEditLink( $wp_admin_bar ) {
+		// Don't render if admin toolbar is already enabled, the menu will be handled there.
+		if ( \SureCart::adminToolbar()->isEnabled() ) {
+			return;
+		}
+
 		if ( ! is_singular( 'sc_product' ) || ! current_user_can( 'edit_sc_products' ) ) {
 			return;
 		}
@@ -1254,7 +1259,7 @@ class ProductPostTypeService {
 	 */
 	public function renderProductSeoMeta( $product ) {
 		$image_attributes  = $product->featured_image ? $product->featured_image->attributes( apply_filters( 'surecart/og:image/size', 'full' ) ) : null;
-		$product_image_url = $image_attributes ? $image_attributes->src : '';
+		$product_image_url = $image_attributes ? ( $image_attributes->src ?? '' ) : '';
 		?>
 
 		<meta name="description" content="<?php echo esc_attr( sanitize_text_field( $product->meta_description ) ); ?>">
