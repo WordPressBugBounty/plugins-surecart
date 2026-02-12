@@ -45,6 +45,8 @@ const ScOrderSubmit = class {
         this.processor = undefined;
         this.secureNoticeText = undefined;
         this.secureNotice = true;
+        this.backgroundColor = '';
+        this.textColor = '';
     }
     cannotShipToLocation() {
         var _a, _b;
@@ -59,10 +61,16 @@ const ScOrderSubmit = class {
     render() {
         var _a;
         if (this.cannotShipToLocation() || getters$2.checkoutIsLocked('OUT_OF_STOCK')) {
-            return (index.h("sc-button", { type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: true }, !!this.icon && index.h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), index.h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (index.h("span", null, '\u00A0', index.h("sc-total", null))), index.h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))));
+            return (index.h("sc-button", { type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: true, style: {
+                    '--sc-color-primary-text': this.textColor,
+                    '--sc-color-primary-500': this.backgroundColor,
+                } }, !!this.icon && index.h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), index.h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (index.h("span", null, '\u00A0', index.h("sc-total", null))), index.h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))));
         }
         const paymentRequired = (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.payment_method_required;
-        return (index.h(index.Fragment, null, paymentRequired && watchers.state.id === 'paypal' && !(watchers.state === null || watchers.state === void 0 ? void 0 : watchers.state.method) && this.renderPayPalButton(['paypal']), paymentRequired && watchers.state.id === 'paypal' && (watchers.state === null || watchers.state === void 0 ? void 0 : watchers.state.method) === 'card' && this.renderPayPalButton(['card']), index.h("sc-button", { hidden: ['paypal', 'paypal-card'].includes(watchers.state.id) && paymentRequired, submit: true, type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: this.loading || this.paying || getters$1.formBusy() || getters$2.checkoutIsLocked() || this.cannotShipToLocation() }, !!this.icon && index.h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), index.h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (index.h("span", null, '\u00A0', index.h("sc-total", null))), index.h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))), this.secureNotice && location.protocol === 'https:' && (index.h("div", { class: "sc-secure-notice" }, index.h("sc-secure-notice", null, this.secureNoticeText || wp.i18n.__('This is a secure, encrypted payment.', 'surecart'))))));
+        return (index.h(index.Fragment, null, paymentRequired && watchers.state.id === 'paypal' && !(watchers.state === null || watchers.state === void 0 ? void 0 : watchers.state.method) && this.renderPayPalButton(['paypal']), paymentRequired && watchers.state.id === 'paypal' && (watchers.state === null || watchers.state === void 0 ? void 0 : watchers.state.method) === 'card' && this.renderPayPalButton(['card']), index.h("sc-button", { hidden: ['paypal', 'paypal-card'].includes(watchers.state.id) && paymentRequired, submit: true, type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: this.loading || this.paying || getters$1.formBusy() || getters$2.checkoutIsLocked() || this.cannotShipToLocation(), style: {
+                '--sc-color-primary-text': this.textColor,
+                '--sc-color-primary-500': this.backgroundColor,
+            } }, !!this.icon && index.h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), index.h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (index.h("span", null, '\u00A0', index.h("sc-total", null))), index.h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))), this.secureNotice && location.protocol === 'https:' && (index.h("div", { class: "sc-secure-notice" }, index.h("sc-secure-notice", null, this.secureNoticeText || wp.i18n.__('This is a secure, encrypted payment.', 'surecart'))))));
     }
 };
 consumer.openWormhole(ScOrderSubmit, ['loading', 'paying', 'processors', 'processor', 'currencyCode', 'order'], false);

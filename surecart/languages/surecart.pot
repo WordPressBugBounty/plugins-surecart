@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-05T22:46:01+00:00\n"
+"POT-Creation-Date: 2026-02-12T17:44:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -648,6 +648,7 @@ msgstr ""
 #: Blocks/DonationAmount/edit.js:36
 #: Blocks/ProductDonationAmount/edit.js:53
 #: src/blocks/product-selected-price-ad-hoc-amount/view.php:14
+#: src/blocks/cart-order-bump-amount/index.js:20
 msgid "Amount"
 msgstr ""
 
@@ -776,6 +777,7 @@ msgstr ""
 #: Blocks/Heading/edit.js:37
 #: Blocks/Heading/edit.js:60
 #: Blocks/PriceChoice/edit.js:75
+#: src/blocks/cart-order-bump-description/index.js:21
 #: sc-checkout-stock-alert2.js:113
 msgid "Description"
 msgstr ""
@@ -1782,8 +1784,9 @@ msgstr ""
 #: web/buy-template.php:93
 #: licenses/modules/Purchase.js:44
 #: store/add-entities.js:303
-#: sc-order-submit.js:56
-#: sc-order-submit.js:59
+#: Blocks/Submit/Block.php:49
+#: sc-order-submit.js:61
+#: sc-order-submit.js:67
 msgid "Purchase"
 msgstr ""
 
@@ -2182,7 +2185,7 @@ msgstr ""
 #: components/data-tables/subscriptions-data-table/index.js:20
 #: customers/modules/Subscriptions.js:51
 #: settings/export/ExportSettings.js:43
-#: settings/subscription/SubscriptionSettings.js:64
+#: settings/subscription/SubscriptionSettings.js:142
 #: subscriptions/show/ShowSubscription.js:529
 #: sc-subscriptions-list.js:140
 msgid "Subscriptions"
@@ -2605,6 +2608,8 @@ msgstr ""
 #: Blocks/StoreLogo/edit.js:150
 #: src/blocks/cart-line-item-remove/edit.js:30
 #: src/blocks/cart-menu-button/edit.js:26
+#: src/blocks/cart-order-bump-pagination/edit.js:57
+#: src/blocks/cart-order-bumps/edit.js:28
 #: src/blocks/product-image/edit.js:169
 #: src/blocks/product-list-filter-checkboxes/edit.js:34
 #: src/blocks/product-list-filter/edit.js:30
@@ -2858,7 +2863,7 @@ msgstr ""
 #: Blocks/Coupon/edit.js:70
 #: Blocks/CustomerDashboardButton/edit.js:36
 #: Blocks/Form/edit.js:515
-#: Blocks/Submit/edit.js:46
+#: Blocks/Submit/edit.js:52
 #: src/blocks/cart-coupon/edit.js:176
 #: src/blocks/cart-submit/edit.js:88
 msgid "Button Text"
@@ -2920,7 +2925,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/VariantPills.php:462
 #: components/MediaLibrary/Preview.js:144
 #: Blocks/CustomerDashboardButton/edit.js:63
-#: Blocks/Submit/edit.js:109
+#: Blocks/Submit/edit.js:115
 #: src/blocks/product-quick-view/edit.js:50
 #: src/components/LabelInspectorControls.js:27
 msgid "Size"
@@ -3102,6 +3107,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:142
 #: Blocks/ProductCollectionImage/dimension-controls.js:152
 #: src/blocks/cart-line-item-image/edit.js:143
+#: src/blocks/cart-order-bump-image/edit.js:143
 #: src/blocks/product-image/edit.js:147
 #: src/blocks/product-quick-view/edit.js:74
 #: src/blocks/product-quick-view/edit.js:79
@@ -3215,7 +3221,7 @@ msgstr ""
 #: Blocks/Switch/components/Inspector.js:27
 #: Blocks/Textarea/edit.js:47
 #: Blocks/TrialLineItem/edit.js:23
-#: src/blocks/cart-bump-line-item/edit.js:40
+#: src/blocks/cart-bump-line-item/edit.js:38
 #: src/blocks/cart-coupon/edit.js:156
 #: src/blocks/cart-subtotal/edit.js:35
 #: src/blocks/product-quantity/edit.js:37
@@ -3919,6 +3925,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:175
 #: Blocks/StoreLogo/edit.js:154
 #: src/blocks/cart-line-item-image/edit.js:155
+#: src/blocks/cart-order-bump-image/edit.js:154
 #: src/blocks/cart/edit.js:104
 #: src/blocks/product-buy-button/display.js:29
 #: src/blocks/product-buy-button/display.js:38
@@ -4365,7 +4372,7 @@ msgstr ""
 
 #: src/Integrations/Elementor/Widgets/VariantPills.php:464
 #: Blocks/CustomerDashboardButton/edit.js:76
-#: Blocks/Submit/edit.js:122
+#: Blocks/Submit/edit.js:128
 #: src/blocks/product-selected-variant/edit.js:28
 msgid "Small"
 msgstr ""
@@ -4374,13 +4381,13 @@ msgstr ""
 #: bumps/modules/Priority.js:34
 #: upsell-funnels/modules/Priority.js:34
 #: Blocks/CustomerDashboardButton/edit.js:80
-#: Blocks/Submit/edit.js:126
+#: Blocks/Submit/edit.js:132
 msgid "Medium"
 msgstr ""
 
 #: src/Integrations/Elementor/Widgets/VariantPills.php:466
 #: Blocks/CustomerDashboardButton/edit.js:84
-#: Blocks/Submit/edit.js:130
+#: Blocks/Submit/edit.js:136
 msgid "Large"
 msgstr ""
 
@@ -4860,6 +4867,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:106
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:55
 #: src/blocks/cart-line-item-image/edit.js:108
+#: src/blocks/cart-order-bump-image/edit.js:109
 #: src/blocks/product-image/edit.js:112
 #: src/blocks/product-selected-variant-image/edit.js:118
 msgid "Square"
@@ -4936,7 +4944,7 @@ msgstr[1] ""
 #: src/Models/Price.php:355
 #: products/components/price/parts/RevokeAfterDays.js:59
 #: settings/affiliation-protocol/AffiliationProtocolSettings.js:361
-#: settings/subscription/SubscriptionSettings.js:249
+#: settings/subscription/SubscriptionSettings.js:327
 msgid "days"
 msgstr ""
 
@@ -5701,6 +5709,18 @@ msgstr ""
 #: src/Rest/SubscriptionProtocolRestServiceProvider.php:111
 #: src/Rest/TaxProtocolRestServiceProvider.php:115
 msgid "Upgrade behavior. Either pending or immediate."
+msgstr ""
+
+#: src/Rest/SubscriptionProtocolRestServiceProvider.php:116
+msgid "Minimum days between reminders."
+msgstr ""
+
+#: src/Rest/SubscriptionProtocolRestServiceProvider.php:121
+msgid "Percentage of period remaining when reminder should be sent."
+msgstr ""
+
+#: src/Rest/SubscriptionProtocolRestServiceProvider.php:126
+msgid "Whether or not existing subscription reminders should be recalculated. Only applicable when remind_at_period_percent_remaining or remind_after_days are changed."
 msgstr ""
 
 #: src/Rest/SwapRestServiceProvider.php:60
@@ -9125,6 +9145,7 @@ msgstr[1] ""
 #: settings/shipping/zone/ConfirmDeleteZone.js:49
 #: settings/shipping/zone/ShippingZoneForm.js:295
 #: settings/subscription-preservation/EditReason.js:149
+#: settings/subscription/SubscriptionSettings.js:668
 #: settings/tax-override/TaxOverrideDeleteModal.js:116
 #: settings/tax-override/TaxOverrideModal.js:263
 #: subscriptions/edit/modules/Modals/UpdateAmount.js:41
@@ -9544,7 +9565,7 @@ msgid "Open or close account menu"
 msgstr ""
 
 #: patterns/cart-new.php:6
-msgid "Default Cart"
+msgid "Cart (Simple)"
 msgstr ""
 
 #: patterns/list-bento.php:6
@@ -10970,6 +10991,7 @@ msgstr ""
 
 #: bumps/CreateBump.js:64
 #: bumps/modules/Name.js:9
+#: src/blocks/cart-order-bump-title/edit.js:9
 msgid "Bump Name"
 msgstr ""
 
@@ -11787,7 +11809,7 @@ msgstr ""
 
 #: components/data-tables/subscriptions-data-table/Cancel.js:111
 #: components/subscriptions/Cancel.js:61
-#: settings/subscription/SubscriptionSettings.js:53
+#: settings/subscription/SubscriptionSettings.js:131
 #: subscriptions/show/modules/modals/CancelSubscriptionModal.js:60
 msgid "Immediately"
 msgstr ""
@@ -11973,6 +11995,7 @@ msgstr ""
 #: Blocks/Heading/edit.js:28
 #: Blocks/Heading/edit.js:49
 #: Blocks/OrderConfirmationCustomer/edit.js:29
+#: src/blocks/cart-order-bump-title/index.js:21
 msgid "Title"
 msgstr ""
 
@@ -12772,6 +12795,7 @@ msgstr ""
 #: ui/PrevNextButtons.js:35
 #: index.php:139
 #: src/blocks/product-pagination-previous/view.php:36
+#: src/blocks/cart-order-bump-pagination-previous/index.js:21
 #: src/blocks/product-pagination-previous/edit.js:39
 #: sc-icon2.js:44
 #: sc-icon2.js:46
@@ -12920,6 +12944,7 @@ msgstr ""
 #: orders/modules/OrderCancelConfirmModal.js:57
 #: orders/modules/OrderStatusConfirmModal.js:61
 #: orders/modules/ReturnRequest/ReturnCancelConfirmModal.js:51
+#: settings/subscription/SubscriptionSettings.js:658
 #: subscriptions/show/modules/modals/CancelSubscriptionModal.js:42
 #: subscriptions/show/modules/modals/CancelUpdateModal.js:44
 #: subscriptions/show/modules/modals/CompleteSubscriptionModal.js:41
@@ -14086,6 +14111,7 @@ msgstr ""
 #: products/modules/Template.js:124
 #: upsell-funnels/components/SelectTemplate/index.js:63
 #: upsell-funnels/components/SelectTemplatePart/index.js:64
+#: src/blocks/cart-order-bump-template/index.js:24
 msgid "Template"
 msgstr ""
 
@@ -14245,6 +14271,7 @@ msgstr ""
 
 #: product-collections/modules/Image.js:112
 #: products/modules/Variations/NewVariant.js:159
+#: src/blocks/cart-order-bump-image/index.js:21
 msgid "Image"
 msgstr ""
 
@@ -15777,7 +15804,7 @@ msgstr ""
 #: settings/order/OrderProtocol.js:31
 #: settings/shipping/ShippingSettings.js:91
 #: settings/subscription-preservation/PreservationSettings.js:135
-#: settings/subscription/SubscriptionSettings.js:43
+#: settings/subscription/SubscriptionSettings.js:94
 #: settings/tax-region/TaxRegionSettings.js:135
 #: settings/tax/TaxSettings.js:32
 #: settings/upgrade/UpgradeSettings.js:27
@@ -17711,6 +17738,7 @@ msgstr ""
 #: Blocks/Form/components/ChooseDesign.js:28
 #: index.php:140
 #: src/blocks/product-pagination-next/view.php:22
+#: src/blocks/cart-order-bump-pagination-next/index.js:21
 #: src/blocks/product-pagination-next/edit.js:29
 #: sc-icon2.js:43
 #: sc-icon2.js:45
@@ -17867,196 +17895,213 @@ msgstr ""
 msgid "You don't have any survey answers. Please add at least one to collect cancellation feedback."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:57
+#: settings/subscription/SubscriptionSettings.js:135
 #: subscriptions/edit/modules/UpcomingPeriod.js:33
 msgid "Next Billing Period"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:75
+#: settings/subscription/SubscriptionSettings.js:153
 msgid "Upgrades, Downgrades, and Cancellations"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:79
+#: settings/subscription/SubscriptionSettings.js:157
 msgid "Manage how your store handles subscription upgrades, downgrades, and cancellations."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:93
-#: settings/subscription/SubscriptionSettings.js:94
+#: settings/subscription/SubscriptionSettings.js:171
+#: settings/subscription/SubscriptionSettings.js:172
 msgid "Downgrades Happen"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:104
-#: settings/subscription/SubscriptionSettings.js:105
+#: settings/subscription/SubscriptionSettings.js:182
+#: settings/subscription/SubscriptionSettings.js:183
 msgid "Upgrades Happen"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:116
+#: settings/subscription/SubscriptionSettings.js:194
 msgid "When an upgrade or downgrade happens immediately, a prorated invoice will be generated and paid. If the invoice payment fails, the subscription will not be updated. In the case of a downgrade, the invoice will likely have a $0 balance and a credit may be applied to the customer. When an upgrade or downgrade happens at the next billing period, the subscription won't be updated until the next payment date."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:130
-#: settings/subscription/SubscriptionSettings.js:131
+#: settings/subscription/SubscriptionSettings.js:208
+#: settings/subscription/SubscriptionSettings.js:209
 msgid "Cancellations Happen"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:142
+#: settings/subscription/SubscriptionSettings.js:220
 msgid "When a cancellation happens immediately, the subscription is canceled right away. When a cancellation happens at the billing period end, the subscription remains active until the end of the current billing period."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:163
+#: settings/subscription/SubscriptionSettings.js:241
 msgid "Delay Self-Service Cancellations"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:168
+#: settings/subscription/SubscriptionSettings.js:246
 msgid "The number of days prior to a subscription renewing that the cancel option will be visible to customers."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:178
+#: settings/subscription/SubscriptionSettings.js:256
 msgid "Allow Self-Service Cancellations"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:186
+#: settings/subscription/SubscriptionSettings.js:264
 msgid "Choose how many days before the subscription renewal customers can cancel their plan through the customer dashboard. For example, if you set this to 7 days, customers will only be able to cancel their subscription during the week it renews. Please check for the legality of this setting in your region before enabling."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:193
+#: settings/subscription/SubscriptionSettings.js:271
 msgid "Days Before Renewal"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:200
+#: settings/subscription/SubscriptionSettings.js:278
 msgid "Subscription Renewals"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:201
+#: settings/subscription/SubscriptionSettings.js:279
 msgid "Manage your store subscription renewal behavior."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:209
+#: settings/subscription/SubscriptionSettings.js:287
 msgid "Subscription Renewal Reminders"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:218
+#: settings/subscription/SubscriptionSettings.js:296
 msgid "Specify the percentage of the subscription period remaining when a reminder should be sent to customers. For instance, entering 25% will trigger the reminder when 25% of the period is left."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:225
+#: settings/subscription/SubscriptionSettings.js:303
 msgid "% of Period Remaining"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:231
+#: settings/subscription/SubscriptionSettings.js:309
 msgid "Minimum Days Between Reminders"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:232
+#: settings/subscription/SubscriptionSettings.js:310
 msgid "(no limit)"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:243
+#: settings/subscription/SubscriptionSettings.js:321
 msgid "Set how long to wait between reminders. For example, 180 days means customers get at most one reminder every 180 days, regardless of renewal frequency."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:255
+#: settings/subscription/SubscriptionSettings.js:333
 msgid "Failed Payments"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:256
+#: settings/subscription/SubscriptionSettings.js:334
 msgid "Manage how your store handles failed subscription payments."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:270
+#: settings/subscription/SubscriptionSettings.js:348
 msgid "Cancel Subscriptions After"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:281
+#: settings/subscription/SubscriptionSettings.js:359
 msgid "One Week"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:285
+#: settings/subscription/SubscriptionSettings.js:363
 msgid "Two Weeks"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:289
+#: settings/subscription/SubscriptionSettings.js:367
 msgid "Three Weeks"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:297
+#: settings/subscription/SubscriptionSettings.js:375
 msgid "If a subscription payment fails, the subscription is marked past due. When this happens we automatically retry the payment based on our smart retry logic. If the payment is still unsuccessful after the duration set above, the subscription will be canceled."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:305
+#: settings/subscription/SubscriptionSettings.js:383
 msgid "Purchase Behavior"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:306
+#: settings/subscription/SubscriptionSettings.js:384
 msgid "Manage your subscription purchase behavior."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:335
+#: settings/subscription/SubscriptionSettings.js:413
 msgid "Require Upfront Payment Method"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:341
+#: settings/subscription/SubscriptionSettings.js:419
 msgid "Whether or not a payment method should be required for subscriptions that have an initial period amount of $0 (free trial or coupon). This is useful if you want to offer a \"no credit card required\" free trials."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:358
+#: settings/subscription/SubscriptionSettings.js:436
 msgid "Prevent Duplicate Trials"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:360
+#: settings/subscription/SubscriptionSettings.js:438
 msgid "When enabled, this setting prevents customers from receiving multiple trial periods for the same product. If a customer has previously used a trial for the product, they will be charged the full price instead of receiving another trial."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:375
+#: settings/subscription/SubscriptionSettings.js:453
 msgid "Purchase Revoke Behavior"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:403
+#: settings/subscription/SubscriptionSettings.js:481
 msgid "Revoke Immediately"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:407
+#: settings/subscription/SubscriptionSettings.js:485
 msgid "Revoke Purchase After All Payment Retries Fail"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:418
+#: settings/subscription/SubscriptionSettings.js:496
 msgid "Customer Portal"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:419
+#: settings/subscription/SubscriptionSettings.js:497
 msgid "Manage what your customers are able to see and do from the customer portal."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:435
+#: settings/subscription/SubscriptionSettings.js:513
 msgid "Allow Subscription Changes"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:437
+#: settings/subscription/SubscriptionSettings.js:515
 msgid "Customers will be able to switch pricing plans from the customer portal. You can configure what happens when a subscription change happens from the Subscriptions settings page."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:454
+#: settings/subscription/SubscriptionSettings.js:532
 msgid "Allow Subscription Quantity Changes"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:456
+#: settings/subscription/SubscriptionSettings.js:534
 msgid "Customers will be able to change subscription quantities from the customer portal."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:473
+#: settings/subscription/SubscriptionSettings.js:551
 msgid "Allow Subscription Cancellations"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:475
+#: settings/subscription/SubscriptionSettings.js:553
 msgid "Customers will be able to cancel their subscriptions from the customer portal. You can configure what happens when a subscription cancellation happens from the Subscriptions settings page."
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:491
+#: settings/subscription/SubscriptionSettings.js:569
 msgid "Allow Customers To Remove Default Payment Method"
 msgstr ""
 
-#: settings/subscription/SubscriptionSettings.js:496
+#: settings/subscription/SubscriptionSettings.js:574
 msgid "When enabled, customers are allowed to remove their default payment method on file. This can lead to subscription payments failing since there is no payment method on file."
+msgstr ""
+
+#: settings/subscription/SubscriptionSettings.js:584
+#: settings/tax-region/RegistrationForm.js:343
+msgid "Save Changes"
+msgstr ""
+
+#: settings/subscription/SubscriptionSettings.js:594
+msgid "These changes will affect to all new subscription reminders. Should we include existing subscription reminders too?"
+msgstr ""
+
+#: settings/subscription/SubscriptionSettings.js:609
+msgid "Reschedule Existing Reminders"
+msgstr ""
+
+#: settings/subscription/SubscriptionSettings.js:638
+msgid "Reminders within 2 hours won't be affected."
 msgstr ""
 
 #: settings/tax-override/index.js:35
@@ -18268,10 +18313,6 @@ msgstr ""
 
 #: settings/tax-region/RegistrationForm.js:327
 msgid "Tax is automatically calculated and applied to orders. Make sure you’re registered with the appropriate tax jurisdictions before enabling tax collection."
-msgstr ""
-
-#: settings/tax-region/RegistrationForm.js:343
-msgid "Save Changes"
 msgstr ""
 
 #: settings/tax-region/TaxRegionSettings.js:30
@@ -19097,6 +19138,7 @@ msgstr ""
 
 #: ui/SimplePagination.js:26
 #: ui/SimplePagination.js:38
+#: src/blocks/cart-order-bump-pagination-previous/view.php:15
 msgid "Previous page"
 msgstr ""
 
@@ -19294,7 +19336,7 @@ msgstr ""
 #: upsell-funnels/modules/Upsell/EditUpsell.js:36
 #: Blocks/BumpLineItem/edit.js:28
 #: src/blocks/cart-bump-line-item/view.php:18
-#: src/blocks/cart-bump-line-item/edit.js:56
+#: src/blocks/cart-bump-line-item/edit.js:54
 #: sc-line-item-bump.js:21
 msgid "Bundle Discount"
 msgstr ""
@@ -19382,6 +19424,7 @@ msgstr ""
 #: util/attachments.js:8
 #: Blocks/ProductCollectionImage/dimension-controls.js:102
 #: src/blocks/cart-line-item-image/edit.js:104
+#: src/blocks/cart-order-bump-image/edit.js:105
 #: src/blocks/product-image/edit.js:108
 #: src/blocks/product-selected-variant-image/edit.js:114
 msgid "Original"
@@ -19668,7 +19711,7 @@ msgstr ""
 #: Blocks/Radio/edit.js:25
 #: Blocks/RadioGroup/edit.js:62
 #: Blocks/SessionDetail/edit.js:17
-#: Blocks/Submit/edit.js:41
+#: Blocks/Submit/edit.js:47
 #: Blocks/Subtotal/edit.js:13
 #: Blocks/Switch/components/Inspector.js:13
 #: Blocks/Switch/edit.js:26
@@ -19798,7 +19841,7 @@ msgstr ""
 #: Blocks/LogoutButton/edit.js:74
 #: Blocks/OrderConfirmationCustomer/edit.js:38
 #: Blocks/Product/BuyButton/edit.js:109
-#: Blocks/Submit/edit.js:172
+#: Blocks/Submit/edit.js:182
 #: Blocks/Upsell/NoThanksButton/edit.js:95
 #: Blocks/Upsell/SubmitButton/edit.js:152
 #: src/blocks/cart-items-submit/edit.js:54
@@ -19815,7 +19858,7 @@ msgstr ""
 #: Blocks/LogoutButton/edit.js:75
 #: Blocks/OrderConfirmationCustomer/edit.js:39
 #: Blocks/Product/BuyButton/edit.js:110
-#: Blocks/Submit/edit.js:173
+#: Blocks/Submit/edit.js:183
 #: Blocks/Upsell/NoThanksButton/edit.js:96
 #: Blocks/Upsell/SubmitButton/edit.js:153
 #: src/blocks/cart-items-submit/edit.js:55
@@ -20360,7 +20403,7 @@ msgid "Show Icon"
 msgstr ""
 
 #: Blocks/CustomerDashboardButton/edit.js:54
-#: Blocks/Submit/edit.js:54
+#: Blocks/Submit/edit.js:60
 msgid "Full"
 msgstr ""
 
@@ -20990,6 +21033,8 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:97
 #: src/blocks/cart-line-item-image/edit.js:89
 #: src/blocks/cart-line-item-image/edit.js:99
+#: src/blocks/cart-order-bump-image/edit.js:90
+#: src/blocks/cart-order-bump-image/edit.js:100
 #: src/blocks/product-image/edit.js:93
 #: src/blocks/product-image/edit.js:103
 #: src/blocks/product-selected-variant-image/edit.js:99
@@ -21000,6 +21045,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:110
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:73
 #: src/blocks/cart-line-item-image/edit.js:112
+#: src/blocks/cart-order-bump-image/edit.js:113
 #: src/blocks/product-image/edit.js:116
 #: src/blocks/product-selected-variant-image/edit.js:122
 msgid "16:9"
@@ -21008,6 +21054,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:114
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:77
 #: src/blocks/cart-line-item-image/edit.js:116
+#: src/blocks/cart-order-bump-image/edit.js:117
 #: src/blocks/product-image/edit.js:120
 #: src/blocks/product-selected-variant-image/edit.js:126
 msgid "4:3"
@@ -21016,6 +21063,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:118
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:81
 #: src/blocks/cart-line-item-image/edit.js:120
+#: src/blocks/cart-order-bump-image/edit.js:121
 #: src/blocks/product-image/edit.js:124
 #: src/blocks/product-selected-variant-image/edit.js:130
 msgid "3:2"
@@ -21024,6 +21072,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:122
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:99
 #: src/blocks/cart-line-item-image/edit.js:124
+#: src/blocks/cart-order-bump-image/edit.js:125
 #: src/blocks/product-image/edit.js:128
 #: src/blocks/product-selected-variant-image/edit.js:134
 msgid "9:16"
@@ -21032,6 +21081,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:126
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:103
 #: src/blocks/cart-line-item-image/edit.js:128
+#: src/blocks/cart-order-bump-image/edit.js:129
 #: src/blocks/product-image/edit.js:132
 #: src/blocks/product-selected-variant-image/edit.js:138
 msgid "3:4"
@@ -21040,6 +21090,7 @@ msgstr ""
 #: Blocks/ProductCollectionImage/dimension-controls.js:130
 #: Blocks/ProductItemImage/aspect-ratio-dropdown.js:107
 #: src/blocks/cart-line-item-image/edit.js:132
+#: src/blocks/cart-order-bump-image/edit.js:133
 #: src/blocks/product-image/edit.js:136
 #: src/blocks/product-selected-variant-image/edit.js:142
 msgid "2:3"
@@ -21093,6 +21144,8 @@ msgstr ""
 #: Blocks/ProductItemImage/edit.js:109
 #: src/blocks/cart-line-item-image/edit.js:62
 #: src/blocks/cart-line-item-image/edit.js:73
+#: src/blocks/cart-order-bump-image/edit.js:65
+#: src/blocks/cart-order-bump-image/edit.js:74
 #: src/blocks/product-image/edit.js:66
 #: src/blocks/product-image/edit.js:77
 #: src/blocks/product-selected-variant-image/edit.js:72
@@ -21102,6 +21155,7 @@ msgstr ""
 
 #: Blocks/ProductItemImage/edit.js:115
 #: src/blocks/cart-line-item-image/edit.js:79
+#: src/blocks/cart-order-bump-image/edit.js:80
 #: src/blocks/product-image/edit.js:83
 #: src/blocks/product-selected-variant-image/edit.js:89
 msgid "Contain"
@@ -21109,6 +21163,7 @@ msgstr ""
 
 #: Blocks/ProductItemImage/edit.js:119
 #: src/blocks/cart-line-item-image/edit.js:83
+#: src/blocks/cart-order-bump-image/edit.js:84
 #: src/blocks/product-image/edit.js:87
 #: src/blocks/product-selected-variant-image/edit.js:93
 msgid "Cover"
@@ -21239,25 +21294,25 @@ msgstr ""
 msgid "Link image to home"
 msgstr ""
 
-#: Blocks/Submit/deprecated.js:44
-#: sc-order-submit.js:59
+#: Blocks/Submit/deprecated.js:111
+#: sc-order-submit.js:67
 msgid "This is a secure, encrypted payment."
 msgstr ""
 
-#: Blocks/Submit/edit.js:62
+#: Blocks/Submit/edit.js:68
 msgid "Show total due in button text."
 msgstr ""
 
-#: Blocks/Submit/edit.js:75
+#: Blocks/Submit/edit.js:81
 #: Blocks/Upsell/SubmitButton/edit.js:105
 msgid "Show a secure lock icon."
 msgstr ""
 
-#: Blocks/Submit/edit.js:85
+#: Blocks/Submit/edit.js:91
 msgid "Show secure notice."
 msgstr ""
 
-#: Blocks/Submit/edit.js:97
+#: Blocks/Submit/edit.js:103
 msgid "Secure Payment Text"
 msgstr ""
 
@@ -22288,6 +22343,7 @@ msgstr ""
 #: Blocks/ProductDonationCustomAmount/block.json
 #: Blocks/ProductDonationPrices/block.json
 #: Blocks/ProductDonationRecurringPrices/block.json
+#: src/blocks/cart-order-bump-amount/block.json
 #: src/blocks/cart-subtotal-amount/block.json
 msgctxt "block keyword"
 msgid "amount"
@@ -22602,6 +22658,7 @@ msgid "Display a name your own price field."
 msgstr ""
 
 #: Blocks/OrderBumps/block.json
+#: src/blocks/cart-order-bumps/block.json
 msgctxt "block title"
 msgid "Order Bumps"
 msgstr ""
@@ -22707,6 +22764,7 @@ msgstr ""
 #: Blocks/Product/PriceChoices/block.json
 #: Blocks/ProductItemPrice/block.json
 #: Blocks/VariantPriceSelector/block.json
+#: src/blocks/cart-order-bump-amount/block.json
 msgctxt "block keyword"
 msgid "price"
 msgstr ""
@@ -22837,6 +22895,7 @@ msgstr ""
 #: Blocks/Product/Description/block.json
 #: Blocks/ProductCollectionDescription/block.json
 #: Blocks/Upsell/CountdownTimer/block.json
+#: src/blocks/cart-order-bump-description/block.json
 msgctxt "block keyword"
 msgid "description"
 msgstr ""
@@ -23391,6 +23450,7 @@ msgid "Displays the title."
 msgstr ""
 
 #: Blocks/Upsell/Title/block.json
+#: src/blocks/cart-order-bump-cta/block.json
 msgctxt "block keyword"
 msgid "cta"
 msgstr ""
@@ -23467,6 +23527,23 @@ msgstr ""
 
 #: src/blocks/cart-line-items/view.php:21
 msgid "Use setting"
+msgstr ""
+
+#: src/blocks/cart-order-bump-add-button/view.php:19
+msgid "Add to cart"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination-next/view.php:15
+msgid "Next page"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/view.php:4
+msgid "Order bumps pagination"
+msgstr ""
+
+#: src/blocks/cart-order-bump-template/view.php:8
+#: src/scripts/order-bumps/index.js:180
+msgid "Order bumps carousel. Use left and right arrow keys to navigate."
 msgstr ""
 
 #: src/blocks/cart-subtotal/view.php:41
@@ -23637,6 +23714,7 @@ msgid "Select %s"
 msgstr ""
 
 #: src/blocks/cart-close-button/edit.js:35
+#: src/blocks/cart-order-bump-pagination/query-pagination-arrow-controls.js:14
 #: src/blocks/product-pagination/query-pagination-arrow-controls.js:15
 msgid "Arrow"
 msgstr ""
@@ -23670,6 +23748,8 @@ msgstr ""
 
 #: src/blocks/cart-line-item-image/edit.js:145
 #: src/blocks/cart-line-item-image/edit.js:157
+#: src/blocks/cart-order-bump-image/edit.js:145
+#: src/blocks/cart-order-bump-image/edit.js:156
 msgid "Auto"
 msgstr ""
 
@@ -23723,6 +23803,68 @@ msgstr ""
 
 #: src/blocks/cart-line-item-variant/edit.js:6
 msgid "Small / Red"
+msgstr ""
+
+#: src/blocks/cart-order-bump-add-button/index.js:21
+msgid "Add Button"
+msgstr ""
+
+#: src/blocks/cart-order-bump-cta/edit.js:11
+msgid "Call to action text..."
+msgstr ""
+
+#: src/blocks/cart-order-bump-cta/index.js:21
+msgid "CTA"
+msgstr ""
+
+#: src/blocks/cart-order-bump-description/edit.js:12
+msgid "Order bump description will appear here..."
+msgstr ""
+
+#: src/blocks/cart-order-bump-discount-badge/index.js:21
+msgid "Discount Badge"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/index.js:23
+msgid "Pagination"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/query-pagination-arrow-controls.js:17
+msgid "A decorative arrow for the next and previous page buttons."
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/query-pagination-arrow-controls.js:25
+msgctxt "Arrow option for pagination"
+msgid "Arrow"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/query-pagination-arrow-controls.js:29
+msgctxt "Arrow option for pagination"
+msgid "Chevron"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/query-pagination-arrow-size-control.js:10
+msgid "Arrow Size"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/query-pagination-arrow-size-control.js:15
+msgid "Size of the pagination arrows in pixels."
+msgstr ""
+
+#: src/blocks/cart-order-bump-scratch-amount/index.js:21
+msgid "Scratch Amount"
+msgstr ""
+
+#: src/blocks/cart-order-bumps/edit.js:30
+msgid "Hide added items"
+msgstr ""
+
+#: src/blocks/cart-order-bumps/edit.js:31
+msgid "When enabled, items already added to cart will be hidden from the recommendations."
+msgstr ""
+
+#: src/blocks/cart-order-bumps/template.js:36
+msgid "Suggested for you"
 msgstr ""
 
 #: src/blocks/cart/edit.js:122
@@ -24197,6 +24339,24 @@ msgstr ""
 msgid "Slide {{index}} of {{slidesLength}}."
 msgstr ""
 
+#: src/scripts/order-bumps/index.js:184
+msgid "Order bump"
+msgstr ""
+
+#. translators: %s: product name
+#: src/scripts/order-bumps/index.js:196
+msgid "%s added to cart"
+msgstr ""
+
+#. translators: %s: product name
+#: src/scripts/order-bumps/index.js:200
+msgid "Add %s to cart"
+msgstr ""
+
+#: src/scripts/order-bumps/index.js:320
+msgid "Item added to cart."
+msgstr ""
+
 #. translators: %s: product name
 #: src/scripts/product-page/index.js:354
 msgid "%s has been added to your cart."
@@ -24391,6 +24551,138 @@ msgstr ""
 #: src/blocks/cart-menu-button/block.json
 msgctxt "block title"
 msgid "Cart Toggle Icon"
+msgstr ""
+
+#: src/blocks/cart-order-bump-add-button/block.json
+msgctxt "block title"
+msgid "Order Bump Add Button"
+msgstr ""
+
+#: src/blocks/cart-order-bump-add-button/block.json
+msgctxt "block description"
+msgid "Button to add the order bump to cart."
+msgstr ""
+
+#: src/blocks/cart-order-bump-amount/block.json
+msgctxt "block title"
+msgid "Order Bump Amount"
+msgstr ""
+
+#: src/blocks/cart-order-bump-amount/block.json
+msgctxt "block description"
+msgid "Display the order bump price."
+msgstr ""
+
+#: src/blocks/cart-order-bump-amount/block.json
+#: src/blocks/cart-order-bump-cta/block.json
+#: src/blocks/cart-order-bump-description/block.json
+msgctxt "block keyword"
+msgid "order bump"
+msgstr ""
+
+#: src/blocks/cart-order-bump-cta/block.json
+msgctxt "block title"
+msgid "Order Bump CTA"
+msgstr ""
+
+#: src/blocks/cart-order-bump-cta/block.json
+msgctxt "block description"
+msgid "Display the order bump call to action text."
+msgstr ""
+
+#: src/blocks/cart-order-bump-description/block.json
+msgctxt "block title"
+msgid "Order Bump Description"
+msgstr ""
+
+#: src/blocks/cart-order-bump-description/block.json
+msgctxt "block description"
+msgid "Display the order bump description."
+msgstr ""
+
+#: src/blocks/cart-order-bump-discount-badge/block.json
+msgctxt "block title"
+msgid "Order Bump Discount Badge"
+msgstr ""
+
+#: src/blocks/cart-order-bump-discount-badge/block.json
+msgctxt "block description"
+msgid "Display the order bump discount badge."
+msgstr ""
+
+#: src/blocks/cart-order-bump-image/block.json
+msgctxt "block title"
+msgid "Order Bump Image"
+msgstr ""
+
+#: src/blocks/cart-order-bump-image/block.json
+msgctxt "block description"
+msgid "Display the order bump product image."
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination-next/block.json
+msgctxt "block title"
+msgid "Order Bump Next"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination-next/block.json
+msgctxt "block description"
+msgid "Navigate to the next page of order bumps."
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination-previous/block.json
+msgctxt "block title"
+msgid "Order Bump Previous"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination-previous/block.json
+msgctxt "block description"
+msgid "Navigate to the previous page of order bumps."
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/block.json
+msgctxt "block title"
+msgid "Order Bump Pagination"
+msgstr ""
+
+#: src/blocks/cart-order-bump-pagination/block.json
+msgctxt "block description"
+msgid "Pagination controls for order bumps."
+msgstr ""
+
+#: src/blocks/cart-order-bump-scratch-amount/block.json
+msgctxt "block title"
+msgid "Order Bump Scratch Amount"
+msgstr ""
+
+#: src/blocks/cart-order-bump-scratch-amount/block.json
+msgctxt "block description"
+msgid "Display the order bump original price (strikethrough)."
+msgstr ""
+
+#: src/blocks/cart-order-bump-template/block.json
+msgctxt "block title"
+msgid "Order Bump Template"
+msgstr ""
+
+#: src/blocks/cart-order-bump-template/block.json
+msgctxt "block description"
+msgid "Template for rendering each order bump item."
+msgstr ""
+
+#: src/blocks/cart-order-bump-title/block.json
+msgctxt "block title"
+msgid "Order Bump Title"
+msgstr ""
+
+#: src/blocks/cart-order-bump-title/block.json
+msgctxt "block description"
+msgid "Display the order bump product title."
+msgstr ""
+
+#: src/blocks/cart-order-bumps/block.json
+msgctxt "block description"
+msgid "Display recommended order bumps in the cart."
 msgstr ""
 
 #: src/blocks/cart-subtotal-amount/block.json
@@ -25640,8 +25932,8 @@ msgstr ""
 msgid "Returned"
 msgstr ""
 
-#: sc-order-submit.js:56
-#: sc-order-submit.js:59
+#: sc-order-submit.js:61
+#: sc-order-submit.js:67
 msgid "Press enter to purchase"
 msgstr ""
 

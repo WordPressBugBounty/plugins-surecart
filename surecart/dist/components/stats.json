@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-05T22:41:53",
+  "timestamp": "2026-02-12T17:40:01",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3302,8 +3302,6 @@
           "./dist/surecart/index.esm.js.map",
           "./dist/surecart/p-006d8492.entry.js",
           "./dist/surecart/p-006d8492.entry.js.map",
-          "./dist/surecart/p-011df22a.entry.js",
-          "./dist/surecart/p-011df22a.entry.js.map",
           "./dist/surecart/p-029e5a10.entry.js",
           "./dist/surecart/p-029e5a10.entry.js.map",
           "./dist/surecart/p-03631502.js",
@@ -3668,8 +3666,6 @@
           "./dist/surecart/p-ce0fbcda.entry.js.map",
           "./dist/surecart/p-d08485e4.entry.js",
           "./dist/surecart/p-d08485e4.entry.js.map",
-          "./dist/surecart/p-d2bae7a4.entry.js",
-          "./dist/surecart/p-d2bae7a4.entry.js.map",
           "./dist/surecart/p-d3366af3.js",
           "./dist/surecart/p-d3366af3.js.map",
           "./dist/surecart/p-d4e54db7.js",
@@ -3678,6 +3674,8 @@
           "./dist/surecart/p-d6b03310.entry.js.map",
           "./dist/surecart/p-d95394c7.entry.js",
           "./dist/surecart/p-d95394c7.entry.js.map",
+          "./dist/surecart/p-d974dac8.entry.js",
+          "./dist/surecart/p-d974dac8.entry.js.map",
           "./dist/surecart/p-dae7c2a5.entry.js",
           "./dist/surecart/p-dae7c2a5.entry.js.map",
           "./dist/surecart/p-db01f24f.entry.js",
@@ -3720,6 +3718,8 @@
           "./dist/surecart/p-ec182234.js.map",
           "./dist/surecart/p-eeca4a4c.entry.js",
           "./dist/surecart/p-eeca4a4c.entry.js.map",
+          "./dist/surecart/p-eecc77f0.entry.js",
+          "./dist/surecart/p-eecc77f0.entry.js.map",
           "./dist/surecart/p-eed3e8fc.entry.js",
           "./dist/surecart/p-eed3e8fc.entry.js.map",
           "./dist/surecart/p-f2b39678.entry.js",
@@ -3752,8 +3752,6 @@
           "./www/build/index.esm.js.map",
           "./www/build/p-006d8492.entry.js",
           "./www/build/p-006d8492.entry.js.map",
-          "./www/build/p-011df22a.entry.js",
-          "./www/build/p-011df22a.entry.js.map",
           "./www/build/p-029e5a10.entry.js",
           "./www/build/p-029e5a10.entry.js.map",
           "./www/build/p-03631502.js",
@@ -4118,8 +4116,6 @@
           "./www/build/p-ce0fbcda.entry.js.map",
           "./www/build/p-d08485e4.entry.js",
           "./www/build/p-d08485e4.entry.js.map",
-          "./www/build/p-d2bae7a4.entry.js",
-          "./www/build/p-d2bae7a4.entry.js.map",
           "./www/build/p-d3366af3.js",
           "./www/build/p-d3366af3.js.map",
           "./www/build/p-d4e54db7.js",
@@ -4128,6 +4124,8 @@
           "./www/build/p-d6b03310.entry.js.map",
           "./www/build/p-d95394c7.entry.js",
           "./www/build/p-d95394c7.entry.js.map",
+          "./www/build/p-d974dac8.entry.js",
+          "./www/build/p-d974dac8.entry.js.map",
           "./www/build/p-dae7c2a5.entry.js",
           "./www/build/p-dae7c2a5.entry.js.map",
           "./www/build/p-db01f24f.entry.js",
@@ -4170,6 +4168,8 @@
           "./www/build/p-ec182234.js.map",
           "./www/build/p-eeca4a4c.entry.js",
           "./www/build/p-eeca4a4c.entry.js.map",
+          "./www/build/p-eecc77f0.entry.js",
+          "./www/build/p-eecc77f0.entry.js.map",
           "./www/build/p-eed3e8fc.entry.js",
           "./www/build/p-eed3e8fc.entry.js.map",
           "./www/build/p-f2b39678.entry.js",
@@ -5172,8 +5172,8 @@
         "components": [
           "sc-order-submit"
         ],
-        "bundleId": "p-011df22a",
-        "fileName": "p-011df22a.entry.js",
+        "bundleId": "p-eecc77f0",
+        "fileName": "p-eecc77f0.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-6b5d827f.js",
@@ -5194,7 +5194,7 @@
           "p-95325ec5.js",
           "p-4df6e0c5.js"
         ],
-        "originalByteSize": 4739
+        "originalByteSize": 5109
       },
       {
         "key": "sc-order-summary.entry",
@@ -6662,8 +6662,8 @@
           "sc-radio-group",
           "sc-shipping-choices"
         ],
-        "bundleId": "p-d2bae7a4",
-        "fileName": "p-d2bae7a4.entry.js",
+        "bundleId": "p-d974dac8",
+        "fileName": "p-d974dac8.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-30eb50ff.js",
@@ -6687,7 +6687,7 @@
           "p-3f6362a4.js",
           "p-dd3464cd.js"
         ],
-        "originalByteSize": 65799
+        "originalByteSize": 66174
       },
       {
         "key": "sc-payment-method-choice.sc-payment-selected.entry",
@@ -8241,7 +8241,7 @@
           "store-627acec4.js",
           "price-af9f0dbf.js"
         ],
-        "originalByteSize": 4853
+        "originalByteSize": 5223
       },
       {
         "key": "sc-order-summary.entry",
@@ -9734,7 +9734,7 @@
           "currency-a0c9bff4.js",
           "fetch-bc141774.js"
         ],
-        "originalByteSize": 65938
+        "originalByteSize": 66313
       },
       {
         "key": "sc-payment-method-choice.sc-payment-selected.entry",
@@ -11290,7 +11290,7 @@
           "store-4a539aea.js",
           "price-5b1afcfe.js"
         ],
-        "originalByteSize": 5204
+        "originalByteSize": 5574
       },
       {
         "key": "sc-order-summary.entry",
@@ -12783,7 +12783,7 @@
           "currency-71fce0f0.js",
           "fetch-d374a251.js"
         ],
-        "originalByteSize": 67847
+        "originalByteSize": 68222
       },
       {
         "key": "sc-payment-method-choice.sc-payment-selected.entry",
@@ -35042,6 +35042,46 @@
           "docs": {
             "tags": [],
             "text": "Show the secure notice"
+          },
+          "internal": false
+        },
+        {
+          "name": "backgroundColor",
+          "type": "string",
+          "attribute": "background-color",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "''",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "internal": false
+        },
+        {
+          "name": "textColor",
+          "type": "string",
+          "attribute": "text-color",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "''",
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": ""
           },
           "internal": false
         }
@@ -69711,6 +69751,46 @@
                 "text": "Show the secure notice"
               },
               "internal": false
+            },
+            {
+              "name": "backgroundColor",
+              "type": "string",
+              "attribute": "background-color",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "''",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": ""
+              },
+              "internal": false
+            },
+            {
+              "name": "textColor",
+              "type": "string",
+              "attribute": "text-color",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "''",
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": ""
+              },
+              "internal": false
             }
           ],
           "virtualProperties": [],
@@ -69786,7 +69866,7 @@
           "hasVdomPropOrAttr": true,
           "hasVdomRef": false,
           "hasVdomRender": true,
-          "hasVdomStyle": false,
+          "hasVdomStyle": true,
           "hasVdomText": true,
           "hasWatchCallback": false,
           "isPlain": false,
@@ -69806,6 +69886,7 @@
             "full",
             "loading",
             "disabled",
+            "style",
             "name",
             "slot",
             "aria-hidden",

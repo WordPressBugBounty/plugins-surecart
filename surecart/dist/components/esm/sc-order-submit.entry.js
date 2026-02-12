@@ -41,6 +41,8 @@ const ScOrderSubmit = class {
         this.processor = undefined;
         this.secureNoticeText = undefined;
         this.secureNotice = true;
+        this.backgroundColor = '';
+        this.textColor = '';
     }
     cannotShipToLocation() {
         var _a, _b;
@@ -55,10 +57,16 @@ const ScOrderSubmit = class {
     render() {
         var _a;
         if (this.cannotShipToLocation() || checkoutIsLocked('OUT_OF_STOCK')) {
-            return (h("sc-button", { type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: true }, !!this.icon && h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (h("span", null, '\u00A0', h("sc-total", null))), h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))));
+            return (h("sc-button", { type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: true, style: {
+                    '--sc-color-primary-text': this.textColor,
+                    '--sc-color-primary-500': this.backgroundColor,
+                } }, !!this.icon && h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (h("span", null, '\u00A0', h("sc-total", null))), h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))));
         }
         const paymentRequired = (_a = state.checkout) === null || _a === void 0 ? void 0 : _a.payment_method_required;
-        return (h(Fragment, null, paymentRequired && state$1.id === 'paypal' && !(state$1 === null || state$1 === void 0 ? void 0 : state$1.method) && this.renderPayPalButton(['paypal']), paymentRequired && state$1.id === 'paypal' && (state$1 === null || state$1 === void 0 ? void 0 : state$1.method) === 'card' && this.renderPayPalButton(['card']), h("sc-button", { hidden: ['paypal', 'paypal-card'].includes(state$1.id) && paymentRequired, submit: true, type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: this.loading || this.paying || formBusy() || checkoutIsLocked() || this.cannotShipToLocation() }, !!this.icon && h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (h("span", null, '\u00A0', h("sc-total", null))), h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))), this.secureNotice && location.protocol === 'https:' && (h("div", { class: "sc-secure-notice" }, h("sc-secure-notice", null, this.secureNoticeText || wp.i18n.__('This is a secure, encrypted payment.', 'surecart'))))));
+        return (h(Fragment, null, paymentRequired && state$1.id === 'paypal' && !(state$1 === null || state$1 === void 0 ? void 0 : state$1.method) && this.renderPayPalButton(['paypal']), paymentRequired && state$1.id === 'paypal' && (state$1 === null || state$1 === void 0 ? void 0 : state$1.method) === 'card' && this.renderPayPalButton(['card']), h("sc-button", { hidden: ['paypal', 'paypal-card'].includes(state$1.id) && paymentRequired, submit: true, type: this.type, size: this.size, full: this.full, loading: this.loading || this.paying, disabled: this.loading || this.paying || formBusy() || checkoutIsLocked() || this.cannotShipToLocation(), style: {
+                '--sc-color-primary-text': this.textColor,
+                '--sc-color-primary-500': this.backgroundColor,
+            } }, !!this.icon && h("sc-icon", { name: this.icon, slot: "prefix", "aria-hidden": "true" }), h("slot", null, wp.i18n.__('Purchase', 'surecart')), this.showTotal && (h("span", null, '\u00A0', h("sc-total", null))), h("sc-visually-hidden", null, " ", wp.i18n.__('Press enter to purchase', 'surecart'))), this.secureNotice && location.protocol === 'https:' && (h("div", { class: "sc-secure-notice" }, h("sc-secure-notice", null, this.secureNoticeText || wp.i18n.__('This is a secure, encrypted payment.', 'surecart'))))));
     }
 };
 openWormhole(ScOrderSubmit, ['loading', 'paying', 'processors', 'processor', 'currencyCode', 'order'], false);

@@ -26,6 +26,8 @@ export declare class ScOrderSubmit {
     secureNoticeText: string;
     /** Show the secure notice */
     secureNotice: boolean;
+    backgroundColor: string;
+    textColor: string;
     cannotShipToLocation(): boolean;
     renderPayPalButton(buttons: any): any;
     render(): any;
