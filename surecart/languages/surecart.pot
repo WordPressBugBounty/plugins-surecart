@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-12T17:44:05+00:00\n"
+"POT-Creation-Date: 2026-02-16T17:25:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -11092,7 +11092,7 @@ msgid "Custom Call to action"
 msgstr ""
 
 #: bumps/modules/CTA.js:11
-#: bumps/modules/Description.js:11
+#: bumps/modules/Description.js:12
 #: upsell-funnels/modules/Funnel.js:79
 msgid "Optional"
 msgstr ""
@@ -11105,15 +11105,15 @@ msgstr ""
 msgid "Set a custom call to action for the bump."
 msgstr ""
 
-#: bumps/modules/Description.js:10
+#: bumps/modules/Description.js:11
 msgid "Add a description"
 msgstr ""
 
-#: bumps/modules/Description.js:17
+#: bumps/modules/Description.js:19
 msgid "Bump Description"
 msgstr ""
 
-#: bumps/modules/Description.js:18
+#: bumps/modules/Description.js:20
 msgid "Add a description that will get your customers excited about the offer."
 msgstr ""
 

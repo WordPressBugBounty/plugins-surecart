@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const watchers = require('./watchers-2ad3abd1.js');
+const watchers = require('./watchers-b4c5fc51.js');
 require('./index-bcdafe6e.js');
 
 const scPaymentMethodChoiceCss = ":host{display:block}:slotted([slot=\"summary\"]){line-height:1;display:flex;align-items:center;gap:0.5em}";

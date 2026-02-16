@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-8acc3c89.js');
 const getters$2 = require('./getters-a5fb26bc.js');
 const getters = require('./getters-ae03ef93.js');
-const watchers = require('./watchers-2ad3abd1.js');
+const watchers = require('./watchers-b4c5fc51.js');
 const mutations = require('./mutations-10a18c83.js');
 const consumer = require('./consumer-9f4ee0e3.js');
 const getters$1 = require('./getters-87b7ef91.js');

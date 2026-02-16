@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.6
 Tested up to: 6.9
-Stable tag: 3.20.0
+Stable tag: 3.20.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -316,8 +316,13 @@ Accessibility is a huge priority for the entire team building SureCart. As you k
 
 == Changelog ==
 
+= 3.20.1 - February 16th, 2026 =
+- Fix: Issue where razorpay was sometimes not getting selected at checkout if its the only processor.
+- Fix: Issue with order bump labels in admin being slighly misaligned.
+- Fix: Instant Checkout page requests could fail when strict type checks were applied to the server request URI.
+
 = 3.20.0 - February 12th, 2026 =
-- New: Order bumps can now be displayed in the slide-out cart.
+- New: Slide out cart order bumps.
 - New: Ability to reschedule existing subscription reminders when setting changes.
 - Improvement: Additional styling options for checkout submit button.
 
