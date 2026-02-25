@@ -175,6 +175,7 @@
     "components/ui/quantity-select/sc-quantity-select.js",
     "components/ui/radio/sc-radio.js",
     "components/ui/radio-group/sc-radio-group.js",
+    "components/ui/review-stars/sc-review-stars.js",
     "components/ui/rich-text/sc-rich-text.js",
     "components/ui/sc-avatar/sc-avatar.js",
     "components/ui/sc-button-group/sc-button-group.js",

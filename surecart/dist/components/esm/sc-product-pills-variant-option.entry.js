@@ -19,7 +19,7 @@ const ScProductPillsVariantOption = class {
         this.productId = undefined;
     }
     render() {
-        return (h("sc-form-control", { key: '090050c8c7f3466dd6e212884895d3cada6d33a1', label: this.label }, h("span", { key: 'e77fe8c017a7bcf90e04f1509b2dd5e7c7244395', slot: "label" }, this.label), h("div", { key: '46668cad85e2b72ab0320763ecc813f27e86bd09', class: "sc-product-pills-variant-option__wrapper" }, (state[this.productId].variant_options[this.optionNumber - 1].values || []).map(value => {
+        return (h("sc-form-control", { key: 'f1c78f2082f946c68b432c063907082cbe22d69f', label: this.label }, h("span", { key: 'fddfbc7e181a541a90384c5795be4244c21d21c7', slot: "label" }, this.label), h("div", { key: '572ea81173ead6249640aa77a833cfc81290f257', class: "sc-product-pills-variant-option__wrapper" }, (state[this.productId].variant_options[this.optionNumber - 1].values || []).map(value => {
             const isUnavailable = isOptionSoldOut(this.productId, this.optionNumber, value) || isOptionMissing(this.productId, this.optionNumber, value);
             return (h("sc-pill-option", { isUnavailable: isUnavailable, isSelected: state[this.productId].variantValues[`option_${this.optionNumber}`] === value, onClick: () => setProduct(this.productId, {
                     variantValues: {

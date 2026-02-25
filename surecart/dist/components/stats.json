@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-16T17:21:20",
+  "timestamp": "2026-02-25T18:42:34",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -7,13 +7,13 @@
   "app": {
     "namespace": "surecart",
     "fsNamespace": "surecart",
-    "components": 234,
-    "entries": 234,
-    "bundles": 4174,
+    "components": 235,
+    "entries": 235,
+    "bundles": 4187,
     "outputs": [
       {
         "name": "dist-collection",
-        "files": 1302,
+        "files": 1304,
         "generatedFiles": [
           "./dist/collection/components/context/consumer/sc-consumer.js",
           "./dist/collection/components/context/consumer/sc-consumer.js.map",
@@ -831,6 +831,8 @@
           "./dist/collection/components/ui/radio/test/sc-radio.e2e.js.map",
           "./dist/collection/components/ui/radio/test/sc-radio.spec.js",
           "./dist/collection/components/ui/radio/test/sc-radio.spec.js.map",
+          "./dist/collection/components/ui/review-stars/sc-review-stars.js",
+          "./dist/collection/components/ui/review-stars/sc-review-stars.js.map",
           "./dist/collection/components/ui/rich-text/sc-rich-text.js",
           "./dist/collection/components/ui/rich-text/sc-rich-text.js.map",
           "./dist/collection/components/ui/rich-text/test/sc-rich-text.e2e.js",
@@ -1321,7 +1323,7 @@
       },
       {
         "name": "dist-custom-elements",
-        "files": 1063,
+        "files": 1066,
         "generatedFiles": [
           "./dist/components/add-query-args.js",
           "./dist/components/add-query-args.js.map",
@@ -2132,6 +2134,9 @@
           "./dist/components/sc-recurring-price-choice-container.js.map",
           "./dist/components/sc-recurring-price-choice-container2.js",
           "./dist/components/sc-recurring-price-choice-container2.js.map",
+          "./dist/components/sc-review-stars.d.ts",
+          "./dist/components/sc-review-stars.js",
+          "./dist/components/sc-review-stars.js.map",
           "./dist/components/sc-rich-text.d.ts",
           "./dist/components/sc-rich-text.js",
           "./dist/components/sc-rich-text.js.map",
@@ -2390,7 +2395,7 @@
       },
       {
         "name": "dist-lazy",
-        "files": 1806,
+        "files": 1814,
         "generatedFiles": [
           "./dist/cjs/MockProcessor-48b83649.js",
           "./dist/cjs/MockProcessor-48b83649.js.map",
@@ -2738,6 +2743,8 @@
           "./dist/cjs/sc-razorpay-add-method.cjs.entry.js.map",
           "./dist/cjs/sc-recurring-price-choice-container.cjs.entry.js",
           "./dist/cjs/sc-recurring-price-choice-container.cjs.entry.js.map",
+          "./dist/cjs/sc-review-stars.cjs.entry.js",
+          "./dist/cjs/sc-review-stars.cjs.entry.js.map",
           "./dist/cjs/sc-rich-text.cjs.entry.js",
           "./dist/cjs/sc-rich-text.cjs.entry.js.map",
           "./dist/cjs/sc-skeleton.cjs.entry.js",
@@ -3190,6 +3197,8 @@
           "./dist/esm/sc-razorpay-add-method.entry.js.map",
           "./dist/esm/sc-recurring-price-choice-container.entry.js",
           "./dist/esm/sc-recurring-price-choice-container.entry.js.map",
+          "./dist/esm/sc-review-stars.entry.js",
+          "./dist/esm/sc-review-stars.entry.js.map",
           "./dist/esm/sc-rich-text.entry.js",
           "./dist/esm/sc-rich-text.entry.js.map",
           "./dist/esm/sc-skeleton.entry.js",
@@ -3302,80 +3311,92 @@
           "./dist/surecart/index.esm.js.map",
           "./dist/surecart/p-006d8492.entry.js",
           "./dist/surecart/p-006d8492.entry.js.map",
+          "./dist/surecart/p-02c84588.entry.js",
+          "./dist/surecart/p-02c84588.entry.js.map",
           "./dist/surecart/p-03631502.js",
           "./dist/surecart/p-03631502.js.map",
           "./dist/surecart/p-045f4836.entry.js",
           "./dist/surecart/p-045f4836.entry.js.map",
-          "./dist/surecart/p-0475a915.entry.js",
-          "./dist/surecart/p-0475a915.entry.js.map",
           "./dist/surecart/p-05966dcd.entry.js",
           "./dist/surecart/p-05966dcd.entry.js.map",
-          "./dist/surecart/p-05da9b6a.entry.js",
-          "./dist/surecart/p-05da9b6a.entry.js.map",
-          "./dist/surecart/p-077fa22a.entry.js",
-          "./dist/surecart/p-077fa22a.entry.js.map",
-          "./dist/surecart/p-078eaf4a.entry.js",
-          "./dist/surecart/p-078eaf4a.entry.js.map",
           "./dist/surecart/p-09784fff.entry.js",
           "./dist/surecart/p-09784fff.entry.js.map",
+          "./dist/surecart/p-0aa41f47.entry.js",
+          "./dist/surecart/p-0aa41f47.entry.js.map",
           "./dist/surecart/p-0b0c03f7.js",
           "./dist/surecart/p-0b0c03f7.js.map",
           "./dist/surecart/p-0be09836.entry.js",
           "./dist/surecart/p-0be09836.entry.js.map",
-          "./dist/surecart/p-0bf61316.entry.js",
-          "./dist/surecart/p-0bf61316.entry.js.map",
-          "./dist/surecart/p-138aed9a.entry.js",
-          "./dist/surecart/p-138aed9a.entry.js.map",
+          "./dist/surecart/p-0f11b177.entry.js",
+          "./dist/surecart/p-0f11b177.entry.js.map",
+          "./dist/surecart/p-105e2bf7.entry.js",
+          "./dist/surecart/p-105e2bf7.entry.js.map",
+          "./dist/surecart/p-12d7800a.entry.js",
+          "./dist/surecart/p-12d7800a.entry.js.map",
           "./dist/surecart/p-13f5e4e1.js",
           "./dist/surecart/p-13f5e4e1.js.map",
-          "./dist/surecart/p-1442f434.entry.js",
-          "./dist/surecart/p-1442f434.entry.js.map",
+          "./dist/surecart/p-15fd895d.entry.js",
+          "./dist/surecart/p-15fd895d.entry.js.map",
+          "./dist/surecart/p-1633c7d6.entry.js",
+          "./dist/surecart/p-1633c7d6.entry.js.map",
           "./dist/surecart/p-1712c78c.js",
           "./dist/surecart/p-1712c78c.js.map",
+          "./dist/surecart/p-1736e03e.entry.js",
+          "./dist/surecart/p-1736e03e.entry.js.map",
+          "./dist/surecart/p-19393aac.entry.js",
+          "./dist/surecart/p-19393aac.entry.js.map",
+          "./dist/surecart/p-19baab2a.entry.js",
+          "./dist/surecart/p-19baab2a.entry.js.map",
           "./dist/surecart/p-1b16d197.entry.js",
           "./dist/surecart/p-1b16d197.entry.js.map",
           "./dist/surecart/p-1b3e096e.entry.js",
           "./dist/surecart/p-1b3e096e.entry.js.map",
           "./dist/surecart/p-1b470883.js",
           "./dist/surecart/p-1b470883.js.map",
-          "./dist/surecart/p-1b81f876.entry.js",
-          "./dist/surecart/p-1b81f876.entry.js.map",
           "./dist/surecart/p-1b8b2e61.entry.js",
           "./dist/surecart/p-1b8b2e61.entry.js.map",
           "./dist/surecart/p-1f60f497.js",
           "./dist/surecart/p-1f60f497.js.map",
           "./dist/surecart/p-1fdec92b.entry.js",
           "./dist/surecart/p-1fdec92b.entry.js.map",
-          "./dist/surecart/p-20115b75.entry.js",
-          "./dist/surecart/p-20115b75.entry.js.map",
+          "./dist/surecart/p-2283b6e1.entry.js",
+          "./dist/surecart/p-2283b6e1.entry.js.map",
           "./dist/surecart/p-24b3b923.entry.js",
           "./dist/surecart/p-24b3b923.entry.js.map",
+          "./dist/surecart/p-25be51f2.entry.js",
+          "./dist/surecart/p-25be51f2.entry.js.map",
           "./dist/surecart/p-26567310.entry.js",
           "./dist/surecart/p-26567310.entry.js.map",
-          "./dist/surecart/p-27419e3f.entry.js",
-          "./dist/surecart/p-27419e3f.entry.js.map",
           "./dist/surecart/p-2aa46365.entry.js",
           "./dist/surecart/p-2aa46365.entry.js.map",
-          "./dist/surecart/p-30ead30d.entry.js",
-          "./dist/surecart/p-30ead30d.entry.js.map",
+          "./dist/surecart/p-2b239940.entry.js",
+          "./dist/surecart/p-2b239940.entry.js.map",
+          "./dist/surecart/p-2b79166a.entry.js",
+          "./dist/surecart/p-2b79166a.entry.js.map",
+          "./dist/surecart/p-2c44515e.entry.js",
+          "./dist/surecart/p-2c44515e.entry.js.map",
+          "./dist/surecart/p-2db52b12.entry.js",
+          "./dist/surecart/p-2db52b12.entry.js.map",
           "./dist/surecart/p-30eb50ff.js",
           "./dist/surecart/p-30eb50ff.js.map",
           "./dist/surecart/p-31bc569c.js",
           "./dist/surecart/p-31bc569c.js.map",
-          "./dist/surecart/p-330cd9c3.entry.js",
-          "./dist/surecart/p-330cd9c3.entry.js.map",
           "./dist/surecart/p-33927e65.entry.js",
           "./dist/surecart/p-33927e65.entry.js.map",
           "./dist/surecart/p-36e59877.entry.js",
           "./dist/surecart/p-36e59877.entry.js.map",
-          "./dist/surecart/p-3736713a.entry.js",
-          "./dist/surecart/p-3736713a.entry.js.map",
+          "./dist/surecart/p-37881cdc.entry.js",
+          "./dist/surecart/p-37881cdc.entry.js.map",
           "./dist/surecart/p-37b3c4b7.entry.js",
           "./dist/surecart/p-37b3c4b7.entry.js.map",
+          "./dist/surecart/p-386f6534.entry.js",
+          "./dist/surecart/p-386f6534.entry.js.map",
+          "./dist/surecart/p-38b19860.entry.js",
+          "./dist/surecart/p-38b19860.entry.js.map",
           "./dist/surecart/p-393cb717.js",
           "./dist/surecart/p-393cb717.js.map",
-          "./dist/surecart/p-39401ebe.entry.js",
-          "./dist/surecart/p-39401ebe.entry.js.map",
+          "./dist/surecart/p-3989a8d0.entry.js",
+          "./dist/surecart/p-3989a8d0.entry.js.map",
           "./dist/surecart/p-3aa9debd.js",
           "./dist/surecart/p-3aa9debd.js.map",
           "./dist/surecart/p-3cb507db.entry.js",
@@ -3384,10 +3405,6 @@
           "./dist/surecart/p-3d0e139c.entry.js.map",
           "./dist/surecart/p-3dc3bd12.js",
           "./dist/surecart/p-3dc3bd12.js.map",
-          "./dist/surecart/p-3e9a6a94.entry.js",
-          "./dist/surecart/p-3e9a6a94.entry.js.map",
-          "./dist/surecart/p-3f366d88.entry.js",
-          "./dist/surecart/p-3f366d88.entry.js.map",
           "./dist/surecart/p-3f6362a4.js",
           "./dist/surecart/p-3f6362a4.js.map",
           "./dist/surecart/p-3f9375ff.entry.js",
@@ -3396,16 +3413,22 @@
           "./dist/surecart/p-401e165e.js.map",
           "./dist/surecart/p-41487bf2.entry.js",
           "./dist/surecart/p-41487bf2.entry.js.map",
+          "./dist/surecart/p-4299ad94.entry.js",
+          "./dist/surecart/p-4299ad94.entry.js.map",
+          "./dist/surecart/p-42bec0de.entry.js",
+          "./dist/surecart/p-42bec0de.entry.js.map",
           "./dist/surecart/p-449324ed.js",
           "./dist/surecart/p-449324ed.js.map",
           "./dist/surecart/p-46584f2c.entry.js",
           "./dist/surecart/p-46584f2c.entry.js.map",
-          "./dist/surecart/p-467b90ca.entry.js",
-          "./dist/surecart/p-467b90ca.entry.js.map",
+          "./dist/surecart/p-472a929e.entry.js",
+          "./dist/surecart/p-472a929e.entry.js.map",
+          "./dist/surecart/p-475ed7de.entry.js",
+          "./dist/surecart/p-475ed7de.entry.js.map",
+          "./dist/surecart/p-4961d7a5.entry.js",
+          "./dist/surecart/p-4961d7a5.entry.js.map",
           "./dist/surecart/p-4c2d3d8c.entry.js",
           "./dist/surecart/p-4c2d3d8c.entry.js.map",
-          "./dist/surecart/p-4c7b712d.entry.js",
-          "./dist/surecart/p-4c7b712d.entry.js.map",
           "./dist/surecart/p-4cae87fc.js",
           "./dist/surecart/p-4cae87fc.js.map",
           "./dist/surecart/p-4d927407.entry.js",
@@ -3414,152 +3437,132 @@
           "./dist/surecart/p-4ddfb0f3.entry.js.map",
           "./dist/surecart/p-4df6e0c5.js",
           "./dist/surecart/p-4df6e0c5.js.map",
-          "./dist/surecart/p-4e4bd555.entry.js",
-          "./dist/surecart/p-4e4bd555.entry.js.map",
           "./dist/surecart/p-4ea36f1e.js",
           "./dist/surecart/p-4ea36f1e.js.map",
-          "./dist/surecart/p-4ec25555.entry.js",
-          "./dist/surecart/p-4ec25555.entry.js.map",
-          "./dist/surecart/p-50466fbf.entry.js",
-          "./dist/surecart/p-50466fbf.entry.js.map",
+          "./dist/surecart/p-511cd5e6.entry.js",
+          "./dist/surecart/p-511cd5e6.entry.js.map",
           "./dist/surecart/p-514e66d5.entry.js",
           "./dist/surecart/p-514e66d5.entry.js.map",
-          "./dist/surecart/p-529aa17d.entry.js",
-          "./dist/surecart/p-529aa17d.entry.js.map",
+          "./dist/surecart/p-515e89ae.entry.js",
+          "./dist/surecart/p-515e89ae.entry.js.map",
+          "./dist/surecart/p-532620df.entry.js",
+          "./dist/surecart/p-532620df.entry.js.map",
           "./dist/surecart/p-53e7f7d7.js",
           "./dist/surecart/p-53e7f7d7.js.map",
-          "./dist/surecart/p-55d7f17f.entry.js",
-          "./dist/surecart/p-55d7f17f.entry.js.map",
-          "./dist/surecart/p-564d223c.entry.js",
-          "./dist/surecart/p-564d223c.entry.js.map",
+          "./dist/surecart/p-5486974c.entry.js",
+          "./dist/surecart/p-5486974c.entry.js.map",
           "./dist/surecart/p-566c9487.js",
           "./dist/surecart/p-566c9487.js.map",
-          "./dist/surecart/p-573ef117.entry.js",
-          "./dist/surecart/p-573ef117.entry.js.map",
-          "./dist/surecart/p-582bb234.entry.js",
-          "./dist/surecart/p-582bb234.entry.js.map",
-          "./dist/surecart/p-58916c02.entry.js",
-          "./dist/surecart/p-58916c02.entry.js.map",
           "./dist/surecart/p-5a8e136a.js",
           "./dist/surecart/p-5a8e136a.js.map",
-          "./dist/surecart/p-5bc10ba3.entry.js",
-          "./dist/surecart/p-5bc10ba3.entry.js.map",
           "./dist/surecart/p-5c1a03e5.js",
           "./dist/surecart/p-5c1a03e5.js.map",
-          "./dist/surecart/p-5c565948.entry.js",
-          "./dist/surecart/p-5c565948.entry.js.map",
-          "./dist/surecart/p-5e4b45b9.entry.js",
-          "./dist/surecart/p-5e4b45b9.entry.js.map",
-          "./dist/surecart/p-5e997b8d.entry.js",
-          "./dist/surecart/p-5e997b8d.entry.js.map",
+          "./dist/surecart/p-5c6185b1.entry.js",
+          "./dist/surecart/p-5c6185b1.entry.js.map",
           "./dist/surecart/p-624938e7.js",
           "./dist/surecart/p-624938e7.js.map",
-          "./dist/surecart/p-65ae328c.entry.js",
-          "./dist/surecart/p-65ae328c.entry.js.map",
+          "./dist/surecart/p-66df5bda.entry.js",
+          "./dist/surecart/p-66df5bda.entry.js.map",
+          "./dist/surecart/p-66e66a8c.entry.js",
+          "./dist/surecart/p-66e66a8c.entry.js.map",
+          "./dist/surecart/p-67003c8d.entry.js",
+          "./dist/surecart/p-67003c8d.entry.js.map",
           "./dist/surecart/p-679f1789.entry.js",
           "./dist/surecart/p-679f1789.entry.js.map",
-          "./dist/surecart/p-67c068bc.entry.js",
-          "./dist/surecart/p-67c068bc.entry.js.map",
           "./dist/surecart/p-6869509f.entry.js",
           "./dist/surecart/p-6869509f.entry.js.map",
           "./dist/surecart/p-6a753ae1.js",
           "./dist/surecart/p-6a753ae1.js.map",
           "./dist/surecart/p-6b5d827f.js",
           "./dist/surecart/p-6b5d827f.js.map",
-          "./dist/surecart/p-6c97ef19.entry.js",
-          "./dist/surecart/p-6c97ef19.entry.js.map",
           "./dist/surecart/p-6cbad57b.entry.js",
           "./dist/surecart/p-6cbad57b.entry.js.map",
-          "./dist/surecart/p-6cfbdb8d.entry.js",
-          "./dist/surecart/p-6cfbdb8d.entry.js.map",
-          "./dist/surecart/p-6e654891.entry.js",
-          "./dist/surecart/p-6e654891.entry.js.map",
-          "./dist/surecart/p-6e8a01bc.entry.js",
-          "./dist/surecart/p-6e8a01bc.entry.js.map",
-          "./dist/surecart/p-6ec84675.entry.js",
-          "./dist/surecart/p-6ec84675.entry.js.map",
+          "./dist/surecart/p-6d551bf4.entry.js",
+          "./dist/surecart/p-6d551bf4.entry.js.map",
           "./dist/surecart/p-6ed9d6fa.entry.js",
           "./dist/surecart/p-6ed9d6fa.entry.js.map",
-          "./dist/surecart/p-70345432.entry.js",
-          "./dist/surecart/p-70345432.entry.js.map",
           "./dist/surecart/p-70dd3f7c.entry.js",
           "./dist/surecart/p-70dd3f7c.entry.js.map",
-          "./dist/surecart/p-7115c10b.entry.js",
-          "./dist/surecart/p-7115c10b.entry.js.map",
-          "./dist/surecart/p-71f5a965.entry.js",
-          "./dist/surecart/p-71f5a965.entry.js.map",
           "./dist/surecart/p-7248afd9.entry.js",
           "./dist/surecart/p-7248afd9.entry.js.map",
+          "./dist/surecart/p-748a495e.entry.js",
+          "./dist/surecart/p-748a495e.entry.js.map",
+          "./dist/surecart/p-751fc85f.entry.js",
+          "./dist/surecart/p-751fc85f.entry.js.map",
+          "./dist/surecart/p-7548fe70.entry.js",
+          "./dist/surecart/p-7548fe70.entry.js.map",
           "./dist/surecart/p-75555783.entry.js",
           "./dist/surecart/p-75555783.entry.js.map",
+          "./dist/surecart/p-75dc07f1.entry.js",
+          "./dist/surecart/p-75dc07f1.entry.js.map",
           "./dist/surecart/p-75e76c8c.js",
           "./dist/surecart/p-75e76c8c.js.map",
-          "./dist/surecart/p-77877262.entry.js",
-          "./dist/surecart/p-77877262.entry.js.map",
-          "./dist/surecart/p-783dadc5.entry.js",
-          "./dist/surecart/p-783dadc5.entry.js.map",
+          "./dist/surecart/p-7755e88d.entry.js",
+          "./dist/surecart/p-7755e88d.entry.js.map",
+          "./dist/surecart/p-77febaf7.entry.js",
+          "./dist/surecart/p-77febaf7.entry.js.map",
           "./dist/surecart/p-78413156.entry.js",
           "./dist/surecart/p-78413156.entry.js.map",
-          "./dist/surecart/p-79b0926f.entry.js",
-          "./dist/surecart/p-79b0926f.entry.js.map",
-          "./dist/surecart/p-7be55ea0.entry.js",
-          "./dist/surecart/p-7be55ea0.entry.js.map",
+          "./dist/surecart/p-7b75b1dd.entry.js",
+          "./dist/surecart/p-7b75b1dd.entry.js.map",
           "./dist/surecart/p-7bfd7247.entry.js",
           "./dist/surecart/p-7bfd7247.entry.js.map",
-          "./dist/surecart/p-7c291f1b.entry.js",
-          "./dist/surecart/p-7c291f1b.entry.js.map",
-          "./dist/surecart/p-7dba43df.entry.js",
-          "./dist/surecart/p-7dba43df.entry.js.map",
+          "./dist/surecart/p-7ef3d567.entry.js",
+          "./dist/surecart/p-7ef3d567.entry.js.map",
           "./dist/surecart/p-7f01a36e.js",
           "./dist/surecart/p-7f01a36e.js.map",
-          "./dist/surecart/p-80871c3f.entry.js",
-          "./dist/surecart/p-80871c3f.entry.js.map",
-          "./dist/surecart/p-80fa25eb.entry.js",
-          "./dist/surecart/p-80fa25eb.entry.js.map",
+          "./dist/surecart/p-80f7eb0f.entry.js",
+          "./dist/surecart/p-80f7eb0f.entry.js.map",
           "./dist/surecart/p-81ab6dc1.entry.js",
           "./dist/surecart/p-81ab6dc1.entry.js.map",
-          "./dist/surecart/p-82e13871.entry.js",
-          "./dist/surecart/p-82e13871.entry.js.map",
           "./dist/surecart/p-830ab1a3.js",
           "./dist/surecart/p-830ab1a3.js.map",
-          "./dist/surecart/p-83136592.entry.js",
-          "./dist/surecart/p-83136592.entry.js.map",
           "./dist/surecart/p-83c40139.entry.js",
           "./dist/surecart/p-83c40139.entry.js.map",
-          "./dist/surecart/p-83dc2eb7.entry.js",
-          "./dist/surecart/p-83dc2eb7.entry.js.map",
+          "./dist/surecart/p-840f1b74.entry.js",
+          "./dist/surecart/p-840f1b74.entry.js.map",
           "./dist/surecart/p-8432d0d2.entry.js",
           "./dist/surecart/p-8432d0d2.entry.js.map",
+          "./dist/surecart/p-84410cdf.entry.js",
+          "./dist/surecart/p-84410cdf.entry.js.map",
           "./dist/surecart/p-863940e9.js",
           "./dist/surecart/p-863940e9.js.map",
           "./dist/surecart/p-86fd1a31.js",
           "./dist/surecart/p-86fd1a31.js.map",
-          "./dist/surecart/p-87c2b7db.entry.js",
-          "./dist/surecart/p-87c2b7db.entry.js.map",
+          "./dist/surecart/p-89319175.entry.js",
+          "./dist/surecart/p-89319175.entry.js.map",
           "./dist/surecart/p-894c7006.js",
           "./dist/surecart/p-894c7006.js.map",
-          "./dist/surecart/p-8aeb7067.entry.js",
-          "./dist/surecart/p-8aeb7067.entry.js.map",
+          "./dist/surecart/p-897491c7.entry.js",
+          "./dist/surecart/p-897491c7.entry.js.map",
+          "./dist/surecart/p-8a52f4ba.entry.js",
+          "./dist/surecart/p-8a52f4ba.entry.js.map",
           "./dist/surecart/p-8b323bfb.js",
           "./dist/surecart/p-8b323bfb.js.map",
+          "./dist/surecart/p-8c0a78df.entry.js",
+          "./dist/surecart/p-8c0a78df.entry.js.map",
           "./dist/surecart/p-8c8c3326.js",
           "./dist/surecart/p-8c8c3326.js.map",
-          "./dist/surecart/p-8cf3be6f.entry.js",
-          "./dist/surecart/p-8cf3be6f.entry.js.map",
+          "./dist/surecart/p-8edeabca.entry.js",
+          "./dist/surecart/p-8edeabca.entry.js.map",
+          "./dist/surecart/p-8ee4af08.entry.js",
+          "./dist/surecart/p-8ee4af08.entry.js.map",
           "./dist/surecart/p-8fd91150.entry.js",
           "./dist/surecart/p-8fd91150.entry.js.map",
-          "./dist/surecart/p-904e59e3.entry.js",
-          "./dist/surecart/p-904e59e3.entry.js.map",
           "./dist/surecart/p-9110e374.entry.js",
           "./dist/surecart/p-9110e374.entry.js.map",
+          "./dist/surecart/p-92048451.entry.js",
+          "./dist/surecart/p-92048451.entry.js.map",
+          "./dist/surecart/p-9228f00a.entry.js",
+          "./dist/surecart/p-9228f00a.entry.js.map",
           "./dist/surecart/p-93127aa7.js",
           "./dist/surecart/p-93127aa7.js.map",
-          "./dist/surecart/p-933b06cc.entry.js",
-          "./dist/surecart/p-933b06cc.entry.js.map",
+          "./dist/surecart/p-933bac26.entry.js",
+          "./dist/surecart/p-933bac26.entry.js.map",
+          "./dist/surecart/p-93cc82c4.entry.js",
+          "./dist/surecart/p-93cc82c4.entry.js.map",
           "./dist/surecart/p-93cc92c1.entry.js",
           "./dist/surecart/p-93cc92c1.entry.js.map",
-          "./dist/surecart/p-94e69282.entry.js",
-          "./dist/surecart/p-94e69282.entry.js.map",
           "./dist/surecart/p-94f536d6.js",
           "./dist/surecart/p-94f536d6.js.map",
           "./dist/surecart/p-95325ec5.js",
@@ -3568,130 +3571,122 @@
           "./dist/surecart/p-95ed2184.entry.js.map",
           "./dist/surecart/p-961fbbca.entry.js",
           "./dist/surecart/p-961fbbca.entry.js.map",
-          "./dist/surecart/p-971a38b4.entry.js",
-          "./dist/surecart/p-971a38b4.entry.js.map",
-          "./dist/surecart/p-98327e6c.entry.js",
-          "./dist/surecart/p-98327e6c.entry.js.map",
-          "./dist/surecart/p-983770a1.entry.js",
-          "./dist/surecart/p-983770a1.entry.js.map",
-          "./dist/surecart/p-988ceefc.entry.js",
-          "./dist/surecart/p-988ceefc.entry.js.map",
           "./dist/surecart/p-9a45e867.entry.js",
           "./dist/surecart/p-9a45e867.entry.js.map",
-          "./dist/surecart/p-9b431c4e.entry.js",
-          "./dist/surecart/p-9b431c4e.entry.js.map",
-          "./dist/surecart/p-9bafbcba.entry.js",
-          "./dist/surecart/p-9bafbcba.entry.js.map",
+          "./dist/surecart/p-9ae26f94.entry.js",
+          "./dist/surecart/p-9ae26f94.entry.js.map",
+          "./dist/surecart/p-9ae606a8.entry.js",
+          "./dist/surecart/p-9ae606a8.entry.js.map",
           "./dist/surecart/p-9d1e99a8.entry.js",
           "./dist/surecart/p-9d1e99a8.entry.js.map",
           "./dist/surecart/p-9dbc54d6.js",
           "./dist/surecart/p-9dbc54d6.js.map",
           "./dist/surecart/p-9ef0f73f.js",
           "./dist/surecart/p-9ef0f73f.js.map",
-          "./dist/surecart/p-a05b3e5b.entry.js",
-          "./dist/surecart/p-a05b3e5b.entry.js.map",
-          "./dist/surecart/p-a1ac4a88.entry.js",
-          "./dist/surecart/p-a1ac4a88.entry.js.map",
-          "./dist/surecart/p-a31e41bd.entry.js",
-          "./dist/surecart/p-a31e41bd.entry.js.map",
-          "./dist/surecart/p-a4f86a96.entry.js",
-          "./dist/surecart/p-a4f86a96.entry.js.map",
+          "./dist/surecart/p-a15f20da.entry.js",
+          "./dist/surecart/p-a15f20da.entry.js.map",
+          "./dist/surecart/p-a21df730.entry.js",
+          "./dist/surecart/p-a21df730.entry.js.map",
+          "./dist/surecart/p-a2cada1f.entry.js",
+          "./dist/surecart/p-a2cada1f.entry.js.map",
+          "./dist/surecart/p-a2fc9477.entry.js",
+          "./dist/surecart/p-a2fc9477.entry.js.map",
+          "./dist/surecart/p-a3db82cc.entry.js",
+          "./dist/surecart/p-a3db82cc.entry.js.map",
+          "./dist/surecart/p-a44d93cf.entry.js",
+          "./dist/surecart/p-a44d93cf.entry.js.map",
           "./dist/surecart/p-a6e2e22f.entry.js",
           "./dist/surecart/p-a6e2e22f.entry.js.map",
-          "./dist/surecart/p-a8b87b85.entry.js",
-          "./dist/surecart/p-a8b87b85.entry.js.map",
+          "./dist/surecart/p-a6ec5e65.entry.js",
+          "./dist/surecart/p-a6ec5e65.entry.js.map",
+          "./dist/surecart/p-a6f788fe.entry.js",
+          "./dist/surecart/p-a6f788fe.entry.js.map",
+          "./dist/surecart/p-ab922813.entry.js",
+          "./dist/surecart/p-ab922813.entry.js.map",
+          "./dist/surecart/p-abfc51bd.entry.js",
+          "./dist/surecart/p-abfc51bd.entry.js.map",
           "./dist/surecart/p-ac5c366f.entry.js",
           "./dist/surecart/p-ac5c366f.entry.js.map",
-          "./dist/surecart/p-ad3d79da.entry.js",
-          "./dist/surecart/p-ad3d79da.entry.js.map",
-          "./dist/surecart/p-aeef0d92.entry.js",
-          "./dist/surecart/p-aeef0d92.entry.js.map",
-          "./dist/surecart/p-afeab6cb.entry.js",
-          "./dist/surecart/p-afeab6cb.entry.js.map",
-          "./dist/surecart/p-b0714dfd.entry.js",
-          "./dist/surecart/p-b0714dfd.entry.js.map",
           "./dist/surecart/p-b0d8cd6e.js",
           "./dist/surecart/p-b0d8cd6e.js.map",
           "./dist/surecart/p-b12b08e4.entry.js",
           "./dist/surecart/p-b12b08e4.entry.js.map",
+          "./dist/surecart/p-b2b996b3.entry.js",
+          "./dist/surecart/p-b2b996b3.entry.js.map",
           "./dist/surecart/p-b452afa6.js",
           "./dist/surecart/p-b452afa6.js.map",
-          "./dist/surecart/p-b5d28b87.entry.js",
-          "./dist/surecart/p-b5d28b87.entry.js.map",
           "./dist/surecart/p-b6eec6a7.entry.js",
           "./dist/surecart/p-b6eec6a7.entry.js.map",
           "./dist/surecart/p-b719a497.js",
           "./dist/surecart/p-b719a497.js.map",
-          "./dist/surecart/p-b7b8d2ba.entry.js",
-          "./dist/surecart/p-b7b8d2ba.entry.js.map",
-          "./dist/surecart/p-b9b268f1.entry.js",
-          "./dist/surecart/p-b9b268f1.entry.js.map",
+          "./dist/surecart/p-b7c5668d.entry.js",
+          "./dist/surecart/p-b7c5668d.entry.js.map",
           "./dist/surecart/p-ba9692b4.entry.js",
           "./dist/surecart/p-ba9692b4.entry.js.map",
           "./dist/surecart/p-babb004b.entry.js",
           "./dist/surecart/p-babb004b.entry.js.map",
-          "./dist/surecart/p-babf8c9b.entry.js",
-          "./dist/surecart/p-babf8c9b.entry.js.map",
           "./dist/surecart/p-bad5a365.entry.js",
           "./dist/surecart/p-bad5a365.entry.js.map",
-          "./dist/surecart/p-baeef550.entry.js",
-          "./dist/surecart/p-baeef550.entry.js.map",
-          "./dist/surecart/p-bc6cea74.entry.js",
-          "./dist/surecart/p-bc6cea74.entry.js.map",
+          "./dist/surecart/p-bb621151.entry.js",
+          "./dist/surecart/p-bb621151.entry.js.map",
           "./dist/surecart/p-bc8d627e.js",
           "./dist/surecart/p-bc8d627e.js.map",
-          "./dist/surecart/p-bd13c9c8.entry.js",
-          "./dist/surecart/p-bd13c9c8.entry.js.map",
+          "./dist/surecart/p-be097317.entry.js",
+          "./dist/surecart/p-be097317.entry.js.map",
           "./dist/surecart/p-be1d8313.entry.js",
           "./dist/surecart/p-be1d8313.entry.js.map",
-          "./dist/surecart/p-be22c938.entry.js",
-          "./dist/surecart/p-be22c938.entry.js.map",
-          "./dist/surecart/p-be27d199.entry.js",
-          "./dist/surecart/p-be27d199.entry.js.map",
+          "./dist/surecart/p-be6e20a0.entry.js",
+          "./dist/surecart/p-be6e20a0.entry.js.map",
           "./dist/surecart/p-be89c866.entry.js",
           "./dist/surecart/p-be89c866.entry.js.map",
-          "./dist/surecart/p-c069e96c.entry.js",
-          "./dist/surecart/p-c069e96c.entry.js.map",
+          "./dist/surecart/p-bfc82a07.entry.js",
+          "./dist/surecart/p-bfc82a07.entry.js.map",
           "./dist/surecart/p-c0a8ca8d.js",
           "./dist/surecart/p-c0a8ca8d.js.map",
-          "./dist/surecart/p-c0b7a3c0.entry.js",
-          "./dist/surecart/p-c0b7a3c0.entry.js.map",
-          "./dist/surecart/p-c17e39d0.entry.js",
-          "./dist/surecart/p-c17e39d0.entry.js.map",
-          "./dist/surecart/p-c1acd951.entry.js",
-          "./dist/surecart/p-c1acd951.entry.js.map",
           "./dist/surecart/p-c3bb021f.entry.js",
           "./dist/surecart/p-c3bb021f.entry.js.map",
+          "./dist/surecart/p-c4b88a1a.entry.js",
+          "./dist/surecart/p-c4b88a1a.entry.js.map",
           "./dist/surecart/p-c78cd354.entry.js",
           "./dist/surecart/p-c78cd354.entry.js.map",
+          "./dist/surecart/p-c88060ea.entry.js",
+          "./dist/surecart/p-c88060ea.entry.js.map",
           "./dist/surecart/p-c9d96372.entry.js",
           "./dist/surecart/p-c9d96372.entry.js.map",
+          "./dist/surecart/p-c9e3d1ea.entry.js",
+          "./dist/surecart/p-c9e3d1ea.entry.js.map",
+          "./dist/surecart/p-cc799fc0.entry.js",
+          "./dist/surecart/p-cc799fc0.entry.js.map",
+          "./dist/surecart/p-cda193cc.entry.js",
+          "./dist/surecart/p-cda193cc.entry.js.map",
           "./dist/surecart/p-ce0fbcda.entry.js",
           "./dist/surecart/p-ce0fbcda.entry.js.map",
-          "./dist/surecart/p-d08485e4.entry.js",
-          "./dist/surecart/p-d08485e4.entry.js.map",
+          "./dist/surecart/p-ce2f1f45.entry.js",
+          "./dist/surecart/p-ce2f1f45.entry.js.map",
+          "./dist/surecart/p-d17918aa.entry.js",
+          "./dist/surecart/p-d17918aa.entry.js.map",
           "./dist/surecart/p-d20ed943.entry.js",
           "./dist/surecart/p-d20ed943.entry.js.map",
+          "./dist/surecart/p-d2ad27c7.entry.js",
+          "./dist/surecart/p-d2ad27c7.entry.js.map",
           "./dist/surecart/p-d3366af3.js",
           "./dist/surecart/p-d3366af3.js.map",
           "./dist/surecart/p-d4e54db7.js",
           "./dist/surecart/p-d4e54db7.js.map",
-          "./dist/surecart/p-d6b03310.entry.js",
-          "./dist/surecart/p-d6b03310.entry.js.map",
-          "./dist/surecart/p-d95394c7.entry.js",
-          "./dist/surecart/p-d95394c7.entry.js.map",
-          "./dist/surecart/p-d974dac8.entry.js",
-          "./dist/surecart/p-d974dac8.entry.js.map",
-          "./dist/surecart/p-db01f24f.entry.js",
-          "./dist/surecart/p-db01f24f.entry.js.map",
+          "./dist/surecart/p-d585fad3.entry.js",
+          "./dist/surecart/p-d585fad3.entry.js.map",
+          "./dist/surecart/p-d5a837be.entry.js",
+          "./dist/surecart/p-d5a837be.entry.js.map",
+          "./dist/surecart/p-daf2cb98.entry.js",
+          "./dist/surecart/p-daf2cb98.entry.js.map",
           "./dist/surecart/p-db159239.entry.js",
           "./dist/surecart/p-db159239.entry.js.map",
-          "./dist/surecart/p-db5461a9.entry.js",
-          "./dist/surecart/p-db5461a9.entry.js.map",
+          "./dist/surecart/p-db4fb618.entry.js",
+          "./dist/surecart/p-db4fb618.entry.js.map",
           "./dist/surecart/p-dd3464cd.js",
           "./dist/surecart/p-dd3464cd.js.map",
-          "./dist/surecart/p-de0679ba.entry.js",
-          "./dist/surecart/p-de0679ba.entry.js.map",
+          "./dist/surecart/p-de8491fd.entry.js",
+          "./dist/surecart/p-de8491fd.entry.js.map",
           "./dist/surecart/p-df0fc918.entry.js",
           "./dist/surecart/p-df0fc918.entry.js.map",
           "./dist/surecart/p-e0484364.entry.js",
@@ -3702,38 +3697,50 @@
           "./dist/surecart/p-e1ed459e.entry.js.map",
           "./dist/surecart/p-e2392195.entry.js",
           "./dist/surecart/p-e2392195.entry.js.map",
-          "./dist/surecart/p-e2c75222.entry.js",
-          "./dist/surecart/p-e2c75222.entry.js.map",
+          "./dist/surecart/p-e4d8fba7.entry.js",
+          "./dist/surecart/p-e4d8fba7.entry.js.map",
+          "./dist/surecart/p-e578d17a.entry.js",
+          "./dist/surecart/p-e578d17a.entry.js.map",
+          "./dist/surecart/p-e629ffb4.entry.js",
+          "./dist/surecart/p-e629ffb4.entry.js.map",
           "./dist/surecart/p-e62a377c.entry.js",
           "./dist/surecart/p-e62a377c.entry.js.map",
           "./dist/surecart/p-e677365e.js",
           "./dist/surecart/p-e677365e.js.map",
           "./dist/surecart/p-e885ba5f.js",
           "./dist/surecart/p-e885ba5f.js.map",
-          "./dist/surecart/p-e896dd0d.entry.js",
-          "./dist/surecart/p-e896dd0d.entry.js.map",
-          "./dist/surecart/p-e91c4a5e.entry.js",
-          "./dist/surecart/p-e91c4a5e.entry.js.map",
+          "./dist/surecart/p-e92a1084.entry.js",
+          "./dist/surecart/p-e92a1084.entry.js.map",
           "./dist/surecart/p-e97fde0a.js",
           "./dist/surecart/p-e97fde0a.js.map",
-          "./dist/surecart/p-ea51031a.entry.js",
-          "./dist/surecart/p-ea51031a.entry.js.map",
+          "./dist/surecart/p-eaa64be5.entry.js",
+          "./dist/surecart/p-eaa64be5.entry.js.map",
           "./dist/surecart/p-ec182234.js",
           "./dist/surecart/p-ec182234.js.map",
+          "./dist/surecart/p-ede05d0e.entry.js",
+          "./dist/surecart/p-ede05d0e.entry.js.map",
           "./dist/surecart/p-eeca4a4c.entry.js",
           "./dist/surecart/p-eeca4a4c.entry.js.map",
-          "./dist/surecart/p-eed3e8fc.entry.js",
-          "./dist/surecart/p-eed3e8fc.entry.js.map",
-          "./dist/surecart/p-f2b39678.entry.js",
-          "./dist/surecart/p-f2b39678.entry.js.map",
-          "./dist/surecart/p-f4543de8.entry.js",
-          "./dist/surecart/p-f4543de8.entry.js.map",
-          "./dist/surecart/p-f4e5a4f2.entry.js",
-          "./dist/surecart/p-f4e5a4f2.entry.js.map",
+          "./dist/surecart/p-f04c9079.entry.js",
+          "./dist/surecart/p-f04c9079.entry.js.map",
+          "./dist/surecart/p-f207a6ca.entry.js",
+          "./dist/surecart/p-f207a6ca.entry.js.map",
+          "./dist/surecart/p-f26f20e7.entry.js",
+          "./dist/surecart/p-f26f20e7.entry.js.map",
+          "./dist/surecart/p-f2bd8523.entry.js",
+          "./dist/surecart/p-f2bd8523.entry.js.map",
+          "./dist/surecart/p-f4966b35.entry.js",
+          "./dist/surecart/p-f4966b35.entry.js.map",
+          "./dist/surecart/p-f4c5c3b8.entry.js",
+          "./dist/surecart/p-f4c5c3b8.entry.js.map",
+          "./dist/surecart/p-f6323747.entry.js",
+          "./dist/surecart/p-f6323747.entry.js.map",
           "./dist/surecart/p-f6654b1f.entry.js",
           "./dist/surecart/p-f6654b1f.entry.js.map",
-          "./dist/surecart/p-f8776a67.entry.js",
-          "./dist/surecart/p-f8776a67.entry.js.map",
+          "./dist/surecart/p-f738a693.entry.js",
+          "./dist/surecart/p-f738a693.entry.js.map",
+          "./dist/surecart/p-fb17fe68.entry.js",
+          "./dist/surecart/p-fb17fe68.entry.js.map",
           "./dist/surecart/p-fbb7c2c0.entry.js",
           "./dist/surecart/p-fbb7c2c0.entry.js.map",
           "./dist/surecart/p-fbff2671.entry.js",
@@ -3744,88 +3751,104 @@
           "./dist/surecart/p-fe35febc.entry.js.map",
           "./dist/surecart/p-ff10bfbf.js",
           "./dist/surecart/p-ff10bfbf.js.map",
+          "./dist/surecart/p-ff35b4ca.entry.js",
+          "./dist/surecart/p-ff35b4ca.entry.js.map",
           "./dist/surecart/p-ff5adeb3.entry.js",
           "./dist/surecart/p-ff5adeb3.entry.js.map",
+          "./dist/surecart/p-fffc834c.entry.js",
+          "./dist/surecart/p-fffc834c.entry.js.map",
           "./dist/surecart/surecart.esm.js",
           "./dist/surecart/surecart.esm.js.map",
           "./www/build/index.esm.js",
           "./www/build/index.esm.js.map",
           "./www/build/p-006d8492.entry.js",
           "./www/build/p-006d8492.entry.js.map",
+          "./www/build/p-02c84588.entry.js",
+          "./www/build/p-02c84588.entry.js.map",
           "./www/build/p-03631502.js",
           "./www/build/p-03631502.js.map",
           "./www/build/p-045f4836.entry.js",
           "./www/build/p-045f4836.entry.js.map",
-          "./www/build/p-0475a915.entry.js",
-          "./www/build/p-0475a915.entry.js.map",
           "./www/build/p-05966dcd.entry.js",
           "./www/build/p-05966dcd.entry.js.map",
-          "./www/build/p-05da9b6a.entry.js",
-          "./www/build/p-05da9b6a.entry.js.map",
-          "./www/build/p-077fa22a.entry.js",
-          "./www/build/p-077fa22a.entry.js.map",
-          "./www/build/p-078eaf4a.entry.js",
-          "./www/build/p-078eaf4a.entry.js.map",
           "./www/build/p-09784fff.entry.js",
           "./www/build/p-09784fff.entry.js.map",
+          "./www/build/p-0aa41f47.entry.js",
+          "./www/build/p-0aa41f47.entry.js.map",
           "./www/build/p-0b0c03f7.js",
           "./www/build/p-0b0c03f7.js.map",
           "./www/build/p-0be09836.entry.js",
           "./www/build/p-0be09836.entry.js.map",
-          "./www/build/p-0bf61316.entry.js",
-          "./www/build/p-0bf61316.entry.js.map",
-          "./www/build/p-138aed9a.entry.js",
-          "./www/build/p-138aed9a.entry.js.map",
+          "./www/build/p-0f11b177.entry.js",
+          "./www/build/p-0f11b177.entry.js.map",
+          "./www/build/p-105e2bf7.entry.js",
+          "./www/build/p-105e2bf7.entry.js.map",
+          "./www/build/p-12d7800a.entry.js",
+          "./www/build/p-12d7800a.entry.js.map",
           "./www/build/p-13f5e4e1.js",
           "./www/build/p-13f5e4e1.js.map",
-          "./www/build/p-1442f434.entry.js",
-          "./www/build/p-1442f434.entry.js.map",
+          "./www/build/p-15fd895d.entry.js",
+          "./www/build/p-15fd895d.entry.js.map",
+          "./www/build/p-1633c7d6.entry.js",
+          "./www/build/p-1633c7d6.entry.js.map",
           "./www/build/p-1712c78c.js",
           "./www/build/p-1712c78c.js.map",
+          "./www/build/p-1736e03e.entry.js",
+          "./www/build/p-1736e03e.entry.js.map",
+          "./www/build/p-19393aac.entry.js",
+          "./www/build/p-19393aac.entry.js.map",
+          "./www/build/p-19baab2a.entry.js",
+          "./www/build/p-19baab2a.entry.js.map",
           "./www/build/p-1b16d197.entry.js",
           "./www/build/p-1b16d197.entry.js.map",
           "./www/build/p-1b3e096e.entry.js",
           "./www/build/p-1b3e096e.entry.js.map",
           "./www/build/p-1b470883.js",
           "./www/build/p-1b470883.js.map",
-          "./www/build/p-1b81f876.entry.js",
-          "./www/build/p-1b81f876.entry.js.map",
           "./www/build/p-1b8b2e61.entry.js",
           "./www/build/p-1b8b2e61.entry.js.map",
           "./www/build/p-1f60f497.js",
           "./www/build/p-1f60f497.js.map",
           "./www/build/p-1fdec92b.entry.js",
           "./www/build/p-1fdec92b.entry.js.map",
-          "./www/build/p-20115b75.entry.js",
-          "./www/build/p-20115b75.entry.js.map",
+          "./www/build/p-2283b6e1.entry.js",
+          "./www/build/p-2283b6e1.entry.js.map",
           "./www/build/p-24b3b923.entry.js",
           "./www/build/p-24b3b923.entry.js.map",
+          "./www/build/p-25be51f2.entry.js",
+          "./www/build/p-25be51f2.entry.js.map",
           "./www/build/p-26567310.entry.js",
           "./www/build/p-26567310.entry.js.map",
-          "./www/build/p-27419e3f.entry.js",
-          "./www/build/p-27419e3f.entry.js.map",
           "./www/build/p-2aa46365.entry.js",
           "./www/build/p-2aa46365.entry.js.map",
-          "./www/build/p-30ead30d.entry.js",
-          "./www/build/p-30ead30d.entry.js.map",
+          "./www/build/p-2b239940.entry.js",
+          "./www/build/p-2b239940.entry.js.map",
+          "./www/build/p-2b79166a.entry.js",
+          "./www/build/p-2b79166a.entry.js.map",
+          "./www/build/p-2c44515e.entry.js",
+          "./www/build/p-2c44515e.entry.js.map",
+          "./www/build/p-2db52b12.entry.js",
+          "./www/build/p-2db52b12.entry.js.map",
           "./www/build/p-30eb50ff.js",
           "./www/build/p-30eb50ff.js.map",
           "./www/build/p-31bc569c.js",
           "./www/build/p-31bc569c.js.map",
-          "./www/build/p-330cd9c3.entry.js",
-          "./www/build/p-330cd9c3.entry.js.map",
           "./www/build/p-33927e65.entry.js",
           "./www/build/p-33927e65.entry.js.map",
           "./www/build/p-36e59877.entry.js",
           "./www/build/p-36e59877.entry.js.map",
-          "./www/build/p-3736713a.entry.js",
-          "./www/build/p-3736713a.entry.js.map",
+          "./www/build/p-37881cdc.entry.js",
+          "./www/build/p-37881cdc.entry.js.map",
           "./www/build/p-37b3c4b7.entry.js",
           "./www/build/p-37b3c4b7.entry.js.map",
+          "./www/build/p-386f6534.entry.js",
+          "./www/build/p-386f6534.entry.js.map",
+          "./www/build/p-38b19860.entry.js",
+          "./www/build/p-38b19860.entry.js.map",
           "./www/build/p-393cb717.js",
           "./www/build/p-393cb717.js.map",
-          "./www/build/p-39401ebe.entry.js",
-          "./www/build/p-39401ebe.entry.js.map",
+          "./www/build/p-3989a8d0.entry.js",
+          "./www/build/p-3989a8d0.entry.js.map",
           "./www/build/p-3aa9debd.js",
           "./www/build/p-3aa9debd.js.map",
           "./www/build/p-3cb507db.entry.js",
@@ -3834,10 +3857,6 @@
           "./www/build/p-3d0e139c.entry.js.map",
           "./www/build/p-3dc3bd12.js",
           "./www/build/p-3dc3bd12.js.map",
-          "./www/build/p-3e9a6a94.entry.js",
-          "./www/build/p-3e9a6a94.entry.js.map",
-          "./www/build/p-3f366d88.entry.js",
-          "./www/build/p-3f366d88.entry.js.map",
           "./www/build/p-3f6362a4.js",
           "./www/build/p-3f6362a4.js.map",
           "./www/build/p-3f9375ff.entry.js",
@@ -3846,16 +3865,22 @@
           "./www/build/p-401e165e.js.map",
           "./www/build/p-41487bf2.entry.js",
           "./www/build/p-41487bf2.entry.js.map",
+          "./www/build/p-4299ad94.entry.js",
+          "./www/build/p-4299ad94.entry.js.map",
+          "./www/build/p-42bec0de.entry.js",
+          "./www/build/p-42bec0de.entry.js.map",
           "./www/build/p-449324ed.js",
           "./www/build/p-449324ed.js.map",
           "./www/build/p-46584f2c.entry.js",
           "./www/build/p-46584f2c.entry.js.map",
-          "./www/build/p-467b90ca.entry.js",
-          "./www/build/p-467b90ca.entry.js.map",
+          "./www/build/p-472a929e.entry.js",
+          "./www/build/p-472a929e.entry.js.map",
+          "./www/build/p-475ed7de.entry.js",
+          "./www/build/p-475ed7de.entry.js.map",
+          "./www/build/p-4961d7a5.entry.js",
+          "./www/build/p-4961d7a5.entry.js.map",
           "./www/build/p-4c2d3d8c.entry.js",
           "./www/build/p-4c2d3d8c.entry.js.map",
-          "./www/build/p-4c7b712d.entry.js",
-          "./www/build/p-4c7b712d.entry.js.map",
           "./www/build/p-4cae87fc.js",
           "./www/build/p-4cae87fc.js.map",
           "./www/build/p-4d927407.entry.js",
@@ -3864,152 +3889,132 @@
           "./www/build/p-4ddfb0f3.entry.js.map",
           "./www/build/p-4df6e0c5.js",
           "./www/build/p-4df6e0c5.js.map",
-          "./www/build/p-4e4bd555.entry.js",
-          "./www/build/p-4e4bd555.entry.js.map",
           "./www/build/p-4ea36f1e.js",
           "./www/build/p-4ea36f1e.js.map",
-          "./www/build/p-4ec25555.entry.js",
-          "./www/build/p-4ec25555.entry.js.map",
-          "./www/build/p-50466fbf.entry.js",
-          "./www/build/p-50466fbf.entry.js.map",
+          "./www/build/p-511cd5e6.entry.js",
+          "./www/build/p-511cd5e6.entry.js.map",
           "./www/build/p-514e66d5.entry.js",
           "./www/build/p-514e66d5.entry.js.map",
-          "./www/build/p-529aa17d.entry.js",
-          "./www/build/p-529aa17d.entry.js.map",
+          "./www/build/p-515e89ae.entry.js",
+          "./www/build/p-515e89ae.entry.js.map",
+          "./www/build/p-532620df.entry.js",
+          "./www/build/p-532620df.entry.js.map",
           "./www/build/p-53e7f7d7.js",
           "./www/build/p-53e7f7d7.js.map",
-          "./www/build/p-55d7f17f.entry.js",
-          "./www/build/p-55d7f17f.entry.js.map",
-          "./www/build/p-564d223c.entry.js",
-          "./www/build/p-564d223c.entry.js.map",
+          "./www/build/p-5486974c.entry.js",
+          "./www/build/p-5486974c.entry.js.map",
           "./www/build/p-566c9487.js",
           "./www/build/p-566c9487.js.map",
-          "./www/build/p-573ef117.entry.js",
-          "./www/build/p-573ef117.entry.js.map",
-          "./www/build/p-582bb234.entry.js",
-          "./www/build/p-582bb234.entry.js.map",
-          "./www/build/p-58916c02.entry.js",
-          "./www/build/p-58916c02.entry.js.map",
           "./www/build/p-5a8e136a.js",
           "./www/build/p-5a8e136a.js.map",
-          "./www/build/p-5bc10ba3.entry.js",
-          "./www/build/p-5bc10ba3.entry.js.map",
           "./www/build/p-5c1a03e5.js",
           "./www/build/p-5c1a03e5.js.map",
-          "./www/build/p-5c565948.entry.js",
-          "./www/build/p-5c565948.entry.js.map",
-          "./www/build/p-5e4b45b9.entry.js",
-          "./www/build/p-5e4b45b9.entry.js.map",
-          "./www/build/p-5e997b8d.entry.js",
-          "./www/build/p-5e997b8d.entry.js.map",
+          "./www/build/p-5c6185b1.entry.js",
+          "./www/build/p-5c6185b1.entry.js.map",
           "./www/build/p-624938e7.js",
           "./www/build/p-624938e7.js.map",
-          "./www/build/p-65ae328c.entry.js",
-          "./www/build/p-65ae328c.entry.js.map",
+          "./www/build/p-66df5bda.entry.js",
+          "./www/build/p-66df5bda.entry.js.map",
+          "./www/build/p-66e66a8c.entry.js",
+          "./www/build/p-66e66a8c.entry.js.map",
+          "./www/build/p-67003c8d.entry.js",
+          "./www/build/p-67003c8d.entry.js.map",
           "./www/build/p-679f1789.entry.js",
           "./www/build/p-679f1789.entry.js.map",
-          "./www/build/p-67c068bc.entry.js",
-          "./www/build/p-67c068bc.entry.js.map",
           "./www/build/p-6869509f.entry.js",
           "./www/build/p-6869509f.entry.js.map",
           "./www/build/p-6a753ae1.js",
           "./www/build/p-6a753ae1.js.map",
           "./www/build/p-6b5d827f.js",
           "./www/build/p-6b5d827f.js.map",
-          "./www/build/p-6c97ef19.entry.js",
-          "./www/build/p-6c97ef19.entry.js.map",
           "./www/build/p-6cbad57b.entry.js",
           "./www/build/p-6cbad57b.entry.js.map",
-          "./www/build/p-6cfbdb8d.entry.js",
-          "./www/build/p-6cfbdb8d.entry.js.map",
-          "./www/build/p-6e654891.entry.js",
-          "./www/build/p-6e654891.entry.js.map",
-          "./www/build/p-6e8a01bc.entry.js",
-          "./www/build/p-6e8a01bc.entry.js.map",
-          "./www/build/p-6ec84675.entry.js",
-          "./www/build/p-6ec84675.entry.js.map",
+          "./www/build/p-6d551bf4.entry.js",
+          "./www/build/p-6d551bf4.entry.js.map",
           "./www/build/p-6ed9d6fa.entry.js",
           "./www/build/p-6ed9d6fa.entry.js.map",
-          "./www/build/p-70345432.entry.js",
-          "./www/build/p-70345432.entry.js.map",
           "./www/build/p-70dd3f7c.entry.js",
           "./www/build/p-70dd3f7c.entry.js.map",
-          "./www/build/p-7115c10b.entry.js",
-          "./www/build/p-7115c10b.entry.js.map",
-          "./www/build/p-71f5a965.entry.js",
-          "./www/build/p-71f5a965.entry.js.map",
           "./www/build/p-7248afd9.entry.js",
           "./www/build/p-7248afd9.entry.js.map",
+          "./www/build/p-748a495e.entry.js",
+          "./www/build/p-748a495e.entry.js.map",
+          "./www/build/p-751fc85f.entry.js",
+          "./www/build/p-751fc85f.entry.js.map",
+          "./www/build/p-7548fe70.entry.js",
+          "./www/build/p-7548fe70.entry.js.map",
           "./www/build/p-75555783.entry.js",
           "./www/build/p-75555783.entry.js.map",
+          "./www/build/p-75dc07f1.entry.js",
+          "./www/build/p-75dc07f1.entry.js.map",
           "./www/build/p-75e76c8c.js",
           "./www/build/p-75e76c8c.js.map",
-          "./www/build/p-77877262.entry.js",
-          "./www/build/p-77877262.entry.js.map",
-          "./www/build/p-783dadc5.entry.js",
-          "./www/build/p-783dadc5.entry.js.map",
+          "./www/build/p-7755e88d.entry.js",
+          "./www/build/p-7755e88d.entry.js.map",
+          "./www/build/p-77febaf7.entry.js",
+          "./www/build/p-77febaf7.entry.js.map",
           "./www/build/p-78413156.entry.js",
           "./www/build/p-78413156.entry.js.map",
-          "./www/build/p-79b0926f.entry.js",
-          "./www/build/p-79b0926f.entry.js.map",
-          "./www/build/p-7be55ea0.entry.js",
-          "./www/build/p-7be55ea0.entry.js.map",
+          "./www/build/p-7b75b1dd.entry.js",
+          "./www/build/p-7b75b1dd.entry.js.map",
           "./www/build/p-7bfd7247.entry.js",
           "./www/build/p-7bfd7247.entry.js.map",
-          "./www/build/p-7c291f1b.entry.js",
-          "./www/build/p-7c291f1b.entry.js.map",
-          "./www/build/p-7dba43df.entry.js",
-          "./www/build/p-7dba43df.entry.js.map",
+          "./www/build/p-7ef3d567.entry.js",
+          "./www/build/p-7ef3d567.entry.js.map",
           "./www/build/p-7f01a36e.js",
           "./www/build/p-7f01a36e.js.map",
-          "./www/build/p-80871c3f.entry.js",
-          "./www/build/p-80871c3f.entry.js.map",
-          "./www/build/p-80fa25eb.entry.js",
-          "./www/build/p-80fa25eb.entry.js.map",
+          "./www/build/p-80f7eb0f.entry.js",
+          "./www/build/p-80f7eb0f.entry.js.map",
           "./www/build/p-81ab6dc1.entry.js",
           "./www/build/p-81ab6dc1.entry.js.map",
-          "./www/build/p-82e13871.entry.js",
-          "./www/build/p-82e13871.entry.js.map",
           "./www/build/p-830ab1a3.js",
           "./www/build/p-830ab1a3.js.map",
-          "./www/build/p-83136592.entry.js",
-          "./www/build/p-83136592.entry.js.map",
           "./www/build/p-83c40139.entry.js",
           "./www/build/p-83c40139.entry.js.map",
-          "./www/build/p-83dc2eb7.entry.js",
-          "./www/build/p-83dc2eb7.entry.js.map",
+          "./www/build/p-840f1b74.entry.js",
+          "./www/build/p-840f1b74.entry.js.map",
           "./www/build/p-8432d0d2.entry.js",
           "./www/build/p-8432d0d2.entry.js.map",
+          "./www/build/p-84410cdf.entry.js",
+          "./www/build/p-84410cdf.entry.js.map",
           "./www/build/p-863940e9.js",
           "./www/build/p-863940e9.js.map",
           "./www/build/p-86fd1a31.js",
           "./www/build/p-86fd1a31.js.map",
-          "./www/build/p-87c2b7db.entry.js",
-          "./www/build/p-87c2b7db.entry.js.map",
+          "./www/build/p-89319175.entry.js",
+          "./www/build/p-89319175.entry.js.map",
           "./www/build/p-894c7006.js",
           "./www/build/p-894c7006.js.map",
-          "./www/build/p-8aeb7067.entry.js",
-          "./www/build/p-8aeb7067.entry.js.map",
+          "./www/build/p-897491c7.entry.js",
+          "./www/build/p-897491c7.entry.js.map",
+          "./www/build/p-8a52f4ba.entry.js",
+          "./www/build/p-8a52f4ba.entry.js.map",
           "./www/build/p-8b323bfb.js",
           "./www/build/p-8b323bfb.js.map",
+          "./www/build/p-8c0a78df.entry.js",
+          "./www/build/p-8c0a78df.entry.js.map",
           "./www/build/p-8c8c3326.js",
           "./www/build/p-8c8c3326.js.map",
-          "./www/build/p-8cf3be6f.entry.js",
-          "./www/build/p-8cf3be6f.entry.js.map",
+          "./www/build/p-8edeabca.entry.js",
+          "./www/build/p-8edeabca.entry.js.map",
+          "./www/build/p-8ee4af08.entry.js",
+          "./www/build/p-8ee4af08.entry.js.map",
           "./www/build/p-8fd91150.entry.js",
           "./www/build/p-8fd91150.entry.js.map",
-          "./www/build/p-904e59e3.entry.js",
-          "./www/build/p-904e59e3.entry.js.map",
           "./www/build/p-9110e374.entry.js",
           "./www/build/p-9110e374.entry.js.map",
+          "./www/build/p-92048451.entry.js",
+          "./www/build/p-92048451.entry.js.map",
+          "./www/build/p-9228f00a.entry.js",
+          "./www/build/p-9228f00a.entry.js.map",
           "./www/build/p-93127aa7.js",
           "./www/build/p-93127aa7.js.map",
-          "./www/build/p-933b06cc.entry.js",
-          "./www/build/p-933b06cc.entry.js.map",
+          "./www/build/p-933bac26.entry.js",
+          "./www/build/p-933bac26.entry.js.map",
+          "./www/build/p-93cc82c4.entry.js",
+          "./www/build/p-93cc82c4.entry.js.map",
           "./www/build/p-93cc92c1.entry.js",
           "./www/build/p-93cc92c1.entry.js.map",
-          "./www/build/p-94e69282.entry.js",
-          "./www/build/p-94e69282.entry.js.map",
           "./www/build/p-94f536d6.js",
           "./www/build/p-94f536d6.js.map",
           "./www/build/p-95325ec5.js",
@@ -4018,130 +4023,122 @@
           "./www/build/p-95ed2184.entry.js.map",
           "./www/build/p-961fbbca.entry.js",
           "./www/build/p-961fbbca.entry.js.map",
-          "./www/build/p-971a38b4.entry.js",
-          "./www/build/p-971a38b4.entry.js.map",
-          "./www/build/p-98327e6c.entry.js",
-          "./www/build/p-98327e6c.entry.js.map",
-          "./www/build/p-983770a1.entry.js",
-          "./www/build/p-983770a1.entry.js.map",
-          "./www/build/p-988ceefc.entry.js",
-          "./www/build/p-988ceefc.entry.js.map",
           "./www/build/p-9a45e867.entry.js",
           "./www/build/p-9a45e867.entry.js.map",
-          "./www/build/p-9b431c4e.entry.js",
-          "./www/build/p-9b431c4e.entry.js.map",
-          "./www/build/p-9bafbcba.entry.js",
-          "./www/build/p-9bafbcba.entry.js.map",
+          "./www/build/p-9ae26f94.entry.js",
+          "./www/build/p-9ae26f94.entry.js.map",
+          "./www/build/p-9ae606a8.entry.js",
+          "./www/build/p-9ae606a8.entry.js.map",
           "./www/build/p-9d1e99a8.entry.js",
           "./www/build/p-9d1e99a8.entry.js.map",
           "./www/build/p-9dbc54d6.js",
           "./www/build/p-9dbc54d6.js.map",
           "./www/build/p-9ef0f73f.js",
           "./www/build/p-9ef0f73f.js.map",
-          "./www/build/p-a05b3e5b.entry.js",
-          "./www/build/p-a05b3e5b.entry.js.map",
-          "./www/build/p-a1ac4a88.entry.js",
-          "./www/build/p-a1ac4a88.entry.js.map",
-          "./www/build/p-a31e41bd.entry.js",
-          "./www/build/p-a31e41bd.entry.js.map",
-          "./www/build/p-a4f86a96.entry.js",
-          "./www/build/p-a4f86a96.entry.js.map",
+          "./www/build/p-a15f20da.entry.js",
+          "./www/build/p-a15f20da.entry.js.map",
+          "./www/build/p-a21df730.entry.js",
+          "./www/build/p-a21df730.entry.js.map",
+          "./www/build/p-a2cada1f.entry.js",
+          "./www/build/p-a2cada1f.entry.js.map",
+          "./www/build/p-a2fc9477.entry.js",
+          "./www/build/p-a2fc9477.entry.js.map",
+          "./www/build/p-a3db82cc.entry.js",
+          "./www/build/p-a3db82cc.entry.js.map",
+          "./www/build/p-a44d93cf.entry.js",
+          "./www/build/p-a44d93cf.entry.js.map",
           "./www/build/p-a6e2e22f.entry.js",
           "./www/build/p-a6e2e22f.entry.js.map",
-          "./www/build/p-a8b87b85.entry.js",
-          "./www/build/p-a8b87b85.entry.js.map",
+          "./www/build/p-a6ec5e65.entry.js",
+          "./www/build/p-a6ec5e65.entry.js.map",
+          "./www/build/p-a6f788fe.entry.js",
+          "./www/build/p-a6f788fe.entry.js.map",
+          "./www/build/p-ab922813.entry.js",
+          "./www/build/p-ab922813.entry.js.map",
+          "./www/build/p-abfc51bd.entry.js",
+          "./www/build/p-abfc51bd.entry.js.map",
           "./www/build/p-ac5c366f.entry.js",
           "./www/build/p-ac5c366f.entry.js.map",
-          "./www/build/p-ad3d79da.entry.js",
-          "./www/build/p-ad3d79da.entry.js.map",
-          "./www/build/p-aeef0d92.entry.js",
-          "./www/build/p-aeef0d92.entry.js.map",
-          "./www/build/p-afeab6cb.entry.js",
-          "./www/build/p-afeab6cb.entry.js.map",
-          "./www/build/p-b0714dfd.entry.js",
-          "./www/build/p-b0714dfd.entry.js.map",
           "./www/build/p-b0d8cd6e.js",
           "./www/build/p-b0d8cd6e.js.map",
           "./www/build/p-b12b08e4.entry.js",
           "./www/build/p-b12b08e4.entry.js.map",
+          "./www/build/p-b2b996b3.entry.js",
+          "./www/build/p-b2b996b3.entry.js.map",
           "./www/build/p-b452afa6.js",
           "./www/build/p-b452afa6.js.map",
-          "./www/build/p-b5d28b87.entry.js",
-          "./www/build/p-b5d28b87.entry.js.map",
           "./www/build/p-b6eec6a7.entry.js",
           "./www/build/p-b6eec6a7.entry.js.map",
           "./www/build/p-b719a497.js",
           "./www/build/p-b719a497.js.map",
-          "./www/build/p-b7b8d2ba.entry.js",
-          "./www/build/p-b7b8d2ba.entry.js.map",
-          "./www/build/p-b9b268f1.entry.js",
-          "./www/build/p-b9b268f1.entry.js.map",
+          "./www/build/p-b7c5668d.entry.js",
+          "./www/build/p-b7c5668d.entry.js.map",
           "./www/build/p-ba9692b4.entry.js",
           "./www/build/p-ba9692b4.entry.js.map",
           "./www/build/p-babb004b.entry.js",
           "./www/build/p-babb004b.entry.js.map",
-          "./www/build/p-babf8c9b.entry.js",
-          "./www/build/p-babf8c9b.entry.js.map",
           "./www/build/p-bad5a365.entry.js",
           "./www/build/p-bad5a365.entry.js.map",
-          "./www/build/p-baeef550.entry.js",
-          "./www/build/p-baeef550.entry.js.map",
-          "./www/build/p-bc6cea74.entry.js",
-          "./www/build/p-bc6cea74.entry.js.map",
+          "./www/build/p-bb621151.entry.js",
+          "./www/build/p-bb621151.entry.js.map",
           "./www/build/p-bc8d627e.js",
           "./www/build/p-bc8d627e.js.map",
-          "./www/build/p-bd13c9c8.entry.js",
-          "./www/build/p-bd13c9c8.entry.js.map",
+          "./www/build/p-be097317.entry.js",
+          "./www/build/p-be097317.entry.js.map",
           "./www/build/p-be1d8313.entry.js",
           "./www/build/p-be1d8313.entry.js.map",
-          "./www/build/p-be22c938.entry.js",
-          "./www/build/p-be22c938.entry.js.map",
-          "./www/build/p-be27d199.entry.js",
-          "./www/build/p-be27d199.entry.js.map",
+          "./www/build/p-be6e20a0.entry.js",
+          "./www/build/p-be6e20a0.entry.js.map",
           "./www/build/p-be89c866.entry.js",
           "./www/build/p-be89c866.entry.js.map",
-          "./www/build/p-c069e96c.entry.js",
-          "./www/build/p-c069e96c.entry.js.map",
+          "./www/build/p-bfc82a07.entry.js",
+          "./www/build/p-bfc82a07.entry.js.map",
           "./www/build/p-c0a8ca8d.js",
           "./www/build/p-c0a8ca8d.js.map",
-          "./www/build/p-c0b7a3c0.entry.js",
-          "./www/build/p-c0b7a3c0.entry.js.map",
-          "./www/build/p-c17e39d0.entry.js",
-          "./www/build/p-c17e39d0.entry.js.map",
-          "./www/build/p-c1acd951.entry.js",
-          "./www/build/p-c1acd951.entry.js.map",
           "./www/build/p-c3bb021f.entry.js",
           "./www/build/p-c3bb021f.entry.js.map",
+          "./www/build/p-c4b88a1a.entry.js",
+          "./www/build/p-c4b88a1a.entry.js.map",
           "./www/build/p-c78cd354.entry.js",
           "./www/build/p-c78cd354.entry.js.map",
+          "./www/build/p-c88060ea.entry.js",
+          "./www/build/p-c88060ea.entry.js.map",
           "./www/build/p-c9d96372.entry.js",
           "./www/build/p-c9d96372.entry.js.map",
+          "./www/build/p-c9e3d1ea.entry.js",
+          "./www/build/p-c9e3d1ea.entry.js.map",
+          "./www/build/p-cc799fc0.entry.js",
+          "./www/build/p-cc799fc0.entry.js.map",
+          "./www/build/p-cda193cc.entry.js",
+          "./www/build/p-cda193cc.entry.js.map",
           "./www/build/p-ce0fbcda.entry.js",
           "./www/build/p-ce0fbcda.entry.js.map",
-          "./www/build/p-d08485e4.entry.js",
-          "./www/build/p-d08485e4.entry.js.map",
+          "./www/build/p-ce2f1f45.entry.js",
+          "./www/build/p-ce2f1f45.entry.js.map",
+          "./www/build/p-d17918aa.entry.js",
+          "./www/build/p-d17918aa.entry.js.map",
           "./www/build/p-d20ed943.entry.js",
           "./www/build/p-d20ed943.entry.js.map",
+          "./www/build/p-d2ad27c7.entry.js",
+          "./www/build/p-d2ad27c7.entry.js.map",
           "./www/build/p-d3366af3.js",
           "./www/build/p-d3366af3.js.map",
           "./www/build/p-d4e54db7.js",
           "./www/build/p-d4e54db7.js.map",
-          "./www/build/p-d6b03310.entry.js",
-          "./www/build/p-d6b03310.entry.js.map",
-          "./www/build/p-d95394c7.entry.js",
-          "./www/build/p-d95394c7.entry.js.map",
-          "./www/build/p-d974dac8.entry.js",
-          "./www/build/p-d974dac8.entry.js.map",
-          "./www/build/p-db01f24f.entry.js",
-          "./www/build/p-db01f24f.entry.js.map",
+          "./www/build/p-d585fad3.entry.js",
+          "./www/build/p-d585fad3.entry.js.map",
+          "./www/build/p-d5a837be.entry.js",
+          "./www/build/p-d5a837be.entry.js.map",
+          "./www/build/p-daf2cb98.entry.js",
+          "./www/build/p-daf2cb98.entry.js.map",
           "./www/build/p-db159239.entry.js",
           "./www/build/p-db159239.entry.js.map",
-          "./www/build/p-db5461a9.entry.js",
-          "./www/build/p-db5461a9.entry.js.map",
+          "./www/build/p-db4fb618.entry.js",
+          "./www/build/p-db4fb618.entry.js.map",
           "./www/build/p-dd3464cd.js",
           "./www/build/p-dd3464cd.js.map",
-          "./www/build/p-de0679ba.entry.js",
-          "./www/build/p-de0679ba.entry.js.map",
+          "./www/build/p-de8491fd.entry.js",
+          "./www/build/p-de8491fd.entry.js.map",
           "./www/build/p-df0fc918.entry.js",
           "./www/build/p-df0fc918.entry.js.map",
           "./www/build/p-e0484364.entry.js",
@@ -4152,38 +4149,50 @@
           "./www/build/p-e1ed459e.entry.js.map",
           "./www/build/p-e2392195.entry.js",
           "./www/build/p-e2392195.entry.js.map",
-          "./www/build/p-e2c75222.entry.js",
-          "./www/build/p-e2c75222.entry.js.map",
+          "./www/build/p-e4d8fba7.entry.js",
+          "./www/build/p-e4d8fba7.entry.js.map",
+          "./www/build/p-e578d17a.entry.js",
+          "./www/build/p-e578d17a.entry.js.map",
+          "./www/build/p-e629ffb4.entry.js",
+          "./www/build/p-e629ffb4.entry.js.map",
           "./www/build/p-e62a377c.entry.js",
           "./www/build/p-e62a377c.entry.js.map",
           "./www/build/p-e677365e.js",
           "./www/build/p-e677365e.js.map",
           "./www/build/p-e885ba5f.js",
           "./www/build/p-e885ba5f.js.map",
-          "./www/build/p-e896dd0d.entry.js",
-          "./www/build/p-e896dd0d.entry.js.map",
-          "./www/build/p-e91c4a5e.entry.js",
-          "./www/build/p-e91c4a5e.entry.js.map",
+          "./www/build/p-e92a1084.entry.js",
+          "./www/build/p-e92a1084.entry.js.map",
           "./www/build/p-e97fde0a.js",
           "./www/build/p-e97fde0a.js.map",
-          "./www/build/p-ea51031a.entry.js",
-          "./www/build/p-ea51031a.entry.js.map",
+          "./www/build/p-eaa64be5.entry.js",
+          "./www/build/p-eaa64be5.entry.js.map",
           "./www/build/p-ec182234.js",
           "./www/build/p-ec182234.js.map",
+          "./www/build/p-ede05d0e.entry.js",
+          "./www/build/p-ede05d0e.entry.js.map",
           "./www/build/p-eeca4a4c.entry.js",
           "./www/build/p-eeca4a4c.entry.js.map",
-          "./www/build/p-eed3e8fc.entry.js",
-          "./www/build/p-eed3e8fc.entry.js.map",
-          "./www/build/p-f2b39678.entry.js",
-          "./www/build/p-f2b39678.entry.js.map",
-          "./www/build/p-f4543de8.entry.js",
-          "./www/build/p-f4543de8.entry.js.map",
-          "./www/build/p-f4e5a4f2.entry.js",
-          "./www/build/p-f4e5a4f2.entry.js.map",
+          "./www/build/p-f04c9079.entry.js",
+          "./www/build/p-f04c9079.entry.js.map",
+          "./www/build/p-f207a6ca.entry.js",
+          "./www/build/p-f207a6ca.entry.js.map",
+          "./www/build/p-f26f20e7.entry.js",
+          "./www/build/p-f26f20e7.entry.js.map",
+          "./www/build/p-f2bd8523.entry.js",
+          "./www/build/p-f2bd8523.entry.js.map",
+          "./www/build/p-f4966b35.entry.js",
+          "./www/build/p-f4966b35.entry.js.map",
+          "./www/build/p-f4c5c3b8.entry.js",
+          "./www/build/p-f4c5c3b8.entry.js.map",
+          "./www/build/p-f6323747.entry.js",
+          "./www/build/p-f6323747.entry.js.map",
           "./www/build/p-f6654b1f.entry.js",
           "./www/build/p-f6654b1f.entry.js.map",
-          "./www/build/p-f8776a67.entry.js",
-          "./www/build/p-f8776a67.entry.js.map",
+          "./www/build/p-f738a693.entry.js",
+          "./www/build/p-f738a693.entry.js.map",
+          "./www/build/p-fb17fe68.entry.js",
+          "./www/build/p-fb17fe68.entry.js.map",
           "./www/build/p-fbb7c2c0.entry.js",
           "./www/build/p-fbb7c2c0.entry.js.map",
           "./www/build/p-fbff2671.entry.js",
@@ -4194,8 +4203,12 @@
           "./www/build/p-fe35febc.entry.js.map",
           "./www/build/p-ff10bfbf.js",
           "./www/build/p-ff10bfbf.js.map",
+          "./www/build/p-ff35b4ca.entry.js",
+          "./www/build/p-ff35b4ca.entry.js.map",
           "./www/build/p-ff5adeb3.entry.js",
           "./www/build/p-ff5adeb3.entry.js.map",
+          "./www/build/p-fffc834c.entry.js",
+          "./www/build/p-fffc834c.entry.js.map",
           "./www/build/surecart.esm.js",
           "./www/build/surecart.esm.js.map"
         ]
@@ -4234,22 +4247,22 @@
           "sc-product-line-item-note",
           "sc-quantity-select"
         ],
-        "bundleId": "p-20115b75",
-        "fileName": "p-20115b75.entry.js",
+        "bundleId": "p-bfc82a07",
+        "fileName": "p-bfc82a07.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-624938e7.js",
           "p-b0d8cd6e.js"
         ],
-        "originalByteSize": 27497
+        "originalByteSize": 27644
       },
       {
         "key": "sc-avatar.entry",
         "components": [
           "sc-avatar"
         ],
-        "bundleId": "p-e91c4a5e",
-        "fileName": "p-e91c4a5e.entry.js",
+        "bundleId": "p-8a52f4ba",
+        "fileName": "p-8a52f4ba.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4260,8 +4273,8 @@
         "components": [
           "sc-badge-notice"
         ],
-        "bundleId": "p-5e4b45b9",
-        "fileName": "p-5e4b45b9.entry.js",
+        "bundleId": "p-1633c7d6",
+        "fileName": "p-1633c7d6.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4272,8 +4285,8 @@
         "components": [
           "sc-breadcrumb"
         ],
-        "bundleId": "p-c1acd951",
-        "fileName": "p-c1acd951.entry.js",
+        "bundleId": "p-1736e03e",
+        "fileName": "p-1736e03e.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4284,8 +4297,8 @@
         "components": [
           "sc-breadcrumbs"
         ],
-        "bundleId": "p-7be55ea0",
-        "fileName": "p-7be55ea0.entry.js",
+        "bundleId": "p-a2fc9477",
+        "fileName": "p-a2fc9477.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4296,8 +4309,8 @@
         "components": [
           "sc-button-group"
         ],
-        "bundleId": "p-d6b03310",
-        "fileName": "p-d6b03310.entry.js",
+        "bundleId": "p-8edeabca",
+        "fileName": "p-8edeabca.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4334,8 +4347,8 @@
         "components": [
           "sc-cart-button"
         ],
-        "bundleId": "p-a8b87b85",
-        "fileName": "p-a8b87b85.entry.js",
+        "bundleId": "p-a6ec5e65",
+        "fileName": "p-a6ec5e65.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-53e7f7d7.js",
@@ -4768,8 +4781,8 @@
         "components": [
           "sc-downloads-list"
         ],
-        "bundleId": "p-70345432",
-        "fileName": "p-70345432.entry.js",
+        "bundleId": "p-e92a1084",
+        "fileName": "p-e92a1084.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -4809,8 +4822,8 @@
         "components": [
           "sc-feature-demo-banner"
         ],
-        "bundleId": "p-f4543de8",
-        "fileName": "p-f4543de8.entry.js",
+        "bundleId": "p-2283b6e1",
+        "fileName": "p-2283b6e1.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4821,8 +4834,8 @@
         "components": [
           "sc-form-row"
         ],
-        "bundleId": "p-bd13c9c8",
-        "fileName": "p-bd13c9c8.entry.js",
+        "bundleId": "p-fffc834c",
+        "fileName": "p-fffc834c.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4862,8 +4875,8 @@
         "components": [
           "sc-image-slider"
         ],
-        "bundleId": "p-79b0926f",
-        "fileName": "p-79b0926f.entry.js",
+        "bundleId": "p-515e89ae",
+        "fileName": "p-515e89ae.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -4890,8 +4903,8 @@
         "components": [
           "sc-license"
         ],
-        "bundleId": "p-5bc10ba3",
-        "fileName": "p-5bc10ba3.entry.js",
+        "bundleId": "p-89319175",
+        "fileName": "p-89319175.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b719a497.js",
@@ -4906,8 +4919,8 @@
         "components": [
           "sc-licenses-list"
         ],
-        "bundleId": "p-8aeb7067",
-        "fileName": "p-8aeb7067.entry.js",
+        "bundleId": "p-d5a837be",
+        "fileName": "p-d5a837be.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b719a497.js",
@@ -4995,23 +5008,23 @@
         "components": [
           "sc-login-form"
         ],
-        "bundleId": "p-529aa17d",
-        "fileName": "p-529aa17d.entry.js",
+        "bundleId": "p-0aa41f47",
+        "fileName": "p-0aa41f47.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
           "p-401e165e.js",
           "p-d3366af3.js"
         ],
-        "originalByteSize": 8215
+        "originalByteSize": 8537
       },
       {
         "key": "sc-menu-divider.entry",
         "components": [
           "sc-menu-divider"
         ],
-        "bundleId": "p-db01f24f",
-        "fileName": "p-db01f24f.entry.js",
+        "bundleId": "p-b2b996b3",
+        "fileName": "p-b2b996b3.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5135,8 +5148,8 @@
         "components": [
           "sc-order-fulfillment-badge"
         ],
-        "bundleId": "p-a05b3e5b",
-        "fileName": "p-a05b3e5b.entry.js",
+        "bundleId": "p-cc799fc0",
+        "fileName": "p-cc799fc0.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5160,8 +5173,8 @@
         "components": [
           "sc-order-return-badge"
         ],
-        "bundleId": "p-9bafbcba",
-        "fileName": "p-9bafbcba.entry.js",
+        "bundleId": "p-fb17fe68",
+        "fileName": "p-fb17fe68.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5283,8 +5296,8 @@
         "components": [
           "sc-payment-method-details"
         ],
-        "bundleId": "p-39401ebe",
-        "fileName": "p-39401ebe.entry.js",
+        "bundleId": "p-77febaf7",
+        "fileName": "p-77febaf7.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5311,8 +5324,8 @@
         "components": [
           "sc-paypal-add-method"
         ],
-        "bundleId": "p-94e69282",
-        "fileName": "p-94e69282.entry.js",
+        "bundleId": "p-9ae606a8",
+        "fileName": "p-9ae606a8.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-e885ba5f.js",
@@ -5327,8 +5340,8 @@
         "components": [
           "sc-paystack-add-method"
         ],
-        "bundleId": "p-77877262",
-        "fileName": "p-77877262.entry.js",
+        "bundleId": "p-8ee4af08",
+        "fileName": "p-8ee4af08.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-3aa9debd.js",
@@ -5343,8 +5356,8 @@
         "components": [
           "sc-premium-tag"
         ],
-        "bundleId": "p-3e9a6a94",
-        "fileName": "p-3e9a6a94.entry.js",
+        "bundleId": "p-15fd895d",
+        "fileName": "p-15fd895d.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5397,8 +5410,8 @@
         "components": [
           "sc-product-buy-button"
         ],
-        "bundleId": "p-6ec84675",
-        "fileName": "p-6ec84675.entry.js",
+        "bundleId": "p-eaa64be5",
+        "fileName": "p-eaa64be5.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b452afa6.js",
@@ -5536,8 +5549,8 @@
         "components": [
           "sc-product-pills-variant-option"
         ],
-        "bundleId": "p-be27d199",
-        "fileName": "p-be27d199.entry.js",
+        "bundleId": "p-e4d8fba7",
+        "fileName": "p-e4d8fba7.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-863940e9.js",
@@ -5556,8 +5569,8 @@
         "components": [
           "sc-product-price"
         ],
-        "bundleId": "p-67c068bc",
-        "fileName": "p-67c068bc.entry.js",
+        "bundleId": "p-de8491fd",
+        "fileName": "p-de8491fd.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-863940e9.js",
@@ -5635,8 +5648,8 @@
         "components": [
           "sc-product-quantity"
         ],
-        "bundleId": "p-83dc2eb7",
-        "fileName": "p-83dc2eb7.entry.js",
+        "bundleId": "p-c9e3d1ea",
+        "fileName": "p-c9e3d1ea.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-863940e9.js",
@@ -5713,8 +5726,8 @@
         "components": [
           "sc-provisional-banner"
         ],
-        "bundleId": "p-3736713a",
-        "fileName": "p-3736713a.entry.js",
+        "bundleId": "p-2b239940",
+        "fileName": "p-2b239940.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5725,8 +5738,8 @@
         "components": [
           "sc-razorpay-add-method"
         ],
-        "bundleId": "p-7115c10b",
-        "fileName": "p-7115c10b.entry.js",
+        "bundleId": "p-0f11b177",
+        "fileName": "p-0f11b177.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -5737,12 +5750,24 @@
         "originalByteSize": 5371
       },
       {
+        "key": "sc-review-stars.entry",
+        "components": [
+          "sc-review-stars"
+        ],
+        "bundleId": "p-751fc85f",
+        "fileName": "p-751fc85f.entry.js",
+        "imports": [
+          "p-e97fde0a.js"
+        ],
+        "originalByteSize": 1533
+      },
+      {
         "key": "sc-rich-text.entry",
         "components": [
           "sc-rich-text"
         ],
-        "bundleId": "p-b5d28b87",
-        "fileName": "p-b5d28b87.entry.js",
+        "bundleId": "p-92048451",
+        "fileName": "p-92048451.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5753,8 +5778,8 @@
         "components": [
           "sc-stripe-add-method"
         ],
-        "bundleId": "p-c17e39d0",
-        "fileName": "p-c17e39d0.entry.js",
+        "bundleId": "p-748a495e",
+        "fileName": "p-748a495e.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-9ef0f73f.js",
@@ -5769,8 +5794,8 @@
         "components": [
           "sc-stripe-element"
         ],
-        "bundleId": "p-983770a1",
-        "fileName": "p-983770a1.entry.js",
+        "bundleId": "p-ce2f1f45",
+        "fileName": "p-ce2f1f45.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-9ef0f73f.js",
@@ -5797,8 +5822,8 @@
         "components": [
           "sc-stripe-payment-element"
         ],
-        "bundleId": "p-7dba43df",
-        "fileName": "p-7dba43df.entry.js",
+        "bundleId": "p-be6e20a0",
+        "fileName": "p-be6e20a0.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-9ef0f73f.js",
@@ -5828,8 +5853,8 @@
         "components": [
           "sc-subscription"
         ],
-        "bundleId": "p-b9b268f1",
-        "fileName": "p-b9b268f1.entry.js",
+        "bundleId": "p-37881cdc",
+        "fileName": "p-37881cdc.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -5839,15 +5864,15 @@
           "p-d3366af3.js",
           "p-3f6362a4.js"
         ],
-        "originalByteSize": 11286
+        "originalByteSize": 11539
       },
       {
         "key": "sc-subscription-ad-hoc-confirm.entry",
         "components": [
           "sc-subscription-ad-hoc-confirm"
         ],
-        "bundleId": "p-4e4bd555",
-        "fileName": "p-4e4bd555.entry.js",
+        "bundleId": "p-7ef3d567",
+        "fileName": "p-7ef3d567.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-4df6e0c5.js",
@@ -5861,8 +5886,8 @@
         "components": [
           "sc-subscription-payment"
         ],
-        "bundleId": "p-9b431c4e",
-        "fileName": "p-9b431c4e.entry.js",
+        "bundleId": "p-abfc51bd",
+        "fileName": "p-abfc51bd.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -5876,8 +5901,8 @@
         "components": [
           "sc-subscription-payment-method"
         ],
-        "bundleId": "p-50466fbf",
-        "fileName": "p-50466fbf.entry.js",
+        "bundleId": "p-f4966b35",
+        "fileName": "p-f4966b35.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -5910,8 +5935,8 @@
         "components": [
           "sc-subscription-variation-confirm"
         ],
-        "bundleId": "p-8cf3be6f",
-        "fileName": "p-8cf3be6f.entry.js",
+        "bundleId": "p-8c0a78df",
+        "fileName": "p-8c0a78df.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-93127aa7.js",
@@ -5924,8 +5949,8 @@
         "components": [
           "sc-subscriptions-list"
         ],
-        "bundleId": "p-83136592",
-        "fileName": "p-83136592.entry.js",
+        "bundleId": "p-5486974c",
+        "fileName": "p-5486974c.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -5940,8 +5965,8 @@
         "components": [
           "sc-tab"
         ],
-        "bundleId": "p-bc6cea74",
-        "fileName": "p-bc6cea74.entry.js",
+        "bundleId": "p-c88060ea",
+        "fileName": "p-c88060ea.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js"
@@ -5953,8 +5978,8 @@
         "components": [
           "sc-tab-group"
         ],
-        "bundleId": "p-ad3d79da",
-        "fileName": "p-ad3d79da.entry.js",
+        "bundleId": "p-f2bd8523",
+        "fileName": "p-f2bd8523.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5965,8 +5990,8 @@
         "components": [
           "sc-tab-panel"
         ],
-        "bundleId": "p-afeab6cb",
-        "fileName": "p-afeab6cb.entry.js",
+        "bundleId": "p-a3db82cc",
+        "fileName": "p-a3db82cc.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5977,8 +6002,8 @@
         "components": [
           "sc-table-head"
         ],
-        "bundleId": "p-d08485e4",
-        "fileName": "p-d08485e4.entry.js",
+        "bundleId": "p-66e66a8c",
+        "fileName": "p-66e66a8c.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -5989,8 +6014,8 @@
         "components": [
           "sc-test-mode-info"
         ],
-        "bundleId": "p-05da9b6a",
-        "fileName": "p-05da9b6a.entry.js",
+        "bundleId": "p-e629ffb4",
+        "fileName": "p-e629ffb4.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6001,8 +6026,8 @@
         "components": [
           "sc-upcoming-invoice"
         ],
-        "bundleId": "p-1442f434",
-        "fileName": "p-1442f434.entry.js",
+        "bundleId": "p-ff35b4ca",
+        "fileName": "p-ff35b4ca.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -6032,8 +6057,8 @@
         "components": [
           "sc-upsell"
         ],
-        "bundleId": "p-4c7b712d",
-        "fileName": "p-4c7b712d.entry.js",
+        "bundleId": "p-daf2cb98",
+        "fileName": "p-daf2cb98.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-5a8e136a.js",
@@ -6060,8 +6085,8 @@
         "components": [
           "sc-upsell-countdown-timer"
         ],
-        "bundleId": "p-0475a915",
-        "fileName": "p-0475a915.entry.js",
+        "bundleId": "p-7755e88d",
+        "fileName": "p-7755e88d.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-fd1598d9.js",
@@ -6076,8 +6101,8 @@
         "components": [
           "sc-upsell-no-thanks-button"
         ],
-        "bundleId": "p-330cd9c3",
-        "fileName": "p-330cd9c3.entry.js",
+        "bundleId": "p-933bac26",
+        "fileName": "p-933bac26.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-bc8d627e.js",
@@ -6102,8 +6127,8 @@
         "components": [
           "sc-upsell-submit-button"
         ],
-        "bundleId": "p-87c2b7db",
-        "fileName": "p-87c2b7db.entry.js",
+        "bundleId": "p-84410cdf",
+        "fileName": "p-84410cdf.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-5a8e136a.js",
@@ -6130,8 +6155,8 @@
         "components": [
           "sc-upsell-totals"
         ],
-        "bundleId": "p-6e8a01bc",
-        "fileName": "p-6e8a01bc.entry.js",
+        "bundleId": "p-db4fb618",
+        "fileName": "p-db4fb618.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-5a8e136a.js",
@@ -6158,8 +6183,8 @@
         "components": [
           "sc-wordpress-password-edit"
         ],
-        "bundleId": "p-5c565948",
-        "fileName": "p-5c565948.entry.js",
+        "bundleId": "p-9ae26f94",
+        "fileName": "p-9ae26f94.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -6173,8 +6198,8 @@
         "components": [
           "sc-wordpress-user"
         ],
-        "bundleId": "p-1b81f876",
-        "fileName": "p-1b81f876.entry.js",
+        "bundleId": "p-67003c8d",
+        "fileName": "p-67003c8d.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-401e165e.js"
@@ -6186,8 +6211,8 @@
         "components": [
           "sc-wordpress-user-edit"
         ],
-        "bundleId": "p-582bb234",
-        "fileName": "p-582bb234.entry.js",
+        "bundleId": "p-2c44515e",
+        "fileName": "p-2c44515e.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -6203,8 +6228,8 @@
           "sc-subscription-next-payment",
           "sc-subscription-reactivate"
         ],
-        "bundleId": "p-6c97ef19",
-        "fileName": "p-6c97ef19.entry.js",
+        "bundleId": "p-d2ad27c7",
+        "fileName": "p-d2ad27c7.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -6212,7 +6237,7 @@
           "p-401e165e.js",
           "p-d3366af3.js"
         ],
-        "originalByteSize": 18919
+        "originalByteSize": 19174
       },
       {
         "key": "sc-cart-session-provider.sc-drawer.sc-error.entry",
@@ -6221,8 +6246,8 @@
           "sc-drawer",
           "sc-error"
         ],
-        "bundleId": "p-27419e3f",
-        "fileName": "p-27419e3f.entry.js",
+        "bundleId": "p-19baab2a",
+        "fileName": "p-19baab2a.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-53e7f7d7.js",
@@ -6295,8 +6320,8 @@
           "sc-order-confirm-provider",
           "sc-session-provider"
         ],
-        "bundleId": "p-5e997b8d",
-        "fileName": "p-5e997b8d.entry.js",
+        "bundleId": "p-6d551bf4",
+        "fileName": "p-6d551bf4.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-53e7f7d7.js",
@@ -6342,8 +6367,8 @@
           "sc-heading",
           "sc-order-confirm-components-validator"
         ],
-        "bundleId": "p-c069e96c",
-        "fileName": "p-c069e96c.entry.js",
+        "bundleId": "p-ede05d0e",
+        "fileName": "p-ede05d0e.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6354,8 +6379,8 @@
         "components": [
           "sc-invoice-status-badge"
         ],
-        "bundleId": "p-55d7f17f",
-        "fileName": "p-55d7f17f.entry.js",
+        "bundleId": "p-a2cada1f",
+        "fileName": "p-a2cada1f.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6396,8 +6421,8 @@
           "sc-paypal-buttons",
           "sc-secure-notice"
         ],
-        "bundleId": "p-98327e6c",
-        "fileName": "p-98327e6c.entry.js",
+        "bundleId": "p-a6f788fe",
+        "fileName": "p-a6f788fe.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-e885ba5f.js",
@@ -6422,8 +6447,8 @@
         "components": [
           "sc-popover"
         ],
-        "bundleId": "p-6cfbdb8d",
-        "fileName": "p-6cfbdb8d.entry.js",
+        "bundleId": "p-a15f20da",
+        "fileName": "p-a15f20da.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-8c8c3326.js",
@@ -6450,8 +6475,8 @@
         "components": [
           "sc-product-item"
         ],
-        "bundleId": "p-077fa22a",
-        "fileName": "p-077fa22a.entry.js",
+        "bundleId": "p-e578d17a",
+        "fileName": "p-e578d17a.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6476,8 +6501,8 @@
         "components": [
           "sc-stripe-payment-request"
         ],
-        "bundleId": "p-138aed9a",
-        "fileName": "p-138aed9a.entry.js",
+        "bundleId": "p-2b79166a",
+        "fileName": "p-2b79166a.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-9ef0f73f.js",
@@ -6503,8 +6528,8 @@
         "components": [
           "sc-summary"
         ],
-        "bundleId": "p-564d223c",
-        "fileName": "p-564d223c.entry.js",
+        "bundleId": "p-80f7eb0f",
+        "fileName": "p-80f7eb0f.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-830ab1a3.js",
@@ -6542,8 +6567,8 @@
         "components": [
           "sc-toggles"
         ],
-        "bundleId": "p-0bf61316",
-        "fileName": "p-0bf61316.entry.js",
+        "bundleId": "p-bb621151",
+        "fileName": "p-bb621151.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6557,8 +6582,8 @@
           "sc-subscription-cancel",
           "sc-textarea"
         ],
-        "bundleId": "p-30ead30d",
-        "fileName": "p-30ead30d.entry.js",
+        "bundleId": "p-7548fe70",
+        "fileName": "p-7548fe70.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -6568,7 +6593,7 @@
           "p-d3366af3.js",
           "p-3f6362a4.js"
         ],
-        "originalByteSize": 25021
+        "originalByteSize": 26311
       },
       {
         "key": "sc-checkout-form-errors.entry",
@@ -6595,8 +6620,8 @@
           "sc-column",
           "sc-columns"
         ],
-        "bundleId": "p-c0b7a3c0",
-        "fileName": "p-c0b7a3c0.entry.js",
+        "bundleId": "p-c4b88a1a",
+        "fileName": "p-c4b88a1a.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6630,8 +6655,8 @@
         "components": [
           "sc-customer-details"
         ],
-        "bundleId": "p-f4e5a4f2",
-        "fileName": "p-f4e5a4f2.entry.js",
+        "bundleId": "p-532620df",
+        "fileName": "p-532620df.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-30eb50ff.js",
@@ -6662,8 +6687,8 @@
           "sc-radio-group",
           "sc-shipping-choices"
         ],
-        "bundleId": "p-d974dac8",
-        "fileName": "p-d974dac8.entry.js",
+        "bundleId": "p-ab922813",
+        "fileName": "p-ab922813.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-30eb50ff.js",
@@ -6695,8 +6720,8 @@
           "sc-payment-method-choice",
           "sc-payment-selected"
         ],
-        "bundleId": "p-988ceefc",
-        "fileName": "p-988ceefc.entry.js",
+        "bundleId": "p-93cc82c4",
+        "fileName": "p-93cc82c4.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-4cae87fc.js",
@@ -6709,8 +6734,8 @@
         "components": [
           "sc-pill-option"
         ],
-        "bundleId": "p-4ec25555",
-        "fileName": "p-4ec25555.entry.js",
+        "bundleId": "p-b7c5668d",
+        "fileName": "p-b7c5668d.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6738,8 +6763,8 @@
           "sc-product-item-price",
           "sc-product-item-title"
         ],
-        "bundleId": "p-baeef550",
-        "fileName": "p-baeef550.entry.js",
+        "bundleId": "p-105e2bf7",
+        "fileName": "p-105e2bf7.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-7f01a36e.js",
@@ -6752,8 +6777,8 @@
         "components": [
           "sc-purchase-downloads-list"
         ],
-        "bundleId": "p-babf8c9b",
-        "fileName": "p-babf8c9b.entry.js",
+        "bundleId": "p-475ed7de",
+        "fileName": "p-475ed7de.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-401e165e.js"
@@ -6767,8 +6792,8 @@
           "sc-table-cell",
           "sc-table-row"
         ],
-        "bundleId": "p-db5461a9",
-        "fileName": "p-db5461a9.entry.js",
+        "bundleId": "p-897491c7",
+        "fileName": "p-897491c7.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6792,8 +6817,8 @@
         "components": [
           "sc-order-status-badge"
         ],
-        "bundleId": "p-904e59e3",
-        "fileName": "p-904e59e3.entry.js",
+        "bundleId": "p-f207a6ca",
+        "fileName": "p-f207a6ca.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6804,8 +6829,8 @@
         "components": [
           "sc-password"
         ],
-        "bundleId": "p-f2b39678",
-        "fileName": "p-f2b39678.entry.js",
+        "bundleId": "p-3989a8d0",
+        "fileName": "p-3989a8d0.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-830ab1a3.js"
@@ -6818,8 +6843,8 @@
           "sc-subscription-details",
           "sc-subscription-status-badge"
         ],
-        "bundleId": "p-aeef0d92",
-        "fileName": "p-aeef0d92.entry.js",
+        "bundleId": "p-38b19860",
+        "fileName": "p-38b19860.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-dd3464cd.js",
@@ -6835,8 +6860,8 @@
         "components": [
           "sc-switch"
         ],
-        "bundleId": "p-eed3e8fc",
-        "fileName": "p-eed3e8fc.entry.js",
+        "bundleId": "p-19393aac",
+        "fileName": "p-19393aac.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-8b323bfb.js"
@@ -6848,8 +6873,8 @@
         "components": [
           "sc-toggle"
         ],
-        "bundleId": "p-e896dd0d",
-        "fileName": "p-e896dd0d.entry.js",
+        "bundleId": "p-7b75b1dd",
+        "fileName": "p-7b75b1dd.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-94f536d6.js",
@@ -6888,8 +6913,8 @@
           "sc-phone-input",
           "sc-tax-id-input"
         ],
-        "bundleId": "p-3f366d88",
-        "fileName": "p-3f366d88.entry.js",
+        "bundleId": "p-9228f00a",
+        "fileName": "p-9228f00a.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-30eb50ff.js",
@@ -6919,8 +6944,8 @@
         "components": [
           "sc-line-items-provider"
         ],
-        "bundleId": "p-467b90ca",
-        "fileName": "p-467b90ca.entry.js",
+        "bundleId": "p-a44d93cf",
+        "fileName": "p-a44d93cf.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-c0a8ca8d.js"
@@ -6934,8 +6959,8 @@
           "sc-payment-method",
           "sc-prose"
         ],
-        "bundleId": "p-58916c02",
-        "fileName": "p-58916c02.entry.js",
+        "bundleId": "p-be097317",
+        "fileName": "p-be097317.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6946,8 +6971,8 @@
         "components": [
           "sc-spacing"
         ],
-        "bundleId": "p-de0679ba",
-        "fileName": "p-de0679ba.entry.js",
+        "bundleId": "p-d585fad3",
+        "fileName": "p-d585fad3.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -6958,8 +6983,8 @@
         "components": [
           "sc-price-input"
         ],
-        "bundleId": "p-933b06cc",
-        "fileName": "p-933b06cc.entry.js",
+        "bundleId": "p-66df5bda",
+        "fileName": "p-66df5bda.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-4df6e0c5.js",
@@ -6973,8 +6998,8 @@
         "components": [
           "sc-choice-container"
         ],
-        "bundleId": "p-783dadc5",
-        "fileName": "p-783dadc5.entry.js",
+        "bundleId": "p-12d7800a",
+        "fileName": "p-12d7800a.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-8b323bfb.js",
@@ -6988,8 +7013,8 @@
           "sc-menu-label",
           "sc-select"
         ],
-        "bundleId": "p-80871c3f",
-        "fileName": "p-80871c3f.entry.js",
+        "bundleId": "p-4299ad94",
+        "fileName": "p-4299ad94.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-8b323bfb.js",
@@ -7003,8 +7028,8 @@
           "sc-cc-logo",
           "sc-tooltip"
         ],
-        "bundleId": "p-71f5a965",
-        "fileName": "p-71f5a965.entry.js",
+        "bundleId": "p-f738a693",
+        "fileName": "p-f738a693.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7027,8 +7052,8 @@
         "components": [
           "sc-choice"
         ],
-        "bundleId": "p-971a38b4",
-        "fileName": "p-971a38b4.entry.js",
+        "bundleId": "p-511cd5e6",
+        "fileName": "p-511cd5e6.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-8b323bfb.js",
@@ -7041,8 +7066,8 @@
         "components": [
           "sc-choices"
         ],
-        "bundleId": "p-ea51031a",
-        "fileName": "p-ea51031a.entry.js",
+        "bundleId": "p-472a929e",
+        "fileName": "p-472a929e.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7055,8 +7080,8 @@
           "sc-menu",
           "sc-menu-item"
         ],
-        "bundleId": "p-e2c75222",
-        "fileName": "p-e2c75222.entry.js",
+        "bundleId": "p-42bec0de",
+        "fileName": "p-42bec0de.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-8c8c3326.js",
@@ -7070,8 +7095,8 @@
         "components": [
           "sc-dialog"
         ],
-        "bundleId": "p-80fa25eb",
-        "fileName": "p-80fa25eb.entry.js",
+        "bundleId": "p-f04c9079",
+        "fileName": "p-f04c9079.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-94f536d6.js"
@@ -7085,21 +7110,21 @@
           "sc-stacked-list",
           "sc-stacked-list-row"
         ],
-        "bundleId": "p-a1ac4a88",
-        "fileName": "p-a1ac4a88.entry.js",
+        "bundleId": "p-cda193cc",
+        "fileName": "p-cda193cc.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js"
         ],
-        "originalByteSize": 5226
+        "originalByteSize": 5268
       },
       {
         "key": "sc-text.entry",
         "components": [
           "sc-text"
         ],
-        "bundleId": "p-be22c938",
-        "fileName": "p-be22c938.entry.js",
+        "bundleId": "p-f26f20e7",
+        "fileName": "p-f26f20e7.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js"
@@ -7124,8 +7149,8 @@
         "components": [
           "sc-form"
         ],
-        "bundleId": "p-6e654891",
-        "fileName": "p-6e654891.entry.js",
+        "bundleId": "p-f4c5c3b8",
+        "fileName": "p-f4c5c3b8.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7136,8 +7161,8 @@
         "components": [
           "sc-line-item"
         ],
-        "bundleId": "p-b7b8d2ba",
-        "fileName": "p-b7b8d2ba.entry.js",
+        "bundleId": "p-75dc07f1",
+        "fileName": "p-75dc07f1.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js"
@@ -7149,8 +7174,8 @@
         "components": [
           "sc-divider"
         ],
-        "bundleId": "p-573ef117",
-        "fileName": "p-573ef117.entry.js",
+        "bundleId": "p-2db52b12",
+        "fileName": "p-2db52b12.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7161,8 +7186,8 @@
         "components": [
           "sc-flex"
         ],
-        "bundleId": "p-82e13871",
-        "fileName": "p-82e13871.entry.js",
+        "bundleId": "p-386f6534",
+        "fileName": "p-386f6534.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7174,8 +7199,8 @@
           "sc-form-control",
           "sc-input"
         ],
-        "bundleId": "p-f8776a67",
-        "fileName": "p-f8776a67.entry.js",
+        "bundleId": "p-25be51f2",
+        "fileName": "p-25be51f2.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js",
@@ -7189,8 +7214,8 @@
           "sc-card",
           "sc-dashboard-module"
         ],
-        "bundleId": "p-7c291f1b",
-        "fileName": "p-7c291f1b.entry.js",
+        "bundleId": "p-d17918aa",
+        "fileName": "p-d17918aa.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7201,8 +7226,8 @@
         "components": [
           "sc-tag"
         ],
-        "bundleId": "p-a31e41bd",
-        "fileName": "p-a31e41bd.entry.js",
+        "bundleId": "p-a21df730",
+        "fileName": "p-a21df730.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7214,8 +7239,8 @@
           "sc-block-ui",
           "sc-spinner"
         ],
-        "bundleId": "p-b0714dfd",
-        "fileName": "p-b0714dfd.entry.js",
+        "bundleId": "p-f6323747",
+        "fileName": "p-f6323747.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7226,8 +7251,8 @@
         "components": [
           "sc-skeleton"
         ],
-        "bundleId": "p-a4f86a96",
-        "fileName": "p-a4f86a96.entry.js",
+        "bundleId": "p-5c6185b1",
+        "fileName": "p-5c6185b1.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7238,8 +7263,8 @@
         "components": [
           "sc-button"
         ],
-        "bundleId": "p-65ae328c",
-        "fileName": "p-65ae328c.entry.js",
+        "bundleId": "p-840f1b74",
+        "fileName": "p-840f1b74.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js"
@@ -7251,8 +7276,8 @@
         "components": [
           "sc-alert"
         ],
-        "bundleId": "p-078eaf4a",
-        "fileName": "p-078eaf4a.entry.js",
+        "bundleId": "p-4961d7a5",
+        "fileName": "p-4961d7a5.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js"
@@ -7264,8 +7289,8 @@
         "components": [
           "sc-visually-hidden"
         ],
-        "bundleId": "p-d95394c7",
-        "fileName": "p-d95394c7.entry.js",
+        "bundleId": "p-02c84588",
+        "fileName": "p-02c84588.entry.js",
         "imports": [
           "p-e97fde0a.js"
         ],
@@ -7288,7 +7313,7 @@
           "library-e4c8cb15.js",
           "page-align-0cdacf32.js"
         ],
-        "originalByteSize": 27516
+        "originalByteSize": 27663
       },
       {
         "key": "sc-avatar.entry",
@@ -8050,7 +8075,7 @@
           "add-query-args-0e2a8393.js",
           "remove-query-args-938c53ea.js"
         ],
-        "originalByteSize": 8252
+        "originalByteSize": 8574
       },
       {
         "key": "sc-menu-divider.entry",
@@ -8784,6 +8809,18 @@
         "originalByteSize": 5415
       },
       {
+        "key": "sc-review-stars.entry",
+        "components": [
+          "sc-review-stars"
+        ],
+        "bundleId": "sc-review-stars",
+        "fileName": "sc-review-stars.entry.js",
+        "imports": [
+          "index-745b6bec.js"
+        ],
+        "originalByteSize": 1537
+      },
+      {
         "key": "sc-rich-text.entry",
         "components": [
           "sc-rich-text"
@@ -8886,7 +8923,7 @@
           "remove-query-args-938c53ea.js",
           "currency-a0c9bff4.js"
         ],
-        "originalByteSize": 11337
+        "originalByteSize": 11590
       },
       {
         "key": "sc-subscription-ad-hoc-confirm.entry",
@@ -9259,7 +9296,7 @@
           "add-query-args-0e2a8393.js",
           "remove-query-args-938c53ea.js"
         ],
-        "originalByteSize": 18958
+        "originalByteSize": 19213
       },
       {
         "key": "sc-cart-session-provider.sc-drawer.sc-error.entry",
@@ -9615,7 +9652,7 @@
           "remove-query-args-938c53ea.js",
           "currency-a0c9bff4.js"
         ],
-        "originalByteSize": 25077
+        "originalByteSize": 26367
       },
       {
         "key": "sc-checkout-form-errors.entry",
@@ -10138,7 +10175,7 @@
           "index-745b6bec.js",
           "page-align-0cdacf32.js"
         ],
-        "originalByteSize": 5239
+        "originalByteSize": 5281
       },
       {
         "key": "sc-text.entry",
@@ -10337,7 +10374,7 @@
           "library-2c5d1943.js",
           "page-align-5a2ab493.js"
         ],
-        "originalByteSize": 27922
+        "originalByteSize": 28069
       },
       {
         "key": "sc-avatar.entry",
@@ -11099,7 +11136,7 @@
           "add-query-args-49dcb630.js",
           "remove-query-args-b57e8cd3.js"
         ],
-        "originalByteSize": 8549
+        "originalByteSize": 8871
       },
       {
         "key": "sc-menu-divider.entry",
@@ -11833,6 +11870,18 @@
         "originalByteSize": 5525
       },
       {
+        "key": "sc-review-stars.entry",
+        "components": [
+          "sc-review-stars"
+        ],
+        "bundleId": "sc-review-stars.cjs",
+        "fileName": "sc-review-stars.cjs.entry.js",
+        "imports": [
+          "index-8acc3c89.js"
+        ],
+        "originalByteSize": 1612
+      },
+      {
         "key": "sc-rich-text.entry",
         "components": [
           "sc-rich-text"
@@ -11935,7 +11984,7 @@
           "remove-query-args-b57e8cd3.js",
           "currency-71fce0f0.js"
         ],
-        "originalByteSize": 11607
+        "originalByteSize": 11866
       },
       {
         "key": "sc-subscription-ad-hoc-confirm.entry",
@@ -12308,7 +12357,7 @@
           "add-query-args-49dcb630.js",
           "remove-query-args-b57e8cd3.js"
         ],
-        "originalByteSize": 19578
+        "originalByteSize": 19839
       },
       {
         "key": "sc-cart-session-provider.sc-drawer.sc-error.entry",
@@ -12664,7 +12713,7 @@
           "remove-query-args-b57e8cd3.js",
           "currency-71fce0f0.js"
         ],
-        "originalByteSize": 25462
+        "originalByteSize": 26776
       },
       {
         "key": "sc-checkout-form-errors.entry",
@@ -13187,7 +13236,7 @@
           "index-8acc3c89.js",
           "page-align-5a2ab493.js"
         ],
-        "originalByteSize": 5387
+        "originalByteSize": 5429
       },
       {
         "key": "sc-text.entry",
@@ -28138,6 +28187,7 @@
         "sc-quantity-select",
         "sc-razorpay-add-method",
         "sc-recurring-price-choice-container",
+        "sc-review-stars",
         "sc-rich-text",
         "sc-select",
         "sc-stripe-add-method",
@@ -28213,6 +28263,7 @@
         "sc-purchase-downloads-list",
         "sc-quantity-select",
         "sc-recurring-price-choice-container",
+        "sc-review-stars",
         "sc-rich-text",
         "sc-select",
         "sc-subscription",
@@ -45033,6 +45084,79 @@
       ]
     },
     {
+      "tag": "sc-review-stars",
+      "path": "./src/components/ui/review-stars/sc-review-stars.js",
+      "source": "./src/components/ui/review-stars/sc-review-stars.tsx",
+      "elementRef": null,
+      "componentClassName": "ScReviewStars",
+      "assetsDirs": [],
+      "dependencies": [
+        "sc-icon"
+      ],
+      "dependents": [],
+      "directDependencies": [
+        "sc-icon"
+      ],
+      "directDependents": [],
+      "docs": {
+        "tags": [],
+        "text": ""
+      },
+      "encapsulation": "shadow",
+      "excludeFromCollection": false,
+      "events": [],
+      "internal": false,
+      "listeners": [],
+      "methods": [],
+      "potentialCmpRefs": [
+        "sc-icon"
+      ],
+      "properties": [
+        {
+          "name": "rating",
+          "type": "number",
+          "attribute": "rating",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "0",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "internal": false
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "attribute": "size",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "defaultValue": "20",
+          "complexType": {
+            "original": "number",
+            "resolved": "number",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "internal": false
+        }
+      ],
+      "shadowDelegatesFocus": false,
+      "states": []
+    },
+    {
       "tag": "sc-rich-text",
       "path": "./src/components/ui/rich-text/sc-rich-text.js",
       "source": "./src/components/ui/rich-text/sc-rich-text.tsx",
@@ -54659,6 +54783,7 @@
             "sc-quantity-select",
             "sc-razorpay-add-method",
             "sc-recurring-price-choice-container",
+            "sc-review-stars",
             "sc-rich-text",
             "sc-select",
             "sc-stripe-add-method",
@@ -54734,6 +54859,7 @@
             "sc-purchase-downloads-list",
             "sc-quantity-select",
             "sc-recurring-price-choice-container",
+            "sc-review-stars",
             "sc-rich-text",
             "sc-select",
             "sc-subscription",
@@ -76477,6 +76603,166 @@
         {
           "attachInternalsMemberName": null,
           "formAssociated": false,
+          "tagName": "sc-review-stars",
+          "excludeFromCollection": false,
+          "isCollectionDependency": false,
+          "componentClassName": "ScReviewStars",
+          "elementRef": null,
+          "encapsulation": "shadow",
+          "shadowDelegatesFocus": false,
+          "properties": [
+            {
+              "name": "rating",
+              "type": "number",
+              "attribute": "rating",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "0",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": ""
+              },
+              "internal": false
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "attribute": "size",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "defaultValue": "20",
+              "complexType": {
+                "original": "number",
+                "resolved": "number",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": ""
+              },
+              "internal": false
+            }
+          ],
+          "virtualProperties": [],
+          "states": [],
+          "methods": [],
+          "listeners": [],
+          "events": [],
+          "watchers": [],
+          "styles": [
+            {
+              "modeName": "$",
+              "styleId": "SC-REVIEW-STARS",
+              "styleStr": null,
+              "styleIdentifier": "ScReviewStarsStyle",
+              "externalStyles": [
+                {
+                  "absolutePath": "/home/runner/work/surecart-wp/surecart-wp/packages/components/src/components/ui/review-stars/sc-review-stars.scss",
+                  "relativePath": "sc-review-stars.scss",
+                  "originalComponentPath": "sc-review-stars.scss"
+                }
+              ]
+            }
+          ],
+          "internal": false,
+          "assetsDirs": [],
+          "styleDocs": [],
+          "docs": {
+            "tags": [],
+            "text": ""
+          },
+          "jsFilePath": "/home/runner/work/surecart-wp/surecart-wp/packages/components/src/components/ui/review-stars/sc-review-stars.js",
+          "sourceFilePath": "/home/runner/work/surecart-wp/surecart-wp/packages/components/src/components/ui/review-stars/sc-review-stars.tsx",
+          "sourceMapPath": "/home/runner/work/surecart-wp/surecart-wp/packages/components/src/components/ui/review-stars/sc-review-stars.js.map",
+          "hasAttributeChangedCallbackFn": false,
+          "hasComponentWillLoadFn": false,
+          "hasComponentDidLoadFn": false,
+          "hasComponentShouldUpdateFn": false,
+          "hasComponentWillUpdateFn": false,
+          "hasComponentDidUpdateFn": false,
+          "hasComponentWillRenderFn": false,
+          "hasComponentDidRenderFn": false,
+          "hasComponentDidUnloadFn": false,
+          "hasConnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": false,
+          "hasElement": false,
+          "hasEvent": false,
+          "hasLifecycle": false,
+          "hasListener": false,
+          "hasListenerTarget": false,
+          "hasListenerTargetWindow": false,
+          "hasListenerTargetDocument": false,
+          "hasListenerTargetBody": false,
+          "hasListenerTargetParent": false,
+          "hasMember": true,
+          "hasMethod": false,
+          "hasMode": false,
+          "hasAttribute": true,
+          "hasProp": true,
+          "hasPropNumber": true,
+          "hasPropBoolean": false,
+          "hasPropString": false,
+          "hasPropMutable": false,
+          "hasReflect": false,
+          "hasRenderFn": true,
+          "hasState": false,
+          "hasStyle": true,
+          "hasVdomAttribute": true,
+          "hasVdomXlink": false,
+          "hasVdomClass": true,
+          "hasVdomFunctional": false,
+          "hasVdomKey": false,
+          "hasVdomListener": false,
+          "hasVdomPropOrAttr": true,
+          "hasVdomRef": false,
+          "hasVdomRender": true,
+          "hasVdomStyle": true,
+          "hasVdomText": true,
+          "hasWatchCallback": false,
+          "isPlain": false,
+          "htmlAttrNames": [
+            "name",
+            "class",
+            "style",
+            "part"
+          ],
+          "htmlTagNames": [
+            "sc-icon",
+            "div"
+          ],
+          "htmlParts": [
+            "base"
+          ],
+          "isUpdateable": true,
+          "potentialCmpRefs": [
+            "sc-icon"
+          ],
+          "dependents": [],
+          "dependencies": [
+            "sc-icon"
+          ],
+          "directDependents": [],
+          "directDependencies": [
+            "sc-icon"
+          ]
+        }
+      ],
+      "entryKey": "sc-review-stars.entry"
+    },
+    {
+      "cmps": [
+        {
+          "attachInternalsMemberName": null,
+          "formAssociated": false,
           "tagName": "sc-rich-text",
           "excludeFromCollection": false,
           "isCollectionDependency": false,
@@ -83016,6 +83302,7 @@
             "comment",
             "onScAbandon",
             "onScCancelled",
+            "slot",
             "onScSubmitReason",
             "onScCancel",
             "onScPreserved"
@@ -83026,6 +83313,7 @@
             "sc-button",
             "sc-icon",
             "sc-subscription-cancel",
+            "slot",
             "sc-cancel-survey",
             "sc-cancel-discount"
           ],
@@ -91444,12 +91732,13 @@
           "hasWatchCallback": false,
           "isPlain": false,
           "htmlAttrNames": [
-            "slot",
             "style",
             "key",
             "heading",
             "class",
             "error",
+            "slot",
+            "name",
             "justifyContent",
             "type",
             "loading",
@@ -91457,10 +91746,11 @@
             "onClick"
           ],
           "htmlTagNames": [
-            "div",
             "strong",
+            "div",
             "sc-skeleton",
             "sc-dashboard-module",
+            "slot",
             "sc-flex",
             "sc-button",
             "sc-block-ui"
@@ -119897,6 +120187,9 @@
       "p-4df6e0c5.js",
       "p-3f6362a4.js"
     ],
+    "sc-sc-review-stars": [
+      "p-e97fde0a.js"
+    ],
     "sc-sc-rich-text": [
       "p-e97fde0a.js"
     ],
@@ -121227,6 +121520,7 @@
     "./src/components/ui/radio/test/sc-radio.spec.tsx": [
       "./src/components/ui/radio/sc-radio"
     ],
+    "./src/components/ui/review-stars/sc-review-stars.tsx": [],
     "./src/components/ui/rich-text/sc-rich-text.tsx": [],
     "./src/components/ui/rich-text/test/sc-rich-text.e2e.ts": [],
     "./src/components/ui/rich-text/test/sc-rich-text.spec.ts": [

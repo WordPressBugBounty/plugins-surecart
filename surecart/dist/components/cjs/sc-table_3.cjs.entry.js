@@ -12,7 +12,7 @@ const ScTable = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: '071bc8a6d61cf50adcede5be6b93605af5726def' }, index.h("slot", { key: '274f781ff65cc99982ab0671bacbd933b073d631', name: "head" }), index.h("slot", { key: 'ccd51b040a86bf3b25289d84cce4ffc5f30d8dc3' }), index.h("slot", { key: 'f4305605ea7058e0765bd8fed458d60a2a2421f1', name: "footer" })));
+        return (index.h(index.Host, { key: 'bdf712f1f0ec2260f5c3a873bd09a38b836027eb' }, index.h("slot", { key: '7f3e82d98cf6a6b9cede4157a83d29e7aa355178', name: "head" }), index.h("slot", { key: 'f5d355e7e8f3b63c409af9cba865edb8cadf7d3b' }), index.h("slot", { key: '8e9268b109cf291b86b7ed4ca883ca9bb5cadbf9', name: "footer" })));
     }
 };
 ScTable.style = ScTableStyle0;
@@ -25,7 +25,7 @@ const ScTableScll = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: 'fc42a1de4162b141ee8851ee1d68fd770bcef24b' }, index.h("slot", { key: '747c46764213afa4a3a0e02fb4770333e9078680' })));
+        return (index.h(index.Host, { key: '2cdb62e68d2f369049ad3193406105a3bb1ba09a' }, index.h("slot", { key: '3fe29d3678555d78e8f2ec9f2d8092390488f860' })));
     }
 };
 ScTableScll.style = ScTableCellStyle0;
@@ -39,7 +39,7 @@ const ScTableRow = class {
         this.href = undefined;
     }
     render() {
-        return (index.h(index.Host, { key: '61e3d3a37e413295942b46dfd12f53f8422f499e' }, index.h("slot", { key: 'a3c1f899a7a7d3e3a8f3aa3ff8fefc433ab123c2' })));
+        return (index.h(index.Host, { key: '7627bea93b09b32d8033257db94293dc311d5f70' }, index.h("slot", { key: 'b4663439b1404e51f60fa99840d8c9c0fdfb8aa7' })));
     }
 };
 ScTableRow.style = ScTableRowStyle0;

@@ -8,7 +8,7 @@ const ScColumn = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h(Host, { key: '7700f5702b3fb24730e4f3a02edaf3dd0c103948' }, h("slot", { key: '550ec825b8c166db74291eca7cb64a5a27de429c' })));
+        return (h(Host, { key: '8ab96e957036e0795045a46066acda9b6688d838' }, h("slot", { key: 'e3aaacb8d230b2d9590a3f65053c7d4f2dc1144a' })));
     }
 };
 ScColumn.style = ScColumnStyle0;
@@ -25,13 +25,13 @@ const ScColumns = class {
         this.isReversedOnMobile = undefined;
     }
     render() {
-        return (h(Host, { key: 'af943728741a56b22a0311d84a8f4ed616ce2c94', class: {
+        return (h(Host, { key: '8f6d225a5357b39d9d0e38ba2b1e9be5cf916e8b', class: {
                 'sc-columns': true,
                 [`are-vertically-aligned-${this.verticalAlignment}`]: !!this.verticalAlignment,
                 'is-not-stacked-on-mobile': !this.isStackedOnMobile,
                 'is-full-height': !!this.isFullHeight,
                 'is-reversed-on-mobile': !!this.isReversedOnMobile,
-            } }, h("slot", { key: '0bacc7c8389bd2e7baa1101b5621fdeaf3693440' })));
+            } }, h("slot", { key: 'b2b9634c7ef2723b3f983a297e954d1cf34308e8' })));
     }
 };
 ScColumns.style = ScColumnsStyle0;

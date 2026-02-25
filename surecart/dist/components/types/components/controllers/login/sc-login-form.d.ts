@@ -20,6 +20,7 @@ export declare class ScLogin {
     /** Get all subscriptions */
     submitCode(): Promise<void>;
     login(): Promise<void>;
+    getRedirectTo(): string;
     checkEmail(): Promise<void>;
     renderInner(): any;
     render(): any;

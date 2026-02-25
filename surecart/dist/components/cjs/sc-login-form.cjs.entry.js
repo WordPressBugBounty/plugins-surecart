@@ -81,6 +81,7 @@ const ScLogin = class {
                 data: {
                     login: this.email,
                     code: this.verifyCode,
+                    ...(this.getRedirectTo() ? { redirect_to: this.getRedirectTo() } : {}),
                 },
             }));
             if (!verified) {
@@ -107,6 +108,7 @@ const ScLogin = class {
                 data: {
                     login: this.email,
                     password: this.password,
+                    ...(this.getRedirectTo() ? { redirect_to: this.getRedirectTo() } : {}),
                 },
             }));
             if (redirect_url) {
@@ -120,6 +122,10 @@ const ScLogin = class {
             this.handleError(e);
             this.loading = false;
         }
+    }
+    getRedirectTo() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('redirect_to');
     }
     async checkEmail() {
         try {
@@ -151,7 +157,7 @@ const ScLogin = class {
     }
     render() {
         var _a, _b;
-        return (index.h("div", { key: 'afcb398bff0f645289907e5f243d11dc9b426acb', class: "login-form" }, index.h("sc-card", { key: '680a72b0133ed9bc716a6b066230d7a9877b079d' }, !!this.error && (index.h("sc-alert", { key: '369cf13911c02f588a1a94945a7369481c9db54c', open: true, type: "danger", closable: true, onScHide: () => (this.error = null) }, index.h("span", { key: 'd6b9241f4ec8fbc1a7bf035b75b2e4f5dc29fa59', slot: "title", innerHTML: (_a = this.error) === null || _a === void 0 ? void 0 : _a.message }), (((_b = this.error) === null || _b === void 0 ? void 0 : _b.additional_errors) || []).map(({ message }) => (index.h("div", { innerHTML: message }))))), this.renderInner()), this.loading && index.h("sc-block-ui", { key: 'a582df737ed80d37884b5e8eb5a80d454d880935', spinner: true, style: { 'zIndex': '9', '--sc-block-ui-opacity': '0.5' } })));
+        return (index.h("div", { key: '0693a545336ca18a4da0ac422eeffd4f7c74f894', class: "login-form" }, index.h("sc-card", { key: '557b7c88fe7fd3e07155bfc26b55048555169c16' }, !!this.error && (index.h("sc-alert", { key: 'b2c0e1913ecd6f893bbc1a2ae88506a86df3ea41', open: true, type: "danger", closable: true, onScHide: () => (this.error = null) }, index.h("span", { key: '49015908573203dfe4e454c7763dfb0f5828a93f', slot: "title", innerHTML: (_a = this.error) === null || _a === void 0 ? void 0 : _a.message }), (((_b = this.error) === null || _b === void 0 ? void 0 : _b.additional_errors) || []).map(({ message }) => (index.h("div", { innerHTML: message }))))), this.renderInner()), this.loading && index.h("sc-block-ui", { key: 'c73603b435ff6fbb85939bf593e662278e9a8208', spinner: true, style: { 'zIndex': '9', '--sc-block-ui-opacity': '0.5' } })));
     }
     static get watchers() { return {
         "step": ["handleStepChange"],

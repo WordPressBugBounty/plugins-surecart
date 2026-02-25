@@ -43,7 +43,7 @@ const ScBreadcrumbs = class {
         });
     }
     render() {
-        return (index.h(index.Fragment, { key: '3643096fdec4c945ec250723e5ab9d42f694a022' }, index.h("nav", { key: '1fecc7111b1bca54dc9f4c42683c7e102d4fb497', part: "base", class: "breadcrumb", "aria-label": this.label }, index.h("slot", { key: '0ec4fb9f929c50316eba4ccf3f6920faa2fd7c05', onSlotchange: () => this.handleSlotChange() })), index.h("div", { key: '176cdf6a737ac058c4de2de0c548c5cd2b6d35a5', part: "separator", hidden: true, "aria-hidden": "true" }, index.h("slot", { key: '6bc1ddcafa647f22d0a6f9f836462fed5988c6fe', name: "separator" }, index.h("sc-icon", { key: '8540f5d4d5209c825dbe50522d4532b4880b28e5', name: "chevron-right" })))));
+        return (index.h(index.Fragment, { key: '6d12ffd546c2a2fdda863b2a3831e98111cb9514' }, index.h("nav", { key: '41810cb4dbbd20e59858dcbffa661ed95d6ac255', part: "base", class: "breadcrumb", "aria-label": this.label }, index.h("slot", { key: 'c7d95a28bb5b449212a476198decc1e841426d29', onSlotchange: () => this.handleSlotChange() })), index.h("div", { key: 'eefe1e7e3b0df145d34bec7291c0afb68dc2af0f', part: "separator", hidden: true, "aria-hidden": "true" }, index.h("slot", { key: '67b05db1cd38814a2919e13f18616fbaa4642809', name: "separator" }, index.h("sc-icon", { key: '88a9ef9ae220f348fe2b14b11eaa3e490b14b30a', name: "chevron-right" })))));
     }
     get el() { return index.getElement(this); }
 };

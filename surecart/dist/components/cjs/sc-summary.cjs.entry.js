@@ -76,9 +76,9 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'ac7bc14cf69e189962f52464b35b1f3c00de063e', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), index.h("div", { key: 'e64acce8d44ca550844944407c9e3b79f49a4c13', ref: el => (this.body = el), class: {
+        return (index.h("div", { key: 'd766c3655cddde4608c01041ebca00799318665a', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), index.h("div", { key: 'a281336518da0e9516cb5be76c6587cd2c0d7195', ref: el => (this.body = el), class: {
                 summary__content: true,
-            } }, index.h("slot", { key: 'c4e2cb2484985370d55ba309b711cc914c1aef6b' }))));
+            } }, index.h("slot", { key: '4fc2b87404efdaca701faa21bf8448ca300ad9b7' }))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

@@ -15,7 +15,7 @@ const ScCcLogo = class {
         return h("sc-icon", { name: "creditcard", style: { '--height': '0.63em' } });
     }
     render() {
-        return (h("div", { key: '93a65ba2b0116124d9478e96fbe2fa312de03128', class: "cc-logo", part: "base" }, this.renderLogo()));
+        return (h("div", { key: 'e9f7f69732dede93cbbfead07c30686bab5dc8bc', class: "cc-logo", part: "base" }, this.renderLogo()));
     }
 };
 ScCcLogo.style = ScCcLogoStyle0;

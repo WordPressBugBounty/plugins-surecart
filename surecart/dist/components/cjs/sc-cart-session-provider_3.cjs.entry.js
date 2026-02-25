@@ -90,7 +90,7 @@ const ScCartSessionProvider = class {
         }
     }
     render() {
-        return (index.h("sc-line-items-provider", { key: 'f80caae80b1c2ec57ef1267584310c5a3264affb', order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '75de9a84f21a2ea8a065087c6a387eb669a87964' })));
+        return (index.h("sc-line-items-provider", { key: '487aeb5da88dc93549ebe56f29b29196c45d73f4', order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '4c30b8b64591822f4aa0938ee3876e840d234a08' })));
     }
     get el() { return index.getElement(this); }
 };
@@ -220,7 +220,7 @@ const ScDrawer = class {
         }
     }
     render() {
-        return (index.h("div", { key: '9cb0ef10084d76153511ed12c9f85a15b92d8307', part: "base", class: {
+        return (index.h("div", { key: 'fd9d19fbb4b040abf64a554be868ed303cff4198', part: "base", class: {
                 'drawer': true,
                 'drawer--open': this.open,
                 'drawer--top': this.placement === 'top',
@@ -230,9 +230,9 @@ const ScDrawer = class {
                 'drawer--contained': this.contained,
                 'drawer--fixed': !this.contained,
                 'drawer--has-footer': this.el.querySelector('[slot="footer"]') !== null,
-            }, ref: el => (this.drawer = el), onKeyDown: (e) => this.handleKeyDown(e) }, index.h("div", { key: 'de803599ec55a981d7457249f73be4d78251f10c', part: "overlay", class: "drawer__overlay", onClick: () => this.requestClose('overlay'), tabindex: "-1", ref: el => (this.overlay = el) }), index.h("div", { key: 'a1eea9be28c5546c6a6d90900c488ca899bcd6d9', part: "panel", class: "drawer__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader ? this.label : undefined, "aria-labelledby": !this.noHeader ? 'title' : undefined, tabindex: "0", ref: el => (this.panel = el) }, !this.noHeader && (index.h("header", { key: '20f8a94008cab0dc10e459b5591a4a11d2581e06', part: "header", class: this.stickyHeader ? 'header__sticky' : '' }, index.h("slot", { key: '6808831586aaad8351944bcca6002a5bca5772d2', name: "header" }, index.h("div", { key: '426d462d780963ab485f7146261bb9f6b81f0ced', class: "drawer__header" }, index.h("h2", { key: '3c31398708e713cc3377365ce04452be73bf60a3', part: "title", class: "drawer__title", id: "title" }, index.h("slot", { key: 'ebd173546be70607dcf423f39b456637c55ed3f7', name: "label" }, this.label.length > 0 ? this.label : ' ', " ")), index.h("sc-icon", { key: 'dfcb18cd86504491dc4f8983a2b8a1cab779c549', part: "close-button", exportparts: "base:close-button__base", class: "drawer__close", name: "x", label: 
+            }, ref: el => (this.drawer = el), onKeyDown: (e) => this.handleKeyDown(e) }, index.h("div", { key: 'e7a31405d8aa6ffc3b0cbd25a2dbe595b77cb7df', part: "overlay", class: "drawer__overlay", onClick: () => this.requestClose('overlay'), tabindex: "-1", ref: el => (this.overlay = el) }), index.h("div", { key: '0133489a2a011d0ea4be82ae9c110cdfc9fe364c', part: "panel", class: "drawer__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader ? this.label : undefined, "aria-labelledby": !this.noHeader ? 'title' : undefined, tabindex: "0", ref: el => (this.panel = el) }, !this.noHeader && (index.h("header", { key: 'b39c2621b4f54bf42b410547c293c79553eb9a12', part: "header", class: this.stickyHeader ? 'header__sticky' : '' }, index.h("slot", { key: '6a3b95a966d2fb6b2a06f24b753cd0189674929b', name: "header" }, index.h("div", { key: '2dcc3e248d4d1178b3ed8a8c7789ff971232b32f', class: "drawer__header" }, index.h("h2", { key: '791ef3ea52c7f68bc8467a9fb17137d4856995c7', part: "title", class: "drawer__title", id: "title" }, index.h("slot", { key: '607cb2a818610adacf3248768445e35ba6f435f8', name: "label" }, this.label.length > 0 ? this.label : ' ', " ")), index.h("sc-icon", { key: 'e32c1efd56d0dd9521a23120cc9071f454db2629', part: "close-button", exportparts: "base:close-button__base", class: "drawer__close", name: "x", label: 
             /** translators: Close this modal window. */
-            wp.i18n.__('Close', 'surecart'), onClick: () => this.requestClose('close-button') }))))), index.h("footer", { key: '14b29f43bc348dce25ffc3a136cc0f3235be4501', part: "header-suffix", class: "drawer__header-suffix" }, index.h("slot", { key: 'dac237cb40fadb1df52eb15f958be6cb8c18172a', name: "header-suffix" })), index.h("div", { key: 'f08bde846646f6393eabb60012edaf3c83947609', part: "body", class: "drawer__body" }, index.h("slot", { key: '3a321fab5d03f2dd402080e1920b7027214aa22f' })), index.h("footer", { key: 'da8da804b61eda98c6cd54d796466a6386f8cb87', part: "footer", class: this.stickyFooter ? 'drawer__footer is-sticky' : 'drawer__footer' }, index.h("slot", { key: '929694359bc9ee8ee6da97d1a075986d925f90fd', name: "footer" })))));
+            wp.i18n.__('Close', 'surecart'), onClick: () => this.requestClose('close-button') }))))), index.h("footer", { key: '4840babea63501921234b79d0076486a55415f50', part: "header-suffix", class: "drawer__header-suffix" }, index.h("slot", { key: 'e6f17c8be5b274fd7fd866d0879304d105469eef', name: "header-suffix" })), index.h("div", { key: 'c1ae76af464f7c6519b9902268eb522a89395d0b', part: "body", class: "drawer__body" }, index.h("slot", { key: 'deb939000349220e317e0cd583294325ffdfb71a' })), index.h("footer", { key: 'c0eca95c41981b30d0dc2bbf4e620817953c77d5', part: "footer", class: this.stickyFooter ? 'drawer__footer is-sticky' : 'drawer__footer' }, index.h("slot", { key: '588c72abb3bcd20c63a4ecc105c3cdda6489eae3', name: "footer" })))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

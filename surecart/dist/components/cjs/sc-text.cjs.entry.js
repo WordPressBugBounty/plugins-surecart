@@ -16,11 +16,11 @@ const ScText = class {
     }
     render() {
         const CustomTag = this.tag;
-        return (index.h(CustomTag, { key: 'fea476d19041a336b6b0a7ff791b537123c58062', class: {
+        return (index.h(CustomTag, { key: 'c64f25a3c615d16de3594013a84642d4588552ad', class: {
                 'text': true,
                 'is-truncated': this.truncate,
                 'text--is-rtl': pageAlign.isRtl()
-            } }, index.h("slot", { key: '50b4e4789d5a8799369eb7a2a4de196cdc109d33' })));
+            } }, index.h("slot", { key: 'add8a835c6242a76174d4d31e9ecedd60e02c965' })));
     }
 };
 ScText.style = ScTextStyle0;
