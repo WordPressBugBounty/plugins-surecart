@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-25T18:46:50+00:00\n"
+"POT-Creation-Date: 2026-03-02T16:50:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -1324,7 +1324,7 @@ msgstr ""
 #: products/modules/Prices/Price/Header.js:83
 #: store/add-entities.js:458
 #: store/add-entities.js:465
-#: subscriptions/edit/EditSubscription.js:239
+#: subscriptions/edit/EditSubscription.js:242
 #: sc-subscription-details2.js:80
 #: sc-subscription.js:154
 msgid "Subscription"
@@ -2079,7 +2079,11 @@ msgstr ""
 #: products/modules/Variations/Variants.js:134
 #: Blocks/CheckoutForm/components/PriceChoices.js:57
 #: components/PriceChoices.js:18
-#: src/blocks/product-quantity/view.php:3
+#: src/blocks/product-quantity-input/view.php:14
+#: src/blocks/product-quantity/controller.php:9
+#: src/blocks/product-quantity/legacy.php:4
+#: src/blocks/product-quantity/legacy.php:38
+#: src/blocks/product-quantity-input/edit.js:12
 #: sc-checkout-stock-alert2.js:113
 msgid "Quantity"
 msgstr ""
@@ -2433,7 +2437,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:402
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:409
-#: subscriptions/edit/EditSubscription.js:252
+#: subscriptions/edit/EditSubscription.js:255
 msgid "Edit Subscription"
 msgstr ""
 
@@ -2742,6 +2746,7 @@ msgstr ""
 #: src/blocks/product-list-filter/edit.js:30
 #: src/blocks/product-list-sidebar/edit.js:154
 #: src/blocks/product-pagination/edit.js:65
+#: src/blocks/product-quantity-control/edit.js:39
 #: src/blocks/product-quick-view-button/settings.js:15
 #: src/blocks/product-review-breakdown/edit.js:54
 #: src/blocks/product-review-date/edit.js:97
@@ -3100,6 +3105,7 @@ msgstr ""
 #: settings/display-currency/components/DisplayCurrenciesSettings.js:99
 #: util/templates.js:8
 #: Blocks/Dashboard/CustomerPaymentMethods/edit.js:84
+#: src/blocks-styles/product-quantity--default.php:9
 #: sc-payment-methods-list.js:168
 msgid "Default"
 msgstr ""
@@ -3386,7 +3392,6 @@ msgstr ""
 #: src/blocks/cart-bump-line-item/edit.js:38
 #: src/blocks/cart-coupon/edit.js:156
 #: src/blocks/cart-subtotal/edit.js:35
-#: src/blocks/product-quantity/edit.js:37
 #: src/blocks/product-review-form-content/edit.js:60
 #: src/blocks/product-review-form-rating/edit.js:76
 #: src/blocks/product-review-form-title/edit.js:45
@@ -4025,6 +4030,7 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/ProductReviewList.php:655
 #: src/Integrations/Elementor/Widgets/ProductReviewList.php:999
 #: src/blocks/product-list-sidebar-toggle/view.php:40
+#: src/scripts/sidebar/index.js:55
 msgid "Open sidebar"
 msgstr ""
 
@@ -4179,6 +4185,7 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/ProductReviewTotalRating.php:69
 #: src/Integrations/Elementor/Widgets/ProductReviewTotalRating.php:87
 #: Blocks/PriceChoice/edit.js:93
+#: src/components/LabelControl.js:13
 msgid "Show Label"
 msgstr ""
 
@@ -4194,20 +4201,18 @@ msgid "reviews"
 msgstr ""
 
 #: src/Integrations/Bricks/Elements/Quantity.php:86
-#: src/blocks/cart-items/view.php:59
-#: src/blocks/cart-line-item-quantity/view.php:22
-#: src/blocks/product-quantity/view.php:18
+#: src/blocks/product-quantity-input-decrease/view.php:10
+#: src/blocks/product-quantity/legacy.php:21
 #: src/blocks/cart-line-item-quantity/edit.js:24
-#: sc-quantity-select2.js:63
+#: src/blocks/product-quantity-input-decrease/edit.js:8
 msgid "Decrease quantity by one."
 msgstr ""
 
 #: src/Integrations/Bricks/Elements/Quantity.php:104
-#: src/blocks/cart-items/view.php:86
-#: src/blocks/cart-line-item-quantity/view.php:49
-#: src/blocks/product-quantity/view.php:54
+#: src/blocks/product-quantity-input-increase/view.php:10
+#: src/blocks/product-quantity/legacy.php:48
 #: src/blocks/cart-line-item-quantity/edit.js:41
-#: sc-quantity-select2.js:63
+#: src/blocks/product-quantity-input-increase/edit.js:8
 msgid "Increase quantity by one."
 msgstr ""
 
@@ -4597,6 +4602,7 @@ msgstr ""
 #: src/blocks/product-buy-button/display.js:29
 #: src/blocks/product-buy-button/display.js:38
 #: src/blocks/product-image/edit.js:158
+#: src/blocks/product-quantity-control/edit.js:41
 #: src/blocks/product-quick-view-button/design.js:74
 #: src/blocks/product-quick-view-button/design.js:80
 #: src/blocks/product-quick-view/edit.js:61
@@ -5793,7 +5799,7 @@ msgstr[1] ""
 #: src/Models/Price.php:311
 #: src/Models/Price.php:355
 #: products/components/price/parts/RevokeAfterDays.js:59
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:361
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:388
 #: settings/review-protocol/ReviewProtocolSettings.js:136
 #: settings/subscription/SubscriptionSettings.js:327
 msgid "days"
@@ -6809,7 +6815,6 @@ msgstr ""
 #: src/Support/Blocks/TemplateUtilityService.php:373
 #: src/Support/Blocks/TemplateUtilityService.php:374
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:202
-#: src/WordPress/Admin/Menus/ProductCollectionsMenuService.php:36
 #: admin/product-collections/index.php:6
 #: store/add-entities.js:280
 msgid "Product Collections"
@@ -9092,18 +9097,6 @@ msgstr ""
 msgid "Sticky Purchase Template"
 msgstr ""
 
-#: src/WordPress/Admin/Menus/ProductCollectionsMenuService.php:63
-msgid "No product collections added."
-msgstr ""
-
-#: src/WordPress/Admin/Menus/ProductCollectionsMenuService.php:95
-msgid "Select all"
-msgstr ""
-
-#: src/WordPress/Admin/Menus/ProductCollectionsMenuService.php:99
-msgid "Add to menu"
-msgstr ""
-
 #. translators: 1: plugin name, 2: plugin version
 #: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:109
 msgid "Action Required: Configure %s for SureCart"
@@ -10400,7 +10393,7 @@ msgstr ""
 #: src/blocks/cart-coupon/view.php:111
 #: src/blocks/cart-coupon/view.php:141
 #: src/blocks/cart-coupon/edit.js:127
-#: sc-order-coupon-form.js:67
+#: sc-order-coupon-form.js:73
 msgid "Apply"
 msgstr ""
 
@@ -10612,7 +10605,7 @@ msgstr ""
 #: settings/processors/ManualPaymentMethod.js:52
 #: settings/processors/ManualPaymentMethod.js:83
 #: settings/subscription-preservation/Reason.js:45
-#: subscriptions/edit/EditSubscription.js:206
+#: subscriptions/edit/EditSubscription.js:209
 #: subscriptions/show/modules/CurrentPlan.js:63
 #: subscriptions/show/modules/CurrentPlan.js:68
 #: subscriptions/show/modules/modals/PauseSubscriptionUntilModal.js:74
@@ -10641,7 +10634,7 @@ msgstr ""
 #: sc-mollie-add-method.js:63
 #: sc-mollie-add-method.js:85
 #: sc-order-confirmation.js:74
-#: sc-order-coupon-form.js:57
+#: sc-order-coupon-form.js:63
 #: sc-order.js:65
 #: sc-order.js:85
 #: sc-orders-list.js:62
@@ -10733,7 +10726,7 @@ msgstr ""
 #: affiliations/modules/Urls.js:57
 #: licenses/modules/Details/Copy.js:21
 #: products/modules/Prices/Price/CopyInput.js:32
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:311
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:338
 #: settings/display-currency/components/CurrencySwitcherSettings.js:198
 #: sc-license.js:184
 msgid "Copy"
@@ -11355,7 +11348,7 @@ msgstr ""
 #: orders/modules/Fulfillment/CreateFulfillment.js:41
 #: products/modules/BuyLink.js:65
 #: products/modules/Prices/Price/CopyInput.js:12
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:46
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:48
 #: settings/display-currency/components/CurrencySwitcherSettings.js:36
 msgid "Copied to clipboard."
 msgstr ""
@@ -12221,7 +12214,7 @@ msgstr ""
 #: checkouts/modules/Payment.js:142
 #: invoices/modules/Coupon.js:47
 #: Blocks/Totals/edit.js:63
-#: sc-order-coupon-form.js:65
+#: sc-order-coupon-form.js:71
 #: sc-upcoming-invoice.js:230
 msgid "Add Coupon Code"
 msgstr ""
@@ -16852,7 +16845,7 @@ msgstr ""
 #: settings/abandoned/AbandonedSettings.js:62
 #: settings/account/AccountSettings.js:56
 #: settings/advanced/AdvancedSettings.js:112
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:64
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:91
 #: settings/brand/BrandSettings.js:71
 #: settings/connection/ConnectionSettings.js:38
 #: settings/customer/CustomerSettings.js:36
@@ -17373,164 +17366,176 @@ msgstr ""
 msgid "Product sync started in the background"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:74
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:101
 msgid "Affiliates Settings"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:84
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:111
 msgid "Affiliate Signups"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:85
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:112
 msgid "Configure how affiliates signup and get approved to promote products in your store."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:100
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:127
 msgid "Allow New Affiliate Signups"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:102
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:129
 msgid "Do you want to allow new affiliates to sign up?"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:109
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:136
 msgid "Program Description"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:110
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:137
 msgid "Let affiliates know any specifics about your program and what to expect from being an affiliate. This is shown to affiliates when they sign up for your affiliate program."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:124
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:151
 msgid "Signup Question"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:125
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:152
 msgid "What question do you want to ask affiliates on the signup form? If blank, the default question \"How will you promote this store?\" will be used."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:129
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:156
 msgid "How will you promote this store?"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:144
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:171
 msgid "Affiliate Terms URL"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:145
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:172
 msgid "Where can affiliates find the terms and conditions for your affiliate program? If provided, this URL will be shown to affiliates when they sign up for your affiliate program."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:170
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:197
 msgid "Payout Email Field on Signup"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:172
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:199
 msgid "Do you want to include the payout email field on the signup form?"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:188
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:215
 msgid "Auto Approve New Affiliates"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:190
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:217
 msgid "Do you want to automatically approve new affiliate signups? If disabled, you will need to manually approve each affiliate signup."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:198
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:225
 msgid "Signup URL"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:223
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:250
 msgid "This is where you will send affiliates to signup for your affiliate program. To change this URL slug, "
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:232
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:259
 msgid "click here"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:239
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:266
 msgid "Referral Tracking"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:240
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:267
 msgid "Configure how clicks are tracked and how referrals are credited to affiliates."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:258
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:285
 msgid "Tracking"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:268
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:295
 msgid "Track affiliate referrals on this site."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:283
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:310
 msgid "Want to add tracking to a different site?"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:293
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:320
 msgid "Tracking Script"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:296
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:323
 msgid "Copy and paste the tracking code into the <head> section or just before the closing </body> tag of your website. Ensure this is only added to sites that don't already have the script included via the WordPress plugin."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:332
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:359
 #: settings/dynamic-pricing/utils.js:40
 msgid "First"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:336
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:363
 msgid "Last"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:339
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:366
 msgid "Referrer Type"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:340
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:367
 msgid "Should the first or last referrer be credited?"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:347
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:374
 msgid "Tracking Length"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:348
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:375
 msgid "How many days should the tracking code last for?"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:374
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:401
 msgid "Auto Approve New Referrals"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:376
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:403
 msgid "Do you want to automatically approve new referrals? If disabled, you will need to manually approve each referral."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:383
-msgid "Affiliate Referral URL"
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:410
+msgid "Affiliate Referral URLs"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:384
-msgid "Where should affiliates send their traffic? This URL will be used to generate the affiliate referral link for each affiliate with their unique affiliate code."
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:421
+msgid "Where should affiliates send their traffic? These URLs will be used to generate the affiliate referral link for each affiliate with their unique affiliate code."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:399
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:467
+msgid "Remove URL"
+msgstr ""
+
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:469
+msgid "Remove referral URL %d"
+msgstr ""
+
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:505
+msgid "Add URL"
+msgstr ""
+
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:512
 msgid "Commissions & Payouts"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:400
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:513
 msgid "Configure how affiliates earn commissions and how they get paid."
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:425
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:538
 msgid "Payout Instructions"
 msgstr ""
 
-#: settings/affiliation-protocol/AffiliationProtocolSettings.js:426
+#: settings/affiliation-protocol/AffiliationProtocolSettings.js:539
 msgid "Let affiliates know how they will be paid, how often, and any terms or conditions for payment. These details will be shown to affiliates so they know what to expect."
 msgstr ""
 
@@ -19770,23 +19775,23 @@ msgstr ""
 msgid "Integration Providers"
 msgstr ""
 
-#: subscriptions/edit/EditSubscription.js:124
+#: subscriptions/edit/EditSubscription.js:127
 #: subscriptions/show/modules/modals/RenewSubscriptionAtModal.js:51
 #: subscriptions/show/modules/modals/RestoreSubscriptionAtModal.js:61
 msgid "Subscription updated."
 msgstr ""
 
-#: subscriptions/edit/EditSubscription.js:248
+#: subscriptions/edit/EditSubscription.js:251
 #: subscriptions/show/ShowSubscription.js:533
 msgid "Subscription Details"
 msgstr ""
 
-#: subscriptions/edit/EditSubscription.js:286
+#: subscriptions/edit/EditSubscription.js:289
 #: subscriptions/edit/modules/Modals/UpdateRecentPrice.js:174
 msgid "Update Immediately"
 msgstr ""
 
-#: subscriptions/edit/EditSubscription.js:294
+#: subscriptions/edit/EditSubscription.js:297
 #: subscriptions/edit/modules/Modals/UpdateRecentPrice.js:331
 #: subscriptions/show/modules/modals/RenewSubscriptionAtModal.js:116
 #: subscriptions/show/modules/modals/RestoreSubscriptionAtModal.js:162
@@ -19794,7 +19799,7 @@ msgstr ""
 msgid "Update Subscription"
 msgstr ""
 
-#: subscriptions/edit/EditSubscription.js:295
+#: subscriptions/edit/EditSubscription.js:298
 #: subscriptions/edit/modules/Modals/UpdateRecentPrice.js:332
 msgid "Schedule Update"
 msgstr ""
@@ -20825,7 +20830,6 @@ msgstr ""
 #: src/blocks/product-list-related/inspector-controls/index.js:73
 #: src/blocks/product-list/inspector-controls/index.js:64
 #: src/blocks/product-media/edit.js:63
-#: src/blocks/product-quantity/edit.js:34
 #: src/blocks/product-review-list/inspector-controls.js:20
 msgid "Attributes"
 msgstr ""
@@ -20997,6 +21001,7 @@ msgid "Create Buy Button"
 msgstr ""
 
 #: Blocks/Card/edit.js:38
+#: src/blocks-styles/product-quantity-borderless.php:9
 msgid "Borderless"
 msgstr ""
 
@@ -21865,7 +21870,6 @@ msgstr ""
 #: Blocks/Payment/components/PayPal.js:55
 #: sc-payment.js:47
 #: sc-payment.js:59
-#: sc-payment.js:67
 msgid "Credit Card selected for check out."
 msgstr ""
 
@@ -23006,6 +23010,10 @@ msgstr ""
 #: Blocks/Product/CollectionBadges/block.json
 #: Blocks/Product/Quantity/block.json
 #: Blocks/Product/Title/block.json
+#: src/blocks/product-quantity-control/block.json
+#: src/blocks/product-quantity-input-decrease/block.json
+#: src/blocks/product-quantity-input-increase/block.json
+#: src/blocks/product-quantity-input/block.json
 #: src/blocks/product-quantity/block.json
 msgctxt "block keyword"
 msgid "form"
@@ -23864,6 +23872,10 @@ msgstr ""
 #: Blocks/VariantPriceSelector/block.json
 #: src/blocks/product-buy-buttons/block.json
 #: src/blocks/product-line-item-note/block.json
+#: src/blocks/product-quantity-control/block.json
+#: src/blocks/product-quantity-input-decrease/block.json
+#: src/blocks/product-quantity-input-increase/block.json
+#: src/blocks/product-quantity-input/block.json
 #: src/blocks/product-quantity/block.json
 #: src/blocks/product-review-template/block.json
 #: src/blocks/product-template/block.json
@@ -24041,6 +24053,10 @@ msgid "Displays quantity selector for a product."
 msgstr ""
 
 #: Blocks/Product/Quantity/block.json
+#: src/blocks/product-quantity-control/block.json
+#: src/blocks/product-quantity-input-decrease/block.json
+#: src/blocks/product-quantity-input-increase/block.json
+#: src/blocks/product-quantity-input/block.json
 #: src/blocks/product-quantity/block.json
 msgctxt "block keyword"
 msgid "quantity"
@@ -24577,6 +24593,14 @@ msgstr ""
 msgid "Enlarged images"
 msgstr ""
 
+#: src/blocks-styles/product-quantity-orbit.php:9
+msgid "Orbit"
+msgstr ""
+
+#: src/blocks-styles/product-quantity-pebble.php:9
+msgid "Pebble"
+msgstr ""
+
 #: src/blocks/cart-close-button/view.php:7
 #: src/blocks/cart-header/view.php:15
 #: src/blocks/cart-close-button/edit.js:74
@@ -24596,11 +24620,6 @@ msgstr ""
 
 #: src/blocks/cart-icon/view.php:22
 msgid "Cart Button."
-msgstr ""
-
-#: src/blocks/cart-items/view.php:99
-#: src/blocks/cart-line-item-remove/view.php:3
-msgid "Remove item"
 msgstr ""
 
 #: src/blocks/cart-line-item-note/view.php:14
@@ -24673,6 +24692,7 @@ msgid "Clear search"
 msgstr ""
 
 #: src/blocks/product-list-sidebar/view.php:48
+#: src/scripts/sidebar/index.js:45
 msgid "Close sidebar"
 msgstr ""
 
@@ -25025,6 +25045,7 @@ msgstr ""
 #: src/blocks/product-list-sidebar-toggle/edit.js:96
 #: src/blocks/product-list-sort-radio-group-label/edit.js:10
 #: src/blocks/product-price-chooser/edit.js:127
+#: src/blocks/product-quantity/edit.js:58
 #: src/blocks/product-review-list-filter-checkboxes-label/edit.js:13
 #: src/blocks/product-review-list-filter-tags-clear-all/edit.js:14
 #: src/blocks/product-review-list-filter-tags-label/edit.js:14
@@ -25238,6 +25259,7 @@ msgstr ""
 #: src/blocks/product-list-sidebar-toggle/edit.js:97
 #: src/blocks/product-list-sort-radio-group-label/edit.js:11
 #: src/blocks/product-price-chooser/edit.js:128
+#: src/blocks/product-quantity/edit.js:59
 #: src/blocks/product-review-list-filter-checkboxes-label/edit.js:14
 #: src/blocks/product-review-list-filter-tags-clear-all/edit.js:15
 #: src/blocks/product-review-list-filter-tags-label/edit.js:15
@@ -25746,6 +25768,10 @@ msgstr ""
 msgid "Sticky purchase settings"
 msgstr ""
 
+#: src/components/LabelControl.js:14
+msgid "Hide Label"
+msgstr ""
+
 #: src/components/LabelInspectorControls.js:22
 msgid "Line Height"
 msgstr ""
@@ -25756,6 +25782,10 @@ msgstr ""
 
 #: src/components/ProductSelector.js:77
 msgid "Search or type a product name"
+msgstr ""
+
+#: src/components/StyleContentsControl.js:11
+msgid "Style & Contents"
 msgstr ""
 
 #: src/scripts/cart/index.js:18
@@ -25777,45 +25807,85 @@ msgstr ""
 
 #. translators: %d: number of items in the cart
 #: src/scripts/checkout/index.js:248
-msgid "Total of %d item in the cart"
-msgid_plural "Total of %d items in the cart"
+msgid "Total of %d item in your cart"
+msgid_plural "Total of %d items in your cart"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/scripts/checkout/index.js:469
+#: src/scripts/checkout/index.js:265
+msgid "Cart item: %s. Quantity %d. Total price %s."
+msgstr ""
+
+#: src/scripts/checkout/index.js:278
+msgid "Remove %s from your cart."
+msgstr ""
+
+#. translators: %s: product name
+#: src/scripts/checkout/index.js:290
+msgid "Increase quantity for %s."
+msgstr ""
+
+#. translators: %s: product name
+#: src/scripts/checkout/index.js:302
+msgid "Decrease quantity for %s."
+msgstr ""
+
+#. translators: %s: product name
+#: src/scripts/checkout/index.js:314
+msgid "Quantity for %s."
+msgstr ""
+
+#: src/scripts/checkout/index.js:558
 msgid "Applying promotion code."
 msgstr ""
 
 #. translators: %s: promotion code
-#: src/scripts/checkout/index.js:482
+#: src/scripts/checkout/index.js:571
 msgid "Promotion code %s has been applied."
 msgstr ""
 
-#: src/scripts/checkout/index.js:505
+#: src/scripts/checkout/index.js:594
 msgid "Removing promotion code."
 msgstr ""
 
-#: src/scripts/checkout/index.js:518
+#: src/scripts/checkout/index.js:607
 msgid "Promotion code has been removed."
 msgstr ""
 
+#: src/scripts/checkout/index.js:721
+#: src/scripts/checkout/index.js:753
+msgid "Updating quantity."
+msgstr ""
+
 #. translators: %d: quantity
-#: src/scripts/checkout/index.js:635
+#: src/scripts/checkout/index.js:728
 msgid "Quantity increased to %d."
 msgstr ""
 
 #. translators: %d: quantity
-#: src/scripts/checkout/index.js:662
+#: src/scripts/checkout/index.js:760
 msgid "Quantity decreased to %d."
 msgstr ""
 
 #. translators: %d: quantity
-#: src/scripts/checkout/index.js:683
+#: src/scripts/checkout/index.js:782
 msgid "Quantity changed to %d."
 msgstr ""
 
-#: src/scripts/checkout/index.js:727
-msgid "Removing line item."
+#: src/scripts/checkout/index.js:824
+msgid "item"
+msgstr ""
+
+#: src/scripts/checkout/index.js:832
+msgid "Removing %s from your cart."
+msgstr ""
+
+#: src/scripts/checkout/index.js:851
+msgid "Removed %s from your cart."
+msgstr ""
+
+#: src/scripts/checkout/index.js:883
+msgid "Checkout updated. The subtotal is %1$s."
 msgstr ""
 
 #: src/scripts/image-slider/index.js:101
@@ -25886,13 +25956,11 @@ msgid "Failed to submit review. Please try again."
 msgstr ""
 
 #: src/scripts/sidebar/index.js:31
-#: src/scripts/sidebar/index.js:47
 msgid "Hide filters"
 msgstr ""
 
 #: src/scripts/sidebar/index.js:32
 #: src/scripts/sidebar/index.js:34
-#: src/scripts/sidebar/index.js:57
 msgid "Show filters"
 msgstr ""
 
@@ -26698,6 +26766,46 @@ msgctxt "block description"
 msgid "Display the static product price."
 msgstr ""
 
+#: src/blocks/product-quantity-control/block.json
+msgctxt "block title"
+msgid "Control"
+msgstr ""
+
+#: src/blocks/product-quantity-control/block.json
+msgctxt "block description"
+msgid "Display the product quantity control"
+msgstr ""
+
+#: src/blocks/product-quantity-input-decrease/block.json
+msgctxt "block title"
+msgid "Decrease Quantity"
+msgstr ""
+
+#: src/blocks/product-quantity-input-decrease/block.json
+msgctxt "block description"
+msgid "Display the product quantity input decrease"
+msgstr ""
+
+#: src/blocks/product-quantity-input-increase/block.json
+msgctxt "block title"
+msgid "Increase Quantity"
+msgstr ""
+
+#: src/blocks/product-quantity-input-increase/block.json
+msgctxt "block description"
+msgid "Display the product quantity input increase"
+msgstr ""
+
+#: src/blocks/product-quantity-input/block.json
+msgctxt "block title"
+msgid "Input"
+msgstr ""
+
+#: src/blocks/product-quantity-input/block.json
+msgctxt "block description"
+msgid "Display the product quantity input"
+msgstr ""
+
 #: src/blocks/product-quantity/block.json
 msgctxt "block description"
 msgid "Display the product quantity selector"
@@ -27417,6 +27525,11 @@ msgstr ""
 msgid "Postal Code"
 msgstr ""
 
+#: sc-address2.js:219
+#: sc-compact-address2.js:117
+msgid "Please enter a valid postal code"
+msgstr ""
+
 #: sc-cancel-discount2.js:30
 msgid "Your {{ amount }} discount is still active."
 msgstr ""
@@ -27572,11 +27685,11 @@ msgstr ""
 msgid "Country or region"
 msgstr ""
 
-#: sc-compact-address2.js:115
+#: sc-compact-address2.js:117
 msgid "Select Your Country"
 msgstr ""
 
-#: sc-compact-address2.js:115
+#: sc-compact-address2.js:117
 msgid "Postal Code/Zip"
 msgstr ""
 
@@ -27597,19 +27710,20 @@ msgstr ""
 msgid "Starting on first payment"
 msgstr ""
 
-#: sc-coupon-form2.js:130
-msgid "Coupon was removed."
+#. translators: %1$s is the coupon code, %2$s is the order total
+#: sc-coupon-form2.js:133
+msgid "Coupon code %1$s was removed and now order total is %2$s"
 msgstr ""
 
-#: sc-coupon-form2.js:134
+#: sc-coupon-form2.js:137
 msgid "Press enter to remove coupon code %s."
 msgstr ""
 
-#: sc-coupon-form2.js:154
+#: sc-coupon-form2.js:157
 msgid "Coupon code field opened. Press Escape button to close it."
 msgstr ""
 
-#: sc-coupon-form2.js:155
+#: sc-coupon-form2.js:158
 msgid "Add coupon code."
 msgstr ""
 
@@ -27900,6 +28014,11 @@ msgstr ""
 msgid "This order could not be found. Please try again."
 msgstr ""
 
+#. translators: %1$s is the coupon code, %2$s is the discount amount, %3$s is the order total
+#: sc-order-coupon-form.js:56
+msgid "Coupon code %1$s applied, discount is %2$s and now order total is %3$s"
+msgstr ""
+
 #: sc-order-return-badge.js:9
 msgid "Returned"
 msgstr ""
@@ -28060,6 +28179,10 @@ msgstr ""
 
 #: sc-payment.js:54
 msgid "Credit Card (Paystack)"
+msgstr ""
+
+#: sc-payment.js:67
+msgid "Cards, Netbanking, Wallet & UPI selected for check out."
 msgstr ""
 
 #: sc-payment.js:77
@@ -28275,6 +28398,36 @@ msgstr ""
 
 #: sc-product-selected-price.js:73
 msgid "Price interval"
+msgstr ""
+
+#. translators: %1$s is the product name
+#: sc-quantity-select2.js:32
+msgid "Decreased %1$s quantity by one"
+msgstr ""
+
+#. translators: %1$s is the product name
+#: sc-quantity-select2.js:41
+msgid "Increased %1$s quantity by one"
+msgstr ""
+
+#. translators: %1$s is the product name, %2$s is the quantity
+#: sc-quantity-select2.js:56
+msgid "Quantity of %1$s changed to %2$s"
+msgstr ""
+
+#. translators: %1$s: product name
+#: sc-quantity-select2.js:73
+msgid "Decrease %1$s quantity by one"
+msgstr ""
+
+#. translators: %1$s: product name
+#: sc-quantity-select2.js:75
+msgid "Quantity input for %1$s product"
+msgstr ""
+
+#. translators: %1$s: product name
+#: sc-quantity-select2.js:77
+msgid "Increase %1$s quantity by one"
 msgstr ""
 
 #: sc-recurring-price-choice-container2.js:45

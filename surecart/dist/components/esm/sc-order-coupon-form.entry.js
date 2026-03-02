@@ -3,11 +3,11 @@ import { u as updateFormState, s as state } from './mutations-6bbbe793.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { f as formBusy } from './getters-487612aa.js';
 import { c as createOrUpdateCheckout } from './index-a7f5e198.js';
+import { s as speak } from './index-c5a96d53.js';
 import './index-06061d4e.js';
 import './utils-cd1431df.js';
 import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
-import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-627acec4.js';
@@ -30,7 +30,7 @@ const ScOrderCouponForm = class {
         this.error = undefined;
     }
     async handleCouponApply(e) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d, _e;
         const promotion_code = (e === null || e === void 0 ? void 0 : e.detail) || null;
         try {
             this.error = null;
@@ -43,12 +43,17 @@ const ScOrderCouponForm = class {
                     },
                 },
             }));
+            if (promotion_code) {
+                speak(
+                // translators: %1$s is the coupon code, %2$s is the discount amount, %3$s is the order total
+                wp.i18n.sprintf(wp.i18n.__('Coupon code %1$s applied, discount is %2$s and now order total is %3$s', 'surecart'), promotion_code, (_a = state.checkout) === null || _a === void 0 ? void 0 : _a.discounts_display_amount, (_b = state.checkout) === null || _b === void 0 ? void 0 : _b.total_display_amount), 'assertive');
+            }
             updateFormState('RESOLVE');
-            await ((_a = this.couponForm) === null || _a === void 0 ? void 0 : _a.triggerFocus());
+            await ((_c = this.couponForm) === null || _c === void 0 ? void 0 : _c.triggerFocus());
         }
         catch (error) {
             console.error(error);
-            this.error = ((_c = (_b = error === null || error === void 0 ? void 0 : error.additional_errors) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.message) || (error === null || error === void 0 ? void 0 : error.message) || wp.i18n.__('Something went wrong', 'surecart');
+            this.error = ((_e = (_d = error === null || error === void 0 ? void 0 : error.additional_errors) === null || _d === void 0 ? void 0 : _d[0]) === null || _e === void 0 ? void 0 : _e.message) || (error === null || error === void 0 ? void 0 : error.message) || wp.i18n.__('Something went wrong', 'surecart');
             updateFormState('REJECT');
         }
     }
@@ -56,7 +61,7 @@ const ScOrderCouponForm = class {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         // Do any line items have a recurring price?
         const hasRecurring = (_c = (_b = (_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.some(item => { var _a; return (_a = item === null || item === void 0 ? void 0 : item.price) === null || _a === void 0 ? void 0 : _a.recurring_interval; });
-        return (h("sc-coupon-form", { key: '65db088edebe3f3ecc89d9ab038c585c4b0b30df', ref: el => (this.couponForm = el), label: this.label || wp.i18n.__('Add Coupon Code', 'surecart'), collapsed: this.collapsed, placeholder: this.placeholder, loading: formBusy() && !((_f = (_e = (_d = state.checkout) === null || _d === void 0 ? void 0 : _d.line_items) === null || _e === void 0 ? void 0 : _e.data) === null || _f === void 0 ? void 0 : _f.length), busy: formBusy(), discount: (_g = state.checkout) === null || _g === void 0 ? void 0 : _g.discount, "discounts-display-amount": (_h = state.checkout) === null || _h === void 0 ? void 0 : _h.discounts_display_amount, currency: (_j = state.checkout) === null || _j === void 0 ? void 0 : _j.currency, "discount-amount": (_k = state.checkout) === null || _k === void 0 ? void 0 : _k.discount_amount, class: {
+        return (h("sc-coupon-form", { key: 'a6899ee676c036b0e1e8925f098eed882a2ebe32', ref: el => (this.couponForm = el), label: this.label || wp.i18n.__('Add Coupon Code', 'surecart'), collapsed: this.collapsed, placeholder: this.placeholder, loading: formBusy() && !((_f = (_e = (_d = state.checkout) === null || _d === void 0 ? void 0 : _d.line_items) === null || _e === void 0 ? void 0 : _e.data) === null || _f === void 0 ? void 0 : _f.length), busy: formBusy(), discount: (_g = state.checkout) === null || _g === void 0 ? void 0 : _g.discount, "discounts-display-amount": (_h = state.checkout) === null || _h === void 0 ? void 0 : _h.discounts_display_amount, currency: (_j = state.checkout) === null || _j === void 0 ? void 0 : _j.currency, "discount-amount": (_k = state.checkout) === null || _k === void 0 ? void 0 : _k.discount_amount, class: {
                 'order-coupon-form--is-rtl': isRtl(),
             }, "button-text": this.buttonText || wp.i18n.__('Apply', 'surecart'), "show-interval": hasRecurring, onScApplyCoupon: e => this.handleCouponApply(e), error: this.error }));
     }

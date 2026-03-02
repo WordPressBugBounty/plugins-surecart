@@ -186,7 +186,7 @@ const ScAddress = class {
             }
         });
         return (h("div", { class: "sc-address", part: "base" }, h("sc-form-control", { label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, visibleFields.map((field, index) => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s;
             const roundedProps = this.getRoundedProps(index, visibleFields.length);
             switch (field.name) {
                 case 'country':
@@ -208,7 +208,7 @@ const ScAddress = class {
                 case 'state':
                     return (h("sc-select", { exportparts: "base:select__base, input, form-control, label, help-text, trigger, panel, caret, search__base, search__input, search__form-control, menu__base, spinner__base, empty", placeholder: field.label, name: (_l = this.names) === null || _l === void 0 ? void 0 : _l.state, autocomplete: 'address-level1', value: (_m = this === null || this === void 0 ? void 0 : this.address) === null || _m === void 0 ? void 0 : _m.state, onScChange: (e) => { var _a; return this.updateAddress({ state: e.target.value || ((_a = e.detail) === null || _a === void 0 ? void 0 : _a.value) || null }); }, choices: this.regions(), required: this.required, disabled: this.disabled, search: true, "aria-label": field.label, ...roundedProps }));
                 case 'postal_code':
-                    return (h("sc-input", { exportparts: "base:input__base, input, form-control, label, help-text", placeholder: field.label, name: (_o = this.names) === null || _o === void 0 ? void 0 : _o.postal_code, onScChange: (e) => this.updateAddress({ postal_code: e.target.value || null }), onScInput: (e) => this.handleAddressInput({ postal_code: e.target.value || null }), autocomplete: 'postal-code', required: this.required, value: (_p = this === null || this === void 0 ? void 0 : this.address) === null || _p === void 0 ? void 0 : _p.postal_code, disabled: this.disabled, maxlength: ((_q = this.address) === null || _q === void 0 ? void 0 : _q.country) === 'US' ? 5 : null, "aria-label": field.label, ...roundedProps }));
+                    return (h("sc-input", { exportparts: "base:input__base, input, form-control, label, help-text", placeholder: field.label, name: (_o = this.names) === null || _o === void 0 ? void 0 : _o.postal_code, onScChange: (e) => this.updateAddress({ postal_code: e.target.value || null }), onScInput: (e) => this.handleAddressInput({ postal_code: e.target.value || null }), autocomplete: 'postal-code', required: this.required, value: (_p = this === null || this === void 0 ? void 0 : this.address) === null || _p === void 0 ? void 0 : _p.postal_code, disabled: this.disabled, maxlength: ((_q = this.address) === null || _q === void 0 ? void 0 : _q.country) === 'US' ? 5 : undefined, pattern: ((_r = this.countryDetails) === null || _r === void 0 ? void 0 : _r.postal_code_regex) || undefined, customValidity: ((_s = this.countryDetails) === null || _s === void 0 ? void 0 : _s.postal_code_regex) ? wp.i18n.__('Please enter a valid postal code', 'surecart') : undefined, "aria-label": field.label, ...roundedProps }));
                 default:
                     return null;
             }

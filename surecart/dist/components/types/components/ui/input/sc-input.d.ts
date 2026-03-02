@@ -61,6 +61,8 @@ export declare class ScInput {
     step: number;
     /** A pattern to validate input against. */
     pattern: string;
+    /** Custom validation message to show when the input is invalid (replaces browser default). */
+    customValidity: string;
     /** Makes the input a required field. */
     required: boolean;
     /**
@@ -107,6 +109,7 @@ export declare class ScInput {
     handleFocus(): void;
     handleChange(): void;
     handleInput(): void;
+    handleInvalid(): void;
     handleClearClick(event: MouseEvent): void;
     handlePasswordToggle(): void;
     handleFocusChange(): void;

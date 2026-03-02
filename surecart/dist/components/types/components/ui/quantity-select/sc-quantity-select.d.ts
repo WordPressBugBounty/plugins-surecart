@@ -15,6 +15,7 @@ export declare class ScQuantitySelect {
     max: number;
     min: number;
     quantity: number;
+    productName: string;
     size: 'small' | 'medium' | 'large';
     /** Inputs focus */
     hasFocus: boolean;

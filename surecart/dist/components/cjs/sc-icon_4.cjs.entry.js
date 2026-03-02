@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-8acc3c89.js');
 const library = require('./library-2c5d1943.js');
 const pageAlign = require('./page-align-5a2ab493.js');
+const index$1 = require('./index-fb76df07.js');
 
 const iconFiles = new Map();
 const requestIcon = (url) => {
@@ -188,11 +189,11 @@ const ScProductLineItem = class {
                 fee.description));
         }))), index.h("div", { key: '8143bde25630275710d71f7863fe68b0d6ad0b76', class: "item__row stick-bottom" }, this.editable ? (index.h("sc-quantity-select", { max: this.max || Infinity, exportparts: "base:quantity, minus:quantity__minus, minus-icon:quantity__minus-icon, plus:quantity__plus, plus-icon:quantity__plus-icon, input:quantity__input", clickEl: this.el, quantity: this.quantity, size: "small", onScChange: e => e.detail && this.scUpdateQuantity.emit(e.detail), "aria-label": 
             /** translators: %1$s: product name, %2$s: product price name */
-            wp.i18n.sprintf(wp.i18n.__('Change Quantity - %1$s %2$s', 'surecart'), this.name, this.price) })) : (index.h("span", { class: "item__description", part: "static-quantity" }, wp.i18n.__('Qty:', 'surecart'), " ", this.quantity)), !!this.removable && (index.h("div", { key: '894e743ed072d0593b10a02bce31328b688c5ffd', class: "item__remove-container", onClick: () => this.scRemove.emit(), onKeyDown: e => {
+            wp.i18n.sprintf(wp.i18n.__('Change Quantity - %1$s %2$s', 'surecart'), this.name, this.price), productName: this.name })) : (index.h("span", { class: "item__description", part: "static-quantity" }, wp.i18n.__('Qty:', 'surecart'), " ", this.quantity)), !!this.removable && (index.h("div", { key: '879262e88e4d6c359879a78c215fc609229cd1dd', class: "item__remove-container", onClick: () => this.scRemove.emit(), onKeyDown: e => {
                 if (e.key === 'Enter') {
                     this.scRemove.emit();
                 }
-            }, "aria-label": wp.i18n.sprintf(wp.i18n.__('Remove Item - %1$s %2$s', 'surecart'), this.name, this.price), tabIndex: 0 }, index.h("sc-icon", { key: '5cc78151ac77ed7d25e0732d003e3e841d6f8ba8', exportparts: "base:remove-icon__base", class: "item__remove", name: "x" }), index.h("span", { key: '8c645a22d6faa0143846478a61b2db59210b342d', class: "item__remove-text" }, wp.i18n.__('Remove', 'surecart')))))))));
+            }, "aria-label": wp.i18n.sprintf(wp.i18n.__('Remove Item - %1$s %2$s', 'surecart'), this.name, this.amount), tabIndex: 0 }, index.h("sc-icon", { key: '2923164eb505fbe045ae65146e3ea6f77de1cbe1', exportparts: "base:remove-icon__base", class: "item__remove", name: "x" }), index.h("span", { key: '9b34989ef6d8c61717ddb942a0764bd6a6d47957', class: "item__remove-text" }, wp.i18n.__('Remove', 'surecart')))))))));
     }
     get el() { return index.getElement(this); }
 };
@@ -286,6 +287,7 @@ const ScQuantitySelect = class {
         this.max = Infinity;
         this.min = 1;
         this.quantity = 0;
+        this.productName = 'Product';
         this.size = 'medium';
         this.hasFocus = undefined;
     }
@@ -293,6 +295,8 @@ const ScQuantitySelect = class {
         if (this.disabled)
             return;
         this.quantity = Math.max(this.quantity - 1, this.min);
+        // translators: %1$s is the product name
+        index$1.speak(wp.i18n.sprintf(wp.i18n.__('Decreased %1$s quantity by one', 'surecart'), this.productName), 'assertive');
         this.scChange.emit(this.quantity);
         this.scInput.emit(this.quantity);
     }
@@ -300,6 +304,8 @@ const ScQuantitySelect = class {
         if (this.disabled)
             return;
         this.quantity = Math.min(this.quantity + 1, this.max);
+        // translators: %1$s is the product name
+        index$1.speak(wp.i18n.sprintf(wp.i18n.__('Increased %1$s quantity by one', 'surecart'), this.productName), 'assertive');
         this.scChange.emit(this.quantity);
         this.scInput.emit(this.quantity);
     }
@@ -313,6 +319,8 @@ const ScQuantitySelect = class {
     }
     handleChange() {
         this.quantity = parseInt(this.input.value) > this.max ? this.max : parseInt(this.input.value);
+        // translators: %1$s is the product name, %2$s is the quantity
+        index$1.speak(wp.i18n.sprintf(wp.i18n.__('Quantity of %1$s changed to %2$s', 'surecart'), this.productName, this.quantity), 'assertive');
         this.scChange.emit(this.quantity);
     }
     handleInput() {
@@ -320,14 +328,20 @@ const ScQuantitySelect = class {
         this.scInput.emit(this.quantity);
     }
     render() {
-        return (index.h("div", { key: '44dea00fca94a097a975a1423ec27dd71d76f146', part: "base", class: {
+        return (index.h("div", { key: '9212ec3e2c128453ae8f2456005e14d85c4f3c67', part: "base", class: {
                 'quantity': true,
                 // States
                 'quantity--focused': this.hasFocus,
                 'quantity--disabled': this.disabled,
                 'quantity--is-rtl': pageAlign.isRtl(),
                 'quantity--small': this.size === 'small',
-            } }, index.h("button", { key: '7cbf45982aa82029c42edd3c47a9421dc7c20a8b', part: "minus", "aria-label": wp.i18n.__('Decrease quantity by one.', 'surecart'), "aria-disabled": this.disabled || (this.quantity <= this.min && this.min > 1), class: { 'button__decrease': true, 'button--disabled': this.quantity <= this.min && this.min > 1 }, onClick: () => this.quantity > this.min && this.decrease(), disabled: this.disabled || (this.quantity <= this.min && this.min > 1) }, index.h("sc-icon", { key: '4385b41cbebd25658fdf1f76df8e1df268d5008c', name: "minus", exportparts: "base:minus__icon" })), index.h("input", { key: 'bd9d8426f3c51e1ed8c4ead7c9c4f8c29c1df5b7', part: "input", class: "input__control", ref: el => (this.input = el), step: "1", type: "number", max: this.max, min: this.min, value: this.quantity, disabled: this.disabled, autocomplete: "off", role: "spinbutton", "aria-valuemax": this.max, "aria-valuemin": this.min, "aria-valuenow": this.quantity, "aria-disabled": this.disabled, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() }), index.h("button", { key: 'cf8b73f24546711cdbfa0f2795471527456df117', part: "plus", "aria-label": wp.i18n.__('Increase quantity by one.', 'surecart'), class: { 'button__increase': true, 'button--disabled': this.quantity >= this.max }, onClick: () => this.quantity < this.max && this.increase(), "aria-disabled": this.disabled || this.quantity >= this.max, disabled: this.disabled || this.quantity >= this.max }, index.h("sc-icon", { key: '0bd95acc26458d05027b9facc9409a1a623d1b06', name: "plus", exportparts: "base:plus__icon" }))));
+            } }, index.h("button", { key: 'aeb2ac5f1622eafc275cb27d4f4f9a359926717f', part: "minus", "aria-label": 
+            /** translators: %1$s: product name */
+            wp.i18n.sprintf(wp.i18n.__('Decrease %1$s quantity by one', 'surecart'), this.productName), "aria-disabled": this.disabled || (this.quantity <= this.min && this.min > 1), class: { 'button__decrease': true, 'button--disabled': this.quantity <= this.min && this.min > 1 }, onClick: () => this.quantity > this.min && this.decrease(), disabled: this.disabled || (this.quantity <= this.min && this.min > 1) }, index.h("sc-icon", { key: '02385e0a44206dcfe34811f7caa76d6db30563d8', name: "minus", exportparts: "base:minus__icon" })), index.h("input", { key: '668f691448a47e1866341933c6a88709a193f374', part: "input", class: "input__control", ref: el => (this.input = el), step: "1", type: "number", max: this.max, min: this.min, value: this.quantity, disabled: this.disabled, autocomplete: "off", role: "spinbutton", "aria-valuemax": this.max, "aria-valuemin": this.min, "aria-valuenow": this.quantity, "aria-disabled": this.disabled, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), "aria-label": 
+            /** translators: %1$s: product name */
+            wp.i18n.sprintf(wp.i18n.__('Quantity input for %1$s product', 'surecart'), this.productName) }), index.h("button", { key: '6177f71584d948eebc531d5e58452cfab81920c4', part: "plus", "aria-label": 
+            /** translators: %1$s: product name */
+            wp.i18n.sprintf(wp.i18n.__('Increase %1$s quantity by one', 'surecart'), this.productName), class: { 'button__increase': true, 'button--disabled': this.quantity >= this.max }, onClick: () => this.quantity < this.max && this.increase(), "aria-disabled": this.disabled || this.quantity >= this.max, disabled: this.disabled || this.quantity >= this.max }, index.h("sc-icon", { key: '3201a9cf67e55c1ef4656ff338282e92d4764daa', name: "plus", exportparts: "base:plus__icon" }))));
     }
     get el() { return index.getElement(this); }
 };

@@ -74,6 +74,7 @@ const ScInput = class {
         this.max = undefined;
         this.step = undefined;
         this.pattern = undefined;
+        this.customValidity = undefined;
         this.required = false;
         this.invalid = false;
         this.autocorrect = undefined;
@@ -125,7 +126,20 @@ const ScInput = class {
     }
     handleInput() {
         this.value = this.input.value;
+        // Clear custom validity so browser can re-validate.
+        this.input.setCustomValidity('');
         this.scInput.emit();
+    }
+    handleInvalid() {
+        // Only show custom validity message for pattern mismatch, not for required/empty fields.
+        if (this.customValidity && this.input.validity.patternMismatch) {
+            this.input.setCustomValidity(this.customValidity);
+        }
+        else {
+            // this is needed if the user switches from a country with a regex to one without.
+            // we want to clear out the custom validity so it does not persist.
+            this.input.setCustomValidity('');
+        }
     }
     handleClearClick(event) {
         this.value = '';
@@ -158,7 +172,7 @@ const ScInput = class {
     }
     render() {
         var _a;
-        return (h(Host, { key: 'd5f54f7a99a7032a4d45a55dcb5df15147bb62b0', hidden: this.hidden }, h("sc-form-control", { key: 'c436e483f8bce6720816bcb453e140b2c1c55f9e', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("slot", { key: '328240a9826f2e72960ffe1a5fd48feae060e55a', name: "label-end", slot: "label-end" }), h("div", { key: '4ffc3057830526ad16db735bc13b7778d52f06c2', part: "base", class: {
+        return (h(Host, { key: '0715e6f9e57ef6698e9809e78f22ca113e8048eb', hidden: this.hidden }, h("sc-form-control", { key: '6dbb2d9e7c84e6a5bc9e19aa155267b9e1d47e1d', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("slot", { key: '958bb6e855f9715db52e8d6141c0b36d2b52eac0', name: "label-end", slot: "label-end" }), h("div", { key: 'fb9a297c934d8167ed007302c84738eb44ab85d0', part: "base", class: {
                 'input': true,
                 // Sizes
                 'input--small': this.size === 'small',
@@ -173,16 +187,14 @@ const ScInput = class {
                 'input--squared-top': this.squaredTop,
                 'input--squared-left': this.squaredLeft,
                 'input--squared-right': this.squaredRight,
-            } }, h("span", { key: '28d49b45f68df25ca824a3bf601e30800f7e9745', part: "prefix", class: "input__prefix" }, h("slot", { key: '0bf172479696f10b07d223f42f823bf9f3f2a9c6', name: "prefix" })), h("slot", { key: 'd2a506079105f340512f981a99c6f1c1f720da3b' }, h("input", { key: 'a598d82ea9e032131a4617ab6b4e04ebab3e05c3', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: this.type === 'password' && this.isPasswordVisible ? 'text' : this.type, name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
+            } }, h("span", { key: '818169159332aa5392844e91b47349c2bba3eee0', part: "prefix", class: "input__prefix" }, h("slot", { key: 'd702a16101d86416f7e3505efa9351854fb6e5a4', name: "prefix" })), h("slot", { key: 'df082e052816aaff1ded8b61f152c455b4931654' }, h("input", { key: '34bc2b02d8cff5200b2729d8d5bdf2776f1225ae', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: this.type === 'password' && this.isPasswordVisible ? 'text' : this.type, name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
             // TODO: Test These below
-            autocomplete: this.autocomplete, autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: this.pattern, inputmode: this.inputmode, "aria-label": this.label, "aria-labelledby": this.labelId, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(),
-            // onInvalid={this.handleInvalid}
-            onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), onKeyDown: e => {
+            autocomplete: this.autocomplete, autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: this.pattern, inputmode: this.inputmode, "aria-label": this.label, "aria-labelledby": this.labelId, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onInvalid: () => this.handleInvalid(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), onKeyDown: e => {
                 // Only stop propagation on keys that are not handled by the browser
                 if (!['Enter', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.key)) {
                     e.stopPropagation();
                 }
-            } })), h("span", { key: '83deed7e186368dea808fde1f2fbce74a8d1e581', part: "suffix", class: "input__suffix" }, h("slot", { key: '862618ccdb309fa8e0d3758e95849f18c6c5867c', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (h("button", { key: '4a8e8768c086ff02390a6f22d61b1ee2362bd655', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, h("slot", { key: 'e15e9163c3724dd06930fbce6a3f434c15ca9ec4', name: "clear-icon" }, h("svg", { key: 'ee5993472d8b9b1f28025360d36959bb11b30504', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, h("line", { key: '3ad6e61797f9b5f3de81a0529a4c9e8af3b73b3a', x1: "18", y1: "6", x2: "6", y2: "18" }), h("line", { key: 'ee34245d8b73ee76e9324ded80fbf945803ea5cd', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
+            } })), h("span", { key: '632484a0a9ac1ab4ab19221d83b402a2ae0c782c', part: "suffix", class: "input__suffix" }, h("slot", { key: '4c2c334b0406a66e9684c3fde32931aee6c0f5fb', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (h("button", { key: '713c51cfef3f95b83460ed9fccd683a70a7aa449', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, h("slot", { key: '4176ced3a6b6a0a0430b1caa3251c03b0fbeba69', name: "clear-icon" }, h("svg", { key: 'b2d23c95dab0bc35e0223b60375612221c1f29c6', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, h("line", { key: '41d2e74851ad317dddfc42e748fc6e157c43a700', x1: "18", y1: "6", x2: "6", y2: "18" }), h("line", { key: '221f3eed3ac053b2c261d7703dbc0a6e410553fe', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

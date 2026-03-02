@@ -49,6 +49,8 @@ export declare class ScCompactAddress {
     }>;
     showState: boolean;
     showPostal: boolean;
+    /** Postal code regex pattern for validation. */
+    postalCodeRegex: string;
     /** When the state changes, we want to update city and postal fields. */
     handleAddressChange(): void;
     updateAddress(address: Partial<Address>): void;

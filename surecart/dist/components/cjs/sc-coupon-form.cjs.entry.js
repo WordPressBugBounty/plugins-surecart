@@ -121,10 +121,13 @@ const ScCouponForm = class {
                     this.scApplyCoupon.emit(null);
                     this.open = false;
                 }, onKeyDown: e => {
+                    var _a, _b, _c;
                     if (!this.editable)
                         return;
                     if (e.key === 'Enter' || e.key === 'Escape') {
-                        index$1.speak(wp.i18n.__('Coupon was removed.', 'surecart'), 'assertive');
+                        index$1.speak(
+                        // translators: %1$s is the coupon code, %2$s is the order total
+                        wp.i18n.sprintf(wp.i18n.__('Coupon code %1$s was removed and now order total is %2$s', 'surecart'), (_b = (_a = this === null || this === void 0 ? void 0 : this.discount) === null || _a === void 0 ? void 0 : _a.promotion) === null || _b === void 0 ? void 0 : _b.code, (_c = mutations.state.checkout) === null || _c === void 0 ? void 0 : _c.total_display_amount), 'assertive');
                         this.scApplyCoupon.emit(null);
                         this.open = false;
                     }
