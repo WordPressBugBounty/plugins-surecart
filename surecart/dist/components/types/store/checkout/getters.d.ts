@@ -1,3 +1,4 @@
+import { Address, Checkout } from "../../types";
 /**
  * Gets the current checkout for the page.
  */
@@ -21,9 +22,9 @@ export declare const fullShippingAddressRequired: () => boolean;
  */
 export declare const shippingAddressRequired: () => boolean;
 /**
- * Get Billing address
+ * Get a complete address by type, with Stripe-formatted field names (line1/line2).
  */
-export declare const getCompleteAddress: (type?: string) => {
+export declare const getCompleteAddress: (type?: 'shipping' | 'billing') => {
     name?: string;
     city?: string;
     state?: string;
@@ -38,4 +39,21 @@ export declare const getCompleteAddress: (type?: string) => {
     propertyIsEnumerable(v: PropertyKey): boolean;
     line1: string;
     line2: string;
+};
+/**
+ * Get the resolved billing address for payment processors.
+ * Falls back to shipping address when billing matches shipping.
+ * Returns canonical Address format (line_1/line_2).
+ */
+export declare const getResolvedBillingAddress: (checkout?: Checkout) => Address | undefined;
+/**
+ * Convert a canonical Address to Stripe's expected format (line1/line2 instead of line_1/line_2).
+ */
+export declare const toStripeAddress: (address?: Address) => {
+    line1: string;
+    line2: string;
+    city: string;
+    state: string;
+    postal_code: string;
+    country: string;
 };

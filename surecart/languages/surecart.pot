@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-05T10:29:14+00:00\n"
+"POT-Creation-Date: 2026-03-12T19:13:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -185,7 +185,7 @@ msgstr ""
 #: src/Support/Blocks/TemplateUtilityService.php:375
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:296
 #: cart.php:6
-#: settings/brand/BrandSettings.js:216
+#: settings/brand/BrandSettings.js:182
 msgid "Cart"
 msgstr ""
 
@@ -2083,7 +2083,7 @@ msgstr ""
 #: src/blocks/product-quantity/controller.php:9
 #: src/blocks/product-quantity/legacy.php:4
 #: src/blocks/product-quantity/legacy.php:38
-#: src/blocks/product-quantity-input/edit.js:12
+#: src/blocks/product-quantity-input/edit.js:13
 #: sc-checkout-stock-alert2.js:113
 msgid "Quantity"
 msgstr ""
@@ -2262,7 +2262,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Settings/BaseSettings.php:46
 #: layouts/partials/admin-settings-sidebar.php:10
-#: settings/brand/BrandSettings.js:81
+#: settings/brand/BrandSettings.js:72
 msgid "Design & Branding"
 msgstr ""
 
@@ -2404,7 +2404,7 @@ msgstr[1] ""
 
 #. translators: %d is the number of months.
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:287
-#: src/Models/Checkout.php:644
+#: src/Models/Checkout.php:683
 #: src/Support/Interval.php:44
 #: util/translations.js:28
 #: price.js:39
@@ -2428,7 +2428,7 @@ msgstr[1] ""
 #. translators: %1d is the percentage discount.
 #. Translators: Percent off.
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:337
-#: src/Models/Checkout.php:620
+#: src/Models/Checkout.php:659
 #: src/Models/Coupon.php:55
 #: util.js:49
 #: price.js:12
@@ -2713,7 +2713,7 @@ msgstr ""
 #: src/WordPress/HealthService.php:183
 #: src/WordPress/HealthService.php:193
 #: src/WordPress/Templates/TemplatesService.php:154
-#: src/WordPress/ThemeService.php:88
+#: src/WordPress/ThemeService.php:147
 #: admin/user-profile.php:1
 #: error.php:2
 msgid "SureCart"
@@ -2736,7 +2736,7 @@ msgstr ""
 #: invoices/modules/Tax/index.js:52
 #: products/modules/Media/EditMedia.js:266
 #: Blocks/CartMenuButton/edit.js:31
-#: Blocks/StoreLogo/edit.js:150
+#: Blocks/StoreLogo/edit.js:153
 #: src/blocks/cart-line-item-remove/edit.js:30
 #: src/blocks/cart-menu-button/edit.js:26
 #: src/blocks/cart-order-bump-pagination/edit.js:57
@@ -3175,6 +3175,7 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/BuyButton.php:273
 #: src/Integrations/Bricks/Elements/Product.php:291
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:538
+#: settings/brand/components/CheckoutPreview.js:188
 #: Blocks/AddToCartButton/Block.php:81
 #: Blocks/BuyButton/Block.php:36
 #: src/blocks/product-buy-button/view.php:16
@@ -3264,7 +3265,7 @@ msgid "Auto height"
 msgstr ""
 
 #: src/Integrations/Bricks/Elements/Media.php:96
-#: src/blocks/product-media/edit.js:66
+#: src/blocks/product-media/edit.js:69
 msgid "Enlarge on click"
 msgstr ""
 
@@ -3289,7 +3290,7 @@ msgstr ""
 
 #: src/Integrations/Bricks/Elements/Media.php:122
 #: Blocks/Product/Media/edit.js:70
-#: src/blocks/product-media/edit.js:110
+#: src/blocks/product-media/edit.js:113
 msgid "Unlimited"
 msgstr ""
 
@@ -3304,7 +3305,7 @@ msgstr ""
 
 #: src/Integrations/Bricks/Elements/Media.php:161
 #: src/Integrations/Elementor/Widgets/Media.php:246
-#: src/blocks/product-media/edit.js:118
+#: src/blocks/product-media/edit.js:121
 msgid "Show Thumbnails"
 msgstr ""
 
@@ -4595,10 +4596,10 @@ msgstr ""
 #: Blocks/Column/edit.js:141
 #: Blocks/ProductCollectionImage/dimension-controls.js:165
 #: Blocks/ProductCollectionImage/dimension-controls.js:175
-#: Blocks/StoreLogo/edit.js:154
+#: Blocks/StoreLogo/edit.js:157
 #: src/blocks/cart-line-item-image/edit.js:155
 #: src/blocks/cart-order-bump-image/edit.js:154
-#: src/blocks/cart/edit.js:104
+#: src/blocks/cart/edit.js:105
 #: src/blocks/product-buy-button/display.js:29
 #: src/blocks/product-buy-button/display.js:38
 #: src/blocks/product-image/edit.js:158
@@ -4775,19 +4776,19 @@ msgid "Enlarge on Click"
 msgstr ""
 
 #: src/Integrations/Elementor/Widgets/Media.php:109
-#: src/blocks/product-media/edit.js:67
+#: src/blocks/product-media/edit.js:70
 msgid "Scale images with a lightbox effect."
 msgstr ""
 
 #: src/Integrations/Elementor/Widgets/Media.php:116
 #: Blocks/Product/Media/edit.js:47
-#: src/blocks/product-media/edit.js:82
+#: src/blocks/product-media/edit.js:85
 msgid "Auto Height"
 msgstr ""
 
 #: src/Integrations/Elementor/Widgets/Media.php:172
 #: Blocks/Product/Media/edit.js:69
-#: src/blocks/product-media/edit.js:109
+#: src/blocks/product-media/edit.js:112
 msgid "Max Image Width"
 msgstr ""
 
@@ -5446,7 +5447,7 @@ msgstr ""
 msgid "Multiple Disputes"
 msgstr ""
 
-#: src/Models/Checkout.php:641
+#: src/Models/Checkout.php:680
 #: util/translations.js:7
 #: util/translations.js:53
 #: util/translations.js:60
@@ -5458,7 +5459,7 @@ msgstr ""
 msgid "once"
 msgstr ""
 
-#: src/Models/Checkout.php:657
+#: src/Models/Checkout.php:696
 #: src/Models/Price.php:142
 #: checkouts/modules/SelectShipping.js:130
 #: invoices/modules/SelectShipping.js:95
@@ -6259,18 +6260,34 @@ msgid "The website that will be shown to customers for support, on invoices, etc
 msgstr ""
 
 #: src/Rest/BrandRestServiceProvider.php:134
-msgid "The URL of the brand logo."
+msgid "The brand logo media object."
 msgstr ""
 
 #: src/Rest/BrandRestServiceProvider.php:139
-msgid "The associated address."
+msgid "The dark mode logo media object."
 msgstr ""
 
 #: src/Rest/BrandRestServiceProvider.php:144
+msgid "The SureCart color scheme (light or dark)."
+msgstr ""
+
+#: src/Rest/BrandRestServiceProvider.php:150
+msgid "The primary color used in dark mode."
+msgstr ""
+
+#: src/Rest/BrandRestServiceProvider.php:155
+msgid "The URL of the brand logo."
+msgstr ""
+
+#: src/Rest/BrandRestServiceProvider.php:160
+msgid "The associated address."
+msgstr ""
+
+#: src/Rest/BrandRestServiceProvider.php:165
 msgid "The default memo for invoices and receipts."
 msgstr ""
 
-#: src/Rest/BrandRestServiceProvider.php:149
+#: src/Rest/BrandRestServiceProvider.php:170
 msgid "The default footer for invoices and receipts."
 msgstr ""
 
@@ -6841,7 +6858,7 @@ msgstr ""
 msgid "Enter a custom base to use. A base must be set or WordPress will use default instead."
 msgstr ""
 
-#: src/Settings/SettingService.php:118
+#: src/Settings/SettingService.php:108
 #: Blocks/Email/Block.php:21
 msgid "Your email and cart are saved so we can send email reminders about this order."
 msgstr ""
@@ -9660,7 +9677,7 @@ msgstr ""
 msgid "Please visit the frontend of your page builder to view the %s shortcode contents."
 msgstr ""
 
-#: src/WordPress/Shortcodes/ShortcodesServiceProvider.php:352
+#: src/WordPress/Shortcodes/ShortcodesServiceProvider.php:346
 msgid "This form is not available or has been deleted."
 msgstr ""
 
@@ -12289,7 +12306,7 @@ msgstr ""
 #: products/components/price/parts/SwapPriceDisplay.js:91
 #: products/modules/Media/WordPressMedia.js:73
 #: products/modules/SingleDownload.js:322
-#: settings/brand/Logo.js:81
+#: settings/brand/Logo.js:112
 #: settings/shipping/profile/Products.js:311
 #: settings/shipping/zone/ShippingZone.js:168
 #: subscriptions/edit/modules/Trial.js:38
@@ -14403,7 +14420,7 @@ msgid "Customize and configure your store settings."
 msgstr ""
 
 #: onboarding/components/ConfirmStoreDetails.js:38
-#: settings/brand/BrandSettings.js:108
+#: settings/brand/components/ThemeModeCard.js:104
 msgid "Brand Color"
 msgstr ""
 
@@ -15113,6 +15130,7 @@ msgid "Manage all template parts"
 msgstr ""
 
 #: product-collections/components/SelectTemplatePart/index.js:124
+#: settings/brand/BrandSettings.js:102
 msgid "Theme"
 msgstr ""
 
@@ -15226,13 +15244,14 @@ msgstr ""
 
 #: product-collections/modules/Image.js:121
 #: products/modules/Variations/NewVariant.js:179
-#: settings/brand/Logo.js:97
+#: settings/brand/Logo.js:11
+#: settings/brand/Logo.js:152
 msgid "Add Image"
 msgstr ""
 
 #: product-collections/modules/Image.js:171
 #: products/modules/SingleDownload.js:297
-#: settings/brand/Logo.js:75
+#: settings/brand/Logo.js:76
 #: src/utilities/patterns-toolbar.js:20
 msgid "Replace"
 msgstr ""
@@ -16846,7 +16865,7 @@ msgstr ""
 #: settings/account/AccountSettings.js:56
 #: settings/advanced/AdvancedSettings.js:112
 #: settings/affiliation-protocol/AffiliationProtocolSettings.js:91
-#: settings/brand/BrandSettings.js:71
+#: settings/brand/BrandSettings.js:60
 #: settings/connection/ConnectionSettings.js:38
 #: settings/customer/CustomerSettings.js:36
 #: settings/display-currency/DisplayCurrencySettings.js:44
@@ -17539,59 +17558,35 @@ msgstr ""
 msgid "Let affiliates know how they will be paid, how often, and any terms or conditions for payment. These details will be shown to affiliates so they know what to expect."
 msgstr ""
 
-#: settings/brand/BrandSettings.js:92
+#: settings/brand/BrandSettings.js:83
 msgid "Brand Settings"
 msgstr ""
 
-#: settings/brand/BrandSettings.js:93
+#: settings/brand/BrandSettings.js:84
 msgid "Customize how your brand appears globally across SureCart. Your logo and colors will be used on hosted pages and emails that are sent to your customers."
 msgstr ""
 
-#: settings/brand/BrandSettings.js:109
-msgid "This color will be used for the main button color, links, and various UI elements."
+#: settings/brand/BrandSettings.js:111
+msgid "This applies to your WordPress site, emails and affiliate portal."
 msgstr ""
 
-#: settings/brand/BrandSettings.js:147
-msgid "Logo"
-msgstr ""
-
-#: settings/brand/BrandSettings.js:159
-msgid "Select Theme (Beta)"
-msgstr ""
-
-#: settings/brand/BrandSettings.js:160
-msgid "Select Theme"
-msgstr ""
-
-#: settings/brand/BrandSettings.js:163
-msgid "Choose \"Dark\" if your theme already has a dark background."
-msgstr ""
-
-#: settings/brand/BrandSettings.js:170
-msgid "Light"
-msgstr ""
-
-#: settings/brand/BrandSettings.js:174
-msgid "Dark"
-msgstr ""
-
-#: settings/brand/BrandSettings.js:200
+#: settings/brand/BrandSettings.js:167
 msgid "Remove SureCart Branding"
 msgstr ""
 
-#: settings/brand/BrandSettings.js:205
+#: settings/brand/BrandSettings.js:172
 msgid "Remove \"Powered By SureCart\" in the footer of emails and receipts/invoices."
 msgstr ""
 
-#: settings/brand/BrandSettings.js:218
+#: settings/brand/BrandSettings.js:184
 msgid "Change cart settings."
 msgstr ""
 
-#: settings/brand/BrandSettings.js:230
+#: settings/brand/BrandSettings.js:196
 msgid "Enable Cart"
 msgstr ""
 
-#: settings/brand/BrandSettings.js:232
+#: settings/brand/BrandSettings.js:198
 msgid "This will enable slide-out cart. If you do not wish to use the cart, you can disable this to prevent cart scripts from loading on your pages."
 msgstr ""
 
@@ -17650,7 +17645,19 @@ msgstr ""
 msgid "Menu Icon"
 msgstr ""
 
-#: settings/brand/Logo.js:20
+#: settings/brand/components/ThemeModeCard.js:22
+msgid "Light Mode"
+msgstr ""
+
+#: settings/brand/components/ThemeModeCard.js:23
+msgid "Dark Mode"
+msgstr ""
+
+#: settings/brand/components/ThemeModeCard.js:140
+msgid "Logo"
+msgstr ""
+
+#: settings/brand/Logo.js:34
 msgid "Are you sure you want to remove this logo?"
 msgstr ""
 
@@ -20829,7 +20836,7 @@ msgstr ""
 #: src/blocks/cart-subtotal/edit.js:30
 #: src/blocks/product-list-related/inspector-controls/index.js:73
 #: src/blocks/product-list/inspector-controls/index.js:64
-#: src/blocks/product-media/edit.js:63
+#: src/blocks/product-media/edit.js:66
 #: src/blocks/product-review-list/inspector-controls.js:20
 msgid "Attributes"
 msgstr ""
@@ -21947,12 +21954,12 @@ msgid "Experience the next level of convenience with our innovative widget. Meld
 msgstr ""
 
 #: Blocks/Product/Media/edit.js:59
-#: src/blocks/product-media/edit.js:99
+#: src/blocks/product-media/edit.js:102
 msgid "Slider Height"
 msgstr ""
 
 #: Blocks/Product/Media/edit.js:82
-#: src/blocks/product-media/edit.js:134
+#: src/blocks/product-media/edit.js:137
 msgid "Thumbnails Per Page"
 msgstr ""
 
@@ -22347,23 +22354,23 @@ msgstr ""
 msgid "Show Description"
 msgstr ""
 
-#: Blocks/StoreLogo/edit.js:81
+#: Blocks/StoreLogo/edit.js:84
 msgid "Store Logo"
 msgstr ""
 
-#: Blocks/StoreLogo/edit.js:83
+#: Blocks/StoreLogo/edit.js:86
 msgid "This is also displayed on your invoices, receipts and emails."
 msgstr ""
 
-#: Blocks/StoreLogo/edit.js:168
+#: Blocks/StoreLogo/edit.js:171
 msgid "Set a maximum height"
 msgstr ""
 
-#: Blocks/StoreLogo/edit.js:179
+#: Blocks/StoreLogo/edit.js:182
 msgid "Maximum height"
 msgstr ""
 
-#: Blocks/StoreLogo/edit.js:197
+#: Blocks/StoreLogo/edit.js:200
 msgid "Link image to home"
 msgstr ""
 
@@ -22746,6 +22753,7 @@ msgstr ""
 
 #: Blocks/BumpLineItem/block.json
 #: Blocks/ProductItemPrice/block.json
+#: src/blocks/cart-subtotal-scratch-amount/block.json
 msgctxt "block keyword"
 msgid "discount"
 msgstr ""
@@ -23706,6 +23714,7 @@ msgstr ""
 #: Blocks/Total/block.json
 #: src/blocks/cart-items-subtotal/block.json
 #: src/blocks/cart-subtotal-amount/block.json
+#: src/blocks/cart-subtotal-scratch-amount/block.json
 #: src/blocks/cart-subtotal/block.json
 msgctxt "block keyword"
 msgid "subtotal"
@@ -25120,11 +25129,11 @@ msgstr ""
 msgid "Suggested for you"
 msgstr ""
 
-#: src/blocks/cart/edit.js:122
+#: src/blocks/cart/edit.js:123
 msgid "The current template for cart is outdated. Please upgrade to a newer version by clicking "
 msgstr ""
 
-#: src/blocks/cart/edit.js:131
+#: src/blocks/cart/edit.js:132
 msgid " here."
 msgstr ""
 
@@ -25381,20 +25390,12 @@ msgstr ""
 msgid "Keyword"
 msgstr ""
 
-#: src/blocks/product-media/edit.js:83
+#: src/blocks/product-media/edit.js:86
 msgid "Automatically adjust the height of the slider to the image height."
 msgstr ""
 
-#: src/blocks/product-media/edit.js:119
+#: src/blocks/product-media/edit.js:122
 msgid "Show thumbnails for the image slider."
-msgstr ""
-
-#: src/blocks/product-page/components/SelectorPreview.js:21
-msgid "Manage link"
-msgstr ""
-
-#: src/blocks/product-page/components/SelectorPreview.js:29
-msgid "Link information"
 msgstr ""
 
 #: src/blocks/product-page/components/SelectorPreview.js:41
@@ -25805,86 +25806,90 @@ msgstr ""
 msgid "Failed to delete"
 msgstr ""
 
+#: src/scripts/checkout/index.js:148
+msgid "Original price:"
+msgstr ""
+
 #. translators: %d: number of items in the cart
-#: src/scripts/checkout/index.js:248
+#: src/scripts/checkout/index.js:265
 msgid "Total of %d item in your cart"
 msgid_plural "Total of %d items in your cart"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/scripts/checkout/index.js:265
+#: src/scripts/checkout/index.js:282
 msgid "Cart item: %s. Quantity %d. Total price %s."
 msgstr ""
 
-#: src/scripts/checkout/index.js:278
+#: src/scripts/checkout/index.js:295
 msgid "Remove %s from your cart."
 msgstr ""
 
 #. translators: %s: product name
-#: src/scripts/checkout/index.js:290
+#: src/scripts/checkout/index.js:307
 msgid "Increase quantity for %s."
 msgstr ""
 
 #. translators: %s: product name
-#: src/scripts/checkout/index.js:302
+#: src/scripts/checkout/index.js:319
 msgid "Decrease quantity for %s."
 msgstr ""
 
 #. translators: %s: product name
-#: src/scripts/checkout/index.js:314
+#: src/scripts/checkout/index.js:331
 msgid "Quantity for %s."
 msgstr ""
 
-#: src/scripts/checkout/index.js:558
+#: src/scripts/checkout/index.js:575
 msgid "Applying promotion code."
 msgstr ""
 
 #. translators: %s: promotion code
-#: src/scripts/checkout/index.js:571
+#: src/scripts/checkout/index.js:588
 msgid "Promotion code %s has been applied."
 msgstr ""
 
-#: src/scripts/checkout/index.js:594
+#: src/scripts/checkout/index.js:611
 msgid "Removing promotion code."
 msgstr ""
 
-#: src/scripts/checkout/index.js:607
+#: src/scripts/checkout/index.js:624
 msgid "Promotion code has been removed."
 msgstr ""
 
-#: src/scripts/checkout/index.js:721
-#: src/scripts/checkout/index.js:753
+#: src/scripts/checkout/index.js:737
+#: src/scripts/checkout/index.js:766
 msgid "Updating quantity."
 msgstr ""
 
 #. translators: %d: quantity
-#: src/scripts/checkout/index.js:728
+#: src/scripts/checkout/index.js:742
 msgid "Quantity increased to %d."
 msgstr ""
 
 #. translators: %d: quantity
-#: src/scripts/checkout/index.js:760
+#: src/scripts/checkout/index.js:771
 msgid "Quantity decreased to %d."
 msgstr ""
 
 #. translators: %d: quantity
-#: src/scripts/checkout/index.js:782
+#: src/scripts/checkout/index.js:793
 msgid "Quantity changed to %d."
 msgstr ""
 
-#: src/scripts/checkout/index.js:824
+#: src/scripts/checkout/index.js:835
 msgid "item"
 msgstr ""
 
-#: src/scripts/checkout/index.js:832
+#: src/scripts/checkout/index.js:843
 msgid "Removing %s from your cart."
 msgstr ""
 
-#: src/scripts/checkout/index.js:851
+#: src/scripts/checkout/index.js:862
 msgid "Removed %s from your cart."
 msgstr ""
 
-#: src/scripts/checkout/index.js:883
+#: src/scripts/checkout/index.js:894
 msgid "Checkout updated. The subtotal is %1$s."
 msgstr ""
 
@@ -26005,6 +26010,7 @@ msgstr ""
 
 #: src/blocks/cart-items-subtotal/block.json
 #: src/blocks/cart-subtotal-amount/block.json
+#: src/blocks/cart-subtotal-scratch-amount/block.json
 #: src/blocks/cart-subtotal/block.json
 msgctxt "block keyword"
 msgid "cart"
@@ -26295,6 +26301,21 @@ msgstr ""
 #: src/blocks/cart-subtotal-amount/block.json
 msgctxt "block description"
 msgid "Display the cart subtotal amount"
+msgstr ""
+
+#: src/blocks/cart-subtotal-scratch-amount/block.json
+msgctxt "block title"
+msgid "Cart Subtotal Scratch Amount"
+msgstr ""
+
+#: src/blocks/cart-subtotal-scratch-amount/block.json
+msgctxt "block description"
+msgid "Display the cart subtotal scratch amount (original price before discount)."
+msgstr ""
+
+#: src/blocks/cart-subtotal-scratch-amount/block.json
+msgctxt "block keyword"
+msgid "scratch"
 msgstr ""
 
 #: src/blocks/cart/block.json
@@ -28501,7 +28522,7 @@ msgid "Standard Shipping"
 msgstr ""
 
 #: sc-stripe-add-method.js:41
-#: sc-stripe-element.js:46
+#: sc-stripe-element.js:47
 #: sc-stripe-payment-element.js:80
 #: sc-stripe-payment-request2.js:58
 msgid "Stripe could not be loaded"

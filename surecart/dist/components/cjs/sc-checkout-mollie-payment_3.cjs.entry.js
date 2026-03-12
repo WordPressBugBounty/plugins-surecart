@@ -7,7 +7,7 @@ const watchers = require('./watchers-b4c5fc51.js');
 require('./watchers-6d49f403.js');
 const getters = require('./getters-ae03ef93.js');
 const mutations = require('./mutations-10a18c83.js');
-const getters$1 = require('./getters-a5fb26bc.js');
+const getters$1 = require('./getters-797bfdc3.js');
 const mutations$1 = require('./mutations-ee7893ba.js');
 const fetch = require('./fetch-d374a251.js');
 const MockProcessor = require('./MockProcessor-48b83649.js');
@@ -25,7 +25,7 @@ require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./price-5b1afcfe.js');
-require('./address-258a7497.js');
+require('./address-7db87356.js');
 require('./index-e60e3177.js');
 
 const listenTo = (prop, propKey, callback) => mutations.on('set', (key, newValue, oldValue) => {

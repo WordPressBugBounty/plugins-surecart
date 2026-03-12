@@ -1,6 +1,6 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
 import { s as state } from './watchers-86705798.js';
-import { c as currentCheckout } from './getters-5eb19bdc.js';
+import { c as currentCheckout } from './getters-347239e7.js';
 import './index-06061d4e.js';
 import './mutations-6bbbe793.js';
 import './utils-cd1431df.js';
@@ -11,7 +11,7 @@ import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-627acec4.js';
 import './price-af9f0dbf.js';
-import './address-058376bf.js';
+import './address-6bd346f2.js';
 
 /**
  * Check if any of the rule groups is passed or not.

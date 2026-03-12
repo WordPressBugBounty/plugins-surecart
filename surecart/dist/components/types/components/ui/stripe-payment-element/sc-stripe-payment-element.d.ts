@@ -74,6 +74,6 @@ export declare class ScStripePaymentElement {
      * Watch order status and maybe confirm the order.
      */
     maybeConfirmOrder(): Promise<void>;
-    confirm(type: any, args?: {}): Promise<void>;
+    confirm(type: 'setup' | 'payment', args?: {}): Promise<void>;
     render(): any;
 }

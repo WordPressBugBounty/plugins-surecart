@@ -1,5 +1,5 @@
 import { r as registerInstance, c as createEvent, h, a as getElement, H as Host, F as Fragment } from './index-745b6bec.js';
-import { g as getCountryDetails, c as countryChoices } from './address-058376bf.js';
+import { g as getCountryDetails, c as countryChoices } from './address-6bd346f2.js';
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { a as applyFilters } from './index-871d88b8.js';

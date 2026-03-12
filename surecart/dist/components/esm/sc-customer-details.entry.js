@@ -1,5 +1,5 @@
 import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
-import { c as countryChoices } from './address-058376bf.js';
+import { c as countryChoices } from './address-6bd346f2.js';
 import { z as zones } from './tax-a03623ca.js';
 import './add-query-args-0e2a8393.js';
 

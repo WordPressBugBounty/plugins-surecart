@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const address = require('./address-258a7497.js');
+const address = require('./address-7db87356.js');
 const formData = require('./form-data-0da9940f.js');
 const mutations = require('./mutations-10a18c83.js');
 const getters = require('./getters-87b7ef91.js');
@@ -13,7 +13,7 @@ const mutations$1 = require('./mutations-ee7893ba.js');
 const index$1 = require('./index-e60e3177.js');
 const index$2 = require('./index-fb76df07.js');
 const price = require('./price-5b1afcfe.js');
-const getters$1 = require('./getters-a5fb26bc.js');
+const getters$1 = require('./getters-797bfdc3.js');
 const mutations$2 = require('./mutations-11c8f9a8.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./add-query-args-49dcb630.js');

@@ -39,6 +39,22 @@ export declare class ScStripeElement {
      * Watch order status and maybe confirm the order.
      */
     maybeConfirmOrder(val: FormState): Promise<void>;
+    /** Get billing details for Stripe. */
+    getBillingDetails(): {
+        address?: {
+            line1: string;
+            line2: string;
+            city: string;
+            state: string;
+            postal_code: string; /**
+             * Watch order status and maybe confirm the order.
+             */
+            country: string;
+        };
+        phone?: string;
+        email?: string;
+        name?: string;
+    };
     /** Confirm card payment */
     confirmCardPayment(secret: any): Promise<any>;
     /** Confirm card setup. */
