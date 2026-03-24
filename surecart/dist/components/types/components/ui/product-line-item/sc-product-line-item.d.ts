@@ -59,6 +59,8 @@ export declare class ScProductLineItem {
     purchasableStatus: string;
     /** The line item note */
     note: string;
+    /** The review button link. If set, a review button will be shown linking to this URL. */
+    reviewButtonLink: string;
     /** Emitted when the quantity changes. */
     scUpdateQuantity: EventEmitter<number>;
     /** Emitted when the quantity changes. */

@@ -5,6 +5,7 @@ export declare class ScDialog {
     private panel;
     private overlay;
     private originalTrigger;
+    private boundHandleDocumentKeyDown;
     /** Indicates whether or not the dialog is open. You can use this in lieu of the show/hide methods. */
     open: boolean;
     /**
@@ -32,6 +33,8 @@ export declare class ScDialog {
     hide(): Promise<any>;
     private requestClose;
     handleKeyDown(event: KeyboardEvent): void;
+    /** Handle Escape from document level for slotted light DOM elements that don't bubble into shadow DOM. */
+    handleDocumentKeyDown(event: KeyboardEvent): void;
     handleOpenChange(): Promise<void>;
     componentDidLoad(): void;
     disconnectedCallback(): void;

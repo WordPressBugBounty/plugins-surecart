@@ -44,6 +44,8 @@
 .summary {
   position: relative;
   user-select: none;
+}
+.summary--collapsible {
   cursor: pointer;
 }
 .summary .collapse-link__icon {

@@ -16,7 +16,7 @@ require('./currency-71fce0f0.js');
 require('./store-4a539aea.js');
 require('./price-5b1afcfe.js');
 
-const scOrderSummaryCss = ":host{display:block;font-family:var(--sc-font-sans);font-size:var(--sc-checkout-font-size, 16px)}.collapse-link{display:flex;align-items:center;gap:0.35em}.summary__content--empty{display:none}.collapse-link__icon{width:18px;height:18px;color:var(--sc-order-collapse-link-icon-color, var(--sc-color-gray-500))}.item__product+.item__product{margin-top:20px}.empty{color:var(--sc-order-summary-color, var(--sc-color-gray-500))}.price{display:inline-block;opacity:0;visibility:hidden;transform:translateY(5px);transition:var(--sc-input-transition, var(--sc-transition-medium)) visibility ease, var(--sc-input-transition, var(--sc-transition-medium)) opacity ease, var(--sc-input-transition, var(--sc-transition-medium)) transform ease}.price--collapsed{opacity:1;visibility:visible;transform:translateY(0)}.summary{position:relative;user-select:none;cursor:pointer}.summary .collapse-link__icon{transition:transform 0.25s ease-in-out}.summary .scratch-price{text-decoration:line-through;color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}.summary--open .collapse-link__icon{transform:rotate(180deg)}::slotted(*){margin:4px 0 !important}::slotted(sc-divider){margin:20px 0 !important}sc-line-item~sc-line-item{margin-top:14px}.total-price{white-space:nowrap}";
+const scOrderSummaryCss = ":host{display:block;font-family:var(--sc-font-sans);font-size:var(--sc-checkout-font-size, 16px)}.collapse-link{display:flex;align-items:center;gap:0.35em}.summary__content--empty{display:none}.collapse-link__icon{width:18px;height:18px;color:var(--sc-order-collapse-link-icon-color, var(--sc-color-gray-500))}.item__product+.item__product{margin-top:20px}.empty{color:var(--sc-order-summary-color, var(--sc-color-gray-500))}.price{display:inline-block;opacity:0;visibility:hidden;transform:translateY(5px);transition:var(--sc-input-transition, var(--sc-transition-medium)) visibility ease, var(--sc-input-transition, var(--sc-transition-medium)) opacity ease, var(--sc-input-transition, var(--sc-transition-medium)) transform ease}.price--collapsed{opacity:1;visibility:visible;transform:translateY(0)}.summary{position:relative;user-select:none}.summary--collapsible{cursor:pointer}.summary .collapse-link__icon{transition:transform 0.25s ease-in-out}.summary .scratch-price{text-decoration:line-through;color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}.summary--open .collapse-link__icon{transform:rotate(180deg)}::slotted(*){margin:4px 0 !important}::slotted(sc-divider){margin:20px 0 !important}sc-line-item~sc-line-item{margin-top:14px}.total-price{white-space:nowrap}";
 const ScOrderSummaryStyle0 = scOrderSummaryCss;
 
 const ScOrderSummary = class {
@@ -102,10 +102,10 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'a428b2c759c6a23c9b87329dc960b9b04ff51b1b', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), index.h("div", { key: 'fa85e3d0a63d244f715b6998cbccdd9c1e028a4d', ref: el => (this.body = el), class: {
+        return (index.h("div", { key: '2e86017582637dc8f2936455580056a82622cc08', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), index.h("div", { key: '7d0431c7f8846567adeeaf47ca07faa8de783181', ref: el => (this.body = el), class: {
                 'summary__content': true,
                 'summary__content--empty': this.empty() && !getters.formBusy(),
-            } }, index.h("slot", { key: '26206a08fd8a4e2aadb4eed8f5920e946202b765' })), this.empty() && !getters.formBusy() && index.h("p", { key: 'a7805d38a3f5642d9e48b0bb49287c9c8d594d1b', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
+            } }, index.h("slot", { key: '4e6bfefa5a3d54f7bd11473c252c2c2778fa03d0' })), this.empty() && !getters.formBusy() && index.h("p", { key: 'f7b0916b5016e96e74ad602fd9fccd681a85d67a', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

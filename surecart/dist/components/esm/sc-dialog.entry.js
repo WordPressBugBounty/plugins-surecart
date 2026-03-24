@@ -32,6 +32,7 @@ const ScDialog = class {
         this.scHide = createEvent(this, "scHide", 7);
         this.scAfterHide = createEvent(this, "scAfterHide", 7);
         this.scInitialFocus = createEvent(this, "scInitialFocus", 7);
+        this.boundHandleDocumentKeyDown = (event) => this.handleDocumentKeyDown(event);
         this.open = false;
         this.label = '';
         this.noHeader = false;
@@ -66,10 +67,17 @@ const ScDialog = class {
             this.requestClose('keyboard');
         }
     }
+    /** Handle Escape from document level for slotted light DOM elements that don't bubble into shadow DOM. */
+    handleDocumentKeyDown(event) {
+        if (event.key === 'Escape' && this.open) {
+            this.requestClose('keyboard');
+        }
+    }
     async handleOpenChange() {
         if (this.open) {
             // Show
             this.scShow.emit();
+            document.addEventListener('keydown', this.boundHandleDocumentKeyDown);
             lockBodyScrolling(this.el);
             // When the dialog is shown, Safari will attempt to set focus on whatever element has autofocus. This can cause
             // the dialogs's animation to jitter (if it starts offscreen), so we'll temporarily remove the attribute, call
@@ -119,6 +127,7 @@ const ScDialog = class {
             if (typeof (trigger === null || trigger === void 0 ? void 0 : trigger.focus) === 'function') {
                 setTimeout(() => trigger.focus());
             }
+            document.removeEventListener('keydown', this.boundHandleDocumentKeyDown);
             this.scAfterHide.emit();
         }
     }
@@ -126,26 +135,28 @@ const ScDialog = class {
         this.hasFooter = !!this.el.querySelector('[slot="footer"]');
         this.dialog.hidden = !this.open;
         if (this.open) {
+            document.addEventListener('keydown', this.boundHandleDocumentKeyDown);
             lockBodyScrolling(this.el);
         }
     }
     disconnectedCallback() {
+        document.removeEventListener('keydown', this.boundHandleDocumentKeyDown);
         unlockBodyScrolling(this.el);
     }
     render() {
-        return (h("div", { key: '107637597863c47608f170c067b0236f6aa9e6d2', part: "base", ref: el => (this.dialog = el), class: {
+        return (h("div", { key: 'f10398d88a10fca883e49ad33a58c78c9c2703ea', part: "base", ref: el => (this.dialog = el), class: {
                 'dialog': true,
                 'dialog--open': this.open,
                 'dialog--has-footer': this.hasFooter,
-            }, onKeyDown: e => this.handleKeyDown(e) }, h("div", { key: 'fa715122b2b83595fd15842165183c7404023f81', part: "overlay", class: "dialog__overlay", onClick: e => {
+            }, onKeyDown: e => this.handleKeyDown(e) }, h("div", { key: 'fe58143d804106605151c8af9a710b439bfee407', part: "overlay", class: "dialog__overlay", onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.requestClose('overlay');
-            }, ref: el => (this.overlay = el), tabindex: "-1" }), h("div", { key: 'e363787b0707682eebe435921ff77e45e3b1ee8e', part: "panel", class: "dialog__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader || this.label, "aria-labelledby": !this.noHeader || 'title', ref: el => (this.panel = el), tabindex: "0" }, !this.noHeader && (h("header", { key: '50e8a5d2a01daf7386e89f9522e02c78b1b1cdd0', part: "header", class: "dialog__header" }, h("h2", { key: 'b9658fe70114437c257f31115cb57676609f551b', part: "title", class: "dialog__title", id: "title" }, h("slot", { key: 'b689ec00b9d094a52293960732e07de25e4c676a', name: "label" }, " ", this.label.length > 0 ? this.label : String.fromCharCode(65279), " ")), h("sc-button", { key: 'db8076b693b12e9f8293cc9a421e95c20c801df8', class: "dialog__close", type: "text", circle: true, part: "close-button", exportparts: "base:close-button__base", onClick: e => {
+            }, ref: el => (this.overlay = el), tabindex: "-1" }), h("div", { key: '517d766eb0a3c08a14bf85f9b4bac8406581db70', part: "panel", class: "dialog__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader || this.label, "aria-labelledby": !this.noHeader || 'title', ref: el => (this.panel = el), tabindex: "0" }, !this.noHeader && (h("header", { key: 'a769746d0fea2ed8047b1867bd27ee186eaf8a00', part: "header", class: "dialog__header" }, h("h2", { key: '4becd4dd79384169f4ea5d8d9278eeb4b0037840', part: "title", class: "dialog__title", id: "title" }, h("slot", { key: 'fb1871b630a7c61b19484af20ce1f10c59f609fd', name: "label" }, " ", this.label.length > 0 ? this.label : String.fromCharCode(65279), " ")), h("sc-button", { key: '9a0df427f42124090640515b8dc36994bdac7c8f', class: "dialog__close", type: "text", circle: true, part: "close-button", exportparts: "base:close-button__base", onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.requestClose('close-button');
-            } }, h("sc-icon", { key: '554a4c08515f6bfc5b459c19f475d9a94cd997fc', name: "x", label: wp.i18n.__('Close', 'surecart') })))), h("div", { key: 'b1a370e80ab038689241e3e46b371ab799dcf77a', part: "body", class: "dialog__body" }, h("slot", { key: '4aa21da63ee5bd0965b3b4d7663219a6b8719782' })), h("footer", { key: '6ad055624dd80c40b7528eadeda4537f4ea6f726', part: "footer", class: "dialog__footer" }, h("slot", { key: '71f3552a56442e746b7d774b14c86fd7242753c9', name: "footer" })))));
+            } }, h("sc-icon", { key: '8cd1f430691f3f92f6782777eab677ab2b8e044e', name: "x", label: wp.i18n.__('Close', 'surecart') })))), h("div", { key: '63628efa0c475816a8dfc2ba878c056e88f817b9', part: "body", class: "dialog__body" }, h("slot", { key: '66bbe40459ca7c99970f241bae999e49e288ca77' })), h("footer", { key: '48406ef09f60488508013c233754de65fbfb0c1a', part: "footer", class: "dialog__footer" }, h("slot", { key: '1e44bc2a3ea558d50b2d63347b5ad49217693076', name: "footer" })))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
