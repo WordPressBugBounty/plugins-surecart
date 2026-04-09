@@ -10,6 +10,15 @@
         'dev' => false,
     ),
     'versions' => array(
+        'brainstormforce/nps-survey' => array(
+            'pretty_version' => '1.0.21',
+            'version' => '1.0.21.0',
+            'reference' => '5a20f0a05e3ecd11a611e49ff27145932a924a52',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../brainstormforce/nps-survey',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'composer/installers' => array(
             'pretty_version' => 'v1.12.0',
             'version' => '1.12.0.0',

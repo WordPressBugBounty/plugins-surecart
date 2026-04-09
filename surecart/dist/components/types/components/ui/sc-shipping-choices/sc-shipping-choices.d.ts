@@ -12,6 +12,8 @@ export declare class ScShippingChoices {
     label: string;
     /** Whether to show the shipping choice description */
     showDescription: boolean;
+    /** Override shipping choices data (used for editor preview) */
+    shippingChoices: any[] | undefined;
     /** Maybe update the order. */
     updateCheckout(selectedShippingChoiceId: string): Promise<void>;
     render(): any;

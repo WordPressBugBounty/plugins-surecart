@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
+class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -480,6 +480,56 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCartVendors\\Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'SureCartVendors\\Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
+        'SureCart\\Abilities\\AbilitiesServiceProvider' => __DIR__ . '/../..' . '/app/src/Abilities/AbilitiesServiceProvider.php',
+        'SureCart\\Abilities\\Abilities\\AbstractAbility' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/AbstractAbility.php',
+        'SureCart\\Abilities\\Abilities\\ArchiveProduct' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ArchiveProduct.php',
+        'SureCart\\Abilities\\Abilities\\CancelSubscription' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CancelSubscription.php',
+        'SureCart\\Abilities\\Abilities\\CreateCoupon' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreateCoupon.php',
+        'SureCart\\Abilities\\Abilities\\CreateCustomer' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreateCustomer.php',
+        'SureCart\\Abilities\\Abilities\\CreateFulfillment' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreateFulfillment.php',
+        'SureCart\\Abilities\\Abilities\\CreateInvoice' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreateInvoice.php',
+        'SureCart\\Abilities\\Abilities\\CreatePrice' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreatePrice.php',
+        'SureCart\\Abilities\\Abilities\\CreateProduct' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreateProduct.php',
+        'SureCart\\Abilities\\Abilities\\CreatePromotion' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreatePromotion.php',
+        'SureCart\\Abilities\\Abilities\\CreateRefund' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/CreateRefund.php',
+        'SureCart\\Abilities\\Abilities\\DeleteCoupon' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/DeleteCoupon.php',
+        'SureCart\\Abilities\\Abilities\\DeleteCustomer' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/DeleteCustomer.php',
+        'SureCart\\Abilities\\Abilities\\DeleteFulfillment' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/DeleteFulfillment.php',
+        'SureCart\\Abilities\\Abilities\\DeletePromotion' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/DeletePromotion.php',
+        'SureCart\\Abilities\\Abilities\\DuplicateProduct' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/DuplicateProduct.php',
+        'SureCart\\Abilities\\Abilities\\GetCoupon' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetCoupon.php',
+        'SureCart\\Abilities\\Abilities\\GetCustomer' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetCustomer.php',
+        'SureCart\\Abilities\\Abilities\\GetFulfillment' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetFulfillment.php',
+        'SureCart\\Abilities\\Abilities\\GetFulfillmentItem' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetFulfillmentItem.php',
+        'SureCart\\Abilities\\Abilities\\GetLicense' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetLicense.php',
+        'SureCart\\Abilities\\Abilities\\GetOrder' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetOrder.php',
+        'SureCart\\Abilities\\Abilities\\GetOrderStatistics' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetOrderStatistics.php',
+        'SureCart\\Abilities\\Abilities\\GetProduct' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetProduct.php',
+        'SureCart\\Abilities\\Abilities\\GetPromotion' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetPromotion.php',
+        'SureCart\\Abilities\\Abilities\\GetRefund' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetRefund.php',
+        'SureCart\\Abilities\\Abilities\\GetStoreDashboard' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetStoreDashboard.php',
+        'SureCart\\Abilities\\Abilities\\GetStoreInfo' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetStoreInfo.php',
+        'SureCart\\Abilities\\Abilities\\GetSubscription' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/GetSubscription.php',
+        'SureCart\\Abilities\\Abilities\\ListCoupons' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListCoupons.php',
+        'SureCart\\Abilities\\Abilities\\ListCustomers' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListCustomers.php',
+        'SureCart\\Abilities\\Abilities\\ListFulfillments' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListFulfillments.php',
+        'SureCart\\Abilities\\Abilities\\ListLicenses' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListLicenses.php',
+        'SureCart\\Abilities\\Abilities\\ListOrders' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListOrders.php',
+        'SureCart\\Abilities\\Abilities\\ListPrices' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListPrices.php',
+        'SureCart\\Abilities\\Abilities\\ListProducts' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListProducts.php',
+        'SureCart\\Abilities\\Abilities\\ListPromotions' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListPromotions.php',
+        'SureCart\\Abilities\\Abilities\\ListRefunds' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListRefunds.php',
+        'SureCart\\Abilities\\Abilities\\ListSubscriptions' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/ListSubscriptions.php',
+        'SureCart\\Abilities\\Abilities\\UpdateCoupon' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdateCoupon.php',
+        'SureCart\\Abilities\\Abilities\\UpdateCustomer' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdateCustomer.php',
+        'SureCart\\Abilities\\Abilities\\UpdateFulfillment' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdateFulfillment.php',
+        'SureCart\\Abilities\\Abilities\\UpdateInvoice' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdateInvoice.php',
+        'SureCart\\Abilities\\Abilities\\UpdatePrice' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdatePrice.php',
+        'SureCart\\Abilities\\Abilities\\UpdateProduct' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdateProduct.php',
+        'SureCart\\Abilities\\Abilities\\UpdatePromotion' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdatePromotion.php',
+        'SureCart\\Abilities\\Abilities\\UpdateSubscriptionRenewalDate' => __DIR__ . '/../..' . '/app/src/Abilities/Abilities/UpdateSubscriptionRenewalDate.php',
+        'SureCart\\Abilities\\AbilityRegistrar' => __DIR__ . '/../..' . '/app/src/Abilities/AbilityRegistrar.php',
+        'SureCart\\Abilities\\Concerns\\MapsGenericAddress' => __DIR__ . '/../..' . '/app/src/Abilities/Concerns/MapsGenericAddress.php',
         'SureCart\\Account\\AccountService' => __DIR__ . '/../..' . '/app/src/Account/AccountService.php',
         'SureCart\\Account\\AccountServiceProvider' => __DIR__ . '/../..' . '/app/src/Account/AccountServiceProvider.php',
         'SureCart\\Account\\ProvisionalAccountSeedService' => __DIR__ . '/../..' . '/app/src/Account/ProvisionalAccountSeedService.php',
@@ -856,6 +906,8 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
         'SureCart\\Integrations\\LifterLMS\\LifterLMSServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/LifterLMS/LifterLMSServiceProvider.php',
         'SureCart\\Integrations\\MemberPress\\MemberPressService' => __DIR__ . '/../..' . '/app/src/Integrations/MemberPress/MemberPressService.php',
         'SureCart\\Integrations\\MemberPress\\MemberPressServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/MemberPress/MemberPressServiceProvider.php',
+        'SureCart\\Integrations\\NpsSurvey\\NpsSurveyNotice' => __DIR__ . '/../..' . '/app/src/Integrations/NpsSurvey/NpsSurveyNotice.php',
+        'SureCart\\Integrations\\NpsSurvey\\NpsSurveyServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/NpsSurvey/NpsSurveyServiceProvider.php',
         'SureCart\\Integrations\\RankMath\\RankMathService' => __DIR__ . '/../..' . '/app/src/Integrations/RankMath/RankMathService.php',
         'SureCart\\Integrations\\RankMath\\RankMathServiceProvider' => __DIR__ . '/../..' . '/app/src/Integrations/RankMath/RankMathServiceProvider.php',
         'SureCart\\Integrations\\SEOPress\\SEOPressService' => __DIR__ . '/../..' . '/app/src/Integrations/SEOPress/SEOPressService.php',
@@ -1340,10 +1392,10 @@ class ComposerStaticInitde6168bc7e17873548173e515fd8b9ef
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitde6168bc7e17873548173e515fd8b9ef::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$classMap;
 
         }, null, ClassLoader::class);
     }

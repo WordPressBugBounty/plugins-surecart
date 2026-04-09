@@ -926,6 +926,7 @@ const ScShippingChoices = class {
         registerInstance(this, hostRef);
         this.label = undefined;
         this.showDescription = true;
+        this.shippingChoices = undefined;
     }
     /** Maybe update the order. */
     async updateCheckout(selectedShippingChoiceId) {
@@ -953,20 +954,24 @@ const ScShippingChoices = class {
         }
     }
     render() {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
-        // shipping choice is not rewquired.
-        if (!((_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.selected_shipping_choice_required)) {
-            return h(Host, { style: { display: 'none' } });
+        var _a, _b, _c, _d, _e;
+        const choices = this.shippingChoices || ((_b = (_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.shipping_choices) === null || _b === void 0 ? void 0 : _b.data);
+        // When not using prop override, apply checkout state guards.
+        if (!this.shippingChoices) {
+            // shipping choice is not required.
+            if (!((_c = state === null || state === void 0 ? void 0 : state.checkout) === null || _c === void 0 ? void 0 : _c.selected_shipping_choice_required)) {
+                return h(Host, { style: { display: 'none' } });
+            }
+            // no shipping choices but no country either
+            if (!(choices === null || choices === void 0 ? void 0 : choices.length) && !((_e = (_d = state === null || state === void 0 ? void 0 : state.checkout) === null || _d === void 0 ? void 0 : _d.shipping_address) === null || _e === void 0 ? void 0 : _e.country)) {
+                return (h("sc-form-control", { label: this.label || wp.i18n.__('Shipping', 'surecart') }, h("div", { class: "shipping-choice__empty" }, wp.i18n.__('To check available shipping choices, please provide your shipping country in the address section.', 'surecart'))));
+            }
+            // no shipping choices yet.
+            if (!(choices === null || choices === void 0 ? void 0 : choices.length)) {
+                return (h("sc-form-control", { part: "empty", label: this.label || wp.i18n.__('Shipping', 'surecart') }, h("div", { class: "shipping-choice__empty" }, wp.i18n.__('Sorry, we are not able to ship to your address.', 'surecart'))));
+            }
         }
-        // no shipping choices but no country either
-        if (!((_d = (_c = (_b = state === null || state === void 0 ? void 0 : state.checkout) === null || _b === void 0 ? void 0 : _b.shipping_choices) === null || _c === void 0 ? void 0 : _c.data) === null || _d === void 0 ? void 0 : _d.length) && !((_f = (_e = state === null || state === void 0 ? void 0 : state.checkout) === null || _e === void 0 ? void 0 : _e.shipping_address) === null || _f === void 0 ? void 0 : _f.country)) {
-            return (h("sc-form-control", { label: this.label || wp.i18n.__('Shipping', 'surecart') }, h("div", { class: "shipping-choice__empty" }, wp.i18n.__('To check available shipping choices, please provide your shipping country in the address section.', 'surecart'))));
-        }
-        // no shipping choices yet.
-        if (!((_j = (_h = (_g = state === null || state === void 0 ? void 0 : state.checkout) === null || _g === void 0 ? void 0 : _g.shipping_choices) === null || _h === void 0 ? void 0 : _h.data) === null || _j === void 0 ? void 0 : _j.length)) {
-            return (h("sc-form-control", { part: "empty", label: this.label || wp.i18n.__('Shipping', 'surecart') }, h("div", { class: "shipping-choice__empty" }, wp.i18n.__('Sorry, we are not able to ship to your address.', 'surecart'))));
-        }
-        return (h(Host, null, h("sc-radio-group", { part: "base", label: this.label || wp.i18n.__('Shipping', 'surecart'), class: "shipping-choices", onScChange: e => this.updateCheckout(e.detail) }, (((_l = (_k = state === null || state === void 0 ? void 0 : state.checkout) === null || _k === void 0 ? void 0 : _k.shipping_choices) === null || _l === void 0 ? void 0 : _l.data) || []).map(({ id, display_amount, shipping_method }) => {
+        return (h(Host, null, h("sc-radio-group", { part: "base", label: this.label || wp.i18n.__('Shipping', 'surecart'), class: "shipping-choices", onScChange: e => this.updateCheckout(e.detail) }, (choices || []).map(({ id, display_amount, shipping_method }) => {
             var _a;
             return (h("sc-radio", { key: id, checked: ((_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.selected_shipping_choice) === id, exportparts: "base:radio__base,label:radio__label,control:radio__control,checked-icon:radio__checked-icon", class: "shipping-choice", value: id }, h("div", { class: "shipping-choice__text" }, h("div", { class: "shipping-choice__name" }, (shipping_method === null || shipping_method === void 0 ? void 0 : shipping_method.name) || wp.i18n.__('Standard Shipping', 'surecart')), this.showDescription && !!(shipping_method === null || shipping_method === void 0 ? void 0 : shipping_method.description) && (h("div", { class: "shipping-choice__description" }, shipping_method === null || shipping_method === void 0 ? void 0 : shipping_method.description))), h("div", { class: "shipping-choice__price" }, !!display_amount ? display_amount : wp.i18n.__('Free', 'surecart'))));
         })), checkoutIsLocked('selected_shipping_choice') && h("sc-block-ui", null)));
