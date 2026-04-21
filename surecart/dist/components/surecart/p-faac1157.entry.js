@@ -1,0 +1,2 @@
+import{r as e,h as r}from"./p-e97fde0a.js";const s=":host{display:block}.menu-divider{border-top:solid 1px var(--sc-panel-border-color);margin:var(--sc-spacing-x-small) 0}";const a=s;const o=class{constructor(r){e(this,r)}render(){return r("div",{key:"0f50e67109b98651e50154765b267ee6d177ee43",part:"base",class:"menu-divider",role:"separator","aria-hidden":"true"})}};o.style=a;export{o as sc_menu_divider};
+//# sourceMappingURL=p-faac1157.entry.js.map

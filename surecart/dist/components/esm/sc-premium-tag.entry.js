@@ -6,7 +6,7 @@ const ScPremiumTag = class {
         this.size = 'small';
     }
     render() {
-        return (h("sc-tag", { key: '01e492b516a6cdff7ab9ff0f8d6023a531103955', type: "success", size: this.size }, wp.i18n.__('Premium', 'surecart')));
+        return (h("sc-tag", { key: 'f232d4a813a2bc4b60b9776106e5632895f510ac', type: "success", size: this.size }, wp.i18n.__('Premium', 'surecart')));
     }
 };
 

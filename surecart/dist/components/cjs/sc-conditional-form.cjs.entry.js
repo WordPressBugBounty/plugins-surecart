@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const watchers = require('./watchers-b4c5fc51.js');
-const getters = require('./getters-797bfdc3.js');
+const getters = require('./getters-4eeca6b3.js');
 require('./index-bcdafe6e.js');
-require('./mutations-10a18c83.js');
+require('./mutations-22165f96.js');
 require('./utils-2e91d46c.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
@@ -14,8 +14,8 @@ require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./store-4a539aea.js');
-require('./price-5b1afcfe.js');
-require('./address-7db87356.js');
+require('./price-da3cab3d.js');
+require('./address-7404695f.js');
 
 /**
  * Check if any of the rule groups is passed or not.

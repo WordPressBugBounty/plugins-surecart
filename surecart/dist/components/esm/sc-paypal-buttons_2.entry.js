@@ -1,18 +1,18 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
-import { l as loadScript, g as getScriptLoadParams } from './functions-2a4a4ba3.js';
+import { l as loadScript, g as getScriptLoadParams } from './functions-6f383890.js';
 import { a as apiFetch } from './fetch-bc141774.js';
-import { g as fetchCheckout } from './index-a7f5e198.js';
+import { g as fetchCheckout } from './index-463cee3b.js';
 import { c as createErrorNotice } from './mutations-ed6d0770.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
-import './mutations-6bbbe793.js';
+import './mutations-9b8d22f2.js';
 import './index-06061d4e.js';
 import './utils-cd1431df.js';
 import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-627acec4.js';
-import './price-af9f0dbf.js';
+import './price-1ff6aa07.js';
 
 const paypalButtonsCss = ":host{display:block}.paypal-buttons{position:relative;line-height:0;text-align:center}.paypal-buttons:not(.paypal-buttons--busy):after{content:\" \";border-bottom:1px solid var(--sc-input-border-color);width:100%;height:0;top:50%;left:0;right:0;position:absolute}";
 const ScPaypalButtonsStyle0 = paypalButtonsCss;
@@ -43,7 +43,7 @@ const ScPaypalButtons = class {
     }
     /** Load the script */
     async loadScript() {
-        var _a, _b;
+        var _a, _b, _c;
         if (!this.clientId || !this.merchantId)
             return;
         try {
@@ -53,6 +53,7 @@ const ScPaypalButtons = class {
                 merchantInitiated: this.merchantInitiated,
                 reusable: (_a = this.order) === null || _a === void 0 ? void 0 : _a.reusable_payment_method_required,
                 currency: (_b = this.order) === null || _b === void 0 ? void 0 : _b.currency,
+                locale: (_c = window.scData) === null || _c === void 0 ? void 0 : _c.locale,
             }));
             this.renderButtons(paypal);
         }
@@ -179,7 +180,7 @@ const ScPaypalButtons = class {
         }
     }
     render() {
-        return (h("div", { key: 'd6f23e66b7ac788fba410e854a6152e777a33064', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '7c052193ddd7953245913a0f5405798b1e028bdd', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '752920f5b0c6e5179fbffbd6b6d85315da9cdd92', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: '071162683cf1021ed82a51217ec7ebab3ef5f0c4', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '3ff0ee50a82f9527ce82db3e0f0ec70dbbdba8b9', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
+        return (h("div", { key: '0fe91e7646ac2b735571b30e1ad173e7f1de7b84', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '343336476aa741cdda2633aa1fff51cbf576c0dc', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '151c8484de9dcd7c108e686e04052265d7bfa988', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: '61d107b85302a2be8da1ed7605998c58d254e277', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '414403f427c70e2f927a7c18cb3058b19542ede8', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -196,7 +197,7 @@ const ScSecureNotice = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h("div", { key: '9a776a9fc012b8a5dcdd9018f4cca3f49b39f41e', class: "notice", part: "base" }, h("svg", { key: 'eb0e240d06b36f3d3b96dacdd4d2d2bdfcd9d05f', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, h("path", { key: '9f3e808047d05b0c88a6c84e82b36393e97453f9', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), h("span", { key: 'b808f5e3c91689ec1bc2ce590ceb835199c33573', class: "notice__text", part: "text" }, h("slot", { key: 'dec95922ff945cc845e8b5c4fedd2019e711cc47', name: "prefix" }), h("slot", { key: 'ba41e8236f35cd79f06d2a5191c6889e26187cd2' }), h("slot", { key: 'd835ccfd1c53c23f9bfae56f12e1a593e2d40e6c', name: "suffix" }))));
+        return (h("div", { key: 'dd62aac3deeb254ee39682d1f7e61ab017d56c53', class: "notice", part: "base" }, h("svg", { key: '1474735f711dbb9206651e2aaba292fb2f21505d', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, h("path", { key: '81020b1efdcd13f6d5d2e5fa4ed8ef66d93300ef', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), h("span", { key: '13b6544d45d380f8577d3d57401a5c940dfd2018', class: "notice__text", part: "text" }, h("slot", { key: '46cb181bdf9c8d23ef781ad2edf4e440a075226f', name: "prefix" }), h("slot", { key: '0ddde72b47303454066871f60be70934bd0ae925' }), h("slot", { key: '5c9071c9148b67a9d613b009b2beaf44e04c571c', name: "suffix" }))));
     }
 };
 ScSecureNotice.style = ScSecureNoticeStyle0;

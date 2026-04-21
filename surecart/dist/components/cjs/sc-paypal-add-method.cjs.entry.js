@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const functions = require('./functions-b63256c8.js');
+const functions = require('./functions-f568332c.js');
 const fetch = require('./fetch-d374a251.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -27,7 +27,7 @@ const ScPaypalAddMethod = class {
         this.createPaymentIntent();
     }
     async handlePaymentIntentCreate() {
-        var _a, _b;
+        var _a, _b, _c;
         const { external_intent_id } = this.paymentIntent || {};
         const { client_id, account_id, merchant_initiated } = ((_b = (_a = this.paymentIntent) === null || _a === void 0 ? void 0 : _a.processor_data) === null || _b === void 0 ? void 0 : _b.paypal) || {};
         // we need this data.
@@ -41,6 +41,7 @@ const ScPaypalAddMethod = class {
                     merchantId: account_id,
                     merchantInitiated: merchant_initiated,
                     reusable: true,
+                    locale: (_c = window.scData) === null || _c === void 0 ? void 0 : _c.locale,
                 }));
                 this.paypal
                     .Buttons({
@@ -110,7 +111,7 @@ const ScPaypalAddMethod = class {
         }
     }
     render() {
-        return (index.h(index.Host, { key: 'd3533f18a636296e65904bb08137a6306d563026' }, this.error && (index.h("sc-alert", { key: '7312e01b6cde157ef58e368c4ca484f3e9e241f5', open: !!this.error, type: "danger" }, index.h("span", { key: '4cc27235dce7541ec22e3ffc646aba99d9dba36f', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: 'cd08f85a0567b53915049933b4e29e32328bc4f8', class: "sc-paypal-button-container", hidden: !this.loaded, ref: el => (this.container = el) })));
+        return (index.h(index.Host, { key: 'f1ab046ac184127426e53c7dff336a2c2fc05775' }, this.error && (index.h("sc-alert", { key: '14f25f7ca714fa2ace2a5838ab8a8934be3e2dc6', open: !!this.error, type: "danger" }, index.h("span", { key: '87015bb886c5571795e64af5a14f61e5d244071b', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: '940a2ebac3d5b6deaba844494a77f6ec30b418ce', class: "sc-paypal-button-container", hidden: !this.loaded, ref: el => (this.container = el) })));
     }
     static get watchers() { return {
         "paymentIntent": ["handlePaymentIntentCreate"]

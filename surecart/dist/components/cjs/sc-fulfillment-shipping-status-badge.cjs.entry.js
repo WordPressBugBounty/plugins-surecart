@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 
-const scFulfillmentShippingStatusBadgeCss = ":host{display:inline-block}";
+const scFulfillmentShippingStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScFulfillmentShippingStatusBadgeStyle0 = scFulfillmentShippingStatusBadgeCss;
 
 const status = {

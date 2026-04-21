@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-745b6bec.js';
 
-const scInvoiceStatusBadgeCss = ":host{display:inline-block}";
+const scInvoiceStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScInvoiceStatusBadgeStyle0 = scInvoiceStatusBadgeCss;
 
 const ScInvoiceStatusBadge = class {
@@ -34,7 +34,7 @@ const ScInvoiceStatusBadge = class {
         }
     }
     render() {
-        return (h("sc-tag", { key: '1da67f3cea4eaf4332f3e89b89c7d43d04a96dde', type: this.getType(), pill: this.pill }, this.getText()));
+        return (h("sc-tag", { key: '57a1cabddddae37d7c2c244ace1f9b0d456d27bc', type: this.getType(), pill: this.pill }, this.getText()));
     }
 };
 ScInvoiceStatusBadge.style = ScInvoiceStatusBadgeStyle0;

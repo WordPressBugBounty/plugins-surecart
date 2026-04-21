@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-745b6bec.js';
 import { a as apiFetch } from './fetch-bc141774.js';
-import { p as productNameWithPrice, i as intervalString } from './price-af9f0dbf.js';
+import { p as productNameWithPrice, i as intervalString } from './price-1ff6aa07.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 import './currency-a0c9bff4.js';
@@ -181,7 +181,7 @@ const ScSubscriptionDetails = class {
 };
 ScSubscriptionDetails.style = ScSubscriptionDetailsStyle0;
 
-const scSubscriptionStatusBadgeCss = ":host{display:inline-block}";
+const scSubscriptionStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScSubscriptionStatusBadgeStyle0 = scSubscriptionStatusBadgeCss;
 
 const ScSubscriptionStatusBadge = class {
@@ -244,7 +244,7 @@ const ScSubscriptionStatusBadge = class {
         }
     }
     render() {
-        return (h("sc-tag", { key: '893ab27fd504b319540d744349703a2aab4fb469', "aria-label": wp.i18n.sprintf(wp.i18n.__('Plan Status - %s', 'surecart'), this.getText()), type: this.getType() }, this.getText()));
+        return (h("sc-tag", { key: '48882c520686d882450f7139d6f25197c472d1a8', "aria-label": wp.i18n.sprintf(wp.i18n.__('Plan Status - %s', 'surecart'), this.getText()), type: this.getType() }, this.getText()));
     }
 };
 ScSubscriptionStatusBadge.style = ScSubscriptionStatusBadgeStyle0;

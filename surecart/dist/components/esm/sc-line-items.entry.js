@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-745b6bec.js';
-import { s as state } from './mutations-6bbbe793.js';
-import { u as updateCheckoutLineItem, r as removeCheckoutLineItem } from './mutations-404760eb.js';
+import { s as state } from './mutations-9b8d22f2.js';
+import { u as updateCheckoutLineItem, r as removeCheckoutLineItem } from './mutations-7b784b52.js';
 import { f as formBusy } from './getters-487612aa.js';
 import { g as getMaxStockQuantity } from './quantity-1f39f750.js';
 import './index-06061d4e.js';
@@ -11,9 +11,9 @@ import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-627acec4.js';
-import './price-af9f0dbf.js';
+import './price-1ff6aa07.js';
 import './mutations-ed6d0770.js';
-import './index-a7f5e198.js';
+import './index-463cee3b.js';
 import './fetch-bc141774.js';
 
 const scLineItemsCss = ":host{display:block}:slotted(*~*){margin-top:20px}.line-items{display:grid;gap:var(--sc-form-row-spacing)}.line-item{display:grid;gap:var(--sc-spacing-small)}.line-item--has-swap{border:1px solid var(--sc-input-border-color);background:var(--sc-card-background-color, var(--sc-color-white));border-radius:var(--sc-border-radius-medium);gap:0;border-radius:var(--sc-input-border-radius-medium);overflow:hidden}.line-item--has-swap sc-product-line-item{padding:var(--sc-spacing-medium);border-bottom:solid var(--sc-input-border-width) var(--sc-input-border-color)}.line-item--has-swap sc-swap{padding:var(--sc-spacing-medium);background:var(--sc-card-background-color, var(--sc-color-gray-50))}sc-swap{font-size:var(--sc-font-size-small);line-height:var(--sc-line-height-dense);color:var(--sc-input-label-color)}.fee__description{opacity:0.75}";

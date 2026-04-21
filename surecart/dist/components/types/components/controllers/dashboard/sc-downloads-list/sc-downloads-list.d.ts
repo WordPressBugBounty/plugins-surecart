@@ -3,6 +3,7 @@ export declare class ScDownloadsList {
     el: HTMLScDownloadsListElement;
     customerId: string;
     productId: string;
+    variantId: string;
     heading: string;
     downloads: Download[];
     downloading: string;
@@ -15,7 +16,7 @@ export declare class ScDownloadsList {
     query: any;
     componentWillLoad(): void;
     fetchItems(): Promise<void>;
-    /** Get all subscriptions */
+    /** Get all downloads */
     getItems(): Promise<Download[]>;
     nextPage(): void;
     prevPage(): void;

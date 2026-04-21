@@ -1,6 +1,6 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
 
-const scFulfillmentShippingStatusBadgeCss = ":host{display:inline-block}";
+const scFulfillmentShippingStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScFulfillmentShippingStatusBadgeStyle0 = scFulfillmentShippingStatusBadgeCss;
 
 const status = {

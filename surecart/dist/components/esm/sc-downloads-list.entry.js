@@ -30,6 +30,7 @@ const ScDownloadsList = class {
         };
         this.customerId = undefined;
         this.productId = undefined;
+        this.variantId = undefined;
         this.heading = undefined;
         this.downloads = undefined;
         this.downloading = undefined;
@@ -50,7 +51,7 @@ const ScDownloadsList = class {
         });
     }
     async fetchItems() {
-        if (!this.productId || !this.customerId) {
+        if ((!this.productId && !this.variantId) || !this.customerId) {
             return;
         }
         try {
@@ -65,11 +66,11 @@ const ScDownloadsList = class {
             this.busy = false;
         }
     }
-    /** Get all subscriptions */
+    /** Get all downloads */
     async getItems() {
         const response = (await apiFetch({
             path: addQueryArgs(`surecart/v1/downloads/`, {
-                product_ids: [this.productId],
+                ...(this.variantId ? { variant_ids: [this.variantId] } : { product_ids: [this.productId] }),
                 customer_ids: [this.customerId],
                 downloadable: true,
                 ...this.query,
@@ -164,7 +165,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (h("sc-dashboard-module", { key: 'd58912d8bdb1082c7fc6573d8d79d923fb5084cf', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, h("span", { key: 'f1c5e6ac8b4cd7b8ac3fcf41f68b89a6cdbe22a4', slot: "heading" }, h("slot", { key: '53acfe743b074a19f6201ab25f468c4566c4e288', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), h("sc-pagination", { key: '0da57f246127271134b730be44703289dfe47814', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && h("sc-block-ui", { key: '43d573db84fc6693c051b9355da265c3a8f2321f' })));
+        return (h("sc-dashboard-module", { key: '87b6733dc4c5453de3549a84d1bf39257ddc7b76', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, h("span", { key: 'c8b052b08f70df7ea1a535c10b86f56306156337', slot: "heading" }, h("slot", { key: '378bbf6385e5aa2ad24eea5b5068eb5b645beba8', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), h("sc-pagination", { key: '28b9c3e2b12fec35aa705bbbcf4959bcf57dd1f2', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && h("sc-block-ui", { key: '5e4641087805b73bd099534869d1092a836733c8' })));
     }
     get el() { return getElement(this); }
 };

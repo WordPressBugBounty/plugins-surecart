@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const getters = require('./getters-87b7ef91.js');
-const mutations = require('./mutations-10a18c83.js');
+const mutations = require('./mutations-22165f96.js');
 require('./store-4a539aea.js');
 require('./index-bcdafe6e.js');
 require('./utils-2e91d46c.js');
@@ -13,7 +13,7 @@ require('./add-query-args-49dcb630.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./price-5b1afcfe.js');
+require('./price-da3cab3d.js');
 
 const scLineItemTotalCss = ":host{display:block}sc-line-item{text-align:left}.line-item-total__group sc-line-item{margin:4px 0px !important}.scratch-price{text-decoration:line-through;color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}sc-line-item::part(base){grid-template-columns:max-content auto auto}.total-price{white-space:nowrap}.currency-label{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-xx-small);margin-right:var(--sc-spacing-xx-small);vertical-align:middle}sc-divider{margin:16px 0 !important}.conversion-description{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}.total-payments-tooltip::part(base){display:flex;align-items:center;gap:0.25em}";
 const ScLineItemTotalStyle0 = scLineItemTotalCss;

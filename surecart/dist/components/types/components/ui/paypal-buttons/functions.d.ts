@@ -1,10 +1,12 @@
-export declare const getScriptLoadParams: ({ clientId, reusable, merchantId, currency, merchantInitiated }: {
+export declare const getScriptLoadParams: ({ clientId, reusable, merchantId, currency, merchantInitiated, locale }: {
     clientId: any;
     reusable: any;
     merchantId: any;
     currency?: string;
     merchantInitiated: any;
+    locale?: string;
 }) => {
+    locale: string;
     commit: boolean;
     intent: string;
     vault: boolean;

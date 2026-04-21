@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const fetch = require('./fetch-d374a251.js');
-const price = require('./price-5b1afcfe.js');
+const price = require('./price-da3cab3d.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./currency-71fce0f0.js');
@@ -185,7 +185,7 @@ const ScSubscriptionDetails = class {
 };
 ScSubscriptionDetails.style = ScSubscriptionDetailsStyle0;
 
-const scSubscriptionStatusBadgeCss = ":host{display:inline-block}";
+const scSubscriptionStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScSubscriptionStatusBadgeStyle0 = scSubscriptionStatusBadgeCss;
 
 const ScSubscriptionStatusBadge = class {
@@ -248,7 +248,7 @@ const ScSubscriptionStatusBadge = class {
         }
     }
     render() {
-        return (index.h("sc-tag", { key: '893ab27fd504b319540d744349703a2aab4fb469', "aria-label": wp.i18n.sprintf(wp.i18n.__('Plan Status - %s', 'surecart'), this.getText()), type: this.getType() }, this.getText()));
+        return (index.h("sc-tag", { key: '48882c520686d882450f7139d6f25197c472d1a8', "aria-label": wp.i18n.sprintf(wp.i18n.__('Plan Status - %s', 'surecart'), this.getText()), type: this.getType() }, this.getText()));
     }
 };
 ScSubscriptionStatusBadge.style = ScSubscriptionStatusBadgeStyle0;

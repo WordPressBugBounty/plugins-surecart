@@ -13,12 +13,12 @@ const ScHeading = class {
         this.size = 'medium';
     }
     render() {
-        return (index.h("div", { key: '73db6bc0c5365b4a627219f3380615dab67113a2', part: "base", class: {
+        return (index.h("div", { key: '7c2ff5c6a7cdb0fe1998e6fa589376fb76229955', part: "base", class: {
                 'heading': true,
                 'heading--small': this.size === 'small',
                 'heading--medium': this.size === 'medium',
                 'heading--large': this.size === 'large',
-            } }, index.h("div", { key: '43b666fd376bc607b0a723a01b463a2786e20bee', class: { heading__text: true } }, index.h("div", { key: '31357b86421827adabd935e9490383b28379e792', class: "heading__title", part: "title" }, index.h("slot", { key: '7a074805d4bdc9a7fdf64d77527f8bf60be642f9' })), index.h("div", { key: 'fe79e14525eeca7983d89cdffb0896eaa94a189a', class: "heading__description", part: "description" }, index.h("slot", { key: '2f1f707c1c7bd350fa906db545135266962a4836', name: "description" }))), index.h("slot", { key: '27a705a7cf52573661b9e722756de00def800cbd', name: "end" })));
+            } }, index.h("div", { key: '28e31972d690df2e1d7d879545a85d963a020bee', class: { heading__text: true } }, index.h("div", { key: '1b034553bca5061e25d1fc72d0a052c42d9e2db2', class: "heading__title", part: "title" }, index.h("slot", { key: 'b23ded6f5fc98dffe134c5abb3397f627120a651' })), index.h("div", { key: '4d72d87b4b935b239e3276d1008dedd0f4f5ee5a', class: "heading__description", part: "description" }, index.h("slot", { key: '8016f3fd1f724dfb0fe2d66c43b9ce2225ed571f', name: "description" }))), index.h("slot", { key: '09d687939f3be0017df5d5510b3c40720a85316b', name: "end" })));
     }
     get el() { return index.getElement(this); }
 };

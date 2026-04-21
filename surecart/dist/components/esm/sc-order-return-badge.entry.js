@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-745b6bec.js';
 
-const scOrderReturnBadgeCss = ":host{display:inline-block}";
+const scOrderReturnBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScOrderReturnBadgeStyle0 = scOrderReturnBadgeCss;
 
 const status = {
@@ -20,7 +20,7 @@ const ScOrderReturnBadge = class {
         this.clearable = false;
     }
     render() {
-        return (h("sc-tag", { key: '9368c025a8e00f2555ded377b8d32561280e64fb', type: type === null || type === void 0 ? void 0 : type[this === null || this === void 0 ? void 0 : this.status], pill: this.pill }, (status === null || status === void 0 ? void 0 : status[this.status]) || this.status));
+        return (h("sc-tag", { key: '26166f1836d28b9f46080ec61a175acbc112a0cf', type: type === null || type === void 0 ? void 0 : type[this === null || this === void 0 ? void 0 : this.status], pill: this.pill }, (status === null || status === void 0 ? void 0 : status[this.status]) || this.status));
     }
 };
 ScOrderReturnBadge.style = ScOrderReturnBadgeStyle0;

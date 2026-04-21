@@ -1,6 +1,6 @@
 import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
 import { o as onChange, s as state, b as setProduct } from './watchers-fbf07f32.js';
-import { g as getProductBuyLink, s as submitCartForm, a as getTopLevelError, b as getAdditionalErrorMessages } from './error-dbf3e5ca.js';
+import { g as getProductBuyLink, s as submitCartForm, a as getTopLevelError, b as getAdditionalErrorMessages } from './error-25b312d3.js';
 import './index-06061d4e.js';
 import './google-dd89f242.js';
 import './currency-a0c9bff4.js';
@@ -8,14 +8,14 @@ import './google-a86aa761.js';
 import './utils-cd1431df.js';
 import './util-50af2a83.js';
 import './index-c5a96d53.js';
-import './mutations-6bbbe793.js';
+import './mutations-9b8d22f2.js';
 import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
 import './store-627acec4.js';
-import './price-af9f0dbf.js';
-import './mutations-404760eb.js';
+import './price-1ff6aa07.js';
+import './mutations-7b784b52.js';
 import './mutations-ed6d0770.js';
-import './index-a7f5e198.js';
+import './index-463cee3b.js';
 import './fetch-bc141774.js';
 
 const scProductPriceModalCss = ":host{display:block}sc-dialog{--body-spacing:var(--sc-spacing-xx-large);color:var(--sc-color-gray-600);text-decoration:none;font-size:16px}.dialog__header{display:flex;align-items:center;gap:var(--sc-spacing-medium)}.dialog__header-text{line-height:var(--sc-line-height-dense)}.dialog__image img{width:60px;height:60px;display:block}.dialog__action{font-weight:var(--sc-font-weight-bold)}.dialog__product-name{font-size:var(--sc-font-size-small)}";

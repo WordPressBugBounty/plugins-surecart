@@ -19,5 +19,6 @@ export declare const countryChoices: () => Promise<{
     label: string;
 }[]>;
 export declare const getCountryDetails: (countryCode: string) => Promise<any>;
+export declare const getCountryRegions: (country: string) => Promise<any>;
 export declare const isAddressComplete: (address: Partial<Address>) => string | boolean;
 export declare const isAddressCompleteEnough: (address: Partial<Address>) => string | boolean;

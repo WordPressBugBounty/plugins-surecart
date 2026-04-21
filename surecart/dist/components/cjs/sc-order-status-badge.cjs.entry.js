@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 
-const scOrderStatusBadgeCss = ":host{display:inline-block}";
+const scOrderStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScOrderStatusBadgeStyle0 = scOrderStatusBadgeCss;
 
 const ScOrderStatusBadge = class {
@@ -50,7 +50,7 @@ const ScOrderStatusBadge = class {
         }
     }
     render() {
-        return (index.h("sc-tag", { key: 'd8705efc8c52f33da4396a9e6ee64bf02266242e', type: this.getType(), pill: this.pill }, this.getText()));
+        return (index.h("sc-tag", { key: '40cddf1b589901284ac621d2852dd1e217016306', type: this.getType(), pill: this.pill }, this.getText()));
     }
 };
 ScOrderStatusBadge.style = ScOrderStatusBadgeStyle0;

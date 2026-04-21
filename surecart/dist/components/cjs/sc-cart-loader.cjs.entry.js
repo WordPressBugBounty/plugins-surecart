@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const mutations = require('./mutations-10a18c83.js');
+const mutations = require('./mutations-22165f96.js');
 require('./index-bcdafe6e.js');
 require('./utils-2e91d46c.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -12,7 +12,7 @@ require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./store-4a539aea.js');
-require('./price-5b1afcfe.js');
+require('./price-da3cab3d.js');
 
 const scCartLoaderCss = ":host{position:absolute;z-index:var(--sc-cart-z-index, 999999);font-family:var(--sc-font-sans)}";
 const ScCartLoaderStyle0 = scCartLoaderCss;

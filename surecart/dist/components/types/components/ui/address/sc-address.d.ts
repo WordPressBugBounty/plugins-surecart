@@ -43,6 +43,8 @@ export declare class ScAddress {
     showCity: boolean;
     /** Should we show the postal field? */
     showPostal: boolean;
+    /** Should we show the state field? */
+    showState: boolean;
     /** Country details. */
     countryDetails: any;
     /** Holds our country choices. */
@@ -62,6 +64,7 @@ export declare class ScAddress {
     handleAddressInput(address: Partial<Address>): void;
     clearAddress(): void;
     componentWillLoad(): void;
+    fetchUserCountry(): Promise<void>;
     initCountryChoices(): Promise<void>;
     reportValidity(): Promise<boolean>;
     sortedFields(): CountryLocaleFieldValue[];
@@ -69,10 +72,20 @@ export declare class ScAddress {
         value: string;
         label: string;
     }[];
+    toggleAddressFieldsVisibility(show: boolean): void;
     getRoundedProps(index: number, length: number): {
         squaredTop: boolean;
         squaredBottom: boolean;
         squared: boolean;
     };
+    /** Whether the collapsible fields are expanded.
+     *  When Google Maps is off, showCity stays at its default (true) and fields are always expanded.
+     *  When Google Maps is on, the child toggles this via show/hide events. */
+    isFieldsExpanded(): boolean;
+    /** Names of fields that collapse when Google Maps autocomplete is active. */
+    private collapsibleFieldNames;
+    /** Whether a field should be included in the render. */
+    isFieldIncluded(field: CountryLocaleFieldValue): boolean;
+    renderField(field: CountryLocaleFieldValue, roundedProps: any, isRequired: boolean): any;
     render(): any;
 }

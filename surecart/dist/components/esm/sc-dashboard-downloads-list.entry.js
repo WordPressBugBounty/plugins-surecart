@@ -68,7 +68,7 @@ const ScDownloadsList = class {
     async getItems() {
         const response = (await await apiFetch({
             path: addQueryArgs(`surecart/v1/purchases/`, {
-                expand: ['product', 'product.downloads', 'download.media'],
+                expand: ['product', 'product.downloads', 'download.media', 'variant', 'variant.downloads'],
                 downloadable: true,
                 revoked: false,
                 ...this.query,
@@ -92,7 +92,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (h("sc-purchase-downloads-list", { key: 'c0dd0e760d5cf286e50a4e31e9dce207556da2b0', heading: this.heading, allLink: this.allLink && this.pagination.total_pages > 1 ? this.allLink : '', loading: this.loading, busy: this.busy, requestNonce: this.requestNonce, error: this.error, purchases: this.purchases }, h("span", { key: '02b04ae7544a1ef891780953d8b07bb01acdd068', slot: "heading" }, h("slot", { key: '03745b18a6a5f656d4d3eb268969ac08b42fdd99', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), h("sc-pagination", { key: '8ca0f52229ada26f1b3c495fb1a30cc0e9f1d54b', slot: "after", page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.purchases) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })));
+        return (h("sc-purchase-downloads-list", { key: '38b92024b9b088dd9132cf6ed6206f633da1d706', heading: this.heading, allLink: this.allLink && this.pagination.total_pages > 1 ? this.allLink : '', loading: this.loading, busy: this.busy, requestNonce: this.requestNonce, error: this.error, purchases: this.purchases }, h("span", { key: '580e34156bae635384bbbf3d854a4f0ad4b1a2fe', slot: "heading" }, h("slot", { key: '18bc6bd46567be015ff8135110f1eb64c75ad16c', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), h("sc-pagination", { key: '98313ebb8d3b167bb0eacce4833661ea337a39b6', slot: "after", page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.purchases) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })));
     }
     get el() { return getElement(this); }
 };

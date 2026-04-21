@@ -1,0 +1,2 @@
+import{r as s,h as e}from"./p-e97fde0a.js";const r=class{constructor(e){s(this,e);this.size="small"}render(){return e("sc-tag",{key:"f232d4a813a2bc4b60b9776106e5632895f510ac",type:"success",size:this.size},wp.i18n.__("Premium","surecart"))}};export{r as sc_premium_tag};
+//# sourceMappingURL=p-d2bb70dc.entry.js.map

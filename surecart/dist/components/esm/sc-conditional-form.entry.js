@@ -1,8 +1,8 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
 import { s as state } from './watchers-86705798.js';
-import { c as currentCheckout } from './getters-347239e7.js';
+import { c as currentCheckout } from './getters-64986473.js';
 import './index-06061d4e.js';
-import './mutations-6bbbe793.js';
+import './mutations-9b8d22f2.js';
 import './utils-cd1431df.js';
 import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
@@ -10,8 +10,8 @@ import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-627acec4.js';
-import './price-af9f0dbf.js';
-import './address-6bd346f2.js';
+import './price-1ff6aa07.js';
+import './address-b8e2e4c8.js';
 
 /**
  * Check if any of the rule groups is passed or not.

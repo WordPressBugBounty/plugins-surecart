@@ -122,6 +122,7 @@
     "components/providers/sc-order-confirm-components-validator/sc-order-confirm-components-validator.js",
     "components/providers/session-provider/sc-session-provider.js",
     "components/ui/address/sc-address.js",
+    "components/ui/address-suggestion/sc-address-suggestions.js",
     "components/ui/alert/sc-alert.js",
     "components/ui/badge-notice/sc-badge-notice.js",
     "components/ui/block-ui/sc-block-ui.js",
