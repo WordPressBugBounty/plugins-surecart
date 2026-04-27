@@ -481,6 +481,7 @@ return array(
     'SureCart\\Concerns\\Arrayable' => $baseDir . '/app/src/Concerns/Arrayable.php',
     'SureCart\\Concerns\\HasBlockTheme' => $baseDir . '/app/src/Concerns/HasBlockTheme.php',
     'SureCart\\Concerns\\Objectable' => $baseDir . '/app/src/Concerns/Objectable.php',
+    'SureCart\\Concerns\\SanitizesRestParams' => $baseDir . '/app/src/Concerns/SanitizesRestParams.php',
     'SureCart\\Controllers\\Admin\\Abandoned\\AbandonedCheckoutListTable' => $baseDir . '/app/src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php',
     'SureCart\\Controllers\\Admin\\Abandoned\\AbandonedCheckoutScriptsController' => $baseDir . '/app/src/Controllers/Admin/Abandoned/AbandonedCheckoutScriptsController.php',
     'SureCart\\Controllers\\Admin\\Abandoned\\AbandonedCheckoutViewController' => $baseDir . '/app/src/Controllers/Admin/Abandoned/AbandonedCheckoutViewController.php',

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-21T16:31:57+00:00\n"
+"POT-Creation-Date: 2026-04-27T21:36:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -4354,7 +4354,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/VariantPills.php:462
 #: components/MediaLibrary/Preview.js:153
 #: Blocks/CustomerDashboardButton/edit.js:61
-#: Blocks/Submit/edit.js:112
+#: Blocks/Submit/edit.js:116
 #: src/blocks/product-quick-view/edit.js:50
 #: src/blocks/product-review-average-rating-stars/edit.js:30
 #: src/blocks/product-review-average-rating-stars/edit.js:37
@@ -6508,7 +6508,7 @@ msgstr ""
 
 #: src/Integrations/Elementor/Widgets/VariantPills.php:464
 #: Blocks/CustomerDashboardButton/edit.js:74
-#: Blocks/Submit/edit.js:125
+#: Blocks/Submit/edit.js:129
 #: src/blocks/product-selected-variant/edit.js:30
 msgid "Small"
 msgstr ""
@@ -6517,13 +6517,13 @@ msgstr ""
 #: bumps/modules/Priority.js:36
 #: upsell-funnels/modules/Priority.js:36
 #: Blocks/CustomerDashboardButton/edit.js:78
-#: Blocks/Submit/edit.js:129
+#: Blocks/Submit/edit.js:133
 msgid "Medium"
 msgstr ""
 
 #: src/Integrations/Elementor/Widgets/VariantPills.php:466
 #: Blocks/CustomerDashboardButton/edit.js:82
-#: Blocks/Submit/edit.js:133
+#: Blocks/Submit/edit.js:137
 msgid "Large"
 msgstr ""
 
@@ -6712,7 +6712,8 @@ msgstr ""
 #: src/Middleware/ArchiveModelMiddleware.php:28
 #: src/Middleware/CheckoutFormModeMiddleware.php:30
 #: src/Middleware/EditModelMiddleware.php:28
-msgid "You do not have permission do this."
+#: Controllers/BaseController.php:124
+msgid "You do not have permission to do this."
 msgstr ""
 
 #: src/Middleware/CheckoutRedirectMiddleware.php:42
@@ -10634,11 +10635,11 @@ msgid "Webhooks Connection"
 msgstr ""
 
 #: src/WordPress/HealthService.php:124
-msgid "API for is reachable."
+msgid "The SureCart API is reachable."
 msgstr ""
 
 #: src/WordPress/HealthService.php:124
-msgid "API for is not reachable."
+msgid "The SureCart API is not reachable."
 msgstr ""
 
 #: src/WordPress/HealthService.php:141
@@ -11003,13 +11004,13 @@ msgstr ""
 msgid "Product updated."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1109
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1112
 msgctxt "post"
 msgid "Archived"
 msgstr ""
 
 #. translators: %s: number of posts.
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1118
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1121
 msgid "Archived <span class=\"count\">(%s)</span>"
 msgid_plural "Archived <span class=\"count\">(%s)</span>"
 msgstr[0] ""
@@ -21287,11 +21288,8 @@ msgid "The prompt that will appear when you request more information."
 msgstr ""
 
 #: settings/subscription-preservation/PreservationSettings.js:156
-msgid "Subscription Saver & Cancellation Insights"
-msgstr ""
-
 #: settings/subscription-preservation/PreservationSettings.js:167
-msgid "Subscription Saver & Cancelation Insights"
+msgid "Subscription Saver & Cancellation Insights"
 msgstr ""
 
 #: settings/subscription-preservation/PreservationSettings.js:190
@@ -21299,7 +21297,7 @@ msgid "Pro"
 msgstr ""
 
 #: settings/subscription-preservation/PreservationSettings.js:194
-msgid "Turning this on will collect subscription cancelation reasons and optionally offer a discount to keep their subscription active."
+msgid "Turning this on will collect subscription cancellation reasons and optionally offer a discount to keep their subscription active."
 msgstr ""
 
 #: settings/subscription-preservation/PreservationSettings.js:205
@@ -22336,7 +22334,7 @@ msgid "This action will re-enable associated access."
 msgstr ""
 
 #: subscriptions/show/modules/modals/ConfirmRevokeModal.js:130
-msgid "This action will remove the associated access and trigger any cancelation automations you have set up."
+msgid "This action will remove the associated access and trigger any cancellation automations you have set up."
 msgstr ""
 
 #: subscriptions/show/modules/modals/ConfirmRevokeModal.js:139
@@ -22538,7 +22536,7 @@ msgid "Cancel Pending Update"
 msgstr ""
 
 #: subscriptions/show/ShowSubscription.js:489
-msgid "Subscription scheduled for cancelation."
+msgid "Subscription scheduled for cancellation."
 msgstr ""
 
 #: subscriptions/show/ShowSubscription.js:555
@@ -22965,6 +22963,14 @@ msgstr ""
 msgid "Example Product Title"
 msgstr ""
 
+#: Blocks/Submit/Block.php:45
+#: Blocks/Submit/deprecated.js:111
+#: Blocks/Submit/edit.js:101
+#: Blocks/Submit/edit.js:206
+#: sc-order-submit.js:67
+msgid "This is a secure, encrypted payment."
+msgstr ""
+
 #: Blocks/Upsell/NoThanksButton/Block.php:117
 #: sc-customer-email.js:90
 msgid "No Thanks"
@@ -22972,10 +22978,6 @@ msgstr ""
 
 #: Blocks/Upsell/Title/Block.php:29
 msgid "Wait! Here's an exclusive offer for you."
-msgstr ""
-
-#: Controllers/BaseController.php:124
-msgid "You do not have permission to do this."
 msgstr ""
 
 #: Controllers/ChargeController.php:22
@@ -23277,7 +23279,7 @@ msgstr ""
 #: Blocks/LogoutButton/edit.js:71
 #: Blocks/OrderConfirmationCustomer/edit.js:37
 #: Blocks/Product/BuyButton/edit.js:109
-#: Blocks/Submit/edit.js:178
+#: Blocks/Submit/edit.js:182
 #: Blocks/Upsell/NoThanksButton/edit.js:95
 #: Blocks/Upsell/SubmitButton/edit.js:152
 #: src/blocks/cart-items-submit/edit.js:54
@@ -23295,7 +23297,7 @@ msgstr ""
 #: Blocks/LogoutButton/edit.js:72
 #: Blocks/OrderConfirmationCustomer/edit.js:38
 #: Blocks/Product/BuyButton/edit.js:110
-#: Blocks/Submit/edit.js:179
+#: Blocks/Submit/edit.js:183
 #: Blocks/Upsell/NoThanksButton/edit.js:96
 #: Blocks/Upsell/SubmitButton/edit.js:153
 #: src/blocks/cart-items-submit/edit.js:55
@@ -24734,11 +24736,6 @@ msgstr ""
 
 #: Blocks/StoreLogo/edit.js:213
 msgid "Link image to home"
-msgstr ""
-
-#: Blocks/Submit/deprecated.js:111
-#: sc-order-submit.js:67
-msgid "This is a secure, encrypted payment."
 msgstr ""
 
 #: Blocks/Submit/edit.js:65

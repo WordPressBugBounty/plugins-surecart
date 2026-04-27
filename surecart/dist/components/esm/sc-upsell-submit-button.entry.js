@@ -1,9 +1,9 @@
 import { r as registerInstance, h, H as Host, a as getElement } from './index-745b6bec.js';
-import './watchers-c215fc6b.js';
+import './watchers-37287bca.js';
 import { s as state } from './store-4bc13420.js';
 import { s as state$1 } from './mutations-ed6d0770.js';
-import { i as isProductOutOfStock, c as isSelectedVariantMissing } from './watchers-fbf07f32.js';
-import { a as accept } from './mutations-b0435825.js';
+import { i as isProductOutOfStock, c as isSelectedVariantMissing } from './watchers-55b7a6f0.js';
+import { a as accept } from './mutations-70ed74e9.js';
 import { a as isBusy } from './getters-1899e179.js';
 import './add-query-args-0e2a8393.js';
 import './utils-cd1431df.js';

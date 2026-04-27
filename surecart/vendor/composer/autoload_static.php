@@ -571,6 +571,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Concerns\\Arrayable' => __DIR__ . '/../..' . '/app/src/Concerns/Arrayable.php',
         'SureCart\\Concerns\\HasBlockTheme' => __DIR__ . '/../..' . '/app/src/Concerns/HasBlockTheme.php',
         'SureCart\\Concerns\\Objectable' => __DIR__ . '/../..' . '/app/src/Concerns/Objectable.php',
+        'SureCart\\Concerns\\SanitizesRestParams' => __DIR__ . '/../..' . '/app/src/Concerns/SanitizesRestParams.php',
         'SureCart\\Controllers\\Admin\\Abandoned\\AbandonedCheckoutListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php',
         'SureCart\\Controllers\\Admin\\Abandoned\\AbandonedCheckoutScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Abandoned/AbandonedCheckoutScriptsController.php',
         'SureCart\\Controllers\\Admin\\Abandoned\\AbandonedCheckoutViewController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Abandoned/AbandonedCheckoutViewController.php',

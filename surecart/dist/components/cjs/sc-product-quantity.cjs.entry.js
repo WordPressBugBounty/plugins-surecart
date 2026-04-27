@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const watchers = require('./watchers-db03ec4e.js');
+const watchers = require('./watchers-b9f957e1.js');
 const quantity = require('./quantity-bff7f892.js');
 require('./index-bcdafe6e.js');
 require('./google-03835677.js');

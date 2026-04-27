@@ -1,5 +1,5 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { s as state, b as setProduct } from './watchers-fbf07f32.js';
+import { s as state, b as setProduct } from './watchers-55b7a6f0.js';
 import { g as getMaxStockQuantity } from './quantity-1f39f750.js';
 import './index-06061d4e.js';
 import './google-dd89f242.js';
