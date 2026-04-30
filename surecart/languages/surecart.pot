@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-27T21:36:44+00:00\n"
+"POT-Creation-Date: 2026-04-30T16:04:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -23129,7 +23129,7 @@ msgstr ""
 #: Blocks/Dashboard/CustomerLicenses/edit.js:19
 #: Blocks/Dashboard/CustomerOrders/edit.js:20
 #: Blocks/Dashboard/CustomerPaymentMethods/edit.js:18
-#: Blocks/Dashboard/DashboardPage/edit.js:44
+#: Blocks/Dashboard/DashboardPage/edit.js:42
 #: Blocks/Dashboard/DashboardTab/edit.js:48
 #: Blocks/Dashboard/OrderDownloads/edit.js:18
 #: Blocks/Dashboard/WordPressAccount/edit.js:19
@@ -23914,7 +23914,7 @@ msgstr ""
 msgid "Your plan begins on"
 msgstr ""
 
-#: Blocks/Dashboard/DashboardPage/edit.js:49
+#: Blocks/Dashboard/DashboardPage/edit.js:47
 msgid "Url Slug"
 msgstr ""
 
