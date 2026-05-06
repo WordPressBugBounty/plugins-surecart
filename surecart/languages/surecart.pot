@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-30T16:04:04+00:00\n"
+"POT-Creation-Date: 2026-05-06T19:05:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -6935,8 +6935,9 @@ msgstr ""
 #: Controllers/PaymentMethodController.php:236
 #: Blocks/Payment/components/PayPal.js:51
 #: Blocks/Payment/components/Stripe.js:37
-#: sc-payment.js:43
-#: sc-payment.js:47
+#: razorpay.js:15
+#: sc-payment.js:44
+#: sc-payment.js:48
 #: sc-payment.js:54
 msgid "Credit Card"
 msgstr ""
@@ -6997,6 +6998,11 @@ msgstr ""
 msgid "Voucher"
 msgstr ""
 
+#: src/Models/PaymentInstrument.php:50
+#: razorpay.js:16
+msgid "UPI"
+msgstr ""
+
 #: src/Models/PaymentMethod.php:85
 #: Blocks/ConditionalForm/selectors/SelectProcessors/index.js:25
 #: Blocks/Payment/components/Inspector.js:62
@@ -7006,7 +7012,7 @@ msgstr ""
 #: src/Models/PaymentMethod.php:87
 #: Blocks/ConditionalForm/selectors/SelectProcessors/index.js:36
 #: Blocks/Payment/components/Inspector.js:75
-#: sc-payment.js:47
+#: sc-payment.js:48
 msgid "PayPal"
 msgstr ""
 
@@ -23043,7 +23049,7 @@ msgid "You cannot currently add a payment method. Please contact us for support.
 msgstr ""
 
 #: Controllers/PaymentMethodController.php:253
-#: sc-payment.js:67
+#: sc-payment.js:61
 msgid "Cards, Netbanking, Wallet & UPI"
 msgstr ""
 
@@ -24219,7 +24225,7 @@ msgid "Enable Razorpay payment"
 msgstr ""
 
 #: Blocks/Payment/components/Inspector.js:114
-#: sc-checkout-mollie-payment2.js:54
+#: sc-checkout-mollie-payment2.js:37
 msgid "Test Processor"
 msgstr ""
 
@@ -24229,28 +24235,30 @@ msgstr ""
 
 #. translators: Manual payment method.
 #: Blocks/Payment/components/ManualPaymentMethod.js:20
-#: sc-checkout-mollie-payment2.js:44
-#: sc-checkout-mollie-payment2.js:120
+#: sc-checkout-mollie-payment2.js:27
+#: sc-checkout-mollie-payment2.js:103
+#: sc-payment.js:68
 msgid "%s selected for check out."
 msgstr ""
 
 #: Blocks/Payment/components/PayPal.js:55
-#: sc-payment.js:47
-#: sc-payment.js:59
+#: sc-payment.js:48
+#: sc-payment.js:57
 msgid "Credit Card selected for check out."
 msgstr ""
 
 #: Blocks/Payment/components/PayPal.js:66
 #: Blocks/Payment/components/PayPal.js:95
-#: sc-checkout-mollie-payment2.js:120
-#: sc-payment.js:47
-#: sc-payment.js:59
-#: sc-payment.js:67
+#: sc-checkout-mollie-payment2.js:103
+#: sc-payment.js:48
+#: sc-payment.js:57
+#: sc-payment.js:61
+#: sc-payment.js:68
 msgid "Another step will appear after submitting your order to complete your purchase details."
 msgstr ""
 
 #: Blocks/Payment/components/PayPal.js:87
-#: sc-payment.js:47
+#: sc-payment.js:48
 msgid "PayPal selected for check out."
 msgstr ""
 
@@ -29884,7 +29892,7 @@ msgstr ""
 msgid "Something went wrong. Please contact us for payment."
 msgstr ""
 
-#: razorpay.js:37
+#: razorpay.js:50
 msgid "Failed to load Razorpay script."
 msgstr ""
 
@@ -30025,15 +30033,15 @@ msgstr ""
 msgid "#%s"
 msgstr ""
 
-#: sc-checkout-mollie-payment2.js:56
+#: sc-checkout-mollie-payment2.js:39
 msgid "Test processor selected for check out."
 msgstr ""
 
-#: sc-checkout-mollie-payment2.js:58
+#: sc-checkout-mollie-payment2.js:41
 msgid "This is a test payment processor used to simulate test transactions. It is only available in test mode."
 msgstr ""
 
-#: sc-checkout-mollie-payment2.js:117
+#: sc-checkout-mollie-payment2.js:100
 msgid "No available payment methods"
 msgstr ""
 
@@ -30067,16 +30075,16 @@ msgstr ""
 msgid "(option unavailable)"
 msgstr ""
 
-#: sc-checkout-razorpay-payment-provider2.js:54
+#: sc-checkout-razorpay-payment-provider2.js:99
 msgid "Payment gateway configuration incomplete. Please ensure Razorpay is properly configured for transactions."
 msgstr ""
 
-#: sc-checkout-razorpay-payment-provider2.js:84
+#: sc-checkout-razorpay-payment-provider2.js:129
 #: sc-razorpay-add-method.js:52
 msgid "Payment verification failed. Please contact support."
 msgstr ""
 
-#: sc-checkout-razorpay-payment-provider2.js:101
+#: sc-checkout-razorpay-payment-provider2.js:146
 #: sc-razorpay-add-method.js:65
 msgid "Payment failed. Please try again."
 msgstr ""
@@ -30101,15 +30109,15 @@ msgstr ""
 msgid "Your payment is processing. Exiting this page could cause an error in your order. Please do not navigate away from this page."
 msgstr ""
 
-#: sc-checkout.js:204
+#: sc-checkout.js:205
 msgid "Due to processor restrictions, only one checkout form is allowed on the page."
 msgstr ""
 
-#: sc-checkout.js:211
+#: sc-checkout.js:212
 msgid "Processing payment..."
 msgstr ""
 
-#: sc-checkout.js:211
+#: sc-checkout.js:212
 msgid "This invoice is not currently available for payment. If you have any questions, please contact us."
 msgstr ""
 
@@ -30574,11 +30582,11 @@ msgstr ""
 msgid "Exp. %d/%d"
 msgstr ""
 
-#: sc-payment-method2.js:25
+#: sc-payment-method2.js:26
 msgid "Checking"
 msgstr ""
 
-#: sc-payment-method2.js:28
+#: sc-payment-method2.js:29
 msgid "Savings"
 msgstr ""
 
@@ -30611,7 +30619,7 @@ msgstr ""
 msgid "Are you sure you want to remove this payment method?"
 msgstr ""
 
-#: sc-payment.js:43
+#: sc-payment.js:44
 msgid "Credit Card (Stripe)"
 msgstr ""
 
@@ -30619,19 +30627,19 @@ msgstr ""
 msgid "Credit Card (Paystack)"
 msgstr ""
 
-#: sc-payment.js:67
+#: sc-payment.js:61
 msgid "Cards, Netbanking, Wallet & UPI selected for check out."
 msgstr ""
 
-#: sc-payment.js:77
+#: sc-payment.js:92
 msgid "You do not have any processors enabled for this mode and cart. "
 msgstr ""
 
-#: sc-payment.js:80
+#: sc-payment.js:95
 msgid "Please configure your processors"
 msgstr ""
 
-#: sc-payment.js:80
+#: sc-payment.js:95
 msgid "Please contact us for payment."
 msgstr ""
 

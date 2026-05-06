@@ -1,7 +1,7 @@
 import { r as registerInstance, h, F as Fragment } from './index-745b6bec.js';
 import { s as state } from './watchers-86705798.js';
-import './watchers-f20c9505.js';
-import { s as state$1, c as availableMethodTypes, f as hasMultipleMethodChoices, e as getAvailableProcessor, b as availableManualPaymentMethods } from './getters-f3eae45b.js';
+import './watchers-2ae64a5e.js';
+import { s as state$1, c as availableMethodTypes, e as hasMultipleMethodChoices, f as getAvailableProcessor, b as availableManualPaymentMethods } from './getters-81f038ca.js';
 import { e as on, s as state$2, u as updateFormState } from './mutations-9b8d22f2.js';
 import { a as checkoutIsLocked } from './getters-64986473.js';
 import { l as lockCheckout, b as unLockCheckout } from './mutations-7b784b52.js';
@@ -12,7 +12,7 @@ import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import { s as se } from './inline-c012a0f9.js';
 import { o as onChange } from './store-627acec4.js';
 import { c as currentFormState } from './getters-487612aa.js';
-import { l as loadRazorpay } from './razorpay-12eec934.js';
+import { l as loadRazorpay } from './razorpay-4c4a3d31.js';
 import './index-06061d4e.js';
 import './util-50af2a83.js';
 import './utils-cd1431df.js';
@@ -164,6 +164,7 @@ const ScCheckoutRazorpayPaymentProvider = class {
         registerInstance(this, hostRef);
         this.razorpayInstance = null;
         this.confirming = false;
+        this.processorId = undefined;
     }
     componentWillLoad() {
         // Preload Razorpay script.
@@ -177,9 +178,47 @@ const ScCheckoutRazorpayPaymentProvider = class {
                 this.confirm();
             }
         });
+        // Keep the recurring payment_method_types in sync with the checkout.
+        this.fetchMethods();
+        this.unlistenToCheckout = listenTo('checkout', ['currency', 'reusable_payment_method_required'], () => this.fetchMethods());
     }
     disconnectedCallback() {
-        this.unlistenToFormState();
+        var _a, _b;
+        // Guarded — Stencil can disconnect before componentWillLoad fires on mid-render reparenting.
+        (_a = this.unlistenToFormState) === null || _a === void 0 ? void 0 : _a.call(this);
+        (_b = this.unlistenToCheckout) === null || _b === void 0 ? void 0 : _b.call(this);
+        // Release shared state so a later mollie / non-recurring flow starts clean.
+        state$1.methods = [];
+    }
+    /** Fetch enabled `payment_method_types` for recurring checkouts. No-op otherwise. */
+    async fetchMethods() {
+        const checkout = state$2.checkout;
+        if (!this.processorId || !(checkout === null || checkout === void 0 ? void 0 : checkout.currency))
+            return;
+        // One-time — Razorpay handles method selection in its modal. Clear any stale recurring methods.
+        if (!(checkout === null || checkout === void 0 ? void 0 : checkout.reusable_payment_method_required)) {
+            if (state$1.methods.length)
+                state$1.methods = [];
+            return;
+        }
+        try {
+            lockCheckout('methods');
+            const response = (await apiFetch({
+                path: addQueryArgs(`surecart/v1/processors/${this.processorId}/payment_method_types`, {
+                    currency: checkout.currency,
+                    reusable: true,
+                    per_page: 100,
+                }),
+            }));
+            state$1.methods = (response === null || response === void 0 ? void 0 : response.data) || [];
+        }
+        catch (e) {
+            createErrorNotice(e);
+            console.error(e);
+        }
+        finally {
+            unLockCheckout('methods');
+        }
     }
     async confirm() {
         var _a, _b, _c, _d, _e, _f, _g, _h;

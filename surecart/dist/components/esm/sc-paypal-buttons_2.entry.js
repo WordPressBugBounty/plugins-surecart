@@ -1,5 +1,5 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
-import { l as loadScript, g as getScriptLoadParams } from './functions-6f383890.js';
+import { l as loadScript, g as getScriptLoadParams } from './functions-4f009ce1.js';
 import { a as apiFetch } from './fetch-bc141774.js';
 import { g as fetchCheckout } from './index-463cee3b.js';
 import { c as createErrorNotice } from './mutations-ed6d0770.js';

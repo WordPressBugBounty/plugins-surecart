@@ -11,6 +11,7 @@ interface Store {
         manualPaymentMethods: string[];
         paymentMethods: {
             mollie: string[];
+            razorpay: string[];
         };
     };
     instances: {

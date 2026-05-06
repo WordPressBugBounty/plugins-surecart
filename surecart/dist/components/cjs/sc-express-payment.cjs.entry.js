@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const getters = require('./getters-bdc17348.js');
+const getters = require('./getters-710f8940.js');
 const getters$1 = require('./getters-87b7ef91.js');
 require('./util-b877b2bd.js');
 require('./index-bcdafe6e.js');
@@ -16,6 +16,7 @@ require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./store-4a539aea.js');
 require('./price-da3cab3d.js');
+require('./watchers-b4c5fc51.js');
 
 const scExpressPaymentCss = "sc-express-payment{display:block}";
 const ScExpressPaymentStyle0 = scExpressPaymentCss;

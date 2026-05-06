@@ -1,6 +1,6 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
 import { a as apiFetch } from './fetch-bc141774.js';
-import { l as loadRazorpay } from './razorpay-12eec934.js';
+import { l as loadRazorpay } from './razorpay-4c4a3d31.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 

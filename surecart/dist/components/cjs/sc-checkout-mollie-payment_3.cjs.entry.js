@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const watchers = require('./watchers-b4c5fc51.js');
-require('./watchers-f1c1556d.js');
-const getters = require('./getters-bdc17348.js');
+require('./watchers-8077090c.js');
+const getters = require('./getters-710f8940.js');
 const mutations = require('./mutations-22165f96.js');
 const getters$1 = require('./getters-4eeca6b3.js');
 const mutations$1 = require('./mutations-ce399aca.js');
@@ -16,7 +16,7 @@ const addQueryArgs = require('./add-query-args-49dcb630.js');
 const inline = require('./inline-aa15f113.js');
 const store = require('./store-4a539aea.js');
 const getters$2 = require('./getters-87b7ef91.js');
-const razorpay = require('./razorpay-f8181927.js');
+const razorpay = require('./razorpay-88fe8897.js');
 require('./index-bcdafe6e.js');
 require('./util-b877b2bd.js');
 require('./utils-2e91d46c.js');
@@ -168,6 +168,7 @@ const ScCheckoutRazorpayPaymentProvider = class {
         index.registerInstance(this, hostRef);
         this.razorpayInstance = null;
         this.confirming = false;
+        this.processorId = undefined;
     }
     componentWillLoad() {
         // Preload Razorpay script.
@@ -181,9 +182,47 @@ const ScCheckoutRazorpayPaymentProvider = class {
                 this.confirm();
             }
         });
+        // Keep the recurring payment_method_types in sync with the checkout.
+        this.fetchMethods();
+        this.unlistenToCheckout = listenTo('checkout', ['currency', 'reusable_payment_method_required'], () => this.fetchMethods());
     }
     disconnectedCallback() {
-        this.unlistenToFormState();
+        var _a, _b;
+        // Guarded — Stencil can disconnect before componentWillLoad fires on mid-render reparenting.
+        (_a = this.unlistenToFormState) === null || _a === void 0 ? void 0 : _a.call(this);
+        (_b = this.unlistenToCheckout) === null || _b === void 0 ? void 0 : _b.call(this);
+        // Release shared state so a later mollie / non-recurring flow starts clean.
+        getters.state.methods = [];
+    }
+    /** Fetch enabled `payment_method_types` for recurring checkouts. No-op otherwise. */
+    async fetchMethods() {
+        const checkout = mutations.state.checkout;
+        if (!this.processorId || !(checkout === null || checkout === void 0 ? void 0 : checkout.currency))
+            return;
+        // One-time — Razorpay handles method selection in its modal. Clear any stale recurring methods.
+        if (!(checkout === null || checkout === void 0 ? void 0 : checkout.reusable_payment_method_required)) {
+            if (getters.state.methods.length)
+                getters.state.methods = [];
+            return;
+        }
+        try {
+            mutations$1.lockCheckout('methods');
+            const response = (await fetch.apiFetch({
+                path: addQueryArgs.addQueryArgs(`surecart/v1/processors/${this.processorId}/payment_method_types`, {
+                    currency: checkout.currency,
+                    reusable: true,
+                    per_page: 100,
+                }),
+            }));
+            getters.state.methods = (response === null || response === void 0 ? void 0 : response.data) || [];
+        }
+        catch (e) {
+            mutations$2.createErrorNotice(e);
+            console.error(e);
+        }
+        finally {
+            mutations$1.unLockCheckout('methods');
+        }
     }
     async confirm() {
         var _a, _b, _c, _d, _e, _f, _g, _h;

@@ -6,11 +6,11 @@ export declare const getScriptLoadParams: ({ clientId, reusable, merchantId, cur
     merchantInitiated: any;
     locale?: string;
 }) => {
-    locale: string;
     commit: boolean;
     intent: string;
     vault: boolean;
     currency: string;
+    locale?: string;
     'merchant-id'?: any;
     'client-id': any;
 };

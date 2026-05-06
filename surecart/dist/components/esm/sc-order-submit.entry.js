@@ -1,6 +1,6 @@
 import { r as registerInstance, h, F as Fragment } from './index-745b6bec.js';
 import { a as checkoutIsLocked } from './getters-64986473.js';
-import { a as availableProcessors } from './getters-f3eae45b.js';
+import { a as availableProcessors } from './getters-81f038ca.js';
 import { s as state$1 } from './watchers-86705798.js';
 import { s as state } from './mutations-9b8d22f2.js';
 import { o as openWormhole } from './consumer-e06b16d3.js';

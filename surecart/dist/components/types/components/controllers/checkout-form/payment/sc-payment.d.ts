@@ -1,3 +1,4 @@
+import { PaymentMethodType, Processor } from '../../../../types';
 /**
  * @part base - The elements base wrapper.
  * @part form-control - The form control wrapper.
@@ -20,8 +21,12 @@ export declare class ScPayment {
     componentWillLoad(): void;
     renderStripe(processor: any): any;
     renderPayPal(processor: any): any;
-    renderMock(processor: any): any;
-    renderPaystack(processor: any): any;
-    renderRazorpay(processor: any): any;
+    renderMock(processor: Processor): any;
+    renderPaystack(processor: Processor): any;
+    /** Combined Razorpay — Razorpay's modal fans out all enabled methods itself. */
+    renderRazorpayCombined(processor: Processor): any;
+    /** Per-method Razorpay tile. Rendered as a sibling so `sc-payment-method-choice` can wire it into `sc-toggles`. */
+    renderRazorpayMethodChoice(method: PaymentMethodType): any;
+    renderRazorpay(processor: Processor): any;
     render(): any;
 }
