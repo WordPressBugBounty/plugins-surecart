@@ -9,6 +9,8 @@ export declare class ScIcon {
     label: string;
     /** The name of a registered custom icon library. */
     library: string;
+    /** Mutate the icon */
+    mutate: boolean;
     /** Emitted when the icon has loaded. */
     scLoad: EventEmitter<void>;
     /** @internal Fetches the icon and redraws it. Used to handle library registrations. */

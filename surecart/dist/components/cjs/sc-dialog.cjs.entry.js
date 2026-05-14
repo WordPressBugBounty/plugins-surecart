@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const animationRegistry = require('./animation-registry-f7f1a08b.js');
+const animationRegistry = require('./animation-registry-b597d2f4.js');
 
 const locks = new Set();
 //

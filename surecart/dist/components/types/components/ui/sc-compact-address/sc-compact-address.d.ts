@@ -59,6 +59,7 @@ export declare class ScCompactAddress {
     /** Set the regions based on the country. */
     setRegions(): Promise<void>;
     componentWillLoad(): void;
+    fetchUserCountry(): Promise<void>;
     initCountryChoices(): Promise<void>;
     reportValidity(): Promise<boolean>;
     render(): any;

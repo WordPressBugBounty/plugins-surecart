@@ -3,12 +3,12 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
-const getters = require('./getters-4eeca6b3.js');
-const mutations = require('./mutations-22165f96.js');
+const getters = require('./getters-c16ecf9a.js');
+const mutations = require('./mutations-c848334c.js');
 const util = require('./util-b877b2bd.js');
-const index$1 = require('./index-d9aeadfe.js');
+const index$1 = require('./index-325f2916.js');
 const mutations$1 = require('./mutations-11c8f9a8.js');
-const utils = require('./utils-2e91d46c.js');
+const utils = require('./utils-a9d13080.js');
 require('./address-7404695f.js');
 require('./add-query-args-49dcb630.js');
 require('./index-bcdafe6e.js');
@@ -16,7 +16,7 @@ require('./remove-query-args-b57e8cd3.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-4a539aea.js');
+require('./store-b57d9911.js');
 require('./price-da3cab3d.js');
 require('./fetch-d374a251.js');
 
@@ -53,7 +53,10 @@ const ScProductCheckoutSelectVariantOption = class {
      */
     isSelectedVariantOutOfStock() {
         var _a, _b;
-        return ((_a = this.product) === null || _a === void 0 ? void 0 : _a.stock_enabled) && this.hasVariants() && !((_b = this.product) === null || _b === void 0 ? void 0 : _b.allow_out_of_stock_purchases) && this.selectedVariant.available_stock < 1;
+        if (!this.selectedVariant)
+            return false;
+        const hasUnlimitedStock = (_a = this.selectedVariant.has_unlimited_stock) !== null && _a !== void 0 ? _a : (_b = this.product) === null || _b === void 0 ? void 0 : _b.has_unlimited_stock;
+        return this.hasVariants() && !hasUnlimitedStock && this.selectedVariant.available_stock < 1;
     }
     /**
      * Do we have the required selected variant?
@@ -217,12 +220,12 @@ const ScProductCheckoutSelectVariantOption = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (index.h("sc-form-control", { key: '461b978789aa5d4cbedf2a73e751690fce87a686', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
+        return (index.h("sc-form-control", { key: 'bc386bb3f7dddc9398d91a3a5be20b04cf7522e0', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
             if (display_type === 'dropdown') {
                 return this.renderDropdown({ name, values, index });
             }
             return this.renderPills({ name, values, index });
-        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (index.h("sc-form-control", { key: '710dacae832e154690c7a29c0badb450a0b4552a', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, index.h("sc-choices", { key: 'bae8821a607043516f2c572f51689e0dad21aa37' }, (this.product.prices.data || [])
+        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (index.h("sc-form-control", { key: '05c3e8e77c0124bdce010da052424b5f156504d8', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, index.h("sc-choices", { key: 'ea8ccb814d69be2567207b8c7e71c7a987962a75' }, (this.product.prices.data || [])
             .sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position))
             .map(price => {
             var _a, _b, _c;
@@ -231,7 +234,7 @@ const ScProductCheckoutSelectVariantOption = class {
                         this.selectedPrice = price;
                     }
                 } }));
-        })))), index.h("input", { key: '2ce25324f8defdd723d576e21d87d2ecefbfafa1', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
+        })))), index.h("input", { key: '10c20682af9416a25f293d004dc811b0127e65c6', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

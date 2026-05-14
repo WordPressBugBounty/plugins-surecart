@@ -4,16 +4,16 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-8acc3c89.js');
 const watchers = require('./watchers-b4c5fc51.js');
-const getters = require('./getters-4eeca6b3.js');
+const getters = require('./getters-c16ecf9a.js');
 require('./index-bcdafe6e.js');
-require('./mutations-22165f96.js');
-require('./utils-2e91d46c.js');
+require('./mutations-c848334c.js');
+require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-4a539aea.js');
+require('./store-b57d9911.js');
 require('./price-da3cab3d.js');
 require('./address-7404695f.js');
 
@@ -44,6 +44,8 @@ const hasRulesPassed = (rules, { checkout, processor }) => {
                 return compareNumberValues(parseFloat(checkout.total_amount), parseFloat(ruleValue), rule === null || rule === void 0 ? void 0 : rule.operator);
             case 'products':
                 return compareObjectValues(getCartProductIds(checkout), ruleValue, rule === null || rule === void 0 ? void 0 : rule.operator);
+            case 'prices':
+                return compareObjectValues(getCartPriceIds(checkout), ruleValue, rule === null || rule === void 0 ? void 0 : rule.operator);
             case 'coupons':
                 return compareObjectValues(getCartCouponIds(checkout), ruleValue, rule === null || rule === void 0 ? void 0 : rule.operator);
             case 'shipping_country':
@@ -67,6 +69,16 @@ const hasRulesPassed = (rules, { checkout, processor }) => {
 const getCartProductIds = (checkout) => {
     var _a;
     return (((_a = checkout === null || checkout === void 0 ? void 0 : checkout.line_items) === null || _a === void 0 ? void 0 : _a.data) || []).map(({ price }) => { var _a; return (_a = price === null || price === void 0 ? void 0 : price.product) === null || _a === void 0 ? void 0 : _a.id; });
+};
+/**
+ * Get array of price ids from checkout.
+ *
+ * @param {object} checkout Checkout data.
+ * @returns {array}
+ */
+const getCartPriceIds = (checkout) => {
+    var _a;
+    return (((_a = checkout === null || checkout === void 0 ? void 0 : checkout.line_items) === null || _a === void 0 ? void 0 : _a.data) || []).map(({ price }) => price === null || price === void 0 ? void 0 : price.id).filter(Boolean);
 };
 /**
  * Get array of coupons from checkout.

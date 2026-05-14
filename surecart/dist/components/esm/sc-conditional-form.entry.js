@@ -1,15 +1,15 @@
 import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
 import { s as state } from './watchers-86705798.js';
-import { c as currentCheckout } from './getters-64986473.js';
+import { c as currentCheckout } from './getters-dda6aa71.js';
 import './index-06061d4e.js';
-import './mutations-9b8d22f2.js';
-import './utils-cd1431df.js';
+import './mutations-bf2ff1cb.js';
+import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
-import './store-627acec4.js';
+import './store-7766e96f.js';
 import './price-1ff6aa07.js';
 import './address-b8e2e4c8.js';
 
@@ -40,6 +40,8 @@ const hasRulesPassed = (rules, { checkout, processor }) => {
                 return compareNumberValues(parseFloat(checkout.total_amount), parseFloat(ruleValue), rule === null || rule === void 0 ? void 0 : rule.operator);
             case 'products':
                 return compareObjectValues(getCartProductIds(checkout), ruleValue, rule === null || rule === void 0 ? void 0 : rule.operator);
+            case 'prices':
+                return compareObjectValues(getCartPriceIds(checkout), ruleValue, rule === null || rule === void 0 ? void 0 : rule.operator);
             case 'coupons':
                 return compareObjectValues(getCartCouponIds(checkout), ruleValue, rule === null || rule === void 0 ? void 0 : rule.operator);
             case 'shipping_country':
@@ -63,6 +65,16 @@ const hasRulesPassed = (rules, { checkout, processor }) => {
 const getCartProductIds = (checkout) => {
     var _a;
     return (((_a = checkout === null || checkout === void 0 ? void 0 : checkout.line_items) === null || _a === void 0 ? void 0 : _a.data) || []).map(({ price }) => { var _a; return (_a = price === null || price === void 0 ? void 0 : price.product) === null || _a === void 0 ? void 0 : _a.id; });
+};
+/**
+ * Get array of price ids from checkout.
+ *
+ * @param {object} checkout Checkout data.
+ * @returns {array}
+ */
+const getCartPriceIds = (checkout) => {
+    var _a;
+    return (((_a = checkout === null || checkout === void 0 ? void 0 : checkout.line_items) === null || _a === void 0 ? void 0 : _a.data) || []).map(({ price }) => price === null || price === void 0 ? void 0 : price.id).filter(Boolean);
 };
 /**
  * Get array of coupons from checkout.

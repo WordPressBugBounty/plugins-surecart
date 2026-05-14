@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-8acc3c89.js');
 const address = require('./address-7404695f.js');
 const formData = require('./form-data-0da9940f.js');
+const googleMaps = require('./google-maps-0f9b7648.js');
 const mutations = require('./mutations-11c8f9a8.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const index$1 = require('./index-adacfa36.js');
@@ -14,202 +15,6 @@ require('./add-query-args-49dcb630.js');
 require('./index-bcdafe6e.js');
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-/**
- * Helper function to find an address component by type.
- */
-const findAddressComponent = (addressComponents, type) => {
-    return (addressComponents || []).find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes(type); });
-};
-/**
- * Find the city from address components using a fallback chain.
- *
- * Google Places API returns the city under different component types depending on the country:
- * - `locality` — most countries (e.g. US, CA, AU)
- * - `administrative_area_level_2` — Brazil (município), parts of Italy, etc.
- * - `postal_town` — UK, Sweden, and some other European countries
- */
-const findCity = (addressComponents) => {
-    var _a, _b;
-    return ((_b = (_a = findAddressComponent(addressComponents, 'locality')) !== null && _a !== void 0 ? _a : findAddressComponent(addressComponents, 'administrative_area_level_2')) !== null && _b !== void 0 ? _b : findAddressComponent(addressComponents, 'postal_town'));
-};
-/**
- * Build a street address from address components (street_number + route).
- */
-function getStreetAddress(addressComponents) {
-    var _a, _b;
-    if (!addressComponents)
-        return '';
-    const streetNumber = ((_a = findAddressComponent(addressComponents, 'street_number')) === null || _a === void 0 ? void 0 : _a.longText) || '';
-    const route = ((_b = findAddressComponent(addressComponents, 'route')) === null || _b === void 0 ? void 0 : _b.longText) || '';
-    return [streetNumber, route].filter(Boolean).join(' ');
-}
-/**
- * Normalize a string for fuzzy matching:
- *  - strip trailing periods (Google abbreviates, e.g. "Yuc." for "Yucatán")
- *  - remove diacritics (Google may return "Yucatan" while we store "Yucatán")
- *  - lowercase
- */
-const normalizeForMatch = (value) => (value || '')
-    .replace(/\.$/, '')
-    .trim()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-/**
- * Try to find a matching region from a Google address component.
- *
- * Match precedence:
- *  1. component.shortText === region.value  (exact code match)
- *  2. component.longText  ≈  region.label   (case-insensitive label match)
- */
-const findRegionMatch = (component, regions) => {
-    if (!component || !(regions === null || regions === void 0 ? void 0 : regions.length))
-        return undefined;
-    // 1. Exact code match (e.g. "GO" === "GO", "RM" === "RM").
-    const byCode = regions.find(r => r.value === component.shortText);
-    if (byCode)
-        return byCode;
-    // 2. Case-insensitive label match (e.g. "Yucatán" ≈ "Yucatán").
-    const normalizedLong = normalizeForMatch(component.longText);
-    if (normalizedLong) {
-        const byLabel = regions.find(r => normalizeForMatch(r.label) === normalizedLong);
-        if (byLabel)
-            return byLabel;
-    }
-    return undefined;
-};
-/**
- * Get the state/province from address components using a fallback chain.
- *
- * Google Places maps states/provinces to different administrative levels depending on the country:
- *  - `administrative_area_level_1` — most countries (US, BR, CA, AU, MX)
- *  - `administrative_area_level_2` — Spain (province codes like "B"), Italy (province codes like "RM")
- *
- * For some countries (e.g. Mexico) the shortText is abbreviated ("Yuc.") while SureCart stores
- * ISO codes ("YUC"), so we also attempt a label-based match using the longText.
- */
-const getState = (addressComponents, regions) => {
-    var _a, _b, _c;
-    const adminLevel1 = (_a = findAddressComponent(addressComponents, 'administrative_area_level_1')) !== null && _a !== void 0 ? _a : null;
-    const adminLevel2 = (_b = findAddressComponent(addressComponents, 'administrative_area_level_2')) !== null && _b !== void 0 ? _b : null;
-    // Try level 1 first (covers US, BR, CA, AU, MX, etc.), then fall back to level 2 (covers ES, IT).
-    const region = (_c = findRegionMatch(adminLevel1, regions)) !== null && _c !== void 0 ? _c : findRegionMatch(adminLevel2, regions);
-    if (!region) {
-        return {
-            longText: (adminLevel1 === null || adminLevel1 === void 0 ? void 0 : adminLevel1.longText) || null, // for preview in the address suggestion.
-            shortText: null,
-        };
-    }
-    return {
-        shortText: region.value,
-        longText: region.label,
-    };
-};
-/**
- * Transforms the place address components into an address object.
- */
-function transformPlaceDetails(addressComponents, regions) {
-    var _a, _b, _c, _d, _e;
-    return {
-        line_2: ((_a = findAddressComponent(addressComponents, 'sublocality')) === null || _a === void 0 ? void 0 : _a.shortText) || null,
-        postal_code: ((_b = findAddressComponent(addressComponents, 'postal_code')) === null || _b === void 0 ? void 0 : _b.shortText) || null,
-        city: ((_c = findCity(addressComponents)) === null || _c === void 0 ? void 0 : _c.longText) || null,
-        state: ((_d = getState(addressComponents, regions)) === null || _d === void 0 ? void 0 : _d.shortText) || null,
-        country: ((_e = findAddressComponent(addressComponents, 'country')) === null || _e === void 0 ? void 0 : _e.shortText) || null,
-    };
-}
-/**
- * Transforms the place address components into an address object for display.
- */
-function getAddressLabels(addressComponents, regions) {
-    var _a, _b;
-    const country = (_a = findAddressComponent(addressComponents, 'country')) !== null && _a !== void 0 ? _a : null;
-    if (!country) {
-        return {
-            country: null,
-            state: null,
-            city: null,
-        };
-    }
-    const state = getState(addressComponents, regions);
-    const labels = {
-        country: country.longText || null,
-        state: (state === null || state === void 0 ? void 0 : state.longText) || null,
-        city: ((_b = findCity(addressComponents)) === null || _b === void 0 ? void 0 : _b.longText) || null,
-    };
-    switch (country === null || country === void 0 ? void 0 : country.shortText) {
-        case 'US':
-            return {
-                ...labels,
-                country: 'USA',
-                state: (state === null || state === void 0 ? void 0 : state.shortText) || null,
-            };
-        case 'GB':
-            return {
-                ...labels,
-                country: 'UK',
-            };
-        default:
-            return labels;
-    }
-}
-/**
- * Fetch the user's geolocation using the Google Geolocation API.
- */
-async function fetchGeoLocation() {
-    var _a;
-    const response = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${(_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            considerIp: true,
-        }),
-    });
-    return response.json();
-}
-/**
- * Fetch the country information based on latitude and longitude using the Google Geocode API.
- */
-async function fetchCountryFromCoordinates(lat, lng) {
-    var _a;
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${(_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key}`);
-    return response.json();
-}
-/**
- * Get the user's country code based on Google Geolocation and GeoCode APIs.
- * Caches the result in sessionStorage to avoid repeat API calls.
- */
-async function getCurrentUserCountryCode() {
-    var _a, _b, _c, _d, _e;
-    if (!((_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key)) {
-        return null;
-    }
-    const cached = sessionStorage.getItem('surecart_user_country');
-    if (cached)
-        return cached;
-    try {
-        const geoLocateResponse = await fetchGeoLocation();
-        if (!(geoLocateResponse === null || geoLocateResponse === void 0 ? void 0 : geoLocateResponse.location)) {
-            return null;
-        }
-        const { lat, lng } = geoLocateResponse.location;
-        const countryData = await fetchCountryFromCoordinates(lat, lng);
-        if (countryData === null || countryData === void 0 ? void 0 : countryData.error_message) {
-            return null;
-        }
-        const countryCode = ((_e = (_d = (_c = (_b = countryData === null || countryData === void 0 ? void 0 : countryData.results) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.address_components) === null || _d === void 0 ? void 0 : _d.find(component => component.types.includes('country'))) === null || _e === void 0 ? void 0 : _e.short_name) || null;
-        if (countryCode) {
-            sessionStorage.setItem('surecart_user_country', countryCode);
-        }
-        return countryCode;
-    }
-    catch {
-        return null;
-    }
-}
 
 const scAddressCss = ":host{display:block}.sc-address{display:block;position:relative}.sc-address [hidden]{display:none}.sc-address--loading{min-height:230px}.sc-address sc-skeleton{display:block;margin-bottom:1em}.sc-address__control{display:block}.sc-address__control>*{margin-bottom:var(--sc-address-column-spacing, -1px)}.sc-address__collapsible{opacity:0;pointer-events:none;position:absolute;transform:translateY(-8px);width:100%}.sc-address__collapsible>*{margin-bottom:var(--sc-address-column-spacing, -1px)}.sc-address__collapsible--expanded{opacity:1;pointer-events:auto;position:relative;transform:translateY(0);transition:opacity 0.2s ease-in, transform 0.2s ease-in;z-index:var(--sc-address-collapsible-z-index, 9)}.sc-address__collapsible:focus-within{z-index:var(--sc-address-collapsible-focus-z-index, 10)}.sc-address__columns{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.sc-address__columns>*{flex:1;width:50%;margin-right:var(--sc-address-column-spacing, -1px)}.sc-address__columns>*:last-child{margin-right:0}";
 const ScAddressStyle0 = scAddressCss;
@@ -343,7 +148,7 @@ const ScAddress = class {
         if ((_a = this.address) === null || _a === void 0 ? void 0 : _a.country) {
             return;
         }
-        const countryCode = await getCurrentUserCountryCode();
+        const countryCode = await googleMaps.getCurrentUserCountryCode();
         if (countryCode) {
             this.updateAddress({ country: countryCode });
         }
@@ -17729,7 +17534,7 @@ async function fetchAddressSuggestions(input, country, regions, signal) {
     }
     return ((addressResponse === null || addressResponse === void 0 ? void 0 : addressResponse.places) || []).map((place) => {
         var _a, _b, _c, _d;
-        const { city, state, country } = getAddressLabels((place === null || place === void 0 ? void 0 : place.addressComponents) || [], regions);
+        const { city, state, country } = googleMaps.getAddressLabels((place === null || place === void 0 ? void 0 : place.addressComponents) || [], regions);
         return {
             displayName: (_b = (_a = place === null || place === void 0 ? void 0 : place.displayName) === null || _a === void 0 ? void 0 : _a.text) !== null && _b !== void 0 ? _b : input,
             fullDisplayName: [(_d = (_c = place === null || place === void 0 ? void 0 : place.displayName) === null || _c === void 0 ? void 0 : _c.text) !== null && _d !== void 0 ? _d : input, city, state, country].filter(Boolean).join(', '),
@@ -17747,8 +17552,8 @@ function buildReplacementAddressFromPlace(place, regions, previousName) {
     if (!((_a = place === null || place === void 0 ? void 0 : place.addressComponents) === null || _a === void 0 ? void 0 : _a.length)) {
         throw new Error('Place details not found.');
     }
-    const placeDetails = transformPlaceDetails(place.addressComponents, regions);
-    const line1 = getStreetAddress(place.addressComponents) || place.displayName || '';
+    const placeDetails = googleMaps.transformPlaceDetails(place.addressComponents, regions);
+    const line1 = googleMaps.getStreetAddress(place.addressComponents) || place.displayName || '';
     return {
         name: previousName !== null && previousName !== void 0 ? previousName : null,
         line_1: line1,

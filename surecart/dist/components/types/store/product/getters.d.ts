@@ -12,7 +12,8 @@ export declare const availablePrices: (productId: string) => Price[];
  */
 export declare const getProduct: (productId?: string) => ProductState;
 /**
- * Check if product label stock is enabled and not out of stock purchases are allowed.
+ * Check if stock needs to be checked for the current product or selected variant.
+ * Uses the pre-resolved has_unlimited_stock field supplied by the server.
  *
  * @returns {boolean} - Returns stock needs to be checked or not
  */

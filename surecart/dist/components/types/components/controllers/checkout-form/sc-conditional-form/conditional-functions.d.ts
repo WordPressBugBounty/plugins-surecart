@@ -29,6 +29,13 @@ export declare const hasRulesPassed: (rules: Rule[], { checkout, processor }: {
  */
 export declare const getCartProductIds: (checkout: Checkout) => string[];
 /**
+ * Get array of price ids from checkout.
+ *
+ * @param {object} checkout Checkout data.
+ * @returns {array}
+ */
+export declare const getCartPriceIds: (checkout: Checkout) => string[];
+/**
  * Get array of coupons from checkout.
  *
  * @param {object} checkout CHeckout data.

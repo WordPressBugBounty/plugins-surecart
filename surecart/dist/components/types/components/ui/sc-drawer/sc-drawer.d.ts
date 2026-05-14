@@ -42,6 +42,7 @@ export declare class ScDrawer {
     show(): Promise<any>;
     /** Hides the drawer */
     hide(): Promise<any>;
+    private getDirection;
     requestClose(source?: 'close-button' | 'keyboard' | 'overlay' | 'method'): Promise<void>;
     handleKeyDown(event: KeyboardEvent): void;
     handleOpenChange(): Promise<void>;

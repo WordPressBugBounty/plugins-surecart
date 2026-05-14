@@ -177,6 +177,7 @@ const ScIcon = class {
         this.src = undefined;
         this.label = undefined;
         this.library = 'default';
+        this.mutate = true;
     }
     /** @internal Fetches the icon and redraws it. Used to handle library registrations. */
     redraw() {
@@ -212,7 +213,7 @@ const ScIcon = class {
                     const doc = parser.parseFromString(file.svg, 'text/html');
                     const svgEl = doc.body.querySelector('svg');
                     if (svgEl) {
-                        if (library$1 && library$1.mutator) {
+                        if (library$1 && library$1.mutator && this.mutate) {
                             library$1.mutator(svgEl);
                         }
                         this.svg = svgEl.outerHTML;
@@ -249,7 +250,7 @@ const ScIcon = class {
         }
     }
     render() {
-        return index.h("div", { key: '10ee93bd7a9285fbb8d27a08ff9e64885c4e7d65', part: "base", class: "icon", role: "img", "aria-label": this.getLabel(), innerHTML: this.svg });
+        return index.h("div", { key: '93afcc090331a81a99a5eab6b14e9d4f681d8b0e', part: "base", class: "icon", role: "img", "aria-label": this.getLabel(), innerHTML: this.svg });
     }
     static get assetsDirs() { return ["icon-assets"]; }
     static get watchers() { return {
