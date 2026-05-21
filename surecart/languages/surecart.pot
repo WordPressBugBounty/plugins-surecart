@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-15T18:02:57+00:00\n"
+"POT-Creation-Date: 2026-05-21T19:18:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -1822,7 +1822,7 @@ msgstr ""
 #: src/Controllers/Admin/Customers/CustomersListTable.php:293
 #: src/Controllers/Admin/Invoices/InvoicesListTable.php:330
 #: src/Controllers/Admin/Orders/OrdersListTable.php:464
-#: src/Controllers/Admin/Products/ProductsListTable.php:601
+#: src/Controllers/Admin/Products/ProductsListTable.php:600
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:454
 #: src/blocks/product-list-filter/view.php:42
 #: src/blocks/product-list-sidebar-toggle/view.php:50
@@ -2957,7 +2957,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Coupons/CouponsListTable.php:367
 #: src/Controllers/Admin/Customers/CustomersListTable.php:317
-#: src/Controllers/Admin/Products/ProductsListTable.php:622
+#: src/Controllers/Admin/Products/ProductsListTable.php:621
 msgid "Delete permanently"
 msgstr ""
 
@@ -3539,11 +3539,11 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: src/Controllers/Admin/Products/ProductsListTable.php:665
+#: src/Controllers/Admin/Products/ProductsListTable.php:664
 msgid "Filter by Product Collection"
 msgstr ""
 
-#: src/Controllers/Admin/Products/ProductsListTable.php:668
+#: src/Controllers/Admin/Products/ProductsListTable.php:667
 msgid "All Product Collections"
 msgstr ""
 
@@ -4042,7 +4042,7 @@ msgstr ""
 #: src/Integrations/Beaver/BeaverFormModule.php:20
 #: src/Integrations/Beaver/BeaverFormModule.php:21
 #: src/Integrations/Elementor/Conditions/Conditions.php:38
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:223
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:237
 #: src/Integrations/ThriveAutomator/ThriveAutomatorApp.php:25
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:152
 #: src/WordPress/Admin/Notices/AdminNoticesService.php:115
@@ -6662,26 +6662,26 @@ msgstr ""
 msgid "Enable access to a MemberPress membership."
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:224
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:238
 msgid "How likely are you to recommend #pluginname to your friends or colleagues?"
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:227
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:241
 msgid "Wow, we appreciate the feedback! 😀"
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:228
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:242
 msgid ""
 "Thanks. This means a lot!\n"
 "\n"
 "If you've got a minute, a review on WordPress would mean the world to us. It helps others find us and keeps our momentum strong."
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:232
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:246
 msgid "Thanks for your honest feedback! 😊"
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:233
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:247
 msgid "We'd love to understand what's not working or what's missing for you. What can SureCart improve to earn a higher score from you?"
 msgstr ""
 

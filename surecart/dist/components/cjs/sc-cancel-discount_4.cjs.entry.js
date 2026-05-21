@@ -43,7 +43,7 @@ const getCurrentBehaviourContent = (protocol, hasDiscount) => {
     return defaultLocales;
 };
 
-const scCancelDiscountCss = ".cancel-discount__abort-link{color:var(--sc-color-gray-500)}";
+const scCancelDiscountCss = ".cancel-discount__abort-link{color:var(--sc-input-help-text-color)}";
 const ScCancelDiscountStyle0 = scCancelDiscountCss;
 
 const ScCancelDiscount = class {
@@ -93,7 +93,7 @@ const ScCancelDiscount = class {
 };
 ScCancelDiscount.style = ScCancelDiscountStyle0;
 
-const scCancelSurveyCss = ".cancel-survey{color:var(--sc-color-gray-900)}.cancel-survey__abort-link{color:var(--sc-color-gray-500)}";
+const scCancelSurveyCss = ".cancel-survey__abort-link{color:var(--sc-input-help-text-color)}";
 const ScCancelSurveyStyle0 = scCancelSurveyCss;
 
 const ScCancelSurvey = class {
@@ -171,7 +171,7 @@ const ScCancelSurvey = class {
 };
 ScCancelSurvey.style = ScCancelSurveyStyle0;
 
-const scSubscriptionCancelCss = ":host{display:block;position:relative}.subscription-cancel{display:grid;gap:0.5em}.subscription-cancel__terms{color:var(--sc-color-gray-600);font-size:var(--sc-font-size-small)}";
+const scSubscriptionCancelCss = ":host{display:block;position:relative}.subscription-cancel{display:grid;gap:0.5em}.subscription-cancel__terms{color:var(--sc-input-help-text-color);font-size:var(--sc-font-size-small)}";
 const ScSubscriptionCancelStyle0 = scSubscriptionCancelCss;
 
 const ScSubscriptionCancel = class {
@@ -233,7 +233,7 @@ const ScSubscriptionCancel = class {
             keepButtonText = window.wp.hooks.applyFilters('surecart_dashboard_subscription_cancel_popup_keep_button_text', keepButtonText, this === null || this === void 0 ? void 0 : this.subscription);
             content = window.wp.hooks.applyFilters('surecart_dashboard_subscription_cancel_popup_content', content, this === null || this === void 0 ? void 0 : this.subscription);
         }
-        return (index.h("sc-dashboard-module", { key: 'c9e619585fa1d6ba6a9d8edd8fa0b51e6f42c1ad', heading: heading, class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, index.h("div", { key: '684f08b40862b6d8f9447978d6353afaf898fd64', slot: "description" }, content, index.h("slot", { key: '8b412d894dd053893c969b7a22980d0a7b85c705', name: "cancel-popup-content" })), index.h("sc-flex", { key: 'f1bf64102797647dc53c863851a792f067d6f5e8', justifyContent: "flex-start" }, index.h("sc-button", { key: 'aea0ed915e6bd6bf32b43634167a07ad25f4bbeb', type: "primary", loading: this.loading || this.busy, disabled: this.loading || this.busy, onClick: () => this.cancelSubscription() }, cancelButtonText), index.h("sc-button", { key: '1b9762afd2c6318518986a530dd22d64759e7f7e', style: { color: 'var(--sc-color-gray-500' }, type: "text", onClick: () => this.scAbandon.emit(), loading: this.loading || this.busy, disabled: this.loading || this.busy }, keepButtonText)), this.busy && index.h("sc-block-ui", { key: '491a9bf40aa02bcd997a564b9ce050972064dd0b' })));
+        return (index.h("sc-dashboard-module", { key: 'c9e619585fa1d6ba6a9d8edd8fa0b51e6f42c1ad', heading: heading, class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, index.h("div", { key: '684f08b40862b6d8f9447978d6353afaf898fd64', slot: "description" }, content, index.h("slot", { key: '8b412d894dd053893c969b7a22980d0a7b85c705', name: "cancel-popup-content" })), index.h("sc-flex", { key: 'f1bf64102797647dc53c863851a792f067d6f5e8', justifyContent: "flex-start" }, index.h("sc-button", { key: 'aea0ed915e6bd6bf32b43634167a07ad25f4bbeb', type: "primary", loading: this.loading || this.busy, disabled: this.loading || this.busy, onClick: () => this.cancelSubscription() }, cancelButtonText), index.h("sc-button", { key: 'added550f83e6397cf366d3177affd609b3ca375', type: "text", onClick: () => this.scAbandon.emit(), loading: this.loading || this.busy, disabled: this.loading || this.busy }, keepButtonText)), this.busy && index.h("sc-block-ui", { key: '4bce16e16854bccae28556d8e8adb8abbbf5cf2c' })));
     }
 };
 ScSubscriptionCancel.style = ScSubscriptionCancelStyle0;
