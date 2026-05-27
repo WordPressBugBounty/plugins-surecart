@@ -16,6 +16,7 @@ export declare class ScIcon {
     /** @internal Fetches the icon and redraws it. Used to handle library registrations. */
     redraw(): void;
     componentWillLoad(): void;
+    disconnectedCallback(): void;
     getLabel(): string;
     setIcon(): Promise<void>;
     private getUrl;

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-21T19:13:56",
+  "timestamp": "2026-05-27T19:04:57",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -9,11 +9,11 @@
     "fsNamespace": "surecart",
     "components": 236,
     "entries": 236,
-    "bundles": 4210,
+    "bundles": 4212,
     "outputs": [
       {
         "name": "dist-collection",
-        "files": 1318,
+        "files": 1320,
         "generatedFiles": [
           "./dist/collection/components/context/consumer/sc-consumer.js",
           "./dist/collection/components/context/consumer/sc-consumer.js.map",
@@ -711,6 +711,8 @@
           "./dist/collection/components/ui/icon/request.js.map",
           "./dist/collection/components/ui/icon/sc-icon.js",
           "./dist/collection/components/ui/icon/sc-icon.js.map",
+          "./dist/collection/components/ui/icon/test/library.spec.js",
+          "./dist/collection/components/ui/icon/test/library.spec.js.map",
           "./dist/collection/components/ui/icon/test/sc-icon.e2e.js",
           "./dist/collection/components/ui/icon/test/sc-icon.e2e.js.map",
           "./dist/collection/components/ui/icon/test/sc-icon.spec.js",
@@ -2428,8 +2430,8 @@
           "./dist/cjs/address-7404695f.js.map",
           "./dist/cjs/animation-registry-b597d2f4.js",
           "./dist/cjs/animation-registry-b597d2f4.js.map",
-          "./dist/cjs/app-globals-3a4c5e8f.js",
-          "./dist/cjs/app-globals-3a4c5e8f.js.map",
+          "./dist/cjs/app-globals-464bf4c9.js",
+          "./dist/cjs/app-globals-464bf4c9.js.map",
           "./dist/cjs/consumer-9f4ee0e3.js",
           "./dist/cjs/consumer-9f4ee0e3.js.map",
           "./dist/cjs/currency-71fce0f0.js",
@@ -2478,8 +2480,8 @@
           "./dist/cjs/inline-aa15f113.js.map",
           "./dist/cjs/lazy-2b509fa7.js",
           "./dist/cjs/lazy-2b509fa7.js.map",
-          "./dist/cjs/library-2c5d1943.js",
-          "./dist/cjs/library-2c5d1943.js.map",
+          "./dist/cjs/library-08bc52a5.js",
+          "./dist/cjs/library-08bc52a5.js.map",
           "./dist/cjs/loader.cjs.js",
           "./dist/cjs/loader.cjs.js.map",
           "./dist/cjs/media-43b85f3d.js",
@@ -2882,8 +2884,8 @@
           "./dist/esm/address-b8e2e4c8.js.map",
           "./dist/esm/animation-registry-de37bd7e.js",
           "./dist/esm/animation-registry-de37bd7e.js.map",
-          "./dist/esm/app-globals-a11911aa.js",
-          "./dist/esm/app-globals-a11911aa.js.map",
+          "./dist/esm/app-globals-0eef0276.js",
+          "./dist/esm/app-globals-0eef0276.js.map",
           "./dist/esm/consumer-e06b16d3.js",
           "./dist/esm/consumer-e06b16d3.js.map",
           "./dist/esm/currency-a0c9bff4.js",
@@ -2932,8 +2934,8 @@
           "./dist/esm/inline-c012a0f9.js.map",
           "./dist/esm/lazy-deb42890.js",
           "./dist/esm/lazy-deb42890.js.map",
-          "./dist/esm/library-e4c8cb15.js",
-          "./dist/esm/library-e4c8cb15.js.map",
+          "./dist/esm/library-1bd957d5.js",
+          "./dist/esm/library-1bd957d5.js.map",
           "./dist/esm/loader.js",
           "./dist/esm/loader.js.map",
           "./dist/esm/media-d21119a3.js",
@@ -3414,8 +3416,6 @@
           "./dist/surecart/p-30ea0e09.entry.js.map",
           "./dist/surecart/p-30f19248.entry.js",
           "./dist/surecart/p-30f19248.entry.js.map",
-          "./dist/surecart/p-31bc569c.js",
-          "./dist/surecart/p-31bc569c.js.map",
           "./dist/surecart/p-3309755a.js",
           "./dist/surecart/p-3309755a.js.map",
           "./dist/surecart/p-33ac155f.js",
@@ -3496,8 +3496,6 @@
           "./dist/surecart/p-610295e2.js.map",
           "./dist/surecart/p-6113a0bc.entry.js",
           "./dist/surecart/p-6113a0bc.entry.js.map",
-          "./dist/surecart/p-624938e7.js",
-          "./dist/surecart/p-624938e7.js.map",
           "./dist/surecart/p-64214f98.entry.js",
           "./dist/surecart/p-64214f98.entry.js.map",
           "./dist/surecart/p-67003c8d.entry.js",
@@ -3512,6 +3510,8 @@
           "./dist/surecart/p-6c3ff741.entry.js.map",
           "./dist/surecart/p-6cd65fc1.entry.js",
           "./dist/surecart/p-6cd65fc1.entry.js.map",
+          "./dist/surecart/p-7096fc6a.js",
+          "./dist/surecart/p-7096fc6a.js.map",
           "./dist/surecart/p-70dd3f7c.entry.js",
           "./dist/surecart/p-70dd3f7c.entry.js.map",
           "./dist/surecart/p-71801b15.entry.js",
@@ -3588,12 +3588,16 @@
           "./dist/surecart/p-9d2eb672.entry.js.map",
           "./dist/surecart/p-9d89b960.entry.js",
           "./dist/surecart/p-9d89b960.entry.js.map",
+          "./dist/surecart/p-9db09fcd.entry.js",
+          "./dist/surecart/p-9db09fcd.entry.js.map",
           "./dist/surecart/p-9ef0f73f.js",
           "./dist/surecart/p-9ef0f73f.js.map",
           "./dist/surecart/p-a0974978.js",
           "./dist/surecart/p-a0974978.js.map",
           "./dist/surecart/p-a1377337.js",
           "./dist/surecart/p-a1377337.js.map",
+          "./dist/surecart/p-a2a03244.js",
+          "./dist/surecart/p-a2a03244.js.map",
           "./dist/surecart/p-a44d93cf.entry.js",
           "./dist/surecart/p-a44d93cf.entry.js.map",
           "./dist/surecart/p-a5c1e5a4.entry.js",
@@ -3630,8 +3634,6 @@
           "./dist/surecart/p-b3974dd4.entry.js.map",
           "./dist/surecart/p-b4ad29a8.entry.js",
           "./dist/surecart/p-b4ad29a8.entry.js.map",
-          "./dist/surecart/p-b4e83a06.entry.js",
-          "./dist/surecart/p-b4e83a06.entry.js.map",
           "./dist/surecart/p-b5826152.entry.js",
           "./dist/surecart/p-b5826152.entry.js.map",
           "./dist/surecart/p-b5d437e3.js",
@@ -3866,8 +3868,6 @@
           "./www/build/p-30ea0e09.entry.js.map",
           "./www/build/p-30f19248.entry.js",
           "./www/build/p-30f19248.entry.js.map",
-          "./www/build/p-31bc569c.js",
-          "./www/build/p-31bc569c.js.map",
           "./www/build/p-3309755a.js",
           "./www/build/p-3309755a.js.map",
           "./www/build/p-33ac155f.js",
@@ -3948,8 +3948,6 @@
           "./www/build/p-610295e2.js.map",
           "./www/build/p-6113a0bc.entry.js",
           "./www/build/p-6113a0bc.entry.js.map",
-          "./www/build/p-624938e7.js",
-          "./www/build/p-624938e7.js.map",
           "./www/build/p-64214f98.entry.js",
           "./www/build/p-64214f98.entry.js.map",
           "./www/build/p-67003c8d.entry.js",
@@ -3964,6 +3962,8 @@
           "./www/build/p-6c3ff741.entry.js.map",
           "./www/build/p-6cd65fc1.entry.js",
           "./www/build/p-6cd65fc1.entry.js.map",
+          "./www/build/p-7096fc6a.js",
+          "./www/build/p-7096fc6a.js.map",
           "./www/build/p-70dd3f7c.entry.js",
           "./www/build/p-70dd3f7c.entry.js.map",
           "./www/build/p-71801b15.entry.js",
@@ -4040,12 +4040,16 @@
           "./www/build/p-9d2eb672.entry.js.map",
           "./www/build/p-9d89b960.entry.js",
           "./www/build/p-9d89b960.entry.js.map",
+          "./www/build/p-9db09fcd.entry.js",
+          "./www/build/p-9db09fcd.entry.js.map",
           "./www/build/p-9ef0f73f.js",
           "./www/build/p-9ef0f73f.js.map",
           "./www/build/p-a0974978.js",
           "./www/build/p-a0974978.js.map",
           "./www/build/p-a1377337.js",
           "./www/build/p-a1377337.js.map",
+          "./www/build/p-a2a03244.js",
+          "./www/build/p-a2a03244.js.map",
           "./www/build/p-a44d93cf.entry.js",
           "./www/build/p-a44d93cf.entry.js.map",
           "./www/build/p-a5c1e5a4.entry.js",
@@ -4082,8 +4086,6 @@
           "./www/build/p-b3974dd4.entry.js.map",
           "./www/build/p-b4ad29a8.entry.js",
           "./www/build/p-b4ad29a8.entry.js.map",
-          "./www/build/p-b4e83a06.entry.js",
-          "./www/build/p-b4e83a06.entry.js.map",
           "./www/build/p-b5826152.entry.js",
           "./www/build/p-b5826152.entry.js.map",
           "./www/build/p-b5d437e3.js",
@@ -4272,15 +4274,15 @@
           "sc-quantity-select",
           "sc-spinner"
         ],
-        "bundleId": "p-b4e83a06",
-        "fileName": "p-b4e83a06.entry.js",
+        "bundleId": "p-9db09fcd",
+        "fileName": "p-9db09fcd.entry.js",
         "imports": [
           "p-e97fde0a.js",
           "p-b0d8cd6e.js",
-          "p-624938e7.js",
+          "p-a2a03244.js",
           "p-830ab1a3.js"
         ],
-        "originalByteSize": 54228
+        "originalByteSize": 54417
       },
       {
         "key": "sc-avatar.entry",
@@ -7335,10 +7337,10 @@
         "imports": [
           "index-745b6bec.js",
           "page-align-0cdacf32.js",
-          "library-e4c8cb15.js",
+          "library-1bd957d5.js",
           "index-c5a96d53.js"
         ],
-        "originalByteSize": 54251
+        "originalByteSize": 54440
       },
       {
         "key": "sc-avatar.entry",
@@ -10395,10 +10397,10 @@
         "imports": [
           "index-8acc3c89.js",
           "page-align-5a2ab493.js",
-          "library-2c5d1943.js",
+          "library-08bc52a5.js",
           "index-fb76df07.js"
         ],
-        "originalByteSize": 54814
+        "originalByteSize": 54985
       },
       {
         "key": "sc-avatar.entry",
@@ -55842,7 +55844,7 @@
           "hasComponentDidRenderFn": false,
           "hasComponentDidUnloadFn": false,
           "hasConnectedCallbackFn": false,
-          "hasDisconnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": true,
           "hasElement": false,
           "hasEvent": true,
           "hasLifecycle": true,
@@ -119507,7 +119509,7 @@
     "sc-sc-button": [
       "p-e97fde0a.js",
       "p-b0d8cd6e.js",
-      "p-624938e7.js",
+      "p-a2a03244.js",
       "p-830ab1a3.js"
     ],
     "sc-sc-button-group": [
@@ -120292,7 +120294,7 @@
     "sc-sc-icon": [
       "p-e97fde0a.js",
       "p-b0d8cd6e.js",
-      "p-624938e7.js",
+      "p-a2a03244.js",
       "p-830ab1a3.js"
     ],
     "sc-sc-image-slider": [
@@ -121173,13 +121175,13 @@
     "sc-sc-product-line-item": [
       "p-e97fde0a.js",
       "p-b0d8cd6e.js",
-      "p-624938e7.js",
+      "p-a2a03244.js",
       "p-830ab1a3.js"
     ],
     "sc-sc-product-line-item-note": [
       "p-e97fde0a.js",
       "p-b0d8cd6e.js",
-      "p-624938e7.js",
+      "p-a2a03244.js",
       "p-830ab1a3.js"
     ],
     "sc-sc-product-pills-variant-option": [
@@ -121301,7 +121303,7 @@
     "sc-sc-quantity-select": [
       "p-e97fde0a.js",
       "p-b0d8cd6e.js",
-      "p-624938e7.js",
+      "p-a2a03244.js",
       "p-830ab1a3.js"
     ],
     "sc-sc-radio": [
@@ -121450,7 +121452,7 @@
     "sc-sc-spinner": [
       "p-e97fde0a.js",
       "p-b0d8cd6e.js",
-      "p-624938e7.js",
+      "p-a2a03244.js",
       "p-830ab1a3.js"
     ],
     "sc-sc-stacked-list": [
@@ -122591,6 +122593,9 @@
     "./src/components/ui/icon/sc-icon.tsx": [
       "./src/components/ui/icon/library",
       "./src/components/ui/icon/request"
+    ],
+    "./src/components/ui/icon/test/library.spec.ts": [
+      "./src/components/ui/icon/library"
     ],
     "./src/components/ui/icon/test/sc-icon.e2e.ts": [],
     "./src/components/ui/icon/test/sc-icon.spec.tsx": [
