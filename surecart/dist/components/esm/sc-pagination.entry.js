@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h } from './index-25e5af33.js';
 
 const scPaginationCss = ":host{display:block}.pagination-display{opacity:0.8}";
 const ScPaginationStyle0 = scPaginationCss;

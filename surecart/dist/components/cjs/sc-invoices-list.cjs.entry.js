@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scInvoicesListCss = ":host{display:block}.orders-list{display:grid;gap:0.75em}.orders-list__heading{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}.orders-list__title{font-size:var(--sc-font-size-x-large);font-weight:var(--sc-font-weight-bold);line-height:var(--sc-line-height-dense)}.orders-list a{text-decoration:none;font-weight:var(--sc-font-weight-semibold);display:inline-flex;align-items:center;gap:0.25em;color:var(--sc-color-primary-500)}.order__row{color:var(--sc-color-gray-800);text-decoration:none;display:grid;align-items:center;justify-content:space-between;gap:0;grid-template-columns:1fr 1fr 1fr auto;margin:0;padding:var(--sc-spacing-small) var(--sc-spacing-large)}.order__row:not(:last-child){border-bottom:1px solid var(--sc-color-gray-200)}.order__row:hover{background:var(--sc-color-gray-50)}.order__date{font-weight:var(--sc-font-weight-semibold)}";
@@ -67,7 +68,7 @@ const ScInvoicesList = class {
         if (!this.isCustomer) {
             return;
         }
-        const response = (await await fetch.apiFetch({
+        const response = (await await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/invoices/`, {
                 expand: ['checkout'],
                 ...this.query,
@@ -130,7 +131,7 @@ const ScInvoicesList = class {
     }
     render() {
         var _a, _b;
-        return (index.h("sc-dashboard-module", { key: '0eded64073b1b67cf61d8b8727dfbbb769a3987c', class: "invoices-list", error: this.error }, index.h("span", { key: '759472a1d07f33f5693c1ab6016c8dbf2c40394f', slot: "heading" }, index.h("slot", { key: '74ea8b49716734b7d51f19046db5e57707e2aacf', name: "heading" }, this.heading || wp.i18n.__('Invoices', 'surecart'))), !!this.allLink && !!((_a = this.invoices) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: '47ce8e86fee5c34f0c14e473a87738ad0fd5047b', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Invoices', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: 'f4a5be615a70a51eb9883730e49c6758a7a910f7', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '91c2afd1915584cadaebb6bd15c3a4267cea6522', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.invoices) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: '968f3c87c4fd8a26db2be0f8f841463f6aadf968' })));
+        return (index.h("sc-dashboard-module", { key: 'af0ac062161ffd53b73678677405cea098f41164', class: "invoices-list", error: this.error }, index.h("span", { key: '5881dbcda7045eeba4b6a4a37d7bc44817dda49c', slot: "heading" }, index.h("slot", { key: '0565305934bee05ddd307f35011721c2f0c37afd', name: "heading" }, this.heading || wp.i18n.__('Invoices', 'surecart'))), !!this.allLink && !!((_a = this.invoices) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: '75ea29ad986de2117c5a1e961632cfe2768cf766', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || wp.i18n.__('Invoices', 'surecart')) }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '6e25d08ac9cf67453ad7055cdaef7272f441938c', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '183f078240c219be95ab108a12621321666128a7', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.invoices) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: '2b7e7dfd1646d548d17a099a5c6b4006fd3e4585' })));
     }
     get el() { return index.getElement(this); }
 };

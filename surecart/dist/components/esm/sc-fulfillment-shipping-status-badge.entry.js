@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 
 const scFulfillmentShippingStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScFulfillmentShippingStatusBadgeStyle0 = scFulfillmentShippingStatusBadgeCss;

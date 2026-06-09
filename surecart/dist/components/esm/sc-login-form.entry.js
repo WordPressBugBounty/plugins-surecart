@@ -1,5 +1,6 @@
-import { r as registerInstance, h, F as Fragment } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import { r as registerInstance, h, F as Fragment } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 
@@ -153,7 +154,7 @@ const ScLogin = class {
     }
     render() {
         var _a, _b;
-        return (h("div", { key: '0693a545336ca18a4da0ac422eeffd4f7c74f894', class: "login-form" }, h("sc-card", { key: '557b7c88fe7fd3e07155bfc26b55048555169c16' }, !!this.error && (h("sc-alert", { key: 'b2c0e1913ecd6f893bbc1a2ae88506a86df3ea41', open: true, type: "danger", closable: true, onScHide: () => (this.error = null) }, h("span", { key: '49015908573203dfe4e454c7763dfb0f5828a93f', slot: "title", innerHTML: (_a = this.error) === null || _a === void 0 ? void 0 : _a.message }), (((_b = this.error) === null || _b === void 0 ? void 0 : _b.additional_errors) || []).map(({ message }) => (h("div", { innerHTML: message }))))), this.renderInner()), this.loading && h("sc-block-ui", { key: 'c73603b435ff6fbb85939bf593e662278e9a8208', spinner: true, style: { 'zIndex': '9', '--sc-block-ui-opacity': '0.5' } })));
+        return (h("div", { key: '9b25c7637c52d9b95be98b3488f410eee0100487', class: "login-form" }, h("sc-card", { key: 'f74993f88cdec685d5537665b394616dca1ae82b' }, !!this.error && (h("sc-alert", { key: '98f9921231617b231389f278e241457e3fd58e25', open: true, type: "danger", closable: true, onScHide: () => (this.error = null) }, h("span", { key: '6b76adea77784e67c46639f23c5f710c740e07d3', slot: "title", innerHTML: (_a = this.error) === null || _a === void 0 ? void 0 : _a.message }), (((_b = this.error) === null || _b === void 0 ? void 0 : _b.additional_errors) || []).map(({ message }) => (h("div", { innerHTML: message }))))), this.renderInner()), this.loading && h("sc-block-ui", { key: 'b7c90e503b12bd6acf315227056affc9b8939dd3', spinner: true, style: { 'zIndex': '9', '--sc-block-ui-opacity': '0.5' } })));
     }
     static get watchers() { return {
         "step": ["handleStepChange"],

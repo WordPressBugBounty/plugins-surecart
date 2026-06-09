@@ -1,4 +1,4 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
 
 const scFormRowCss = ".form-row{display:flex;align-items:flex-start;justify-content:space-between;gap:calc(var(--sc-form-row-spacing, 0.75em) * 2.5)}::slotted(*){flex:1;width:0}";
 const ScFormRowStyle0 = scFormRowCss;
@@ -17,13 +17,13 @@ const ScFormRow = class {
         }
     }
     render() {
-        return (h("div", { key: '7af6569993cfd199bce9c761fcaf73eb31035bd0', part: "base", class: {
+        return (h("div", { key: '0f0a1ad9c199af41f5cbcb92a037341f03566b77', part: "base", class: {
                 'form-row': true,
                 'breakpoint-sm': this.width < 384,
                 'breakpoint-md': this.width >= 384 && this.width < 576,
                 'breakpoint-lg': this.width >= 576 && this.width < 768,
                 'breakpoint-xl': this.width >= 768,
-            } }, h("slot", { key: '83676b1500688ecb1059e7d808e36e1ddf0746ad' })));
+            } }, h("slot", { key: 'a363965f5b5a3d59f1e1a60ae711eeb76e741061' })));
     }
     get el() { return getElement(this); }
 };

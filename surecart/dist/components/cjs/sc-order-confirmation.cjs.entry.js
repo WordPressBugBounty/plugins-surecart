@@ -2,11 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
-const universe = require('./universe-0cf1168a.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
+const universe = require('./universe-1db52218.js');
 const removeQueryArgs = require('./remove-query-args-b57e8cd3.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 
 const scOrderConfirmationCss = ":host{display:block;max-width:800px;margin:auto}::slotted(*:not(:last-child)),sc-form form>*:not(:last-child){margin-bottom:var(--sc-form-row-spacing-large)}.order-confirmation__content{color:var(--sc-order-confirmation-color, var(--sc-color-gray-500))}.order-confirmation__content.hidden{display:none}::part(line-items){display:grid;gap:0.5em}";
 const ScOrderConfirmationStyle0 = scOrderConfirmationCss;
@@ -40,7 +41,7 @@ const ScOrderConfirmation = class {
             return;
         try {
             this.loading = true;
-            this.order = (await await fetch.apiFetch({
+            this.order = (await await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/checkouts/${this.getSessionId()}`, {
                     expand: [
                         'checkout_fees',
@@ -105,10 +106,10 @@ const ScOrderConfirmation = class {
     }
     render() {
         var _a, _b;
-        return (index.h(universe.Universe.Provider, { key: '1d7b9de387c84b9490b84362607c2c1c921642e4', state: this.state() }, index.h("div", { key: 'b36d9210520c562f88266c8589e6bb801d8c7cf4', class: { 'order-confirmation': true } }, index.h("div", { key: '3fc37ba8fa7a90da751e775ab2aa717659d7a3c4', class: {
+        return (index.h(universe.Universe.Provider, { key: '21e583d8b2407ebce3a355b5d303475433373148', state: this.state() }, index.h("div", { key: '0814352b24e81fad53da042bbba33ea97025ad66', class: { 'order-confirmation': true } }, index.h("div", { key: 'ca6c449acae714b486e6144753c67b3d554fc40d', class: {
                 'order-confirmation__content': true,
                 'hidden': !((_a = this.order) === null || _a === void 0 ? void 0 : _a.id) && !this.loading,
-            } }, index.h("sc-order-confirm-components-validator", { key: '421cdfc8571238db8ed3e4f6586818fd7edaa77c', checkout: this.order }, index.h("slot", { key: 'aa1ce42db5b05f70771de5d2687d792bc9aa56af' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (index.h("sc-heading", { key: 'c368279e2cba021c385a5cbbf3be11c81d389101' }, wp.i18n.__('Order not found.', 'surecart'), index.h("span", { key: '43b29624fbce205aeb352a480023ebf5a4231ab3', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
+            } }, index.h("sc-order-confirm-components-validator", { key: '0b02ab7520b6dc6ee6abe2deef6ae9611f025383', checkout: this.order }, index.h("slot", { key: '4a5fc2e13dccb99863415f68ea74d626972b04d4' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (index.h("sc-heading", { key: 'baead488ab30c8c5ebfb8bc67929a627cf61f624' }, wp.i18n.__('Order not found.', 'surecart'), index.h("span", { key: '04e9c0c2d341cbcc00a5b2d66d9b8620ddedf076', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
     }
 };
 ScOrderConfirmation.style = ScOrderConfirmationStyle0;

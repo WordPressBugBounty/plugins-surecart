@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const ScPremiumTag = class {
     constructor(hostRef) {
@@ -10,7 +10,7 @@ const ScPremiumTag = class {
         this.size = 'small';
     }
     render() {
-        return (index.h("sc-tag", { key: 'f232d4a813a2bc4b60b9776106e5632895f510ac', type: "success", size: this.size }, wp.i18n.__('Premium', 'surecart')));
+        return (index.h("sc-tag", { key: 'c882ff96610572be492155da45cb2cc16ba8e7d8', type: "success", size: this.size }, wp.i18n.__('Premium', 'surecart')));
     }
 };
 

@@ -2,11 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const price = require('./price-da3cab3d.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./currency-71fce0f0.js');
 
@@ -87,7 +88,7 @@ const ScSubscriptionSwitch = class {
     async getGroup() {
         if (!this.productGroupId)
             return;
-        const products = (await await fetch.apiFetch({
+        const products = (await await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/products/`, {
                 product_group_ids: [this.productGroupId],
                 expand: ['prices'],
@@ -100,7 +101,7 @@ const ScSubscriptionSwitch = class {
     async getProductPrices() {
         if (!this.productId)
             return;
-        const product = (await await fetch.apiFetch({
+        const product = (await await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/products/${this.productId}`, {
                 expand: ['prices'],
             }),

@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-745b6bec.js';
+import { r as registerInstance, h } from './index-25e5af33.js';
 
 const scOrderFulfillmentBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScOrderFulfillmentBadgeStyle0 = scOrderFulfillmentBadgeCss;
@@ -26,7 +26,7 @@ const ScOrderFulFillmentBadge = class {
         this.clearable = false;
     }
     render() {
-        return (h("sc-tag", { key: 'ac80d925514019360008cb5ee13a138ed63fdb4c', type: type === null || type === void 0 ? void 0 : type[this === null || this === void 0 ? void 0 : this.status], pill: this.pill }, (status === null || status === void 0 ? void 0 : status[this.status]) || this.status));
+        return (h("sc-tag", { key: '2709b10584f5844972134b68ee4b285a4393b1d7', type: type === null || type === void 0 ? void 0 : type[this === null || this === void 0 ? void 0 : this.status], pill: this.pill }, (status === null || status === void 0 ? void 0 : status[this.status]) || this.status));
     }
 };
 ScOrderFulFillmentBadge.style = ScOrderFulfillmentBadgeStyle0;

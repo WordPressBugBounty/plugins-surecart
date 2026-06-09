@@ -1341,6 +1341,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\WordPress\\Posts\\PostService' => __DIR__ . '/../..' . '/app/src/WordPress/Posts/PostService.php',
         'SureCart\\WordPress\\Posts\\PostServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Posts/PostServiceProvider.php',
         'SureCart\\WordPress\\RecaptchaValidationService' => __DIR__ . '/../..' . '/app/src/WordPress/RecaptchaValidationService.php',
+        'SureCart\\WordPress\\Shortcodes\\ProductContextShortcodeWrapper' => __DIR__ . '/../..' . '/app/src/WordPress/Shortcodes/ProductContextShortcodeWrapper.php',
         'SureCart\\WordPress\\Shortcodes\\ShortcodesBlockConversionService' => __DIR__ . '/../..' . '/app/src/WordPress/Shortcodes/ShortcodesBlockConversionService.php',
         'SureCart\\WordPress\\Shortcodes\\ShortcodesService' => __DIR__ . '/../..' . '/app/src/WordPress/Shortcodes/ShortcodesService.php',
         'SureCart\\WordPress\\Shortcodes\\ShortcodesServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Shortcodes/ShortcodesServiceProvider.php',

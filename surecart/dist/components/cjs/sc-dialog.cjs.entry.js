@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
 
 const locks = new Set();
@@ -148,19 +148,19 @@ const ScDialog = class {
         unlockBodyScrolling(this.el);
     }
     render() {
-        return (index.h("div", { key: '09112a299c2a999bf5c3635db4d576c67b15cd4e', part: "base", ref: el => (this.dialog = el), class: {
+        return (index.h("div", { key: '17eafa7120b0967b09e1af3dfd3c0d74fef52d8c', part: "base", ref: el => (this.dialog = el), class: {
                 'dialog': true,
                 'dialog--open': this.open,
                 'dialog--has-footer': this.hasFooter,
-            }, onKeyDown: e => this.handleKeyDown(e) }, index.h("div", { key: '8758a7056832fc54283bf628a32dc8c6a82eae9f', part: "overlay", class: "dialog__overlay", onClick: e => {
+            }, onKeyDown: e => this.handleKeyDown(e) }, index.h("div", { key: 'bd84f19b1231f46f9f0c671899e97881ba3b3d0b', part: "overlay", class: "dialog__overlay", onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.requestClose('overlay');
-            }, ref: el => (this.overlay = el), tabindex: "-1" }), index.h("div", { key: '1fd2b133716b6932e46fb23d50dde40de6050167', part: "panel", class: "dialog__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader || this.label, "aria-labelledby": !this.noHeader || 'title', ref: el => (this.panel = el), tabindex: "0" }, !this.noHeader && (index.h("header", { key: 'a62bd395d1a0c8f350fd5dca7458efbaa679783a', part: "header", class: "dialog__header" }, index.h("h2", { key: '1e691caa45f029572de05bab2d52bffeab3ca4c3', part: "title", class: "dialog__title", id: "title" }, index.h("slot", { key: '4dba4ad5b85294748712c9d56414b6aefd344e80', name: "label" }, " ", this.label.length > 0 ? this.label : String.fromCharCode(65279), " ")), index.h("sc-button", { key: '85af93eba85cbc45e1799bd09739686b2365bf1e', class: "dialog__close", type: "text", circle: true, part: "close-button", exportparts: "base:close-button__base", onClick: e => {
+            }, ref: el => (this.overlay = el), tabindex: "-1" }), index.h("div", { key: 'bc8a115e02c4e5d9f4273e7680c8a9d34b1f7341', part: "panel", class: "dialog__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader || this.label, "aria-labelledby": !this.noHeader || 'title', ref: el => (this.panel = el), tabindex: "0" }, !this.noHeader && (index.h("header", { key: '2297c324c30dc806de95138c2e02b5de6a35412d', part: "header", class: "dialog__header" }, index.h("h2", { key: '4291c049b054398fff0722ac4d9dc766c5063237', part: "title", class: "dialog__title", id: "title" }, index.h("slot", { key: '017cde106e57465d95491b6ac28dc08db0b8b99d', name: "label" }, " ", this.label.length > 0 ? this.label : String.fromCharCode(65279), " ")), index.h("sc-button", { key: 'dd943d0debe713afc22edcdb37aec42f434b84d1', class: "dialog__close", type: "text", circle: true, part: "close-button", exportparts: "base:close-button__base", onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.requestClose('close-button');
-            } }, index.h("sc-icon", { key: '89e87104a9cc05799581a6ce1842eaa812650e03', name: "x", label: wp.i18n.__('Close', 'surecart') })))), index.h("div", { key: '7e9e100ecf79eabbec88a50328b2f6b02897de84', part: "body", class: "dialog__body" }, index.h("slot", { key: 'ac98feeb8fceb757a2dc04b8f522de2ff165041b' })), index.h("footer", { key: 'd4ee71dc97d6f76e2b49f809910b199baf859dcd', part: "footer", class: "dialog__footer" }, index.h("slot", { key: '7b5352321fb535f80eb20da686cc8287313297c7', name: "footer" })))));
+            } }, index.h("sc-icon", { key: 'c1a3e203f422fd7fe5fbe390fc04487dda850385', name: "x", label: wp.i18n.__('Close', 'surecart') })))), index.h("div", { key: '8923fa22e8b8373866d884d801cf4913948c6ea2', part: "body", class: "dialog__body" }, index.h("slot", { key: '229e3ccba52d77da0f80d3d94a7a10ffb6da3286' })), index.h("footer", { key: '390625073322e068b66097c4bc71a88751c41551', part: "footer", class: "dialog__footer" }, index.h("slot", { key: '0a0351ae2d121af78cf206d6cbdd697428d13d10', name: "footer" })))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

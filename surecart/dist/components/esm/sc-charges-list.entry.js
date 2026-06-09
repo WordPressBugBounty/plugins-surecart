@@ -1,7 +1,8 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
 import { o as onFirstVisible } from './lazy-deb42890.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
 
 const scChargesListCss = ":host{display:block;position:relative}.charges-list{display:grid;gap:1em}";
@@ -106,7 +107,7 @@ const ScChargesList = class {
     }
     render() {
         var _a;
-        return (h("sc-dashboard-module", { key: 'b56d22ca3b94a216dbe7270954ee50602c694610', class: "charges-list", error: this.error }, h("span", { key: 'b30c306a6c4a5d970db79297f20085d6ca378454', slot: "heading" }, h("slot", { key: 'b0280110e26446bd44d4794494734abe5e492715', name: "heading" }, this.heading || wp.i18n.__('Payment History', 'surecart'))), !!this.allLink && (h("sc-button", { key: 'bddeda819eac6f5dbbf217608360112986c9bf83', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '6eee2f83861c880a0f95af7c75533137f8cfbd92', name: "chevron-right", slot: "suffix" }))), h("sc-card", { key: '9c3ec1daa18f5337f07e962d6cb1e241c6eabebd', "no-padding": true, style: { '--overflow': 'hidden' } }, h("sc-stacked-list", { key: 'ed3ea1efa8a2d2ed21211e5e161eff268a6f45ff' }, this.renderContent())), this.showPagination && (h("sc-pagination", { key: '681d48dc1c067f0b2fa5e96c9e2bf872f41e2f9e', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.charges) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.loading && this.loaded && h("sc-block-ui", { key: '8aafdc530b1f017354330af84b7c857c1dfc729b', spinner: true })));
+        return (h("sc-dashboard-module", { key: 'e63b82f5be0dae89f51dc53861af6f01557004fb', class: "charges-list", error: this.error }, h("span", { key: '18c690252fa71980458c5ea9a0259ed4c58200ec', slot: "heading" }, h("slot", { key: '451c50790882c1ffd1852d697ada6479b69f61e0', name: "heading" }, this.heading || wp.i18n.__('Payment History', 'surecart'))), !!this.allLink && (h("sc-button", { key: '263baabfbbfa3f28f454a653845b7bbf1d60434b', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '38bbf6026a264b103404774c0d009797fbb8f00e', name: "chevron-right", slot: "suffix" }))), h("sc-card", { key: '74b4e192ef653a72a19fc2d3b62a8e023e0e0c8c', "no-padding": true, style: { '--overflow': 'hidden' } }, h("sc-stacked-list", { key: '9ab6894493f6f97d61abe140d70764ace8d0f740' }, this.renderContent())), this.showPagination && (h("sc-pagination", { key: 'f4b7109eed3e401b3ab42ea12a40687322e69eb9', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.charges) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.loading && this.loaded && h("sc-block-ui", { key: 'aa02b5d1089c78a8ab7630d249fcd76ef65f9af3', spinner: true })));
     }
     get el() { return getElement(this); }
 };

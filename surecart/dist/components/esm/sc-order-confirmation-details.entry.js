@@ -1,5 +1,5 @@
-import { r as registerInstance, h } from './index-745b6bec.js';
-import { o as openWormhole } from './consumer-e06b16d3.js';
+import { r as registerInstance, h } from './index-25e5af33.js';
+import { o as openWormhole } from './consumer-f1775a76.js';
 
 const scOrderConfirmationDetailsCss = ":host{display:block}";
 const ScOrderConfirmationDetailsStyle0 = scOrderConfirmationDetailsCss;

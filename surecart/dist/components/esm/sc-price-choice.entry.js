@@ -1,9 +1,10 @@
-import { r as registerInstance, c as createEvent, h, F as Fragment, H as Host } from './index-745b6bec.js';
-import { o as openWormhole } from './consumer-e06b16d3.js';
+import { r as registerInstance, c as createEvent, h, F as Fragment, H as Host } from './index-25e5af33.js';
+import { o as openWormhole } from './consumer-f1775a76.js';
 import { i as isPriceInOrder } from './index-1db2635f.js';
 import { i as intervalString } from './price-1ff6aa07.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import './fetch-9e15a95d.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './currency-a0c9bff4.js';
 import './remove-query-args-938c53ea.js';
 

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const index$1 = require('./index-3d000d76.js');
 
 const ScLineItemsProvider = class {
@@ -101,7 +101,7 @@ const ScLineItemsProvider = class {
         return existingLineData;
     }
     render() {
-        return index.h("slot", { key: '7c3e31dfdd082a71e45d04f0f967504434b0229c' });
+        return index.h("slot", { key: '0949a97521b376a4a30f61b7c16ad7c238db6fa6' });
     }
     static get watchers() { return {
         "syncItems": ["syncItemsHandler"]

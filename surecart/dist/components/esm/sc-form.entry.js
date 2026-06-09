@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 
 /**
  * Serializes a form and returns a plain object. If a form control with the same name appears more than once, the
@@ -77,7 +77,7 @@ const ScForm = class {
         }
     }
     render() {
-        return (h("div", { key: '52c555ee9145a3a04ef1cdbb13e396d29de82b4e', part: "base", class: "form", role: "form" }, h("form", { key: '0f5a46dc279e23b51c640167969b1f9fe028b3ba', part: "form", ref: el => (this.formElement = el), class: "test", onSubmit: async (e) => {
+        return (h("div", { key: '1fb893f44dc0f8234860e86ee28aa7e508b6bfb8', part: "base", class: "form", role: "form" }, h("form", { key: 'd87c2f63c9dd7e357503a7d5f31208e8330ac8e7', part: "form", ref: el => (this.formElement = el), class: "test", onSubmit: async (e) => {
                 e.preventDefault();
                 const isValid = await this.validate();
                 if (!isValid) {
@@ -85,7 +85,7 @@ const ScForm = class {
                 }
                 this.scSubmit.emit();
                 this.scFormSubmit.emit();
-            }, novalidate: this.novalidate }, h("slot", { key: 'a10eafa39e30bf23aacb73c34649eb2afda11453' }))));
+            }, novalidate: this.novalidate }, h("slot", { key: 'a83c35ed20fadfab9a8dd00b3e82f1a159f03670' }))));
     }
     get form() { return getElement(this); }
 };

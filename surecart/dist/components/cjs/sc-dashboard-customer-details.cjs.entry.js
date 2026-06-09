@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scDashboardCustomerDetailsCss = ":host{display:block;position:relative}.customer-details{display:grid;gap:0.75em}";
@@ -31,7 +32,7 @@ const ScDashboardCustomerDetails = class {
         }
         try {
             this.loading = true;
-            this.customer = (await await fetch.apiFetch({
+            this.customer = (await await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/customers/${this.customerId}`, {
                     expand: ['shipping_address', 'billing_address', 'tax_identifier'],
                 }),
@@ -51,7 +52,7 @@ const ScDashboardCustomerDetails = class {
         }
     }
     render() {
-        return (index.h("sc-customer-details", { key: '2b634a85254137e276c91bb03439247b219ca7fc', exportparts: "base, heading, heading-text, heading-title, heading-description, error__base, error__icon, error__text, error__title, error__message, test-tag__base, test-tag__content, button__base, button__label, button__prefix", customer: this.customer, loading: this.loading, error: this.error, heading: this.heading, "edit-link": addQueryArgs.addQueryArgs(window.location.href, {
+        return (index.h("sc-customer-details", { key: '6031246d62717e72b0f2ad69a2da34e865d7b56d', exportparts: "base, heading, heading-text, heading-title, heading-description, error__base, error__icon, error__text, error__title, error__message, test-tag__base, test-tag__content, button__base, button__label, button__prefix", customer: this.customer, loading: this.loading, error: this.error, heading: this.heading, "edit-link": addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'edit',
                 model: 'customer',
                 id: this.customerId,

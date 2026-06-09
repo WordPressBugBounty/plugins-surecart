@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scReviewStarsCss = ":host{display:flex;gap:var(--star-gap, 2px);--sc-review-stars-primary:var(--sc-color-gray-500)}sc-icon.full-star::part(svg){fill:var(--sc-review-stars-primary);stroke:var(--sc-review-stars-primary);color:var(--sc-review-stars-primary)}sc-icon.half-star::part(svg){stroke:var(--sc-review-stars-primary);color:var(--sc-review-stars-primary)}sc-icon.empty-star::part(svg){color:var(--sc-review-stars-primary)}";
 const ScReviewStarsStyle0 = scReviewStarsCss;

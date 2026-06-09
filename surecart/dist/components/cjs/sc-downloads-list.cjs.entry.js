@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scDownloadsListCss = ":host{display:block}.purchase{display:flex;flex-direction:column;gap:var(--sc-spacing-large)}.single-download .single-download__preview{display:flex;align-items:center;justify-content:center;background:var(--sc-color-gray-200);border-radius:var(--sc-border-radius-small);height:4rem;min-width:4rem;width:4rem}";
@@ -72,7 +73,7 @@ const ScDownloadsList = class {
     }
     /** Get all downloads */
     async getItems() {
-        const response = (await fetch.apiFetch({
+        const response = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/downloads/`, {
                 ...(this.variantId ? { variant_ids: [this.variantId] } : { product_ids: [this.productId] }),
                 customer_ids: [this.customerId],
@@ -107,7 +108,7 @@ const ScDownloadsList = class {
             return;
         try {
             this.downloading = mediaId;
-            const media = (await fetch.apiFetch({
+            const media = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/customers/${this.customerId}/expose/${mediaId}`, {
                     expose_for: 60,
                 }),
@@ -169,7 +170,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (index.h("sc-dashboard-module", { key: '87b6733dc4c5453de3549a84d1bf39257ddc7b76', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, index.h("span", { key: 'c8b052b08f70df7ea1a535c10b86f56306156337', slot: "heading" }, index.h("slot", { key: '378bbf6385e5aa2ad24eea5b5068eb5b645beba8', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), index.h("sc-pagination", { key: '28b9c3e2b12fec35aa705bbbcf4959bcf57dd1f2', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && index.h("sc-block-ui", { key: '5e4641087805b73bd099534869d1092a836733c8' })));
+        return (index.h("sc-dashboard-module", { key: '1291937023b8749efe982f975f12c776257891b2', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, index.h("span", { key: '9c884e151892c14e3963a769ca1bb6f63a53e50f', slot: "heading" }, index.h("slot", { key: 'd8293fa97db93b145c48bfa21d5ed0ab11cf8439', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), index.h("sc-pagination", { key: '21b81b39d8d8d5b151da6dd16ff06012b3cac4c5', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && index.h("sc-block-ui", { key: '31b6a692aa165049965ffd3af67b4dcdd9f740a6' })));
     }
     get el() { return index.getElement(this); }
 };

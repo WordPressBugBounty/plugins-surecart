@@ -1,6 +1,7 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 import { s as se } from './inline-c012a0f9.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import './fetch-9e15a95d.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 
@@ -67,7 +68,7 @@ const ScPaystackAddMethod = class {
         }
     }
     render() {
-        return (h(Host, { key: 'c650302d95fc01bbc13ad3d57a9ed6545f209d37' }, this.error && (h("sc-alert", { key: 'ffc9ca1d1c94e50f540773719f30611c7a1334de', open: !!this.error, type: "danger" }, h("span", { key: '7c7cbbc50f1f4d6c008fa37318d3381e3530e95d', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), h("div", { key: '6089d0e09b1d8052e8e67c6ffa17a53ae574b022', class: "sc-paystack-button-container" }, h("sc-alert", { key: 'db9e44c851b17829d366657e9b5db47b7283823b', open: true, type: "warning" }, wp.i18n.__('In order to add a new card, we will need to make a small transaction to authenticate it. This is for authentication purposes and will be immediately refunded.', 'surecart'), h("div", { key: 'af0fe1510d7365b1a010f368be1f2e9382ced2c5' }, h("sc-button", { key: '83aa2e0b7c04be32771b8cca87318f67068524ed', loading: this.loading, type: "primary", onClick: () => this.createPaymentIntent(), style: { marginTop: 'var(--sc-spacing-medium)' } }, wp.i18n.__('Add New Card', 'surecart')))))));
+        return (h(Host, { key: '2d5f8344acd7e2898c42e286426c01bf19d922a3' }, this.error && (h("sc-alert", { key: 'ac307a051fc0cf3d81d88ce75aa513aa2cff5b5a', open: !!this.error, type: "danger" }, h("span", { key: '343f8badbf022f1d5df069712982310249ce613b', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), h("div", { key: '55cd288ba48d394a6ceb3d08b2a421130f09f2c0', class: "sc-paystack-button-container" }, h("sc-alert", { key: '1f67a03a317e6404267c923807e6d98d98cb6ec1', open: true, type: "warning" }, wp.i18n.__('In order to add a new card, we will need to make a small transaction to authenticate it. This is for authentication purposes and will be immediately refunded.', 'surecart'), h("div", { key: '8cde8fd18d77f51407690e43b8f050ed8b118b3f' }, h("sc-button", { key: 'edbb8d89b81f5e98e5a7832dc7d46f79049ec213', loading: this.loading, type: "primary", onClick: () => this.createPaymentIntent(), style: { marginTop: 'var(--sc-spacing-medium)' } }, wp.i18n.__('Add New Card', 'surecart')))))));
     }
     static get watchers() { return {
         "paymentIntent": ["handlePaymentIntentCreate"]

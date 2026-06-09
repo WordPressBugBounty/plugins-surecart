@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scSubscriptionPaymentMethodCss = ":host{display:block}";
@@ -66,7 +67,7 @@ const ScSubscriptionPaymentMethod = class {
     }
     async fetchMethods(customerId) {
         var _a, _b;
-        this.paymentMethods = (await fetch.apiFetch({
+        this.paymentMethods = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/payment_methods`, {
                 expand: ['card', 'customer', 'billing_agreement', 'paypal_account', 'payment_instrument', 'bank_account'],
                 customer_ids: [customerId],
@@ -74,7 +75,7 @@ const ScSubscriptionPaymentMethod = class {
                 live_mode: (_a = this.subscription) === null || _a === void 0 ? void 0 : _a.live_mode,
             }),
         }));
-        this.manualPaymentMethods = (await fetch.apiFetch({
+        this.manualPaymentMethods = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/manual_payment_methods`, {
                 reusable: true,
                 archived: false,
@@ -88,7 +89,7 @@ const ScSubscriptionPaymentMethod = class {
             return;
         try {
             this.busy = true;
-            (await fetch.apiFetch({
+            (await index$1.apiFetch({
                 path: `surecart/v1/payment_methods/${method === null || method === void 0 ? void 0 : method.id}/detach`,
                 method: 'PATCH',
             }));
@@ -112,7 +113,7 @@ const ScSubscriptionPaymentMethod = class {
         try {
             const isManualPaymentMethod = (this.manualPaymentMethods || []).some(method => method.id === payment_method);
             this.busy = true;
-            this.subscription = (await fetch.apiFetch({
+            this.subscription = (await index$1.apiFetch({
                 path: `surecart/v1/subscriptions/${(_a = this.subscription) === null || _a === void 0 ? void 0 : _a.id}`,
                 method: 'PATCH',
                 data: {
@@ -162,12 +163,12 @@ const ScSubscriptionPaymentMethod = class {
     }
     render() {
         var _a;
-        return (index.h("sc-dashboard-module", { key: '2caa27abd539fdf5c7a64d040b55f60602a4a828', heading: this.heading || wp.i18n.__('Update Payment Method', 'surecart'), class: "subscription", error: this.error }, index.h("sc-button", { key: 'e8400aa935b1eac8bc1359e7d18af026dbe0ee23', slot: "end", type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
+        return (index.h("sc-dashboard-module", { key: 'a837901b4226b03585f6e8d618192e2c900d36b4', heading: this.heading || wp.i18n.__('Update Payment Method', 'surecart'), class: "subscription", error: this.error }, index.h("sc-button", { key: '2bf7d5b3fbbab1bd42a9f9481ffc8056d3c08c62', slot: "end", type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'create',
                 model: 'payment_method',
                 ...(((_a = this.subscription) === null || _a === void 0 ? void 0 : _a.live_mode) === false ? { live_mode: false } : {}),
                 success_url: window.location.href,
-            }) }, index.h("sc-icon", { key: '11a042d44ec8f03dee38ee214360e320f4037ab0', name: "plus", slot: "prefix" }), wp.i18n.__('Add New', 'surecart')), this.renderContent(), this.busy && index.h("sc-block-ui", { key: 'b426333717e70d7f13f77ed0512845862860985c', spinner: true })));
+            }) }, index.h("sc-icon", { key: 'e124b2314448a43e493653f96faf969dda4f4ccb', name: "plus", slot: "prefix" }), wp.i18n.__('Add New', 'surecart')), this.renderContent(), this.busy && index.h("sc-block-ui", { key: 'a1a309da6851f734f093b665e215f155538ef9b3', spinner: true })));
     }
     get el() { return index.getElement(this); }
 };

@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { a as autoUpdate, c as computePosition, o as offset, f as flip, s as shift, b as size } from './floating-ui.dom.esm-8dce4ea1.js';
 import { s as speak } from './index-c5a96d53.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
@@ -201,11 +201,11 @@ const ScDropdown = class {
         }
     }
     render() {
-        return (h("div", { key: '85a15f2cd81a3bad142436fe6d402eaf1d80d112', part: "base", class: {
+        return (h("div", { key: 'b3b545eb4bf2a17cc8a9beeb445b778e95671a21', part: "base", class: {
                 'dropdown': true,
                 'dropdown--open': this.open,
                 'dropdown--disabled': this.disabled,
-            } }, h("span", { key: '5085e9a019bd3b0fa3864efb00fc31f4a19345bb', part: "trigger", class: "dropdown__trigger", ref: el => (this.trigger = el), onClick: () => {
+            } }, h("span", { key: 'da0cb4bf3f358d458432ac6c59c83c6a53d2da0a', part: "trigger", class: "dropdown__trigger", ref: el => (this.trigger = el), onClick: () => {
                 if (this.disabled)
                     return;
                 if (this.open) {
@@ -216,13 +216,13 @@ const ScDropdown = class {
                         this.show();
                     }, 0);
                 }
-            }, "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "true" }, h("slot", { key: 'd6158009a7d192bfc14208c47784dee2e63173bb', name: "trigger" })), h("div", { key: 'a24b3cd34e32beb6e27aeb264cc5543ead3e7df4', class: "dropdown__positioner", ref: el => (this.positioner = el) }, h("div", { key: 'd9fdf02a07a4cc262553b7a0b8bdcd5c964b8211', part: "panel", class: {
+            }, "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "true" }, h("slot", { key: '5c9afdcecb075b387ac9a16b934e421b3cf65941', name: "trigger" })), h("div", { key: '58032538feaec7576639b9ea429d22acc255b335', class: "dropdown__positioner", ref: el => (this.positioner = el) }, h("div", { key: '0417ada3f9eef3cf600f0de05054e01cef54e80f', part: "panel", class: {
                 'dropdown__panel': true,
                 'position--top-left': this.position === 'top-left',
                 'position--top-right': this.position === 'top-right',
                 'position--bottom-left': this.position === 'bottom-left',
                 'position--bottom-right': this.position === 'bottom-right',
-            }, "aria-orientation": "vertical", tabindex: "-1", onClick: e => this.handleClick(e), ref: el => (this.panel = el) }, h("slot", { key: 'aac1ac20efd2c709220824853c927fc386597baa' })))));
+            }, "aria-orientation": "vertical", tabindex: "-1", onClick: e => this.handleClick(e), ref: el => (this.panel = el) }, h("slot", { key: 'c535f3de0503789db8c68050666ea2c108793376' })))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -318,7 +318,7 @@ const ScMenu = class {
         this.syncItems();
     }
     render() {
-        return (h("div", { key: '9848fa2c811150933636aaf39c25b88e846d8d0b', part: "base", class: "menu", tabindex: "0", onKeyDown: e => this.handleKeyDown(e) }, h("slot", { key: '9eb44de37ba5f52cd586d4f8826883888e649134', onSlotchange: () => this.handleSlotChange() })));
+        return (h("div", { key: '431fd2671fe15b832f05fd2fb01efd049c644db1', part: "base", class: "menu", tabindex: "0", onKeyDown: e => this.handleKeyDown(e) }, h("slot", { key: 'efe6c2a74001f392ba1c5804430148b42455c8a9', onSlotchange: () => this.handleSlotChange() })));
     }
     get el() { return getElement(this); }
 };
@@ -353,7 +353,7 @@ const ScMenuItem = class {
     }
     render() {
         const Tag = this.href ? 'a' : 'div';
-        return (h(Tag, { key: '476be3063563a821818a540136b9e3cb67ffee61', ref: el => (this.menuItem = el), part: "base", class: {
+        return (h(Tag, { key: '764f6b7269f77cb0d70e8c2fc9f04cfa27a35982', ref: el => (this.menuItem = el), part: "base", class: {
                 'menu-item': true,
                 'menu-item--checked': this.checked,
                 'menu-item--disabled': this.disabled,
@@ -363,7 +363,7 @@ const ScMenuItem = class {
                 if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') {
                     this.menuItem.click();
                 }
-            }, "aria-label": this.el.innerText, target: this.target }, h("span", { key: '9943e067f658705eccf111e258f244ab3182e2ff', part: "checked-icon", class: "menu-item__check" }, h("svg", { key: 'be2e29cabfd75aedcf2bb80995b8759039614402', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", class: "bi bi-check", viewBox: "0 0 16 16" }, h("path", { key: 'cdbd4f105e22a6cb9133f0eaddbd30faf4cd71cf', d: "M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" }))), h("span", { key: 'f27c8e86d2cf0ee585b4a19c53ec6a60a1304a70', part: "prefix", class: "menu-item__prefix" }, h("slot", { key: '13739f26c95dcdba120cb1fe34eb1f78569c2a08', name: "prefix" })), h("span", { key: '46f9fa6ad7d648048ac15ced0b7c0c723e64646c', part: "label", class: "menu-item__label" }, h("slot", { key: '4d7f11e4b84419109ef26a048fd9609881da8d1e' })), h("span", { key: '439fe2e53be2351d18f67e5ed82dcce4f545682a', part: "suffix", class: "menu-item__suffix" }, h("slot", { key: 'e6f27a0a8678bd04b4966b4cae7e2ce469bd3bcf', name: "suffix" }))));
+            }, "aria-label": this.el.innerText, target: this.target }, h("span", { key: 'ba475997285cc978f524b24685c5c3298a82be29', part: "checked-icon", class: "menu-item__check" }, h("svg", { key: 'e70f241c16166e55dc19de9dcafb0288d3acbff7', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", class: "bi bi-check", viewBox: "0 0 16 16" }, h("path", { key: 'f897c27dfc304fe1ba9738b4954f115d2f6d21ba', d: "M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" }))), h("span", { key: '4c8cd5ca2da73682b12976570d3b19a62ff1e5f7', part: "prefix", class: "menu-item__prefix" }, h("slot", { key: 'b49db28d44a8467150f93c2173274ee09adae5d9', name: "prefix" })), h("span", { key: '3570ab1bd63cfff347f4a30740afc37e20d34bbb', part: "label", class: "menu-item__label" }, h("slot", { key: '782fac0d436a18f53e2de9b2502cba57332cb846' })), h("span", { key: '7afe85a4f9858492814c306b3668ea7d8fb00569', part: "suffix", class: "menu-item__suffix" }, h("slot", { key: 'aa6f28b1ffc0c612eaf90e1dc1758a4f405273ec', name: "suffix" }))));
     }
     get el() { return getElement(this); }
 };

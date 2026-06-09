@@ -2,8 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
+const index$1 = require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 
@@ -32,7 +33,7 @@ const ScPasswordNag = class {
         this.loading = true;
         this.error = '';
         try {
-            await fetch.apiFetch({
+            await index$1.apiFetch({
                 path: `wp/v2/users/me`,
                 method: 'PATCH',
                 data: {
@@ -60,7 +61,7 @@ const ScPasswordNag = class {
         this.error = '';
         try {
             const { password } = await e.target.getFormJson();
-            await fetch.apiFetch({
+            await index$1.apiFetch({
                 path: `wp/v2/users/me`,
                 method: 'PATCH',
                 data: {

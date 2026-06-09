@@ -1,5 +1,5 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { o as openWormhole } from './consumer-e06b16d3.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
+import { o as openWormhole } from './consumer-f1775a76.js';
 
 const scOrderManualInstructionsCss = ":host{display:block}";
 const ScOrderManualInstructionsStyle0 = scOrderManualInstructionsCss;

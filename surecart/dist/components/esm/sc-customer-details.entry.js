@@ -1,4 +1,4 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
 import { c as countryChoices } from './address-b8e2e4c8.js';
 import { z as zones } from './tax-a03623ca.js';
 import './add-query-args-0e2a8393.js';
@@ -51,7 +51,7 @@ const ScCustomerDetails = class {
     }
     render() {
         var _a, _b, _c;
-        return (h("sc-dashboard-module", { key: 'b0973725f0d03b36814e80872cad60e3dd6e4f46', exportparts: "base, heading, heading-text, heading-title, heading-description", class: "customer-details", error: this.error }, h("span", { key: '1cda61c8ce586f5e507ab4a211c00159865d6006', slot: "heading" }, this.heading || wp.i18n.__('Billing Details', 'surecart'), ' ', !!((_a = this === null || this === void 0 ? void 0 : this.customer) === null || _a === void 0 ? void 0 : _a.id) && !((_b = this === null || this === void 0 ? void 0 : this.customer) === null || _b === void 0 ? void 0 : _b.live_mode) && (h("sc-tag", { key: 'f498ca0356308dafa51115252d182a4d4b459929', exportparts: "base:test-tag__base, content:test-tag__content", type: "warning", size: "small" }, wp.i18n.__('Test', 'surecart')))), !!this.editLink && !!((_c = this.customer) === null || _c === void 0 ? void 0 : _c.id) && (h("sc-button", { key: '8c3cee1ebc61e6c2eac1bdb87e559e30d5135095', exportparts: "base:button__base, label:button__label, prefix:button__prefix", type: "link", href: this.editLink, slot: "end" }, h("sc-icon", { key: 'ed17c532e9d4c4a16c7c404dc5cbd66ad6a318f8', name: "edit-3", slot: "prefix" }), wp.i18n.__('Update', 'surecart'))), this.renderContent()));
+        return (h("sc-dashboard-module", { key: '6c4ed0e50eb503bd3b651352373c4770098d2727', exportparts: "base, heading, heading-text, heading-title, heading-description", class: "customer-details", error: this.error }, h("span", { key: '06be86e2495d986e1c6bb9fecba37484a81ebe95', slot: "heading" }, this.heading || wp.i18n.__('Billing Details', 'surecart'), ' ', !!((_a = this === null || this === void 0 ? void 0 : this.customer) === null || _a === void 0 ? void 0 : _a.id) && !((_b = this === null || this === void 0 ? void 0 : this.customer) === null || _b === void 0 ? void 0 : _b.live_mode) && (h("sc-tag", { key: 'dc880ee57b15e49af7763b9fdcaf282e317dabe6', exportparts: "base:test-tag__base, content:test-tag__content", type: "warning", size: "small" }, wp.i18n.__('Test', 'surecart')))), !!this.editLink && !!((_c = this.customer) === null || _c === void 0 ? void 0 : _c.id) && (h("sc-button", { key: 'f68431352dc7ca451db7fa17f38a5836fd7cdf4a', exportparts: "base:button__base, label:button__label, prefix:button__prefix", type: "link", href: this.editLink, slot: "end" }, h("sc-icon", { key: '8a73384efa15666601c18bbd1d2e2eccd2365d3a', name: "edit-3", slot: "prefix" }), wp.i18n.__('Update', 'surecart'))), this.renderContent()));
     }
     get el() { return getElement(this); }
 };

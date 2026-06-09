@@ -2,16 +2,16 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const mutations = require('./mutations-c848334c.js');
-require('./index-bcdafe6e.js');
+const index = require('./index-be4abba1.js');
+const mutations = require('./mutations-6e603e86.js');
+require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-b57d9911.js');
+require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');
 
 const scCartButtonCss = ":host{display:inline-block;vertical-align:middle;line-height:1}::slotted(*){display:block !important;line-height:1}.cart__button{padding:0 4px;height:100%;display:grid;align-items:center}.cart__content{position:relative}.cart__count{box-sizing:border-box;position:absolute;inset:-12px -16px auto auto;text-align:center;font-size:10px;font-weight:bold;border-radius:var(--sc-cart-icon-counter-border-radius, 9999px);color:var(--sc-cart-icon-counter-color, var(--sc-color-primary-text, var(--sc-color-white)));background:var(--sc-cart-icon-counter-background, var(--sc-color-primary-500));box-shadow:var(--sc-cart-icon-box-shadow, var(--sc-shadow-x-large));padding:2px 6px;line-height:14px;min-width:14px;z-index:1}.cart__icon{font-size:var(--sc-cart-icon-size, 1.1em);cursor:pointer}.cart__icon sc-icon{display:block}";
@@ -54,12 +54,12 @@ const ScCartButton = class {
         this.link.style.display = !this.cartMenuAlwaysShown && !this.getItemsCount() ? 'none' : null;
     }
     render() {
-        return (index.h(index.Host, { key: '53e33ab9374f7a156bad2ae499013b73b694c512', tabindex: 0, role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Open Cart Menu Icon with %d items.', 'surecart'), this.getItemsCount()), onKeyDown: e => {
+        return (index.h(index.Host, { key: '0ae5d897b0d6176762449e820cc03e95599ec439', tabindex: 0, role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Open Cart Menu Icon with %d items.', 'surecart'), this.getItemsCount()), onKeyDown: e => {
                 if ('Enter' === (e === null || e === void 0 ? void 0 : e.code) || 'Space' === (e === null || e === void 0 ? void 0 : e.code)) {
                     mutations.store.state.cart = { ...mutations.store.state.cart, open: !mutations.store.state.cart.open };
                     e.preventDefault();
                 }
-            } }, index.h("div", { key: '266a43d550aa48d941eece28659c80f5b01f8790', class: "cart__button", part: "base" }, index.h("div", { key: '3ac90b3fb306c31bffce964b620d99ab1420d780', class: "cart__content" }, (this.showEmptyCount || !!this.getItemsCount()) && (index.h("span", { key: '6d18a4ec44abfd2ec7b9ef82b2b8624720739724', class: "cart__count", part: "count" }, this.getItemsCount())), index.h("div", { key: '21c3a7bc7f8459780e9471c12618241172e78d5a', class: "cart__icon" }, index.h("slot", { key: '2b79d0af8d8bd3054bce60f8e0819830ffdb2a19' }))))));
+            } }, index.h("div", { key: '3a4b45c2dea38cc478d295324424d3eaf8970b4a', class: "cart__button", part: "base" }, index.h("div", { key: 'e19be157cf47806b01523b2a685a60b4efc1c138', class: "cart__content" }, (this.showEmptyCount || !!this.getItemsCount()) && (index.h("span", { key: 'f40d1dd86329cb62bb7baaea6623ff9318526559', class: "cart__count", part: "count" }, this.getItemsCount())), index.h("div", { key: 'b1560f583a57cc3d897f4c7be58b014788f5e69d', class: "cart__icon" }, index.h("slot", { key: 'e84f34e379c71015477a1f290c56f59c60867a4a' }))))));
     }
     get el() { return index.getElement(this); }
 };

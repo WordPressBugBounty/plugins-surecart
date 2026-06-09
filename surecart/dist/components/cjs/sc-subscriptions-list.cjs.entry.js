@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scSubscriptionsListCss = ":host{display:block}.subscriptions-list{display:grid;gap:0.5em}.subscriptions-list__heading{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;margin-bottom:0.5em}.subscriptions-list__title{font-size:var(--sc-font-size-x-large);font-weight:var(--sc-font-weight-bold);line-height:var(--sc-line-height-dense)}.subscriptions-list a{text-decoration:none;font-weight:var(--sc-font-weight-semibold);display:inline-flex;align-items:center;gap:0.25em;color:var(--sc-color-primary-500)}.subscriptions__title{display:none}.subscriptions--has-title-slot .subscriptions__title{display:block}";
@@ -67,7 +68,7 @@ const ScSubscriptionsList = class {
         if (!this.isCustomer) {
             return;
         }
-        const response = (await await fetch.apiFetch({
+        const response = (await await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/subscriptions/`, {
                 expand: ['price', 'price.product', 'current_period', 'period.checkout', 'purchase', 'purchase.license', 'license.activations', 'discount', 'discount.coupon'],
                 ...this.query,
@@ -119,7 +120,7 @@ const ScSubscriptionsList = class {
     }
     render() {
         var _a, _b;
-        return (index.h("sc-dashboard-module", { key: '36c48c0ef1a9b5d21ce7ebdae1af67e02cb6184b', class: "subscriptions-list", error: this.error }, index.h("span", { key: '88bdd8c21611b6659c88ef6a25217716a265447f', slot: "heading" }, index.h("slot", { key: '289b30d05570eb0bd4bf69c9e4bb2ddb23f32657', name: "heading" }, this.heading || wp.i18n.__('Subscriptions', 'surecart'))), !!this.allLink && !!((_a = this.subscriptions) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: 'b37324c4add581f8179b9e31fa970cc68db31a47', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || 'Subscriptions') }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '8e1dfe0176782532890cc839bb98808398d7287a', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '298454fa3f541d63b9b22fef89864d54a48e08ce', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.subscriptions) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: 'bbb8e2973346ec5f2732983a040fd0f4b74e1bb7' })));
+        return (index.h("sc-dashboard-module", { key: '967ffb0b6fe482e178b220b06cbfe22640cbba28', class: "subscriptions-list", error: this.error }, index.h("span", { key: '2a4b9060dab4c36751b886c24e549718e515b31e', slot: "heading" }, index.h("slot", { key: '0127ee91510b2145c976c6613173016f490880c9', name: "heading" }, this.heading || wp.i18n.__('Subscriptions', 'surecart'))), !!this.allLink && !!((_a = this.subscriptions) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: '2f37882d96b5abb1e623ae133b6779cde7a0f283', type: "link", href: this.allLink, slot: "end", "aria-label": wp.i18n.sprintf(wp.i18n.__('View all %s', 'surecart'), this.heading || 'Subscriptions') }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '61412517d10a8a25ae71426d66d6d470b3bb1e74', "aria-hidden": "true", name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: 'b992f17d13be51fcdf9384d86e700de7015c16e2', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.subscriptions) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })), this.busy && index.h("sc-block-ui", { key: '3b06d5ecc2123389e3c8e9a1aeadd1d3fb3c3a4c' })));
     }
     get el() { return index.getElement(this); }
 };

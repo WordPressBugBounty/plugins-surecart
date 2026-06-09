@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const index$1 = require('./index-fb76df07.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
 
@@ -76,9 +76,9 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'fe915c0a414e8cff9c69d928f7933affbec817ce', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), index.h("div", { key: '7c8fbd4f39cec713d88cb73a700e2f39914ce779', ref: el => (this.body = el), class: {
+        return (index.h("div", { key: '560cea7c79d84213b8dfe319493ce2043f2b7d3d', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), index.h("div", { key: '061fc818be364a56e276911cc175d49cf6206d17', ref: el => (this.body = el), class: {
                 summary__content: true,
-            } }, index.h("slot", { key: 'e5fb746df9e26fdef30ea1606c192b8f5b85ade0' }))));
+            } }, index.h("slot", { key: '5e947ebbee01db0890130fc4e24d31a99f8f55c7' }))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

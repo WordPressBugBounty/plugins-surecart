@@ -2,9 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scSubscriptionPaymentCss = ":host{display:block;position:relative}.subscription-payment{display:grid;gap:0.5em}";
@@ -43,7 +44,7 @@ const ScSubscriptionPayment = class {
     async fetchSubscription() {
         if (!this.subscriptionId)
             return;
-        this.subscription = (await fetch.apiFetch({
+        this.subscription = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`/surecart/v1/subscriptions/${this.subscriptionId}`, {
                 expand: ['price', 'price.product', 'current_period', 'product'],
             }),
@@ -51,7 +52,7 @@ const ScSubscriptionPayment = class {
     }
     async fetchPaymentMethods() {
         var _a, _b;
-        this.paymentMethods = (await fetch.apiFetch({
+        this.paymentMethods = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`/surecart/v1/payment_methods`, {
                 expand: ['card', 'customer', 'billing_agreement', 'paypal_account', 'payment_instrument', 'bank_account'],
                 customer_ids: this.customerIds,
@@ -59,7 +60,7 @@ const ScSubscriptionPayment = class {
                 ...(((_a = this.subscription) === null || _a === void 0 ? void 0 : _a.live_mode) !== null ? { live_mode: this.subscription.live_mode } : {}),
             }),
         }));
-        this.manualPaymentMethods = (await fetch.apiFetch({
+        this.manualPaymentMethods = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/manual_payment_methods`, {
                 customer_ids: this.customerIds,
                 reusable: true,
@@ -81,7 +82,7 @@ const ScSubscriptionPayment = class {
         try {
             this.error = '';
             this.busy = true;
-            await fetch.apiFetch({
+            await index$1.apiFetch({
                 path: `/surecart/v1/subscriptions/${(_a = this.subscription) === null || _a === void 0 ? void 0 : _a.id}`,
                 method: 'PATCH',
                 data: {
@@ -129,7 +130,7 @@ const ScSubscriptionPayment = class {
         }))), index.h("sc-button", { type: "primary", full: true, submit: true, loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Update', 'surecart')), !!this.backUrl && (index.h("sc-button", { href: this.backUrl, full: true, loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Go Back', 'surecart')))));
     }
     render() {
-        return (index.h("sc-dashboard-module", { key: '59323c5cccfa543ce6639f9349f7ae92b660bf60', heading: wp.i18n.__('Select a payment method', 'surecart'), class: "subscription-payment", error: this.error }, index.h("sc-form", { key: '290aa526c15ef014799f499e10b4f7ee60d6b590', onScFormSubmit: e => this.handleSubmit(e) }, index.h("sc-card", { key: '2b494b1217f7ef00d2e3ef462db1015a33e55bc6' }, this.renderContent())), this.busy && index.h("sc-block-ui", { key: 'd708c065fcaf6a46ffbe2519febce4fb597942f5' })));
+        return (index.h("sc-dashboard-module", { key: 'f9125c99990e405ae46bf609f75ee77a1ce5005f', heading: wp.i18n.__('Select a payment method', 'surecart'), class: "subscription-payment", error: this.error }, index.h("sc-form", { key: 'd918a805e450915fe353871e5ba11ef1835a6aa0', onScFormSubmit: e => this.handleSubmit(e) }, index.h("sc-card", { key: '9529cf171c1b0c4edf9648f9046d3e1053fdf84a' }, this.renderContent())), this.busy && index.h("sc-block-ui", { key: 'd83fdd41dce3a04935da2b963db86d29f13cc9db' })));
     }
 };
 ScSubscriptionPayment.style = ScSubscriptionPaymentStyle0;

@@ -1,6 +1,7 @@
-import { r as registerInstance, c as createEvent, h, H as Host } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
-import { o as openWormhole } from './consumer-e06b16d3.js';
+import { r as registerInstance, c as createEvent, h, H as Host } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
+import { o as openWormhole } from './consumer-f1775a76.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 

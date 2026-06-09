@@ -2,15 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const mutations = require('./mutations-c848334c.js');
-const store = require('./store-b57d9911.js');
-const store$1 = require('./store-38753d4d.js');
-require('./watchers-785ff95c.js');
-const getters = require('./getters-ee413912.js');
-require('./watchers-b4c5fc51.js');
-const universe = require('./universe-0cf1168a.js');
-require('./index-bcdafe6e.js');
+const index = require('./index-be4abba1.js');
+const mutations = require('./mutations-6e603e86.js');
+const store = require('./store-01e8edc2.js');
+const store$1 = require('./store-257cd191.js');
+require('./watchers-87e15e03.js');
+const getters = require('./getters-051ccbf6.js');
+require('./watchers-517825ae.js');
+const universe = require('./universe-1db52218.js');
+require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
@@ -18,7 +18,7 @@ require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./price-da3cab3d.js');
-require('./util-b877b2bd.js');
+require('./util-a15c420c.js');
 
 const scCheckoutCss = "sc-checkout{--sc-form-focus-within-z-index:5;display:block;font-family:var(--sc-font-sans);font-size:var(--sc-checkout-font-size, 16px);position:relative}sc-checkout h3{font-size:var(--sc-input-label-font-size-medium)}sc-alert{margin-bottom:var(--sc-form-row-spacing)}.sc-checkout-container.sc-align-center{max-width:500px;margin-left:auto;margin-right:auto}.sc-checkout-container.sc-align-wide{max-width:800px;margin-left:auto;margin-right:auto}::slotted(*){font-family:var(--sc-font-sans)}";
 const ScCheckoutStyle0 = scCheckoutCss;
@@ -162,7 +162,7 @@ const ScCheckout = class {
                 'sc-align-center': this.alignment === 'center',
                 'sc-align-wide': this.alignment === 'wide',
                 'sc-align-full': this.alignment === 'full',
-            } }, index.h("sc-checkout-unsaved-changes-warning", { state: this.checkoutState }), mutations.state.validateStock && index.h("sc-checkout-stock-alert", null), index.h(universe.Universe.Provider, { state: this.state() }, index.h("sc-login-provider", { loggedIn: store$1.state.loggedIn, onScSetCustomer: e => (this.customer = e.detail), onScSetLoggedIn: e => (store$1.state.loggedIn = e.detail), order: mutations.state.checkout }, index.h("sc-form-state-provider", { onScSetCheckoutFormState: e => (this.checkoutState = e.detail) }, index.h("sc-form-error-provider", null, index.h("sc-form-components-validator", { disabled: this.disableComponentsValidation, taxProtocol: mutations.state.taxProtocol }, index.h("sc-order-confirm-provider", { "checkout-status": store.state.formState.value, "success-url": this.successUrl }, index.h("sc-session-provider", { ref: el => (this.sessionProvider = el), prices: this.prices, persist: this.persistSession }, index.h("slot", null))))))), this.state().busy && index.h("sc-block-ui", { class: "busy-block-ui", style: { 'z-index': '30' } }), ['finalizing', 'paying', 'confirming', 'confirmed', 'redirecting'].includes(store.state.formState.value) && (index.h("sc-block-ui", { spinner: true, style: { '--sc-block-ui-opacity': '0.75', 'z-index': '30' } }, store.state.text.loading[store.state.formState.value] || wp.i18n.__('Processing payment...', 'surecart'))), ['locked'].includes(store.state.formState.value) && (index.h("sc-block-ui", { style: { '--sc-block-ui-opacity': '1', 'z-index': '30', '--sc-block-ui-position': 'fixed', '--sc-block-ui-cursor': 'normal' } }, index.h("div", { style: { 'text-align': 'center', 'padding': '2rem', 'max-width': '600px' } }, wp.i18n.__('This invoice is not currently available for payment. If you have any questions, please contact us.', 'surecart')))), index.h("sc-checkout-test-complete", { "checkout-status": store.state.formState.value, "success-url": this.successUrl }))));
+            } }, index.h("sc-checkout-unsaved-changes-warning", { state: this.checkoutState }), mutations.state.validateStock && index.h("sc-checkout-stock-alert", null), index.h(universe.Universe.Provider, { state: this.state() }, index.h("sc-login-provider", { loggedIn: store$1.state.loggedIn, onScSetCustomer: e => (this.customer = e.detail), onScSetLoggedIn: e => (store$1.state.loggedIn = e.detail), order: mutations.state.checkout }, index.h("sc-form-state-provider", { onScSetCheckoutFormState: e => (this.checkoutState = e.detail) }, index.h("sc-form-error-provider", null, index.h("sc-form-components-validator", { disabled: this.disableComponentsValidation, taxProtocol: mutations.state.taxProtocol }, index.h("sc-order-confirm-provider", { "checkout-status": store.state.formState.value, "success-url": this.successUrl }, index.h("sc-session-provider", { ref: el => (this.sessionProvider = el), prices: this.prices, persist: this.persistSession }, index.h("sc-checkout-autofill-provider", null, index.h("slot", null)))))))), this.state().busy && index.h("sc-block-ui", { class: "busy-block-ui", style: { 'z-index': '30' } }), ['finalizing', 'paying', 'confirming', 'confirmed', 'redirecting'].includes(store.state.formState.value) && (index.h("sc-block-ui", { spinner: true, style: { '--sc-block-ui-opacity': '0.75', 'z-index': '30' } }, store.state.text.loading[store.state.formState.value] || wp.i18n.__('Processing payment...', 'surecart'))), ['locked'].includes(store.state.formState.value) && (index.h("sc-block-ui", { style: { '--sc-block-ui-opacity': '1', 'z-index': '30', '--sc-block-ui-position': 'fixed', '--sc-block-ui-cursor': 'normal' } }, index.h("div", { style: { 'text-align': 'center', 'padding': '2rem', 'max-width': '600px' } }, wp.i18n.__('This invoice is not currently available for payment. If you have any questions, please contact us.', 'surecart')))), index.h("sc-checkout-test-complete", { "checkout-status": store.state.formState.value, "success-url": this.successUrl }))));
     }
     get el() { return index.getElement(this); }
 };

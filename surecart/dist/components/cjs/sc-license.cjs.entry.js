@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const lazy = require('./lazy-2b509fa7.js');
-const fetch = require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scLicenseCss = ":host{display:block}.license__date{font-weight:var(--sc-font-weight-semibold)}.license__heading{display:flex;align-items:center;gap:1rem}.license__key{display:block}.close__button{position:absolute;top:0;right:0;font-size:22px;z-index:1}.license-cancel{display:grid;gap:0.5em}";
@@ -17,7 +18,7 @@ const ScLicense = class {
         this.deleteActivation = async () => {
             try {
                 this.busy = true;
-                await fetch.apiFetch({
+                await index$1.apiFetch({
                     path: `surecart/v1/activations/${this.selectedActivationId}`,
                     method: 'DELETE',
                 });
@@ -98,14 +99,14 @@ const ScLicense = class {
         }
     }
     async getLicense() {
-        this.license = (await fetch.apiFetch({
+        this.license = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/licenses/${this.licenseId}`, {
                 expand: ['purchase', 'purchase.product'],
             }),
         }));
     }
     async getActivations() {
-        const response = (await fetch.apiFetch({
+        const response = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs('surecart/v1/activations', {
                 license_ids: [this.licenseId],
                 ...this.query,
@@ -175,7 +176,7 @@ const ScLicense = class {
         return (index.h("sc-dialog", { open: this.showConfirmDelete, style: { '--body-spacing': 'var(--sc-spacing-x-large)' }, noHeader: true, onScRequestClose: this.onCloseDeleteModal }, index.h("sc-button", { class: "close__button", type: "text", circle: true, onClick: this.onCloseDeleteModal, disabled: this.loading }, index.h("sc-icon", { name: "x" })), index.h("sc-dashboard-module", { heading: wp.i18n.__('Delete Activation', 'surecart'), class: "license-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, index.h("span", { slot: "description" }, wp.i18n.__('Are you sure you want to delete activation?', 'surecart')), index.h("sc-flex", { justifyContent: "flex-start" }, index.h("sc-button", { type: "primary", disabled: this.loading || this.busy, onClick: this.deleteActivation }, wp.i18n.__('Delete Activation', 'surecart')), index.h("sc-button", { style: { color: 'var(--sc-color-gray-500' }, type: "text", onClick: this.onCloseDeleteModal, disabled: this.loading || this.busy }, wp.i18n.__('Cancel', 'surecart'))), this.busy && index.h("sc-block-ui", { style: { '--sc-block-ui-opacity': '0.75' }, spinner: true }))));
     }
     render() {
-        return (index.h("sc-spacing", { key: '9db59c7688fbfc304dc60928fa1f7d7574e39a02', style: { '--spacing': 'var(--sc-spacing-large)' } }, this.renderContent(), this.renderConfirmDelete()));
+        return (index.h("sc-spacing", { key: '0d851379a6fcd39945f1f76db280fe6fd5c2ee91', style: { '--spacing': 'var(--sc-spacing-large)' } }, this.renderContent(), this.renderConfirmDelete()));
     }
     get el() { return index.getElement(this); }
 };

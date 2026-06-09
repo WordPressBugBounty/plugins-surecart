@@ -1,4 +1,4 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
 
 const scCcLogoCss = ":host{display:inline-block}.cc-logo{border-radius:var(--sc-cc-border-radius, 4px);line-height:0;overflow:hidden}";
 const ScCcLogoStyle0 = scCcLogoCss;
@@ -15,7 +15,7 @@ const ScCcLogo = class {
         return h("sc-icon", { name: "creditcard", style: { '--height': '0.63em' } });
     }
     render() {
-        return (h("div", { key: '9a5d17e084dca7db98b32a81177770ba5f2aa44a', class: "cc-logo", part: "base" }, this.renderLogo()));
+        return (h("div", { key: '31d1ea2ef82a336ff150f44019fc9ab10974ef4e', class: "cc-logo", part: "base" }, this.renderLogo()));
     }
 };
 ScCcLogo.style = ScCcLogoStyle0;

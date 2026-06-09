@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-745b6bec.js';
+import { r as registerInstance, h } from './index-25e5af33.js';
 
 const scBadgeNoticeCss = ":host{display:block}.notice{background:var(--sc-badge-notice-background-color, var(--sc-color-white));color:var(--sc-badge-notice-text-color, var(--sc-color-gray-950));border:solid 1px var(--sc-badge-notice-border-color, var(--sc-color-white));border-radius:var(--sc-border-radius-small);padding:var(--sc-spacing-small);font-size:var(--sc-font-size-x-small);display:flex;gap:0.5em;line-height:1}.notice--warning{background:var(--sc-color-warning-50);color:var(--sc-color-warning-700)}";
 const ScBadgeNoticeStyle0 = scBadgeNoticeCss;
@@ -11,7 +11,7 @@ const ScBadgeNotice = class {
         this.size = 'small';
     }
     render() {
-        return (h("div", { key: '7859f6172596a5244def9099de7e033244caf6d4', class: {
+        return (h("div", { key: '4271e01307e911e6806690a922f5bc08832cc41a', class: {
                 'notice': true,
                 'notice--is-small': this.size === 'small',
                 'notice--is-medium': this.size === 'medium',
@@ -21,7 +21,7 @@ const ScBadgeNotice = class {
                 'notice--warning': this.type === 'warning',
                 'notice--danger': this.type === 'danger',
                 'notice--default': this.type === 'default',
-            } }, h("sc-tag", { key: '5daa87dff7517ed6abb7c5d8d35997bba1b8d114', size: this.size, type: this.type }, this.label), h("slot", { key: 'c84acc5ec51afb35103ac69ed884251d1d16b241' })));
+            } }, h("sc-tag", { key: '8074112c5e3f12335e616387c81ef988590e0eed', size: this.size, type: this.type }, this.label), h("slot", { key: 'b4b01f3516e0e149e82eb77fb47b1c584aac179c' })));
     }
 };
 ScBadgeNotice.style = ScBadgeNoticeStyle0;

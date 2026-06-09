@@ -1,14 +1,14 @@
-import { r as registerInstance, c as createEvent, h, a as getElement, H as Host, F as Fragment } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h, a as getElement, H as Host, F as Fragment } from './index-25e5af33.js';
 import { g as getCountryDetails, c as countryChoices, a as getCountryRegions } from './address-b8e2e4c8.js';
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
 import { g as getCurrentUserCountryCode, a as getAddressLabels, t as transformPlaceDetails, b as getStreetAddress } from './google-maps-e8b00ffd.js';
-import { c as createErrorNotice } from './mutations-ed6d0770.js';
+import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { a as applyFilters } from './index-871d88b8.js';
 import { s as speak } from './index-c5a96d53.js';
 import { z as zones } from './tax-a03623ca.js';
 import './add-query-args-0e2a8393.js';
-import './index-06061d4e.js';
+import './index-18f5a1bc.js';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -256,10 +256,10 @@ const ScAddress = class {
         const bottomFields = allFields.filter(f => this.collapsibleFieldNames.includes(f.name));
         // Compute rounded props based on visible field count.
         const totalForRounding = isExpanded ? allFields.length : topFields.length;
-        return (h("div", { key: 'c50e39fc3ff1d188edda8d0ee8cd0feaa9f32fc0', class: "sc-address", part: "base" }, h("sc-form-control", { key: '3feb2671e2e236673b6c49d2e5cbbf7a46277294', label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, topFields.map((field, index) => {
+        return (h("div", { key: '17feedd1eaaecdc6e578a47eb9c800e1ef5802df', class: "sc-address", part: "base" }, h("sc-form-control", { key: '7f82dd63794c37a6283a74b58798143a546dfb06', label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, topFields.map((field, index) => {
             const roundedProps = this.getRoundedProps(index, totalForRounding);
             return this.renderField(field, roundedProps, this.required);
-        }), h("div", { key: '2ac0c247a7ced41bfb18815570e4072757edc352', class: {
+        }), h("div", { key: '0897ee72c5f97309329c937006e465a0d3972a79', class: {
                 'sc-address__collapsible': true,
                 'sc-address__collapsible--expanded': isExpanded,
             }, "aria-hidden": !isExpanded ? 'true' : 'false' }, bottomFields.map((field, index) => {
@@ -268,7 +268,7 @@ const ScAddress = class {
             // Don't require fields when collapsed — prevents hidden required validation errors.
             const isRequired = this.required && isExpanded;
             return this.renderField(field, roundedProps, isRequired);
-        }))), this.loading && h("sc-block-ui", { key: '38886fdc3dce81542ebecda95d10a8492dd92f34', exportparts: "base:block-ui, content:block-ui__content" })));
+        }))), this.loading && h("sc-block-ui", { key: 'd9374bb372c79bf14adad4da65f71cf7fb97f017', exportparts: "base:block-ui, content:block-ui__content" })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -17837,7 +17837,7 @@ const ScAddressSuggestions = class {
     render() {
         var _a;
         const suggestionsVisible = this.isSuggestionsVisible();
-        return (h("div", { key: 'bd54eacaf2863e723b98311258fee018b5b8437b', part: "base" }, this.isGoogleMapsActive() && h("span", { key: '7ca7dda4f0b84c163c8594a80aad733fd670ee77', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), h("sc-input", { key: 'dd8b7477a70237b20ce168e6a86bebb717dced6f', exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), h("div", { key: 'a45ae47b89585721c4ebfad8926b9804aaffbda9', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), h("div", { key: '3333e28a1d13d7a616f6b196d50032db7e2c4b78', class: {
+        return (h("div", { key: '51373d867eb805855e95c97980187e9856faadb1', part: "base" }, this.isGoogleMapsActive() && h("span", { key: 'c50f3e49a1e759582cd7febe40b930bb88cb2705', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), h("sc-input", { key: '6ca068c4efa0d4133ffe1f1ed61907e4514b1954', exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), h("div", { key: 'bd15a6d7982bb6b0c0946ebd58089f8e096a98dd', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), h("div", { key: '2c0bc837d1c135a5d94182a2748b993bcce40cd9', class: {
                 'sc-address__suggestions': true,
                 'sc-address__suggestions--visible': suggestionsVisible,
             }, part: "suggestions", "aria-hidden": !suggestionsVisible ? 'true' : 'false' }, this.renderAddressSuggestions())));
@@ -17930,7 +17930,7 @@ const ScCheckbox = class {
     }
     render() {
         const Tag = this.edit ? 'div' : 'label';
-        return (h(Tag, { key: '3fd749e0dd317f2fdb75619ca560914b314c3e69', part: "base", class: {
+        return (h(Tag, { key: '91f52adc16eb2a29deb822f9cb33981e31580135', part: "base", class: {
                 'checkbox': true,
                 'checkbox--is-required': this.required,
                 'checkbox--checked': this.checked,
@@ -17938,7 +17938,7 @@ const ScCheckbox = class {
                 'checkbox--focused': this.hasFocus,
                 'checkbox--indeterminate': this.indeterminate,
                 'checkbox--is-rtl': isRtl()
-            }, htmlFor: this.inputId, onMouseDown: () => this.handleLabelMouseDown() }, h("span", { key: '90bb7c1ac5bf13366b3228e1420f690778e891f5', part: "control", class: "checkbox__control" }, this.checked ? (h("span", { part: "checked-icon", class: "checkbox__icon" }, h("svg", { viewBox: "0 0 16 16" }, h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, h("g", { stroke: "currentColor", "stroke-width": "2" }, h("g", { transform: "translate(3.428571, 3.428571)" }, h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" }))))))) : (''), !this.checked && this.indeterminate ? (h("span", { part: "indeterminate-icon", class: "checkbox__icon" }, h("svg", { viewBox: "0 0 16 16" }, h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, h("g", { stroke: "currentColor", "stroke-width": "2" }, h("g", { transform: "translate(2.285714, 6.857143)" }, h("path", { d: "M10.2857143,1.14285714 L1.14285714,1.14285714" }))))))) : (''), h("input", { key: '3cd246bd970f09c7eb3c289223fe844d8a7bbd85', id: this.inputId, ref: el => (this.input = el), type: "checkbox", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, required: this.required, role: "checkbox", "aria-checked": this.checked ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: () => this.handleClick(), onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() })), h("span", { key: '529ad38ed6f327cb6cdb5c64afd989aedb54b648', part: "label", id: this.labelId, class: "checkbox__label" }, h("slot", { key: 'b5cfe55e10f6baab43b2ffce36af83a0b06d5bb1' }))));
+            }, htmlFor: this.inputId, onMouseDown: () => this.handleLabelMouseDown() }, h("span", { key: '67c706fd4c410f32723a7461b0bc1acc329b6418', part: "control", class: "checkbox__control" }, this.checked ? (h("span", { part: "checked-icon", class: "checkbox__icon" }, h("svg", { viewBox: "0 0 16 16" }, h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, h("g", { stroke: "currentColor", "stroke-width": "2" }, h("g", { transform: "translate(3.428571, 3.428571)" }, h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" }))))))) : (''), !this.checked && this.indeterminate ? (h("span", { part: "indeterminate-icon", class: "checkbox__icon" }, h("svg", { viewBox: "0 0 16 16" }, h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, h("g", { stroke: "currentColor", "stroke-width": "2" }, h("g", { transform: "translate(2.285714, 6.857143)" }, h("path", { d: "M10.2857143,1.14285714 L1.14285714,1.14285714" }))))))) : (''), h("input", { key: '3b7b2dae432dbb0263323d5e02846a5b18061a24', id: this.inputId, ref: el => (this.input = el), type: "checkbox", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, required: this.required, role: "checkbox", "aria-checked": this.checked ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: () => this.handleClick(), onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() })), h("span", { key: '0fc06a7170c4f4a37600d60ed29cade6d316c97a', part: "label", id: this.labelId, class: "checkbox__label" }, h("slot", { key: '784374b9997919f8d1f204c8740a1659e436cdbb' }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -18060,7 +18060,7 @@ const ScPhoneInput = class {
     }
     render() {
         var _a;
-        return (h(Host, { key: 'a618f0c99f060ba31a8aacab44804ad56b275057', hidden: this.hidden }, h("sc-form-control", { key: '88d2922dea839f89101e2671ad8a8da1bca7ac36', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name, "aria-label": this.label }, h("slot", { key: 'e9293f18e87eb978581cb89877f3c9d4a10fd53b', name: "label-end", slot: "label-end" }), h("div", { key: '175f52bcca4538f3f0f554dac1376628b57ff3a5', part: "base", class: {
+        return (h(Host, { key: '575bab47a7395c42a5b13dfcd7b51d1959f10362', hidden: this.hidden }, h("sc-form-control", { key: 'cbb1abe87c520df93e581dc610abbe9d87c16d1c', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name, "aria-label": this.label }, h("slot", { key: 'f4ec8639e38f6fada53617f5ab86c25c999bf541', name: "label-end", slot: "label-end" }), h("div", { key: '04c1acfe0ddc763bff7fa84cfb061b63af1e34e2', part: "base", class: {
                 'input': true,
                 // Sizes
                 'input--small': this.size === 'small',
@@ -18075,9 +18075,9 @@ const ScPhoneInput = class {
                 'input--squared-top': this.squaredTop,
                 'input--squared-left': this.squaredLeft,
                 'input--squared-right': this.squaredRight,
-            } }, h("span", { key: '00a0b850b7bdc3bb13f6ec32fa1513bcbafc5b33', part: "prefix", class: "input__prefix" }, h("slot", { key: '0f75c7e29f62917bcebc6e19e53b3e338e429459', name: "prefix" })), h("slot", { key: '8b68a4a453558bde5b58b79dd6309d1eb2397666' }, h("input", { key: 'fb972307d81dbdc904531af7bb7371ff22e2a852', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: "tel", name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
+            } }, h("span", { key: 'f0ec601739a818b44c905cc9ab3bf6406a336e24', part: "prefix", class: "input__prefix" }, h("slot", { key: '7c29784c481d424c49f51fe92f2ce0e415025ca3', name: "prefix" })), h("slot", { key: '2feca25a2fb6c59ca163a1db0e5ef8cb47369d28' }, h("input", { key: '9fccc9fa0e4a428576f774bc0717527f0c786080', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: "tel", name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
             // TODO: Test These below
-            autocomplete: 'tel', autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: applyFilters('surecart/sc-phone-input/pattern', this.pattern), inputmode: 'numeric', "aria-label": this.label, "aria-labelledby": this.label, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() })), h("span", { key: '4e9d1456896ac18ab36a06958c5cb0730a0d76c0', part: "suffix", class: "input__suffix" }, h("slot", { key: '3b326f408b9eb496c5664f81b98e89d264af914e', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (h("button", { key: 'b18a3beaff2eee4c6cdb775217294f9ed7ea5e50', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, h("slot", { key: 'f229ed62379f0cf2ef497b3e5f1b5e3f2f6d15cc', name: "clear-icon" }, h("svg", { key: 'e3ae229961748f770b49783d00b713bfc8406360', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, h("line", { key: 'daa51e25f434e1bfe12bbdac7bc61cccf4bc6c3c', x1: "18", y1: "6", x2: "6", y2: "18" }), h("line", { key: 'c3e2d0b4d06762344edd9e573b003a83a402b13a', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
+            autocomplete: 'tel', autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: applyFilters('surecart/sc-phone-input/pattern', this.pattern), inputmode: 'numeric', "aria-label": this.label, "aria-labelledby": this.label, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() })), h("span", { key: 'a42d7a6081b27b1dd84a60589bd076c9cd04884d', part: "suffix", class: "input__suffix" }, h("slot", { key: '42d6fdbef3825c9f2c1219aa5a8d4ac95c357a35', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (h("button", { key: 'f690b1affd06d483e472e1a612f443c3a5c476bf', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, h("slot", { key: 'afbbf98a372e2bf4dbaf03e527cac6f59d2a9f97', name: "clear-icon" }, h("svg", { key: '600a51c41c0badefedb6716236d63e872dfe3c99', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, h("line", { key: '261601725be31bb947796023caf24f7779d63923', x1: "18", y1: "6", x2: "6", y2: "18" }), h("line", { key: 'de411911a88ebb871866b775fc6a768901dca5f6', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -18159,7 +18159,7 @@ const ScTaxIdInput = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (h(Fragment, { key: '9f331fb676f0f9167bc623cc1915837b7e452693' }, h("sc-input", { key: 'dde3d59aedabba72f5489ab3c897116825e93d3b', name: "tax_identifier.number_type", required: this.required, value: this.type, style: { display: 'none' } }), h("sc-input", { key: '960d1d83c7d5dcc59f4edee06321dd40283c5a65', ref: el => (this.input = el), label: this.getZoneLabel(), "aria-label": wp.i18n.__('Tax ID', 'surecart'), placeholder: wp.i18n.__('Enter Tax ID', 'surecart'), name: "tax_identifier.number", value: this.number, onScInput: (e) => {
+        return (h(Fragment, { key: '62a8400fb1285945a9195a4655ff7fa8408bd4d3' }, h("sc-input", { key: '618ef0f347f148164d4717efc765c21881cdf61a', name: "tax_identifier.number_type", required: this.required, value: this.type, style: { display: 'none' } }), h("sc-input", { key: '6183b70f633f890bd867a0713d77fc739acff1b8', ref: el => (this.input = el), label: this.getZoneLabel(), "aria-label": wp.i18n.__('Tax ID', 'surecart'), placeholder: wp.i18n.__('Enter Tax ID', 'surecart'), name: "tax_identifier.number", value: this.number, onScInput: (e) => {
                 e.stopImmediatePropagation();
                 this.scInput.emit({
                     number: e.target.value,

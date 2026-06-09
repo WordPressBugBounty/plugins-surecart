@@ -1,12 +1,12 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { s as state, b as setProduct } from './watchers-bb82ca0e.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
+import { s as state, b as setProduct } from './watchers-08aa2fd2.js';
 import { g as getMaxStockQuantity } from './quantity-5c986f3d.js';
-import './index-06061d4e.js';
+import './index-18f5a1bc.js';
 import './google-dd89f242.js';
 import './currency-a0c9bff4.js';
 import './google-a86aa761.js';
 import './utils-f84b2118.js';
-import './util-50af2a83.js';
+import './util-dfbf863e.js';
 import './index-c5a96d53.js';
 
 const scProductQuantityCss = ":host{display:block}";
@@ -31,7 +31,7 @@ const ScProductQuantity = class {
     render() {
         var _a, _b, _c, _d, _e, _f, _g;
         const maxStockQuantity = getMaxStockQuantity((_a = state[this.productId]) === null || _a === void 0 ? void 0 : _a.product, (_b = state[this.productId]) === null || _b === void 0 ? void 0 : _b.selectedVariant);
-        return (h(Host, { key: 'd7b8eaa6f51daae0171e41153ad652b56761756a' }, h("sc-form-control", { key: '2a36b259b7c8c97dc53f92a1d78fda3fd90a6a3f', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("sc-quantity-select", { key: '46b47dabcfc1bfe15adfe10516c386f816e16a22', size: this.size, quantity: Math.max(((_d = (_c = state[this.productId]) === null || _c === void 0 ? void 0 : _c.selectedPrice) === null || _d === void 0 ? void 0 : _d.ad_hoc) ? 1 : (_e = state[this.productId]) === null || _e === void 0 ? void 0 : _e.quantity, 1), disabled: (_g = (_f = state[this.productId]) === null || _f === void 0 ? void 0 : _f.selectedPrice) === null || _g === void 0 ? void 0 : _g.ad_hoc, onScInput: e => setProduct(this.productId, { quantity: e.detail }), ...(!!maxStockQuantity ? { max: maxStockQuantity } : {}) }))));
+        return (h(Host, { key: 'afa4524c5e4e2cc4583d6de12e35c29252607f55' }, h("sc-form-control", { key: '55432e328d5c7273f8d208112f8695fdf2192a20', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, h("sc-quantity-select", { key: 'adb7155bd9b55ba9d67ef57181a93e7a562cddd2', size: this.size, quantity: Math.max(((_d = (_c = state[this.productId]) === null || _c === void 0 ? void 0 : _c.selectedPrice) === null || _d === void 0 ? void 0 : _d.ad_hoc) ? 1 : (_e = state[this.productId]) === null || _e === void 0 ? void 0 : _e.quantity, 1), disabled: (_g = (_f = state[this.productId]) === null || _f === void 0 ? void 0 : _f.selectedPrice) === null || _g === void 0 ? void 0 : _g.ad_hoc, onScInput: e => setProduct(this.productId, { quantity: e.detail }), ...(!!maxStockQuantity ? { max: maxStockQuantity } : {}) }))));
     }
 };
 ScProductQuantity.style = ScProductQuantityStyle0;

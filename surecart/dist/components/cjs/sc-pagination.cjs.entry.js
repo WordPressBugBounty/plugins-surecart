@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scPaginationCss = ":host{display:block}.pagination-display{opacity:0.8}";
 const ScPaginationStyle0 = scPaginationCss;

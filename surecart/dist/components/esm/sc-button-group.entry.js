@@ -1,4 +1,4 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
 
 const scButtonGroupCss = ":host{display:inline-block;--gap:var(--sc-spacing-small)}.button-group{display:flex;flex-wrap:wrap}.button-group--separate{gap:var(--gap)}";
 const ScButtonGroupStyle0 = scButtonGroupCss;
@@ -45,10 +45,10 @@ const ScButtonGroup = class {
         });
     }
     render() {
-        return (h("sc-form-control", { key: '92417f50ee6590ac0827f9202634ca82145f2918', part: "base", class: {
+        return (h("sc-form-control", { key: '267fc3825115b41666e15f9f2ea5500ba121f08f', part: "base", class: {
                 'button-group': true,
                 'button-group--separate': this.separate,
-            }, role: "group", "aria-label": this.label, onFocusout: e => this.handleBlur(e), onFocusin: e => this.handleFocus(e), onMouseOver: e => this.handleMouseOver(e), onMouseOut: e => this.handleMouseOut(e), label: this.label }, h("slot", { key: '73e89d0eab17bc101e501eab499e0f8f7acae885', onSlotchange: () => this.handleSlotChange() })));
+            }, role: "group", "aria-label": this.label, onFocusout: e => this.handleBlur(e), onFocusin: e => this.handleFocus(e), onMouseOver: e => this.handleMouseOver(e), onMouseOut: e => this.handleMouseOut(e), label: this.label }, h("slot", { key: '02af1ec6d87ffb90fe4b4dcb3e808fb52a2b0073', onSlotchange: () => this.handleSlotChange() })));
     }
     get el() { return getElement(this); }
 };

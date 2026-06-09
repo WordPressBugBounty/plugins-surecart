@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scDashboardDownloadsListCss = ":host{display:block}.download__details{opacity:0.75}";
@@ -70,7 +71,7 @@ const ScDownloadsList = class {
     }
     /** Get all subscriptions */
     async getItems() {
-        const response = (await await fetch.apiFetch({
+        const response = (await await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/purchases/`, {
                 expand: ['product', 'product.downloads', 'download.media', 'variant', 'variant.downloads'],
                 downloadable: true,
@@ -96,7 +97,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (index.h("sc-purchase-downloads-list", { key: '38b92024b9b088dd9132cf6ed6206f633da1d706', heading: this.heading, allLink: this.allLink && this.pagination.total_pages > 1 ? this.allLink : '', loading: this.loading, busy: this.busy, requestNonce: this.requestNonce, error: this.error, purchases: this.purchases }, index.h("span", { key: '580e34156bae635384bbbf3d854a4f0ad4b1a2fe', slot: "heading" }, index.h("slot", { key: '18bc6bd46567be015ff8135110f1eb64c75ad16c', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), index.h("sc-pagination", { key: '98313ebb8d3b167bb0eacce4833661ea337a39b6', slot: "after", page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.purchases) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })));
+        return (index.h("sc-purchase-downloads-list", { key: '0dadadb9a7a46a14b4023e73d0b948488f368109', heading: this.heading, allLink: this.allLink && this.pagination.total_pages > 1 ? this.allLink : '', loading: this.loading, busy: this.busy, requestNonce: this.requestNonce, error: this.error, purchases: this.purchases }, index.h("span", { key: '430a10214dbcfa50b9b24da625099f6b972bb076', slot: "heading" }, index.h("slot", { key: '31fbe8804df2e1be5de9c94238cf34d733aebd80', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), index.h("sc-pagination", { key: '9e09d0496dd94ae78d72af9e8f7f3de401960fe9', slot: "after", page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.purchases) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })));
     }
     get el() { return index.getElement(this); }
 };

@@ -1,4 +1,4 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
 
 const scTogglesCss = ":host{display:block;--toggle-spacing:0}::slotted(*){margin-bottom:var(--toggle-spacing)}::slotted(:not(:first-child):not([style*=\"display: none\"])){border-top:1px solid var(--sc-input-border-color)}";
 const ScTogglesStyle0 = scTogglesCss;
@@ -36,7 +36,7 @@ const ScToggles = class {
     }
     render() {
         const Tag = 'container' === this.theme ? 'sc-card' : 'div';
-        return (h(Tag, { key: 'a51c781749df6d5df7908dc1c150c5a4347991e9', class: { toggles: true, [`toggles--theme-${this.theme}`]: true }, part: "base", "no-padding": true }, h("slot", { key: '43d0671d65af677043979f2d6af0727860cfe22a' })));
+        return (h(Tag, { key: '6a8731e944ad8c0c7e9199fe0002aa7250a80f7e', class: { toggles: true, [`toggles--theme-${this.theme}`]: true }, part: "base", "no-padding": true }, h("slot", { key: '090f545f4d948f018da6dfe74b42abb0b12e5113' })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

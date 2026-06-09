@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent } from './index-25e5af33.js';
 
 const ScConsumer = class {
     constructor(hostRef) {

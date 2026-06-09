@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
 import { s as setDefaultAnimation, a as stopAnimations, g as getAnimation, b as animateTo, c as shimKeyframesHeightAuto } from './animation-registry-de37bd7e.js';
 
@@ -72,9 +72,9 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (h("div", { key: 'fe915c0a414e8cff9c69d928f7933affbec817ce', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), h("div", { key: '7c8fbd4f39cec713d88cb73a700e2f39914ce779', ref: el => (this.body = el), class: {
+        return (h("div", { key: '560cea7c79d84213b8dfe319493ce2043f2b7d3d', class: { 'summary': true, 'summary--open': !this.collapsed } }, this.collapsible && this.renderHeader(), h("div", { key: '061fc818be364a56e276911cc175d49cf6206d17', ref: el => (this.body = el), class: {
                 summary__content: true,
-            } }, h("slot", { key: 'e5fb746df9e26fdef30ea1606c192b8f5b85ade0' }))));
+            } }, h("slot", { key: '5e947ebbee01db0890130fc4e24d31a99f8f55c7' }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

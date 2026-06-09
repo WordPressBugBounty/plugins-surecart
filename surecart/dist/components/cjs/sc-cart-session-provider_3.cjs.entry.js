@@ -2,23 +2,24 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const mutations$1 = require('./mutations-c848334c.js');
-const index$1 = require('./index-325f2916.js');
-const mutations$2 = require('./mutations-11c8f9a8.js');
-const mutations = require('./mutations-8d8c9d41.js');
+const index = require('./index-be4abba1.js');
+const mutations$1 = require('./mutations-6e603e86.js');
+const index$1 = require('./index-bb9b8917.js');
+const mutations$2 = require('./mutations-d5d6ddf1.js');
+const mutations = require('./mutations-85ee76d2.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
-const getters = require('./getters-36e9dc10.js');
-require('./index-bcdafe6e.js');
+const getters = require('./getters-68a0d178.js');
+require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-b57d9911.js');
+require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');
-require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
+require('./index-7ced8198.js');
 
 const ScCartSessionProvider = class {
     constructor(hostRef) {
@@ -90,7 +91,7 @@ const ScCartSessionProvider = class {
         }
     }
     render() {
-        return (index.h("sc-line-items-provider", { key: '487aeb5da88dc93549ebe56f29b29196c45d73f4', order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '4c30b8b64591822f4aa0938ee3876e840d234a08' })));
+        return (index.h("sc-line-items-provider", { key: '0fb44376b6b31203f0a66b4837959864a11a3a92', order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '8f70d3215e9f9ac52002d9c06e434c53d6203d28' })));
     }
     get el() { return index.getElement(this); }
 };
@@ -225,7 +226,7 @@ const ScDrawer = class {
         }
     }
     render() {
-        return (index.h("div", { key: '50bbb5b40ec4e8b2fdb6cb44f0e7f4524f50e5e3', part: "base", class: {
+        return (index.h("div", { key: '06c11bd341502b2ecd810f0b4a57002d7fca9167', part: "base", class: {
                 'drawer': true,
                 'drawer--open': this.open,
                 'drawer--top': this.placement === 'top',
@@ -235,9 +236,9 @@ const ScDrawer = class {
                 'drawer--contained': this.contained,
                 'drawer--fixed': !this.contained,
                 'drawer--has-footer': this.el.querySelector('[slot="footer"]') !== null,
-            }, ref: el => (this.drawer = el), onKeyDown: (e) => this.handleKeyDown(e) }, index.h("div", { key: '3589987e0a49785d60cd9d542dc256dcf2005aeb', part: "overlay", class: "drawer__overlay", onClick: () => this.requestClose('overlay'), tabindex: "-1", ref: el => (this.overlay = el) }), index.h("div", { key: '698065cacf8c93ade8f66ba88a10e2f0155ba289', part: "panel", class: "drawer__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader ? this.label : undefined, "aria-labelledby": !this.noHeader ? 'title' : undefined, tabindex: "0", ref: el => (this.panel = el) }, !this.noHeader && (index.h("header", { key: 'd5ee9be6a6b43f75171143be04c4d5efa13b5b98', part: "header", class: this.stickyHeader ? 'header__sticky' : '' }, index.h("slot", { key: '2701a6eebd68e1a170a935d7d139cb58735d1c07', name: "header" }, index.h("div", { key: '9cd11c1e9739ee5e8a45e2e656d0c6c853d5139c', class: "drawer__header" }, index.h("h2", { key: '0c0c2b9dae73c6498b8e2625d460c1231abb4079', part: "title", class: "drawer__title", id: "title" }, index.h("slot", { key: '67ea20e8d5f8e33d3ed3d5615ec321965c4a0f8f', name: "label" }, this.label.length > 0 ? this.label : ' ', " ")), index.h("sc-icon", { key: 'f1f4be42c4e46457475d2f0686739b6607de1ff0', part: "close-button", exportparts: "base:close-button__base", class: "drawer__close", name: "x", label: 
+            }, ref: el => (this.drawer = el), onKeyDown: (e) => this.handleKeyDown(e) }, index.h("div", { key: 'f79fefcc122682244e90c162844b729079f09633', part: "overlay", class: "drawer__overlay", onClick: () => this.requestClose('overlay'), tabindex: "-1", ref: el => (this.overlay = el) }), index.h("div", { key: 'e848a71618418854a421c01947d576085fe73a14', part: "panel", class: "drawer__panel", role: "dialog", "aria-modal": "true", "aria-hidden": this.open ? 'false' : 'true', "aria-label": this.noHeader ? this.label : undefined, "aria-labelledby": !this.noHeader ? 'title' : undefined, tabindex: "0", ref: el => (this.panel = el) }, !this.noHeader && (index.h("header", { key: '394ad574696e21ba863b9e2b24b619a6b89423ad', part: "header", class: this.stickyHeader ? 'header__sticky' : '' }, index.h("slot", { key: 'c050621a4169f877428a4351f6b2521cf3046136', name: "header" }, index.h("div", { key: '90a59c724c33ab638e9cdfbb97c42fbe36b049d4', class: "drawer__header" }, index.h("h2", { key: '3993bb0584139772a283b7bb055fb6b520601425', part: "title", class: "drawer__title", id: "title" }, index.h("slot", { key: '8df38e2c8c1b44fe17ec9f14476cd5cc23bf8eda', name: "label" }, this.label.length > 0 ? this.label : ' ', " ")), index.h("sc-icon", { key: '23eb7681d7ef34093439047acddf3e5b6004a4c1', part: "close-button", exportparts: "base:close-button__base", class: "drawer__close", name: "x", label: 
             /** translators: Close this modal window. */
-            wp.i18n.__('Close', 'surecart'), onClick: () => this.requestClose('close-button') }))))), index.h("footer", { key: '9bec9e5777595947b07ced550f6527064608e1aa', part: "header-suffix", class: "drawer__header-suffix" }, index.h("slot", { key: 'f815d024421d8c8ea2cc9e66c5365e3f92c0e784', name: "header-suffix" })), index.h("div", { key: 'f5d969dc97be58e5ffa75d48dd1b80b616cce895', part: "body", class: "drawer__body" }, index.h("slot", { key: '736f297d56241e0202385d8598431ee3e838f2c3' })), index.h("footer", { key: '5411377f620b8e921e6205b8f38569d7b1c1b4b7', part: "footer", class: this.stickyFooter ? 'drawer__footer is-sticky' : 'drawer__footer' }, index.h("slot", { key: '67e7ac81ba6fdcc3160ca0c2e2b8542e0ebb63eb', name: "footer" })))));
+            wp.i18n.__('Close', 'surecart'), onClick: () => this.requestClose('close-button') }))))), index.h("footer", { key: 'd65c03ed26460f2a3f3001ab6aaa68c6b352d811', part: "header-suffix", class: "drawer__header-suffix" }, index.h("slot", { key: '30e59247299752dd1c43681ef8ca9c062beaaae3', name: "header-suffix" })), index.h("div", { key: 'a8d4033cf969aa8b24784ca47b393f4c7b0753db', part: "body", class: "drawer__body" }, index.h("slot", { key: '6dab2278c94d35c1fd36a667db16e83b2c87490d' })), index.h("footer", { key: '83ace6dc67e3c0c6bef844dd988dd862d86d82fa', part: "footer", class: this.stickyFooter ? 'drawer__footer is-sticky' : 'drawer__footer' }, index.h("slot", { key: '3c17877f96125b1696c8e2fcd339efd258c0a571', name: "footer" })))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

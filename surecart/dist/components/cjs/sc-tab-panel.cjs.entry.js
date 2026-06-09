@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scTabPanelCss = ":host{--padding:0;--spacing:var(--sc-spacing-large);display:block}::slotted(*~*){margin-top:var(--spacing)}.tab-panel{border:solid 1px transparent;padding:var(--padding);font-family:var(--sc-font-sans);font-size:var(--sc-font-size-medium)}";
 const ScTabPanelStyle0 = scTabPanelCss;
@@ -18,7 +18,7 @@ const ScTabPanel = class {
     render() {
         // If the user didn't provide an ID, we'll set one so we can link tabs and tab panels with aria labels
         this.el.id = this.el.id || this.componentId;
-        return (index.h(index.Host, { key: '093da96e0a1e9d8b3fbfc2fd28f6333566f4c342', style: { display: this.active ? 'block' : 'none' } }, index.h("div", { key: '3725a163878fcd75a16190c97a6b0c3d1777324c', part: "base", class: "tab-panel", role: "tabpanel", "aria-hidden": this.active ? 'false' : 'true' }, index.h("slot", { key: '49d95fa6e3927f19f7a393377bc9aaf0e2058050' }))));
+        return (index.h(index.Host, { key: 'a09a0309ecbbc7d4cd02cf1aec3fe66550e05a1c', style: { display: this.active ? 'block' : 'none' } }, index.h("div", { key: '05e538d0a9c0486ea673985dcdd5ade07c71f083', part: "base", class: "tab-panel", role: "tabpanel", "aria-hidden": this.active ? 'false' : 'true' }, index.h("slot", { key: 'f38c49db0f5651daa4eee3debeff896e8639009f' }))));
     }
     get el() { return index.getElement(this); }
 };

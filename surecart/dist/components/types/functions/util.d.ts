@@ -10,4 +10,6 @@ export declare const getVariantFromValues: ({ variants, values }: {
     variants: any;
     values: any;
 }) => any;
+/** WP_Error from apiFetch puts the upstream HTTP status under `data.status`. */
+export declare const isRateLimited: (error: any) => boolean;
 export declare const isInRange: (value: any, price: any) => boolean;

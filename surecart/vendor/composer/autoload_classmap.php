@@ -1251,6 +1251,7 @@ return array(
     'SureCart\\WordPress\\Posts\\PostService' => $baseDir . '/app/src/WordPress/Posts/PostService.php',
     'SureCart\\WordPress\\Posts\\PostServiceProvider' => $baseDir . '/app/src/WordPress/Posts/PostServiceProvider.php',
     'SureCart\\WordPress\\RecaptchaValidationService' => $baseDir . '/app/src/WordPress/RecaptchaValidationService.php',
+    'SureCart\\WordPress\\Shortcodes\\ProductContextShortcodeWrapper' => $baseDir . '/app/src/WordPress/Shortcodes/ProductContextShortcodeWrapper.php',
     'SureCart\\WordPress\\Shortcodes\\ShortcodesBlockConversionService' => $baseDir . '/app/src/WordPress/Shortcodes/ShortcodesBlockConversionService.php',
     'SureCart\\WordPress\\Shortcodes\\ShortcodesService' => $baseDir . '/app/src/WordPress/Shortcodes/ShortcodesService.php',
     'SureCart\\WordPress\\Shortcodes\\ShortcodesServiceProvider' => $baseDir . '/app/src/WordPress/Shortcodes/ShortcodesServiceProvider.php',

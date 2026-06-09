@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const formData = require('./form-data-0da9940f.js');
 
@@ -23,7 +23,7 @@ const ScFormControl = class {
         this.helpId = undefined;
     }
     render() {
-        return (index.h("div", { key: 'cdc808d857734a2466a835539e63a9ddc8beccd2', part: "form-control", class: {
+        return (index.h("div", { key: 'e299022b7be4f404c8e35b253efcfd3d51b2dccc', part: "form-control", class: {
                 'form-control': true,
                 'form-control--small': this.size === 'small',
                 'form-control--medium': this.size === 'medium',
@@ -32,7 +32,7 @@ const ScFormControl = class {
                 'form-control--has-help-text': !!this.help,
                 'form-control--is-required': !!this.required,
                 'form-control--is-rtl': pageAlign.isRtl(),
-            } }, index.h("label", { key: '0482bdcb5906d8c58d45ffec728f87e3ab972de7', part: "label", id: this.labelId, class: "form-control__label", htmlFor: this.inputId, "aria-hidden": !!this.label ? 'false' : 'true' }, index.h("slot", { key: 'bbba092126b95d34a79d67c8e145ab1ebad4eb22', name: "label" }, this.label), index.h("slot", { key: '34a1ce5a91fedb6f247861a711f2ad420e664e7c', name: "label-end" }), !!this.required && (index.h("span", { key: 'aec4775ae4e264ae79c1b2fbd8ba4d3591b48ab1', "aria-hidden": "true", class: "required" }, ' ', "*")), index.h("sc-visually-hidden", { key: '435b9fb16aa5ef979238a40fbd6be56b53c78e55' }, !!this.required ? wp.i18n.__('required', 'surecart') : '')), index.h("div", { key: 'c4a0f41aad49fbd96c13b7559ec00c92dd976c00', part: "input", class: "form-control__input" }, index.h("slot", { key: '9dd5dd81926af7afd6d719fd9eaa58b9dd6326e0' })), this.help && (index.h("div", { key: '37c67f2aab015951aa15be0b40adeafa0d39f731', part: "help-text", id: this.helpId, class: "form-control__help-text" }, index.h("slot", { key: 'b037cb074ee3c21be61f9e03d30aa03cc9c6f8fe', name: "help-text" }, this.help)))));
+            } }, index.h("label", { key: '93615159904baf037e35b1f79564884911f034c1', part: "label", id: this.labelId, class: "form-control__label", htmlFor: this.inputId, "aria-hidden": !!this.label ? 'false' : 'true' }, index.h("slot", { key: 'd253d7871dc5b82aa999f2e4846b7606e46a40b0', name: "label" }, this.label), index.h("slot", { key: '6c9db77880bb159d6520238a6ba5f64d69bf4150', name: "label-end" }), !!this.required && (index.h("span", { key: '642ea7e33ee14236ca69ba264fe0f10e96631fb2', "aria-hidden": "true", class: "required" }, ' ', "*")), index.h("sc-visually-hidden", { key: '38fdc95f8da36960994f24635f0bc3f3aced4dc5' }, !!this.required ? wp.i18n.__('required', 'surecart') : '')), index.h("div", { key: '82694c015ea08fdd8bc1ef14494a08d52838bfc6', part: "input", class: "form-control__input" }, index.h("slot", { key: '748d86c8b0f32c1dcb13d26b7ab5036eceb2f13a' })), this.help && (index.h("div", { key: 'ad7a2442106adc6b5184e3ef63324cabfae82c13', part: "help-text", id: this.helpId, class: "form-control__help-text" }, index.h("slot", { key: '61b4fcdfdc23cdaaff72444ce86e8f168cef2929', name: "help-text" }, this.help)))));
     }
     get el() { return index.getElement(this); }
 };
@@ -91,6 +91,21 @@ const ScInput = class {
     }
     async reportValidity() {
         return this.input.reportValidity();
+    }
+    // An invalid pattern breaks validation for the whole field, so only use it if it compiles.
+    validPattern() {
+        if (!this.pattern) {
+            return undefined;
+        }
+        // Use the same regex flag the browser uses for the `pattern` attribute.
+        const flag = 'unicodeSets' in RegExp.prototype ? 'v' : 'u';
+        try {
+            // `.source` is read so the build doesn't strip this check as unused.
+            return new RegExp(`^(?:${this.pattern})$`, flag).source ? this.pattern : undefined;
+        }
+        catch {
+            return undefined;
+        }
     }
     /** Sets focus on the input. */
     async triggerFocus(options) {
@@ -176,7 +191,7 @@ const ScInput = class {
     }
     render() {
         var _a;
-        return (index.h(index.Host, { key: 'a81c272fa60732b9238fa71b92cd0795d7ef3e88', hidden: this.hidden }, index.h("sc-form-control", { key: 'a526f7eafc4f46c9ece412d4e5788bbd2b852e39', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, index.h("slot", { key: 'c95a8b9da4a9ae8da15153b9b4c61e6930009dd3', name: "label-end", slot: "label-end" }), index.h("div", { key: '8bc33479e4f906cfbde96cf2850005cc7b2b0553', part: "base", class: {
+        return (index.h(index.Host, { key: '49be458083dbe2913b91278cacbf16b5881f2c93', hidden: this.hidden }, index.h("sc-form-control", { key: 'fb0007129c8d59abebb9230afedf72eacf5a1d4f', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name }, index.h("slot", { key: '8ac33795e55a2c43778b3a2697610a093dace4ad', name: "label-end", slot: "label-end" }), index.h("div", { key: 'b1cda6f8c313f59123591bac2fc43251cd613eaa', part: "base", class: {
                 'input': true,
                 // Sizes
                 'input--small': this.size === 'small',
@@ -191,14 +206,14 @@ const ScInput = class {
                 'input--squared-top': this.squaredTop,
                 'input--squared-left': this.squaredLeft,
                 'input--squared-right': this.squaredRight,
-            } }, index.h("span", { key: '8539bbbd0fa63aedb6be5c650b41525bd8f455c7', part: "prefix", class: "input__prefix" }, index.h("slot", { key: '827efcddbc36e8187ed900423c5c9f64e92ae39c', name: "prefix" })), index.h("slot", { key: 'b386a4a398989b8d2425acfb7fc76e91c84575a6' }, index.h("input", { key: 'ff0ab090cca8388e1c555fbe6c658c8537146228', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: this.type === 'password' && this.isPasswordVisible ? 'text' : this.type, name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
+            } }, index.h("span", { key: 'a827e64b436e22371820382e56107d17a5b50569', part: "prefix", class: "input__prefix" }, index.h("slot", { key: 'c4f8d056af49516a876d478660bc05a7207bd736', name: "prefix" })), index.h("slot", { key: '447cee71b1d1709eb355aee4bb97c00b6d3ba1fb' }, index.h("input", { key: '74e7afe401c865041ff1bbeaa9b3da477f645980', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: this.type === 'password' && this.isPasswordVisible ? 'text' : this.type, name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
             // TODO: Test These below
-            autocomplete: this.autocomplete, autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: this.pattern, inputmode: this.inputmode, "aria-label": this.label, "aria-labelledby": this.labelId, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onInvalid: () => this.handleInvalid(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), onKeyDown: e => {
+            autocomplete: this.autocomplete, autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: this.validPattern(), inputmode: this.inputmode, "aria-label": this.label, "aria-labelledby": this.labelId, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onInvalid: () => this.handleInvalid(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), onKeyDown: e => {
                 // Only stop propagation on keys that are not handled by the browser
                 if (!['Enter', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.key)) {
                     e.stopPropagation();
                 }
-            } })), index.h("span", { key: 'b2648b271b2bbd1af9fd2deebbe54d7ea9be42d6', part: "suffix", class: "input__suffix" }, index.h("slot", { key: 'ab1b2c883ad533b44e6ec88db36b878d53dd6818', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (index.h("button", { key: '2a31a2a16f843b7110b856818a41a7352b19b783', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, index.h("slot", { key: 'f7069d89cf7c063eb4be88dcadd94dfa1e7e280e', name: "clear-icon" }, index.h("svg", { key: 'f614867234505e657eba493612819cfdbedfc302', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, index.h("line", { key: '85125b0c527be47aecb2aeb96ab804fb00ee37c8', x1: "18", y1: "6", x2: "6", y2: "18" }), index.h("line", { key: 'a1a83ae2eb8013ab36b85fbc0aec1bddd2a313f4', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
+            } })), index.h("span", { key: '6e2f7a9808b7168bc6098dc646a5f6463e0c95e8', part: "suffix", class: "input__suffix" }, index.h("slot", { key: '27dbf82804a480e61462957cb5430d976ba3a70c', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (index.h("button", { key: '2ff0adf5e05f37b73ad272c84cce7b1ea646e872', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, index.h("slot", { key: '5b30550f9ac80cda8f0ba37d8514c57f1f3d1bc8', name: "clear-icon" }, index.h("svg", { key: 'ef64162c5c20fff9a6a2ab052742f07a448861be', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, index.h("line", { key: 'a58093eee171c82158d8db4ea6fd2a0aa65dec21', x1: "18", y1: "6", x2: "6", y2: "18" }), index.h("line", { key: 'afecb4eb8515d25c7cc017619c261decbf91ab12', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

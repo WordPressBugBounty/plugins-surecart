@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, F as Fragment, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h, F as Fragment, a as getElement } from './index-25e5af33.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { w as watchIcon, u as unwatchIcon, g as getIconLibrary } from './library-1bd957d5.js';
 import { s as speak } from './index-c5a96d53.js';
@@ -92,8 +92,8 @@ const ScButton = class {
     }
     render() {
         const Tag = this.href ? 'a' : 'button';
-        const interior = (h(Fragment, { key: '99be418f05a88f70d0c131b799d098c644a4b145' }, h("span", { key: '86abf51381cdb29cfd537e4f41718edce0a73989', part: "prefix", class: "button__prefix" }, h("slot", { key: '74acd45b0aa920cdffd0c67d54125be2a423142f', onSlotchange: () => this.handleSlotChange(), name: "prefix" })), h("span", { key: 'bf787beef924d343a53503b48f4cf0a814177744', part: "label", class: "button__label" }, h("slot", { key: 'c4c021f86de325894a838731d111836b8ff75665', onSlotchange: () => this.handleSlotChange() })), h("span", { key: '75ab204e30553197d05067cd0cf0824b058e924c', part: "suffix", class: "button__suffix" }, h("slot", { key: '688768ef2469c4f1eb123dc289c5b6c7169f3031', onSlotchange: () => this.handleSlotChange(), name: "suffix" })), this.caret ? (h("span", { part: "caret", class: "button__caret" }, h("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round" }, h("polyline", { points: "6 9 12 15 18 9" })))) : (''), this.loading || this.busy ? h("sc-spinner", { exportparts: "base:spinner" }) : ''));
-        return (h(Tag, { key: '4704b0b943890478e75bf8691e13ddff89ffe251', part: "base", class: {
+        const interior = (h(Fragment, { key: 'd6e8ae140618116dbd17c9db150f2e5ff2fa8ebc' }, h("span", { key: 'db996848ac43a7a8838450f03c394cbb0767461b', part: "prefix", class: "button__prefix" }, h("slot", { key: '39219ec50295c04ee377834aff6f6a215c6f94f3', onSlotchange: () => this.handleSlotChange(), name: "prefix" })), h("span", { key: '297813f07ef9df94143d3a0c263c033804f05b79', part: "label", class: "button__label" }, h("slot", { key: '797ffd196ae2a5fb0a835c099711702e24509ecf', onSlotchange: () => this.handleSlotChange() })), h("span", { key: '41804df6b80f8cab1c54abb626fd2597729505d0', part: "suffix", class: "button__suffix" }, h("slot", { key: '25200a009d11948fdbd4d25a706d431e2bd5734f', onSlotchange: () => this.handleSlotChange(), name: "suffix" })), this.caret ? (h("span", { part: "caret", class: "button__caret" }, h("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round" }, h("polyline", { points: "6 9 12 15 18 9" })))) : (''), this.loading || this.busy ? h("sc-spinner", { exportparts: "base:spinner" }) : ''));
+        return (h(Tag, { key: 'b250c29dc93a38589ac8a105d9b13e901a862ec2', part: "base", class: {
                 'button': true,
                 [`button--${this.type}`]: !!this.type,
                 [`button--${this.size}`]: true,
@@ -251,7 +251,7 @@ const ScIcon = class {
         }
     }
     render() {
-        return h("div", { key: '0cff0a3e6f4833c53f8f46279f17087a41e562ad', part: "base", class: "icon", role: "img", "aria-label": this.getLabel(), innerHTML: this.svg });
+        return h("div", { key: '87747ec5b82fcc260080b9c282c9556d97e885ef', part: "base", class: "icon", role: "img", "aria-label": this.getLabel(), innerHTML: this.svg });
     }
     static get assetsDirs() { return ["icon-assets"]; }
     static get watchers() { return {
@@ -293,24 +293,24 @@ const ScProductLineItem = class {
     render() {
         var _a, _b, _c;
         const isImageFallback = ((_a = this.image) === null || _a === void 0 ? void 0 : _a.type) === 'fallback';
-        return (h("div", { key: 'be92718ab6d9a0cb2a33b19fe37a555062da0412', class: "base", part: "base" }, h("div", { key: '6802348de7065cb870bf3b544420f9284b032f2e', part: "product-line-item", class: {
+        return (h("div", { key: 'd54ddaf834bd767c08804a171109dc7de22af593', class: "base", part: "base" }, h("div", { key: 'e111e03ea132190b91d30e2484c774f1505416c2', part: "product-line-item", class: {
                 'item': true,
                 'item--has-image': !!((_b = this.image) === null || _b === void 0 ? void 0 : _b.src),
                 'item--has-review': !!this.reviewButtonLink,
                 'item--is-rtl': isRtl(),
                 'product-line-item__editable': this.editable,
                 'product-line-item__removable': this.removable,
-            } }, !!((_c = this.image) === null || _c === void 0 ? void 0 : _c.src) ? (h("img", { ...this.image, part: isImageFallback ? 'placeholder__image' : 'image', class: isImageFallback ? 'item__image-placeholder' : 'item__image' })) : (h("div", { class: "item__image-placeholder", part: "placeholder__image" })), h("div", { key: 'c13db87c32fcdcef28515a3ac638d7faa2cd0f43', class: "item__text-container" }, h("div", { key: '27de4f810bd85885d1b9de93d18b33bc6eaeda5a', class: "item__row" }, h("div", { key: '586540734f8190fbda1f4e2531534662cf1e76dc', class: "item__title", part: "title" }, h("slot", { key: '2b2b2145f9d31c84b19bec1beec87374f1aa7165', name: "title" }, this.name)), h("div", { key: 'e097692d8041493240351cb62b292d512643e530', class: "price", part: "price__amount" }, !!this.scratch && this.scratch !== this.amount && h("span", { key: '5a48dc635193fca12640519104ead11fd56171f2', class: "item__scratch-price" }, this.scratch), this.amount, h("div", { key: '1c1722d6c2eb2935a154ad2b7a8164976245e249', class: "price__description", part: "price__description" }, this.interval))), h("div", { key: 'ec422d8baecfd4e8329ab9f67a13603ba77ce218', class: "item__row" }, h("div", { key: 'd702f8c6b4afefe83baddde30e8fdf5b24949b4a', class: "item__description", part: "description" }, this.variant && h("div", { key: 'd938355f771de015fd1ab631870f2eae64d29162' }, this.variant), this.price && h("div", { key: '0cc47beab2f7309ea9aaef13825a913bd6b05c7e' }, this.price), this.sku && (h("div", { key: '9e0ae687f2da85241faed6ec80510c4a3f64ca3d' }, wp.i18n.__('SKU:', 'surecart'), " ", this.sku)), !!this.purchasableStatus && h("div", { key: '644d3a6b13809eba1572d602665356fd4ad836bb' }, this.purchasableStatus), !!this.note && h("sc-product-line-item-note", { key: '715a4a72ae6492f2377ef50b5c1864d547de345a', note: this.note })), h("div", { key: '5491e84f8086c2e6deeb19b2d1cae958816677e8', class: "item__description", part: "trial-fees" }, !!this.trial && h("div", { key: '5f96dad910e09a20aa925ac750aad08a0ff9f4b3' }, this.trial), (this.fees || []).map(fee => {
+            } }, !!((_c = this.image) === null || _c === void 0 ? void 0 : _c.src) ? (h("img", { ...this.image, part: isImageFallback ? 'placeholder__image' : 'image', class: isImageFallback ? 'item__image-placeholder' : 'item__image' })) : (h("div", { class: "item__image-placeholder", part: "placeholder__image" })), h("div", { key: 'b8f8262b6b188392d6e4b98d1fbead249b885a53', class: "item__text-container" }, h("div", { key: 'bcc3572e74756b8823f25d60051955d8997e8ea8', class: "item__row" }, h("div", { key: 'c015727efcd459f1f8eec49344f512543107df2f', class: "item__title", part: "title" }, h("slot", { key: 'b48f0ba23324fd1da5bb37fd8846d89ecb9096fc', name: "title" }, this.name)), h("div", { key: '541ba7a8435d2d5967fb97d9ab8b550180f91cbb', class: "price", part: "price__amount" }, !!this.scratch && this.scratch !== this.amount && h("span", { key: '0a6413ec4198ae51416536b54f91ce9a5f0d6898', class: "item__scratch-price" }, this.scratch), this.amount, h("div", { key: 'd465e1faf0530a6b4ada3ad232f79a2026589393', class: "price__description", part: "price__description" }, this.interval))), h("div", { key: 'fea9b21598936c84df85231cdce2a59f7409566b', class: "item__row" }, h("div", { key: 'e3fc1073849b494a749f0424dd462cc0128936b7', class: "item__description", part: "description" }, this.variant && h("div", { key: 'a5f2f0033ae69d6352d02f596b9b5a3e908b1d46' }, this.variant), this.price && h("div", { key: 'd10b64d6580eb6cffa96b089b3742eb353516350' }, this.price), this.sku && (h("div", { key: 'e7d15b8d1365cf36dec074054bbc1603cfc640b1' }, wp.i18n.__('SKU:', 'surecart'), " ", this.sku)), !!this.purchasableStatus && h("div", { key: '04fb8d7d1cc5e76d6cdb806a83756cd3e997a37a' }, this.purchasableStatus), !!this.note && h("sc-product-line-item-note", { key: '40655a499224aed92fe8a5a45986a16c835875fa', note: this.note })), h("div", { key: '73c503be5ef28d6f6d355487f6f496d64fa09ab9', class: "item__description", part: "trial-fees" }, !!this.trial && h("div", { key: '09c8be7caa1b5c92ad83e164d504454fa19e696f' }, this.trial), (this.fees || []).map(fee => {
             return (h("div", null, fee === null || fee === void 0 ? void 0 :
                 fee.display_amount, " ", fee === null || fee === void 0 ? void 0 :
                 fee.description));
-        }))), h("div", { key: '68f8ae8fb403360370885567e3aaf42a0553a17b', class: "item__row stick-bottom" }, this.editable ? (h("sc-quantity-select", { max: this.max || Infinity, exportparts: "base:quantity, minus:quantity__minus, minus-icon:quantity__minus-icon, plus:quantity__plus, plus-icon:quantity__plus-icon, input:quantity__input", clickEl: this.el, quantity: this.quantity, size: "small", onScChange: e => e.detail && this.scUpdateQuantity.emit(e.detail), "aria-label": 
+        }))), h("div", { key: '328f9477bd93bc2011b998d9a98f35a89d24cd56', class: "item__row stick-bottom" }, this.editable ? (h("sc-quantity-select", { max: this.max || Infinity, exportparts: "base:quantity, minus:quantity__minus, minus-icon:quantity__minus-icon, plus:quantity__plus, plus-icon:quantity__plus-icon, input:quantity__input", clickEl: this.el, quantity: this.quantity, size: "small", onScChange: e => e.detail && this.scUpdateQuantity.emit(e.detail), "aria-label": 
             /** translators: %1$s: product name, %2$s: product price name */
-            wp.i18n.sprintf(wp.i18n.__('Change Quantity - %1$s %2$s', 'surecart'), this.name, this.price), productName: this.name })) : (h("span", { class: "item__description", part: "static-quantity" }, wp.i18n.__('Qty:', 'surecart'), " ", this.quantity)), !!this.reviewButtonLink && (h("div", { key: 'caa61cec951b1c19d41c8f824d37f0b29add2437', class: "item__add-review" }, h("sc-button", { key: '89f97989a2d6a78f120cab5c4c4af5292d0eeb17', size: "small", href: this.reviewButtonLink, target: "_blank" }, wp.i18n.__('Review Product', 'surecart')))), !!this.removable && (h("div", { key: '252358cb6138acac85fe884840c57b28863d7ed8', class: "item__remove-container", onClick: () => this.scRemove.emit(), onKeyDown: e => {
+            wp.i18n.sprintf(wp.i18n.__('Change Quantity - %1$s %2$s', 'surecart'), this.name, this.price), productName: this.name })) : (h("span", { class: "item__description", part: "static-quantity" }, wp.i18n.__('Qty:', 'surecart'), " ", this.quantity)), !!this.reviewButtonLink && (h("div", { key: '31afe8b3127b8be8790d2684f7dde155627c1605', class: "item__add-review" }, h("sc-button", { key: '2d71a0b6080385a03b930b856a4ff0bfa63f1851', size: "small", href: this.reviewButtonLink, target: "_blank" }, wp.i18n.__('Review Product', 'surecart')))), !!this.removable && (h("div", { key: '282a660d89247fed60ce5eac0ef6a60da70e6000', class: "item__remove-container", onClick: () => this.scRemove.emit(), onKeyDown: e => {
                 if (e.key === 'Enter') {
                     this.scRemove.emit();
                 }
-            }, "aria-label": wp.i18n.sprintf(wp.i18n.__('Remove Item - %1$s %2$s', 'surecart'), this.name, this.amount), tabIndex: 0 }, h("sc-icon", { key: '129439b14d724495600ffbcc499126b2352c50ad', exportparts: "base:remove-icon__base", class: "item__remove", name: "x" }), h("span", { key: '9160db6b50ff9a66d57e2dffbb0e8d9afb99e76f', class: "item__remove-text" }, wp.i18n.__('Remove', 'surecart')))))))));
+            }, "aria-label": wp.i18n.sprintf(wp.i18n.__('Remove Item - %1$s %2$s', 'surecart'), this.name, this.amount), tabIndex: 0 }, h("sc-icon", { key: '854663e3ad24359daa09c9f4336308d62005aecf', exportparts: "base:remove-icon__base", class: "item__remove", name: "x" }), h("span", { key: 'e2c2e92c6e37af2b1723f64aaea51ca91cbf8dc0', class: "item__remove-text" }, wp.i18n.__('Remove', 'surecart')))))))));
     }
     get el() { return getElement(this); }
 };
@@ -445,20 +445,20 @@ const ScQuantitySelect = class {
         this.scInput.emit(this.quantity);
     }
     render() {
-        return (h("div", { key: '6edce20abf31e7a83b8bcfeaa45a81dfd29331b4', part: "base", class: {
+        return (h("div", { key: 'b0ce38eaf38af68676188ac3c61c38146880bf98', part: "base", class: {
                 'quantity': true,
                 // States
                 'quantity--focused': this.hasFocus,
                 'quantity--disabled': this.disabled,
                 'quantity--is-rtl': isRtl(),
                 'quantity--small': this.size === 'small',
-            } }, h("button", { key: 'f3d3e4ee7fd83eb24a6784cd86771fdad285e0cb', part: "minus", "aria-label": 
+            } }, h("button", { key: '3683a6a065d490a8bacfba24210ac5db4f3bece3', part: "minus", "aria-label": 
             /** translators: %1$s: product name */
-            wp.i18n.sprintf(wp.i18n.__('Decrease %1$s quantity by one', 'surecart'), this.productName), "aria-disabled": this.disabled || (this.quantity <= this.min && this.min > 1), class: { 'button__decrease': true, 'button--disabled': this.quantity <= this.min && this.min > 1 }, onClick: () => this.quantity > this.min && this.decrease(), disabled: this.disabled || (this.quantity <= this.min && this.min > 1) }, h("sc-icon", { key: '39dfb8f119d738e09615ad6be04b0c4b1a0a6cf9', name: "minus", exportparts: "base:minus__icon" })), h("input", { key: '53bf64fe3ea2383dff3e906fc277e7ec4875ffe7', part: "input", class: "input__control", ref: el => (this.input = el), step: "1", type: "number", max: this.max, min: this.min, value: this.quantity, disabled: this.disabled, autocomplete: "off", role: "spinbutton", "aria-valuemax": this.max, "aria-valuemin": this.min, "aria-valuenow": this.quantity, "aria-disabled": this.disabled, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), "aria-label": 
+            wp.i18n.sprintf(wp.i18n.__('Decrease %1$s quantity by one', 'surecart'), this.productName), "aria-disabled": this.disabled || (this.quantity <= this.min && this.min > 1), class: { 'button__decrease': true, 'button--disabled': this.quantity <= this.min && this.min > 1 }, onClick: () => this.quantity > this.min && this.decrease(), disabled: this.disabled || (this.quantity <= this.min && this.min > 1) }, h("sc-icon", { key: 'ccb47f396572efe75a9f95102ceacb82581106de', name: "minus", exportparts: "base:minus__icon" })), h("input", { key: 'eb62fb26db04939c00e69c8fd5e30360c0a9e271', part: "input", class: "input__control", ref: el => (this.input = el), step: "1", type: "number", max: this.max, min: this.min, value: this.quantity, disabled: this.disabled, autocomplete: "off", role: "spinbutton", "aria-valuemax": this.max, "aria-valuemin": this.min, "aria-valuenow": this.quantity, "aria-disabled": this.disabled, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur(), "aria-label": 
             /** translators: %1$s: product name */
-            wp.i18n.sprintf(wp.i18n.__('Quantity input for %1$s product', 'surecart'), this.productName) }), h("button", { key: '0aed07002aceaad2bc6b5c031e26665823aa7b96', part: "plus", "aria-label": 
+            wp.i18n.sprintf(wp.i18n.__('Quantity input for %1$s product', 'surecart'), this.productName) }), h("button", { key: '74d55019111cda11573ccc76d26b3bebd9ed7471', part: "plus", "aria-label": 
             /** translators: %1$s: product name */
-            wp.i18n.sprintf(wp.i18n.__('Increase %1$s quantity by one', 'surecart'), this.productName), class: { 'button__increase': true, 'button--disabled': this.quantity >= this.max }, onClick: () => this.quantity < this.max && this.increase(), "aria-disabled": this.disabled || this.quantity >= this.max, disabled: this.disabled || this.quantity >= this.max }, h("sc-icon", { key: '6e1d84a0ca474c6b40f8fcbcc9823053a0e8a721', name: "plus", exportparts: "base:plus__icon" }))));
+            wp.i18n.sprintf(wp.i18n.__('Increase %1$s quantity by one', 'surecart'), this.productName), class: { 'button__increase': true, 'button--disabled': this.quantity >= this.max }, onClick: () => this.quantity < this.max && this.increase(), "aria-disabled": this.disabled || this.quantity >= this.max, disabled: this.disabled || this.quantity >= this.max }, h("sc-icon", { key: 'd45e35179d7513086e7d05c6d0cb991a183b8b67', name: "plus", exportparts: "base:plus__icon" }))));
     }
     get el() { return getElement(this); }
 };
@@ -472,7 +472,7 @@ const ScSpinner = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return h("span", { key: '2f78ee56f360a10b13916f859d14f4a0260de567', part: "base", class: "spinner", "aria-busy": "true", "aria-live": "polite" });
+        return h("span", { key: 'b857af7334932328118a74fbc08ca3078a7edd75', part: "base", class: "spinner", "aria-busy": "true", "aria-live": "polite" });
     }
 };
 ScSpinner.style = ScSpinnerStyle0;

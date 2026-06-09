@@ -1,6 +1,7 @@
-import { r as registerInstance, h, a as getElement, H as Host } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import { r as registerInstance, h, a as getElement, H as Host } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
 
 const scFulfillmentsCss = ".fulfillment{display:grid;gap:var(--sc-spacing-x-large)}.fulfillment__number{font-weight:bold}.fulfillment__header{display:flex;align-items:center;gap:var(--sc-spacing-medium)}sc-card{--sc-card-padding:var(--sc-spacing-x-large)}.trackings{display:flex;gap:0.75em;color:var(--sc-line-item-title-color, var(--sc-input-label-color))}.trackings__title{line-height:var(--sc-line-height-dense);font-weight:var(--sc-font-weight-bold)}.trackings sc-icon{opacity:0.5;font-size:22px}.line_items{display:grid;gap:var(--sc-spacing-large)}.line_item__info{display:flex;gap:var(--sc-spacing-medium);align-items:center}.line_item__image img{width:var(--sc-product-line-item-image-size, 4em);height:var(--sc-product-line-item-image-size, 4em);object-fit:cover;border-radius:4px;border:solid 1px var(--sc-input-border-color, var(--sc-input-border));display:block;box-shadow:var(--sc-input-box-shadow)}";

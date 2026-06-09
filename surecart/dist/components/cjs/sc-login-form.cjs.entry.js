@@ -2,8 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
+const index$1 = require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 
@@ -55,7 +56,7 @@ const ScLogin = class {
     async createLoginCode() {
         try {
             this.loading = true;
-            await fetch.apiFetch({
+            await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/verification_codes',
                 data: {
@@ -75,7 +76,7 @@ const ScLogin = class {
     async submitCode() {
         try {
             this.loading = true;
-            const { verified, redirect_url } = (await fetch.apiFetch({
+            const { verified, redirect_url } = (await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/verification_codes/verify',
                 data: {
@@ -102,7 +103,7 @@ const ScLogin = class {
     async login() {
         try {
             this.loading = true;
-            const { redirect_url } = (await fetch.apiFetch({
+            const { redirect_url } = (await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/login',
                 data: {
@@ -130,7 +131,7 @@ const ScLogin = class {
     async checkEmail() {
         try {
             this.loading = true;
-            await fetch.apiFetch({
+            await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/check_email',
                 data: {
@@ -157,7 +158,7 @@ const ScLogin = class {
     }
     render() {
         var _a, _b;
-        return (index.h("div", { key: '0693a545336ca18a4da0ac422eeffd4f7c74f894', class: "login-form" }, index.h("sc-card", { key: '557b7c88fe7fd3e07155bfc26b55048555169c16' }, !!this.error && (index.h("sc-alert", { key: 'b2c0e1913ecd6f893bbc1a2ae88506a86df3ea41', open: true, type: "danger", closable: true, onScHide: () => (this.error = null) }, index.h("span", { key: '49015908573203dfe4e454c7763dfb0f5828a93f', slot: "title", innerHTML: (_a = this.error) === null || _a === void 0 ? void 0 : _a.message }), (((_b = this.error) === null || _b === void 0 ? void 0 : _b.additional_errors) || []).map(({ message }) => (index.h("div", { innerHTML: message }))))), this.renderInner()), this.loading && index.h("sc-block-ui", { key: 'c73603b435ff6fbb85939bf593e662278e9a8208', spinner: true, style: { 'zIndex': '9', '--sc-block-ui-opacity': '0.5' } })));
+        return (index.h("div", { key: '9b25c7637c52d9b95be98b3488f410eee0100487', class: "login-form" }, index.h("sc-card", { key: 'f74993f88cdec685d5537665b394616dca1ae82b' }, !!this.error && (index.h("sc-alert", { key: '98f9921231617b231389f278e241457e3fd58e25', open: true, type: "danger", closable: true, onScHide: () => (this.error = null) }, index.h("span", { key: '6b76adea77784e67c46639f23c5f710c740e07d3', slot: "title", innerHTML: (_a = this.error) === null || _a === void 0 ? void 0 : _a.message }), (((_b = this.error) === null || _b === void 0 ? void 0 : _b.additional_errors) || []).map(({ message }) => (index.h("div", { innerHTML: message }))))), this.renderInner()), this.loading && index.h("sc-block-ui", { key: 'b7c90e503b12bd6acf315227056affc9b8939dd3', spinner: true, style: { 'zIndex': '9', '--sc-block-ui-opacity': '0.5' } })));
     }
     static get watchers() { return {
         "step": ["handleStepChange"],

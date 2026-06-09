@@ -2,12 +2,13 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const consumer = require('./consumer-9f4ee0e3.js');
-const index$1 = require('./index-3d000d76.js');
+const index$1 = require('./index-be4abba1.js');
+const consumer = require('./consumer-b58230e6.js');
+const index$2 = require('./index-3d000d76.js');
 const price$1 = require('./price-da3cab3d.js');
-const fetch = require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index = require('./index-7ced8198.js');
 require('./currency-71fce0f0.js');
 require('./remove-query-args-b57e8cd3.js');
 
@@ -641,7 +642,7 @@ const normalizeEntities = (data) => {
 };
 
 const getPricesAndProducts = async ({ ids, archived = false }) => {
-    const prices = (await fetch.apiFetch({
+    const prices = (await index.apiFetch({
         path: addQueryArgs.addQueryArgs('surecart/v1/prices/', {
             ids,
             archived,
@@ -663,10 +664,10 @@ const ScPriceChoiceStyle0 = scPriceChoiceCss;
 
 const ScPriceChoice = class {
     constructor(hostRef) {
-        index.registerInstance(this, hostRef);
-        this.scUpdateLineItem = index.createEvent(this, "scUpdateLineItem", 7);
-        this.scRemoveLineItem = index.createEvent(this, "scRemoveLineItem", 7);
-        this.scAddEntities = index.createEvent(this, "scAddEntities", 7);
+        index$1.registerInstance(this, hostRef);
+        this.scUpdateLineItem = index$1.createEvent(this, "scUpdateLineItem", 7);
+        this.scRemoveLineItem = index$1.createEvent(this, "scRemoveLineItem", 7);
+        this.scAddEntities = index$1.createEvent(this, "scAddEntities", 7);
         this.priceId = undefined;
         this.price = undefined;
         this.product = undefined;
@@ -748,7 +749,7 @@ const ScPriceChoice = class {
     }
     /** Is this price in the checkout session. */
     isInOrder() {
-        return index$1.isPriceInOrder(this.price, this.order);
+        return index$2.isPriceInOrder(this.price, this.order);
     }
     /** Is this checked */
     isChecked() {
@@ -775,13 +776,13 @@ const ScPriceChoice = class {
     renderEmpty() {
         var _a;
         if ((_a = window === null || window === void 0 ? void 0 : window.wp) === null || _a === void 0 ? void 0 : _a.blocks) {
-            return (index.h("sc-alert", { type: "danger", open: true, style: { margin: '0px' } }, wp.i18n.__('This product has been archived.', 'surecart')));
+            return (index$1.h("sc-alert", { type: "danger", open: true, style: { margin: '0px' } }, wp.i18n.__('This product has been archived.', 'surecart')));
         }
-        return index.h(index.Host, { style: { display: 'none' } });
+        return index$1.h(index$1.Host, { style: { display: 'none' } });
     }
     renderPrice() {
         var _a;
-        return (index.h(index.Fragment, null, (_a = this.price) === null || _a === void 0 ? void 0 :
+        return (index$1.h(index$1.Fragment, null, (_a = this.price) === null || _a === void 0 ? void 0 :
             _a.display_amount, price$1.intervalString(this.price, {
             showOnce: true,
             abbreviate: true,
@@ -796,7 +797,7 @@ const ScPriceChoice = class {
     render() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
         if (this.loading) {
-            return (index.h("sc-choice-container", { showControl: this.showControl, name: "loading", disabled: true }, index.h("div", { class: "price-choice" }, index.h("sc-skeleton", { style: { width: '60px', display: 'inline-block' } }), index.h("sc-skeleton", { style: { width: '80px', display: 'inline-block' } }))));
+            return (index$1.h("sc-choice-container", { showControl: this.showControl, name: "loading", disabled: true }, index$1.h("div", { class: "price-choice" }, index$1.h("sc-skeleton", { style: { width: '60px', display: 'inline-block' } }), index$1.h("sc-skeleton", { style: { width: '80px', display: 'inline-block' } }))));
         }
         // we need an active price.
         if (!((_a = this === null || this === void 0 ? void 0 : this.price) === null || _a === void 0 ? void 0 : _a.id) || ((_b = this.price) === null || _b === void 0 ? void 0 : _b.archived))
@@ -805,7 +806,7 @@ const ScPriceChoice = class {
         if ((_c = this.product) === null || _c === void 0 ? void 0 : _c.archived) {
             return this.renderEmpty();
         }
-        return (index.h("sc-choice-container", { ref: el => (this.choice = el), value: this.priceId, type: this.type, showControl: this.showControl, checked: this.isChecked() }, index.h("div", { class: "price-choice" }, this.showLabel && (index.h("div", { class: "price-choice__title" }, index.h("div", { class: "price-choice__name" }, this.label || ((_d = this === null || this === void 0 ? void 0 : this.price) === null || _d === void 0 ? void 0 : _d.name) || ((_e = this === null || this === void 0 ? void 0 : this.product) === null || _e === void 0 ? void 0 : _e.name)), !!this.description && index.h("div", { class: "price-choice__description" }, this.description))), this.showPrice && (index.h("div", { class: "price-choice__details" }, index.h("div", { class: "price-choice__price" }, ((_f = this.price) === null || _f === void 0 ? void 0 : _f.ad_hoc) ? (wp.i18n.__('Custom Amount', 'surecart')) : (index.h(index.Fragment, null, (_g = this.price) === null || _g === void 0 ? void 0 :
+        return (index$1.h("sc-choice-container", { ref: el => (this.choice = el), value: this.priceId, type: this.type, showControl: this.showControl, checked: this.isChecked() }, index$1.h("div", { class: "price-choice" }, this.showLabel && (index$1.h("div", { class: "price-choice__title" }, index$1.h("div", { class: "price-choice__name" }, this.label || ((_d = this === null || this === void 0 ? void 0 : this.price) === null || _d === void 0 ? void 0 : _d.name) || ((_e = this === null || this === void 0 ? void 0 : this.product) === null || _e === void 0 ? void 0 : _e.name)), !!this.description && index$1.h("div", { class: "price-choice__description" }, this.description))), this.showPrice && (index$1.h("div", { class: "price-choice__details" }, index$1.h("div", { class: "price-choice__price" }, ((_f = this.price) === null || _f === void 0 ? void 0 : _f.ad_hoc) ? (wp.i18n.__('Custom Amount', 'surecart')) : (index$1.h(index$1.Fragment, null, (_g = this.price) === null || _g === void 0 ? void 0 :
             _g.display_amount, price$1.intervalString(this.price, {
             showOnce: true,
             abbreviate: true,
@@ -815,7 +816,7 @@ const ScPriceChoice = class {
                 /** translators: used as in time period: "for 3 months" */
                 wp.i18n.__('for', 'surecart'),
             },
-        })))), !!this.price.trial_duration_days && (index.h("div", { class: "price-choice__trial" }, wp.i18n.sprintf(wp.i18n._n('Starting in %s day', 'Starting in %s days', this.price.trial_duration_days, 'surecart'), this.price.trial_duration_days))), !!this.price.setup_fee_enabled && ((_h = this.price) === null || _h === void 0 ? void 0 : _h.setup_fee_amount) && (index.h("div", { class: "price-choice__setup-fee" }, (_j = this.price) === null || _j === void 0 ? void 0 :
+        })))), !!this.price.trial_duration_days && (index$1.h("div", { class: "price-choice__trial" }, wp.i18n.sprintf(wp.i18n._n('Starting in %s day', 'Starting in %s days', this.price.trial_duration_days, 'surecart'), this.price.trial_duration_days))), !!this.price.setup_fee_enabled && ((_h = this.price) === null || _h === void 0 ? void 0 : _h.setup_fee_amount) && (index$1.h("div", { class: "price-choice__setup-fee" }, (_j = this.price) === null || _j === void 0 ? void 0 :
             _j.setup_fee_display_amount, ' ', ((_k = this.price) === null || _k === void 0 ? void 0 : _k.setup_fee_name) || (((_l = this.price) === null || _l === void 0 ? void 0 : _l.setup_fee_amount) < 0 ? wp.i18n.__('Discount', 'surecart') : wp.i18n.__('Setup Fee', 'surecart')))))))));
     }
     static get watchers() { return {

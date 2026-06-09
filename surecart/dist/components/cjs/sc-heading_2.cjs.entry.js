@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scHeadingCss = ":host{display:block}.heading{font-family:var(--sc-font-sans);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between}.heading--small .heading__title{font-size:var(--sc-font-size-small);text-transform:uppercase}.heading__text{width:100%}.heading__title{font-size:var(--sc-font-size-x-large);font-weight:var(--sc-font-weight-bold);line-height:var(--sc-line-height-dense);white-space:normal}.heading__description{font-size:var(--sc-font-size-normal);line-height:var(--sc-line-height-dense);color:var(--sc-color-gray-500)}";
 const ScHeadingStyle0 = scHeadingCss;
@@ -13,12 +13,12 @@ const ScHeading = class {
         this.size = 'medium';
     }
     render() {
-        return (index.h("div", { key: '7c2ff5c6a7cdb0fe1998e6fa589376fb76229955', part: "base", class: {
+        return (index.h("div", { key: '935099e0b4b8135479ea1121b7ce2f1fdb8a135e', part: "base", class: {
                 'heading': true,
                 'heading--small': this.size === 'small',
                 'heading--medium': this.size === 'medium',
                 'heading--large': this.size === 'large',
-            } }, index.h("div", { key: '28e31972d690df2e1d7d879545a85d963a020bee', class: { heading__text: true } }, index.h("div", { key: '1b034553bca5061e25d1fc72d0a052c42d9e2db2', class: "heading__title", part: "title" }, index.h("slot", { key: 'b23ded6f5fc98dffe134c5abb3397f627120a651' })), index.h("div", { key: '4d72d87b4b935b239e3276d1008dedd0f4f5ee5a', class: "heading__description", part: "description" }, index.h("slot", { key: '8016f3fd1f724dfb0fe2d66c43b9ce2225ed571f', name: "description" }))), index.h("slot", { key: '09d687939f3be0017df5d5510b3c40720a85316b', name: "end" })));
+            } }, index.h("div", { key: '538a45869b74fcdcb1839a6d2e74c0a81dec677e', class: { heading__text: true } }, index.h("div", { key: 'c4d5f199f846f4ffe94365c65650068b0e64d83f', class: "heading__title", part: "title" }, index.h("slot", { key: '978a8505a926ad3c01cb2ff10496d2987bf2c187' })), index.h("div", { key: '819d2e6425807741eda9a7c81796fd760585ef3a', class: "heading__description", part: "description" }, index.h("slot", { key: '842457d70a287604da2e03856249e6d2c4b46328', name: "description" }))), index.h("slot", { key: 'b905a6e1f76a3fda3d9d2cf4e10f6a663101edb0', name: "end" })));
     }
     get el() { return index.getElement(this); }
 };
@@ -52,7 +52,7 @@ const ScOrderConfirmComponentsValidator = class {
         this.hasManualInstructions = !!this.el.querySelector('sc-order-manual-instructions');
     }
     render() {
-        return index.h("slot", { key: '18b78dc40ddf86f5148f4b52378e79d881dcf65a' });
+        return index.h("slot", { key: '47a86d761e5c5c23569e103a2d15ab9f7ef2e405' });
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

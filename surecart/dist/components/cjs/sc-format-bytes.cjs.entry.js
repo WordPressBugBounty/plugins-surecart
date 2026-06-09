@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scFormatBytesCss = ":host{display:inline-block}";
 const ScFormatBytesStyle0 = scFormatBytesCss;

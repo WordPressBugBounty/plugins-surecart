@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 
 const scTextCss = ":host{display:block;--font-size:var(--font-size, var(--sc-font-size-medium));--font-weight:var(--font-size, var(--sc-font-weight-normal));--line-height:var(--font-size, var(--sc-line-height-medium));--text-align:left;--color:var(--color, inherit)}.text{margin:0;font-size:var(--font-size);font-weight:var(--font-weight);line-height:var(--line-height);text-align:var(--text-align);color:var(--sc-stacked-list-row-text-color, var(--color))}.text.is-truncated{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.text--is-rtl .text{text-align:right}";
@@ -16,11 +16,11 @@ const ScText = class {
     }
     render() {
         const CustomTag = this.tag;
-        return (index.h(CustomTag, { key: '05bb865628eae7eaeea9d8dd5a11b175fe9d791b', class: {
+        return (index.h(CustomTag, { key: '12755f0fee149dce029cc4331dd600f4a63c0a5d', class: {
                 'text': true,
                 'is-truncated': this.truncate,
                 'text--is-rtl': pageAlign.isRtl()
-            } }, index.h("slot", { key: '95e04c488af2bcd847d8ba9570d710eb5c1fddcf' })));
+            } }, index.h("slot", { key: '64c82e71accabffba31ade67a32e8758bd51182a' })));
     }
 };
 ScText.style = ScTextStyle0;

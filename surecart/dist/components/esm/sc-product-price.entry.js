@@ -1,20 +1,21 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { s as state } from './watchers-bb82ca0e.js';
-import './watchers-acfc36f9.js';
-import { s as state$1 } from './store-f5787d0e.js';
-import './index-06061d4e.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
+import { s as state } from './watchers-08aa2fd2.js';
+import './watchers-1cb09819.js';
+import { s as state$1 } from './store-289e460c.js';
+import './index-18f5a1bc.js';
 import './google-dd89f242.js';
 import './currency-a0c9bff4.js';
 import './google-a86aa761.js';
 import './utils-f84b2118.js';
-import './util-50af2a83.js';
+import './util-dfbf863e.js';
 import './index-c5a96d53.js';
-import './getters-5d6a53bd.js';
-import './mutations-0808403d.js';
-import './fetch-bc141774.js';
+import './getters-1477d792.js';
+import './mutations-b6e8fe80.js';
+import './fetch-9e15a95d.js';
+import './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
-import './mutations-ed6d0770.js';
+import './mutations-7458343f.js';
 
 const scProductPriceCss = ":host{display:block}";
 const ScProductPriceStyle0 = scProductPriceCss;
@@ -48,7 +49,7 @@ const ScProductPrice = class {
         return (h("sc-price", { currency: price === null || price === void 0 ? void 0 : price.currency, amount: amount, displayAmount: displayAmount, scratchAmount: scratchAmount, scratchDisplayAmount: scratchDisplayAmount, saleText: this.saleText, adHoc: price === null || price === void 0 ? void 0 : price.ad_hoc, trialDurationDays: price === null || price === void 0 ? void 0 : price.trial_duration_days, setupFeeText: price === null || price === void 0 ? void 0 : price.setup_fee_text, setupFeeAmount: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_amount : null, setupFeeName: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_name : null, recurringPeriodCount: price === null || price === void 0 ? void 0 : price.recurring_period_count, recurringInterval: price === null || price === void 0 ? void 0 : price.recurring_interval, recurringIntervalCount: price === null || price === void 0 ? void 0 : price.recurring_interval_count }));
     }
     render() {
-        return (h(Host, { key: 'f60b38c183a708193b1df4b1b601e33d0bfeedd9', role: "paragraph" }, (() => {
+        return (h(Host, { key: '4421254d0bcbdf8aba2fc35fe14bc09e5b8b38ea', role: "paragraph" }, (() => {
             var _a, _b, _c, _d, _e;
             if ((_a = state[this.productId]) === null || _a === void 0 ? void 0 : _a.selectedVariant) {
                 return this.renderVariantPrice((_b = state[this.productId]) === null || _b === void 0 ? void 0 : _b.selectedVariant);

@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const lazy = require('./lazy-2b509fa7.js');
-const fetch = require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scLicensesListCss = ":host{display:block}.license__name{font-weight:var(--sc-font-weight-semibold)}.license__details{display:grid;gap:0.25em;color:var(--sc-input-label-color)}";
@@ -61,7 +62,7 @@ const ScLicensesList = class {
         if (!this.isCustomer) {
             return;
         }
-        const response = (await await fetch.apiFetch({
+        const response = (await await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs('surecart/v1/licenses', {
                 expand: ['purchase', 'purchase.product', 'activations'],
                 ...this.query,
@@ -125,7 +126,7 @@ const ScLicensesList = class {
     }
     render() {
         var _a, _b;
-        return (index.h("sc-dashboard-module", { key: '34ee7df77370131e228af4bb0bef147c0222a5a2', class: "purchase", part: "base", error: this.error }, index.h("span", { key: '6faa343acdb336ab94351f9372c5ed79b2b6bdbf', slot: "heading" }, index.h("slot", { key: 'e4a96afd6e194275a68d7c0eb07fe9bb4b2be5e7', name: "heading" }, this.heading || wp.i18n.__('License Keys', 'surecart'))), !!this.allLink && !!((_a = this.licenses) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: 'a47686b70d445bb5363b8ddfb2d9ae8d3ce0dfdb', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: 'd432bfd067f17d264ad83f86126cbec19cfd70fc', name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '2fcd069e1d2b1fa826c8e5f8d98e0c8538e35d83', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.licenses) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }))));
+        return (index.h("sc-dashboard-module", { key: 'e0d20b22a4337be1f0c7711d46ff1f09db9f7d27', class: "purchase", part: "base", error: this.error }, index.h("span", { key: 'eafb14077ebc3ed1ce3a96be308d91b830d82782', slot: "heading" }, index.h("slot", { key: 'caf47d40166ac37d865970ffbf4c7821c40ac439', name: "heading" }, this.heading || wp.i18n.__('License Keys', 'surecart'))), !!this.allLink && !!((_a = this.licenses) === null || _a === void 0 ? void 0 : _a.length) && (index.h("sc-button", { key: 'f78bbd5f471ebd853adc87c8909c24a5b323d4dd', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '692e4e7fe442969fc2051390118e0f60bc28ad88', name: "chevron-right", slot: "suffix" }))), this.renderContent(), !this.allLink && (index.h("sc-pagination", { key: '7de25ba69f9c0b066081bdae607fdd75f3ffdf39', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_b = this === null || this === void 0 ? void 0 : this.licenses) === null || _b === void 0 ? void 0 : _b.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }))));
     }
     get el() { return index.getElement(this); }
 };

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scVisuallyHiddenCss = ":host(:not(:focus-within)){position:absolute !important;width:1px !important;height:1px !important;clip:rect(0 0 0 0) !important;clip-path:inset(50%) !important;border:none !important;overflow:hidden !important;white-space:nowrap !important;padding:0 !important}";
 const ScVisuallyHiddenStyle0 = scVisuallyHiddenCss;
@@ -12,7 +12,7 @@ const ScVisuallyHidden = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return index.h("slot", { key: '81367219cf6f2294bda782a860340688f59ebe80' });
+        return index.h("slot", { key: '8abd044386d7ef5f20742dc956922844fc1b2bb1' });
     }
 };
 ScVisuallyHidden.style = ScVisuallyHiddenStyle0;

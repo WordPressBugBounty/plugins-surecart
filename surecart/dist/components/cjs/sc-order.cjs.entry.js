@@ -2,11 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const tax = require('./tax-a4582e73.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scOrderCss = ":host{display:block}.order__row{padding:var(--sc-spacing-large);display:grid;gap:var(--sc-spacing-small)}";
@@ -47,7 +48,7 @@ const ScOrder = class {
     async fetchDownloads() {
         try {
             this.busy = true;
-            this.purchases = (await fetch.apiFetch({
+            this.purchases = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/purchases`, {
                     expand: ['product', 'product.downloads', 'download.media'],
                     order_ids: [this.orderId],
@@ -66,7 +67,7 @@ const ScOrder = class {
     }
     /** Get order */
     async getOrder() {
-        this.order = (await fetch.apiFetch({
+        this.order = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/orders/${this.orderId}`, {
                 expand: [
                     'checkout',
@@ -174,7 +175,7 @@ const ScOrder = class {
         var _a, _b, _c, _d, _e, _f, _g;
         const checkout = (_a = this === null || this === void 0 ? void 0 : this.order) === null || _a === void 0 ? void 0 : _a.checkout;
         const manualPaymentMethod = checkout === null || checkout === void 0 ? void 0 : checkout.manual_payment_method;
-        return (index.h("sc-spacing", { key: '7baa9d8769ea98769a3f14a60f1985be2ce82174', style: { '--spacing': 'var(--sc-spacing-large)' } }, index.h("sc-dashboard-module", { key: 'a0d98170ed638ea4ac6a90887d1c0df85471b147', error: this.error }, index.h("span", { key: '14bcd2638c59c7e77372166ea4e60b1094a098cc', slot: "heading" }, this.loading ? index.h("sc-skeleton", { style: { width: '120px' } }) : `#${(_b = this === null || this === void 0 ? void 0 : this.order) === null || _b === void 0 ? void 0 : _b.number}`), !this.loading && !(checkout === null || checkout === void 0 ? void 0 : checkout.live_mode) && (index.h("sc-tag", { key: '1dd3d392b038a493a88fbf2f1448d0097ac31425', type: "warning", slot: "end" }, wp.i18n.__('Test Mode', 'surecart'))), !!(manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.name) && !!(manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.instructions) && (index.h("sc-order-manual-instructions", { key: 'a2eafd910a50861caa870fcd1eddd084fab4684b', manualPaymentTitle: manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.name, manualPaymentInstructions: manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.instructions })), index.h("sc-card", { key: '5323d081c8d7640fed4ff3faeb9f1edb0f3b32fe', "no-padding": !this.loading }, this.loading ? (this.renderLoading()) : (index.h(index.Fragment, null, index.h("sc-stacked-list", null, index.h("sc-stacked-list-row", { style: { '--columns': '2' } }, index.h("div", null, wp.i18n.__('Order Status', 'surecart')), index.h("sc-order-status-badge", { status: (_c = this === null || this === void 0 ? void 0 : this.order) === null || _c === void 0 ? void 0 : _c.status })), index.h("sc-stacked-list-row", { style: { '--columns': '2' } }, index.h("div", null, wp.i18n.__('Date', 'surecart')), index.h("span", null, (_d = this.order) === null || _d === void 0 ? void 0 : _d.created_at_date)), index.h("sc-stacked-list-row", { style: { '--columns': '2' } }, index.h("div", null, wp.i18n.__('Payment Method', 'surecart')), index.h("sc-payment-method", { paymentMethod: checkout === null || checkout === void 0 ? void 0 : checkout.payment_method })), index.h("div", { class: "order__row" }, this.renderContent())))))), ((_e = this.order) === null || _e === void 0 ? void 0 : _e.statement_url) && (index.h("sc-button", { key: 'b2b44c9f352c13b601ba2dabd0f32a1508494527', type: "primary", href: (_f = this.order) === null || _f === void 0 ? void 0 : _f.statement_url, target: "_blank" }, index.h("sc-icon", { key: '4b51d32370d7f669e41333f9046cf81d97a2b4f6', name: "inbox", slot: "prefix" }), wp.i18n.__('Download Receipt/Invoice', 'surecart'))), !!((_g = this.purchases) === null || _g === void 0 ? void 0 : _g.length) && index.h("sc-purchase-downloads-list", { key: 'c6160a917a46bc4dc49de6cc04aeae135895ded6', heading: wp.i18n.__('Downloads', 'surecart'), purchases: this.purchases })));
+        return (index.h("sc-spacing", { key: '0d8b54f63f6236c3a8789fccdd39a2e42b94c23c', style: { '--spacing': 'var(--sc-spacing-large)' } }, index.h("sc-dashboard-module", { key: 'feb3dedaf111286b905931fac4d6397c0c7b846b', error: this.error }, index.h("span", { key: 'a6af63ec3857206b7ca59cc3df84700d7b7e58c3', slot: "heading" }, this.loading ? index.h("sc-skeleton", { style: { width: '120px' } }) : `#${(_b = this === null || this === void 0 ? void 0 : this.order) === null || _b === void 0 ? void 0 : _b.number}`), !this.loading && !(checkout === null || checkout === void 0 ? void 0 : checkout.live_mode) && (index.h("sc-tag", { key: 'ef22afe078e300c0e39a13e6eb147fc1b27bbbbd', type: "warning", slot: "end" }, wp.i18n.__('Test Mode', 'surecart'))), !!(manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.name) && !!(manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.instructions) && (index.h("sc-order-manual-instructions", { key: '708217844b6f9d1382f5e06168b4cf3224347a7d', manualPaymentTitle: manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.name, manualPaymentInstructions: manualPaymentMethod === null || manualPaymentMethod === void 0 ? void 0 : manualPaymentMethod.instructions })), index.h("sc-card", { key: '958f684b6f553c62b94c26824cc90a3a715862de', "no-padding": !this.loading }, this.loading ? (this.renderLoading()) : (index.h(index.Fragment, null, index.h("sc-stacked-list", null, index.h("sc-stacked-list-row", { style: { '--columns': '2' } }, index.h("div", null, wp.i18n.__('Order Status', 'surecart')), index.h("sc-order-status-badge", { status: (_c = this === null || this === void 0 ? void 0 : this.order) === null || _c === void 0 ? void 0 : _c.status })), index.h("sc-stacked-list-row", { style: { '--columns': '2' } }, index.h("div", null, wp.i18n.__('Date', 'surecart')), index.h("span", null, (_d = this.order) === null || _d === void 0 ? void 0 : _d.created_at_date)), index.h("sc-stacked-list-row", { style: { '--columns': '2' } }, index.h("div", null, wp.i18n.__('Payment Method', 'surecart')), index.h("sc-payment-method", { paymentMethod: checkout === null || checkout === void 0 ? void 0 : checkout.payment_method })), index.h("div", { class: "order__row" }, this.renderContent())))))), ((_e = this.order) === null || _e === void 0 ? void 0 : _e.statement_url) && (index.h("sc-button", { key: '67aef109bb9873157c767cf0493718a6a11144ad', type: "primary", href: (_f = this.order) === null || _f === void 0 ? void 0 : _f.statement_url, target: "_blank" }, index.h("sc-icon", { key: '93ec0018cc32c394f2a43c0a3b3aeb638587dc14', name: "inbox", slot: "prefix" }), wp.i18n.__('Download Receipt/Invoice', 'surecart'))), !!((_g = this.purchases) === null || _g === void 0 ? void 0 : _g.length) && index.h("sc-purchase-downloads-list", { key: 'c7e035e19c70dea0e1e4848790190c2afaeb9115', heading: wp.i18n.__('Downloads', 'surecart'), purchases: this.purchases })));
     }
     get el() { return index.getElement(this); }
 };

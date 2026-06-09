@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const index$1 = require('./index-fb76df07.js');
@@ -97,14 +97,14 @@ const ScToggle = class {
         }
     }
     render() {
-        return (index.h("div", { key: '536b2f49481a6a42ad978fe8ee81a023c1c97a0a', part: "base", class: {
+        return (index.h("div", { key: 'c9320c44869a759006746ec77575ea2c2cd2ac57', part: "base", class: {
                 'details': true,
                 'details--open': this.open,
                 'details--disabled': this.disabled,
                 'details--borderless': this.borderless,
                 'details--shady': this.shady,
                 'details--is-rtl': pageAlign.isRtl(),
-            } }, index.h("header", { key: 'c035c884606247f8b263ec55e92e88dba43226e5', ref: el => (this.header = el), part: "header", id: "header", class: "details__header", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-controls": "content", "aria-disabled": this.disabled ? 'true' : 'false', tabindex: this.disabled ? '-1' : '0', onClick: () => this.handleSummaryClick(), onKeyDown: e => this.handleSummaryKeyDown(e) }, this.showControl && (index.h("span", { key: 'e022a0b4e01e4a19a9d207cc7347b3a697621c9e', part: "radio", class: "details__radio" }, index.h("svg", { key: '6100944f694d04f077af34afad72627166097c1a', viewBox: "0 0 16 16" }, index.h("g", { key: '94b59074e9e88e409ddf2efcfc2bf0f0e939ccb8', stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { key: 'f36aa8cba06582430ebed2f5afe11110beda677d', fill: "currentColor" }, index.h("circle", { key: '6d08a4df1af90cf7b4082b459918f40a6b16b71d', cx: "8", cy: "8", r: "3.42857143" })))))), index.h("div", { key: 'db6736a8f8c21809a7fa86ec7cf2eb3085bd0b43', part: "summary", class: "details__summary" }, index.h("slot", { key: '7c996f4115338126c256801b8f5cccb6a3f40600', name: "summary" }, this.summary)), this.showIcon && (index.h("span", { key: '445ec6b7f78cf0aaca223bdb802f803e491c839f', part: "summary-icon", class: "details__summary-icon" }, index.h("slot", { key: '564c871920ace8779e05192ebac93eb53dd19cb1', name: "icon" }, index.h("sc-icon", { key: 'fd509dea06b569428d7367f970948729422515a9', name: "chevron-right" }))))), index.h("div", { key: '8b40ace983918abeb9f47f429ed2d69d5d787ec7', class: "details__body", ref: el => (this.body = el), part: "body" }, index.h("div", { key: '9df8990c612dced8232760664e7f060f4acd6c21', part: "content", id: "content", class: "details__content", role: "region", "aria-labelledby": "header" }, index.h("slot", { key: '145234f46f8db92ba2dc6fff9f6c836b7e417613' })))));
+            } }, index.h("header", { key: '5f0d8d7070d5e3ee4465e5474f01f740eda5fb1c', ref: el => (this.header = el), part: "header", id: "header", class: "details__header", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-controls": "content", "aria-disabled": this.disabled ? 'true' : 'false', tabindex: this.disabled ? '-1' : '0', onClick: () => this.handleSummaryClick(), onKeyDown: e => this.handleSummaryKeyDown(e) }, this.showControl && (index.h("span", { key: '50b6035e24fb42c4ba3f73f7bf992661f9475df2', part: "radio", class: "details__radio" }, index.h("svg", { key: 'd9ef7ace72f1cee9e6fc1cc9c81922e0a635fd73', viewBox: "0 0 16 16" }, index.h("g", { key: '361c0af550cfa368d452fb480b8c77db79c6aab5', stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { key: 'bca741dcd1623daa438ce9814fda8b846463142c', fill: "currentColor" }, index.h("circle", { key: 'ff797838e0b9bd75f59e40b9228ed01714970469', cx: "8", cy: "8", r: "3.42857143" })))))), index.h("div", { key: 'baf6a7be0a6314e43e8d7a2d87a9b881c9a8f49a', part: "summary", class: "details__summary" }, index.h("slot", { key: 'bbc47c6801b907981dd3cbc2758d465be28f297c', name: "summary" }, this.summary)), this.showIcon && (index.h("span", { key: 'b1ffe9eef4af59193367d13da862393296950b94', part: "summary-icon", class: "details__summary-icon" }, index.h("slot", { key: 'abdb5d5b29d084bae0ac46685c3b16a910cf57e3', name: "icon" }, index.h("sc-icon", { key: 'e4bea8e3edf7ad14652ca526bb01d8e893a86a86', name: "chevron-right" }))))), index.h("div", { key: '1ed7a41b283a5a25ff695e065c80531b45646f20', class: "details__body", ref: el => (this.body = el), part: "body" }, index.h("div", { key: '3f99e1dcc41e11b39e2182fe2801b67d70790a8a', part: "content", id: "content", class: "details__content", role: "region", "aria-labelledby": "header" }, index.h("slot", { key: 'b7f4e9031e6318b56c910bc7ea459a3d3dd5e6d5' })))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

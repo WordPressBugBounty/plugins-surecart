@@ -2,23 +2,24 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const watchers = require('./watchers-567affc6.js');
-require('./watchers-8fc90e37.js');
-const store = require('./store-bc70c557.js');
-require('./index-bcdafe6e.js');
+const index = require('./index-be4abba1.js');
+const watchers = require('./watchers-4cadea78.js');
+require('./watchers-cfe7be58.js');
+const store = require('./store-401bdb4d.js');
+require('./index-c3de642f.js');
 require('./google-03835677.js');
 require('./currency-71fce0f0.js');
 require('./google-59d23803.js');
 require('./utils-a9d13080.js');
-require('./util-b877b2bd.js');
+require('./util-a15c420c.js');
 require('./index-fb76df07.js');
-require('./getters-2ed7af1f.js');
-require('./mutations-55049d2e.js');
-require('./fetch-d374a251.js');
+require('./getters-bc65a40b.js');
+require('./mutations-2e9c52fa.js');
+require('./fetch-853b19c8.js');
+require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
-require('./mutations-11c8f9a8.js');
+require('./mutations-d5d6ddf1.js');
 
 const scProductPriceCss = ":host{display:block}";
 const ScProductPriceStyle0 = scProductPriceCss;
@@ -52,7 +53,7 @@ const ScProductPrice = class {
         return (index.h("sc-price", { currency: price === null || price === void 0 ? void 0 : price.currency, amount: amount, displayAmount: displayAmount, scratchAmount: scratchAmount, scratchDisplayAmount: scratchDisplayAmount, saleText: this.saleText, adHoc: price === null || price === void 0 ? void 0 : price.ad_hoc, trialDurationDays: price === null || price === void 0 ? void 0 : price.trial_duration_days, setupFeeText: price === null || price === void 0 ? void 0 : price.setup_fee_text, setupFeeAmount: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_amount : null, setupFeeName: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_name : null, recurringPeriodCount: price === null || price === void 0 ? void 0 : price.recurring_period_count, recurringInterval: price === null || price === void 0 ? void 0 : price.recurring_interval, recurringIntervalCount: price === null || price === void 0 ? void 0 : price.recurring_interval_count }));
     }
     render() {
-        return (index.h(index.Host, { key: 'f60b38c183a708193b1df4b1b601e33d0bfeedd9', role: "paragraph" }, (() => {
+        return (index.h(index.Host, { key: '4421254d0bcbdf8aba2fc35fe14bc09e5b8b38ea', role: "paragraph" }, (() => {
             var _a, _b, _c, _d, _e;
             if ((_a = watchers.state[this.productId]) === null || _a === void 0 ? void 0 : _a.selectedVariant) {
                 return this.renderVariantPrice((_b = watchers.state[this.productId]) === null || _b === void 0 ? void 0 : _b.selectedVariant);

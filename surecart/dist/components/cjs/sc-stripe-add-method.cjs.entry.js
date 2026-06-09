@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const pure = require('./pure-bd6f0a6e.js');
-const fetch = require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scStripeAddMethodCss = "sc-stripe-add-method{display:block}sc-stripe-add-method [hidden]{display:none}.loader{display:grid;height:128px;gap:2em}.loader__row{display:flex;align-items:flex-start;justify-content:space-between;gap:1em}.loader__details{display:grid;gap:0.5em}";
@@ -86,7 +87,7 @@ const ScStripeAddMethod = class {
         try {
             this.loading = true;
             this.error = '';
-            this.paymentIntent = await fetch.apiFetch({
+            this.paymentIntent = await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/payment_intents',
                 data: {
@@ -133,7 +134,7 @@ const ScStripeAddMethod = class {
         }
     }
     render() {
-        return (index.h("sc-form", { key: 'e60e777ca6bbce717d4334f4bad0b1ade944fe82', onScFormSubmit: e => this.handleSubmit(e) }, this.error && (index.h("sc-alert", { key: '792e60ee409570071275f769d9b25f1fd0eab5aa', open: !!this.error, type: "danger" }, index.h("span", { key: '1af7427f6e4af50c9a8d3858abb33c325ddb16d4', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: 'f75a3c3c08ddb6ea5a89117a8e79c0e38e6b9883', class: "loader", hidden: this.loaded }, index.h("div", { key: '19308a02f1d269ff64f38f965d7b23290768bead', class: "loader__row" }, index.h("div", { key: '62ae2c1c7de80eac14ae45b86a0c9f4df996a619', style: { width: '50%' } }, index.h("sc-skeleton", { key: 'f3e84fa4b53bc34d5a05efcdb5037de51c208104', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'b091228c7c635e992a747bf80f6e3a78c6c147c3' })), index.h("div", { key: 'bd733b6359c7e301f68dcda1163e4f0dc9720e8f', style: { flex: '1' } }, index.h("sc-skeleton", { key: '0492d0512483501d50861657f85ae215aace7b9c', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'd1c4611429145420a4793b527dd81498918ea3d3' })), index.h("div", { key: 'cd7d8d4fea22ebee87de979c198e4aea07f63547', style: { flex: '1' } }, index.h("sc-skeleton", { key: 'aee7e6dd6517c087b6fe717c1499eaf28a20adb1', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '372e7a97ec8a15a11cc6f08a4b63456b36e54210' }))), index.h("div", { key: 'ce1487b0214416bc0b707d9e2b0cf19e593a6a67', class: "loader__details" }, index.h("sc-skeleton", { key: '5be48c3eef80442350ec411b38e428c99b64dcae', style: { height: '1rem' } }), index.h("sc-skeleton", { key: '8e56a3c143b55ccba17309fe87e4b00494fe9c71', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: 'e280b09bdfc4f200bd159af8f61c7e8346f70d42', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) }), index.h("sc-button", { key: '867914c60ce9f9e2e9438800cff836399d937e22', type: "primary", submit: true, full: true, loading: this.loading }, wp.i18n.__('Save Payment Method', 'surecart'))));
+        return (index.h("sc-form", { key: 'b3703206cbf8dd29125bafb4ad4c91983c3d335a', onScFormSubmit: e => this.handleSubmit(e) }, this.error && (index.h("sc-alert", { key: '485b883e3a1f905896c52576e90590223935dc2b', open: !!this.error, type: "danger" }, index.h("span", { key: '7f0cc27bbc5b9432952f2fb8d989d96b0caaeed3', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: 'b1774d217dea92dc0378831ed203caa2cbd8c8cf', class: "loader", hidden: this.loaded }, index.h("div", { key: '03fb9f1dca55b7ba86c60670a66072d9d8912a2b', class: "loader__row" }, index.h("div", { key: '71e9f4d027192231d0fab5eb77aa9d5405a20fbb', style: { width: '50%' } }, index.h("sc-skeleton", { key: '2dee7b2a5fa4e6a182cc495bbaa75f7da39739af', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '64371d9b73225de1ee8b629634ae638a94cd471c' })), index.h("div", { key: '0e133274d308e5a8af9090ed1a9c9d1e6a2643f6', style: { flex: '1' } }, index.h("sc-skeleton", { key: 'cebeb3c66228c414022b2e0074e54305cc5cbeb6', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'ea3396206ad0a2c041d45c844cb50dd8b3e01fd6' })), index.h("div", { key: 'f79678e895738c499b2e0602fd41db73158e5327', style: { flex: '1' } }, index.h("sc-skeleton", { key: '84a3def2e1369e5eb93e585d75f6480ac0dd0c42', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '78a2939177cf186f77a6609b827f9952c05134b7' }))), index.h("div", { key: 'a58d9228bbff1a9d1046ee32fca6a3d0c68864ca', class: "loader__details" }, index.h("sc-skeleton", { key: '247594f4a3d061d09eb8c716ecb8f669a26e2485', style: { height: '1rem' } }), index.h("sc-skeleton", { key: 'c8f628ba21fa3b3c6ac85530ce301c23b99c42b5', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: '3aac9ad2e9af9a10c0288b5ec46d259cb4bea024', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) }), index.h("sc-button", { key: '96c587be72b04d3d67cc83825983115a14fac005', type: "primary", submit: true, full: true, loading: this.loading }, wp.i18n.__('Save Payment Method', 'surecart'))));
     }
     static get watchers() { return {
         "paymentIntent": ["handlePaymentIntentCreate"]

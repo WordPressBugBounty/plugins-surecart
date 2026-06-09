@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const price = require('./price-da3cab3d.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./currency-71fce0f0.js');
@@ -27,7 +27,7 @@ const ScSubscriptionAdHocConfirm = class {
         }));
     }
     render() {
-        return (index.h("sc-dashboard-module", { key: 'bb5940347cf9480364b5d0bd80242a334e4ce048', heading: this.heading || wp.i18n.__('Enter An Amount', 'surecart'), class: "subscription-switch" }, index.h("sc-card", { key: '42657c15f23c9c79c6f28c177bd5401fd1bedd3d' }, index.h("sc-form", { key: '2e418bd74140bcfcedabe937fd265d8b4e81d1d6', onScSubmit: e => this.handleSubmit(e) }, index.h("sc-price-input", { key: 'a596b7ba0df54ae44365c7f3a94e5d4ec6c146e7', label: "Amount", name: "ad_hoc_amount", currencyCode: this.currencyCode, autofocus: true, required: true }, index.h("span", { key: '0295dedc9b7b170c2f168c487f67f5ca8e039e1f', slot: "suffix", style: { opacity: '0.75' } }, price.intervalString(this.price))), index.h("sc-button", { key: 'dcf0b3f2f6f5ee815213998df57bb9acf11e128f', type: "primary", full: true, submit: true, loading: this.busy }, wp.i18n.__('Next', 'surecart'), " ", index.h("sc-icon", { key: 'b34ea76f75d72695ccbe8bdebb00e14f8585b104', name: "arrow-right", slot: "suffix" })))), this.busy && index.h("sc-block-ui", { key: '0210ee58c7683a7246412c6318c12b9b69d0ad4e', style: { zIndex: '9' } })));
+        return (index.h("sc-dashboard-module", { key: '4a35e1114f863dfc79fa4694e2941a594535af36', heading: this.heading || wp.i18n.__('Enter An Amount', 'surecart'), class: "subscription-switch" }, index.h("sc-card", { key: '77414bee1502459d44fd69e40bf4524118717396' }, index.h("sc-form", { key: '9519d021e34e84d91d02c26351d5f6a55a69be0d', onScSubmit: e => this.handleSubmit(e) }, index.h("sc-price-input", { key: '9bec5ccec951d14d53e886e2c138b0ba72ab455e', label: "Amount", name: "ad_hoc_amount", currencyCode: this.currencyCode, autofocus: true, required: true }, index.h("span", { key: '58ab6d75deaa8c9d38564938f6403b48f1479580', slot: "suffix", style: { opacity: '0.75' } }, price.intervalString(this.price))), index.h("sc-button", { key: 'cbc32465ecb3991997344b9e36c05a0f0a0f1e3e', type: "primary", full: true, submit: true, loading: this.busy }, wp.i18n.__('Next', 'surecart'), " ", index.h("sc-icon", { key: '5506388e1ebab66cea771c15a1efdb061a1629bf', name: "arrow-right", slot: "suffix" })))), this.busy && index.h("sc-block-ui", { key: '34b2fbbd163b67f8bdbea04ab9a210486ecbc386', style: { zIndex: '9' } })));
     }
 };
 ScSubscriptionAdHocConfirm.style = ScSubscriptionAdHocConfirmStyle0;

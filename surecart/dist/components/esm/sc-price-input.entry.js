@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { c as getCurrencySymbol } from './price-1ff6aa07.js';
 import { F as FormSubmitController } from './form-data-76641f16.js';
 import { m as maybeConvertAmount, i as isZeroDecimal } from './currency-a0c9bff4.js';
@@ -104,13 +104,13 @@ const ScPriceInput = class {
         return maybeConvertAmount(parsedAmount, this.currencyCode).toString();
     }
     render() {
-        return (h("sc-input", { key: '30af3f2c341851171f92f36b4667b190ecb3f277', exportparts: "base, input, form-control, label, help-text, prefix, suffix", size: this.size, label: this.label, showLabel: this.showLabel, help: this.help, ref: el => (this.input = el), type: "text" // we cannot use number because it's basically the worst. https://stackoverflow.blog/2022/12/26/why-the-number-input-is-the-worst-input/
+        return (h("sc-input", { key: 'e62d968a6c813a1012e852b2b6c602405c830a7c', exportparts: "base, input, form-control, label, help-text, prefix, suffix", size: this.size, label: this.label, showLabel: this.showLabel, help: this.help, ref: el => (this.input = el), type: "text" // we cannot use number because it's basically the worst. https://stackoverflow.blog/2022/12/26/why-the-number-input-is-the-worst-input/
             ,
             name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: !!this.min ? this.min / 100 : 0.0, step: 0.01, max: !!this.max ? this.max / 100 : null,
             // TODO: Test These below
             autofocus: this.autofocus, inputmode: 'decimal', onScChange: () => this.handleChange(), onScInput: () => this.handleInput(), onScBlur: () => this.scBlur.emit(), onScFocus: () => this.scFocus.emit(), pattern: "^\\d*(\\.\\d{0,2})?$" // This prevents more than two decimal places
             ,
-            value: this.getFormattedValue() }, h("span", { key: 'd91eceb3098e2b6a026852af1ff3bdf4d0f87e26', style: { opacity: '0.5' }, slot: "prefix" }, getCurrencySymbol(this.currencyCode)), h("span", { key: '74eb3ae7b976e545e4d2395c73eb6117b31810da', slot: "suffix" }, h("slot", { key: '5221bdb16a9d3c27ae0d9830e26f50f154658802', name: "suffix" }, this.showCode && (this === null || this === void 0 ? void 0 : this.currencyCode) && h("span", { key: 'f9079db319812a1f299a630092fb9e60305ce5bd', style: { opacity: '0.5' } }, this.currencyCode.toUpperCase())))));
+            value: this.getFormattedValue() }, h("span", { key: '700d7fd67e20a134af7ce8244fe8e7da6a953c33', style: { opacity: '0.5' }, slot: "prefix" }, getCurrencySymbol(this.currencyCode)), h("span", { key: 'f68a39cdad7b71b40480ae80f4eec6cf1174d128', slot: "suffix" }, h("slot", { key: 'df3334dfc5938d85c5f365637bdd657de580f82d', name: "suffix" }, this.showCode && (this === null || this === void 0 ? void 0 : this.currencyCode) && h("span", { key: 'b9a4736d1c0b2fb3b1716a3fff4b9cff937a29a5', style: { opacity: '0.5' } }, this.currencyCode.toUpperCase())))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

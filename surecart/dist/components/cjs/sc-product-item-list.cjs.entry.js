@@ -2,11 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const index$1 = require('./index-fb76df07.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+const index$2 = require('./index-fb76df07.js');
+const fetch = require('./fetch-853b19c8.js');
 require('./google-03835677.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./currency-71fce0f0.js');
 require('./google-59d23803.js');
@@ -111,7 +112,7 @@ const ScProductItemList = class {
     // Fetch all collections
     async getCollections() {
         try {
-            this.collections = (await fetch.apiFetch({
+            this.collections = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs('surecart/v1/product_collections/', {
                     per_page: 100,
                 }),
@@ -166,7 +167,7 @@ const ScProductItemList = class {
             collectionIds = [this.collectionId];
         }
         try {
-            const response = (await fetch.apiFetch({
+            const response = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/products/`, {
                     expand: ['prices', 'featured_product_media', 'product_medias', 'product_media.media', 'variants'],
                     archived: false,
@@ -188,7 +189,7 @@ const ScProductItemList = class {
             };
             this.products = (await response.json());
             if (!!collectionIds.length || !!this.query) {
-                index$1.speak(wp.i18n.sprintf(wp.i18n.__('%s products found', 'surecart'), this.pagination.total));
+                index$2.speak(wp.i18n.sprintf(wp.i18n.__('%s products found', 'surecart'), this.pagination.total));
             }
         }
         catch (response) {

@@ -2,28 +2,30 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const address = require('./address-7404695f.js');
 const formData = require('./form-data-0da9940f.js');
 const googleMaps = require('./google-maps-0f9b7648.js');
-const mutations = require('./mutations-c848334c.js');
-const getters = require('./getters-028b3c54.js');
-const store = require('./store-b57d9911.js');
-const consumer = require('./consumer-9f4ee0e3.js');
-const mutations$1 = require('./mutations-8d8c9d41.js');
-const index$1 = require('./index-325f2916.js');
-const index$2 = require('./index-fb76df07.js');
+const mutations = require('./mutations-6e603e86.js');
+const getters = require('./getters-d68c08ed.js');
+const store = require('./store-01e8edc2.js');
+const consumer = require('./consumer-b58230e6.js');
+const mutations$1 = require('./mutations-85ee76d2.js');
+const index$2 = require('./index-bb9b8917.js');
+const index$1 = require('./index-2a4acaf8.js');
+const index$3 = require('./index-fb76df07.js');
 const price = require('./price-da3cab3d.js');
-const getters$1 = require('./getters-c16ecf9a.js');
-const mutations$2 = require('./mutations-11c8f9a8.js');
+const getters$1 = require('./getters-dcec94e4.js');
+const mutations$2 = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./add-query-args-49dcb630.js');
-require('./index-bcdafe6e.js');
+require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
+require('./index-7ced8198.js');
 
 const scCompactAddressCss = ":host{display:block}.sc-address{display:block;position:relative}.sc-address [hidden]{display:none}.sc-address--loading{min-height:70px}.sc-address--loading sc-skeleton{display:block;margin-bottom:1em}.sc-address__control{display:block}.sc-address__control>*{margin-bottom:-1px}.sc-address__columns{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.sc-address__columns>*{flex:1;width:50%;margin-left:-1px}.sc-address__columns>*:first-child{margin-left:0}";
 const ScCompactAddressStyle0 = scCompactAddressCss;
@@ -132,10 +134,10 @@ const ScCompactAddress = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g;
-        return (index.h("div", { key: '24227f5fe3c7bf0cadea174000c888ec6b0d4eeb', class: "sc-address", part: "base" }, index.h("sc-form-control", { key: 'b321ed9f1fff54c91190dd7e2c754fda6dd65db2', exportparts: "label, help-text, form-control", label: this.label, class: "sc-address__control", part: "control", required: this.required }, index.h("sc-select", { key: 'f03be8dde04aa633f1d43d1e4f6b699d4228532d', exportparts: "base:select__base, input, form-control, label, help-text, trigger, panel, caret, search__base, search__input, search__form-control, menu__base, spinner__base, empty", value: (_a = this.address) === null || _a === void 0 ? void 0 : _a.country, onScChange: (e) => {
+        return (index.h("div", { key: '74ad8c46e354356cbfe99654a7207cfb5369a973', class: "sc-address", part: "base" }, index.h("sc-form-control", { key: 'd795b07c0ae1b07671b20edf3522906a8b188253', exportparts: "label, help-text, form-control", label: this.label, class: "sc-address__control", part: "control", required: this.required }, index.h("sc-select", { key: '3b2023668695c0488b6bc29ed9987e2dc8f882cb', exportparts: "base:select__base, input, form-control, label, help-text, trigger, panel, caret, search__base, search__input, search__form-control, menu__base, spinner__base, empty", value: (_a = this.address) === null || _a === void 0 ? void 0 : _a.country, onScChange: (e) => {
                 this.clearAddress();
                 this.updateAddress({ country: e.target.value || null });
-            }, choices: this.countryChoices, autocomplete: 'country-name', placeholder: ((_b = this.placeholders) === null || _b === void 0 ? void 0 : _b.country) || wp.i18n.__('Select Your Country', 'surecart'), name: this.names.country, search: true, unselect: false, "squared-bottom": this.showState || this.showPostal, required: this.required }), index.h("div", { key: '61c97c8a4455168c63cc120c621092128eec071f', class: "sc-address__columns" }, this.showState && (index.h("sc-select", { key: '4ae2428e19cf6c6880143418ede77d728e370956', exportparts: "base:select__base, input, form-control, label, help-text, trigger, panel, caret, search__base, search__input, search__form-control, menu__base, spinner__base, empty", placeholder: (_c = this.placeholders) === null || _c === void 0 ? void 0 : _c.state, name: this.names.state, autocomplete: 'address-level1', value: (_d = this === null || this === void 0 ? void 0 : this.address) === null || _d === void 0 ? void 0 : _d.state, onScChange: (e) => this.updateAddress({ state: e.target.value || null }), choices: this.regions, required: this.required, search: true, "squared-top": true, unselect: false, "squared-right": this.showPostal })), this.showPostal && (index.h("sc-input", { key: '22a638599a196116bcff77bae362aa80c842385b', exportparts: "base:input__base, input, form-control, label, help-text", placeholder: ((_e = this.placeholders) === null || _e === void 0 ? void 0 : _e.postal_code) || wp.i18n.__('Postal Code/Zip', 'surecart'), name: this.names.postal_code, onScChange: (e) => this.updateAddress({ postal_code: e.target.value || null }), onScInput: (e) => this.handleAddressInput({ postal_code: e.target.value || null }), autocomplete: 'postal-code', required: this.required, value: (_f = this === null || this === void 0 ? void 0 : this.address) === null || _f === void 0 ? void 0 : _f.postal_code, "squared-top": true, maxlength: ((_g = this.address) === null || _g === void 0 ? void 0 : _g.country) === 'US' ? 5 : undefined, pattern: this.postalCodeRegex, customValidity: this.postalCodeRegex ? wp.i18n.__('Please enter a valid postal code', 'surecart') : undefined, "squared-left": this.showState })))), this.loading && index.h("sc-block-ui", { key: 'f231ac7289be6bff54b54c45f10bb1b476b3fbca', exportparts: "base:block-ui, content:block-ui__content" })));
+            }, choices: this.countryChoices, autocomplete: 'country-name', placeholder: ((_b = this.placeholders) === null || _b === void 0 ? void 0 : _b.country) || wp.i18n.__('Select Your Country', 'surecart'), name: this.names.country, search: true, unselect: false, "squared-bottom": this.showState || this.showPostal, required: this.required }), index.h("div", { key: 'd2e89f20ef04e90c7f9134376e98e431bb4dfc9f', class: "sc-address__columns" }, this.showState && (index.h("sc-select", { key: 'de636b8a9d2bd82d776c0f22500f91103ba6b9a1', exportparts: "base:select__base, input, form-control, label, help-text, trigger, panel, caret, search__base, search__input, search__form-control, menu__base, spinner__base, empty", placeholder: (_c = this.placeholders) === null || _c === void 0 ? void 0 : _c.state, name: this.names.state, autocomplete: 'address-level1', value: (_d = this === null || this === void 0 ? void 0 : this.address) === null || _d === void 0 ? void 0 : _d.state, onScChange: (e) => this.updateAddress({ state: e.target.value || null }), choices: this.regions, required: this.required, search: true, "squared-top": true, unselect: false, "squared-right": this.showPostal })), this.showPostal && (index.h("sc-input", { key: '0de17be0cfa9b9ac1b18bd56377813e62e5e1d60', exportparts: "base:input__base, input, form-control, label, help-text", placeholder: ((_e = this.placeholders) === null || _e === void 0 ? void 0 : _e.postal_code) || wp.i18n.__('Postal Code/Zip', 'surecart'), name: this.names.postal_code, onScChange: (e) => this.updateAddress({ postal_code: e.target.value || null }), onScInput: (e) => this.handleAddressInput({ postal_code: e.target.value || null }), autocomplete: 'postal-code', required: this.required, value: (_f = this === null || this === void 0 ? void 0 : this.address) === null || _f === void 0 ? void 0 : _f.postal_code, "squared-top": true, maxlength: ((_g = this.address) === null || _g === void 0 ? void 0 : _g.country) === 'US' ? 5 : undefined, pattern: this.postalCodeRegex, customValidity: this.postalCodeRegex ? wp.i18n.__('Please enter a valid postal code', 'surecart') : undefined, "squared-left": this.showState })))), this.loading && index.h("sc-block-ui", { key: '926bda43ca0710b353812b10128281f1bd6b8422', exportparts: "base:block-ui, content:block-ui__content" })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -424,10 +426,8 @@ const ScOrderBillingAddress = class {
     }
     prefillAddress() {
         var _a;
-        // check if address keys are empty, if so, update them.
-        const addressKeys = Object.keys(this.address).filter(key => key !== 'country');
-        const emptyAddressKeys = addressKeys.filter(key => !this.address[key]);
-        if (emptyAddressKeys.length === addressKeys.length) {
+        // Autofill is handled by sc-checkout-autofill-provider which patches checkoutState.checkout with any logged-in customer profile data.
+        if (index$1.isAddressEmpty(this.address)) {
             this.address = { ...this.address, ...(_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.billing_address };
         }
     }
@@ -446,7 +446,7 @@ const ScOrderBillingAddress = class {
         this.address = address;
         try {
             mutations$1.lockCheckout('billing-address');
-            mutations.state.checkout = (await index$1.createOrUpdateCheckout({
+            mutations.state.checkout = (await index$2.createOrUpdateCheckout({
                 id: (_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.id,
                 data: {
                     billing_matches_shipping: (_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping,
@@ -472,7 +472,7 @@ const ScOrderBillingAddress = class {
     }
     render() {
         var _a, _b;
-        return (index.h(index.Fragment, { key: 'ac025fb50a179d589c2c96561305b92164fe7e51' }, this.shippingAddressFieldExists() && (index.h("sc-checkbox", { key: '5bd206c5d00aebb934f2361c85bff8f3c8751884', class: "order-billing-address__toggle", onScChange: e => this.onToggleBillingMatchesShipping(e), checked: (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.billing_matches_shipping }, this.toggleLabel)), (!this.shippingAddressFieldExists() || !((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping)) && (index.h("sc-address", { key: '857afdf76f5eba6febf77f7fe9453edc4b7146f7', exportparts: "label, help-text, form-control, input__base, select__base, columns, search__base, menu__base", ref: el => {
+        return (index.h(index.Fragment, { key: '1c1bd2c47300e495bf11a3540fc8d9d3a937f340' }, this.shippingAddressFieldExists() && (index.h("sc-checkbox", { key: '59eb14026a50d6d321ceacf1a8e75e02c0f239da', class: "order-billing-address__toggle", onScChange: e => this.onToggleBillingMatchesShipping(e), checked: (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.billing_matches_shipping }, this.toggleLabel)), (!this.shippingAddressFieldExists() || !((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping)) && (index.h("sc-address", { key: 'c48a5942fc23e7f42caacc5bcd0fece2f8a7ac02', exportparts: "label, help-text, form-control, input__base, select__base, columns, search__base, menu__base", ref: el => {
                 this.input = el;
             }, label: this.label || wp.i18n.__('Billing Address', 'surecart'), names: {
                 name: 'billing_name',
@@ -487,14 +487,17 @@ const ScOrderBillingAddress = class {
 };
 ScOrderBillingAddress.style = ScOrderBillingAddressStyle0;
 
-const scOrderBumpCss = ":host {\n  display: block;\n}\n\n.bump {\n  display: grid;\n  gap: 1em;\n}\n.bump__text {\n  display: grid;\n  gap: 0.25em;\n}\n.bump__tag {\n  background: var(--sc-color-primary-500);\n  color: var(--sc-color-white);\n  border-radius: var(--sc-input-border-radius-medium);\n  padding: var(--sc-spacing-x-small);\n  font-size: var(--sc-font-size-x-small);\n}\n.bump__product {\n  display: flex;\n  align-items: center;\n  gap: var(--sc-choice-padding, 1.3em 1.1em);\n  line-height: var(--sc-line-height-dense);\n}\n.bump__product--wrapper {\n  container-type: inline-size;\n}\n@container (max-width: 325px) {\n  .bump__product {\n    flex-direction: column;\n    align-items: start;\n  }\n}\n.bump__title {\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  word-break: break-word;\n}\n.bump__product-title {\n  font-weight: var(--sc-font-weight-semibold);\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  word-break: break-word;\n}\n.bump__product-description {\n  color: var(--sc-input-label-color);\n}\n.bump__image {\n  width: var(--sc-product-line-item-image-size, 4em);\n  height: var(--sc-product-line-item-image-size, 4em);\n  flex: 0 0 var(--sc-product-line-item-image-size, 4em);\n  object-fit: cover;\n  border-radius: 4px;\n  border: 1px solid var(--sc-color-gray-200);\n  display: block;\n  box-shadow: var(--sc-input-box-shadow);\n}\n.bump__price--has-discount {\n  display: flex;\n  align-items: baseline;\n  gap: var(--sc-spacing-x-small);\n}\n.bump__price--has-discount .bump__original-price {\n  text-decoration: line-through;\n  color: var(--sc-color-gray-500);\n  font-size: var(--sc-font-size-small);\n}\n.bump__price .bump__new-price {\n  font-size: var(--sc-font-size-large);\n  color: var(--sc-color-gray-700);\n}\n.bump__price .bump__interval {\n  color: var(--sc-color-gray-500);\n}\n.bump__amount {\n  display: flex;\n  align-items: center;\n  gap: var(--sc-spacing-x-small);\n  flex-wrap: wrap;\n  margin-top: var(--sc-spacing-xx-small);\n}";
+const scOrderBumpCss = ":host {\n  display: block;\n}\n\n:host([data-design=modern]) sc-choice::part(base) {\n  padding: 0;\n  overflow: hidden;\n  border-radius: var(--sc-order-bump-border-radius, 12px);\n  border-color: var(--sc-order-bump-border-color, #e0e0e0) !important;\n  box-shadow: none !important;\n  outline: none !important;\n  cursor: default;\n}\n\n:host([data-design=modern]) sc-choice::part(content) {\n  cursor: default;\n}\n\n:host([data-design=modern]) .bump {\n  display: flex;\n  align-items: center;\n  gap: var(--sc-order-bump-gap, 1em);\n  padding: var(--sc-order-bump-padding, 0.75em 1em 0.75em 0.75em);\n}\n:host([data-design=modern]) .bump__text {\n  display: grid;\n  gap: 5px;\n  flex: 1;\n  min-width: 0;\n}\n:host([data-design=modern]) .bump__title {\n  font-size: var(--sc-order-bump-title-size, 15px);\n  font-weight: 600;\n  line-height: 1.3;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  word-break: break-word;\n}\n:host([data-design=modern]) .bump__cta {\n  font-size: var(--sc-order-bump-cta-size, 12px);\n  font-weight: 600;\n  line-height: 1.3;\n  display: var(--sc-order-bump-cta-display, -webkit-box);\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  word-break: break-word;\n}\n:host([data-design=modern]) .bump__tag {\n  display: var(--sc-order-bump-tag-display, inline-block);\n  background: var(--sc-color-primary-500);\n  color: var(--sc-color-white);\n  border-radius: 999px;\n  padding: var(--sc-spacing-x-small);\n  font-size: var(--sc-font-size-x-small);\n}\n:host([data-design=modern]) .bump__description {\n  display: var(--sc-order-bump-description-display, block);\n  font-size: var(--sc-order-bump-description-size, 13px);\n  color: var(--sc-order-bump-description-color, #6b7280);\n  opacity: 0.8;\n  line-height: 1.3;\n  font-weight: normal;\n}\n:host([data-design=modern]) .bump__description p {\n  margin: 0;\n}\n:host([data-design=modern]) .bump__image {\n  width: var(--sc-order-bump-image-size, 72px);\n  height: var(--sc-order-bump-image-size, 72px);\n  flex: 0 0 var(--sc-order-bump-image-size, 72px);\n  object-fit: cover;\n  border-radius: var(--sc-order-bump-image-radius, 8px);\n  border: 1px solid var(--sc-color-gray-200);\n  display: var(--sc-order-bump-image-display, block);\n}\n:host([data-design=modern]) .bump__price--has-discount {\n  display: flex;\n  align-items: baseline;\n  gap: 4px;\n}\n:host([data-design=modern]) .bump__price--has-discount .bump__original-price {\n  text-decoration: line-through;\n  color: var(--sc-color-gray-500);\n  font-size: var(--sc-order-bump-price-size, 14px);\n  font-weight: normal;\n}\n:host([data-design=modern]) .bump__price .bump__new-price {\n  font-size: var(--sc-order-bump-price-size, 14px);\n  font-weight: 500;\n  color: var(--sc-color-gray-700);\n}\n:host([data-design=modern]) .bump__price .bump__interval {\n  color: var(--sc-color-gray-500);\n}\n:host([data-design=modern]) .bump__button {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: var(--sc-order-bump-button-radius, 74.6%);\n  border: 1px solid var(--sc-order-bump-button-border-color, #d1d5db);\n  background-color: transparent;\n  color: var(--sc-color-gray-500);\n  flex-shrink: 0;\n  line-height: 1;\n  font-size: var(--sc-order-bump-button-size, 18px);\n  padding: 0.5em;\n  cursor: pointer;\n  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;\n}\n:host([data-design=modern]) .bump__button sc-icon {\n  font-size: 1em;\n}\n:host([data-design=modern]) .bump__button--checked {\n  background-color: var(--sc-color-primary-500);\n  border-color: var(--sc-color-primary-500);\n  color: var(--sc-color-white, #fff);\n}\n:host([data-design=modern]) .bump__button--loading {\n  border-color: var(--sc-color-primary-500);\n}\n:host([data-design=modern]) .bump__button--loading sc-spinner {\n  --spinner-size: 1em;\n  --indicator-color: var(--sc-color-gray-500);\n}\n:host([data-design=modern]) .bump__amount {\n  display: var(--sc-order-bump-amount-display, flex);\n  align-items: center;\n  gap: 4px;\n  flex-wrap: wrap;\n}\n\n:host([data-design=classic]) .bump {\n  display: grid;\n  gap: 1em;\n}\n:host([data-design=classic]) .bump__text {\n  display: grid;\n  gap: 0.25em;\n}\n:host([data-design=classic]) .bump__tag {\n  background: var(--sc-color-primary-500);\n  color: var(--sc-color-white);\n  border-radius: var(--sc-input-border-radius-medium);\n  padding: var(--sc-spacing-x-small);\n  font-size: var(--sc-font-size-x-small);\n}\n:host([data-design=classic]) .bump__product {\n  display: flex;\n  align-items: center;\n  gap: var(--sc-choice-padding, 1.3em 1.1em);\n  line-height: var(--sc-line-height-dense);\n}\n:host([data-design=classic]) .bump__product--wrapper {\n  container-type: inline-size;\n}\n@container (max-width: 325px) {\n  :host([data-design=classic]) .bump__product {\n    flex-direction: column;\n    align-items: start;\n  }\n}\n:host([data-design=classic]) .bump__title {\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  word-break: break-word;\n}\n:host([data-design=classic]) .bump__product-title {\n  font-weight: var(--sc-font-weight-semibold);\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n  line-clamp: 2;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  word-break: break-word;\n}\n:host([data-design=classic]) .bump__product-description {\n  color: var(--sc-input-label-color);\n}\n:host([data-design=classic]) .bump__image {\n  width: var(--sc-product-line-item-image-size, 4em);\n  height: var(--sc-product-line-item-image-size, 4em);\n  flex: 0 0 var(--sc-product-line-item-image-size, 4em);\n  object-fit: cover;\n  border-radius: 4px;\n  border: 1px solid var(--sc-color-gray-200);\n  display: block;\n  box-shadow: var(--sc-input-box-shadow);\n}\n:host([data-design=classic]) .bump__price--has-discount {\n  display: flex;\n  align-items: baseline;\n  gap: var(--sc-spacing-x-small);\n}\n:host([data-design=classic]) .bump__price--has-discount .bump__original-price {\n  text-decoration: line-through;\n  color: var(--sc-color-gray-500);\n  font-size: var(--sc-font-size-small);\n}\n:host([data-design=classic]) .bump__price .bump__new-price {\n  font-size: var(--sc-font-size-large);\n  color: var(--sc-color-gray-700);\n}\n:host([data-design=classic]) .bump__price .bump__interval {\n  color: var(--sc-color-gray-500);\n}\n:host([data-design=classic]) .bump__amount {\n  display: flex;\n  align-items: center;\n  gap: var(--sc-spacing-x-small);\n  flex-wrap: wrap;\n  margin-top: var(--sc-spacing-xx-small);\n}";
 const ScOrderBumpStyle0 = scOrderBumpCss;
 
 const ScOrderBump = class {
     constructor(hostRef) {
         index.registerInstance(this, hostRef);
+        /** Cached design mode */
+        this.isModern = true;
         this.bump = undefined;
         this.showControl = undefined;
+        this.loading = false;
     }
     /** The bump line item */
     lineItem() {
@@ -502,37 +505,43 @@ const ScOrderBump = class {
         return (_c = (_b = (_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.find(item => { var _a; return (item === null || item === void 0 ? void 0 : item.bump) === ((_a = this.bump) === null || _a === void 0 ? void 0 : _a.id); });
     }
     /** Update the line item. */
-    updateLineItem() {
-        var _a, _b, _c, _d;
-        const price = ((_a = this.bump.price) === null || _a === void 0 ? void 0 : _a.id) || ((_b = this.bump) === null || _b === void 0 ? void 0 : _b.price);
-        if (this.lineItem()) {
-            mutations$1.removeCheckoutLineItem((_c = this.lineItem()) === null || _c === void 0 ? void 0 : _c.id);
-            index$2.speak(wp.i18n.__('Order bump Removed.', 'surecart'));
+    async updateLineItem() {
+        var _a, _b, _c;
+        if (this.loading)
             return;
+        const price = ((_a = this.bump.price) === null || _a === void 0 ? void 0 : _a.id) || ((_b = this.bump) === null || _b === void 0 ? void 0 : _b.price);
+        const lineItem = this.lineItem();
+        this.loading = true;
+        try {
+            if (lineItem) {
+                await mutations$1.removeCheckoutLineItem(lineItem.id);
+                index$3.speak(wp.i18n.__('Order bump Removed.', 'surecart'));
+            }
+            else {
+                await mutations$1.addCheckoutLineItem({
+                    bump: (_c = this.bump) === null || _c === void 0 ? void 0 : _c.id,
+                    price,
+                    quantity: 1,
+                });
+                index$3.speak(wp.i18n.__('Order bump applied.', 'surecart'));
+            }
         }
-        mutations$1.addCheckoutLineItem({
-            bump: (_d = this.bump) === null || _d === void 0 ? void 0 : _d.id,
-            price,
-            quantity: 1,
-        });
-        index$2.speak(wp.i18n.__('Order bump applied.', 'surecart'));
+        catch (e) {
+            console.error('[sc-order-bump] updateLineItem failed:', e);
+            index$3.speak(wp.i18n.__('Something went wrong. Please try again.', 'surecart'));
+        }
+        finally {
+            this.loading = false;
+        }
+    }
+    componentWillLoad() {
+        var _a;
+        this.isModern = !!((_a = window.scData) === null || _a === void 0 ? void 0 : _a.modern_order_bump);
+        this.el.setAttribute('data-design', this.isModern ? 'modern' : 'classic');
     }
     componentDidLoad() {
         var _a;
         mutations$1.trackOrderBump((_a = this.bump) === null || _a === void 0 ? void 0 : _a.id);
-    }
-    newPrice() {
-        var _a, _b, _c, _d, _e, _f;
-        let amount = null;
-        let initialAmount = ((_b = (_a = this.bump) === null || _a === void 0 ? void 0 : _a.price) === null || _b === void 0 ? void 0 : _b.amount) || 0;
-        if ((_c = this.bump) === null || _c === void 0 ? void 0 : _c.amount_off) {
-            amount = Math.max(0, initialAmount - ((_d = this.bump) === null || _d === void 0 ? void 0 : _d.amount_off));
-        }
-        if ((_e = this.bump) === null || _e === void 0 ? void 0 : _e.percent_off) {
-            const off = initialAmount * (((_f = this.bump) === null || _f === void 0 ? void 0 : _f.percent_off) / 100);
-            amount = Math.max(0, initialAmount - off);
-        }
-        return amount;
     }
     renderInterval() {
         var _a;
@@ -541,33 +550,60 @@ const ScOrderBump = class {
             return null;
         return index.h("span", { class: "bump__interval" }, interval);
     }
-    renderPrice() {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-        return (index.h("div", { slot: "description", class: { 'bump__price': true, 'bump__price--has-discount': !!((_a = this.bump) === null || _a === void 0 ? void 0 : _a.percent_off) || !!((_b = this.bump) === null || _b === void 0 ? void 0 : _b.amount_off) }, part: "price" }, !!(((_c = this.bump) === null || _c === void 0 ? void 0 : _c.percent_off) || ((_d = this.bump) === null || _d === void 0 ? void 0 : _d.amount_off)) && (index.h("span", { "aria-label": 
-            /** translators: %s: old price */
-            wp.i18n.sprintf(wp.i18n.__('Originally priced at %s.', 'surecart'), (_e = this.bump) === null || _e === void 0 ? void 0 : _e.subtotal_display_amount), class: "bump__original-price" }, (_f = this.bump) === null || _f === void 0 ? void 0 : _f.subtotal_display_amount)), index.h("span", null, index.h("span", { "aria-hidden": "true" }, ((_g = this.bump) === null || _g === void 0 ? void 0 : _g.total_amount) === 0 && wp.i18n.__('Free', 'surecart'), ((_h = this.bump) === null || _h === void 0 ? void 0 : _h.total_amount) > 0 && index.h("span", { class: "bump__new-price" }, (_j = this.bump) === null || _j === void 0 ? void 0 : _j.total_display_amount), this.renderInterval()))));
-    }
     renderDiscount() {
         var _a, _b, _c, _d, _e;
         if (!!((_a = this.bump) === null || _a === void 0 ? void 0 : _a.amount_off)) {
-            return (index.h("div", { class: "bump__tag", "aria-label": 
+            return (index.h("div", { class: "bump__tag", part: "tag", "aria-label": 
                 /** translators: %1$s: amount off, %2$s: currency */
                 wp.i18n.sprintf(wp.i18n.__('You save %1$s%2$s.', 'surecart'), (_b = this.bump) === null || _b === void 0 ? void 0 : _b.amount_off, ((_c = this.bump) === null || _c === void 0 ? void 0 : _c.price).currency) }, index.h("span", { "aria-hidden": "true" }, wp.i18n._x('Save', 'Save money', 'surecart'), " ", (_d = this.bump) === null || _d === void 0 ? void 0 :
                 _d.amount_off_display_amount)));
         }
         if (!!((_e = this.bump) === null || _e === void 0 ? void 0 : _e.percent_off)) {
             const percent = `${this.bump.percent_off}%`;
-            return (index.h("div", { class: "bump__tag", "aria-label": 
+            return (index.h("div", { class: "bump__tag", part: "tag", "aria-label": 
                 /** translators: %s is the discount percentage (e.g. "10%"). */
                 wp.i18n.sprintf(wp.i18n.__('You save %s.', 'surecart'), percent) }, index.h("span", { "aria-hidden": "true" }, wp.i18n.sprintf(
             /** translators: %s is the discount percentage (e.g. "10%"). */
             wp.i18n._x('Save %s', 'Save money', 'surecart'), percent))));
         }
     }
-    render() {
+    /** Modern price (no slot) */
+    renderModernPrice() {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        return (index.h("div", { class: { 'bump__price': true, 'bump__price--has-discount': !!((_a = this.bump) === null || _a === void 0 ? void 0 : _a.percent_off) || !!((_b = this.bump) === null || _b === void 0 ? void 0 : _b.amount_off) }, part: "price" }, !!(((_c = this.bump) === null || _c === void 0 ? void 0 : _c.percent_off) || ((_d = this.bump) === null || _d === void 0 ? void 0 : _d.amount_off)) && (index.h("span", { "aria-label": 
+            /** translators: %s: old price */
+            wp.i18n.sprintf(wp.i18n.__('Originally priced at %s.', 'surecart'), (_e = this.bump) === null || _e === void 0 ? void 0 : _e.subtotal_display_amount), class: "bump__original-price" }, (_f = this.bump) === null || _f === void 0 ? void 0 : _f.subtotal_display_amount)), index.h("span", null, index.h("span", { "aria-hidden": "true" }, ((_g = this.bump) === null || _g === void 0 ? void 0 : _g.total_amount) === 0 && wp.i18n.__('Free', 'surecart'), ((_h = this.bump) === null || _h === void 0 ? void 0 : _h.total_amount) > 0 && index.h("span", { class: "bump__new-price" }, (_j = this.bump) === null || _j === void 0 ? void 0 : _j.total_display_amount), this.renderInterval()))));
+    }
+    /** Classic price (with slot="description") */
+    renderClassicPrice() {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        return (index.h("div", { slot: "description", class: { 'bump__price': true, 'bump__price--has-discount': !!((_a = this.bump) === null || _a === void 0 ? void 0 : _a.percent_off) || !!((_b = this.bump) === null || _b === void 0 ? void 0 : _b.amount_off) }, part: "price" }, !!(((_c = this.bump) === null || _c === void 0 ? void 0 : _c.percent_off) || ((_d = this.bump) === null || _d === void 0 ? void 0 : _d.amount_off)) && (index.h("span", { "aria-label": 
+            /** translators: %s: old price */
+            wp.i18n.sprintf(wp.i18n.__('Originally priced at %s.', 'surecart'), (_e = this.bump) === null || _e === void 0 ? void 0 : _e.subtotal_display_amount), class: "bump__original-price" }, (_f = this.bump) === null || _f === void 0 ? void 0 : _f.subtotal_display_amount)), index.h("span", null, index.h("span", { "aria-hidden": "true" }, ((_g = this.bump) === null || _g === void 0 ? void 0 : _g.total_amount) === 0 && wp.i18n.__('Free', 'surecart'), ((_h = this.bump) === null || _h === void 0 ? void 0 : _h.total_amount) > 0 && index.h("span", { class: "bump__new-price" }, (_j = this.bump) === null || _j === void 0 ? void 0 : _j.total_display_amount), this.renderInterval()))));
+    }
+    /** Modern design: rounded button, inline image, no checkbox */
+    renderModern() {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+        const product = (_b = (_a = this.bump) === null || _a === void 0 ? void 0 : _a.price) === null || _b === void 0 ? void 0 : _b.product;
+        const lineItem = this.lineItem();
+        return (index.h("sc-choice", { value: (_c = this.bump) === null || _c === void 0 ? void 0 : _c.id, type: "checkbox", showControl: false, checked: !!lineItem, exportparts: "base:choice__base, content:choice__content" }, index.h("div", { part: "base-content", class: "bump", onClick: e => e.stopPropagation(), onKeyDown: e => {
+                if (e.key === 'Enter' || e.key === ' ')
+                    e.stopPropagation();
+            } }, !!((_d = product === null || product === void 0 ? void 0 : product.line_item_image) === null || _d === void 0 ? void 0 : _d.src) && index.h("img", { ...product === null || product === void 0 ? void 0 : product.line_item_image, class: "bump__image", part: "image" }), index.h("div", { class: "bump__text", part: "text" }, index.h("div", { class: "bump__title", part: "title", "aria-label": wp.i18n.sprintf(
+            /* translators: %s: order bump name */
+            wp.i18n.__('Product: %s.', 'surecart'), ((_e = this.bump) === null || _e === void 0 ? void 0 : _e.name) || (product === null || product === void 0 ? void 0 : product.name)) }, index.h("span", { "aria-hidden": "true" }, ((_f = this.bump) === null || _f === void 0 ? void 0 : _f.name) || (product === null || product === void 0 ? void 0 : product.name))), !!((_h = (_g = this.bump) === null || _g === void 0 ? void 0 : _g.metadata) === null || _h === void 0 ? void 0 : _h.cta) && (index.h("div", { class: "bump__cta", part: "cta" }, index.h("span", null, (_k = (_j = this.bump) === null || _j === void 0 ? void 0 : _j.metadata) === null || _k === void 0 ? void 0 : _k.cta))), index.h("div", { class: "bump__amount", part: "amount" }, this.renderModernPrice(), this.renderDiscount()), !!((_m = (_l = this.bump) === null || _l === void 0 ? void 0 : _l.metadata) === null || _m === void 0 ? void 0 : _m.description) && (index.h("div", { class: "bump__description", part: "description", "aria-label": wp.i18n.sprintf(
+            /* translators: %s: Product description */
+            wp.i18n.__('Product description: %s.', 'surecart'), (_o = this.bump) === null || _o === void 0 ? void 0 : _o.rendered_description) }, index.h("span", { "aria-hidden": "true", innerHTML: (_p = this.bump) === null || _p === void 0 ? void 0 : _p.rendered_description })))), index.h("button", { type: "button", class: {
+                'bump__button': true,
+                'bump__button--checked': !!lineItem,
+                'bump__button--loading': this.loading,
+            }, part: "button", onClick: () => this.updateLineItem(), "aria-label": lineItem ? wp.i18n.__('Remove from order', 'surecart') : wp.i18n.__('Add to order', 'surecart'), "aria-pressed": !!lineItem, "aria-busy": this.loading }, this.loading ? index.h("sc-spinner", null) : index.h("sc-icon", { name: lineItem ? 'check' : 'plus' })))));
+    }
+    /** Classic design: checkbox control, footer with divider + image + description */
+    renderClassic() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t;
         const product = (_b = (_a = this.bump) === null || _a === void 0 ? void 0 : _a.price) === null || _b === void 0 ? void 0 : _b.product;
-        return (index.h("sc-choice", { key: '05bb127936345059e4a693ffb801f1d6f379b236', value: (_c = this.bump) === null || _c === void 0 ? void 0 : _c.id, type: "checkbox", showControl: this.showControl, checked: !!this.lineItem(), onClick: e => {
+        return (index.h("sc-choice", { value: (_c = this.bump) === null || _c === void 0 ? void 0 : _c.id, type: "checkbox", showControl: this.showControl, checked: !!this.lineItem(), disabled: this.loading, onClick: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 this.updateLineItem();
@@ -577,12 +613,16 @@ const ScOrderBump = class {
                     e.stopImmediatePropagation();
                     this.updateLineItem();
                 }
-            }, exportparts: "base, control, checked-icon, title" }, index.h("div", { key: '631d30b5e3653656c7931271bf75a3cd202aa04f', part: "base-content", class: "bump" }, index.h("div", { key: '10f22d4a4189c1a1a308c736c4b6e55d58cc0168', class: "bump__text" }, index.h("div", { key: 'ce19233d17e2760f9316c78c15f4f36a052bbd0c', class: "bump__title", "aria-label": wp.i18n.sprintf(
+            }, exportparts: "base, control, checked-icon, title" }, index.h("div", { part: "base-content", class: "bump" }, index.h("div", { class: "bump__text" }, index.h("div", { class: "bump__title", "aria-label": wp.i18n.sprintf(
             /* translators: %s: order bump name */
-            wp.i18n.__('Product: %s.', 'surecart'), ((_e = (_d = this.bump) === null || _d === void 0 ? void 0 : _d.metadata) === null || _e === void 0 ? void 0 : _e.cta) || ((_f = this.bump) === null || _f === void 0 ? void 0 : _f.name) || (product === null || product === void 0 ? void 0 : product.name)) }, index.h("span", { key: 'e8b7c15c9b778ac317f7543d174af16f6eaa3851', "aria-hidden": "true" }, ((_h = (_g = this.bump) === null || _g === void 0 ? void 0 : _g.metadata) === null || _h === void 0 ? void 0 : _h.cta) || ((_j = this.bump) === null || _j === void 0 ? void 0 : _j.name) || (product === null || product === void 0 ? void 0 : product.name))), index.h("div", { key: 'bfbec3b44de2eec1db920bb02ab4dc9ffe748629', class: "bump__amount" }, this.renderPrice(), this.renderDiscount()))), ((_l = (_k = this.bump) === null || _k === void 0 ? void 0 : _k.metadata) === null || _l === void 0 ? void 0 : _l.description) && (index.h("div", { key: '9ec1e3641218dfe944a6be2371c71e3012470ce6', slot: "footer", class: "bump__product--wrapper" }, index.h("sc-divider", { key: '3c7dc55682f85184d55abbb968ba3da807b894a4', style: { '--spacing': 'var(--sc-spacing-medium)' } }), index.h("div", { key: '369ec1658d2a6fca96c474c8a5b77a23f7a8e09d', class: "bump__product" }, !!((_m = product === null || product === void 0 ? void 0 : product.line_item_image) === null || _m === void 0 ? void 0 : _m.src) && index.h("img", { key: 'a52a16131bf388ae077d1f08975ac016919ca577', ...product === null || product === void 0 ? void 0 : product.line_item_image, class: "bump__image" }), index.h("div", { key: 'b25efd0119129c0b333f209aec14cae92419d225', class: "bump__product-text" }, !!((_p = (_o = this.bump) === null || _o === void 0 ? void 0 : _o.metadata) === null || _p === void 0 ? void 0 : _p.cta) && (index.h("div", { key: '0944412683e898b10ff10dff88d88a0663efdc95', class: "bump__product-title", "aria-hidden": "true" }, this.bump.name || (product === null || product === void 0 ? void 0 : product.name))), !!((_r = (_q = this.bump) === null || _q === void 0 ? void 0 : _q.metadata) === null || _r === void 0 ? void 0 : _r.description) && (index.h("div", { key: '05e8ce6ea11990b1a8be39c290a80dd499a46032', class: "bump__product-description", "aria-label": wp.i18n.sprintf(
+            wp.i18n.__('Product: %s.', 'surecart'), ((_e = (_d = this.bump) === null || _d === void 0 ? void 0 : _d.metadata) === null || _e === void 0 ? void 0 : _e.cta) || ((_f = this.bump) === null || _f === void 0 ? void 0 : _f.name) || (product === null || product === void 0 ? void 0 : product.name)) }, index.h("span", { "aria-hidden": "true" }, ((_h = (_g = this.bump) === null || _g === void 0 ? void 0 : _g.metadata) === null || _h === void 0 ? void 0 : _h.cta) || ((_j = this.bump) === null || _j === void 0 ? void 0 : _j.name) || (product === null || product === void 0 ? void 0 : product.name))), index.h("div", { class: "bump__amount" }, this.renderClassicPrice(), this.renderDiscount()))), ((_l = (_k = this.bump) === null || _k === void 0 ? void 0 : _k.metadata) === null || _l === void 0 ? void 0 : _l.description) && (index.h("div", { slot: "footer", class: "bump__product--wrapper" }, index.h("sc-divider", { style: { '--spacing': 'var(--sc-spacing-medium)' } }), index.h("div", { class: "bump__product" }, !!((_m = product === null || product === void 0 ? void 0 : product.line_item_image) === null || _m === void 0 ? void 0 : _m.src) && index.h("img", { ...product === null || product === void 0 ? void 0 : product.line_item_image, class: "bump__image" }), index.h("div", { class: "bump__product-text" }, !!((_p = (_o = this.bump) === null || _o === void 0 ? void 0 : _o.metadata) === null || _p === void 0 ? void 0 : _p.cta) && (index.h("div", { class: "bump__product-title", "aria-hidden": "true" }, this.bump.name || (product === null || product === void 0 ? void 0 : product.name))), !!((_r = (_q = this.bump) === null || _q === void 0 ? void 0 : _q.metadata) === null || _r === void 0 ? void 0 : _r.description) && (index.h("div", { class: "bump__product-description", "aria-label": wp.i18n.sprintf(
             /* translators: %s: Product description */
-            wp.i18n.__('Product description: %s.', 'surecart'), (_s = this.bump) === null || _s === void 0 ? void 0 : _s.rendered_description) }, index.h("span", { key: '30986f3ce04ac536b55660e021af758634886ca7', "aria-hidden": "true", innerHTML: (_t = this.bump) === null || _t === void 0 ? void 0 : _t.rendered_description })))))))));
+            wp.i18n.__('Product description: %s.', 'surecart'), (_s = this.bump) === null || _s === void 0 ? void 0 : _s.rendered_description) }, index.h("span", { "aria-hidden": "true", innerHTML: (_t = this.bump) === null || _t === void 0 ? void 0 : _t.rendered_description })))))))));
     }
+    render() {
+        return this.isModern ? this.renderModern() : this.renderClassic();
+    }
+    get el() { return index.getElement(this); }
 };
 ScOrderBump.style = ScOrderBumpStyle0;
 
@@ -593,8 +633,8 @@ const ScOrderBumps = class {
     constructor(hostRef) {
         index.registerInstance(this, hostRef);
         this.label = undefined;
-        this.showControl = undefined;
         this.help = undefined;
+        this.showControl = undefined;
     }
     render() {
         var _a, _b;
@@ -602,7 +642,7 @@ const ScOrderBumps = class {
         if (!(bumps === null || bumps === void 0 ? void 0 : bumps.length)) {
             return null;
         }
-        return (index.h("sc-form-control", { label: this.label || wp.i18n.__('Recommended', 'surecart'), help: this.help }, index.h("div", { class: "bumps__list", "aria-label": wp.i18n.__('Order bump summary', 'surecart') }, bumps.map(bump => (index.h("sc-order-bump", { key: bump === null || bump === void 0 ? void 0 : bump.id, showControl: this.showControl, bump: bump }))))));
+        return (index.h("sc-form-control", { label: this.label || wp.i18n.__('Recommended', 'surecart'), help: this.help }, index.h("div", { class: "bumps__list", "aria-label": wp.i18n.__('Order bump summary', 'surecart') }, bumps.map(bump => (index.h("sc-order-bump", { key: bump === null || bump === void 0 ? void 0 : bump.id, bump: bump, showControl: this.showControl, exportparts: "choice__base, choice__content, base-content, image, text, title, cta, amount, price, tag, description, button, base, control, checked-icon" }))))));
     }
 };
 ScOrderBumps.style = ScOrderBumpsStyle0;
@@ -646,7 +686,7 @@ const ScOrderShippingAddress = class {
         this.address = address;
         try {
             mutations$1.lockCheckout('shipping-address');
-            mutations.state.checkout = (await index$1.createOrUpdateCheckout({
+            mutations.state.checkout = (await index$2.createOrUpdateCheckout({
                 id: (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.id,
                 data: {
                     shipping_address: this.address,
@@ -668,10 +708,8 @@ const ScOrderShippingAddress = class {
     }
     prefillAddress() {
         var _a;
-        // check if address keys are empty, if so, update them.
-        const addressKeys = Object.keys(this.address).filter(key => key !== 'country');
-        const emptyAddressKeys = addressKeys.filter(key => !this.address[key]);
-        if (emptyAddressKeys.length === addressKeys.length) {
+        // Autofill is handled by sc-checkout-autofill-provider which patches checkoutState.checkout with any logged-in customer profile data.
+        if (index$1.isAddressEmpty(this.address)) {
             this.address = { ...this.address, ...(_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.shipping_address };
         }
     }
@@ -729,7 +767,7 @@ const ScOrderTaxIdInput = class {
     async updateOrder(tax_identifier) {
         try {
             mutations.updateFormState('FETCH');
-            mutations.state.checkout = (await index$1.createOrUpdateCheckout({
+            mutations.state.checkout = (await index$2.createOrUpdateCheckout({
                 id: mutations.state.checkout.id,
                 data: { tax_identifier },
             }));
@@ -870,13 +908,13 @@ const ScRadio = class {
     }
     render() {
         const Tag = this.edit ? 'div' : 'label';
-        return (index.h(Tag, { key: 'd40e693b02a79c675fbaea55f0f786dafa50c0a9', part: "base", class: {
+        return (index.h(Tag, { key: '46b07f4ab2a5ff0a40a5521c624f4a29c4b5aca2', part: "base", class: {
                 'radio': true,
                 'radio--checked': this.checked,
                 'radio--disabled': this.disabled,
                 'radio--focused': this.hasFocus,
                 'radio--editing': this.edit,
-            }, htmlFor: this.inputId, onKeyDown: e => this.handleKeyDown(e), onMouseDown: e => this.handleMouseDown(e) }, index.h("span", { key: '57fd03d650b2229fd7974c4f1a468945f306892e', part: "control", class: "radio__control" }, index.h("span", { key: '8fa368561a15a292bcd3d920f17b394affacbb30', part: "checked-icon", class: "radio__icon" }, index.h("svg", { key: 'd77e5fd47e4f59f5bc61264f0882714d2f2787da', viewBox: "0 0 16 16" }, index.h("g", { key: '09fd7dc9ddab0e33e1a01083291a887be7a6587c', stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { key: 'a48f7919d831f4d816d978de8db3696ff3a53de0', fill: "currentColor" }, index.h("circle", { key: '8660654ee5be9b4bac9e2f2929c4bb6548934e01', cx: "8", cy: "8", r: "3.42857143" }))))), index.h("input", { key: '783c3904aeb68fb87cfe0c81ba4ef94f4bd1a59b', id: this.inputId, ref: el => (this.input = el), type: "radio", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, required: this.required, "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: () => this.handleClick(), onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() })), index.h("span", { key: 'b5ae5c8413d1fd7ef0a32458445693b4d1f6f60c', part: "label", id: this.labelId, class: "radio__label" }, index.h("slot", { key: '546b03b6ea522b62b5eafce7ab95f4b080ea8d40' }), index.h("slot", { key: '48586efb9759410ae6c84a9e94c3e7719b9da5de', name: "description" }))));
+            }, htmlFor: this.inputId, onKeyDown: e => this.handleKeyDown(e), onMouseDown: e => this.handleMouseDown(e) }, index.h("span", { key: '8e7a0c59abbbde3a40ff15b3e71969471e14de32', part: "control", class: "radio__control" }, index.h("span", { key: 'c572cbdbf447643296541e2ec2e7d3699d7e97fd', part: "checked-icon", class: "radio__icon" }, index.h("svg", { key: 'bc3e4497ad1617793fdd714d2ea9809186602f35', viewBox: "0 0 16 16" }, index.h("g", { key: '8fa20660de1b61cf42c79fe8bbd86da2057567b6', stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { key: '6a8870248df483c5f0bcf2b5cef58dc7663f87c0', fill: "currentColor" }, index.h("circle", { key: 'cd704def06d5238e6eedb0e8d29ad0fbbe17e12e', cx: "8", cy: "8", r: "3.42857143" }))))), index.h("input", { key: 'a7de85c10212090daa6ad3883a3b729b4af2bee8', id: this.inputId, ref: el => (this.input = el), type: "radio", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, required: this.required, "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: () => this.handleClick(), onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() })), index.h("span", { key: '2a7d9bd9431082118490aee6ee36756911e6ec76', part: "label", id: this.labelId, class: "radio__label" }, index.h("slot", { key: '357109126b1bfc6bbe88963a2d44a3000f7b6797' }), index.h("slot", { key: '6edecbfec2dbc86e381323fbb0dd9a7227a22eb0', name: "description" }))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -924,12 +962,12 @@ const ScRadioGroup = class {
         });
     }
     render() {
-        return (index.h("fieldset", { key: 'aa7c0ca666970c8a942f2125d2fbe24ca53a545a', part: "base", class: {
+        return (index.h("fieldset", { key: '6f114b90239a42805e63364a355896c02d3988e9', part: "base", class: {
                 'radio-group': true,
                 'radio-group--invalid': this.invalid,
                 'radio-group--is-required': this.required,
                 'radio-group--is-rtl': pageAlign.isRtl(),
-            }, "aria-invalid": this.invalid, role: "radiogroup" }, index.h("legend", { key: '3547170ef8dfaa178d8f5853155f0978b5cbd62d', part: "label", class: "radio-group__label" }, index.h("slot", { key: 'c3690d8d230c302402cd510a961f65ee899c64f2', name: "label" }, this.label)), index.h("input", { key: '3656a3a87c3dc61bda3f04e1f612fb84a59d51e3', type: "text", class: "radio-group__hidden-input", ref: el => (this.input = el), required: this.required, value: this.value, tabindex: "-1" }), index.h("div", { key: 'acee8e4b51d77fa1864d11b6e269b7c45b35b891', part: "items", class: "radio-group__items" }, index.h("slot", { key: '355a1b0c07a78be70c47f736a0cb4823acde9f58' }))));
+            }, "aria-invalid": this.invalid, role: "radiogroup" }, index.h("legend", { key: 'ccb4e6f7fa4e69af482c53861e45b9d268182be8', part: "label", class: "radio-group__label" }, index.h("slot", { key: '827db49c7427461e220766798e36552911e9a668', name: "label" }, this.label)), index.h("input", { key: '2b548c11043aeb6d84ec64ac8d5cdbd335b72f42', type: "text", class: "radio-group__hidden-input", ref: el => (this.input = el), required: this.required, value: this.value, tabindex: "-1" }), index.h("div", { key: '345e7b8b616cdae904a9bfa8326d47909fb60ee9', part: "items", class: "radio-group__items" }, index.h("slot", { key: '66b33c676b0875c568266be2053b00f4b48c9b0a' }))));
     }
     get el() { return index.getElement(this); }
 };
@@ -951,16 +989,16 @@ const ScShippingChoices = class {
             return;
         try {
             mutations$1.lockCheckout('selected_shipping_choice');
-            mutations.state.checkout = (await index$1.createOrUpdateCheckout({
+            mutations.state.checkout = (await index$2.createOrUpdateCheckout({
                 id: mutations.state.checkout.id,
                 data: {
                     selected_shipping_choice_id: selectedShippingChoiceId,
                 },
             }));
-            index$2.speak(wp.i18n.__('Shipping choice updated.', 'surecart'), 'assertive');
+            index$3.speak(wp.i18n.__('Shipping choice updated.', 'surecart'), 'assertive');
             const { total_amount, currency } = mutations.state.checkout;
             /** translators: %1$s: formatted amount */
-            index$2.speak(wp.i18n.sprintf(wp.i18n.__('Your order total has changed to: %1$s.', 'surecart'), price.getFormattedPrice({ amount: total_amount, currency })), 'assertive');
+            index$3.speak(wp.i18n.sprintf(wp.i18n.__('Your order total has changed to: %1$s.', 'surecart'), price.getFormattedPrice({ amount: total_amount, currency })), 'assertive');
         }
         catch (e) {
             console.error(e);

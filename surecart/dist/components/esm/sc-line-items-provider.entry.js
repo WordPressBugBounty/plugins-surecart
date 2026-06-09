@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h } from './index-745b6bec.js';
+import { r as registerInstance, c as createEvent, h } from './index-25e5af33.js';
 import { c as convertLineItemsToLineItemData } from './index-1db2635f.js';
 
 const ScLineItemsProvider = class {
@@ -97,7 +97,7 @@ const ScLineItemsProvider = class {
         return existingLineData;
     }
     render() {
-        return h("slot", { key: '7c3e31dfdd082a71e45d04f0f967504434b0229c' });
+        return h("slot", { key: '0949a97521b376a4a30f61b7c16ad7c238db6fa6' });
     }
     static get watchers() { return {
         "syncItems": ["syncItemsHandler"]

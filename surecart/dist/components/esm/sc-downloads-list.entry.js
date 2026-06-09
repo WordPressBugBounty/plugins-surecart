@@ -1,7 +1,8 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
 import { o as onFirstVisible } from './lazy-deb42890.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
 
 const scDownloadsListCss = ":host{display:block}.purchase{display:flex;flex-direction:column;gap:var(--sc-spacing-large)}.single-download .single-download__preview{display:flex;align-items:center;justify-content:center;background:var(--sc-color-gray-200);border-radius:var(--sc-border-radius-small);height:4rem;min-width:4rem;width:4rem}";
@@ -165,7 +166,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (h("sc-dashboard-module", { key: '87b6733dc4c5453de3549a84d1bf39257ddc7b76', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, h("span", { key: 'c8b052b08f70df7ea1a535c10b86f56306156337', slot: "heading" }, h("slot", { key: '378bbf6385e5aa2ad24eea5b5068eb5b645beba8', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), h("sc-pagination", { key: '28b9c3e2b12fec35aa705bbbcf4959bcf57dd1f2', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && h("sc-block-ui", { key: '5e4641087805b73bd099534869d1092a836733c8' })));
+        return (h("sc-dashboard-module", { key: '1291937023b8749efe982f975f12c776257891b2', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, h("span", { key: '9c884e151892c14e3963a769ca1bb6f63a53e50f', slot: "heading" }, h("slot", { key: 'd8293fa97db93b145c48bfa21d5ed0ab11cf8439', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), h("sc-pagination", { key: '21b81b39d8d8d5b151da6dd16ff06012b3cac4c5', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && h("sc-block-ui", { key: '31b6a692aa165049965ffd3af67b4dcdd9f740a6' })));
     }
     get el() { return getElement(this); }
 };

@@ -1,6 +1,7 @@
-import { r as registerInstance, h } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import { r as registerInstance, h } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
 
 const scMollieAddMethodCss = ":host{display:block}";

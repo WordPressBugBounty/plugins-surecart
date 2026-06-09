@@ -8,6 +8,7 @@ interface Store {
     checkout: Checkout;
     currencyCode: string;
     abandonedCheckoutEnabled: boolean;
+    showLoginPrompt: boolean;
     initialLineItems: LineItemData[];
     taxProtocol: TaxProtocol;
     isCheckoutPage: boolean;

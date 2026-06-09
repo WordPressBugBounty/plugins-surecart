@@ -1,20 +1,21 @@
-import { r as registerInstance, h, F as Fragment } from './index-745b6bec.js';
-import './watchers-acfc36f9.js';
-import { s as state } from './store-f5787d0e.js';
-import './watchers-bb82ca0e.js';
-import './index-06061d4e.js';
+import { r as registerInstance, h, F as Fragment } from './index-25e5af33.js';
+import './watchers-1cb09819.js';
+import { s as state } from './store-289e460c.js';
+import './watchers-08aa2fd2.js';
+import './index-18f5a1bc.js';
 import './google-dd89f242.js';
 import './currency-a0c9bff4.js';
 import './google-a86aa761.js';
 import './utils-f84b2118.js';
-import './util-50af2a83.js';
+import './util-dfbf863e.js';
 import './index-c5a96d53.js';
-import './getters-5d6a53bd.js';
-import './mutations-0808403d.js';
-import './fetch-bc141774.js';
+import './getters-1477d792.js';
+import './mutations-b6e8fe80.js';
+import './fetch-9e15a95d.js';
+import './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
-import './mutations-ed6d0770.js';
+import './mutations-7458343f.js';
 
 const scUpsellTotalsCss = ":host{display:block}sc-divider{margin:16px 0 !important}.conversion-description{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}";
 const ScUpsellTotalsStyle0 = scUpsellTotalsCss;
@@ -54,11 +55,11 @@ const ScUpsellTotals = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g;
-        return (h("sc-summary", { key: 'f2a9a789c5ab146aa85b10ccb620ed5f747d88ec', "open-text": "Total", "closed-text": "Total", collapsible: true, collapsed: true }, !!((_a = state.line_item) === null || _a === void 0 ? void 0 : _a.id) && h("span", { key: '183566a39c2765e17de88d985d1f93eb335c18c7', slot: "price" }, this.renderAmountDue()), h("sc-divider", { key: '8322051ddcfcf14fdce826ca43b8fd717920999e' }), h("sc-line-item", { key: 'de33cabc82f633851da4bae515fcf9642176ea2e' }, h("span", { key: '25a1a714932dd6bce87691fdeb745f0aecf60c2a', slot: "description" }, wp.i18n.__('Subtotal', 'surecart')), h("span", { key: 'c60058156150311acac7727e2e006e7356e19d59', slot: "price" }, (_b = state.line_item) === null || _b === void 0 ? void 0 : _b.subtotal_display_amount)), (((_d = (_c = state === null || state === void 0 ? void 0 : state.line_item) === null || _c === void 0 ? void 0 : _c.fees) === null || _d === void 0 ? void 0 : _d.data) || [])
+        return (h("sc-summary", { key: '0739e9a5e58f06809010600ee86477fc0b6445cd', "open-text": "Total", "closed-text": "Total", collapsible: true, collapsed: true }, !!((_a = state.line_item) === null || _a === void 0 ? void 0 : _a.id) && h("span", { key: 'b32507711695115f0153a8ee1845b60206fff5cb', slot: "price" }, this.renderAmountDue()), h("sc-divider", { key: '540e49f003316e25de41c89a9aae25c92fc3eb19' }), h("sc-line-item", { key: '42685d605e95d41c0cec77d90e38b4faa6ac4e62' }, h("span", { key: '62b4150b6662b7d1ccdf289ef4c8750b7099f3a8', slot: "description" }, wp.i18n.__('Subtotal', 'surecart')), h("span", { key: '4e2d9964124462f81f134ac3e4372afe71dda97e', slot: "price" }, (_b = state.line_item) === null || _b === void 0 ? void 0 : _b.subtotal_display_amount)), (((_d = (_c = state === null || state === void 0 ? void 0 : state.line_item) === null || _c === void 0 ? void 0 : _c.fees) === null || _d === void 0 ? void 0 : _d.data) || [])
             .filter(fee => fee.fee_type === 'upsell') // only upsell fees.
             .map(fee => {
             return (h("sc-line-item", null, h("span", { slot: "description" }, fee.description, " ", `(${wp.i18n.__('one time', 'surecart')})`), h("span", { slot: "price" }, fee === null || fee === void 0 ? void 0 : fee.display_amount)));
-        }), !!((_e = state.line_item) === null || _e === void 0 ? void 0 : _e.tax_amount) && (h("sc-line-item", { key: '0830506eb419cf4f91d7b9ae97bde09a1ec85c48' }, h("span", { key: '6bb33b6d66a3daf7ed274996a2910b44b4d158b0', slot: "description" }, wp.i18n.__('Tax', 'surecart')), h("span", { key: '7f0fd638d841715fc280f8be94ac572f1141f1ca', slot: "price" }, (_f = state.line_item) === null || _f === void 0 ? void 0 : _f.tax_display_amount))), h("sc-divider", { key: '535d5ebcbd3eb12bbc401dc673e08e8b3dae0fda' }), h("sc-line-item", { key: 'f34a3e1b42306842cd8418f91a91c3af33d70aa5', style: { '--price-size': 'var(--sc-font-size-x-large)' } }, h("span", { key: '42cd6bd3e4ac3210e2a2a08b35b0b9fd942292bd', slot: "title" }, wp.i18n.__('Total', 'surecart')), h("span", { key: '68ca302cb45dec0716b10b8215c0cd582a606167', slot: "price" }, (_g = state.line_item) === null || _g === void 0 ? void 0 : _g.total_display_amount)), this.renderConversion()));
+        }), !!((_e = state.line_item) === null || _e === void 0 ? void 0 : _e.tax_amount) && (h("sc-line-item", { key: '19e1a9d0655108d70503d86b215411c00487d6e4' }, h("span", { key: 'e2eafc99985ade97f4e11f95d4a6789d3fb78116', slot: "description" }, wp.i18n.__('Tax', 'surecart')), h("span", { key: '9f0a4cf920bc02c09e1821f26626bbce40a48737', slot: "price" }, (_f = state.line_item) === null || _f === void 0 ? void 0 : _f.tax_display_amount))), h("sc-divider", { key: '6545d8c687d93a4a36665089c25aa9d308a86a89' }), h("sc-line-item", { key: '8b83c46bf4aca2026ed11cce8f2e2c90bb14dc57', style: { '--price-size': 'var(--sc-font-size-x-large)' } }, h("span", { key: 'e2543cabacdde57f186326db3526cbaadc3181fe', slot: "title" }, wp.i18n.__('Total', 'surecart')), h("span", { key: '753e87177fd456753ed4ac3f306aa4b1a5193737', slot: "price" }, (_g = state.line_item) === null || _g === void 0 ? void 0 : _g.total_display_amount)), this.renderConversion()));
     }
 };
 ScUpsellTotals.style = ScUpsellTotalsStyle0;

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const razorpay = require('./razorpay-88fe8897.js');
 
 const scManualPaymentMethodCss = ":host {\n  display: block;\n}\n\n.manual-payment-method {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: var(--sc-spacing-x-small);\n  flex-wrap: wrap;\n\n  &__title {\n    font-weight: var(--sc-font-weight-bold);\n    color: var(--sc-primary-color-900);\n  }\n\n  &__description {\n    color: var(--sc-primary-color-600);\n  }\n}\n";
@@ -16,7 +16,7 @@ const ScManualPaymentMethod = class {
     }
     render() {
         var _a, _b;
-        return (index.h("div", { key: '29d11bf202b428636775e16bb34feb6cdb8e51f0', class: "manual-payment-method", part: "card" }, index.h("div", { key: 'b71e571a9b34aeb51e35da434fff3ebde7e28c80', class: "payment-method__title" }, (_a = this.paymentMethod) === null || _a === void 0 ? void 0 : _a.name), this.showDescription && index.h("sc-prose", { key: '107824c1b4dc610a70b66f5cf7d334737bc7ad2d', class: "payment-method__description", innerHTML: (_b = this.paymentMethod) === null || _b === void 0 ? void 0 : _b.description })));
+        return (index.h("div", { key: 'd755d2b079d5a5d84df3bbf73bde9d5a137f2576', class: "manual-payment-method", part: "card" }, index.h("div", { key: '87db8c1fd9ab9ec4c158366b65dd7705bad8251b', class: "payment-method__title" }, (_a = this.paymentMethod) === null || _a === void 0 ? void 0 : _a.name), this.showDescription && index.h("sc-prose", { key: 'bff9b1075def22ce5c28c68e0323ecda38c918dd', class: "payment-method__description", innerHTML: (_b = this.paymentMethod) === null || _b === void 0 ? void 0 : _b.description })));
     }
 };
 ScManualPaymentMethod.style = ScManualPaymentMethodStyle0;
@@ -85,7 +85,7 @@ const ScProse = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: 'fc09f2a70a88fba941d700198eb5ce2f2bd910f6' }, index.h("slot", { key: '81a882616b35d4a76ee874ad42fda591d78e25c0' })));
+        return (index.h(index.Host, { key: '94281cf5ea6e42efec744078ab742c377a27455e' }, index.h("slot", { key: '13ac98f4547cdb0be6ac83a66f8a412d5c9ee153' })));
     }
 };
 ScProse.style = ScProseStyle0;

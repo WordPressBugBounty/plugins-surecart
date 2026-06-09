@@ -1,4 +1,4 @@
-import { r as registerInstance, h, F as Fragment } from './index-745b6bec.js';
+import { r as registerInstance, h, F as Fragment } from './index-25e5af33.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 
 const scWordpressUserCss = ":host{display:block;position:relative}.customer-details{display:grid;gap:0.75em}";
@@ -21,10 +21,10 @@ const ScWordPressUser = class {
         return h("slot", { name: "empty" }, wp.i18n.__('User not found.', 'surecart'));
     }
     render() {
-        return (h("sc-dashboard-module", { key: 'b6c4379470ae52c4480a608670d43ee30ad5d97f', class: "customer-details" }, h("span", { key: 'ebeefa6dc968529dabd1be1a34ef300ceefba735', slot: "heading" }, this.heading || wp.i18n.__('Account Details', 'surecart'), " "), h("sc-button", { key: '005905e56d18ff178e5b638c16af6bce8f2d0951', type: "link", href: addQueryArgs(window.location.href, {
+        return (h("sc-dashboard-module", { key: '4c133f2802ce2021ae1242caa0c1770029d7ebc8', class: "customer-details" }, h("span", { key: 'b859fd54e44515e370bfcb0128f855cae28c5573', slot: "heading" }, this.heading || wp.i18n.__('Account Details', 'surecart'), " "), h("sc-button", { key: 'ff569cbca6554e06b9f87dbe91a342f6b8f118aa', type: "link", href: addQueryArgs(window.location.href, {
                 action: 'edit',
                 model: 'user',
-            }), slot: "end" }, h("sc-icon", { key: 'f75fdf8f61c08648c29597b96a2f0a9ef1c0e38c', name: "edit-3", slot: "prefix" }), wp.i18n.__('Update', 'surecart')), h("sc-card", { key: 'd70ccb9d63fccc976913ee9cd3eb5d23286e9b31', "no-padding": true }, h("sc-stacked-list", { key: '83228a6d738a6d46fdbeac88d9f2dc6c1adda99d' }, this.renderContent()))));
+            }), slot: "end" }, h("sc-icon", { key: '079f1aa35d80940718a9f726bb9e4b6df2f81bbb', name: "edit-3", slot: "prefix" }), wp.i18n.__('Update', 'surecart')), h("sc-card", { key: '98057f2e46db8249c8b42fe2c1cd1051d91404e8', "no-padding": true }, h("sc-stacked-list", { key: 'cb7996b4e2ca3afb7b303f78a6b3a94162d9e5e4' }, this.renderContent()))));
     }
 };
 ScWordPressUser.style = ScWordpressUserStyle0;

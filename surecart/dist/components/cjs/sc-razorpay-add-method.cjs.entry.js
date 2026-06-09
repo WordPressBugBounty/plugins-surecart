@@ -2,9 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const razorpay = require('./razorpay-88fe8897.js');
+const index$1 = require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 
@@ -83,7 +84,7 @@ const ScRazorpayAddMethod = class {
         try {
             this.loading = true;
             this.error = '';
-            this.paymentIntent = await fetch.apiFetch({
+            this.paymentIntent = await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/payment_intents',
                 data: {
@@ -103,7 +104,7 @@ const ScRazorpayAddMethod = class {
         }
     }
     render() {
-        return (index.h(index.Host, { key: '8a0f713c4fe959aa504fbe65506872c9736641d3' }, this.error && (index.h("sc-alert", { key: '8fbda4390b9510a1cd051698c54c0d9ed5578669', open: !!this.error, type: "danger" }, index.h("span", { key: 'af6fab9c1b997ed63af403274ccb8e8d80868e2f', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: 'a542db5d779b0ec4df1dd67c187a6b53fa8f5c64', class: "sc-razorpay-button-container" }, index.h("sc-alert", { key: 'ba03bef8745326b78b251fd7255b560d6cfc9738', open: true, type: "warning" }, wp.i18n.__('In order to add a new card, we will need to make a small transaction to authenticate it. This is for authentication purposes and will be immediately refunded.', 'surecart'), index.h("div", { key: '2d3e0e6274f9897f00ba2fde00f18d167e2f4b9f' }, index.h("sc-button", { key: '323f54355cf998d51536aaa278a33ea1697b3b7a', loading: this.loading, type: "primary", onClick: () => this.createPaymentIntent(), style: { marginTop: 'var(--sc-spacing-medium)' } }, wp.i18n.__('Add New Card', 'surecart')))))));
+        return (index.h(index.Host, { key: 'c797b31b9a7625ab18a85a84043cd3d08d2502c5' }, this.error && (index.h("sc-alert", { key: '188d3fc4f2d09898b51c09a1fe6937a375208c5a', open: !!this.error, type: "danger" }, index.h("span", { key: 'f5c32c2b5dd77b97a10a382be95dc2cfba6d6e7d', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: 'd03cd5a52a87e3619356f720c671a32c90a4c177', class: "sc-razorpay-button-container" }, index.h("sc-alert", { key: '7e381208deab7bb0fb2d53d77bd3ba66526095a8', open: true, type: "warning" }, wp.i18n.__('In order to add a new card, we will need to make a small transaction to authenticate it. This is for authentication purposes and will be immediately refunded.', 'surecart'), index.h("div", { key: 'd5bdd1c1e62773c4111a0834a65b8f9988a96e62' }, index.h("sc-button", { key: 'd1fd503f1297bc40db29896c3051471a67a613f6', loading: this.loading, type: "primary", onClick: () => this.createPaymentIntent(), style: { marginTop: 'var(--sc-spacing-medium)' } }, wp.i18n.__('Add New Card', 'surecart')))))));
     }
     static get watchers() { return {
         "paymentIntent": ["handlePaymentIntentCreate"]

@@ -1,11 +1,11 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
-import { s as state } from './watchers-bb82ca0e.js';
-import './index-06061d4e.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
+import { s as state } from './watchers-08aa2fd2.js';
+import './index-18f5a1bc.js';
 import './google-dd89f242.js';
 import './currency-a0c9bff4.js';
 import './google-a86aa761.js';
 import './utils-f84b2118.js';
-import './util-50af2a83.js';
+import './util-dfbf863e.js';
 import './index-c5a96d53.js';
 
 const scProductTextCss = ":host{display:block}p{margin-block-start:0;margin-block-end:1em}";

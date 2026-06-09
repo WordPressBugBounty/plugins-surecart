@@ -2,9 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scMollieAddMethodCss = ":host{display:block}";
@@ -33,7 +34,7 @@ const ScMollieAddMethod = class {
         try {
             this.loading = true;
             this.error = '';
-            this.paymentIntent = await fetch.apiFetch({
+            this.paymentIntent = await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/payment_intents',
                 data: {
@@ -60,7 +61,7 @@ const ScMollieAddMethod = class {
         var _a, _b, _c;
         try {
             this.loading = true;
-            const response = (await fetch.apiFetch({
+            const response = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/processors/${this.processorId}/payment_method_types`, {
                     amount: 0,
                     country: this.country,

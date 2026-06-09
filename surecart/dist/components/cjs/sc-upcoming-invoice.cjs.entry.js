@@ -2,12 +2,13 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const tax = require('./tax-a4582e73.js');
 const price = require('./price-da3cab3d.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./currency-71fce0f0.js');
 
@@ -59,7 +60,7 @@ const ScUpcomingInvoice = class {
     async getPrice() {
         if (!this.priceId)
             return;
-        this.price = (await fetch.apiFetch({
+        this.price = (await index$1.apiFetch({
             path: addQueryArgs.addQueryArgs(`surecart/v1/prices/${this.priceId}`, {
                 expand: ['product'],
             }),
@@ -68,7 +69,7 @@ const ScUpcomingInvoice = class {
     async getInvoice() {
         if (!this.subscriptionId)
             return;
-        this.invoice = (await fetch.apiFetch({
+        this.invoice = (await index$1.apiFetch({
             method: 'PATCH',
             path: addQueryArgs.addQueryArgs(`surecart/v1/subscriptions/${this.subscriptionId}/upcoming_period/`, {
                 expand: [
@@ -134,7 +135,7 @@ const ScUpcomingInvoice = class {
         try {
             this.error = '';
             this.busy = true;
-            await fetch.apiFetch({
+            await index$1.apiFetch({
                 path: `surecart/v1/subscriptions/${this.subscriptionId}`,
                 method: 'PATCH',
                 data: {
@@ -209,7 +210,7 @@ const ScUpcomingInvoice = class {
             }), slot: "price-description" }, index.h("sc-flex", { "justify-content": "flex-start", "align-items": "center", style: { '--spacing': '0.5em' } }, !!manualPaymentMethod && index.h("sc-manual-payment-method", { paymentMethod: manualPaymentMethod }), !manualPaymentMethod && index.h("sc-payment-method", { paymentMethod: checkout === null || checkout === void 0 ? void 0 : checkout.payment_method }), index.h("sc-icon", { name: "edit-3" })))), index.h("sc-line-item", { style: { '--price-size': 'var(--sc-font-size-x-large)' } }, index.h("span", { slot: "title" }, wp.i18n.__('Total Due', 'surecart')), index.h("span", { slot: "price" }, checkout === null || checkout === void 0 ? void 0 : checkout.amount_due_display_amount), index.h("span", { slot: "currency" }, checkout.currency))));
     }
     render() {
-        return (index.h("div", { key: 'b10a3ae949447dc1819ccb05db85a7bc81b52736', class: "upcoming-invoice" }, this.error && (index.h("sc-alert", { key: '566108b6e160d2435675ffb5636c73e6d7dff483', open: !!this.error, type: "danger" }, index.h("span", { key: '847ccce5c4ac4d52eb546e5a7e56f23f615c26a7', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h(index.Fragment, { key: '6adf9fff95502e4a523b15773c4acace46795bd7' }, index.h("sc-dashboard-module", { key: 'b82791688a0e35453cbe385b8e67c5cd031ecf6f', heading: wp.i18n.__('New Plan', 'surecart'), class: "plan-preview", error: this.error }, index.h("sc-card", { key: '11e15e24b6932699ac8f3a309fb3febb7b088513' }, this.renderContent())), index.h("sc-dashboard-module", { key: 'd596f01b5b1a9d22070b87e0d4fb9ba426e3f997', heading: wp.i18n.__('Summary', 'surecart'), class: "plan-summary" }, index.h("sc-form", { key: '857969b5d3dc420fe897e485e442a867927f1433', onScFormSubmit: () => this.onSubmit() }, index.h("sc-card", { key: '6b54b82af3c54a6ca7ffdeb34726ea80163909e5' }, this.renderSummary()), index.h("sc-button", { key: '3796db232e4e4b38863a51b3f1d39259df176dd6', type: "primary", full: true, submit: true, loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Confirm', 'surecart')))), index.h("sc-text", { key: '04cbf28734337a138b1dc1ccbd15a6db73e4a793', style: { '--text-align': 'center', '--font-size': 'var(--sc-font-size-small)', '--line-height': 'var(--sc-line-height-normal)' } }, index.h("slot", { key: '31c98b3d458af68ea1d6eaf55d6ecbc338392805', name: "terms" }))), this.busy && index.h("sc-block-ui", { key: '08c9d4aaaf3acd6d10278ef26421ac791b8ec5c5' })));
+        return (index.h("div", { key: 'efe814e872b333784453ba16d3a3bf4d4360f62a', class: "upcoming-invoice" }, this.error && (index.h("sc-alert", { key: 'c1ccf7ab7ecf7fb3fe6f80c0517b15c92b7757e6', open: !!this.error, type: "danger" }, index.h("span", { key: 'eb0aafca0b094a400f480ab68504609fb194cbba', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h(index.Fragment, { key: '16dad64205f83cda0c3a9eec7fb89ac3e99d4f7a' }, index.h("sc-dashboard-module", { key: 'a82fc24ab3ceec2853a72d11d13e30a187d0fd7f', heading: wp.i18n.__('New Plan', 'surecart'), class: "plan-preview", error: this.error }, index.h("sc-card", { key: '0c4b70bcbd89daaed166a37f513dec43f546087d' }, this.renderContent())), index.h("sc-dashboard-module", { key: '4f264c1692f5d905ee17f22744fb18c35dcb3519', heading: wp.i18n.__('Summary', 'surecart'), class: "plan-summary" }, index.h("sc-form", { key: 'bdbbea245f08ccbb2134d3b42f0118662e4e05b7', onScFormSubmit: () => this.onSubmit() }, index.h("sc-card", { key: 'dd2a89769aba1cee4f8f7e4f57d4878d93ab8d52' }, this.renderSummary()), index.h("sc-button", { key: 'b39a31dfb9522433d3fbdf8616abc6017f154614', type: "primary", full: true, submit: true, loading: this.loading || this.busy, disabled: this.loading || this.busy }, wp.i18n.__('Confirm', 'surecart')))), index.h("sc-text", { key: 'd9e2854ad27062df0bdd91ac499800a60dd8f734', style: { '--text-align': 'center', '--font-size': 'var(--sc-font-size-small)', '--line-height': 'var(--sc-line-height-normal)' } }, index.h("slot", { key: '91983a80d67d5441a44ec24fa5ddbdf78e9e760c', name: "terms" }))), this.busy && index.h("sc-block-ui", { key: '5e9f21681ca9a21e191fa8d402b8cde49a370e4a' })));
     }
     get el() { return index.getElement(this); }
 };

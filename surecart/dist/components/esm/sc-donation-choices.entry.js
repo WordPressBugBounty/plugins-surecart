@@ -1,5 +1,5 @@
-import { r as registerInstance, c as createEvent, h, a as getElement } from './index-745b6bec.js';
-import { o as openWormhole } from './consumer-e06b16d3.js';
+import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
+import { o as openWormhole } from './consumer-f1775a76.js';
 
 const scDonationChoicesCss = ":host{display:block}.sc-donation-choices{display:grid;gap:var(--sc-spacing-small);position:relative}.sc-donation-choices__form{display:grid;gap:var(--sc-spacing-small)}";
 const ScDonationChoicesStyle0 = scDonationChoicesCss;

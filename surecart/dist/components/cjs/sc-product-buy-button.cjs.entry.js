@@ -2,25 +2,26 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const error = require('./error-c178d966.js');
-const watchers = require('./watchers-567affc6.js');
-require('./mutations-c848334c.js');
-require('./index-bcdafe6e.js');
+const index = require('./index-be4abba1.js');
+const error = require('./error-04ede237.js');
+const watchers = require('./watchers-4cadea78.js');
+require('./mutations-6e603e86.js');
+require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-b57d9911.js');
+require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');
-require('./mutations-8d8c9d41.js');
-require('./mutations-11c8f9a8.js');
-require('./index-325f2916.js');
-require('./fetch-d374a251.js');
+require('./mutations-85ee76d2.js');
+require('./mutations-d5d6ddf1.js');
+require('./index-bb9b8917.js');
+require('./fetch-853b19c8.js');
+require('./index-7ced8198.js');
 require('./google-03835677.js');
-require('./util-b877b2bd.js');
+require('./util-a15c420c.js');
 
 const scProductBuyButtonCss = "sc-product-buy-button{position:relative}sc-product-buy-button a.wp-block-button__link{position:relative;text-decoration:none}sc-product-buy-button .sc-block-button--sold-out,sc-product-buy-button .sc-block-button--unavailable{display:none !important}sc-product-buy-button.is-unavailable a{display:none !important}sc-product-buy-button.is-unavailable .sc-block-button--unavailable{display:initial !important}sc-product-buy-button.is-sold-out a{display:none !important}sc-product-buy-button.is-sold-out .sc-block-button--sold-out{display:initial !important}sc-product-buy-button sc-spinner::part(base){--indicator-color:currentColor;--spinner-size:12px;position:absolute;top:calc(50% - var(--spinner-size) + var(--spinner-size) / 4);left:calc(50% - var(--spinner-size) + var(--spinner-size) / 4)}sc-product-buy-button [data-text],sc-product-buy-button [data-loader]{transition:opacity var(--sc-transition-fast) ease-in-out, visibility var(--sc-transition-fast) ease-in-out}sc-product-buy-button [data-loader]{opacity:0;visibility:hidden}sc-product-buy-button.is-disabled{pointer-events:none}sc-product-buy-button.is-busy [data-text]{opacity:0;visibility:hidden}sc-product-buy-button.is-busy [data-loader]{opacity:1;visibility:visible}sc-product-buy-button sc-alert{margin-bottom:var(--sc-spacing-medium)}sc-product-buy-button.is-out-of-stock [data-text]{opacity:0.6}";
 const ScProductBuyButtonStyle0 = scProductBuyButtonCss;
@@ -77,14 +78,14 @@ const ScProductBuyButton = class {
     }
     render() {
         var _a, _b;
-        return (index.h(index.Host, { key: 'ec3838915186e6af63de6fc6d22d0d15794ff56f', class: {
+        return (index.h(index.Host, { key: 'c442ebf91769db5b2a48715cac1776ba68a19416', class: {
                 'is-busy': ((_a = watchers.state[this.productId]) === null || _a === void 0 ? void 0 : _a.busy) && !!this.addToCart,
                 'is-disabled': (_b = watchers.state[this.productId]) === null || _b === void 0 ? void 0 : _b.disabled,
                 'is-sold-out': watchers.isProductOutOfStock(this.productId) && !watchers.isSelectedVariantMissing(this.productId),
                 'is-unavailable': watchers.isSelectedVariantMissing(this.productId),
-            }, onClick: e => this.handleCartClick(e) }, !!this.error && (index.h("sc-alert", { key: 'caa586154ba33147589030198e9f3b63bd1e4949', onClick: event => {
+            }, onClick: e => this.handleCartClick(e) }, !!this.error && (index.h("sc-alert", { key: '9daa185d3276c7e0cb152eda6d6bd54b0c7d11e6', onClick: event => {
                 event.stopPropagation();
-            }, type: "danger", scrollOnOpen: true, open: !!this.error, closable: false }, !!error.getTopLevelError(this.error) && index.h("span", { key: 'a126511dd87139b2ce5040f468964e3f98238e19', slot: "title", innerHTML: error.getTopLevelError(this.error) }), (error.getAdditionalErrorMessages(this.error) || []).map((message, index$1) => (index.h("div", { innerHTML: message, key: index$1 }))))), index.h("slot", { key: '4084f8945a73e5348bff3f21ea0945f0e15eb1fd' })));
+            }, type: "danger", scrollOnOpen: true, open: !!this.error, closable: false }, !!error.getTopLevelError(this.error) && index.h("span", { key: 'ad1c1ccb753da64c5fd4c956b0ddb4a12a5a5b52', slot: "title", innerHTML: error.getTopLevelError(this.error) }), (error.getAdditionalErrorMessages(this.error) || []).map((message, index$1) => (index.h("div", { innerHTML: message, key: index$1 }))))), index.h("slot", { key: 'ee46a642601529da83f2e0cc1aa7458b2501dd95' })));
     }
     get el() { return index.getElement(this); }
 };

@@ -2,23 +2,23 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const pure = require('./pure-bd6f0a6e.js');
-const consumer = require('./consumer-9f4ee0e3.js');
-const watchers = require('./watchers-b4c5fc51.js');
-const getters = require('./getters-ee413912.js');
-const mutations$1 = require('./mutations-11c8f9a8.js');
-const mutations = require('./mutations-c848334c.js');
-const getters$1 = require('./getters-c16ecf9a.js');
-require('./index-bcdafe6e.js');
-require('./util-b877b2bd.js');
+const consumer = require('./consumer-b58230e6.js');
+const watchers = require('./watchers-517825ae.js');
+const getters = require('./getters-051ccbf6.js');
+const mutations$1 = require('./mutations-d5d6ddf1.js');
+const mutations = require('./mutations-6e603e86.js');
+const getters$1 = require('./getters-dcec94e4.js');
+require('./index-c3de642f.js');
+require('./util-a15c420c.js');
 require('./utils-a9d13080.js');
 require('./index-fb76df07.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./store-b57d9911.js');
+require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');
 require('./address-7404695f.js');
 
@@ -191,7 +191,7 @@ const ScStripeElement = class {
         this.element.on('blur', () => (this.hasFocus = false));
     }
     render() {
-        return (index.h(index.Fragment, { key: 'c3f333d76e403009d24d9b0c614bc151e1ae563e' }, index.h("sc-form-control", { key: '4e16a9774024e0e48b2799fef04ef670b9d6cccd', class: "sc-stripe", size: this.size, label: this.label }, index.h("div", { key: 'bbcc1b01c88f2d8ed4f4fa1c11948d06792edb82', class: "sc-stripe-element", ref: el => (this.container = el) })), this.error && (index.h("sc-text", { key: 'd2463840ad797828e8fcfc4ad66310e0592b6081', style: {
+        return (index.h(index.Fragment, { key: '52a3ac74e3ab79a8b2e1c953eb64049958e95cfc' }, index.h("sc-form-control", { key: '5d13874452e5c3cfad324130071f8bb180efb691', class: "sc-stripe", size: this.size, label: this.label }, index.h("div", { key: 'e5c97a50245a8ae3f2e1bfff61dd82aad764d946', class: "sc-stripe-element", ref: el => (this.container = el) })), this.error && (index.h("sc-text", { key: '597f3661fc85929d0af2751d13d09bfa2cbbf328', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginTop': '0.5em',

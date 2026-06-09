@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const formData = require('./form-data-0da9940f.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 
@@ -127,20 +127,20 @@ const ScChoiceContainer = class {
         }
     }
     render() {
-        return (index.h("div", { key: '57d33fc937bed4d8b6111c02d2437262f1e1495f', part: "base", class: {
+        return (index.h("div", { key: '8affbd34352f029b379be4b7bf40f44162d137c9', part: "base", class: {
                 'choice': true,
                 'choice--checked': this.checked,
                 'choice--disabled': this.disabled,
                 'choice--focused': this.hasFocus,
                 'choice--is-rtl': pageAlign.isRtl(),
                 [`choice--size-${this.size}`]: true,
-            }, role: "radio", "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', onKeyDown: e => this.handleKeyDown(e) }, index.h("slot", { key: 'd5c8817f85eba03d5018a936b445a3921cf7bdee', name: "header" }), index.h("div", { key: 'afbae92051615562d0ea590c1f50dd584c036d63', class: "choice__content", part: "content" }, index.h("span", { key: '25aeb5ee8eb578793b1c7097c3f0f42cffd661a5', part: "control", class: {
+            }, role: "radio", "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', onKeyDown: e => this.handleKeyDown(e) }, index.h("slot", { key: 'bb50f30e68964f537b02e887d996936049d6e16c', name: "header" }), index.h("div", { key: '997873e05428756f0ffad29a4f5cf2a36538b509', class: "choice__content", part: "content" }, index.h("span", { key: '61cf1746d494e26cb9d6a54a3930e4a10adab0f4', part: "control", class: {
                 choice__control: true,
                 choice__checkbox: this.type === 'checkbox',
                 choice__radio: this.type === 'radio',
-            }, hidden: !this.showControl }, index.h("span", { key: 'eaf34647595af08f3af79efcec66a1afd40c230a', part: "checked-icon", class: "choice__icon" }, this.type === 'checkbox' ? (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(3.428571, 3.428571)" }, index.h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), index.h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" })))))) : (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { fill: "currentColor" }, index.h("circle", { cx: "8", cy: "8", r: "3.42857143" })))))), index.h("input", { key: '49b82bfb4af8580f550ea5409d581b552032cc05', id: this.inputId, ref: el => (this.input = el), type: this.type, name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', "aria-labelledby": this.labelId, tabindex: "0",
+            }, hidden: !this.showControl }, index.h("span", { key: 'ce7c23e0673f3da1178e6019599e1e429a91e24a', part: "checked-icon", class: "choice__icon" }, this.type === 'checkbox' ? (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(3.428571, 3.428571)" }, index.h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), index.h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" })))))) : (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { fill: "currentColor" }, index.h("circle", { cx: "8", cy: "8", r: "3.42857143" })))))), index.h("input", { key: '1ddc8f339ccf749c258a75041512061a0feb1c4c', id: this.inputId, ref: el => (this.input = el), type: this.type, name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', "aria-labelledby": this.labelId, tabindex: "0",
             // required={this.required}
-            onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus(), onChange: () => this.handleClickEvent(), role: this.role })), index.h("label", { key: 'a3f5e9c22df6e504bcf2e23d600107f3fce60f94', part: "label", id: this.labelId, class: "choice__label" }, index.h("slot", { key: 'c63f027456ecaaf437cc5b7d6875c8a576dcc963' })))));
+            onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus(), onChange: () => this.handleClickEvent(), role: this.role })), index.h("label", { key: '0a6b4e630fe5a9a50b49cdb4d59ece7966bf7eaf', part: "label", id: this.labelId, class: "choice__label" }, index.h("slot", { key: 'fbb1f4f621618ed7f672a0383cc24e250eaf1d6e' })))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

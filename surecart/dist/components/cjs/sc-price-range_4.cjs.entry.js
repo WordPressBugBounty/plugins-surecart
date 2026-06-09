@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const media = require('./media-43b85f3d.js');
 const index$1 = require('./index-adacfa36.js');
 
@@ -67,7 +67,7 @@ const ScProductItemImage = class {
     }
     render() {
         const { alt, title } = media.getFeaturedProductMediaAttributes(this.product);
-        return (index.h(index.Host, { key: '7a84ac6bc47ad77c8e858658a728dac9a1a88fb7', style: { borderStyle: 'none' } }, index.h("div", { key: '2578bfb10e3955ef6b3ad5874f6120e11e039ae3', class: {
+        return (index.h(index.Host, { key: '7853ae29cadc1e7f0d1825f6da5a145be5943c48', style: { borderStyle: 'none' } }, index.h("div", { key: '09e77bb61fab0d169034638f7468d13f7ff82a58', class: {
                 'product-img': true,
                 'is_contained': this.sizing === 'contain',
                 'is_covered': this.sizing === 'cover',
@@ -105,7 +105,7 @@ const ScProductItemPrice = class {
     render() {
         var _a;
         const price = (this.prices || []).sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position)).find(price => !(price === null || price === void 0 ? void 0 : price.archived));
-        return (index.h("div", { key: '842d06ca30186839d3446f4e162493702b4a78a2', class: "product-price", part: "base" }, !this.range && ((_a = this.prices) === null || _a === void 0 ? void 0 : _a.length) ? (index.h("sc-format-number", { type: "currency", currency: (price === null || price === void 0 ? void 0 : price.currency) || 'usd', value: price === null || price === void 0 ? void 0 : price.amount })) : (index.h("sc-price-range", { prices: this.prices }))));
+        return (index.h("div", { key: '345b4aa42981a7272e2f3eeedf7888c927dc6ee1', class: "product-price", part: "base" }, !this.range && ((_a = this.prices) === null || _a === void 0 ? void 0 : _a.length) ? (index.h("sc-format-number", { type: "currency", currency: (price === null || price === void 0 ? void 0 : price.currency) || 'usd', value: price === null || price === void 0 ? void 0 : price.amount })) : (index.h("sc-price-range", { prices: this.prices }))));
     }
 };
 ScProductItemPrice.style = ScProductItemPriceStyle0;
@@ -118,9 +118,9 @@ const ScProductItemTitle = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: '84dc68fbbb7c3bf7ed3972f3351482c1128123b3' }, index.h("div", { key: 'c0375685badeedce2f92855add309f38c201bc08', class: {
+        return (index.h(index.Host, { key: 'b5d81d62d2c1c94a8f75d38dfa559756e6fba533' }, index.h("div", { key: '4e87d1abda0164c7fe447c1ad4948750602ebdcb', class: {
                 'product-item-title': true,
-            } }, index.h("slot", { key: '44fcbc4cdcddb410c0ff4f10dc3985ef16124f73' }))));
+            } }, index.h("slot", { key: 'b1f426e7c711a0e95a4ea22274d540bdafff84d7' }))));
     }
 };
 ScProductItemTitle.style = ScProductItemTitleStyle0;

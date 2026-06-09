@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const fetch = require('./fetch-d374a251.js');
+const index = require('./index-be4abba1.js');
+require('./fetch-853b19c8.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
+const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
 
 const scPaymentMethodsListCss = ":host{display:block;position:relative}.payment-methods-list{display:grid;gap:0.5em}.payment-methods-list sc-heading a{text-decoration:none;font-weight:var(--sc-font-weight-semibold);display:inline-flex;align-items:center;gap:0.25em;color:var(--sc-color-primary-500)}.payment-id{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}";
@@ -44,7 +45,7 @@ const ScPaymentMethodsList = class {
             return;
         try {
             this.busy = true;
-            (await fetch.apiFetch({
+            (await index$1.apiFetch({
                 path: `surecart/v1/payment_methods/${(_a = this.deletePaymentMethod) === null || _a === void 0 ? void 0 : _a.id}/detach`,
                 method: 'PATCH',
             }));
@@ -69,7 +70,7 @@ const ScPaymentMethodsList = class {
         try {
             this.error = '';
             this.busy = true;
-            (await fetch.apiFetch({
+            (await index$1.apiFetch({
                 path: `surecart/v1/customers/${(_b = (_a = this.editPaymentMethod) === null || _a === void 0 ? void 0 : _a.customer) === null || _b === void 0 ? void 0 : _b.id}`,
                 method: 'PATCH',
                 data: {
@@ -87,7 +88,7 @@ const ScPaymentMethodsList = class {
         }
         try {
             this.busy = true;
-            this.paymentMethods = (await fetch.apiFetch({
+            this.paymentMethods = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/payment_methods/`, {
                     expand: ['card', 'customer', 'billing_agreement', 'paypal_account', 'payment_instrument', 'bank_account'],
                     ...this.query,
@@ -108,7 +109,7 @@ const ScPaymentMethodsList = class {
         }
         try {
             this.loading = true;
-            this.paymentMethods = (await fetch.apiFetch({
+            this.paymentMethods = (await index$1.apiFetch({
                 path: addQueryArgs.addQueryArgs(`surecart/v1/payment_methods/`, {
                     expand: ['card', 'customer', 'billing_agreement', 'paypal_account', 'payment_instrument', 'bank_account'],
                     ...this.query,
@@ -166,13 +167,13 @@ const ScPaymentMethodsList = class {
         this.cascadeDefaultPaymentMethod = false;
     }
     render() {
-        return (index.h("sc-dashboard-module", { key: '00129316def0cf2b3da434d65e4bcd5e13e8ef4f', class: "payment-methods-list", error: this.error }, index.h("span", { key: 'aba4d557000707928d9c5a711a9900792a80be66', slot: "heading" }, index.h("slot", { key: '2b142bc93b75f16909353fb275d659c9ed94f5e1', name: "heading" }, this.heading || wp.i18n.__('Payment Methods', 'surecart'))), this.isCustomer && (index.h("sc-flex", { key: 'c9a33a6679975522b4d006a1a282ee4a0d3f99e0', slot: "end" }, index.h("sc-button", { key: 'f9729094d39e3fdf1f4955561cd0602fabe44c59', type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
+        return (index.h("sc-dashboard-module", { key: '7ed3aa0adc292d2de918f5e875c0d92e98b30784', class: "payment-methods-list", error: this.error }, index.h("span", { key: '1fa32c9e1e3005ea8878a402b41b7fc4e172e332', slot: "heading" }, index.h("slot", { key: '0107209bef6602b3652c41dcdf31357904e1e71a', name: "heading" }, this.heading || wp.i18n.__('Payment Methods', 'surecart'))), this.isCustomer && (index.h("sc-flex", { key: 'ef8cfcddf31bac68b7f4aedc9e708ce44acde831', slot: "end" }, index.h("sc-button", { key: '1350a20cebcb23c268423cafefc05486ff57e271', type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'index',
                 model: 'charge',
-            }) }, index.h("sc-icon", { key: '82fd4fd7834a3c03039ea440852e92a0bb3f180e', name: "clock", slot: "prefix" }), wp.i18n.__('Payment History', 'surecart')), index.h("sc-button", { key: 'f012e21ae0f925a6f76504b02bdcf122e5f8c2f2', type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
+            }) }, index.h("sc-icon", { key: '43060969eaa5d71ac747f5d1f8928b24ba5b5eab', name: "clock", slot: "prefix" }), wp.i18n.__('Payment History', 'surecart')), index.h("sc-button", { key: 'f125437d3d049a9881f865d2178c7f72bee31c86', type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'create',
                 model: 'payment_method',
-            }) }, index.h("sc-icon", { key: 'c050e647ed8341c43f3ce917961689d3146e290f', name: "plus", slot: "prefix" }), wp.i18n.__('Add', 'surecart')))), this.renderContent(), index.h("sc-dialog", { key: '38268cb16a8de3b8883edb8111be247bc6558f54', open: !!this.editPaymentMethod, label: wp.i18n.__('Update Default Payment Method', 'surecart'), onScRequestClose: () => (this.editPaymentMethod = false) }, index.h("sc-alert", { key: '2c168d7c2ffeab49c4583237369fec616feb2fc5', type: "danger", open: !!this.error }, this.error), index.h("sc-flex", { key: '47ef7c14abe131000a406db38bd77cfad230e99b', flexDirection: "column", style: { '--sc-flex-column-gap': 'var(--sc-spacing-small)' } }, index.h("sc-alert", { key: 'f5e36c2ef7112076cd5576eefc4117a0f4fe0306', type: "info", open: true }, wp.i18n.__('A default payment method will be used as a fallback in case other payment methods get removed from a subscription.', 'surecart')), index.h("sc-switch", { key: '7773330e9b66b07ba44e44e30c950501f7c26bdd', checked: this.cascadeDefaultPaymentMethod, onScChange: e => (this.cascadeDefaultPaymentMethod = e.target.checked) }, wp.i18n.__('Update All Subscriptions', 'surecart'), index.h("span", { key: '57dd021ef75234e6bab96ebc1848a31ba9d89432', slot: "description" }, wp.i18n.__('Update all existing subscriptions to use this payment method', 'surecart')))), index.h("div", { key: '884e1183423e177e174a93d807b5b8473472bdb2', slot: "footer" }, index.h("sc-button", { key: '1c60a922d7e3e829a634abba1a1bc8d8ffc275cf', type: "text", onClick: () => (this.editPaymentMethod = false) }, wp.i18n.__('Cancel', 'surecart')), index.h("sc-button", { key: '880bafee8aff69edf429e55e6d71f31d15cf74f7', type: "primary", onClick: () => this.setDefault() }, wp.i18n.__('Make Default', 'surecart'))), this.busy && index.h("sc-block-ui", { key: '4c19dcbc1f02c8e9c3099b2ae621b729362b29f8', spinner: true })), index.h("sc-dialog", { key: 'e96940d8ac719a68a914450fd9cd34f52285f95c', open: !!this.deletePaymentMethod, label: wp.i18n.__('Delete Payment Method', 'surecart'), onScRequestClose: () => (this.deletePaymentMethod = false) }, index.h("sc-alert", { key: 'efe88952d55c35f769c4c627f62e7745654a37ce', type: "danger", open: !!this.error }, this.error), index.h("sc-text", { key: '8e209ccd4e6a43083723f4cd3b3b14f0be1ce764' }, wp.i18n.__('Are you sure you want to remove this payment method?', 'surecart')), index.h("div", { key: 'b600fa7a7cd3383a924dc602a3bd4f5a84a367c0', slot: "footer" }, index.h("sc-button", { key: 'e2cfdb3d7f0db3c4c86beedcd234207566a2a941', type: "text", onClick: () => (this.deletePaymentMethod = false) }, wp.i18n.__('Cancel', 'surecart')), index.h("sc-button", { key: '31cc0d5077436250d1efe33a7b0c3b99d60f3b9b', type: "primary", onClick: () => this.deleteMethod() }, wp.i18n.__('Delete', 'surecart'))), this.busy && index.h("sc-block-ui", { key: '01124f57070cda5751fb4e2481d36bb19242ff3e', spinner: true })), this.busy && index.h("sc-block-ui", { key: '3c52e6a39a8fe953340eadffbddf7ce745fa6913', spinner: true })));
+            }) }, index.h("sc-icon", { key: '06cb97950efe20da89890046e9c3b78fd523b9ff', name: "plus", slot: "prefix" }), wp.i18n.__('Add', 'surecart')))), this.renderContent(), index.h("sc-dialog", { key: '046eec64d813e28ed0b4ca0aecd54b4a6fa74cb0', open: !!this.editPaymentMethod, label: wp.i18n.__('Update Default Payment Method', 'surecart'), onScRequestClose: () => (this.editPaymentMethod = false) }, index.h("sc-alert", { key: 'e8e93ecb8343ba05189e17227ff229dfe9872f77', type: "danger", open: !!this.error }, this.error), index.h("sc-flex", { key: 'df363bd6fc57164fe70b94d5a33b407f634abbec', flexDirection: "column", style: { '--sc-flex-column-gap': 'var(--sc-spacing-small)' } }, index.h("sc-alert", { key: '33ffd14afc91aad44e1687f0c56b69fd141a0ee8', type: "info", open: true }, wp.i18n.__('A default payment method will be used as a fallback in case other payment methods get removed from a subscription.', 'surecart')), index.h("sc-switch", { key: '96badb3fbe4100d790d9452f3b0fed0618ee060f', checked: this.cascadeDefaultPaymentMethod, onScChange: e => (this.cascadeDefaultPaymentMethod = e.target.checked) }, wp.i18n.__('Update All Subscriptions', 'surecart'), index.h("span", { key: '2578955b4bcd9db2bce98a49570f9ca47d088306', slot: "description" }, wp.i18n.__('Update all existing subscriptions to use this payment method', 'surecart')))), index.h("div", { key: '5ad74b5d8747694d7f26b77ee16566ac851a7aad', slot: "footer" }, index.h("sc-button", { key: 'ad2c208a057d93d876a5ab34cc39e34f825603c9', type: "text", onClick: () => (this.editPaymentMethod = false) }, wp.i18n.__('Cancel', 'surecart')), index.h("sc-button", { key: '349bb70a70d73808a01b59acce6e5b9f212a634c', type: "primary", onClick: () => this.setDefault() }, wp.i18n.__('Make Default', 'surecart'))), this.busy && index.h("sc-block-ui", { key: '0eecba0c0a719bc7dd7f806d850fc3fe3a67d0ac', spinner: true })), index.h("sc-dialog", { key: 'a320b8c1d11eff58ff738b0c014435c4f20addc3', open: !!this.deletePaymentMethod, label: wp.i18n.__('Delete Payment Method', 'surecart'), onScRequestClose: () => (this.deletePaymentMethod = false) }, index.h("sc-alert", { key: 'dbaa401225f4a6d06631c3e41f6caff8620380cb', type: "danger", open: !!this.error }, this.error), index.h("sc-text", { key: '7a142e8e1a65d3179dd9bf45bfad90ddc143fd4b' }, wp.i18n.__('Are you sure you want to remove this payment method?', 'surecart')), index.h("div", { key: 'ccd56f700060788062dd027a346eec4598f68e04', slot: "footer" }, index.h("sc-button", { key: '5fdd90a8df122ab3a22317ca510e0d24026c116f', type: "text", onClick: () => (this.deletePaymentMethod = false) }, wp.i18n.__('Cancel', 'surecart')), index.h("sc-button", { key: '06b4535e425092782a558cbf9341dcbe29010513', type: "primary", onClick: () => this.deleteMethod() }, wp.i18n.__('Delete', 'surecart'))), this.busy && index.h("sc-block-ui", { key: 'e7b08207235d1eed5a1ad82ce5c31412e251631e', spinner: true })), this.busy && index.h("sc-block-ui", { key: '346ff2d9618d7605850306ee6d4b55ac81269fbd', spinner: true })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

@@ -95,6 +95,7 @@ export declare class ScInput {
     /** Emitted when the control loses focus. */
     scBlur: EventEmitter<void>;
     reportValidity(): Promise<boolean>;
+    validPattern(): string | undefined;
     /** Sets focus on the input. */
     triggerFocus(options?: FocusOptions): Promise<void>;
     /** Sets a custom validation message. If `message` is not empty, the field will be considered invalid. */

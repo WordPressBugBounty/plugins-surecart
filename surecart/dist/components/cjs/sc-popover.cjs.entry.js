@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const floatingUi_dom_esm = require('./floating-ui.dom.esm-7fad5c49.js');
 const index$1 = require('./index-fb76df07.js');
 
@@ -155,11 +155,11 @@ const ScPopover = class {
         this.trigger.focus();
     }
     render() {
-        return (index.h("div", { key: 'b57057d2bd1fce38b13a2a840a82ddd4d6418421', part: "base", class: {
+        return (index.h("div", { key: 'bba4c420b3ff37f8e9cb415b3c1547421482adf1', part: "base", class: {
                 'popover': true,
                 'popover--open': this.open,
                 'popover--disabled': this.disabled,
-            } }, index.h("span", { key: 'db4fd035630c25f16f52bdfe3d47a2463c31546b', part: "trigger", class: "popover__trigger", ref: el => (this.trigger = el), onClick: () => {
+            } }, index.h("span", { key: 'f216b28ef38610f6b1ebb6cc0170fe7645708aec', part: "trigger", class: "popover__trigger", ref: el => (this.trigger = el), onClick: () => {
                 if (this.disabled)
                     return;
                 if (this.open) {
@@ -170,7 +170,7 @@ const ScPopover = class {
                         this.show();
                     }, 0);
                 }
-            }, onKeyDown: e => this.handleTriggerKeyDown(e), tabindex: "0", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "dialog", "aria-label": wp.i18n.__('Press Enter to open popover', 'surecart') }, index.h("slot", { key: '7f13b043278b889b6e635f5ddf6d4f04a1d47e11', name: "trigger" })), index.h("div", { key: '12fcf699e26a0ef5d387bdc663216390348506b2', class: "popover__positioner", ref: el => (this.positioner = el) }, index.h("div", { key: '55c67787196d5f98eb53779488176a5bbaaa1414', part: "panel", class: "popover__panel", role: "dialog", "aria-modal": "false", tabindex: "-1", ref: el => (this.panel = el) }, index.h("div", { key: '3ad2692dba11cd3ed685749fb7410481b47bcf47', class: "popover__header" }, index.h("slot", { key: '04551bb929363b7a6ecb501fdbef0ff2ec73ad10', name: "title" }), index.h("button", { key: 'b893f689f46a3f617d84ec076dfdb3cd066e5795', type: "button", class: "popover__header-close-button", onClick: () => this.handleHide(), onKeyDown: e => e.key === 'Enter' && this.handleHide(), "aria-label": wp.i18n.__('Close', 'surecart') }, index.h("sc-icon", { key: 'a17e9df53da307a3d346f82670e1fc83b8ca472d', class: "popover__header-close-icon", name: "x" }))), index.h("slot", { key: '946fd9fee60c3bca4fca648beb4cffe003f68c15', name: "content" }), index.h("div", { key: '4ae79c23d1d95508f53942daff7a5ed4b546d2d0', class: "popover__footer" }, index.h("slot", { key: '7bcb7e364eda468c3b60f7e379bd6406388a0121', name: "footer" }))))));
+            }, onKeyDown: e => this.handleTriggerKeyDown(e), tabindex: "0", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "dialog", "aria-label": wp.i18n.__('Press Enter to open popover', 'surecart') }, index.h("slot", { key: '84a280a01b8cff0b8ae657e10250a385a695f159', name: "trigger" })), index.h("div", { key: '2bc08860a57d7d539721fd1be1665bfade9f315b', class: "popover__positioner", ref: el => (this.positioner = el) }, index.h("div", { key: 'a294653d1f982a1edff51fc5098a91693406790e', part: "panel", class: "popover__panel", role: "dialog", "aria-modal": "false", tabindex: "-1", ref: el => (this.panel = el) }, index.h("div", { key: '04f6b3e5a409c09ea13a39b7a810a72022b3a8d3', class: "popover__header" }, index.h("slot", { key: 'c780632167459d821793402205bc9ca73e5dfce9', name: "title" }), index.h("button", { key: 'f5afb159d492ed68e7376d067a1256001fedc4cc', type: "button", class: "popover__header-close-button", onClick: () => this.handleHide(), onKeyDown: e => e.key === 'Enter' && this.handleHide(), "aria-label": wp.i18n.__('Close', 'surecart') }, index.h("sc-icon", { key: 'ebc25cef564fa9781cab515e623502ea61b4a1c7', class: "popover__header-close-icon", name: "x" }))), index.h("slot", { key: 'cf2b7907127ec3796abe9b72ab1115fb38a580b9', name: "content" }), index.h("div", { key: 'f98152e7b27b9fd1c0ef9b00e2f5d32219211e7c', class: "popover__footer" }, index.h("slot", { key: '5f4a7923849a429578f80f5336c4316f15a6a965', name: "footer" }))))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

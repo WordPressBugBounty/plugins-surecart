@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scTableCss = ":host{display:table;width:100%;height:100%;border-spacing:0;border-collapse:collapse;table-layout:fixed;font-family:var(--sc-font-sans);border-radius:var(--border-radius, var(--sc-border-radius-small))}:host([shadowed]){box-shadow:var(--sc-shadow-medium)}::slotted([slot=head]){border-bottom:1px solid var(--sc-table-border-bottom-color, var(--sc-color-gray-200))}";
 const ScTableStyle0 = scTableCss;
@@ -12,7 +12,7 @@ const ScTable = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: 'b2c3775e16dde10ec23b3c4d09c5db15974cab41' }, index.h("slot", { key: '79ccb7d6573e54bc9970fe9a3355262e5c56a17b', name: "head" }), index.h("slot", { key: 'f35c47af61c558fd10985a5d4a6257ebe85a85eb' }), index.h("slot", { key: '64f72dc736b444f39bedc49526999f97e3f86a0b', name: "footer" })));
+        return (index.h(index.Host, { key: '4c44544a687062e644990ebe148fddcc65d05e89' }, index.h("slot", { key: 'a8fdf7ee2196eea0345350f238f2ac7e76842df9', name: "head" }), index.h("slot", { key: '45c3b2175d9d9a7d978e9ac5d6363b2a92c970d8' }), index.h("slot", { key: '280863f3a772b85d2223e23524b09891a2713b03', name: "footer" })));
     }
 };
 ScTable.style = ScTableStyle0;
@@ -25,7 +25,7 @@ const ScTableScll = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h(index.Host, { key: 'f997e610f42edd67ae31860c66548fab344db006' }, index.h("slot", { key: 'd0685315432e9976fac16c996ab5592099477fc5' })));
+        return (index.h(index.Host, { key: 'a05886f64ffb0b92a8d74e5e3548a7980188270b' }, index.h("slot", { key: '102ac3a046b01b724957d4de84ccc9c95067add5' })));
     }
 };
 ScTableScll.style = ScTableCellStyle0;
@@ -39,7 +39,7 @@ const ScTableRow = class {
         this.href = undefined;
     }
     render() {
-        return (index.h(index.Host, { key: 'ea5ee83fa78bc3d6f76a0bc359a247878016b7b4' }, index.h("slot", { key: 'b256fb1dfcc3c850a85b244b1dc57866e2259789' })));
+        return (index.h(index.Host, { key: '3805fda9f59a8d6cbe2dddaf19824c03f94eed4a' }, index.h("slot", { key: '23c3af6b417709d5abca94d243406d3fa30a3317' })));
     }
 };
 ScTableRow.style = ScTableRowStyle0;

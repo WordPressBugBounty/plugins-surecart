@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-745b6bec.js';
+import { r as registerInstance, h } from './index-25e5af33.js';
 
 const scProductItemCss = ".product-item{text-decoration:none;padding-top:var(--sc-product-item-padding-top);padding-bottom:var(--sc-product-item-padding-bottom);padding-left:var(--sc-product-item-padding-left);padding-right:var(--sc-product-item-padding-right);margin-top:var(--sc-product-item-margin-top);margin-bottom:var(--sc-product-item-margin-bottom);margin-left:var(--sc-product-item-margin-left);margin-right:var(--sc-product-item-margin-right);border:solid var(--sc-product-item-border-width) var(--sc-product-item-border-color);border-radius:var(--sc-product-item-border-radius);color:var(--sc-product-title-text-color);background-color:var(--sc-product-item-background-color);height:100%;box-sizing:border-box;display:grid}";
 const ScProductItemStyle0 = scProductItemCss;
@@ -12,7 +12,7 @@ const ScProductItem = class {
     render() {
         var _a;
         console.log(this.product);
-        return (h("a", { key: 'cb28f88a53f523315a10eed7d2edafc386aac5d9', href: (_a = this.product) === null || _a === void 0 ? void 0 : _a.permalink, class: { 'product-item': true } }, this.product &&
+        return (h("a", { key: '467fbbc846bb713324f433e7902b5a9649dc090c', href: (_a = this.product) === null || _a === void 0 ? void 0 : _a.permalink, class: { 'product-item': true } }, this.product &&
             (this.layoutConfig || []).map(layout => {
                 var _a, _b, _c, _d;
                 const attributes = layout.attributes || {};

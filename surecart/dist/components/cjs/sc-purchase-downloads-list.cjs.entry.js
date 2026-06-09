@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 
 const scPurchaseDownloadsListCss = ":host{display:block}.download__details{opacity:0.75}";
@@ -59,7 +59,7 @@ const ScPurchaseDownloadsList = class {
         return (index.h("sc-card", { "no-padding": true, style: { '--overflow': 'hidden' } }, index.h("sc-stacked-list", null, this.renderList())));
     }
     render() {
-        return (index.h("sc-dashboard-module", { key: '77c933bc9eb8d64256675c278dea12b04b1bf1d9', class: "downloads-list", error: this.error }, index.h("span", { key: '1cdd2033d6c0691ec482c607a781235d1a66a7c6', slot: "heading" }, index.h("slot", { key: '9986a4c03d635e4f5cec42bc8db7da887dab4fbe', name: "heading" }, this.heading || wp.i18n.__('Items', 'surecart'))), index.h("slot", { key: '3bec176268ba64dd246513f3f2ec5104e56bb882', name: "before" }), !!this.allLink && (index.h("sc-button", { key: '287334ba69c4af3315581a403d38bc8658a9e7c4', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '0399fd8a34444bd351c7f52c02f00f73371172a1', name: "chevron-right", slot: "suffix" }))), this.renderContent(), index.h("slot", { key: 'd928ee5e00154b383563b1a1bd9e8a5d8f2344f0', name: "after" }), this.busy && index.h("sc-block-ui", { key: '43aa1be6f907505359df2fb1c00ffa4c2cefdf9f' })));
+        return (index.h("sc-dashboard-module", { key: '5c8ddf82445d104a101536771a33802c60f95d78', class: "downloads-list", error: this.error }, index.h("span", { key: 'b9c4e10da64d1630078fdefbf93d91f40aeab9cc', slot: "heading" }, index.h("slot", { key: 'db1216dcb9ffc12fc833edde740ae02e5cd5e671', name: "heading" }, this.heading || wp.i18n.__('Items', 'surecart'))), index.h("slot", { key: 'b9b09cc64fcf9fced6a703759ccbc686f330edf2', name: "before" }), !!this.allLink && (index.h("sc-button", { key: 'ba3a4fbc34a7bd82ccf80478b4e5e406e6574867', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), index.h("sc-icon", { key: '5ae134a422e79797008b9d2a9a7de89f70c6dbc2', name: "chevron-right", slot: "suffix" }))), this.renderContent(), index.h("slot", { key: 'b3b28959ace88d9fedb5d34f3c073fa110d752d3', name: "after" }), this.busy && index.h("sc-block-ui", { key: 'e6f0974d2163ac90331b89ce8d492880ae02c896' })));
     }
     get el() { return index.getElement(this); }
 };

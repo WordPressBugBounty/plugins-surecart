@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scUpgradeRequiredCss = ":host{display:inline-block;color:var(--sc-color-gray-900);cursor:pointer}p,::slotted(p){font-size:var(--sc-font-size-medium) !important;font-weight:var(--sc-font-weight-normal);margin:0 0 var(--sc-spacing-medium) 0 !important;line-height:var(--sc-line-height-dense);white-space:normal}.trigger{pointer-events:auto}.trigger__disabled{pointer-events:none}.dialog__title{display:flex;gap:0.5em;align-items:center}.dialog__title sc-icon{font-size:18px;width:22px;stroke-width:4;color:var(--sc-color-primary-500)}";
 const ScUpgradeRequiredStyle0 = scUpgradeRequiredCss;

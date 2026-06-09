@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 
 const scSpacingCss = ":host{display:block}::slotted(*:not(:last-child)){margin-bottom:var(--spacing)}";
 const ScSpacingStyle0 = scSpacingCss;
@@ -8,7 +8,7 @@ const ScSpacing = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h(Host, { key: 'dae23a656ea7d28e4af718acbcb71b936b3dfea0' }, h("slot", { key: 'e677fd3f0d1d09b3c05c5916345b4441c40c650f' })));
+        return (h(Host, { key: '47c87da8cf3d81cb12751aac6dbd443a5cabe226' }, h("slot", { key: '80a75628ba3694b77420b2d882b1431b83e556df' })));
     }
 };
 ScSpacing.style = ScSpacingStyle0;

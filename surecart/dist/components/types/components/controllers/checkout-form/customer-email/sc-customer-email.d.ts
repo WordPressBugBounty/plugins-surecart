@@ -3,6 +3,7 @@ import { Checkout } from '../../../../types';
 export declare class ScCustomerEmail {
     private input;
     private removeCheckoutListener;
+    private removeUserListener;
     /** A message for tracking confirmation. */
     trackingConfirmationMessage: string;
     /** The input's size. */
@@ -34,6 +35,14 @@ export declare class ScCustomerEmail {
     autofocus: boolean;
     /** Inputs focus */
     hasFocus: boolean;
+    /** Is busy or not eg: email checking */
+    busy: boolean;
+    /** Is logout in progress */
+    logoutBusy: boolean;
+    /** Error */
+    error: string;
+    /** Initial mode for sc-customer-login. Flips to 'password' on 429. */
+    loginMode: 'code' | 'password';
     /** Emitted when the control's value changes. */
     scChange: EventEmitter<void>;
     /** Emitted when the clear button is activated. */
@@ -51,13 +60,19 @@ export declare class ScCustomerEmail {
     /** Prompt for login. */
     scLoginPrompt: EventEmitter<void>;
     handleChange(): Promise<void>;
+    private loginCodeDebounce;
+    handleValueChange(): void;
+    createLoginCode(): Promise<void>;
     reportValidity(): Promise<boolean>;
     /** Sync customer email with session if it's updated by other means */
     handleSessionChange(): void;
     /** Listen to checkout. */
     componentWillLoad(): void;
+    handleCodeSendError(error: any): void;
     /** Remove listener. */
     disconnectedCallback(): void;
+    logout(): Promise<void>;
+    renderLoggedIn(): any;
     renderOptIn(): any;
     render(): any;
 }

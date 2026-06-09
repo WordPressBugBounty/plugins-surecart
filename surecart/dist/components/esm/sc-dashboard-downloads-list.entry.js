@@ -1,7 +1,8 @@
-import { r as registerInstance, h, a as getElement } from './index-745b6bec.js';
-import { a as apiFetch } from './fetch-bc141774.js';
+import { r as registerInstance, h, a as getElement } from './index-25e5af33.js';
+import './fetch-9e15a95d.js';
 import { o as onFirstVisible } from './lazy-deb42890.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
+import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
 
 const scDashboardDownloadsListCss = ":host{display:block}.download__details{opacity:0.75}";
@@ -92,7 +93,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (h("sc-purchase-downloads-list", { key: '38b92024b9b088dd9132cf6ed6206f633da1d706', heading: this.heading, allLink: this.allLink && this.pagination.total_pages > 1 ? this.allLink : '', loading: this.loading, busy: this.busy, requestNonce: this.requestNonce, error: this.error, purchases: this.purchases }, h("span", { key: '580e34156bae635384bbbf3d854a4f0ad4b1a2fe', slot: "heading" }, h("slot", { key: '18bc6bd46567be015ff8135110f1eb64c75ad16c', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), h("sc-pagination", { key: '98313ebb8d3b167bb0eacce4833661ea337a39b6', slot: "after", page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.purchases) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })));
+        return (h("sc-purchase-downloads-list", { key: '0dadadb9a7a46a14b4023e73d0b948488f368109', heading: this.heading, allLink: this.allLink && this.pagination.total_pages > 1 ? this.allLink : '', loading: this.loading, busy: this.busy, requestNonce: this.requestNonce, error: this.error, purchases: this.purchases }, h("span", { key: '430a10214dbcfa50b9b24da625099f6b972bb076', slot: "heading" }, h("slot", { key: '31fbe8804df2e1be5de9c94238cf34d733aebd80', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), h("sc-pagination", { key: '9e09d0496dd94ae78d72af9e8f7f3de401960fe9', slot: "after", page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.purchases) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() })));
     }
     get el() { return getElement(this); }
 };

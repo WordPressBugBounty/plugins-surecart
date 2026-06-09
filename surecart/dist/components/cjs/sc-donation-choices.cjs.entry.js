@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const consumer = require('./consumer-9f4ee0e3.js');
+const index = require('./index-be4abba1.js');
+const consumer = require('./consumer-b58230e6.js');
 
 const scDonationChoicesCss = ":host{display:block}.sc-donation-choices{display:grid;gap:var(--sc-spacing-small);position:relative}.sc-donation-choices__form{display:grid;gap:var(--sc-spacing-small)}";
 const ScDonationChoicesStyle0 = scDonationChoicesCss;

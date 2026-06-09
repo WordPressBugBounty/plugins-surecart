@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 
 const scCardCss = ":host{display:block;--overflow:visible}.card{font-family:var(--sc-font-sans);overflow:var(--overflow);display:block}.card:not(.card--borderless){padding:var(--sc-card-padding, var(--sc-spacing-large));background:var(--sc-card-background-color, var(--sc-color-white));border:1px solid var(--sc-card-border-color, var(--sc-color-gray-300));border-radius:var(--sc-card-border-radius, var(--sc-input-border-radius-medium));box-shadow:var(--sc-shadow-small)}.card:not(.card--borderless).card--no-padding{padding:0}.title--divider{display:none}.card--has-title-slot .card--title{font-weight:var(--sc-font-weight-bold);line-height:var(--sc-line-height-dense)}.card--has-title-slot .title--divider{display:block}::slotted(*){margin-bottom:var(--sc-form-row-spacing)}::slotted(*:first-child){margin-top:0}::slotted(*:last-child){margin-bottom:0 !important}";
 const ScCardStyle0 = scCardCss;
@@ -25,11 +25,11 @@ const ScCard = class {
     }
     render() {
         const Tag = this.href ? 'a' : 'div';
-        return (index.h(Tag, { key: '0ba5c66c2084dac75455e41bdf5764e03ed45e9d', part: "base", class: {
+        return (index.h(Tag, { key: '1ab8cc6eae97832945b76f7f579401f01ebe82e9', part: "base", class: {
                 'card': true,
                 'card--borderless': this.borderless,
                 'card--no-padding': this.noPadding,
-            } }, index.h("slot", { key: 'bdd6398f4a4428a310f4bc5fb04300d39707f7b9' })));
+            } }, index.h("slot", { key: '91f3aeece8c2f09ffaec1fa237b50ea62a106f37' })));
     }
     get el() { return index.getElement(this); }
 };
@@ -46,7 +46,7 @@ const ScDashboardModule = class {
         this.loading = undefined;
     }
     render() {
-        return (index.h("div", { key: 'c74169b8d89b313654c46524501e9a18d9d7e4b9', class: "dashboard-module", part: "base" }, !!this.error && (index.h("sc-alert", { key: '3b130790243a375844c081b6035f2361af94402b', exportparts: "base:error__base, icon:error__icon, text:error__text, title:error__title, message:error__message", open: !!this.error, type: "danger" }, index.h("span", { key: '755d2b142f78f847fead08f68baf5bda6502ba90', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: '2e38a1f48005443b2edde396ef363ca6ba816e60', class: "heading", part: "heading" }, index.h("div", { key: 'e7007e61f0a4e16d0e71cef505bd21fe5a6b194f', class: "heading__text", part: "heading-text" }, index.h("div", { key: '52c4109246548372692a02a947ff84ab396f37e7', class: "heading__title", part: "heading-title" }, index.h("slot", { key: '483332b56ed3d0a53a7970a08b2da90ebfaba782', name: "heading", "aria-label": this.heading }, this.heading)), index.h("div", { key: '0fa9bbb662bcdcc01feba25e42314c417eafa6b7', class: "heading__description", part: "heading-description" }, index.h("slot", { key: '27ef733572a5ba07b4f57eb8055e71fdc7bd8a40', name: "description" }))), index.h("slot", { key: '9ac8e1a7789ba1d782ce45df08639abf9eb78c90', name: "end" })), index.h("slot", { key: '328034ad135fdaa5be9df809016b34437e6afb04' })));
+        return (index.h("div", { key: '917255e15eb8a70b7624348542becca0d246f98c', class: "dashboard-module", part: "base" }, !!this.error && (index.h("sc-alert", { key: '900c7b1fa4c47c19ef9a47a860900e2e98c0ada3', exportparts: "base:error__base, icon:error__icon, text:error__text, title:error__title, message:error__message", open: !!this.error, type: "danger" }, index.h("span", { key: '4916b142c91b9029f4b6aebe2c5e5cb5f18d5426', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: '35f58ef6dabedbe0c0ccbba15845b5e18bada963', class: "heading", part: "heading" }, index.h("div", { key: '638530cd8c8f8960bb77a1b052b35f1c9acdf27c', class: "heading__text", part: "heading-text" }, index.h("div", { key: 'f64f1fb1ad8babfd538de6e758dd9559d33eae24', class: "heading__title", part: "heading-title" }, index.h("slot", { key: '6c5684381669e11eb84b910ce2790d396666dcf2', name: "heading", "aria-label": this.heading }, this.heading)), index.h("div", { key: '99f986f36e90af78ace444040838b10d68d5812f', class: "heading__description", part: "heading-description" }, index.h("slot", { key: '430949e636afb13dd6d8114a8b581ce3de4d8a0d', name: "description" }))), index.h("slot", { key: 'a85991d806c15cda4fd7924eaf50af56fae49882', name: "end" })), index.h("slot", { key: '81c9da168bb7d28b6328f7e357628f9ba4e27eaa' })));
     }
 };
 ScDashboardModule.style = ScDashboardModuleStyle0;

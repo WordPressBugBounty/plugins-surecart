@@ -1,4 +1,4 @@
-import { r as registerInstance } from './index-745b6bec.js';
+import { r as registerInstance } from './index-25e5af33.js';
 import { t as translateInterval } from './price-1ff6aa07.js';
 import './currency-a0c9bff4.js';
 

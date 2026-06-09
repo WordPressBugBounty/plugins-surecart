@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-745b6bec.js';
+import { r as registerInstance, h } from './index-25e5af33.js';
 
 const scOrderStatusBadgeCss = ":host{display:inline-block;vertical-align:middle}";
 const ScOrderStatusBadgeStyle0 = scOrderStatusBadgeCss;
@@ -46,7 +46,7 @@ const ScOrderStatusBadge = class {
         }
     }
     render() {
-        return (h("sc-tag", { key: '40cddf1b589901284ac621d2852dd1e217016306', type: this.getType(), pill: this.pill }, this.getText()));
+        return (h("sc-tag", { key: '5e1dd014964539fc797b9ee47cbd17564e234bf9', type: this.getType(), pill: this.pill }, this.getText()));
     }
 };
 ScOrderStatusBadge.style = ScOrderStatusBadgeStyle0;

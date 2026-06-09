@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-745b6bec.js';
+import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 
 const scColumnCss = ":host{display:block}::slotted(:not(.wp-block-spacer):not(:last-child):not(.is-empty):not(style)){margin-bottom:var(--sc-form-row-spacing, 0.75em)}::slotted(:not(.wp-block-spacer):not(:last-child):not(.is-empty):not(style):not(.is-layout-flex)){display:block}";
 const ScColumnStyle0 = scColumnCss;
@@ -8,7 +8,7 @@ const ScColumn = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h(Host, { key: '5c33968e2a34c48abefa64971ba3d39db536524b' }, h("slot", { key: 'b9a155d6f22852c43aba6d8cbdc65056e35873cb' })));
+        return (h(Host, { key: 'f07b6f61a29a7358543751e7b551ba662924b139' }, h("slot", { key: '9c19e09594be179f84c81a1c23a46f16255b80e3' })));
     }
 };
 ScColumn.style = ScColumnStyle0;
@@ -25,13 +25,13 @@ const ScColumns = class {
         this.isReversedOnMobile = undefined;
     }
     render() {
-        return (h(Host, { key: 'e6e3ed9dfec181bef2768d105fe1a5920cb8c716', class: {
+        return (h(Host, { key: 'd635d8a11c63dd3bc142d91308feceb8f1d6f88c', class: {
                 'sc-columns': true,
                 [`are-vertically-aligned-${this.verticalAlignment}`]: !!this.verticalAlignment,
                 'is-not-stacked-on-mobile': !this.isStackedOnMobile,
                 'is-full-height': !!this.isFullHeight,
                 'is-reversed-on-mobile': !!this.isReversedOnMobile,
-            } }, h("slot", { key: '0b6e2092cd49672fed238bf9d29a2849b04c71a0' })));
+            } }, h("slot", { key: '9b42f25a530e44f892c65d90b10b60b285403712' })));
     }
 };
 ScColumns.style = ScColumnsStyle0;

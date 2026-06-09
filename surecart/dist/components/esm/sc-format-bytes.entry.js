@@ -1,4 +1,4 @@
-import { r as registerInstance } from './index-745b6bec.js';
+import { r as registerInstance } from './index-25e5af33.js';
 
 const scFormatBytesCss = ":host{display:inline-block}";
 const ScFormatBytesStyle0 = scFormatBytesCss;

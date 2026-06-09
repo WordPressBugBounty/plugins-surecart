@@ -1,4 +1,4 @@
-import { r as registerInstance, h, F as Fragment, a as getElement } from './index-745b6bec.js';
+import { r as registerInstance, h, F as Fragment, a as getElement } from './index-25e5af33.js';
 
 const scBreadcrumbsCss = ":host{display:block}.breadcrumb{display:flex;align-items:center;flex-wrap:wrap}";
 const ScBreadcrumbsStyle0 = scBreadcrumbsCss;
@@ -39,7 +39,7 @@ const ScBreadcrumbs = class {
         });
     }
     render() {
-        return (h(Fragment, { key: 'efed488a3a1f00f843df51343dec5bdee12398fe' }, h("nav", { key: '54c3edca833b1b9f629a950b1868807acd36c583', part: "base", class: "breadcrumb", "aria-label": this.label }, h("slot", { key: '5bd5c9879c27cad98c57458923be5df1c825c05a', onSlotchange: () => this.handleSlotChange() })), h("div", { key: '3fcdf2ac4a9dde993118ffadbfe06a7390f59820', part: "separator", hidden: true, "aria-hidden": "true" }, h("slot", { key: '48f7a92d1a58d4c61de3ac3c21d51ce4c9653afa', name: "separator" }, h("sc-icon", { key: 'ef3e0fe72189e8bc6a06a81c5be9864b2945fc1d', name: "chevron-right" })))));
+        return (h(Fragment, { key: 'f3a773ae3dec02fd61ae08b2f8db4ea6019b860e' }, h("nav", { key: 'c7dda1a4eb6ccc9367ff3e11379fbf78170b4ed6', part: "base", class: "breadcrumb", "aria-label": this.label }, h("slot", { key: 'e776e91b492658ba252f94df00f8693da587c84c', onSlotchange: () => this.handleSlotChange() })), h("div", { key: '7621cc453369d38647299e30eb2a9f5f3fdc5d8c', part: "separator", hidden: true, "aria-hidden": "true" }, h("slot", { key: '2cc02d684909e8a9d443bf1003131dd827841227', name: "separator" }, h("sc-icon", { key: '25cc937dac95fedb4d8d7374226eec6c1847c036', name: "chevron-right" })))));
     }
     get el() { return getElement(this); }
 };

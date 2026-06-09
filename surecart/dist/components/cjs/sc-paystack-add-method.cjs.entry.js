@@ -2,9 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const inline = require('./inline-aa15f113.js');
-const fetch = require('./fetch-d374a251.js');
+require('./fetch-853b19c8.js');
+const index$1 = require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 
@@ -50,7 +51,7 @@ const ScPaystackAddMethod = class {
         try {
             this.loading = true;
             this.error = '';
-            this.paymentIntent = await fetch.apiFetch({
+            this.paymentIntent = await index$1.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/payment_intents',
                 data: {
@@ -71,7 +72,7 @@ const ScPaystackAddMethod = class {
         }
     }
     render() {
-        return (index.h(index.Host, { key: 'c650302d95fc01bbc13ad3d57a9ed6545f209d37' }, this.error && (index.h("sc-alert", { key: 'ffc9ca1d1c94e50f540773719f30611c7a1334de', open: !!this.error, type: "danger" }, index.h("span", { key: '7c7cbbc50f1f4d6c008fa37318d3381e3530e95d', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: '6089d0e09b1d8052e8e67c6ffa17a53ae574b022', class: "sc-paystack-button-container" }, index.h("sc-alert", { key: 'db9e44c851b17829d366657e9b5db47b7283823b', open: true, type: "warning" }, wp.i18n.__('In order to add a new card, we will need to make a small transaction to authenticate it. This is for authentication purposes and will be immediately refunded.', 'surecart'), index.h("div", { key: 'af0fe1510d7365b1a010f368be1f2e9382ced2c5' }, index.h("sc-button", { key: '83aa2e0b7c04be32771b8cca87318f67068524ed', loading: this.loading, type: "primary", onClick: () => this.createPaymentIntent(), style: { marginTop: 'var(--sc-spacing-medium)' } }, wp.i18n.__('Add New Card', 'surecart')))))));
+        return (index.h(index.Host, { key: '2d5f8344acd7e2898c42e286426c01bf19d922a3' }, this.error && (index.h("sc-alert", { key: 'ac307a051fc0cf3d81d88ce75aa513aa2cff5b5a', open: !!this.error, type: "danger" }, index.h("span", { key: '343f8badbf022f1d5df069712982310249ce613b', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("div", { key: '55cd288ba48d394a6ceb3d08b2a421130f09f2c0', class: "sc-paystack-button-container" }, index.h("sc-alert", { key: '1f67a03a317e6404267c923807e6d98d98cb6ec1', open: true, type: "warning" }, wp.i18n.__('In order to add a new card, we will need to make a small transaction to authenticate it. This is for authentication purposes and will be immediately refunded.', 'surecart'), index.h("div", { key: '8cde8fd18d77f51407690e43b8f050ed8b118b3f' }, index.h("sc-button", { key: 'edbb8d89b81f5e98e5a7832dc7d46f79049ec213', loading: this.loading, type: "primary", onClick: () => this.createPaymentIntent(), style: { marginTop: 'var(--sc-spacing-medium)' } }, wp.i18n.__('Add New Card', 'surecart')))))));
     }
     static get watchers() { return {
         "paymentIntent": ["handlePaymentIntentCreate"]

@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
-const util = require('./util-b877b2bd.js');
+const index = require('./index-be4abba1.js');
+const util = require('./util-a15c420c.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 
 const scSubscriptionVariationConfirmCss = ":host{display:block}.sc-product-variation-choice-wrap{display:flex;flex-direction:column;gap:var(--sc-variation-gap, 12px)}";
@@ -54,7 +54,7 @@ const ScSubscriptionVariationConfirm = class {
     }
     render() {
         var _a, _b;
-        return (index.h("sc-dashboard-module", { key: '4a421841b01001aaa2dd43dedd90094ec1bffcf9', heading: this.heading || wp.i18n.__('Enter An Amount', 'surecart'), class: "subscription-switch" }, index.h("sc-card", { key: '2ce23936605fb3adf36824b720b84be1ada4ff36' }, index.h("sc-form", { key: '33dda8dee9d902f282bae556f27f3eabe335de32', onScSubmit: this.handleSubmit }, index.h("div", { key: 'b830d6118e280daa5cda4c8ea9b9bf37409946e9', class: "sc-product-variation-choice-wrap" }, (((_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.variant_options) === null || _b === void 0 ? void 0 : _b.data) || []).map(({ name, values, id }, index$1) => {
+        return (index.h("sc-dashboard-module", { key: '8986c7c19b74316816ba914409b4536f6f23f931', heading: this.heading || wp.i18n.__('Enter An Amount', 'surecart'), class: "subscription-switch" }, index.h("sc-card", { key: '256e8aef153bd22e48b50547440c094138e68a3e' }, index.h("sc-form", { key: 'a25316ecc63d1111eabd7becd6fe4254a49a9bbf', onScSubmit: this.handleSubmit }, index.h("div", { key: 'ab0639f0b949b4780744cba5ecd36512bbd9ca74', class: "sc-product-variation-choice-wrap" }, (((_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.variant_options) === null || _b === void 0 ? void 0 : _b.data) || []).map(({ name, values, id }, index$1) => {
             var _a, _b;
             return (index.h("sc-select", { exportparts: "base:select__base, input, form-control, label, help-text, trigger, panel, caret, menu__base, spinner__base, empty", part: "name__input", value: ((_b = (_a = this.subscription) === null || _a === void 0 ? void 0 : _a.variant_options) === null || _b === void 0 ? void 0 : _b[index$1]) || '', onScChange: (e) => {
                     this.variantValues[index$1] = e.detail.value;
@@ -62,7 +62,7 @@ const ScSubscriptionVariationConfirm = class {
                     label,
                     value: label,
                 })), unselect: false, key: id }));
-        })), index.h("sc-button", { key: '64f6dbcba51b057f761ad1bbbe53dde1cb1ba27d', type: "primary", full: true, submit: true, loading: this.busy }, this.buttonText(), " ", index.h("sc-icon", { key: 'a8da70bc22713863e3d634a940d3eb592dc8745f', name: "arrow-right", slot: "suffix" })))), this.busy && index.h("sc-block-ui", { key: 'c345ee15f7342ebe416767c8f291af7e97489238', style: { zIndex: '9' } })));
+        })), index.h("sc-button", { key: '2ef1791911e248a8a9f7a99af975dec54facc7b5', type: "primary", full: true, submit: true, loading: this.busy }, this.buttonText(), " ", index.h("sc-icon", { key: '43005fa273db242a71e7f0885a8773a1f212da96', name: "arrow-right", slot: "suffix" })))), this.busy && index.h("sc-block-ui", { key: '4adf1d8b4c613800ed1b5100b229d2e7b7117068', style: { zIndex: '9' } })));
     }
 };
 ScSubscriptionVariationConfirm.style = ScSubscriptionVariationConfirmStyle0;

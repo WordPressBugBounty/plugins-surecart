@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-const index = require('./index-8acc3c89.js');
+const index = require('./index-be4abba1.js');
 const index$1 = require('./index-fb76df07.js');
 
 const scPasswordCss = ":host{display:block}.password{display:grid;gap:var(--sc-form-row-spacing, 0.75em)}.password__hint{padding-top:0.36rem;color:red}";
@@ -117,7 +117,7 @@ const ScPassword = class {
     }
     render() {
         var _a;
-        return (index.h("div", { key: 'eb46bdd0c716d0673dca1ccb7d90250a78252680', class: "password" }, index.h("div", { key: '4a90300c2c0d298f6e972eb9e75c40af3f7bae49' }, index.h("sc-input", { key: '48cde06662532e317ef25562ab9c98e356d8613b', ref: el => (this.input = el), label: this.label, help: this.help, autofocus: this.autofocus, placeholder: this.placeholder, showLabel: this.showLabel, size: this.size ? this.size : 'medium', type: "password", name: "password", value: this.value, required: this.required, disabled: this.disabled, onScInput: () => this.handleValidate() }), !!this.hintText && index.h("small", { key: '33a9f050392c467b4e5800a46fcb5f56c526a938', class: "password__hint" }, this.hintText)), this.confirmation && (index.h("div", { key: '304ea37100869e4ed44f8a63042c4ec9cfca3f8e' }, index.h("sc-input", { key: 'b201524427a0a554afa1a103a27f39da6efc5cc4', ref: el => (this.confirmInput = el), label: (_a = this.confirmationLabel) !== null && _a !== void 0 ? _a : wp.i18n.__('Confirm Password', 'surecart'), help: this.confirmationHelp, placeholder: this.confirmationPlaceholder, size: this.size ? this.size : 'medium', type: "password", value: this.value, onScInput: () => this.handleVerification(), required: this.required, disabled: this.disabled }), !!this.verifyText && index.h("small", { key: '42b9b3ddc3a1d93afcd4a361860a379bd6586518', class: "password__hint" }, this.verifyText)))));
+        return (index.h("div", { key: '0b42f62649b6d2be9cb651f9adc23736452ddb85', class: "password" }, index.h("div", { key: 'd98cd75fe6111f9c47770c316b25abd851a29e4b' }, index.h("sc-input", { key: '6e0500b5d0c7b14864d233abfc30356f095601e4', ref: el => (this.input = el), label: this.label, help: this.help, autofocus: this.autofocus, placeholder: this.placeholder, showLabel: this.showLabel, size: this.size ? this.size : 'medium', type: "password", name: "password", value: this.value, required: this.required, disabled: this.disabled, onScInput: () => this.handleValidate() }), !!this.hintText && index.h("small", { key: '7772836b3ce35e37b0b6e5af454b64df381f87d0', class: "password__hint" }, this.hintText)), this.confirmation && (index.h("div", { key: '93c6df90696f9506b450005392bffdda0c4f324d' }, index.h("sc-input", { key: 'c96114ea74d05563d4d3a89d3ab785594d476493', ref: el => (this.confirmInput = el), label: (_a = this.confirmationLabel) !== null && _a !== void 0 ? _a : wp.i18n.__('Confirm Password', 'surecart'), help: this.confirmationHelp, placeholder: this.confirmationPlaceholder, size: this.size ? this.size : 'medium', type: "password", value: this.value, onScInput: () => this.handleVerification(), required: this.required, disabled: this.disabled }), !!this.verifyText && index.h("small", { key: '4b87cd6b61f935ef538543dfa117aaaffa1a6fe2', class: "password__hint" }, this.verifyText)))));
     }
     static get watchers() { return {
         "hintText": ["handleHintTextChange"]
