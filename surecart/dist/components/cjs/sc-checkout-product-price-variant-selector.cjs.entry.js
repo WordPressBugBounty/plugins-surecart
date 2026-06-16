@@ -3,15 +3,16 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const getters = require('./getters-dcec94e4.js');
+const getters = require('./getters-58d722ad.js');
 const mutations = require('./mutations-6e603e86.js');
 const util = require('./util-a15c420c.js');
 const index$1 = require('./index-bb9b8917.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
 const utils = require('./utils-a9d13080.js');
+require('./store-257cd191.js');
+require('./index-c3de642f.js');
 require('./address-7404695f.js');
 require('./add-query-args-49dcb630.js');
-require('./index-c3de642f.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./index-fb76df07.js');
 require('./google-59d23803.js');

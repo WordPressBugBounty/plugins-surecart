@@ -46,9 +46,7 @@ export declare class ScStripeElement {
             line2: string;
             city: string;
             state: string;
-            postal_code: string; /**
-             * Watch order status and maybe confirm the order.
-             */
+            postal_code: string;
             country: string;
         };
         phone?: string;

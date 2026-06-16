@@ -7,7 +7,7 @@ const watchers = require('./watchers-517825ae.js');
 require('./watchers-87e15e03.js');
 const getters = require('./getters-051ccbf6.js');
 const mutations = require('./mutations-6e603e86.js');
-const getters$1 = require('./getters-dcec94e4.js');
+const getters$1 = require('./getters-58d722ad.js');
 const mutations$1 = require('./mutations-85ee76d2.js');
 require('./fetch-853b19c8.js');
 const MockProcessor = require('./MockProcessor-ad11752f.js');
@@ -26,6 +26,7 @@ require('./index-fb76df07.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./price-da3cab3d.js');
+require('./store-257cd191.js');
 require('./address-7404695f.js');
 require('./index-bb9b8917.js');
 

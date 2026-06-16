@@ -11,7 +11,7 @@ import { c as createOrUpdateCheckout } from './index-54572542.js';
 import { i as isAddressEmpty } from './index-8be0dc9e.js';
 import { s as speak } from './index-c5a96d53.js';
 import { i as intervalString, g as getFormattedPrice } from './price-1ff6aa07.js';
-import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-cdc341db.js';
+import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-0bfd338b.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import './add-query-args-0e2a8393.js';
@@ -22,6 +22,7 @@ import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './fetch-9e15a95d.js';
 import './index-824c562b.js';
+import './store-02394e82.js';
 
 const scCompactAddressCss = ":host{display:block}.sc-address{display:block;position:relative}.sc-address [hidden]{display:none}.sc-address--loading{min-height:70px}.sc-address--loading sc-skeleton{display:block;margin-bottom:1em}.sc-address__control{display:block}.sc-address__control>*{margin-bottom:-1px}.sc-address__columns{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.sc-address__columns>*{flex:1;width:50%;margin-left:-1px}.sc-address__columns>*:first-child{margin-left:0}";
 const ScCompactAddressStyle0 = scCompactAddressCss;

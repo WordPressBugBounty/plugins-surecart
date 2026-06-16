@@ -12,7 +12,7 @@ const getters = require('./getters-d68c08ed.js');
 require('./watchers-87e15e03.js');
 const getters$1 = require('./getters-051ccbf6.js');
 const watchers = require('./watchers-517825ae.js');
-const getters$2 = require('./getters-dcec94e4.js');
+const getters$2 = require('./getters-58d722ad.js');
 const store$1 = require('./store-01e8edc2.js');
 require('./fetch-853b19c8.js');
 const index$3 = require('./index-7ced8198.js');

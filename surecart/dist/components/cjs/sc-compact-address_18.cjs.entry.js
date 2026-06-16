@@ -15,7 +15,7 @@ const index$2 = require('./index-bb9b8917.js');
 const index$1 = require('./index-2a4acaf8.js');
 const index$3 = require('./index-fb76df07.js');
 const price = require('./price-da3cab3d.js');
-const getters$1 = require('./getters-dcec94e4.js');
+const getters$1 = require('./getters-58d722ad.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./add-query-args-49dcb630.js');
@@ -26,6 +26,7 @@ require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./fetch-853b19c8.js');
 require('./index-7ced8198.js');
+require('./store-257cd191.js');
 
 const scCompactAddressCss = ":host{display:block}.sc-address{display:block;position:relative}.sc-address [hidden]{display:none}.sc-address--loading{min-height:70px}.sc-address--loading sc-skeleton{display:block;margin-bottom:1em}.sc-address__control{display:block}.sc-address__control>*{margin-bottom:-1px}.sc-address__columns{display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.sc-address__columns>*{flex:1;width:50%;margin-left:-1px}.sc-address__columns>*:first-child{margin-left:0}";
 const ScCompactAddressStyle0 = scCompactAddressCss;

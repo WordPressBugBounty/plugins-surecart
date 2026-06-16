@@ -47,6 +47,14 @@ export declare const getCompleteAddress: (type?: 'shipping' | 'billing') => {
  */
 export declare const getResolvedBillingAddress: (checkout?: Checkout) => Address | undefined;
 /**
+ * Resolve the billing email for payment processors.
+ *
+ * The Stripe Payment Element is created with `fields.billing_details.email = 'never'`,
+ * so an email must always be passed on confirm. Logged-in customers never fill the email
+ * input, so fall back to the linked customer and the logged-in user session.
+ */
+export declare const getResolvedBillingEmail: (checkout?: Checkout) => string | undefined;
+/**
  * Convert a canonical Address to Stripe's expected format (line1/line2 instead of line_1/line_2).
  */
 export declare const toStripeAddress: (address?: Address) => {

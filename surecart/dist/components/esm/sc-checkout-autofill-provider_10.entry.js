@@ -8,7 +8,7 @@ import { c as currentFormState } from './getters-4bb6cc1b.js';
 import './watchers-832bd2ee.js';
 import { s as state$2, f as getAvailableProcessor } from './getters-b7d4ed94.js';
 import { s as state$3 } from './watchers-c7bbc6b2.js';
-import { s as shippingAddressRequired, f as fullShippingAddressRequired } from './getters-cdc341db.js';
+import { s as shippingAddressRequired, f as fullShippingAddressRequired } from './getters-0bfd338b.js';
 import { v, c as checkoutMachine, s as state$4 } from './store-b1758b00.js';
 import './fetch-9e15a95d.js';
 import { a as apiFetch } from './index-824c562b.js';
