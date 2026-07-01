@@ -7,6 +7,8 @@ import { LineItem } from '../../../../types';
  * @part line-item__text - The line item text
  * @part line-item__title - The line item title
  * @part line-item__suffix - The line item suffix
+ * @part line-item__description - The line item description (variant, price name, SKU)
+ * @part line-item__trial-fees - The line item trial and fees
  * @part line-item__price - The line item price
  * @part line-item__price-amount - The line item price amount
  * @part line-item__price-description - The line item price description
@@ -19,7 +21,6 @@ import { LineItem } from '../../../../types';
  * @part line-item__quantity-plus - The line item quantity plus
  * @part line-item__quantity-plus-icon - The line item quantity plus icon
  * @part line-item__quantity-input - The line item quantity input
- * @part line-item__price-description - The line item price description
  */
 export declare class ScLineItems {
     /**

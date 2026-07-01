@@ -1,5 +1,5 @@
 import { r as registerInstance, h } from './index-25e5af33.js';
-import './fetch-9e15a95d.js';
+import './fetch-cdff67be.js';
 import { p as productNameWithPrice, i as intervalString } from './price-1ff6aa07.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import { a as apiFetch } from './index-824c562b.js';
@@ -245,7 +245,7 @@ const ScSubscriptionStatusBadge = class {
         }
     }
     render() {
-        return (h("sc-tag", { key: 'd030df07c6e46dd7ce8b02452d0432c3b7ce14bc', "aria-label": wp.i18n.sprintf(wp.i18n.__('Plan Status - %s', 'surecart'), this.getText()), type: this.getType() }, this.getText()));
+        return (h("sc-tag", { key: 'ceeab70b8caa137b2bfeab78fddf23e9d80fe08d', "aria-label": wp.i18n.sprintf(wp.i18n.__('Plan Status - %s', 'surecart'), this.getText()), type: this.getType() }, this.getText()));
     }
 };
 ScSubscriptionStatusBadge.style = ScSubscriptionStatusBadgeStyle0;

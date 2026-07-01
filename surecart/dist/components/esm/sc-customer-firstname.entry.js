@@ -1,8 +1,8 @@
 import { r as registerInstance, c as createEvent, h } from './index-25e5af33.js';
 import { a as getValueFromUrl } from './util-dfbf863e.js';
 import { s as state$1 } from './store-02394e82.js';
-import { s as state, o as onChange } from './mutations-2cf25d6d.js';
-import { c as createOrUpdateCheckout } from './index-54572542.js';
+import { s as state, o as onChange } from './mutations-9546b051.js';
+import { c as createOrUpdateCheckout } from './index-3a9d9134.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
@@ -12,7 +12,7 @@ import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-b1758b00.js';
 import './price-1ff6aa07.js';
-import './fetch-9e15a95d.js';
+import './fetch-cdff67be.js';
 import './index-824c562b.js';
 
 const scCustomerFirstnameCss = ":host{display:block}";

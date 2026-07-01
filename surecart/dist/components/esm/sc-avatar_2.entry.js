@@ -2,7 +2,7 @@ import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 import { a as apiFetch } from './index-824c562b.js';
 import { s as speak } from './index-c5a96d53.js';
 import { s as state, V as VERIFYING, b as VERIFIED, a as CODE_EXPIRED, U as UNVERIFIED, r as resetUser } from './store-02394e82.js';
-import { s as state$1 } from './mutations-2cf25d6d.js';
+import { s as state$1 } from './mutations-9546b051.js';
 import { b as isRateLimited } from './util-dfbf863e.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';

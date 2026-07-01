@@ -23,13 +23,12 @@ const ScPurchaseDownloadsList = class {
     }
     renderList() {
         return this.purchases.map(purchase => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+            var _a, _b, _c, _d, _e;
             const variant = purchase === null || purchase === void 0 ? void 0 : purchase.variant;
-            const hasVariantDownloads = (variant === null || variant === void 0 ? void 0 : variant.downloads_enabled) && ((_b = (_a = variant === null || variant === void 0 ? void 0 : variant.downloads) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.length) > 0;
-            const downloads = hasVariantDownloads
-                ? variant.downloads.data.filter((d) => !d.archived)
-                : ((_e = (_d = (_c = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _c === void 0 ? void 0 : _c.downloads) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.filter((d) => !d.archived)) || [];
-            const totalDownloads = hasVariantDownloads ? (_f = variant.downloads.pagination) === null || _f === void 0 ? void 0 : _f.count : (_j = (_h = (_g = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _g === void 0 ? void 0 : _g.downloads) === null || _h === void 0 ? void 0 : _h.pagination) === null || _j === void 0 ? void 0 : _j.count;
+            const activeVariantDownloads = (((_a = variant === null || variant === void 0 ? void 0 : variant.downloads) === null || _a === void 0 ? void 0 : _a.data) || []).filter((d) => !d.archived);
+            const hasVariantDownloads = (variant === null || variant === void 0 ? void 0 : variant.downloads_enabled) && activeVariantDownloads.length > 0;
+            const downloads = hasVariantDownloads ? activeVariantDownloads : ((_d = (_c = (_b = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _b === void 0 ? void 0 : _b.downloads) === null || _c === void 0 ? void 0 : _c.data) === null || _d === void 0 ? void 0 : _d.filter((d) => !d.archived)) || [];
+            const totalDownloads = downloads.length;
             const mediaBytesList = (downloads || []).map(item => { var _a; return ((item === null || item === void 0 ? void 0 : item.media) ? (_a = item === null || item === void 0 ? void 0 : item.media) === null || _a === void 0 ? void 0 : _a.byte_size : 0); });
             const mediaByteTotalSize = mediaBytesList.reduce((prev, curr) => prev + curr, 0);
             return (h("sc-stacked-list-row", { href: !(purchase === null || purchase === void 0 ? void 0 : purchase.revoked)
@@ -41,7 +40,7 @@ const ScPurchaseDownloadsList = class {
                     })
                     : null, key: purchase.id, "mobile-size": 0 }, h("sc-spacing", { style: {
                     '--spacing': 'var(--sc-spacing-xx--small)',
-                } }, h("div", null, h("strong", null, (_k = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _k === void 0 ? void 0 : _k.name)), h("div", { class: "download__details" }, wp.i18n.sprintf(wp.i18n._n('%s file', '%s files', totalDownloads, 'surecart'), totalDownloads), !!mediaByteTotalSize && (h(Fragment, null, ' ', "\u2022 ", h("sc-format-bytes", { value: mediaByteTotalSize }))))), h("sc-icon", { name: "chevron-right", slot: "suffix" })));
+                } }, h("div", null, h("strong", null, (_e = purchase === null || purchase === void 0 ? void 0 : purchase.product) === null || _e === void 0 ? void 0 : _e.name)), h("div", { class: "download__details" }, wp.i18n.sprintf(wp.i18n._n('%s file', '%s files', totalDownloads, 'surecart'), totalDownloads), !!mediaByteTotalSize && (h(Fragment, null, ' ', "\u2022 ", h("sc-format-bytes", { value: mediaByteTotalSize }))))), h("sc-icon", { name: "chevron-right", slot: "suffix" })));
         });
     }
     renderContent() {
@@ -55,7 +54,7 @@ const ScPurchaseDownloadsList = class {
         return (h("sc-card", { "no-padding": true, style: { '--overflow': 'hidden' } }, h("sc-stacked-list", null, this.renderList())));
     }
     render() {
-        return (h("sc-dashboard-module", { key: '5c8ddf82445d104a101536771a33802c60f95d78', class: "downloads-list", error: this.error }, h("span", { key: 'b9c4e10da64d1630078fdefbf93d91f40aeab9cc', slot: "heading" }, h("slot", { key: 'db1216dcb9ffc12fc833edde740ae02e5cd5e671', name: "heading" }, this.heading || wp.i18n.__('Items', 'surecart'))), h("slot", { key: 'b9b09cc64fcf9fced6a703759ccbc686f330edf2', name: "before" }), !!this.allLink && (h("sc-button", { key: 'ba3a4fbc34a7bd82ccf80478b4e5e406e6574867', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '5ae134a422e79797008b9d2a9a7de89f70c6dbc2', name: "chevron-right", slot: "suffix" }))), this.renderContent(), h("slot", { key: 'b3b28959ace88d9fedb5d34f3c073fa110d752d3', name: "after" }), this.busy && h("sc-block-ui", { key: 'e6f0974d2163ac90331b89ce8d492880ae02c896' })));
+        return (h("sc-dashboard-module", { key: '9a931a0fa45ff473ec436a78f031b7d2c97aac72', class: "downloads-list", error: this.error }, h("span", { key: '9c15cd8e21c6e87a9921745a5298ae579f980d7a', slot: "heading" }, h("slot", { key: 'fb3037b7ec2a7e9796f2d622c9c2f1c4b725ca80', name: "heading" }, this.heading || wp.i18n.__('Items', 'surecart'))), h("slot", { key: '77b52ccd8bb9944486f6c774c6ae3fc55d7c9b26', name: "before" }), !!this.allLink && (h("sc-button", { key: '50673eece2318130f6c82a9a3e0a80b80ce0d814', type: "link", href: this.allLink, slot: "end" }, wp.i18n.__('View all', 'surecart'), h("sc-icon", { key: '5ecbadefaa8e5dd4aa21b89dca69f5f8daf68605', name: "chevron-right", slot: "suffix" }))), this.renderContent(), h("slot", { key: 'd94e8dee2ddb90509473f1241d3beb8783ee5cf3', name: "after" }), this.busy && h("sc-block-ui", { key: '7deb64babd1d421c308dd18026def29dc9eaf014' })));
     }
     get el() { return getElement(this); }
 };

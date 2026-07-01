@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-25e5af33.js';
-import { u as updateFormState, s as state } from './mutations-2cf25d6d.js';
-import { t as toggleSwap } from './index-54572542.js';
+import { u as updateFormState, s as state } from './mutations-9546b051.js';
+import { t as toggleSwap } from './index-3a9d9134.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
@@ -11,7 +11,7 @@ import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
 import './store-b1758b00.js';
 import './price-1ff6aa07.js';
-import './fetch-9e15a95d.js';
+import './fetch-cdff67be.js';
 import './index-824c562b.js';
 
 const scSwapCss = ".swap{display:flex;align-items:baseline;justify-content:space-between}.swap__price{color:var(--sc-swap-price-color, var(--sc-input-label-color));line-height:var(--sc-line-height-dense);font-size:var(--sc-font-size-small);white-space:nowrap}";

@@ -18163,7 +18163,7 @@ const ScTaxIdInput = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (index.h(index.Fragment, { key: '62a8400fb1285945a9195a4655ff7fa8408bd4d3' }, index.h("sc-input", { key: '618ef0f347f148164d4717efc765c21881cdf61a', name: "tax_identifier.number_type", required: this.required, value: this.type, style: { display: 'none' } }), index.h("sc-input", { key: '6183b70f633f890bd867a0713d77fc739acff1b8', ref: el => (this.input = el), label: this.getZoneLabel(), "aria-label": wp.i18n.__('Tax ID', 'surecart'), placeholder: wp.i18n.__('Enter Tax ID', 'surecart'), name: "tax_identifier.number", value: this.number, onScInput: (e) => {
+        return (index.h(index.Fragment, { key: 'b5150d7d58b414e4b7a12a849b1d6888e2ef058e' }, index.h("sc-input", { key: '0bd2aec1e8cd92943afe5080f05ee5e43ac9a0a0', name: "tax_identifier.number_type", required: this.required, value: this.type, style: { display: 'none' } }), index.h("sc-input", { key: '8e47dbf171640c72cef75daddd46d78a08dfc1c7', ref: el => (this.input = el), label: this.getZoneLabel(), "aria-label": wp.i18n.__('Tax ID', 'surecart'), placeholder: wp.i18n.__('Enter Tax ID', 'surecart'), name: "tax_identifier.number", value: this.number, onScInput: (e) => {
                 e.stopImmediatePropagation();
                 this.scInput.emit({
                     number: e.target.value,

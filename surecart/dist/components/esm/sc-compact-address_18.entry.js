@@ -2,16 +2,16 @@ import { r as registerInstance, c as createEvent, h, a as getElement, H as Host,
 import { g as getCountryDetails, c as countryChoices } from './address-b8e2e4c8.js';
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
 import { g as getCurrentUserCountryCode } from './google-maps-e8b00ffd.js';
-import { o as onChange, s as state, u as updateFormState } from './mutations-2cf25d6d.js';
+import { o as onChange, s as state, u as updateFormState } from './mutations-9546b051.js';
 import { f as formBusy, a as formLoading } from './getters-4bb6cc1b.js';
 import { s as state$1 } from './store-b1758b00.js';
 import { o as openWormhole } from './consumer-f1775a76.js';
-import { l as lockCheckout, b as unLockCheckout, r as removeCheckoutLineItem, a as addCheckoutLineItem, t as trackOrderBump } from './mutations-9a4deffa.js';
-import { c as createOrUpdateCheckout } from './index-54572542.js';
-import { i as isAddressEmpty } from './index-8be0dc9e.js';
+import { l as lockCheckout, b as unLockCheckout, r as removeCheckoutLineItem, a as addCheckoutLineItem, t as trackOrderBump } from './mutations-7ca9b61a.js';
+import { c as createOrUpdateCheckout } from './index-3a9d9134.js';
+import { i as isAddressEmpty } from './index-d602bc13.js';
 import { s as speak } from './index-c5a96d53.js';
 import { i as intervalString, g as getFormattedPrice } from './price-1ff6aa07.js';
-import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-0bfd338b.js';
+import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-0152f4f0.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import './add-query-args-0e2a8393.js';
@@ -20,7 +20,7 @@ import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
 import './google-a86aa761.js';
 import './currency-a0c9bff4.js';
-import './fetch-9e15a95d.js';
+import './fetch-cdff67be.js';
 import './index-824c562b.js';
 import './store-02394e82.js';
 
@@ -632,10 +632,27 @@ const ScOrderBumps = class {
         this.label = undefined;
         this.help = undefined;
         this.showControl = undefined;
+        this.hideAddedItems = undefined;
+    }
+    /** Check if a bump is already added as a line item. */
+    isBumpAdded(bumpId) {
+        var _a, _b;
+        return (((_b = (_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).some(item => (item === null || item === void 0 ? void 0 : item.bump) === bumpId);
     }
     render() {
         var _a, _b;
-        const bumps = (((_b = (_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.recommended_bumps) === null || _b === void 0 ? void 0 : _b.data) || []).filter(bump => { var _a, _b, _c, _d; return ((_d = (_c = (_b = (_a = bump === null || bump === void 0 ? void 0 : bump.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.variants) === null || _c === void 0 ? void 0 : _c.pagination) === null || _d === void 0 ? void 0 : _d.count) === 0; }); // exclude variants for now.;
+        const bumps = (((_b = (_a = state === null || state === void 0 ? void 0 : state.checkout) === null || _a === void 0 ? void 0 : _a.recommended_bumps) === null || _b === void 0 ? void 0 : _b.data) || []).filter(bump => {
+            var _a, _b, _c, _d;
+            // exclude variants for now.
+            if (((_d = (_c = (_b = (_a = bump === null || bump === void 0 ? void 0 : bump.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.variants) === null || _c === void 0 ? void 0 : _c.pagination) === null || _d === void 0 ? void 0 : _d.count) !== 0) {
+                return false;
+            }
+            // optionally exclude bumps already added to the checkout.
+            if (this.hideAddedItems && this.isBumpAdded(bump === null || bump === void 0 ? void 0 : bump.id)) {
+                return false;
+            }
+            return true;
+        });
         if (!(bumps === null || bumps === void 0 ? void 0 : bumps.length)) {
             return null;
         }

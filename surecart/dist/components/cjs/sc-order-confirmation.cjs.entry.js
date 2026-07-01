@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-require('./fetch-853b19c8.js');
+require('./fetch-5e8dc1d5.js');
 const universe = require('./universe-1db52218.js');
 const removeQueryArgs = require('./remove-query-args-b57e8cd3.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');

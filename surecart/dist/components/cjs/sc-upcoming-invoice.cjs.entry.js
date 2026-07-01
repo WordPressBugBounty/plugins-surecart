@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-require('./fetch-853b19c8.js');
+require('./fetch-5e8dc1d5.js');
 const lazy = require('./lazy-2b509fa7.js');
 const tax = require('./tax-a4582e73.js');
 const price = require('./price-da3cab3d.js');

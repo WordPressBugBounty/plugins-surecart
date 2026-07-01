@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const index$2 = require('./index-fb76df07.js');
-const fetch = require('./fetch-853b19c8.js');
-require('./google-03835677.js');
+const fetch = require('./fetch-5e8dc1d5.js');
+require('./google-c1098cb3.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');

@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const index$1 = require('./index-3d000d76.js');
-const index$2 = require('./index-bb9b8917.js');
-const mutations = require('./mutations-6e603e86.js');
-require('./fetch-853b19c8.js');
+const index$2 = require('./index-a583f78f.js');
+const mutations = require('./mutations-edaa53ae.js');
+require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');

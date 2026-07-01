@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-16T16:15:33+00:00\n"
+"POT-Creation-Date: 2026-07-01T18:47:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -15,16 +15,43 @@ msgstr ""
 msgid "No matching template found"
 msgstr ""
 
+#: src/Abilities/Abilities/AbstractAbility.php:196
+msgid "Filter rule tree is too deeply nested."
+msgstr ""
+
+#: src/Abilities/Abilities/AbstractAbility.php:200
+#: src/Abilities/Abilities/FilterCustomers.php:116
+#: src/Abilities/Abilities/FilterOrders.php:116
+#: src/Abilities/Abilities/FilterSubscriptions.php:116
+msgid "The filter must be a condition or group object."
+msgstr ""
+
+#: src/Abilities/Abilities/AbstractAbility.php:208
+msgid "A group combinator must be \"and\" or \"or\"."
+msgstr ""
+
+#: src/Abilities/Abilities/AbstractAbility.php:213
+msgid "A group must have at least one condition."
+msgstr ""
+
+#: src/Abilities/Abilities/AbstractAbility.php:217
+msgid "A group has too many conditions (max 50)."
+msgstr ""
+
+#: src/Abilities/Abilities/AbstractAbility.php:246
+msgid "Each rule must have a type of \"condition\" or \"group\"."
+msgstr ""
+
 #. translators: %s: comma-separated list of valid interval values
-#: src/Abilities/Abilities/AbstractAbility.php:212
+#: src/Abilities/Abilities/AbstractAbility.php:278
 msgid "Invalid interval. Allowed values: %s"
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:221
+#: src/Abilities/Abilities/AbstractAbility.php:287
 msgid "start_date must be in YYYY-MM-DD format."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:229
+#: src/Abilities/Abilities/AbstractAbility.php:295
 msgid "end_date must be in YYYY-MM-DD format."
 msgstr ""
 
@@ -656,6 +683,74 @@ msgstr ""
 msgid "The product ID to duplicate."
 msgstr ""
 
+#: src/Abilities/Abilities/FilterCustomers.php:23
+msgid "Filter Customers"
+msgstr ""
+
+#: src/Abilities/Abilities/FilterCustomers.php:30
+msgid "Retrieve a paginated list of customers matching a rule tree. Supports single conditions and nested and/or groups across any filterable attribute. Call get-customers-filter-schema first to discover valid attribute_name, operator_label, and supported_values."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterCustomers.php:67
+msgid "The rule tree to filter by. A single condition is { \"type\":\"condition\", \"attribute_name\":<key from filter schema>, \"operator_label\":<one of the attribute operators>, \"comparison_value\":<string value> }. A group is { \"type\":\"group\", \"combinator\":\"and\"|\"or\", \"conditions\":[ <condition or nested group>, ... ] }. Groups may be nested. Call get-customers-filter-schema to discover valid attribute_name, operator_label, and supported_values."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterCustomers.php:71
+#: src/Abilities/Abilities/FilterOrders.php:71
+#: src/Abilities/Abilities/FilterSubscriptions.php:71
+#: src/Abilities/Abilities/ListAbandonedCheckouts.php:81
+#: src/Abilities/Abilities/ListCoupons.php:81
+#: src/Abilities/Abilities/ListCustomers.php:76
+#: src/Abilities/Abilities/ListFulfillments.php:76
+#: src/Abilities/Abilities/ListLicenses.php:87
+#: src/Abilities/Abilities/ListOrders.php:78
+#: src/Abilities/Abilities/ListPrices.php:77
+#: src/Abilities/Abilities/ListProducts.php:76
+#: src/Abilities/Abilities/ListPromotions.php:87
+#: src/Abilities/Abilities/ListRefunds.php:67
+#: src/Abilities/Abilities/ListSubscriptions.php:75
+msgid "Page number for pagination."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterCustomers.php:76
+#: src/Abilities/Abilities/ListCustomers.php:81
+msgid "Number of customers per page (max 100)."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterOrders.php:23
+msgid "Filter Orders"
+msgstr ""
+
+#: src/Abilities/Abilities/FilterOrders.php:30
+msgid "Retrieve a paginated list of orders matching a rule tree. Supports single conditions and nested and/or groups across any filterable attribute. Call get-orders-filter-schema first to discover valid attribute_name, operator_label, and supported_values."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterOrders.php:67
+msgid "The rule tree to filter by. A single condition is { \"type\":\"condition\", \"attribute_name\":<key from filter schema>, \"operator_label\":<one of the attribute operators>, \"comparison_value\":<string value> }. A group is { \"type\":\"group\", \"combinator\":\"and\"|\"or\", \"conditions\":[ <condition or nested group>, ... ] }. Groups may be nested. Call get-orders-filter-schema to discover valid attribute_name, operator_label, and supported_values."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterOrders.php:76
+#: src/Abilities/Abilities/ListOrders.php:83
+msgid "Number of orders per page (max 100)."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterSubscriptions.php:23
+msgid "Filter Subscriptions"
+msgstr ""
+
+#: src/Abilities/Abilities/FilterSubscriptions.php:30
+msgid "Retrieve a paginated list of subscriptions matching a rule tree. Supports single conditions and nested and/or groups across any filterable attribute. Call get-subscriptions-filter-schema first to discover valid attribute_name, operator_label, and supported_values."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterSubscriptions.php:67
+msgid "The rule tree to filter by. A single condition is { \"type\":\"condition\", \"attribute_name\":<key from filter schema>, \"operator_label\":<one of the attribute operators>, \"comparison_value\":<string value> }. A group is { \"type\":\"group\", \"combinator\":\"and\"|\"or\", \"conditions\":[ <condition or nested group>, ... ] }. Groups may be nested. Call get-subscriptions-filter-schema to discover valid attribute_name, operator_label, and supported_values."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterSubscriptions.php:76
+#: src/Abilities/Abilities/ListSubscriptions.php:80
+msgid "Number of subscriptions per page (max 100)."
+msgstr ""
+
 #: src/Abilities/Abilities/GetAbandonedCheckout.php:23
 msgid "Get Abandoned Checkout"
 msgstr ""
@@ -694,6 +789,14 @@ msgstr ""
 
 #: src/Abilities/Abilities/GetCustomer.php:67
 msgid "The customer ID."
+msgstr ""
+
+#: src/Abilities/Abilities/GetCustomersFilterSchema.php:23
+msgid "Get Customers Filter Schema"
+msgstr ""
+
+#: src/Abilities/Abilities/GetCustomersFilterSchema.php:30
+msgid "Retrieve the filterable attributes for customers. Each attribute exposes a key (use as attribute_name), a type, the allowed operators (use as operator_label), and supported_values — the only allowed values for enum/dropdown fields. Call this before filter-customers to learn valid attributes, operators, and values."
 msgstr ""
 
 #: src/Abilities/Abilities/GetFulfillment.php:23
@@ -754,6 +857,14 @@ msgstr ""
 
 #: src/Abilities/Abilities/GetOrder.php:93
 msgid "An order ID is required."
+msgstr ""
+
+#: src/Abilities/Abilities/GetOrdersFilterSchema.php:23
+msgid "Get Orders Filter Schema"
+msgstr ""
+
+#: src/Abilities/Abilities/GetOrdersFilterSchema.php:30
+msgid "Retrieve the filterable attributes for orders. Each attribute exposes a key (use as attribute_name), a type, the allowed operators (use as operator_label), and supported_values — the only allowed values for enum/dropdown fields. Call this before filter-orders to learn valid attributes, operators, and values."
 msgstr ""
 
 #: src/Abilities/Abilities/GetOrderStatistics.php:23
@@ -857,6 +968,14 @@ msgstr ""
 msgid "The subscription ID."
 msgstr ""
 
+#: src/Abilities/Abilities/GetSubscriptionsFilterSchema.php:23
+msgid "Get Subscriptions Filter Schema"
+msgstr ""
+
+#: src/Abilities/Abilities/GetSubscriptionsFilterSchema.php:30
+msgid "Retrieve the filterable attributes for subscriptions. Each attribute exposes a key (use as attribute_name), a type, the allowed operators (use as operator_label), and supported_values — the only allowed values for enum/dropdown fields. Call this before filter-subscriptions to learn valid attributes, operators, and values."
+msgstr ""
+
 #: src/Abilities/Abilities/ListAbandonedCheckouts.php:23
 msgid "List Abandoned Checkouts"
 msgstr ""
@@ -878,20 +997,6 @@ msgstr ""
 
 #: src/Abilities/Abilities/ListAbandonedCheckouts.php:76
 msgid "Filter by mode. Defaults to true (live abandoned checkouts). Set to false to list test mode results."
-msgstr ""
-
-#: src/Abilities/Abilities/ListAbandonedCheckouts.php:81
-#: src/Abilities/Abilities/ListCoupons.php:81
-#: src/Abilities/Abilities/ListCustomers.php:76
-#: src/Abilities/Abilities/ListFulfillments.php:76
-#: src/Abilities/Abilities/ListLicenses.php:87
-#: src/Abilities/Abilities/ListOrders.php:78
-#: src/Abilities/Abilities/ListPrices.php:77
-#: src/Abilities/Abilities/ListProducts.php:76
-#: src/Abilities/Abilities/ListPromotions.php:87
-#: src/Abilities/Abilities/ListRefunds.php:67
-#: src/Abilities/Abilities/ListSubscriptions.php:75
-msgid "Page number for pagination."
 msgstr ""
 
 #: src/Abilities/Abilities/ListAbandonedCheckouts.php:86
@@ -941,10 +1046,6 @@ msgstr ""
 
 #: src/Abilities/Abilities/ListCustomers.php:71
 msgid "Filter by mode. Defaults to true (live customers). Set to false to search test mode customers."
-msgstr ""
-
-#: src/Abilities/Abilities/ListCustomers.php:81
-msgid "Number of customers per page (max 100)."
 msgstr ""
 
 #: src/Abilities/Abilities/ListFulfillments.php:23
@@ -1005,10 +1106,6 @@ msgstr ""
 
 #: src/Abilities/Abilities/ListOrders.php:69
 msgid "Filter by order status."
-msgstr ""
-
-#: src/Abilities/Abilities/ListOrders.php:83
-msgid "Number of orders per page (max 100)."
 msgstr ""
 
 #. translators: %s: comma-separated list of valid order status values
@@ -1118,10 +1215,6 @@ msgstr ""
 
 #: src/Abilities/Abilities/ListSubscriptions.php:67
 msgid "Filter by subscription status (active, trialing, past_due, canceled, completed)."
-msgstr ""
-
-#: src/Abilities/Abilities/ListSubscriptions.php:80
-msgid "Number of subscriptions per page (max 100)."
 msgstr ""
 
 #: src/Abilities/Abilities/UpdateCoupon.php:23
@@ -1401,11 +1494,11 @@ msgstr ""
 msgid "The new renewal date must be on or after the current period end date."
 msgstr ""
 
-#: src/Abilities/AbilityRegistrar.php:88
+#: src/Abilities/AbilityRegistrar.php:94
 msgid "SureCart E-Commerce"
 msgstr ""
 
-#: src/Abilities/AbilityRegistrar.php:89
+#: src/Abilities/AbilityRegistrar.php:95
 msgid "E-commerce operations including products, orders, customers, and subscriptions."
 msgstr ""
 
@@ -3977,7 +4070,7 @@ msgstr ""
 #: Controllers/CustomerController.php:51
 #: Controllers/CustomerController.php:89
 #: Controllers/DownloadController.php:59
-#: Controllers/DownloadController.php:106
+#: Controllers/DownloadController.php:114
 #: Controllers/InvoiceController.php:60
 #: Controllers/LicenseController.php:66
 #: Controllers/LicenseController.php:115
@@ -4012,10 +4105,10 @@ msgstr ""
 #: Controllers/DownloadController.php:43
 #: Controllers/DownloadController.php:62
 #: Controllers/DownloadController.php:80
-#: Controllers/DownloadController.php:122
-#: Controllers/DownloadController.php:135
+#: Controllers/DownloadController.php:130
+#: Controllers/DownloadController.php:143
 #: sc-dashboard-downloads-list.js:115
-#: sc-downloads-list.js:187
+#: sc-downloads-list.js:186
 #: sc-order.js:202
 msgid "Downloads"
 msgstr ""
@@ -4091,7 +4184,7 @@ msgstr ""
 #: src/Integrations/Beaver/BeaverFormModule.php:20
 #: src/Integrations/Beaver/BeaverFormModule.php:21
 #: src/Integrations/Elementor/Conditions/Conditions.php:38
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:237
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:262
 #: src/Integrations/ThriveAutomator/ThriveAutomatorApp.php:25
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:152
 #: src/WordPress/Admin/Notices/AdminNoticesService.php:115
@@ -4771,7 +4864,7 @@ msgstr ""
 #: Blocks/LogoutButton/edit.js:33
 #: Blocks/Name/edit.js:40
 #: Blocks/NameYourPrice/edit.js:52
-#: Blocks/OrderBumps/edit.js:46
+#: Blocks/OrderBumps/edit.js:66
 #: Blocks/Password/components/Inspector.js:27
 #: Blocks/Password/edit.js:68
 #: Blocks/Payment/components/Inspector.js:24
@@ -6711,26 +6804,26 @@ msgstr ""
 msgid "Enable access to a MemberPress membership."
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:238
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:263
 msgid "How likely are you to recommend #pluginname to your friends or colleagues?"
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:241
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:266
 msgid "Wow, we appreciate the feedback! 😀"
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:242
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:267
 msgid ""
 "Thanks. This means a lot!\n"
 "\n"
 "If you've got a minute, a review on WordPress would mean the world to us. It helps others find us and keeps our momentum strong."
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:246
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:271
 msgid "Thanks for your honest feedback! 😊"
 msgstr ""
 
-#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:247
+#: src/Integrations/NpsSurvey/NpsSurveyNotice.php:272
 msgid "We'd love to understand what's not working or what's missing for you. What can SureCart improve to earn a higher score from you?"
 msgstr ""
 
@@ -6753,7 +6846,6 @@ msgstr ""
 #: admin/products/import-results.php:185
 #: auto-fees/utils/constants.js:41
 #: products/CreateProduct.js:65
-#: Blocks/OrderBumps/edit.js:21
 #: src/blocks/product-title/edit.js:74
 msgid "Product Name"
 msgstr ""
@@ -6921,7 +7013,7 @@ msgid_plural "%d Days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Models/Customer.php:170
+#: src/Models/Customer.php:172
 msgid "No customer ID or email provided."
 msgstr ""
 
@@ -7378,7 +7470,7 @@ msgid "Rejected"
 msgstr ""
 
 #. translators: %d is the number of remaining payments.
-#: src/Models/Subscription.php:644
+#: src/Models/Subscription.php:646
 msgid "%d payment remaining"
 msgid_plural "%d payments remaining"
 msgstr[0] ""
@@ -10540,20 +10632,20 @@ msgstr ""
 msgid "We are getting things ready and optimized in the background. This may take a few minutes."
 msgstr ""
 
-#: src/Sync/WooCommerce/WooCommerceImportService.php:248
+#: src/Sync/WooCommerce/WooCommerceImportService.php:261
 msgid "SureCart: WooCommerce products import in progress."
 msgstr ""
 
-#: src/Sync/WooCommerce/WooCommerceImportService.php:249
+#: src/Sync/WooCommerce/WooCommerceImportService.php:262
 msgid "SureCart is importing WooCommerce products in the background. The process may take a little while, so please be patient."
 msgstr ""
 
-#: src/Sync/WooCommerce/WooCommerceImportService.php:307
+#: src/Sync/WooCommerce/WooCommerceImportService.php:320
 msgid "SureCart: WooCommerce products import complete."
 msgstr ""
 
 #. translators: %s: URL to import results page
-#: src/Sync/WooCommerce/WooCommerceImportService.php:310
+#: src/Sync/WooCommerce/WooCommerceImportService.php:323
 msgid "The import has finished. <a href=\"%s\">View Import Results</a>"
 msgstr ""
 
@@ -12044,8 +12136,8 @@ msgstr ""
 
 #: web/buy-template.php:54
 #: settings/learn/components/LearnSection.js:164
-#: Blocks/OrderBumps/edit.js:64
-#: sc-order-bumps2.js:29
+#: Blocks/OrderBumps/edit.js:98
+#: sc-order-bumps2.js:46
 msgid "Recommended"
 msgstr ""
 
@@ -13192,7 +13284,7 @@ msgid "Search for a user role..."
 msgstr ""
 
 #: auto-fees/modules/AndGroup.js:312
-#: sc-select2.js:2091
+#: sc-select2.js:2092
 msgid "Search..."
 msgstr ""
 
@@ -13678,6 +13770,9 @@ msgstr ""
 
 #: bumps/CreateBump.js:64
 #: bumps/modules/Name.js:9
+#: Blocks/OrderBumps/edit.js:17
+#: Blocks/OrderBumps/edit.js:36
+#: Blocks/OrderBumps/edit.js:40
 #: src/blocks/cart-order-bump-title/edit.js:9
 msgid "Bump Name"
 msgstr ""
@@ -14635,7 +14730,7 @@ msgid "Public"
 msgstr ""
 
 #: components/MediaLibrary/index.js:367
-#: sc-purchase-downloads-list2.js:60
+#: sc-purchase-downloads-list2.js:59
 msgid "%s file"
 msgid_plural "%s files"
 msgstr[0] ""
@@ -14695,9 +14790,9 @@ msgstr ""
 #: invoices/components/ReceiptDownload.js:39
 #: products/modules/SingleDownload.js:316
 #: store/add-entities.js:117
-#: Controllers/DownloadController.php:125
+#: Controllers/DownloadController.php:133
 #: Blocks/InvoiceReceiptDownload/edit.js:31
-#: sc-downloads-list.js:176
+#: sc-downloads-list.js:175
 #: sc-line-item-invoice-receipt-download2.js:30
 msgid "Download"
 msgstr ""
@@ -15289,7 +15384,7 @@ msgid "Number"
 msgstr ""
 
 #: customers/modules/Orders.js:55
-#: sc-purchase-downloads-list2.js:74
+#: sc-purchase-downloads-list2.js:73
 msgid "Items"
 msgstr ""
 
@@ -15516,7 +15611,7 @@ msgstr ""
 #: sc-invoices-list.js:148
 #: sc-licenses-list.js:141
 #: sc-orders-list.js:156
-#: sc-purchase-downloads-list2.js:74
+#: sc-purchase-downloads-list2.js:73
 #: sc-subscriptions-list.js:141
 msgid "View all"
 msgstr ""
@@ -23356,7 +23451,7 @@ msgstr ""
 msgid "Update Billing Details"
 msgstr ""
 
-#: Controllers/DownloadController.php:151
+#: Controllers/DownloadController.php:159
 #: sc-licenses-list.js:141
 msgid "License Keys"
 msgstr ""
@@ -23503,7 +23598,7 @@ msgstr ""
 #: Blocks/Name/components/Inspector.js:14
 #: Blocks/Name/edit.js:27
 #: Blocks/NameYourPrice/edit.js:39
-#: Blocks/OrderBumps/edit.js:41
+#: Blocks/OrderBumps/edit.js:61
 #: Blocks/OrderConfirmationCustomer/edit.js:22
 #: Blocks/Password/components/Inspector.js:13
 #: Blocks/Password/edit.js:55
@@ -24530,9 +24625,25 @@ msgstr ""
 msgid "Show Currency Code"
 msgstr ""
 
-#: Blocks/OrderBumps/edit.js:54
+#: Blocks/OrderBumps/edit.js:23
+#: Blocks/OrderBumps/edit.js:28
+#: src/blocks/cart-order-bump-description/edit.js:12
+msgid "Order bump description will appear here..."
+msgstr ""
+
+#: Blocks/OrderBumps/edit.js:74
 #: Blocks/PriceChoice/edit.js:101
 msgid "Show control"
+msgstr ""
+
+#: Blocks/OrderBumps/edit.js:84
+#: src/blocks/cart-order-bumps/edit.js:30
+msgid "Hide added items"
+msgstr ""
+
+#: Blocks/OrderBumps/edit.js:85
+#: src/blocks/cart-order-bumps/edit.js:31
+msgid "When enabled, items already added to cart will be hidden from the recommendations."
 msgstr ""
 
 #: Blocks/Password/edit.js:39
@@ -27817,10 +27928,6 @@ msgstr ""
 msgid "CTA"
 msgstr ""
 
-#: src/blocks/cart-order-bump-description/edit.js:12
-msgid "Order bump description will appear here..."
-msgstr ""
-
 #: src/blocks/cart-order-bump-discount-badge/index.js:21
 msgid "Discount Badge"
 msgstr ""
@@ -27849,14 +27956,6 @@ msgstr ""
 
 #: src/blocks/cart-order-bump-scratch-amount/index.js:21
 msgid "Scratch Amount"
-msgstr ""
-
-#: src/blocks/cart-order-bumps/edit.js:30
-msgid "Hide added items"
-msgstr ""
-
-#: src/blocks/cart-order-bumps/edit.js:31
-msgid "When enabled, items already added to cart will be hidden from the recommendations."
 msgstr ""
 
 #: src/blocks/cart-order-bumps/template.js:36
@@ -28666,7 +28765,7 @@ msgid "Item added to cart."
 msgstr ""
 
 #. translators: %s: product name
-#: src/scripts/product-page/index.js:365
+#: src/scripts/product-page/index.js:370
 msgid "%s has been added to your cart."
 msgstr ""
 
@@ -30172,22 +30271,22 @@ msgstr ""
 msgid "Menu Selection Dropdown closed."
 msgstr ""
 
-#: fetch.js:37
-#: fetch.js:76
+#: fetch.js:42
+#: fetch.js:82
 #: index4.js:426
 msgid "The response is not a valid JSON response."
 msgstr ""
 
 #. translators: %s: URL to debug settings page
-#: fetch.js:44
+#: fetch.js:49
 msgid "Please ensure that your site is not in debug mode as this may interfere with API responses. %s"
 msgstr ""
 
-#: fetch.js:44
+#: fetch.js:49
 msgid "More Information"
 msgstr ""
 
-#: fetch.js:60
+#: fetch.js:65
 msgid "We were not able to process this order"
 msgstr ""
 
@@ -30661,7 +30760,7 @@ msgstr ""
 msgid "Send new code"
 msgstr ""
 
-#: sc-downloads-list.js:183
+#: sc-downloads-list.js:182
 #: sc-purchase-downloads-list2.js:35
 msgid "You don't have any downloads."
 msgstr ""
@@ -30892,7 +30991,7 @@ msgstr ""
 msgid "Add to order"
 msgstr ""
 
-#: sc-order-bumps2.js:29
+#: sc-order-bumps2.js:46
 msgid "Order bump summary"
 msgstr ""
 
@@ -31355,15 +31454,15 @@ msgstr ""
 msgid "%d characters remaining"
 msgstr ""
 
-#: sc-select2.js:2091
+#: sc-select2.js:2078
 msgid "Select..."
 msgstr ""
 
-#: sc-select2.js:2091
+#: sc-select2.js:2092
 msgid "Type to search"
 msgstr ""
 
-#: sc-select2.js:2093
+#: sc-select2.js:2094
 msgid "Nothing Found"
 msgstr ""
 

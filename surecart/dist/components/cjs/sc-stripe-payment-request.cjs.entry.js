@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const pure = require('./pure-bd6f0a6e.js');
-const mutations = require('./mutations-6e603e86.js');
-const index$1 = require('./index-bb9b8917.js');
+const mutations = require('./mutations-edaa53ae.js');
+const index$1 = require('./index-a583f78f.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
 const consumer = require('./consumer-b58230e6.js');
 require('./index-c3de642f.js');
@@ -17,7 +17,7 @@ require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');
-require('./fetch-853b19c8.js');
+require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 
 const scStripePaymentRequestCss = ":host{display:block}.or{display:none;margin:var(--sc-form-section-spacing) 0}.request--loaded .or{display:block}";
@@ -298,7 +298,7 @@ const ScStripePaymentRequest = class {
         this.removeCheckoutListener();
     }
     render() {
-        return (index.h("div", { key: 'd214b307aace44260f44b8a40d99b02a4900c654', class: { 'request': true, 'request--loaded': this.loaded } }, this.debug && this.debugError && (index.h("div", { key: '4cb6e73cfb847740f13a993e875ce5b0878f7496' }, index.h("slot", { key: '3c0134337c1dad1ac0375c237fbb2b72448401bf', name: "debug-fallback" }), index.h("sc-alert", { key: '70bbbf71d81bba74d70c4ef6957afd988a2fd040', type: "info", open: true }, index.h("span", { key: 'bc7706b25e7721499f45c6f4a437aeb5c630b2df', slot: "title" }, wp.i18n.__('Express Payment', 'surecart')), this.debugError))), index.h("div", { key: 'ec88e7a8838c6f2172653a8be3528d4bea2bd5e1', class: "sc-payment-request-button", part: "button", ref: el => (this.request = el) })));
+        return (index.h("div", { key: '4eebcb1a3d9fe9d058f0059ee289dae983b62ccf', class: { 'request': true, 'request--loaded': this.loaded } }, this.debug && this.debugError && (index.h("div", { key: '2108acfdc9e64de514d3dd00c968781ef4eea4f5' }, index.h("slot", { key: 'b06dab0525b60b85c13c9cf3336b955145ed8c42', name: "debug-fallback" }), index.h("sc-alert", { key: '35c7270e0131873242add841463450de914ba555', type: "info", open: true }, index.h("span", { key: 'cb383d83d8af52678ccdd2e4cc771d774e78aa2f', slot: "title" }, wp.i18n.__('Express Payment', 'surecart')), this.debugError))), index.h("div", { key: 'b302a79b0521da5b5868e69181ed16ce8703771c', class: "sc-payment-request-button", part: "button", ref: el => (this.request = el) })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

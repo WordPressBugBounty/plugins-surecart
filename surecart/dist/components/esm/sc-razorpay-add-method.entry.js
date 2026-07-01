@@ -1,5 +1,5 @@
 import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
-import './fetch-9e15a95d.js';
+import './fetch-cdff67be.js';
 import { l as loadRazorpay } from './razorpay-4c4a3d31.js';
 import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';

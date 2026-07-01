@@ -1,5 +1,5 @@
 import { r as registerInstance, h } from './index-25e5af33.js';
-import './fetch-9e15a95d.js';
+import './fetch-cdff67be.js';
 import { U as Universe } from './universe-7bd0ac2b.js';
 import { g as getQueryArg } from './remove-query-args-938c53ea.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';

@@ -6,16 +6,16 @@ const index = require('./index-be4abba1.js');
 const address = require('./address-7404695f.js');
 const formData = require('./form-data-0da9940f.js');
 const googleMaps = require('./google-maps-0f9b7648.js');
-const mutations = require('./mutations-6e603e86.js');
+const mutations = require('./mutations-edaa53ae.js');
 const getters = require('./getters-d68c08ed.js');
 const store = require('./store-01e8edc2.js');
 const consumer = require('./consumer-b58230e6.js');
-const mutations$1 = require('./mutations-85ee76d2.js');
-const index$2 = require('./index-bb9b8917.js');
-const index$1 = require('./index-2a4acaf8.js');
+const mutations$1 = require('./mutations-54e7599d.js');
+const index$2 = require('./index-a583f78f.js');
+const index$1 = require('./index-a4a4f390.js');
 const index$3 = require('./index-fb76df07.js');
 const price = require('./price-da3cab3d.js');
-const getters$1 = require('./getters-58d722ad.js');
+const getters$1 = require('./getters-91b741f2.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./add-query-args-49dcb630.js');
@@ -24,7 +24,7 @@ require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
-require('./fetch-853b19c8.js');
+require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 require('./store-257cd191.js');
 
@@ -636,10 +636,27 @@ const ScOrderBumps = class {
         this.label = undefined;
         this.help = undefined;
         this.showControl = undefined;
+        this.hideAddedItems = undefined;
+    }
+    /** Check if a bump is already added as a line item. */
+    isBumpAdded(bumpId) {
+        var _a, _b;
+        return (((_b = (_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).some(item => (item === null || item === void 0 ? void 0 : item.bump) === bumpId);
     }
     render() {
         var _a, _b;
-        const bumps = (((_b = (_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.recommended_bumps) === null || _b === void 0 ? void 0 : _b.data) || []).filter(bump => { var _a, _b, _c, _d; return ((_d = (_c = (_b = (_a = bump === null || bump === void 0 ? void 0 : bump.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.variants) === null || _c === void 0 ? void 0 : _c.pagination) === null || _d === void 0 ? void 0 : _d.count) === 0; }); // exclude variants for now.;
+        const bumps = (((_b = (_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.recommended_bumps) === null || _b === void 0 ? void 0 : _b.data) || []).filter(bump => {
+            var _a, _b, _c, _d;
+            // exclude variants for now.
+            if (((_d = (_c = (_b = (_a = bump === null || bump === void 0 ? void 0 : bump.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.variants) === null || _c === void 0 ? void 0 : _c.pagination) === null || _d === void 0 ? void 0 : _d.count) !== 0) {
+                return false;
+            }
+            // optionally exclude bumps already added to the checkout.
+            if (this.hideAddedItems && this.isBumpAdded(bump === null || bump === void 0 ? void 0 : bump.id)) {
+                return false;
+            }
+            return true;
+        });
         if (!(bumps === null || bumps === void 0 ? void 0 : bumps.length)) {
             return null;
         }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-require('./fetch-853b19c8.js');
+require('./fetch-5e8dc1d5.js');
 const lazy = require('./lazy-2b509fa7.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index$1 = require('./index-7ced8198.js');
@@ -144,14 +144,13 @@ const ScDownloadsList = class {
         }, 0);
     }
     renderList() {
-        var _a, _b;
-        if ((this === null || this === void 0 ? void 0 : this.busy) && !((_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length)) {
+        const downloads = (this.downloads || []).filter((d) => !d.archived);
+        if ((this === null || this === void 0 ? void 0 : this.busy) && !downloads.length) {
             return this.renderLoading();
         }
-        if (!((_b = this === null || this === void 0 ? void 0 : this.downloads) === null || _b === void 0 ? void 0 : _b.length)) {
+        if (!downloads.length) {
             return this.renderEmpty();
         }
-        const downloads = this.downloads || [];
         return (index.h("sc-card", { "no-padding": true }, index.h("sc-stacked-list", null, downloads.map(download => {
             var _a, _b, _c, _d;
             const media = download === null || download === void 0 ? void 0 : download.media;
@@ -170,7 +169,7 @@ const ScDownloadsList = class {
     }
     render() {
         var _a;
-        return (index.h("sc-dashboard-module", { key: '1291937023b8749efe982f975f12c776257891b2', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, index.h("span", { key: '9c884e151892c14e3963a769ca1bb6f63a53e50f', slot: "heading" }, index.h("slot", { key: 'd8293fa97db93b145c48bfa21d5ed0ab11cf8439', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), index.h("sc-pagination", { key: '21b81b39d8d8d5b151da6dd16ff06012b3cac4c5', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && index.h("sc-block-ui", { key: '31b6a692aa165049965ffd3af67b4dcdd9f740a6' })));
+        return (index.h("sc-dashboard-module", { key: 'f8868409f8307e350c6801c5f2f4d0b39f6dee3a', class: "purchase", part: "base", heading: wp.i18n.__('Downloads', 'surecart') }, index.h("span", { key: 'd950621d79e4b1eab0677b19a60e373a666556c2', slot: "heading" }, index.h("slot", { key: 'd858d5970aac608616e363850e508dd8c0678c27', name: "heading" }, this.heading || wp.i18n.__('Downloads', 'surecart'))), this.renderList(), index.h("sc-pagination", { key: '1b00fd9c12f3439469bfd3796814b9ef7e15f996', page: this.query.page, perPage: this.query.per_page, total: this.pagination.total, totalPages: this.pagination.total_pages, totalShowing: (_a = this === null || this === void 0 ? void 0 : this.downloads) === null || _a === void 0 ? void 0 : _a.length, onScNextPage: () => this.nextPage(), onScPrevPage: () => this.prevPage() }), this.busy && index.h("sc-block-ui", { key: '8d455874b9a2637152c84ed79b6d7c764a83761a' })));
     }
     get el() { return index.getElement(this); }
 };

@@ -4,10 +4,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const price = require('./price-da3cab3d.js');
-const watchers = require('./watchers-4cadea78.js');
+const watchers = require('./watchers-d2dd8b04.js');
 require('./currency-71fce0f0.js');
 require('./index-c3de642f.js');
-require('./google-03835677.js');
+require('./google-c1098cb3.js');
 require('./google-59d23803.js');
 require('./utils-a9d13080.js');
 require('./util-a15c420c.js');

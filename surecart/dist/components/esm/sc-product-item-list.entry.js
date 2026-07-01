@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
-import { h as handleNonceError } from './fetch-9e15a95d.js';
-import './google-dd89f242.js';
+import { h as handleNonceError } from './fetch-cdff67be.js';
+import './google-ff13b5f8.js';
 import { a as addQueryArgs, g as getQueryArgs } from './add-query-args-0e2a8393.js';
 import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
