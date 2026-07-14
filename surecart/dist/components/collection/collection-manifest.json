@@ -10,6 +10,7 @@
     "components/controllers/cart/sc-cart-form/sc-cart-form.js",
     "components/controllers/cart/sc-cart-loader/sc-cart-loader.js",
     "components/controllers/checkout-form/checkout/sc-checkout.js",
+    "components/controllers/checkout-form/checkout/checkout-geo-permission/sc-checkout-geo-permission.js",
     "components/controllers/checkout-form/checkout/checkout-stock-alert/sc-checkout-stock-alert.js",
     "components/controllers/checkout-form/checkout-form-errors/sc-checkout-form-errors.js",
     "components/controllers/checkout-form/checkout-test-complete/checkout-test-complete.js",

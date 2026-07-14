@@ -1,8 +1,8 @@
 import { r as registerInstance, h, F as Fragment, a as getElement } from './index-25e5af33.js';
-import { g as getLineItemByProductId } from './getters-0152f4f0.js';
-import { u as updateFormState, s as state, o as onChange } from './mutations-9546b051.js';
+import { g as getLineItemByProductId } from './getters-92cbd197.js';
+import { u as updateFormState, s as state, o as onChange } from './mutations-596ff451.js';
 import { g as getVariantFromValues } from './util-dfbf863e.js';
-import { u as updateLineItem, a as addLineItem } from './index-3a9d9134.js';
+import { u as updateLineItem, a as addLineItem } from './index-4aa538b7.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isProductVariantOptionSoldOut, a as isProductVariantOptionMissing } from './utils-f84b2118.js';
 import './store-02394e82.js';
@@ -218,12 +218,12 @@ const ScProductCheckoutSelectVariantOption = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (h("sc-form-control", { key: 'bc386bb3f7dddc9398d91a3a5be20b04cf7522e0', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
+        return (h("sc-form-control", { key: '4bed51315a3cede62b5922ccb845e64a1948990f', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
             if (display_type === 'dropdown') {
                 return this.renderDropdown({ name, values, index });
             }
             return this.renderPills({ name, values, index });
-        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (h("sc-form-control", { key: '05c3e8e77c0124bdce010da052424b5f156504d8', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, h("sc-choices", { key: 'ea8ccb814d69be2567207b8c7e71c7a987962a75' }, (this.product.prices.data || [])
+        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (h("sc-form-control", { key: 'cb7319c5cf90118af8556889a0363093b814d658', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, h("sc-choices", { key: '0869dc55ca9fbcf28d859274a90de99be945c1c8' }, (this.product.prices.data || [])
             .sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position))
             .map(price => {
             var _a, _b, _c;
@@ -232,7 +232,7 @@ const ScProductCheckoutSelectVariantOption = class {
                         this.selectedPrice = price;
                     }
                 } }));
-        })))), h("input", { key: '10c20682af9416a25f293d004dc811b0127e65c6', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
+        })))), h("input", { key: 'ea138a24e4f6717556ce05bb3d28a0966010f317', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

@@ -39,11 +39,11 @@ const ScPaymentMethodChoice = class {
     }
     render() {
         const Tag = this.hasOthers() ? 'sc-toggle' : 'div';
-        return (index.h(Tag, { key: '919bbc8ad9a818244c4141136bba39eda9a49da1', "show-control": true, borderless: true, open: this.isSelected(), onScShow: () => {
+        return (index.h(Tag, { key: '8334112049c19b50d796133324d3737cedd26a3b', "show-control": true, borderless: true, open: this.isSelected(), onScShow: () => {
                 watchers.state.id = this.processorId;
                 watchers.state.manual = !!this.isManual;
                 watchers.state.method = this.methodId;
-            } }, this.hasOthers() && index.h("slot", { key: '1188191a6547b45c96b32157c4e2fa7f4a502009', name: "summary", slot: "summary" }), this.card && !this.hasOthers() ? (index.h("sc-card", null, index.h("slot", null))) : (index.h("slot", null))));
+            } }, this.hasOthers() && index.h("slot", { key: '901033d5a1699dd2235acf6445ab9ba086945152', name: "summary", slot: "summary" }), this.card && !this.hasOthers() ? (index.h("sc-card", null, index.h("slot", null))) : (index.h("slot", null))));
     }
     get el() { return index.getElement(this); }
 };
@@ -59,7 +59,7 @@ const ScPaymentSelected = class {
         this.label = undefined;
     }
     render() {
-        return (index.h("div", { key: '6c1fb55529042e93e695e3056872c10a6d4d03ac', class: "payment-selected", part: "base" }, index.h("slot", { key: '7e57b0c9c61df0a8cb6db66bff60e7f78f3b886e', name: "icon" }), index.h("div", { key: '0882f97a40113c31279026e93e4fe63504e3a5dc', class: "payment-selected__label" }, this.label), index.h("sc-divider", { key: '67b54d4bac6c2f57731d962beca13d882d3824ca', style: { '--spacing': 'var(--sc-spacing-xx-small)' }, exportparts: "base:divider, line:divider__line" }), index.h("div", { key: '9bbe66be3ad6b253fe4fdb524921f2f1391c370a', part: "instructions", class: "payment-selected__instructions" }, index.h("svg", { key: '354ed47093e33272bf36c434559e2144ba369a88', part: "icon", viewBox: "0 0 48 40", fill: "var(--sc-color-gray-500)", xmlns: "http://www.w3.org/2000/svg", role: "presentation" }, index.h("path", { key: 'd9bfe4f7aabe08e141652c3f21b45db206fe5afb', opacity: ".6", "fill-rule": "evenodd", "clip-rule": "evenodd", d: "M43 5a4 4 0 00-4-4H17a4 4 0 00-4 4v11a1 1 0 102 0V5a2 2 0 012-2h22a2 2 0 012 2v30a2 2 0 01-2 2H17a2 2 0 01-2-2v-9a1 1 0 10-2 0v9a4 4 0 004 4h22a4 4 0 004-4V5zM17.992 16.409L21.583 20H6a1 1 0 100 2h15.583l-3.591 3.591a1 1 0 101.415 1.416l5.3-5.3a1 1 0 000-1.414l-5.3-5.3a1 1 0 10-1.415 1.416zM17 6a1 1 0 011-1h15a1 1 0 011 1v2a1 1 0 01-1 1H18a1 1 0 01-1-1V6zm21-1a1 1 0 100 2 1 1 0 000-2z" })), index.h("div", { key: 'f42fa10f2dcf161055f0c40790673b473a11d419', part: "text", class: "payment-selected__instructions-text" }, index.h("slot", { key: 'd550faf27c75e77e57450c5e27368036734f102e' })))));
+        return (index.h("div", { key: '7ccd9bfaf83d0583c08af6282c2d29eb5882b459', class: "payment-selected", part: "base" }, index.h("slot", { key: '7ba288c32494189aa2f5fc5abe18f33eade51cba', name: "icon" }), index.h("div", { key: 'ef2f2146ab0dd394798834bca454ef055e14ee66', class: "payment-selected__label" }, this.label), index.h("sc-divider", { key: '231cf29ed91892803fdaabc33c9fea418b967112', style: { '--spacing': 'var(--sc-spacing-xx-small)' }, exportparts: "base:divider, line:divider__line" }), index.h("div", { key: '3035a661a00b6382da529941d9563e52db35cc15', part: "instructions", class: "payment-selected__instructions" }, index.h("svg", { key: '5c485ed626624b3d56f7ad54ea4e0e61d44537dd', part: "icon", viewBox: "0 0 48 40", fill: "var(--sc-color-gray-500)", xmlns: "http://www.w3.org/2000/svg", role: "presentation" }, index.h("path", { key: '7d48a1f771b7e6b1354ce0aaa10f7c33450d757d', opacity: ".6", "fill-rule": "evenodd", "clip-rule": "evenodd", d: "M43 5a4 4 0 00-4-4H17a4 4 0 00-4 4v11a1 1 0 102 0V5a2 2 0 012-2h22a2 2 0 012 2v30a2 2 0 01-2 2H17a2 2 0 01-2-2v-9a1 1 0 10-2 0v9a4 4 0 004 4h22a4 4 0 004-4V5zM17.992 16.409L21.583 20H6a1 1 0 100 2h15.583l-3.591 3.591a1 1 0 101.415 1.416l5.3-5.3a1 1 0 000-1.414l-5.3-5.3a1 1 0 10-1.415 1.416zM17 6a1 1 0 011-1h15a1 1 0 011 1v2a1 1 0 01-1 1H18a1 1 0 01-1-1V6zm21-1a1 1 0 100 2 1 1 0 000-2z" })), index.h("div", { key: 'c473228c989aa59f1726010c88982425bf943da8', part: "text", class: "payment-selected__instructions-text" }, index.h("slot", { key: 'f4f848f0f5f2d1719dd0e63d4556cf4256e53ab2' })))));
     }
 };
 ScPaymentSelected.style = ScPaymentSelectedStyle0;

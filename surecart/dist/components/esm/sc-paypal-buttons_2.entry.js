@@ -1,12 +1,12 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { l as loadScript, g as getScriptLoadParams } from './functions-4f009ce1.js';
 import './fetch-cdff67be.js';
-import { g as fetchCheckout } from './index-3a9d9134.js';
+import { g as fetchCheckout } from './index-4aa538b7.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
-import './mutations-9546b051.js';
+import './mutations-596ff451.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
 import './index-c5a96d53.js';
@@ -181,7 +181,7 @@ const ScPaypalButtons = class {
         }
     }
     render() {
-        return (h("div", { key: '9352153dccc32579831a3a34dffc62d263439d12', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '04ad3eb89e945937e9148fc3703ad4fd6487e689', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '095fefc2eca4f0879a7f660eeef554e14a94073b', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: 'ea0da955a51cbd2bad37a91031b51846117f4bac', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: 'a58ecfeb41631da0846331983b3ad2e5b6cd2ce6', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
+        return (h("div", { key: '036d9dc6ed675d0e8e48b2ae5562ccfcd068ac34', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '3f41c1dc558d3cd79e9ef830f2dfae9767cca671', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: 'd10673136756cf506a60383f2d4ceb228892c8c2', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: '6040c07a9f29f30c9fc38ffe50f355802135cbef', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '03cb06ad8d28b14be55ed5da74d9d0dc92be4cf5', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -198,7 +198,7 @@ const ScSecureNotice = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h("div", { key: '885018bd52007a15ebfd9436c7a5cedbf6f3d8f9', class: "notice", part: "base" }, h("svg", { key: '977dd9e25014c45806530c721684fcaf80de0942', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, h("path", { key: '8313faf685a8979f358f3268d53b591c3ba6360b', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), h("span", { key: '79143afb8e749980550bfe8eeef2c2e58317aade', class: "notice__text", part: "text" }, h("slot", { key: 'b2e8fd349e464f8a37349995d0d0799aad7ae505', name: "prefix" }), h("slot", { key: '080bac27af893aa038b8e43005bca1a6e685fc8f' }), h("slot", { key: 'aa6c0ff97388c92ebf6d88eee3888499f892ed53', name: "suffix" }))));
+        return (h("div", { key: '1834270d4429f3c77d416a05ad757c940486c36d', class: "notice", part: "base" }, h("svg", { key: '4c2ddbdfba180a9b1c93490aba302502d2cb3984', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, h("path", { key: 'db124c13e6b752256861b04b25451f4ca69cb937', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), h("span", { key: '600a7d6a95a17942296528afaea70e018f7cc794', class: "notice__text", part: "text" }, h("slot", { key: 'a3f60ce6bfeb899cedc285202d4547a63f5727c5', name: "prefix" }), h("slot", { key: '55cc90ee4cac151d9e382603bb08b786a4e6213f' }), h("slot", { key: '092af5580460c3b1267e5b4a12fd588e5f3a6fba', name: "suffix" }))));
     }
 };
 ScSecureNotice.style = ScSecureNoticeStyle0;

@@ -8,6 +8,8 @@ export declare const withDefaultData: (data?: {
     metadata?: any;
 }) => {
     metadata: any;
+    latitude?: number;
+    longitude?: number;
     email: string;
     live_mode: boolean;
     group_key: string;

@@ -102,10 +102,10 @@ const ScOrderConfirmation = class {
     }
     render() {
         var _a, _b;
-        return (h(Universe.Provider, { key: '21e583d8b2407ebce3a355b5d303475433373148', state: this.state() }, h("div", { key: '0814352b24e81fad53da042bbba33ea97025ad66', class: { 'order-confirmation': true } }, h("div", { key: 'ca6c449acae714b486e6144753c67b3d554fc40d', class: {
+        return (h(Universe.Provider, { key: '287f92f094de0ae0b743656566415596782b151a', state: this.state() }, h("div", { key: 'eeb84a85f47a06c146e28aa3c03daa28125700c0', class: { 'order-confirmation': true } }, h("div", { key: '3090272191a1cf0618d7560fe104937ccffd1244', class: {
                 'order-confirmation__content': true,
                 'hidden': !((_a = this.order) === null || _a === void 0 ? void 0 : _a.id) && !this.loading,
-            } }, h("sc-order-confirm-components-validator", { key: '0b02ab7520b6dc6ee6abe2deef6ae9611f025383', checkout: this.order }, h("slot", { key: '4a5fc2e13dccb99863415f68ea74d626972b04d4' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (h("sc-heading", { key: 'baead488ab30c8c5ebfb8bc67929a627cf61f624' }, wp.i18n.__('Order not found.', 'surecart'), h("span", { key: '04e9c0c2d341cbcc00a5b2d66d9b8620ddedf076', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
+            } }, h("sc-order-confirm-components-validator", { key: '9778606831c4127d517f80ffe26746c09be5f613', checkout: this.order }, h("slot", { key: 'c23a1ec74c271f95d623b182d035d814c7006d56' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (h("sc-heading", { key: 'f41fe62b5a9131dec384ec473c289a559ff357b6' }, wp.i18n.__('Order not found.', 'surecart'), h("span", { key: 'bf1d71c68ab3c5b3f31d1a970dccd76a2d6cf526', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
     }
 };
 ScOrderConfirmation.style = ScOrderConfirmationStyle0;

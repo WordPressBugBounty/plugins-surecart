@@ -1,6 +1,6 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
-import { s as state } from './mutations-9546b051.js';
+import { s as state } from './mutations-596ff451.js';
 import { f as formBusy, a as formLoading } from './getters-4bb6cc1b.js';
 import { s as setDefaultAnimation, a as stopAnimations, g as getAnimation, b as animateTo, c as shimKeyframesHeightAuto } from './animation-registry-de37bd7e.js';
 import './index-18f5a1bc.js';
@@ -98,10 +98,10 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (h("div", { key: '2e86017582637dc8f2936455580056a82622cc08', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), h("div", { key: '7d0431c7f8846567adeeaf47ca07faa8de783181', ref: el => (this.body = el), class: {
+        return (h("div", { key: '52f69d171b33f1d83e3935961cd3a1f00b316ac1', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), h("div", { key: '212d131e85cacdfd1662d7620646c0433cede16e', ref: el => (this.body = el), class: {
                 'summary__content': true,
                 'summary__content--empty': this.empty() && !formBusy(),
-            } }, h("slot", { key: '4e6bfefa5a3d54f7bd11473c252c2c2778fa03d0' })), this.empty() && !formBusy() && h("p", { key: 'f7b0916b5016e96e74ad602fd9fccd681a85d67a', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
+            } }, h("slot", { key: '5c5815099388adc67dc4f48f319fa3a6e31efa9a' })), this.empty() && !formBusy() && h("p", { key: '6fa0040369b3a8d1ed834dcc82ece927597d83b9', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

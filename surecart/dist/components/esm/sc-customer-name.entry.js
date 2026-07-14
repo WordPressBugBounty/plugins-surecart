@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h } from './index-25e5af33.js';
-import { c as createOrUpdateCheckout } from './index-3a9d9134.js';
+import { c as createOrUpdateCheckout } from './index-4aa538b7.js';
 import { s as state$1 } from './store-02394e82.js';
-import { s as state, o as onChange } from './mutations-9546b051.js';
+import { s as state, o as onChange } from './mutations-596ff451.js';
 import { a as getValueFromUrl } from './util-dfbf863e.js';
 import './fetch-cdff67be.js';
 import './index-824c562b.js';
@@ -82,7 +82,7 @@ const ScCustomerName = class {
         this.removeCheckoutListener();
     }
     render() {
-        return (h("sc-input", { key: '405c3f6ce8a692f29b4e85ac29bfdb9dba7d0f2e', type: "text", name: "name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
+        return (h("sc-input", { key: 'cc206ddb5f8cc2c92c79a9741339e8b429d57ab6', type: "text", name: "name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
     }
 };
 ScCustomerName.style = ScCustomerNameStyle0;

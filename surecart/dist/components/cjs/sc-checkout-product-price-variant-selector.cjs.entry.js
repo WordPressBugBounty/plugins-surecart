@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const getters = require('./getters-91b741f2.js');
-const mutations = require('./mutations-edaa53ae.js');
+const getters = require('./getters-0ad2f710.js');
+const mutations = require('./mutations-5b4c8c9d.js');
 const util = require('./util-a15c420c.js');
-const index$1 = require('./index-a583f78f.js');
+const index$1 = require('./index-f3f5230c.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
 const utils = require('./utils-a9d13080.js');
 require('./store-257cd191.js');
@@ -222,12 +222,12 @@ const ScProductCheckoutSelectVariantOption = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (index.h("sc-form-control", { key: 'bc386bb3f7dddc9398d91a3a5be20b04cf7522e0', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
+        return (index.h("sc-form-control", { key: '4bed51315a3cede62b5922ccb845e64a1948990f', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
             if (display_type === 'dropdown') {
                 return this.renderDropdown({ name, values, index });
             }
             return this.renderPills({ name, values, index });
-        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (index.h("sc-form-control", { key: '05c3e8e77c0124bdce010da052424b5f156504d8', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, index.h("sc-choices", { key: 'ea8ccb814d69be2567207b8c7e71c7a987962a75' }, (this.product.prices.data || [])
+        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (index.h("sc-form-control", { key: 'cb7319c5cf90118af8556889a0363093b814d658', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, index.h("sc-choices", { key: '0869dc55ca9fbcf28d859274a90de99be945c1c8' }, (this.product.prices.data || [])
             .sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position))
             .map(price => {
             var _a, _b, _c;
@@ -236,7 +236,7 @@ const ScProductCheckoutSelectVariantOption = class {
                         this.selectedPrice = price;
                     }
                 } }));
-        })))), index.h("input", { key: '10c20682af9416a25f293d004dc811b0127e65c6', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
+        })))), index.h("input", { key: 'ea138a24e4f6717556ce05bb3d28a0966010f317', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

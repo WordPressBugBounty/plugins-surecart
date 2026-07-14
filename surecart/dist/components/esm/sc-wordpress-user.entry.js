@@ -21,10 +21,10 @@ const ScWordPressUser = class {
         return h("slot", { name: "empty" }, wp.i18n.__('User not found.', 'surecart'));
     }
     render() {
-        return (h("sc-dashboard-module", { key: '4c133f2802ce2021ae1242caa0c1770029d7ebc8', class: "customer-details" }, h("span", { key: 'b859fd54e44515e370bfcb0128f855cae28c5573', slot: "heading" }, this.heading || wp.i18n.__('Account Details', 'surecart'), " "), h("sc-button", { key: 'ff569cbca6554e06b9f87dbe91a342f6b8f118aa', type: "link", href: addQueryArgs(window.location.href, {
+        return (h("sc-dashboard-module", { key: 'ab0de328f2ddab100d35243ca7312e6a0f510f19', class: "customer-details" }, h("span", { key: '4b6f659e2fdd46a65828daf67adcff2059efb851', slot: "heading" }, this.heading || wp.i18n.__('Account Details', 'surecart'), " "), h("sc-button", { key: '0510428382eb332af7192ce7164f0d258845a631', type: "link", href: addQueryArgs(window.location.href, {
                 action: 'edit',
                 model: 'user',
-            }), slot: "end" }, h("sc-icon", { key: '079f1aa35d80940718a9f726bb9e4b6df2f81bbb', name: "edit-3", slot: "prefix" }), wp.i18n.__('Update', 'surecart')), h("sc-card", { key: '98057f2e46db8249c8b42fe2c1cd1051d91404e8', "no-padding": true }, h("sc-stacked-list", { key: 'cb7996b4e2ca3afb7b303f78a6b3a94162d9e5e4' }, this.renderContent()))));
+            }), slot: "end" }, h("sc-icon", { key: 'dc9a61ed6422c3e0afe5ead4ae8441ba6e4197f4', name: "edit-3", slot: "prefix" }), wp.i18n.__('Update', 'surecart')), h("sc-card", { key: '9055a042933e2148b4ead7f44b20ad76f17db7be', "no-padding": true }, h("sc-stacked-list", { key: 'c997a023ba9fc2747ec203fe9df81035a82b847d' }, this.renderContent()))));
     }
 };
 ScWordPressUser.style = ScWordpressUserStyle0;

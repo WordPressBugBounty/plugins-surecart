@@ -16,7 +16,7 @@ const ScProductItem = class {
     render() {
         var _a;
         console.log(this.product);
-        return (index.h("a", { key: '467fbbc846bb713324f433e7902b5a9649dc090c', href: (_a = this.product) === null || _a === void 0 ? void 0 : _a.permalink, class: { 'product-item': true } }, this.product &&
+        return (index.h("a", { key: 'ae7806eacaf7f847327980ce69204e9d3e5c3c0d', href: (_a = this.product) === null || _a === void 0 ? void 0 : _a.permalink, class: { 'product-item': true } }, this.product &&
             (this.layoutConfig || []).map(layout => {
                 var _a, _b, _c, _d;
                 const attributes = layout.attributes || {};

@@ -4,11 +4,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const watchers = require('./watchers-517825ae.js');
-require('./watchers-ffd63353.js');
-const getters = require('./getters-1712a1d0.js');
-const mutations = require('./mutations-edaa53ae.js');
-const getters$1 = require('./getters-91b741f2.js');
-const mutations$1 = require('./mutations-54e7599d.js');
+require('./watchers-a34b8c3f.js');
+const getters = require('./getters-04caaa37.js');
+const mutations = require('./mutations-5b4c8c9d.js');
+const getters$1 = require('./getters-0ad2f710.js');
+const mutations$1 = require('./mutations-24f594cf.js');
 require('./fetch-5e8dc1d5.js');
 const MockProcessor = require('./MockProcessor-ad11752f.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
@@ -28,7 +28,7 @@ require('./currency-71fce0f0.js');
 require('./price-da3cab3d.js');
 require('./store-257cd191.js');
 require('./address-7404695f.js');
-require('./index-a583f78f.js');
+require('./index-f3f5230c.js');
 
 const listenTo = (prop, propKey, callback) => mutations.on('set', (key, newValue, oldValue) => {
     // ignore non-keys

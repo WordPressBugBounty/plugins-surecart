@@ -67,5 +67,6 @@
     "file:./style-index.css"
   ],
   "render": "file:./view.php",
-  "editorScript": "file:./index.js"
+  "editorScript": "file:./index.js",
+  "textdomain": "surecart"
 }

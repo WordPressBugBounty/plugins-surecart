@@ -1,4 +1,4 @@
-import { Checkout, LineItemData, Product, TaxProtocol } from '../../types';
+import { Checkout, GeoCapture, GeoCoordinates, LineItemData, Product, TaxProtocol } from '../../types';
 interface Store {
     formId: number | string;
     groupId: string;
@@ -8,6 +8,9 @@ interface Store {
     checkout: Checkout;
     currencyCode: string;
     abandonedCheckoutEnabled: boolean;
+    captureGeoAddressEnabled: boolean;
+    geoCapture: GeoCapture | null;
+    geoCoordinates: GeoCoordinates | null;
     showLoginPrompt: boolean;
     initialLineItems: LineItemData[];
     taxProtocol: TaxProtocol;

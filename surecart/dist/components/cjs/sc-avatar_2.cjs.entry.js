@@ -6,7 +6,7 @@ const index = require('./index-be4abba1.js');
 const index$2 = require('./index-7ced8198.js');
 const index$1 = require('./index-fb76df07.js');
 const store = require('./store-257cd191.js');
-const mutations = require('./mutations-edaa53ae.js');
+const mutations = require('./mutations-5b4c8c9d.js');
 const util = require('./util-a15c420c.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -35,12 +35,12 @@ const ScAvatar = class {
         this.hasError = false;
     }
     render() {
-        return (index.h("div", { key: 'c3ae175c3e5fab4e091775817968b6056b7570c2', part: "base", class: {
+        return (index.h("div", { key: '315283f0574a7050aa313b92458723361c5beca2', part: "base", class: {
                 'avatar': true,
                 'avatar--circle': this.shape === 'circle',
                 'avatar--rounded': this.shape === 'rounded',
                 'avatar--square': this.shape === 'square',
-            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: '68cf666d77b2eeff3f26c5da99bad503ece29c5a', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
+            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: '9fc4a7b3c907ba55bdebeb1ba0324314cbba9c61', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
     }
     static get watchers() { return {
         "image": ["handleImageChange"]
@@ -286,7 +286,7 @@ const ScCustomerLogin = class {
             } }, wp.i18n.__('Send new code', 'surecart')))), !isExpired && (!!this.error || !!this.codeError) && index.h("p", { class: "customer-code__error", role: "alert", innerHTML: this.error || this.codeError }), this.renderCodeFooter()));
     }
     render() {
-        return (index.h(index.Host, { key: '063b56e7f7f72752fa9eb1d71385451aa677b237' }, index.h("div", { key: '6b011ed5411cdd3002c8ffa70585a67c5aca3694', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
+        return (index.h(index.Host, { key: '1e6a26d892e26460c2afff27d95869a1fd57f0c0' }, index.h("div", { key: 'eacc2e046915fb36a52c0eaeebb2593e199b67ac', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
     }
     static get watchers() { return {
         "mode": ["handleModeChange"]

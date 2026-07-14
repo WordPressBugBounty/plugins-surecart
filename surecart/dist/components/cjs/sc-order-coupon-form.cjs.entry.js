@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const mutations = require('./mutations-edaa53ae.js');
+const mutations = require('./mutations-5b4c8c9d.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const getters = require('./getters-d68c08ed.js');
-const index$1 = require('./index-a583f78f.js');
+const index$1 = require('./index-f3f5230c.js');
 const index$2 = require('./index-fb76df07.js');
 require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
@@ -66,7 +66,7 @@ const ScOrderCouponForm = class {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         // Do any line items have a recurring price?
         const hasRecurring = (_c = (_b = (_a = mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.some(item => { var _a; return (_a = item === null || item === void 0 ? void 0 : item.price) === null || _a === void 0 ? void 0 : _a.recurring_interval; });
-        return (index.h("sc-coupon-form", { key: 'a6899ee676c036b0e1e8925f098eed882a2ebe32', ref: el => (this.couponForm = el), label: this.label || wp.i18n.__('Add Coupon Code', 'surecart'), collapsed: this.collapsed, placeholder: this.placeholder, loading: getters.formBusy() && !((_f = (_e = (_d = mutations.state.checkout) === null || _d === void 0 ? void 0 : _d.line_items) === null || _e === void 0 ? void 0 : _e.data) === null || _f === void 0 ? void 0 : _f.length), busy: getters.formBusy(), discount: (_g = mutations.state.checkout) === null || _g === void 0 ? void 0 : _g.discount, "discounts-display-amount": (_h = mutations.state.checkout) === null || _h === void 0 ? void 0 : _h.discounts_display_amount, currency: (_j = mutations.state.checkout) === null || _j === void 0 ? void 0 : _j.currency, "discount-amount": (_k = mutations.state.checkout) === null || _k === void 0 ? void 0 : _k.discount_amount, class: {
+        return (index.h("sc-coupon-form", { key: '9b23f7df1021bb18f491135fb7db821473cb5a9c', ref: el => (this.couponForm = el), label: this.label || wp.i18n.__('Add Coupon Code', 'surecart'), collapsed: this.collapsed, placeholder: this.placeholder, loading: getters.formBusy() && !((_f = (_e = (_d = mutations.state.checkout) === null || _d === void 0 ? void 0 : _d.line_items) === null || _e === void 0 ? void 0 : _e.data) === null || _f === void 0 ? void 0 : _f.length), busy: getters.formBusy(), discount: (_g = mutations.state.checkout) === null || _g === void 0 ? void 0 : _g.discount, "discounts-display-amount": (_h = mutations.state.checkout) === null || _h === void 0 ? void 0 : _h.discounts_display_amount, currency: (_j = mutations.state.checkout) === null || _j === void 0 ? void 0 : _j.currency, "discount-amount": (_k = mutations.state.checkout) === null || _k === void 0 ? void 0 : _k.discount_amount, class: {
                 'order-coupon-form--is-rtl': pageAlign.isRtl(),
             }, "button-text": this.buttonText || wp.i18n.__('Apply', 'surecart'), "show-interval": hasRecurring, onScApplyCoupon: e => this.handleCouponApply(e), error: this.error }));
     }

@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const index$1 = require('./index-fb76df07.js');
-const mutations = require('./mutations-edaa53ae.js');
+const mutations = require('./mutations-5b4c8c9d.js');
 const getters = require('./getters-d68c08ed.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
 require('./index-c3de642f.js');
@@ -102,10 +102,10 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (index.h("div", { key: '2e86017582637dc8f2936455580056a82622cc08', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), index.h("div", { key: '7d0431c7f8846567adeeaf47ca07faa8de783181', ref: el => (this.body = el), class: {
+        return (index.h("div", { key: '52f69d171b33f1d83e3935961cd3a1f00b316ac1', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), index.h("div", { key: '212d131e85cacdfd1662d7620646c0433cede16e', ref: el => (this.body = el), class: {
                 'summary__content': true,
                 'summary__content--empty': this.empty() && !getters.formBusy(),
-            } }, index.h("slot", { key: '4e6bfefa5a3d54f7bd11473c252c2c2778fa03d0' })), this.empty() && !getters.formBusy() && index.h("p", { key: 'f7b0916b5016e96e74ad602fd9fccd681a85d67a', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
+            } }, index.h("slot", { key: '5c5815099388adc67dc4f48f319fa3a6e31efa9a' })), this.empty() && !getters.formBusy() && index.h("p", { key: '6fa0040369b3a8d1ed834dcc82ece927597d83b9', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

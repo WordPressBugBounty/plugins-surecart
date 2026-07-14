@@ -36,6 +36,7 @@
 @media (max-width: 781px) {
   .sc-columns:not(.is-not-stacked-on-mobile) > sc-column {
     flex-basis: 100% !important;
+    max-width: 100%;
   }
 }
 @media (min-width: 782px) {

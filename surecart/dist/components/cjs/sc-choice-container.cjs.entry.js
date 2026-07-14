@@ -127,20 +127,20 @@ const ScChoiceContainer = class {
         }
     }
     render() {
-        return (index.h("div", { key: '8affbd34352f029b379be4b7bf40f44162d137c9', part: "base", class: {
+        return (index.h("div", { key: '0a1ec2cae76e1ce6ccdf38458228364608a55a89', part: "base", class: {
                 'choice': true,
                 'choice--checked': this.checked,
                 'choice--disabled': this.disabled,
                 'choice--focused': this.hasFocus,
                 'choice--is-rtl': pageAlign.isRtl(),
                 [`choice--size-${this.size}`]: true,
-            }, role: "radio", "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', onKeyDown: e => this.handleKeyDown(e) }, index.h("slot", { key: 'bb50f30e68964f537b02e887d996936049d6e16c', name: "header" }), index.h("div", { key: '997873e05428756f0ffad29a4f5cf2a36538b509', class: "choice__content", part: "content" }, index.h("span", { key: '61cf1746d494e26cb9d6a54a3930e4a10adab0f4', part: "control", class: {
+            }, role: "radio", "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', onKeyDown: e => this.handleKeyDown(e) }, index.h("slot", { key: '3e5594a78ca8f3c8c30e4557eee790ad22d30bd4', name: "header" }), index.h("div", { key: '040056e4b290300827332352336a7ff13d74bf89', class: "choice__content", part: "content" }, index.h("span", { key: 'bdb60c2e459df3b148581bcece693a155c35c0a3', part: "control", class: {
                 choice__control: true,
                 choice__checkbox: this.type === 'checkbox',
                 choice__radio: this.type === 'radio',
-            }, hidden: !this.showControl }, index.h("span", { key: 'ce7c23e0673f3da1178e6019599e1e429a91e24a', part: "checked-icon", class: "choice__icon" }, this.type === 'checkbox' ? (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(3.428571, 3.428571)" }, index.h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), index.h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" })))))) : (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { fill: "currentColor" }, index.h("circle", { cx: "8", cy: "8", r: "3.42857143" })))))), index.h("input", { key: '1ddc8f339ccf749c258a75041512061a0feb1c4c', id: this.inputId, ref: el => (this.input = el), type: this.type, name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', "aria-labelledby": this.labelId, tabindex: "0",
+            }, hidden: !this.showControl }, index.h("span", { key: 'ad924a1a25e334209915d68e435e601e5d22a976', part: "checked-icon", class: "choice__icon" }, this.type === 'checkbox' ? (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(3.428571, 3.428571)" }, index.h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), index.h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" })))))) : (index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" }, index.h("g", { fill: "currentColor" }, index.h("circle", { cx: "8", cy: "8", r: "3.42857143" })))))), index.h("input", { key: '6971741922673e4510302ae2f0ba33f7d47ca74d', id: this.inputId, ref: el => (this.input = el), type: this.type, name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, "aria-checked": this.checked ? 'true' : 'false', "aria-disabled": this.disabled ? 'true' : 'false', "aria-labelledby": this.labelId, tabindex: "0",
             // required={this.required}
-            onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus(), onChange: () => this.handleClickEvent(), role: this.role })), index.h("label", { key: '0a6b4e630fe5a9a50b49cdb4d59ece7966bf7eaf', part: "label", id: this.labelId, class: "choice__label" }, index.h("slot", { key: 'fbb1f4f621618ed7f672a0383cc24e250eaf1d6e' })))));
+            onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus(), onChange: () => this.handleClickEvent(), role: this.role })), index.h("label", { key: '1af4df9ee5dd06b70912b7731c41cacec28d1101', part: "label", id: this.labelId, class: "choice__label" }, index.h("slot", { key: '14f81d0b4103a2614921e2d156545024fb6f5df3' })))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

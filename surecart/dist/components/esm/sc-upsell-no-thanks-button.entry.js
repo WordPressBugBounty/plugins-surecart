@@ -23,7 +23,7 @@ const ScUpsellNoThanksButton = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h(Host, { key: '45f56651a3fd6e71987e29ff897052c8d6e3ce73', onClick: () => decline() }, h("slot", { key: '7aa60533d43072da3eb8c66e50bc730ccf32d7ac' })));
+        return (h(Host, { key: '80f1805f2768c82177f6d7e9a29f3e8310783f79', onClick: () => decline() }, h("slot", { key: '2369d436e4651a28b0a2da3c4eda4caa5feb392f' })));
     }
 };
 ScUpsellNoThanksButton.style = ScUpsellNoThanksButtonStyle0;

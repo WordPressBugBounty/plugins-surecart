@@ -155,11 +155,11 @@ const ScPopover = class {
         this.trigger.focus();
     }
     render() {
-        return (index.h("div", { key: 'bba4c420b3ff37f8e9cb415b3c1547421482adf1', part: "base", class: {
+        return (index.h("div", { key: '3b84db4c99c91df9db59e7194cf74e7bf379f105', part: "base", class: {
                 'popover': true,
                 'popover--open': this.open,
                 'popover--disabled': this.disabled,
-            } }, index.h("span", { key: 'f216b28ef38610f6b1ebb6cc0170fe7645708aec', part: "trigger", class: "popover__trigger", ref: el => (this.trigger = el), onClick: () => {
+            } }, index.h("span", { key: '70ac56c7ede3dc4d95cfdc378710625c7d481a1a', part: "trigger", class: "popover__trigger", ref: el => (this.trigger = el), onClick: () => {
                 if (this.disabled)
                     return;
                 if (this.open) {
@@ -170,7 +170,7 @@ const ScPopover = class {
                         this.show();
                     }, 0);
                 }
-            }, onKeyDown: e => this.handleTriggerKeyDown(e), tabindex: "0", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "dialog", "aria-label": wp.i18n.__('Press Enter to open popover', 'surecart') }, index.h("slot", { key: '84a280a01b8cff0b8ae657e10250a385a695f159', name: "trigger" })), index.h("div", { key: '2bc08860a57d7d539721fd1be1665bfade9f315b', class: "popover__positioner", ref: el => (this.positioner = el) }, index.h("div", { key: 'a294653d1f982a1edff51fc5098a91693406790e', part: "panel", class: "popover__panel", role: "dialog", "aria-modal": "false", tabindex: "-1", ref: el => (this.panel = el) }, index.h("div", { key: '04f6b3e5a409c09ea13a39b7a810a72022b3a8d3', class: "popover__header" }, index.h("slot", { key: 'c780632167459d821793402205bc9ca73e5dfce9', name: "title" }), index.h("button", { key: 'f5afb159d492ed68e7376d067a1256001fedc4cc', type: "button", class: "popover__header-close-button", onClick: () => this.handleHide(), onKeyDown: e => e.key === 'Enter' && this.handleHide(), "aria-label": wp.i18n.__('Close', 'surecart') }, index.h("sc-icon", { key: 'ebc25cef564fa9781cab515e623502ea61b4a1c7', class: "popover__header-close-icon", name: "x" }))), index.h("slot", { key: 'cf2b7907127ec3796abe9b72ab1115fb38a580b9', name: "content" }), index.h("div", { key: 'f98152e7b27b9fd1c0ef9b00e2f5d32219211e7c', class: "popover__footer" }, index.h("slot", { key: '5f4a7923849a429578f80f5336c4316f15a6a965', name: "footer" }))))));
+            }, onKeyDown: e => this.handleTriggerKeyDown(e), tabindex: "0", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "dialog", "aria-label": wp.i18n.__('Press Enter to open popover', 'surecart') }, index.h("slot", { key: '5602a4f09215a72f63d7b0d17ad379e6f025bef8', name: "trigger" })), index.h("div", { key: 'a53c35c68e49490486c23f891255e95bf8225ac8', class: "popover__positioner", ref: el => (this.positioner = el) }, index.h("div", { key: 'e0108f27681c5c2c74419aa5553c70e54f927699', part: "panel", class: "popover__panel", role: "dialog", "aria-modal": "false", tabindex: "-1", ref: el => (this.panel = el) }, index.h("div", { key: 'a6fe414cfb0cdf7f8f840470508b8a45802600bc', class: "popover__header" }, index.h("slot", { key: '92cd26d0e9d15a4732b77ae874c1c2d6ee113e4e', name: "title" }), index.h("button", { key: '420f6571eda27346e44661bfcc1f74b02645a564', type: "button", class: "popover__header-close-button", onClick: () => this.handleHide(), onKeyDown: e => e.key === 'Enter' && this.handleHide(), "aria-label": wp.i18n.__('Close', 'surecart') }, index.h("sc-icon", { key: '4ac0f236da945768b05f6fe46de30e665d2451e6', class: "popover__header-close-icon", name: "x" }))), index.h("slot", { key: '388e490728fc3347b0b34125aa7d5b0811f77258', name: "content" }), index.h("div", { key: '4ebea21ac2cdf935d83668d0d9d5d6d9eb0d5e89', class: "popover__footer" }, index.h("slot", { key: 'cb06409f279fe27f1cbba6ed0b8db895312f1230', name: "footer" }))))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

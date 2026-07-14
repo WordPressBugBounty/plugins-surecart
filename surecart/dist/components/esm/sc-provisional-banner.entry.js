@@ -10,9 +10,9 @@ const ScProvisionalBanner = class {
         this.expired = false;
     }
     render() {
-        return (h("div", { key: '3e7cf5d27b096b830440591193327332d9baaf17', class: { 'sc-banner': true } }, h("p", { key: '478791b29f0b5dfdaddd12cfb2511ea797adf4b0' }, this.expired
+        return (h("div", { key: '6c08f13e50e7e4c9228413a7e0caba83dcf80c8b', class: { 'sc-banner': true } }, h("p", { key: 'b7260a6f96247850aeed30c7620b540d5a37125e' }, this.expired
             ? wp.i18n.__('The setup window for your store has expired. Please contact support to complete your setup.', 'surecart')
-            : wp.i18n.__('Complete your store setup to go live.', 'surecart'), !this.expired && (h("a", { key: 'e184cf55bbdaa5ba9a822b69e90d015523176d6f', href: this.claimUrl, target: "_blank", rel: "noopener noreferrer" }, wp.i18n.__('Complete Setup', 'surecart'), " ", h("sc-icon", { key: '6d865aaab2c2055e7ba1eb5c8a8577df6efcba1d', name: "arrow-right" }))))));
+            : wp.i18n.__('Complete your store setup to go live.', 'surecart'), !this.expired && (h("a", { key: '9a33e8ab7ba083a778e4536d93455364f27896b9', href: this.claimUrl, target: "_blank", rel: "noopener noreferrer" }, wp.i18n.__('Complete Setup', 'surecart'), " ", h("sc-icon", { key: '8bd575c94da12b7a2b8e46e1ccc64e1344a8f9cb', name: "arrow-right" }))))));
     }
 };
 ScProvisionalBanner.style = ScProvisionalBannerStyle0;
