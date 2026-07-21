@@ -36,6 +36,11 @@ sc-choice-container {
 .price-choice__price {
   font-weight: var(--sc-price-choice-price-font-weight, var(--sc-font-weight-normal));
 }
+.price-choice__bundle-savings {
+  font-size: var(--sc-font-size-x-small);
+  font-weight: var(--sc-font-weight-semibold);
+  color: var(--sc-color-success-700, #15803d);
+}
 
 @container (max-width: 325px) {
   .price-choice {

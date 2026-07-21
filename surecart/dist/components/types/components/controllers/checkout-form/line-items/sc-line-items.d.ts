@@ -21,6 +21,11 @@ import { LineItem } from '../../../../types';
  * @part line-item__quantity-plus - The line item quantity plus
  * @part line-item__quantity-plus-icon - The line item quantity plus icon
  * @part line-item__quantity-input - The line item quantity input
+ * @part line-item__details - The collapsible details region (bundle components)
+ * @part line-item__details-component - A single bundle component row
+ * @part line-item__details-variant - The variant options within a bundle component row
+ * @part line-item__details-toggle - The details expand/collapse toggle button
+ * @part line-item__note - The line item note
  */
 export declare class ScLineItems {
     /**
@@ -31,6 +36,13 @@ export declare class ScLineItems {
      * Is the line item removable?
      */
     removable: boolean;
+    /**
+     * Show every bundle component (default), or only those with a selected
+     * variant when set to `false`.
+     */
+    showAllBundleItems: boolean;
+    /** Separator between a bundle component's name and its variant options. */
+    separator: string;
     /**
      * Is the line item editable?
      */

@@ -1,7 +1,7 @@
 import { r as registerInstance, h } from './index-25e5af33.js';
-import { c as convertLineItemsToLineItemData } from './index-1db2635f.js';
-import { c as createOrUpdateCheckout } from './index-4aa538b7.js';
-import { s as state, u as updateFormState, a as store } from './mutations-596ff451.js';
+import { c as convertLineItemsToLineItemData } from './index-17aac936.js';
+import { c as createOrUpdateCheckout } from './index-86fa6913.js';
+import { s as state, u as updateFormState, a as store } from './mutations-017e8c92.js';
 import './fetch-cdff67be.js';
 import './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
@@ -18,6 +18,7 @@ const query = {
     expand: [
         'line_items',
         'line_item.price',
+        'line_item.component_line_items',
         'price.product',
         'customer',
         'customer.shipping_address',
@@ -125,9 +126,9 @@ const ScCartForm = class {
         }));
     }
     render() {
-        return (h("sc-form", { key: '7520eac4e53e3ce0ff66a59e666cfd63084cf7d2', ref: el => (this.form = el), onScSubmit: () => {
+        return (h("sc-form", { key: '9f4a2ccb6c9a35109838c5f3ea0157a141d6e850', ref: el => (this.form = el), onScSubmit: () => {
                 this.addToCart();
-            } }, this.error && (h("sc-alert", { key: '4462fdd6c86f6ee8701c58706c1e72161cdcc0d6', open: !!this.error, type: "danger" }, h("span", { key: '65b2e9a851c8b73208550a9d48cfe0bc0e01dc11', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), h("slot", { key: '203c38679031ffa6a07f3705927fe643a52a4237' })));
+            } }, this.error && (h("sc-alert", { key: 'e25386d06f59c3377a495f40c52006771217dbfb', open: !!this.error, type: "danger" }, h("span", { key: '32fdb72ef49a9a34abc0f9b12e0c3b0e2244d142', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), h("slot", { key: '3cbfd139b9e1acc74ad33c30cd1e536357cfe407' })));
     }
 };
 ScCartForm.style = "sc-cart-form { display: inline-block }";

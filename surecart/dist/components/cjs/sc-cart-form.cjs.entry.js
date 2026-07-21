@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const index$1 = require('./index-3d000d76.js');
-const index$2 = require('./index-f3f5230c.js');
-const mutations = require('./mutations-5b4c8c9d.js');
+const index$1 = require('./index-f3933112.js');
+const index$2 = require('./index-92023a2d.js');
+const mutations = require('./mutations-927be23d.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
@@ -22,6 +22,7 @@ const query = {
     expand: [
         'line_items',
         'line_item.price',
+        'line_item.component_line_items',
         'price.product',
         'customer',
         'customer.shipping_address',
@@ -129,9 +130,9 @@ const ScCartForm = class {
         }));
     }
     render() {
-        return (index.h("sc-form", { key: '7520eac4e53e3ce0ff66a59e666cfd63084cf7d2', ref: el => (this.form = el), onScSubmit: () => {
+        return (index.h("sc-form", { key: '9f4a2ccb6c9a35109838c5f3ea0157a141d6e850', ref: el => (this.form = el), onScSubmit: () => {
                 this.addToCart();
-            } }, this.error && (index.h("sc-alert", { key: '4462fdd6c86f6ee8701c58706c1e72161cdcc0d6', open: !!this.error, type: "danger" }, index.h("span", { key: '65b2e9a851c8b73208550a9d48cfe0bc0e01dc11', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("slot", { key: '203c38679031ffa6a07f3705927fe643a52a4237' })));
+            } }, this.error && (index.h("sc-alert", { key: 'e25386d06f59c3377a495f40c52006771217dbfb', open: !!this.error, type: "danger" }, index.h("span", { key: '32fdb72ef49a9a34abc0f9b12e0c3b0e2244d142', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), index.h("slot", { key: '3cbfd139b9e1acc74ad33c30cd1e536357cfe407' })));
     }
 };
 ScCartForm.style = "sc-cart-form { display: inline-block }";

@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const index$1 = require('./index-f3f5230c.js');
-const store = require('./store-257cd191.js');
-const mutations = require('./mutations-5b4c8c9d.js');
+const index$1 = require('./index-92023a2d.js');
+const store = require('./store-9c215436.js');
+const mutations = require('./mutations-927be23d.js');
 const util = require('./util-a15c420c.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
@@ -86,7 +86,7 @@ const ScCustomerName = class {
         this.removeCheckoutListener();
     }
     render() {
-        return (index.h("sc-input", { key: 'cc206ddb5f8cc2c92c79a9741339e8b429d57ab6', type: "text", name: "name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
+        return (index.h("sc-input", { key: 'f6d19bcdd4a996df39442a3805f8d5bd1645e3a8', type: "text", name: "name", ref: el => (this.input = el), value: this.value, label: this.label, help: this.help, autocomplete: "name", placeholder: this.placeholder, readonly: this.readonly, required: this.required, invalid: this.invalid, autofocus: this.autofocus, hasFocus: this.hasFocus, onScChange: () => this.handleChange(), onScInput: () => this.scInput.emit(), onScFocus: () => this.scFocus.emit(), onScBlur: () => this.scBlur.emit(), ...(this.disabled && { disabled: true }) }));
     }
 };
 ScCustomerName.style = ScCustomerNameStyle0;

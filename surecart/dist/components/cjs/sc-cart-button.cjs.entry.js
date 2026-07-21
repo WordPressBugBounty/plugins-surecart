@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const mutations = require('./mutations-5b4c8c9d.js');
+const mutations = require('./mutations-927be23d.js');
 require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -54,12 +54,12 @@ const ScCartButton = class {
         this.link.style.display = !this.cartMenuAlwaysShown && !this.getItemsCount() ? 'none' : null;
     }
     render() {
-        return (index.h(index.Host, { key: '63e6ae38d0ddcd2a30c7aebc241e7866857b898b', tabindex: 0, role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Open Cart Menu Icon with %d items.', 'surecart'), this.getItemsCount()), onKeyDown: e => {
+        return (index.h(index.Host, { key: '4e610fc9c65a7693e1db849c0f1faca166d23e4f', tabindex: 0, role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Open Cart Menu Icon with %d items.', 'surecart'), this.getItemsCount()), onKeyDown: e => {
                 if ('Enter' === (e === null || e === void 0 ? void 0 : e.code) || 'Space' === (e === null || e === void 0 ? void 0 : e.code)) {
                     mutations.store.state.cart = { ...mutations.store.state.cart, open: !mutations.store.state.cart.open };
                     e.preventDefault();
                 }
-            } }, index.h("div", { key: 'f3276ecea2036c9a00a8cbc45e0da329980730df', class: "cart__button", part: "base" }, index.h("div", { key: '743d1e7f7b28904342d0e45793deb324ab7aa169', class: "cart__content" }, (this.showEmptyCount || !!this.getItemsCount()) && (index.h("span", { key: '81b3d913b106a280abeca82dc851c9a2532129d6', class: "cart__count", part: "count" }, this.getItemsCount())), index.h("div", { key: '6b6b60187a6a9c4eea3d5916d95374f58d1e1c8b', class: "cart__icon" }, index.h("slot", { key: '93d3986c027de5eb8bc46553f1d9c913281f79bd' }))))));
+            } }, index.h("div", { key: 'bbb7bab70b0a9b5fc91632425c868f4aba957aff', class: "cart__button", part: "base" }, index.h("div", { key: '80640d42812e56ae2599c95de82c087a76717266', class: "cart__content" }, (this.showEmptyCount || !!this.getItemsCount()) && (index.h("span", { key: '0f8cbbcbc701f48bc67e5a3581af1d7dfea0cb47', class: "cart__count", part: "count" }, this.getItemsCount())), index.h("div", { key: 'e430dd789c822c5c661c6c660ec3102e10c06d9d', class: "cart__icon" }, index.h("slot", { key: 'f7af649ff152bad7d389c3d42cb25c4ea527c37f' }))))));
     }
     get el() { return index.getElement(this); }
 };

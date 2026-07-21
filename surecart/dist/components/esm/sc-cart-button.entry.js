@@ -1,5 +1,5 @@
 import { r as registerInstance, h, H as Host, a as getElement } from './index-25e5af33.js';
-import { a as store, d as onChange, s as state } from './mutations-596ff451.js';
+import { a as store, d as onChange, s as state } from './mutations-017e8c92.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
@@ -50,12 +50,12 @@ const ScCartButton = class {
         this.link.style.display = !this.cartMenuAlwaysShown && !this.getItemsCount() ? 'none' : null;
     }
     render() {
-        return (h(Host, { key: '63e6ae38d0ddcd2a30c7aebc241e7866857b898b', tabindex: 0, role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Open Cart Menu Icon with %d items.', 'surecart'), this.getItemsCount()), onKeyDown: e => {
+        return (h(Host, { key: '4e610fc9c65a7693e1db849c0f1faca166d23e4f', tabindex: 0, role: "button", "aria-label": wp.i18n.sprintf(wp.i18n.__('Open Cart Menu Icon with %d items.', 'surecart'), this.getItemsCount()), onKeyDown: e => {
                 if ('Enter' === (e === null || e === void 0 ? void 0 : e.code) || 'Space' === (e === null || e === void 0 ? void 0 : e.code)) {
                     store.state.cart = { ...store.state.cart, open: !store.state.cart.open };
                     e.preventDefault();
                 }
-            } }, h("div", { key: 'f3276ecea2036c9a00a8cbc45e0da329980730df', class: "cart__button", part: "base" }, h("div", { key: '743d1e7f7b28904342d0e45793deb324ab7aa169', class: "cart__content" }, (this.showEmptyCount || !!this.getItemsCount()) && (h("span", { key: '81b3d913b106a280abeca82dc851c9a2532129d6', class: "cart__count", part: "count" }, this.getItemsCount())), h("div", { key: '6b6b60187a6a9c4eea3d5916d95374f58d1e1c8b', class: "cart__icon" }, h("slot", { key: '93d3986c027de5eb8bc46553f1d9c913281f79bd' }))))));
+            } }, h("div", { key: 'bbb7bab70b0a9b5fc91632425c868f4aba957aff', class: "cart__button", part: "base" }, h("div", { key: '80640d42812e56ae2599c95de82c087a76717266', class: "cart__content" }, (this.showEmptyCount || !!this.getItemsCount()) && (h("span", { key: '0f8cbbcbc701f48bc67e5a3581af1d7dfea0cb47', class: "cart__count", part: "count" }, this.getItemsCount())), h("div", { key: 'e430dd789c822c5c661c6c660ec3102e10c06d9d', class: "cart__icon" }, h("slot", { key: 'f7af649ff152bad7d389c3d42cb25c4ea527c37f' }))))));
     }
     get el() { return getElement(this); }
 };

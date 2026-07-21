@@ -5,13 +5,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 const pure = require('./pure-bd6f0a6e.js');
 const watchers = require('./watchers-517825ae.js');
-const mutations = require('./mutations-5b4c8c9d.js');
+const mutations = require('./mutations-927be23d.js');
 const store = require('./store-01e8edc2.js');
-require('./watchers-a34b8c3f.js');
-const getters = require('./getters-04caaa37.js');
+require('./watchers-dcd346b7.js');
+const getters = require('./getters-6818073e.js');
 const getters$1 = require('./getters-d68c08ed.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
-const getters$2 = require('./getters-0ad2f710.js');
+const getters$2 = require('./getters-a7cb114b.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
@@ -21,7 +21,7 @@ require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./price-da3cab3d.js');
 require('./util-a15c420c.js');
-require('./store-257cd191.js');
+require('./store-9c215436.js');
 require('./address-7404695f.js');
 
 const scStripePaymentElementCss = "sc-stripe-payment-element{display:block}sc-stripe-payment-element [hidden]{display:none}.loader{display:grid;height:128px;gap:2em}.loader__row{display:flex;align-items:flex-start;justify-content:space-between;gap:1em}.loader__details{display:grid;gap:0.5em}";
@@ -350,11 +350,11 @@ const ScStripePaymentElement = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'c441863c2bc48e22222598a2ca6d9559950efa46', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (index.h("sc-text", { key: 'e6e3aacb1bb9c0efb8e26d84b98582488241f16a', style: {
+        return (index.h("div", { key: 'c0016a393f1aa445b51da4a530b7edf698e563bf', class: "sc-stripe-payment-element", "data-testid": "stripe-payment-element" }, !!this.error && (index.h("sc-text", { key: 'c09a6e1d635731857dc31a5fc25ad04935a8913c', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginBottom': '0.5em',
-            } }, this.error)), index.h("div", { key: '32e2756603d4b4b340783ae6e7ac31cd1f05019a', class: "loader", hidden: this.loaded }, index.h("div", { key: 'a382645a34611e707fd4bbbe4e47688bb0dc47f3', class: "loader__row" }, index.h("div", { key: '61fc96654b03641d637d1662250d0b5309db0e56', style: { width: '50%' } }, index.h("sc-skeleton", { key: 'cd1686b94b587bd0c6fc2dedbb10e09009e6822f', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '6fca44631077730c329382e982970840d446dc5d' })), index.h("div", { key: '0a60ca4c45a4a7aa4a8f4c171c87b3b39bb2d3e1', style: { flex: '1' } }, index.h("sc-skeleton", { key: '43094013a19ea0192e858b70c12707c32c01697a', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '65319d776a8152e9c59fbde83a9b7e92367ecb18' })), index.h("div", { key: 'cbae7d5a06a9c4adcb07cd6e5585c90d8464898f', style: { flex: '1' } }, index.h("sc-skeleton", { key: 'f7a1c79f9e93bef7e8eb67ff9709d239caa621e6', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '825b76c6a3d4be11b532f59b9dd02fbe70b98572' }))), index.h("div", { key: '928eb3a1b4bb4435da5e1027c1184ad84ecd83ce', class: "loader__details" }, index.h("sc-skeleton", { key: '4301cffb62caad6c3faad1b1524a3f54e6820bdf', style: { height: '1rem' } }), index.h("sc-skeleton", { key: '60d670d8c9510302206d2802ea2e7b8bbbdf297b', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: '5b569cacf0e4b1c1a6d6dfda77d34e756eb3e48e', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
+            } }, this.error)), index.h("div", { key: '57a220e93ee306dc86fc6df7bab71bd346f66783', class: "loader", hidden: this.loaded }, index.h("div", { key: 'afd6786da88edbf811a375090e4df66ca98846be', class: "loader__row" }, index.h("div", { key: 'a862e3f18cda04a3c1f1ea7bb075288945099c31', style: { width: '50%' } }, index.h("sc-skeleton", { key: '61aa058d7abed5538cca62c6db05c76fa1254f67', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '0295966e246a0cd057a3ff94188408051bef066a' })), index.h("div", { key: 'b22e9fc235cb89d749403ba43b4da200af7d82f9', style: { flex: '1' } }, index.h("sc-skeleton", { key: '5268d2c1f509a430822806a2d454f1d7d0397674', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: '470436ac76f63fa7b5c7120776642f4d8d2a1633' })), index.h("div", { key: 'aa3e3a12bb063778c0fe5b8335125c929ba1634c', style: { flex: '1' } }, index.h("sc-skeleton", { key: '5a11fdc0424cec4f5c0ceb8c0f232b7736e51662', style: { width: '50%', marginBottom: '0.5em' } }), index.h("sc-skeleton", { key: 'ee169a25cc29f740f26c70afa227c30a23564ed0' }))), index.h("div", { key: '6b6b2038705990671d39c2b79673a9b41a8a3046', class: "loader__details" }, index.h("sc-skeleton", { key: 'f23185d310d18cfb008de7d8323b79f600faa599', style: { height: '1rem' } }), index.h("sc-skeleton", { key: '93d333bf62b776b455bc18919150ca005d891dcc', style: { height: '1rem', width: '30%' } }))), index.h("div", { key: 'ebda57e66939b559a2d8e647bc89c04028c6c037', hidden: !this.loaded, class: "sc-payment-element-container", ref: el => (this.container = el) })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

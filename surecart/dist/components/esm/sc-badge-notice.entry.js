@@ -11,7 +11,7 @@ const ScBadgeNotice = class {
         this.size = 'small';
     }
     render() {
-        return (h("div", { key: '33126c15dbcefc5a6db15028951cfdadd47363a0', class: {
+        return (h("div", { key: '4d8b011e9eed0327bf293610242392b946721b8d', class: {
                 'notice': true,
                 'notice--is-small': this.size === 'small',
                 'notice--is-medium': this.size === 'medium',
@@ -21,7 +21,7 @@ const ScBadgeNotice = class {
                 'notice--warning': this.type === 'warning',
                 'notice--danger': this.type === 'danger',
                 'notice--default': this.type === 'default',
-            } }, h("sc-tag", { key: '6eda5e341ad04fd762ea637191f60ce4a5cc8619', size: this.size, type: this.type }, this.label), h("slot", { key: '31e5d825af91ef25ce46457d056dedd474e1cb4b' })));
+            } }, h("sc-tag", { key: 'f2b1ceb72ad578affeb1923e3bda1911b9fee718', size: this.size, type: this.type }, this.label), h("slot", { key: '3df77500a033e22506f24b776638795667c2f5d9' })));
     }
 };
 ScBadgeNotice.style = ScBadgeNoticeStyle0;

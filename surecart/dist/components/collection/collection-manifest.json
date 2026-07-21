@@ -46,6 +46,7 @@
     "components/controllers/checkout-form/product-donation-custom-amount/sc-product-donation-custom-amount.js",
     "components/controllers/checkout-form/sc-checkout-mollie-payment/sc-checkout-mollie-payment.js",
     "components/controllers/checkout-form/sc-checkout-paystack-payment-provider/sc-checkout-paystack-payment-provider.js",
+    "components/controllers/checkout-form/sc-checkout-product-bundle-component-variants/sc-checkout-product-bundle-component-variants.js",
     "components/controllers/checkout-form/sc-checkout-product-price-variant-selector/sc-checkout-product-price-variant-selector.js",
     "components/controllers/checkout-form/sc-checkout-razorpay-payment-provider/sc-checkout-razorpay-payment-provider.js",
     "components/controllers/checkout-form/sc-conditional-form/sc-conditional-form.js",

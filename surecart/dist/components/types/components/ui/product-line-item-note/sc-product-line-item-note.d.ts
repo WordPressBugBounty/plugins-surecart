@@ -1,3 +1,6 @@
+/**
+ * @part base - The note container
+ */
 export declare class ScProductLineItemNote {
     el: HTMLElement;
     note: string;

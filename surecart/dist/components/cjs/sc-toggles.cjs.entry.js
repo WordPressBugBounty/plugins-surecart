@@ -40,7 +40,7 @@ const ScToggles = class {
     }
     render() {
         const Tag = 'container' === this.theme ? 'sc-card' : 'div';
-        return (index.h(Tag, { key: '0ca1c6e02bfc5b8797ab23c25964972b3b3630eb', class: { toggles: true, [`toggles--theme-${this.theme}`]: true }, part: "base", "no-padding": true }, index.h("slot", { key: 'd36d022155c698474b550a4c94190be07a406c6b' })));
+        return (index.h(Tag, { key: '7536b7318df242ac6c775c32cb8f9e4a70511d1a', class: { toggles: true, [`toggles--theme-${this.theme}`]: true }, part: "base", "no-padding": true }, index.h("slot", { key: 'f8a0cbe04e66ba56f0a98e28a61e8a7810c24957' })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

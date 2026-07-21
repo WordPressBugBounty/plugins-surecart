@@ -5,10 +5,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 const index$3 = require('./index-fb76df07.js');
 const index$2 = require('./index-7ced8198.js');
-const index$1 = require('./index-f3f5230c.js');
+const index$1 = require('./index-92023a2d.js');
 const util = require('./util-a15c420c.js');
-const store = require('./store-257cd191.js');
-const mutations = require('./mutations-5b4c8c9d.js');
+const verification = require('./verification-19455819.js');
+const store = require('./store-9c215436.js');
+const mutations = require('./mutations-927be23d.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./fetch-5e8dc1d5.js');
@@ -90,7 +91,7 @@ const ScCustomerEmail = class {
             this.busy = true;
             this.error = '';
             this.loginMode = 'code';
-            await index$2.apiFetch({
+            const response = await index$2.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/verification_codes',
                 data: {
@@ -100,7 +101,17 @@ const ScCustomerEmail = class {
             });
             store.state.email = this.value;
             store.state.verificationStatus = store.CODE_SENT;
-            index$3.speak(wp.i18n.__('Verification code is sent to your email. Please check your email.', 'surecart'), 'assertive');
+            // Anchor the resend cooldown to the platform's window (may be a resumed
+            // one when no fresh email was sent), so reload/tab switch stay accurate.
+            // Falls back to the default window if the platform omits the value.
+            store.state.resendAvailableAt = verification.resendAnchorFrom(response === null || response === void 0 ? void 0 : response.resend_available_in);
+            // An in-window request resumes the existing code — don't announce a new email.
+            if ((response === null || response === void 0 ? void 0 : response.email_sent) === false) {
+                index$3.speak(wp.i18n.__('A verification code was already sent to your email. Please check your email.', 'surecart'), 'assertive');
+            }
+            else {
+                index$3.speak(wp.i18n.__('Verification code is sent to your email. Please check your email.', 'surecart'), 'assertive');
+            }
         }
         catch (e) {
             this.handleCodeSendError(e);
@@ -155,11 +166,15 @@ const ScCustomerEmail = class {
             this.loginMode = 'password';
             return;
         }
+        const blockedSeconds = verification.getBlockedDuplicateSeconds(error);
         ((error === null || error === void 0 ? void 0 : error.additional_errors) || []).forEach((e) => {
             var _a;
             if ((e === null || e === void 0 ? void 0 : e.code) === 'verification_code.email.blocked_duplicate') {
                 store.state.email = ((_a = this.input) === null || _a === void 0 ? void 0 : _a.value) || '';
                 store.state.verificationStatus = store.CODE_SENT;
+                // Resume the countdown from the platform's reported backoff window
+                // (default window if the platform didn't include seconds).
+                store.state.resendAvailableAt = verification.resendAnchorFrom(blockedSeconds);
             }
             else {
                 this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Verification code is not valid. Please try again.', 'surecart');

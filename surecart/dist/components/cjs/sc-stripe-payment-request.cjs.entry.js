@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const pure = require('./pure-bd6f0a6e.js');
-const mutations = require('./mutations-5b4c8c9d.js');
-const index$1 = require('./index-f3f5230c.js');
+const mutations = require('./mutations-927be23d.js');
+const index$1 = require('./index-92023a2d.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
 const consumer = require('./consumer-b58230e6.js');
 require('./index-c3de642f.js');
@@ -298,7 +298,7 @@ const ScStripePaymentRequest = class {
         this.removeCheckoutListener();
     }
     render() {
-        return (index.h("div", { key: 'aecf4f61a3e2b7203c041aae790ede1d4742b208', class: { 'request': true, 'request--loaded': this.loaded } }, this.debug && this.debugError && (index.h("div", { key: 'f490ff7801e63605e4fc98a343866b615640fca1' }, index.h("slot", { key: 'e48ac5cb62c3cd7598143584941828e483309e93', name: "debug-fallback" }), index.h("sc-alert", { key: '9020c5607c927e5cce4f0d0e5333c4123cf53128', type: "info", open: true }, index.h("span", { key: '278287fe17ddb91209f07ee459eab6517cae706a', slot: "title" }, wp.i18n.__('Express Payment', 'surecart')), this.debugError))), index.h("div", { key: '9fdf5d0f4bd1744f9d3de8441d8425eca3625d50', class: "sc-payment-request-button", part: "button", ref: el => (this.request = el) })));
+        return (index.h("div", { key: '9f29630a1a8b7625d672d5033485d748452e9b60', class: { 'request': true, 'request--loaded': this.loaded } }, this.debug && this.debugError && (index.h("div", { key: '3a3666278b55cdd431e03db7e6bfec90b27eeabc' }, index.h("slot", { key: '14736b120870b919215565e81d951b727f1c5771', name: "debug-fallback" }), index.h("sc-alert", { key: '8f6367c78bf6f729c5358eb7ac8c2a7a9dd2c96a', type: "info", open: true }, index.h("span", { key: 'a7eab183f1670523e5a1a9b3772786398aad4ca9', slot: "title" }, wp.i18n.__('Express Payment', 'surecart')), this.debugError))), index.h("div", { key: 'd24cf916a8d4d82ad96eeec37d2fb2ae1fabe70f', class: "sc-payment-request-button", part: "button", ref: el => (this.request = el) })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

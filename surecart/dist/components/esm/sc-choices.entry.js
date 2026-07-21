@@ -48,7 +48,7 @@ const ScChoices = class {
         }
     }
     render() {
-        return (h("fieldset", { key: 'f35d9190a8e7d658a318605dbb6cbda3d85c9bc5', part: "base", class: {
+        return (h("fieldset", { key: '128a599bbe24c04f72316f353c0de046c0039f34', part: "base", class: {
                 'choices': true,
                 'choices--hide-label': this.hideLabel,
                 'choices--auto-width': this.autoWidth,
@@ -56,7 +56,7 @@ const ScChoices = class {
                 'breakpoint-md': this.width >= 384 && this.width < 576,
                 'breakpoint-lg': this.width >= 576 && this.width < 768,
                 'breakpoint-xl': this.width >= 768,
-            }, role: "radiogroup" }, h("sc-form-control", { key: '2a8ba209d969ee25aadc5146f7cdf6db6d8f3e53', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId }, h("div", { key: '5f382ea8bfa6596a6b8ddaab1ad1b33fe7294ffb', part: "choices", class: "choices__items" }, h("slot", { key: '1e96e0db5b8a0e7a0854ca50ba9b6907e5bf6f91' })))));
+            }, role: "radiogroup" }, h("sc-form-control", { key: 'd2711a641ec321db0931cbcbd9eb20855b589996', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId }, h("div", { key: 'dd364dc48d0ac135f31cb8551a509ab75b4aebc5', part: "choices", class: "choices__items" }, h("slot", { key: '7938baa45225376913707139d6df582516ec55ec' })))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

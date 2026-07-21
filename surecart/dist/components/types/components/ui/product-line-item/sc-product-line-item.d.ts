@@ -1,5 +1,5 @@
 import { EventEmitter } from '../../../stencil-public-runtime';
-import { Fee, ImageAttributes } from '../../../types';
+import { Fee, ImageAttributes, LineItem } from '../../../types';
 /**
  * @part base - The component base
  * @part product-line-item - The product line item
@@ -20,6 +20,11 @@ import { Fee, ImageAttributes } from '../../../types';
  * @part quantity__plus-icon - The product quantity plus icon
  * @part quantity__input - The product quantity input
  * @part line-item__price-description - The line item price description
+ * @part details - The collapsible details region (bundle components + note)
+ * @part details__toggle - The details expand/collapse toggle button
+ * @part details__component - A single bundle component row
+ * @part details__variant - The variant options within a bundle component row
+ * @part note - The line item note
  */
 export declare class ScProductLineItem {
     el: HTMLScProductLineItemElement;
@@ -61,9 +66,30 @@ export declare class ScProductLineItem {
     note: string;
     /** The review button link. If set, a review button will be shown linking to this URL. */
     reviewButtonLink: string;
+    /**
+     * Bundle component line items, rendered as a read-only nested list under
+     * the main row when this line item is a bundle parent.
+     */
+    bundleComponents: LineItem[];
+    /**
+     * Show every bundle component (default), or only those with a selected
+     * variant when set to `false`.
+     */
+    showAllBundleItems: boolean;
+    /** Separator between a bundle component's name and its variant options. */
+    separator: string;
     /** Emitted when the quantity changes. */
     scUpdateQuantity: EventEmitter<number>;
     /** Emitted when the quantity changes. */
     scRemove: EventEmitter<void>;
+    /** Collapse the bundle-items details region to the first two lines by default (matches the cart block). */
+    detailsExpanded: boolean;
+    toggleDetails(): void;
+    /**
+     * Bundle items render in a single collapsible region. Collapsed, only the
+     * first `COLLAPSE_AFTER` rows show; bundle components render one row each, so
+     * the hidden count is exact ("+N more").
+     */
+    renderDetails(): any;
     render(): any;
 }

@@ -1,15 +1,16 @@
 import { r as registerInstance, h, H as Host, c as createEvent, a as getElement } from './index-25e5af33.js';
-import { o as onChange$1, s as state$1, u as updateFormState } from './mutations-596ff451.js';
-import { l as lockCheckout, b as unLockCheckout, c as clearCheckout } from './mutations-636921ce.js';
-import { o as onChange, s as state } from './store-02394e82.js';
-import { c as createOrUpdateCheckout, d as updateCheckout, e as expand, f as finalizeCheckout, g as fetchCheckout, h as createCheckout } from './index-4aa538b7.js';
+import { o as onChange$1, s as state$1, u as updateFormState } from './mutations-017e8c92.js';
+import { l as lockCheckout, b as unLockCheckout, c as clearCheckout } from './mutations-96351e28.js';
+import { o as onChange, s as state } from './store-ac90a769.js';
+import { c as createOrUpdateCheckout, d as updateCheckout, e as expand, f as finalizeCheckout, g as fetchCheckout, h as createCheckout } from './index-86fa6913.js';
 import { g as getCurrentCustomer, h as hasAddressData, i as isAddressEmpty } from './index-d602bc13.js';
 import { g as getGeoPermissionDefaults } from './geo-permission-62aea8ee.js';
 import { c as currentFormState } from './getters-4bb6cc1b.js';
-import './watchers-fb5eec9b.js';
-import { s as state$2, f as getAvailableProcessor } from './getters-4b4a9eb5.js';
+import { d as getPerBundleQuantity } from './index-17aac936.js';
+import './watchers-ba73ceab.js';
+import { s as state$2, f as getAvailableProcessor } from './getters-80f582ec.js';
 import { s as state$3 } from './watchers-c7bbc6b2.js';
-import { s as shippingAddressRequired, f as fullShippingAddressRequired } from './getters-92cbd197.js';
+import { s as shippingAddressRequired, f as fullShippingAddressRequired } from './getters-8ecca822.js';
 import { v, c as checkoutMachine, s as state$4 } from './store-b1758b00.js';
 import './fetch-cdff67be.js';
 import { a as apiFetch } from './index-824c562b.js';
@@ -102,7 +103,7 @@ const ScCheckoutAutofillProvider = class {
         }
     }
     render() {
-        return (h(Host, { key: 'be91cd9b8129daafff404073409e9f204096a60b' }, h("slot", { key: '0558dc7baec1bc07ca9b5de714e1576b9312d6f5' })));
+        return (h(Host, { key: '9c330e8ab3d753d44009663266b94c7f07492230' }, h("slot", { key: '408db421d26ecaa8df18c8d2ac7c1ac9be170a23' })));
     }
 };
 
@@ -246,6 +247,141 @@ const ScCheckoutGeoPermission = class {
 };
 ScCheckoutGeoPermission.style = ScCheckoutGeoPermissionStyle0;
 
+/**
+ * Reconstruct a bundle's `bundle_component_variants` map from its component
+ * line items (componentProductId -> variantId).
+ *
+ * The platform treats `bundle_component_variants` on the parent as write-only:
+ * it's accepted on create/update but reads back empty, so the live selection
+ * has to be derived from each component line item's chosen variant. Any update
+ * that re-posts the map (e.g. a stock swap) must rebuild the *full* map this way
+ * — seeding from the empty parent field drops the other components and trips the
+ * platform's "selection required" validation.
+ */
+const getBundleComponentVariants = (parentId, lineItems = []) => {
+    const map = {};
+    (lineItems || []).forEach(item => {
+        var _a, _b, _c;
+        if ((item === null || item === void 0 ? void 0 : item.bundle_line_item) !== parentId)
+            return;
+        const productId = (_b = (_a = item === null || item === void 0 ? void 0 : item.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.id;
+        const variantId = (_c = item === null || item === void 0 ? void 0 : item.variant) === null || _c === void 0 ? void 0 : _c.id;
+        if (productId && variantId)
+            map[productId] = variantId;
+    });
+    return map;
+};
+/** Available stock for a line item (variant takes precedence over product). */
+const getAvailableStock = (lineItem) => {
+    var _a, _b, _c;
+    const product = (_a = lineItem === null || lineItem === void 0 ? void 0 : lineItem.price) === null || _a === void 0 ? void 0 : _a.product;
+    const stock = ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? (_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock : product === null || product === void 0 ? void 0 : product.available_stock;
+    return Math.max(Number(stock) || 0, 0);
+};
+/** Out-of-stock line items (standalone items and bundle components). */
+const getOutOfStockLineItems = (lineItems = []) => (lineItems || []).filter(lineItem => (lineItem === null || lineItem === void 0 ? void 0 : lineItem.purchasable_status) === 'out_of_stock' && getAvailableStock(lineItem) < lineItem.quantity);
+/**
+ * A bundle is atomic, so a short component caps the bundle, not the component:
+ * floor(stock / perBundleQty), smallest cap across components. Returns a map of
+ * bundle parent id -> reduced quantity.
+ *
+ * `swappedProductsByParent` lists component products being swapped to an in-stock
+ * variant — those are skipped so they don't cap a bundle they no longer limit.
+ */
+const getBundleQuantityReductions = (lineItems = [], swappedProductsByParent = new Map()) => {
+    const reductions = new Map();
+    getOutOfStockLineItems(lineItems).forEach(component => {
+        var _a, _b, _c, _d;
+        if (!component.component_line_item || !component.bundle_line_item)
+            return;
+        const parent = (lineItems || []).find(li => li.id === component.bundle_line_item);
+        if (!(parent === null || parent === void 0 ? void 0 : parent.id))
+            return;
+        // Skip a component that's being swapped — its old stock no longer caps the bundle.
+        const productId = (_b = (_a = component.price) === null || _a === void 0 ? void 0 : _a.product) === null || _b === void 0 ? void 0 : _b.id;
+        if (productId && ((_c = swappedProductsByParent.get(parent.id)) === null || _c === void 0 ? void 0 : _c.has(productId)))
+            return;
+        const perBundle = getPerBundleQuantity(component, parent.quantity);
+        const maxBundles = Math.floor(getAvailableStock(component) / perBundle);
+        const current = (_d = reductions.get(parent.id)) !== null && _d !== void 0 ? _d : parent.quantity;
+        reductions.set(parent.id, Math.max(Math.min(current, maxBundles), 0));
+    });
+    return reductions;
+};
+/**
+ * Payload to fix a stock alert. Posts parents only (components derive from the
+ * parent): bundles drop to their reduced quantity, standalone items to available
+ * stock. A swapped component is excluded from its bundle's cap, so any *other*
+ * short component still reduces the bundle correctly.
+ */
+const buildStockAdjustedLineItems = (lineItems = [], bundleVariantOverrides = new Map()) => {
+    // Component products being swapped, keyed by bundle parent.
+    const swappedProductsByParent = new Map(Array.from(bundleVariantOverrides, ([parentId, map]) => [parentId, new Set(Object.keys(map))]));
+    const reductions = getBundleQuantityReductions(lineItems, swappedProductsByParent);
+    const standalone = new Map();
+    getOutOfStockLineItems(lineItems).forEach(lineItem => {
+        if (lineItem.component_line_item || !lineItem.id)
+            return;
+        standalone.set(lineItem.id, getAvailableStock(lineItem));
+    });
+    return (lineItems || [])
+        .filter(lineItem => !lineItem.component_line_item)
+        .map(lineItem => {
+        var _a, _b, _c, _d;
+        const id = lineItem.id;
+        const hasSwap = !!id && bundleVariantOverrides.has(id);
+        let quantity = lineItem.quantity;
+        if (id && reductions.has(id))
+            quantity = (_a = reductions.get(id)) !== null && _a !== void 0 ? _a : quantity;
+        else if (id && standalone.has(id))
+            quantity = (_b = standalone.get(id)) !== null && _b !== void 0 ? _b : quantity;
+        return {
+            id,
+            price_id: (_c = lineItem.price) === null || _c === void 0 ? void 0 : _c.id,
+            quantity,
+            ...(((_d = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _d === void 0 ? void 0 : _d.id) ? { variant: lineItem.variant.id } : {}),
+            ...(id && hasSwap ? { bundle_component_variants: bundleVariantOverrides.get(id) } : {}),
+        };
+    });
+};
+/**
+ * Rows for the stock alert dialog. Bundle components roll up into a single
+ * parent row (the bundle quantity is what changes); standalone items show
+ * themselves.
+ */
+const buildStockAlertRows = (lineItems = []) => {
+    const reductions = getBundleQuantityReductions(lineItems);
+    const seenParents = new Set();
+    const rows = [];
+    getOutOfStockLineItems(lineItems).forEach(lineItem => {
+        var _a, _b, _c;
+        if (lineItem.component_line_item && lineItem.bundle_line_item) {
+            const parent = (lineItems || []).find(li => li.id === lineItem.bundle_line_item);
+            if (!(parent === null || parent === void 0 ? void 0 : parent.id) || seenParents.has(parent.id))
+                return;
+            seenParents.add(parent.id);
+            const product = (_a = parent.price) === null || _a === void 0 ? void 0 : _a.product;
+            rows.push({
+                name: product === null || product === void 0 ? void 0 : product.name,
+                variant: parent === null || parent === void 0 ? void 0 : parent.variant_display_options,
+                image: parent === null || parent === void 0 ? void 0 : parent.image,
+                from: parent.quantity,
+                to: Math.max((_b = reductions.get(parent.id)) !== null && _b !== void 0 ? _b : parent.quantity, 0),
+            });
+            return;
+        }
+        const product = (_c = lineItem.price) === null || _c === void 0 ? void 0 : _c.product;
+        rows.push({
+            name: product === null || product === void 0 ? void 0 : product.name,
+            variant: lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant_display_options,
+            image: lineItem === null || lineItem === void 0 ? void 0 : lineItem.image,
+            from: lineItem.quantity,
+            to: getAvailableStock(lineItem),
+        });
+    });
+    return rows;
+};
+
 const scCheckoutStockAlertCss = ":host{display:block}sc-table{height:auto}h4{display:block;margin:0;font-weight:var(--sc-font-weight-bold);font-size:var(--sc-font-size-medium)}.stock-alert{--body-spacing:var(--sc-spacing-x-large);--width:500px}.stock-alert__image{width:50px;height:50px;object-fit:cover;margin-right:10px;display:block}.stock-alert__product-info{display:flex;flex-direction:column;gap:var(--sc-spacing-xx-small)}.stock-alert__variant{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small)}.stock-alert__quantity{color:var(--sc-color-gray-500);font-weight:var(--sc-font-weight-bold);display:flex;align-items:center;justify-content:flex-end;gap:var(--sc-spacing-xx-small)}";
 const ScCheckoutStockAlertStyle0 = scCheckoutStockAlertCss;
 
@@ -257,95 +393,94 @@ const ScCheckoutStockAlert = class {
         this.busy = undefined;
         this.error = undefined;
     }
-    /** Get the out of stock line items. */
-    getOutOfStockLineItems() {
+    /** Current checkout line items. */
+    get lineItems() {
         var _a, _b;
-        return (((_b = (_a = state$1.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).filter(lineItem => {
-            var _a, _b, _c;
-            const product = (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.product;
-            // this item is not out of stock, don't include it.
-            if ((lineItem === null || lineItem === void 0 ? void 0 : lineItem.purchasable_status) !== 'out_of_stock')
-                return false;
-            // check the variant stock.
-            if ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) {
-                return ((_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock) < lineItem.quantity;
-            }
-            return (product === null || product === void 0 ? void 0 : product.available_stock) < lineItem.quantity;
-        });
+        return ((_b = (_a = state$1.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || [];
     }
     /**
-     * Build line items with adjusted quantities for out-of-stock items.
+     * Update the checkout to the max available stock.
      *
-     * Returns all line items, with out-of-stock items adjusted to max available stock.
-     */
-    getStockAdjustedLineItems() {
-        var _a, _b;
-        // Get the IDs of out-of-stock line items and their adjusted quantities.
-        const outOfStockItemsMap = new Map();
-        this.getOutOfStockLineItems().forEach(lineItem => {
-            var _a, _b, _c;
-            const product = (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.product;
-            const adjustedQuantity = ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? Math.max(((_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock) || 0, 0) : Math.max((product === null || product === void 0 ? void 0 : product.available_stock) || 0, 0);
-            outOfStockItemsMap.set(lineItem.id, adjustedQuantity);
-        });
-        // Build the complete line items array with all items, adjusting only the out-of-stock ones.
-        return (((_b = (_a = state$1.checkout) === null || _a === void 0 ? void 0 : _a.line_items) === null || _b === void 0 ? void 0 : _b.data) || []).map(lineItem => {
-            var _a, _b;
-            const adjustedQuantity = outOfStockItemsMap.get(lineItem.id);
-            return {
-                id: lineItem.id,
-                price_id: (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.id,
-                quantity: adjustedQuantity !== undefined ? adjustedQuantity : lineItem.quantity,
-                ...(((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? { variant: lineItem.variant.id } : {}),
-            };
-        });
-    }
-    /**
-     * Update the checkout line items stock to the max available.
+     * Bundle shortages reduce the whole bundle quantity (a bundle is atomic). A
+     * bundle that can't make even one unit (reduced to 0) is first rescued by
+     * swapping a gone variant to an in-stock sibling when one exists; otherwise
+     * the unfulfillable bundle is dropped from the cart, matching the "→ 0" the
+     * dialog already shows.
      */
     async onSubmit() {
+        let attemptedBundleSwap = false;
         try {
             this.busy = true;
+            this.error = null;
+            const items = this.lineItems;
+            const reductions = getBundleQuantityReductions(items);
+            // Only bundles reduced to 0 need rescuing — try swapping the gone
+            // variant to an in-stock sibling so we don't drop a recoverable bundle.
+            // If no swap exists the bundle stays at 0 and is removed below.
+            const parentOverrides = new Map();
+            getOutOfStockLineItems(items).forEach(oos => {
+                var _a, _b, _c;
+                if (!oos.component_line_item || !oos.bundle_line_item)
+                    return;
+                const parent = items.find(li => li.id === oos.bundle_line_item);
+                if (!(parent === null || parent === void 0 ? void 0 : parent.id) || ((_a = reductions.get(parent.id)) !== null && _a !== void 0 ? _a : 0) >= 1)
+                    return;
+                const product = (_b = oos.price) === null || _b === void 0 ? void 0 : _b.product;
+                if (!(product === null || product === void 0 ? void 0 : product.id))
+                    return;
+                const swap = (((_c = product === null || product === void 0 ? void 0 : product.variants) === null || _c === void 0 ? void 0 : _c.data) || []).find(v => { var _a, _b; return v.id !== ((_a = oos.variant) === null || _a === void 0 ? void 0 : _a.id) && ((_b = v.available_stock) !== null && _b !== void 0 ? _b : 0) > 0; });
+                if (!(swap === null || swap === void 0 ? void 0 : swap.id))
+                    return;
+                // Rebuild the full selection from the component line items (the parent
+                // field reads back empty), then swap the gone variant — posting only the
+                // swapped component would fail the platform's per-component requirement.
+                const map = parentOverrides.get(parent.id) || getBundleComponentVariants(parent.id, items);
+                map[product.id] = swap.id;
+                parentOverrides.set(parent.id, map);
+            });
+            attemptedBundleSwap = parentOverrides.size > 0;
+            // Bundles still capped at 0 (no in-stock swap) fall to quantity 0 and are
+            // filtered out here — the unfulfillable bundle is simply removed.
+            const lineItems = buildStockAdjustedLineItems(items, parentOverrides).filter(lineItem => !!lineItem.quantity);
             state$1.checkout = (await updateCheckout({
                 id: state$1.checkout.id,
-                data: {
-                    line_items: this.getStockAdjustedLineItems().filter(lineItem => !!lineItem.quantity),
-                },
+                data: { line_items: lineItems },
             }));
         }
         catch (error) {
-            const additionalErrors = ((error === null || error === void 0 ? void 0 : error.additional_errors) || []).map(error => error === null || error === void 0 ? void 0 : error.message).filter(n => n);
-            this.error = `${(error === null || error === void 0 ? void 0 : error.message) || wp.i18n.__('Something went wrong.', 'surecart')} ${(additionalErrors === null || additionalErrors === void 0 ? void 0 : additionalErrors.length) && ` ${additionalErrors.join('. ')}`}`;
+            // A rejected bundle swap surfaces as a generic 500 — show an actionable
+            // message so the shopper can remove the item or pick another bundle.
+            if (attemptedBundleSwap) {
+                this.error = wp.i18n.__('We could not automatically update an out-of-stock bundle item. Please remove it or choose a different bundle.', 'surecart');
+            }
+            else {
+                // Build the message defensively — `additionalErrors?.length && ...`
+                // used to evaluate to the literal `0` when there were no additional
+                // errors, which then got stringified into the displayed error.
+                const additionalErrors = ((error === null || error === void 0 ? void 0 : error.additional_errors) || []).map(e => e === null || e === void 0 ? void 0 : e.message).filter(Boolean);
+                const parts = [(error === null || error === void 0 ? void 0 : error.message) || wp.i18n.__('Something went wrong.', 'surecart')];
+                if (additionalErrors.length)
+                    parts.push(additionalErrors.join('. '));
+                this.error = parts.join(' ');
+            }
         }
         finally {
             this.busy = false;
         }
     }
     render() {
-        // stock errors.
-        const stockErrors = (this.getOutOfStockLineItems() || []).map(lineItem => {
-            var _a, _b, _c;
-            const product = (_a = lineItem.price) === null || _a === void 0 ? void 0 : _a.product;
-            const available_stock = ((_b = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _b === void 0 ? void 0 : _b.id) ? (_c = lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant) === null || _c === void 0 ? void 0 : _c.available_stock : product === null || product === void 0 ? void 0 : product.available_stock;
-            return {
-                name: product === null || product === void 0 ? void 0 : product.name,
-                variant: lineItem === null || lineItem === void 0 ? void 0 : lineItem.variant_display_options,
-                image: lineItem === null || lineItem === void 0 ? void 0 : lineItem.image,
-                quantity: lineItem.quantity,
-                available_stock,
-            };
-        });
-        // we have at least one quantity change.
-        const hasOutOfStockItems = stockErrors === null || stockErrors === void 0 ? void 0 : stockErrors.some(item => (item === null || item === void 0 ? void 0 : item.available_stock) < 1);
-        return (h(Host, null, h("sc-dialog", { open: !!stockErrors.length && currentFormState() === 'draft', noHeader: true, onScRequestClose: e => e.preventDefault(), class: "stock-alert" }, h("sc-dashboard-module", { class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, h("sc-flex", { slot: "heading", "align-items": "center", "justify-content": "flex-start" }, h("sc-icon", { name: "alert-circle", style: { color: 'var(--sc-color-primary-500' } }), hasOutOfStockItems ? wp.i18n.__('Out of Stock', 'surecart') : wp.i18n.__('Quantity Update', 'surecart')), h("span", { slot: "description" }, hasOutOfStockItems
+        const stockErrors = buildStockAlertRows(this.lineItems);
+        // we have at least one fully out-of-stock item.
+        const hasOutOfStockItems = stockErrors === null || stockErrors === void 0 ? void 0 : stockErrors.some(item => (item === null || item === void 0 ? void 0 : item.to) < 1);
+        return (h(Host, { key: 'acbef859b372585f275753310f0a0522d627b9ec' }, h("sc-dialog", { key: '41f51f533d77c8f96c3c265aaaadee5ed2a80c90', open: !!stockErrors.length && currentFormState() === 'draft', noHeader: true, onScRequestClose: e => e.preventDefault(), class: "stock-alert" }, h("sc-dashboard-module", { key: '00ee738effe3092df20007eaed0e3ac0c4b1863b', class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, h("sc-flex", { key: '54cc0304e2e6f8ce0476a05edbf1ba5222bb35a1', slot: "heading", "align-items": "center", "justify-content": "flex-start" }, h("sc-icon", { key: 'c58a11c951145aca4d0421fdc24643325b1daada', name: "alert-circle", style: { color: 'var(--sc-color-primary-500' } }), hasOutOfStockItems ? wp.i18n.__('Out of Stock', 'surecart') : wp.i18n.__('Quantity Update', 'surecart')), h("span", { key: '9d3a9107639d100d4d815564af2714214058c190', slot: "description" }, hasOutOfStockItems
             ? wp.i18n.__('Some items are no longer available. Your cart will be updated.', 'surecart')
-            : wp.i18n.__('Available quantities for these items have changed. Your cart will be updated.', 'surecart')), h("sc-card", { "no-padding": true }, h("sc-table", null, h("sc-table-cell", { slot: "head" }, wp.i18n.__('Description', 'surecart')), h("sc-table-cell", { slot: "head", style: { width: '100px', textAlign: 'right' } }, wp.i18n.__('Quantity', 'surecart')), stockErrors.map((item, index) => {
+            : wp.i18n.__('Available quantities for these items have changed. Your cart will be updated.', 'surecart')), h("sc-card", { key: 'a01d877d96b63f948d5ae969fa414851e36127c2', "no-padding": true }, h("sc-table", { key: '3b432e96899754d2bd44c298a3b30bb1e8f95d5e' }, h("sc-table-cell", { key: '687fa517eef975afa99dbd9ca4b820bd8228e1ad', slot: "head" }, wp.i18n.__('Description', 'surecart')), h("sc-table-cell", { key: '2a7f0e9bb3152acbccd57ba55e07b0eec2b3cef8', slot: "head", style: { width: '100px', textAlign: 'right' } }, wp.i18n.__('Quantity', 'surecart')), stockErrors.map((item, index) => {
             const isLastChild = index === stockErrors.length - 1;
             return (h("sc-table-row", { style: {
                     '--columns': '2',
                     ...(isLastChild ? { border: 'none' } : {}),
-                } }, h("sc-table-cell", null, h("sc-flex", { justifyContent: "flex-start", alignItems: "center" }, (item === null || item === void 0 ? void 0 : item.image) && h("img", { ...item.image, class: "stock-alert__image" }), h("div", { class: "stock-alert__product-info" }, h("h4", null, item.name), (item === null || item === void 0 ? void 0 : item.variant) && h("span", { class: "stock-alert__variant" }, item.variant)))), h("sc-table-cell", { style: { width: '100px', textAlign: 'right' } }, h("span", { class: "stock-alert__quantity" }, h("span", null, item === null || item === void 0 ? void 0 : item.quantity), " ", h("sc-icon", { name: "arrow-right" }), " ", h("span", null, Math.max(item === null || item === void 0 ? void 0 : item.available_stock, 0))))));
-        })))), h("sc-button", { slot: "footer", type: "primary", loading: this.busy, onClick: () => this.onSubmit() }, wp.i18n.__('Continue', 'surecart'), h("sc-icon", { name: "arrow-right", slot: "suffix" })), this.busy && h("sc-block-ui", { spinner: true }))));
+                } }, h("sc-table-cell", null, h("sc-flex", { justifyContent: "flex-start", alignItems: "center" }, (item === null || item === void 0 ? void 0 : item.image) && h("img", { ...item.image, class: "stock-alert__image" }), h("div", { class: "stock-alert__product-info" }, h("h4", null, item.name), (item === null || item === void 0 ? void 0 : item.variant) && h("span", { class: "stock-alert__variant" }, item.variant)))), h("sc-table-cell", { style: { width: '100px', textAlign: 'right' } }, h("span", { class: "stock-alert__quantity" }, h("span", null, item === null || item === void 0 ? void 0 : item.from), " ", h("sc-icon", { name: "arrow-right" }), " ", h("span", null, Math.max(item === null || item === void 0 ? void 0 : item.to, 0))))));
+        })))), h("sc-button", { key: 'b2fc3f985615956ba887dd9243c5b4693652cd03', slot: "footer", type: "primary", loading: this.busy, onClick: () => this.onSubmit() }, wp.i18n.__('Continue', 'surecart'), h("sc-icon", { key: '4a8e198f3ad2374764abc70a96516b832aeda135', name: "arrow-right", slot: "suffix" })), this.busy && h("sc-block-ui", { key: '67747c60ab6ff8e5838d8d4c30543205cbc55248', spinner: true }))));
     }
 };
 ScCheckoutStockAlert.style = ScCheckoutStockAlertStyle0;
@@ -389,7 +524,7 @@ const ScCheckoutTestComplete = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (h(Host, { key: '031f7d0cceab97c944eb28239b09eb72e3dd2ebd' }, h("slot", { key: '45e32fcd20bf4f0216c8b13d2d912cd3aa6a0fd1' }), h("sc-dialog", { key: 'dfeb4d3e170b07cf23f510575839f394af100444', open: !!this.showSuccessModal, style: { '--body-spacing': 'var(--sc-spacing-xxx-large)', '--width': '400px' }, noHeader: true, onScRequestClose: e => e.preventDefault() }, h("div", { key: '9855e9d1423919c0999ce081e6c6f203f8572c6d', class: "confirm__icon" }, h("div", { key: '829504f666a11b381aae9d1ad36682a4190a6cbb', class: "confirm__icon-container" }, h("sc-icon", { key: '43526cb8dd78829ee032d846676080c999459bfa', name: "check" }))), h("sc-dashboard-module", { key: '0c5e17705a92ebc3e5c18ec1a2fa5891f25a4e36', heading: wp.i18n.__('Test checkout successful!', 'surecart'), style: { '--sc-dashboard-module-spacing': 'var(--sc-spacing-x-large)', 'textAlign': 'center' } }, h("span", { key: 'b28458655cee6835f07f409c3db6af8065f05753', slot: "description" }, wp.i18n.__('This is a simulated test checkout, and no orders were processed. To perform a test order, please contact your store administrator. ', 'surecart')), !!((_a = this.manualPaymentMethod) === null || _a === void 0 ? void 0 : _a.name) && !!((_b = this.manualPaymentMethod) === null || _b === void 0 ? void 0 : _b.instructions) && (h("sc-alert", { key: '7dad0ccd8aceb7b879bad27dc448498c6d3c376f', type: "info", open: true, style: { 'text-align': 'left' } }, h("span", { key: '29150e9f93016664acc5cf3c296068be2199773c', slot: "title" }, (_c = this.manualPaymentMethod) === null || _c === void 0 ? void 0 : _c.name), h("div", { key: '2532594561698ab6c6090614013736ee556163c6', innerHTML: (_d = this.manualPaymentMethod) === null || _d === void 0 ? void 0 : _d.instructions }))), h("sc-button", { key: 'f1a325987d157bfeb5b9caa6fd1d5a7ef8a61756', href: (_e = window === null || window === void 0 ? void 0 : window.scData) === null || _e === void 0 ? void 0 : _e.home_url, size: "large", type: "primary", ref: el => (this.continueButton = el) }, wp.i18n.__('Go to Homepage', 'surecart'), h("sc-icon", { key: '0e4e9dbf5930ebb341b1d4801b4b21906a2cf69c', name: "arrow-right", slot: "suffix" }))))));
+        return (h(Host, { key: '8880988be24c475421d2b54c9dfd945684766746' }, h("slot", { key: '0301cb11f3a0e1d10d60df81dc880ffc77693aaa' }), h("sc-dialog", { key: 'a96eb1959b206b58dc1ada90b707963e779e62f4', open: !!this.showSuccessModal, style: { '--body-spacing': 'var(--sc-spacing-xxx-large)', '--width': '400px' }, noHeader: true, onScRequestClose: e => e.preventDefault() }, h("div", { key: '496ecd0823810af00622b5a37748b9c2c9837b5f', class: "confirm__icon" }, h("div", { key: '9677f7f47900bf129659b27a00eb90e06368a36f', class: "confirm__icon-container" }, h("sc-icon", { key: '167e6fbc7a880b4092aadf657c3a780ac8136cda', name: "check" }))), h("sc-dashboard-module", { key: 'ff63fb9cc9c26176ff347c9809cab0c186ecbdf1', heading: wp.i18n.__('Test checkout successful!', 'surecart'), style: { '--sc-dashboard-module-spacing': 'var(--sc-spacing-x-large)', 'textAlign': 'center' } }, h("span", { key: '02716802dc259ae7505ab69a817e3a6da55129c9', slot: "description" }, wp.i18n.__('This is a simulated test checkout, and no orders were processed. To perform a test order, please contact your store administrator. ', 'surecart')), !!((_a = this.manualPaymentMethod) === null || _a === void 0 ? void 0 : _a.name) && !!((_b = this.manualPaymentMethod) === null || _b === void 0 ? void 0 : _b.instructions) && (h("sc-alert", { key: 'fe6f7c7134aa4a30fb9eeb04451b418018e05c13', type: "info", open: true, style: { 'text-align': 'left' } }, h("span", { key: 'c3ccaecdf4d8a9407ef333691d631c83a713b23a', slot: "title" }, (_c = this.manualPaymentMethod) === null || _c === void 0 ? void 0 : _c.name), h("div", { key: '4881bc45861b75cd49989239a6ea074e8418f5a6', innerHTML: (_d = this.manualPaymentMethod) === null || _d === void 0 ? void 0 : _d.instructions }))), h("sc-button", { key: 'b27f7d8f4844d5c6fc05efc5915232fd2c3cf079', href: (_e = window === null || window === void 0 ? void 0 : window.scData) === null || _e === void 0 ? void 0 : _e.home_url, size: "large", type: "primary", ref: el => (this.continueButton = el) }, wp.i18n.__('Go to Homepage', 'surecart'), h("sc-icon", { key: 'c1ba21e3fec1994dd1d27c0207138e58428c0113', name: "arrow-right", slot: "suffix" }))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -666,7 +801,7 @@ const ScFormComponentsValidator = class {
         this.hasTrialLineItem = true;
     }
     render() {
-        return h("slot", { key: '8dce34e49bc01207d2db03f3a79ca3364747f98c' });
+        return h("slot", { key: 'd6784d5b5d6bd353fd77b07e87f441ed8f6799a8' });
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -689,7 +824,7 @@ const ScFormErrorProvider = class {
         (_b = (_a = this.el.querySelector('sc-form')) === null || _a === void 0 ? void 0 : _a.prepend) === null || _b === void 0 ? void 0 : _b.call(_a, errorsComponent);
     }
     render() {
-        return h("slot", { key: '9d18d1e6e31acfe48c1235ad9fb6cbd54527ad17' });
+        return h("slot", { key: '3d8313540ae4b4eaaf3a968a7edc6b6ccf1efe79' });
     }
     get el() { return getElement(this); }
 };
@@ -808,10 +943,10 @@ const ScLoginProvider = class {
         }
     }
     render() {
-        return (h(Host, { key: '609726f0cdd7592e22c0d7091967a5f11a84dc59' }, h("slot", { key: '66583218d9a0ed27a47e7d465510cef8373229a1' }), !this.loggedIn && (h("sc-dialog", { key: 'b776e1e7811449d1bb8c25c0c9b842814fd9d820', label: wp.i18n.__('Login to your account', 'surecart'), open: this.open, onScRequestClose: () => (this.open = false) }, h("sc-form", { key: '64e8876dd2c977af70e953bd3c283a5da31b2e46', ref: el => (this.loginForm = el), onScFormSubmit: e => {
+        return (h(Host, { key: 'a7955874f1327b383868e7b96f827aa361f1b674' }, h("slot", { key: '89199341bb6bde3f60a356d387f2c30745e148c5' }), !this.loggedIn && (h("sc-dialog", { key: '4598d2a3e739c9020d36698469b64473437a6838', label: wp.i18n.__('Login to your account', 'surecart'), open: this.open, onScRequestClose: () => (this.open = false) }, h("sc-form", { key: '3b155a0713dad930ea33aea118fa3481ddb95275', ref: el => (this.loginForm = el), onScFormSubmit: e => {
                 e.preventDefault();
                 e.stopImmediatePropagation();
-            }, onScSubmit: e => this.handleFormSubmit(e) }, !!this.error && (h("sc-alert", { key: '89091f929b45ff2cfe37b1a8b5ae546bb2605a85', type: "danger", open: !!this.error }, this.error)), h("sc-input", { key: '1e15fda4d34b8f6feabb69ba394284c59cbf4fc4', label: wp.i18n.__('Email or Username', 'surecart'), type: "text", name: "login", required: true, autofocus: this.open }), h("sc-input", { key: 'db758c1d588f13453caefdfbc0da809d2c307219', label: wp.i18n.__('Password', 'surecart'), type: "password", name: "password", required: true }), h("sc-button", { key: 'f919f7c6b906e03de71c73621f08bf5885b0f8ab', type: "primary", full: true, loading: this.loading, submit: true }, wp.i18n.__('Login', 'surecart')))))));
+            }, onScSubmit: e => this.handleFormSubmit(e) }, !!this.error && (h("sc-alert", { key: '6d69d5146e29e655db7c0866bd717fc6312831cb', type: "danger", open: !!this.error }, this.error)), h("sc-input", { key: '2e4159fabd323c600c155ea7781129c82549988e', label: wp.i18n.__('Email or Username', 'surecart'), type: "text", name: "login", required: true, autofocus: this.open }), h("sc-input", { key: '104370ec20b6e55e73a3e82f08b29b3447a0da8f', label: wp.i18n.__('Password', 'surecart'), type: "password", name: "password", required: true }), h("sc-button", { key: '15238c5a73e3600bc06d5c6ca1bdabf2115aa985', type: "primary", full: true, loading: this.loading, submit: true }, wp.i18n.__('Login', 'surecart')))))));
     }
     static get watchers() { return {
         "open": ["handleLoginDialogChange"],
@@ -905,7 +1040,7 @@ const ScOrderConfirmProvider = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-        return (h(Host, { key: '9e9ae2cb25a759a490756832ed39b361dbfc79f5' }, h("slot", { key: '56548b969cb1e9d86fd349900c04c24d157b69c9' }), h("sc-dialog", { key: 'd121995770f19e8c6645bc9323a5f0675a8b7e23', open: !!this.showSuccessModal, style: { '--body-spacing': 'var(--sc-spacing-xxx-large)', '--width': '400px' }, noHeader: true, onScRequestClose: e => e.preventDefault() }, h("div", { key: '58c47f9c8df50043a14c312540bd6357a1c9c150', class: "confirm__icon" }, h("div", { key: 'd5276e2e89e395b231e99e6365a72de3f1efaa74', class: "confirm__icon-container" }, h("sc-icon", { key: 'c8b6724626999d63002d415a4aa95945150bd5ad', name: "check" }))), h("sc-dashboard-module", { key: '951727d74b7b2b5ca253aac231aff0fe9fc8949c', heading: ((_b = (_a = state$4 === null || state$4 === void 0 ? void 0 : state$4.text) === null || _a === void 0 ? void 0 : _a.success) === null || _b === void 0 ? void 0 : _b.title) || wp.i18n.__('Thanks for your order!', 'surecart'), style: { '--sc-dashboard-module-spacing': 'var(--sc-spacing-x-large)', 'textAlign': 'center' } }, h("span", { key: '96eccc833dffbe61a53d9e02f0e56bfba8c48030', slot: "description" }, ((_d = (_c = state$4 === null || state$4 === void 0 ? void 0 : state$4.text) === null || _c === void 0 ? void 0 : _c.success) === null || _d === void 0 ? void 0 : _d.description) || wp.i18n.__('Your payment was successful. A receipt is on its way to your inbox.', 'surecart')), !!((_e = this.manualPaymentMethod) === null || _e === void 0 ? void 0 : _e.name) && !!((_f = this.manualPaymentMethod) === null || _f === void 0 ? void 0 : _f.instructions) && (h("sc-alert", { key: '04ef867b6dc4da88ad8f2ee7725af032bd7f44a5', type: "info", open: true, style: { 'text-align': 'left' } }, h("span", { key: '22567d6ea142fcf13e1113a423cc37bd79f6956d', slot: "title" }, (_g = this.manualPaymentMethod) === null || _g === void 0 ? void 0 : _g.name), h("div", { key: 'd8ad09687eadc30cb7f74d32983dbff97052ed51', innerHTML: (_h = this.manualPaymentMethod) === null || _h === void 0 ? void 0 : _h.instructions }))), h("sc-button", { key: 'b8817bd4f6cd149fc1d3852e96b837345a9375a0', href: this.getSuccessUrl(), size: "large", type: "primary", ref: el => (this.continueButton = el) }, ((_k = (_j = state$4 === null || state$4 === void 0 ? void 0 : state$4.text) === null || _j === void 0 ? void 0 : _j.success) === null || _k === void 0 ? void 0 : _k.button) || wp.i18n.__('Continue', 'surecart'), h("sc-icon", { key: 'aac89c6ed9bc3e80fcb4007819fb08c78676995a', name: "arrow-right", slot: "suffix" }))))));
+        return (h(Host, { key: '23ea682f197a8dba118628be80b95fcd6bca042f' }, h("slot", { key: 'b49138493aa4b86147ca69fec428dab62af8fd82' }), h("sc-dialog", { key: 'f9fb9fe80452e7d397f7b4b5d639615ffde6f5d9', open: !!this.showSuccessModal, style: { '--body-spacing': 'var(--sc-spacing-xxx-large)', '--width': '400px' }, noHeader: true, onScRequestClose: e => e.preventDefault() }, h("div", { key: '70ce3e2764616a1ec685e5176f41e2381c462f82', class: "confirm__icon" }, h("div", { key: '8b07ac141660edbdca3855473b0060e37d40955c', class: "confirm__icon-container" }, h("sc-icon", { key: 'dd3362a844697ae077420671c82ad0b5658cbff8', name: "check" }))), h("sc-dashboard-module", { key: '178cb4426acb703c033eb0769498ac0de8763ef6', heading: ((_b = (_a = state$4 === null || state$4 === void 0 ? void 0 : state$4.text) === null || _a === void 0 ? void 0 : _a.success) === null || _b === void 0 ? void 0 : _b.title) || wp.i18n.__('Thanks for your order!', 'surecart'), style: { '--sc-dashboard-module-spacing': 'var(--sc-spacing-x-large)', 'textAlign': 'center' } }, h("span", { key: '44b6d8fcf9dbebdfdc0cbc351fa899a69eb47466', slot: "description" }, ((_d = (_c = state$4 === null || state$4 === void 0 ? void 0 : state$4.text) === null || _c === void 0 ? void 0 : _c.success) === null || _d === void 0 ? void 0 : _d.description) || wp.i18n.__('Your payment was successful. A receipt is on its way to your inbox.', 'surecart')), !!((_e = this.manualPaymentMethod) === null || _e === void 0 ? void 0 : _e.name) && !!((_f = this.manualPaymentMethod) === null || _f === void 0 ? void 0 : _f.instructions) && (h("sc-alert", { key: '7d464418bcd7baa53b6145843a431c3625cdc15d', type: "info", open: true, style: { 'text-align': 'left' } }, h("span", { key: '5b4278490c3c21116ec9e83b625a04acf743f251', slot: "title" }, (_g = this.manualPaymentMethod) === null || _g === void 0 ? void 0 : _g.name), h("div", { key: '61c09fb86c656dc77acb31c56d68f10e7e50b2e7', innerHTML: (_h = this.manualPaymentMethod) === null || _h === void 0 ? void 0 : _h.instructions }))), h("sc-button", { key: '77d3d960fbd46b5a951d321ee201f34835aed439', href: this.getSuccessUrl(), size: "large", type: "primary", ref: el => (this.continueButton = el) }, ((_k = (_j = state$4 === null || state$4 === void 0 ? void 0 : state$4.text) === null || _j === void 0 ? void 0 : _j.success) === null || _k === void 0 ? void 0 : _k.button) || wp.i18n.__('Continue', 'surecart'), h("sc-icon", { key: '80b3621d1cf7e6669f7ff471f6fc024f5378b4d8', name: "arrow-right", slot: "suffix" }))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -1429,7 +1564,7 @@ const ScSessionProvider = class {
         }
     }
     render() {
-        return (h("sc-line-items-provider", { key: '162fc64f4354d0223d7d160053497260cab3cffe', order: state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: 'ce73e6e5664fbfd0dbaccf30027de8f81318cb8b' })));
+        return (h("sc-line-items-provider", { key: '3f3e2b8570b16d272135364bf84373106a15d564', order: state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: '4aab176d4e7477428008d314765658692cbf2630' })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

@@ -1,9 +1,10 @@
 import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 import { a as apiFetch } from './index-824c562b.js';
 import { s as speak } from './index-c5a96d53.js';
-import { s as state, V as VERIFYING, b as VERIFIED, a as CODE_EXPIRED, U as UNVERIFIED, r as resetUser } from './store-02394e82.js';
-import { s as state$1 } from './mutations-596ff451.js';
+import { s as state, V as VERIFYING, b as VERIFIED, a as CODE_EXPIRED, U as UNVERIFIED, r as resetUser } from './store-ac90a769.js';
+import { s as state$1 } from './mutations-017e8c92.js';
 import { b as isRateLimited } from './util-dfbf863e.js';
+import { r as resendAnchorFrom, g as getBlockedDuplicateSeconds, s as secondsUntil, R as RESEND_COOLDOWN_SECONDS } from './verification-00df9439.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 import './index-18f5a1bc.js';
@@ -31,12 +32,12 @@ const ScAvatar = class {
         this.hasError = false;
     }
     render() {
-        return (h("div", { key: '315283f0574a7050aa313b92458723361c5beca2', part: "base", class: {
+        return (h("div", { key: 'b9d5edc2dc385d19826d08dafde22a6f777adfb6', part: "base", class: {
                 'avatar': true,
                 'avatar--circle': this.shape === 'circle',
                 'avatar--rounded': this.shape === 'rounded',
                 'avatar--square': this.shape === 'square',
-            }, role: "img", "aria-label": this.label }, this.initials ? (h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, h("slot", { name: "icon" }, h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && h("img", { key: '9fc4a7b3c907ba55bdebeb1ba0324314cbba9c61', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
+            }, role: "img", "aria-label": this.label }, this.initials ? (h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, h("slot", { name: "icon" }, h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && h("img", { key: 'b4dd0031282277abe94eca4b2cdc54a0d6a0ea9e', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
     }
     static get watchers() { return {
         "image": ["handleImageChange"]
@@ -136,7 +137,7 @@ const ScCustomerLogin = class {
             this.error = '';
             this.codeResending = true;
             speak(wp.i18n.__('Sending code...', 'surecart'), 'assertive');
-            await apiFetch({
+            const response = await apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/verification_codes',
                 data: {
@@ -144,8 +145,11 @@ const ScCustomerLogin = class {
                     checkout_mode: state$1.mode,
                 },
             });
-            speak(wp.i18n.__('Code sent', 'surecart'), 'assertive');
+            // An in-window request resumes the existing code — don't announce a new email.
+            speak((response === null || response === void 0 ? void 0 : response.email_sent) === false ? wp.i18n.__('A code was already sent to your email.', 'surecart') : wp.i18n.__('Code sent', 'surecart'), 'assertive');
             state.verificationStatus = UNVERIFIED;
+            // Always anchor a fresh window (falls back to default if platform omits it).
+            state.resendAvailableAt = resendAnchorFrom(response === null || response === void 0 ? void 0 : response.resend_available_in);
             this.startCooldown();
         }
         catch (e) {
@@ -165,18 +169,34 @@ const ScCustomerLogin = class {
             this.startCooldown();
             return;
         }
+        const blockedSeconds = getBlockedDuplicateSeconds(error);
         ((error === null || error === void 0 ? void 0 : error.additional_errors) || []).forEach((e) => {
             if ((e === null || e === void 0 ? void 0 : e.code) === 'verification_code.email.blocked_duplicate') {
-                this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('A code was just sent to you, please wait a minute before resending.', 'surecart');
+                this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('A code was recently sent to you. Please wait before requesting another.', 'surecart');
+                // Resume from the platform's reported backoff window (default if absent).
+                state.resendAvailableAt = resendAnchorFrom(blockedSeconds);
                 this.startCooldown();
             }
         });
     }
+    /** Seconds left in the cooldown, always derived from the (decaying) anchor timestamp. */
+    remainingCooldown() {
+        return secondsUntil(state.resendAvailableAt);
+    }
     startCooldown() {
         clearInterval(this.cooldownInterval);
-        this.resendCooldown = 60;
+        // Guarantee a concrete anchor so the countdown always decays to 0 and the
+        // resend link returns — never a stuck constant.
+        if (state.resendAvailableAt == null) {
+            state.resendAvailableAt = resendAnchorFrom(RESEND_COOLDOWN_SECONDS);
+        }
+        this.resendCooldown = this.remainingCooldown();
+        if (this.resendCooldown <= 0)
+            return;
+        // Recompute from the anchor each tick so the timer stays correct even if the
+        // tab was backgrounded (throttled intervals) or the page was reloaded.
         this.cooldownInterval = setInterval(() => {
-            this.resendCooldown--;
+            this.resendCooldown = this.remainingCooldown();
             if (this.resendCooldown <= 0) {
                 clearInterval(this.cooldownInterval);
                 this.cooldownInterval = null;
@@ -282,7 +302,7 @@ const ScCustomerLogin = class {
             } }, wp.i18n.__('Send new code', 'surecart')))), !isExpired && (!!this.error || !!this.codeError) && h("p", { class: "customer-code__error", role: "alert", innerHTML: this.error || this.codeError }), this.renderCodeFooter()));
     }
     render() {
-        return (h(Host, { key: '1e6a26d892e26460c2afff27d95869a1fd57f0c0' }, h("div", { key: 'eacc2e046915fb36a52c0eaeebb2593e199b67ac', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
+        return (h(Host, { key: '6060769aa096e03774f0b4dea7a81082cf5adeaf' }, h("div", { key: '348c822b81d84c15b5dcba5cf080e1cd3047901a', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
     }
     static get watchers() { return {
         "mode": ["handleModeChange"]

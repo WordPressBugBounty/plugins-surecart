@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const error = require('./error-c8d97fa9.js');
+const error = require('./error-03c29608.js');
 const watchers = require('./watchers-d2dd8b04.js');
-require('./mutations-5b4c8c9d.js');
+require('./mutations-927be23d.js');
 require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -15,9 +15,9 @@ require('./google-59d23803.js');
 require('./currency-71fce0f0.js');
 require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');
-require('./mutations-24f594cf.js');
+require('./mutations-06bf0ea4.js');
 require('./mutations-d5d6ddf1.js');
-require('./index-f3f5230c.js');
+require('./index-92023a2d.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 require('./google-c1098cb3.js');
@@ -78,14 +78,14 @@ const ScProductBuyButton = class {
     }
     render() {
         var _a, _b;
-        return (index.h(index.Host, { key: '44677bc40f88d6f2ed7a9245efcb5462301fb5fd', class: {
+        return (index.h(index.Host, { key: '8aea1a81f802ca0eb4415359db962396e58f7db2', class: {
                 'is-busy': ((_a = watchers.state[this.productId]) === null || _a === void 0 ? void 0 : _a.busy) && !!this.addToCart,
                 'is-disabled': (_b = watchers.state[this.productId]) === null || _b === void 0 ? void 0 : _b.disabled,
                 'is-sold-out': watchers.isProductOutOfStock(this.productId) && !watchers.isSelectedVariantMissing(this.productId),
                 'is-unavailable': watchers.isSelectedVariantMissing(this.productId),
-            }, onClick: e => this.handleCartClick(e) }, !!this.error && (index.h("sc-alert", { key: 'a73e3a8a34236ff39facdb3d229ed35bcce21abb', onClick: event => {
+            }, onClick: e => this.handleCartClick(e) }, !!this.error && (index.h("sc-alert", { key: '4209dd9bc56d54c33c9c7bb052101ad25d57a7fb', onClick: event => {
                 event.stopPropagation();
-            }, type: "danger", scrollOnOpen: true, open: !!this.error, closable: false }, !!error.getTopLevelError(this.error) && index.h("span", { key: '58ace6331fe1a15f552cfa61d2c14c645608fede', slot: "title", innerHTML: error.getTopLevelError(this.error) }), (error.getAdditionalErrorMessages(this.error) || []).map((message, index$1) => (index.h("div", { innerHTML: message, key: index$1 }))))), index.h("slot", { key: '207dd78e1b27ef6613d8445e8e9427d329e24dbd' })));
+            }, type: "danger", scrollOnOpen: true, open: !!this.error, closable: false }, !!error.getTopLevelError(this.error) && index.h("span", { key: '476d72435c03b9b30c0c3c66edfcaa1fdaa2aa24', slot: "title", innerHTML: error.getTopLevelError(this.error) }), (error.getAdditionalErrorMessages(this.error) || []).map((message, index$1) => (index.h("div", { innerHTML: message, key: index$1 }))))), index.h("slot", { key: '0db31ac0ca82fbba425cfe5273e1a8565c97631a' })));
     }
     get el() { return index.getElement(this); }
 };

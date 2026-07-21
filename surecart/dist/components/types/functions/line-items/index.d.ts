@@ -1,4 +1,32 @@
-import { Bump, Checkout, ChoiceType, LineItemData, lineItems, Price, PriceChoice, Product, RecursivePartial } from '../../types';
+import { Bump, BundleComponentRow, BundleItem, Checkout, ChoiceType, LineItem, LineItemData, lineItems, Price, PriceChoice, Product, RecursivePartial } from '../../types';
+/**
+ * A bundle component's line item `quantity` is the total across the whole
+ * purchase (per-bundle count × bundle quantity). Divide it back out by the
+ * parent quantity to get the per-bundle count the bundle actually defines.
+ */
+export declare const getPerBundleQuantity: (component: LineItem, parentQuantity?: number) => number;
+/**
+ * Build display rows from bundle component line items.
+ *
+ * By default every component is shown (variant items render `Name - Variant`,
+ * plain items render just `Name`). Pass `showAll = false` for variants-only
+ * mode, which lists only the components that have a variant selection.
+ */
+export declare const getBundleComponentRowsFromLineItems: (components?: LineItem[], parentQuantity?: number, showAll?: boolean, separator?: string) => BundleComponentRow[];
+/**
+ * Build a list of display rows from BundleItems attached to a Product
+ * (subscription detail panel — no LineItems exist for components there,
+ * only the bundle definition).
+ */
+export declare const getBundleComponentRowsFromBundleItems: (items?: BundleItem[]) => BundleComponentRow[];
+/**
+ * Group line items into bundle parents (with components nested) and regulars.
+ */
+export declare const groupBundleLineItems: (items?: LineItem[]) => {
+    regular: LineItem[];
+    bundleParents: LineItem[];
+    componentsByParent: Record<string, LineItem[]>;
+};
 export declare const getEnabledPriceChoices: (choices: Array<PriceChoice>) => Array<PriceChoice>;
 export declare const convertPriceChoiceToLineItemData: (choice: PriceChoice) => LineItemData;
 export declare const convertLineItemsToLineItemData: (lineItems: RecursivePartial<lineItems>) => Array<{
@@ -30,7 +58,7 @@ export declare const getInitialChoiceLineItems: (choices: Array<PriceChoice>, ch
 export declare const getLineItemPriceIds: (line_items: RecursivePartial<lineItems>) => string[];
 export declare const getLineItemBumpIds: (line_items: RecursivePartial<lineItems>) => string[];
 export declare const getLineItemPrices: (line_items: RecursivePartial<lineItems>) => RecursivePartial<Price>[];
-export declare const getLineItemByPriceId: (line_items: RecursivePartial<lineItems>, priceId: string) => RecursivePartial<import("../../types").LineItem>;
+export declare const getLineItemByPriceId: (line_items: RecursivePartial<lineItems>, priceId: string) => RecursivePartial<LineItem>;
 /**
  * Is this product in the checkout session?
  */

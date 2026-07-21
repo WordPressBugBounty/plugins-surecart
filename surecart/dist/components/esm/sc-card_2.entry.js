@@ -21,11 +21,11 @@ const ScCard = class {
     }
     render() {
         const Tag = this.href ? 'a' : 'div';
-        return (h(Tag, { key: 'ec6e9bb9f259ea7941dac50afd4a05c9b8e8cd34', part: "base", class: {
+        return (h(Tag, { key: 'f5480a7dd271fe64655f3071f3e4fef1a36bd63a', part: "base", class: {
                 'card': true,
                 'card--borderless': this.borderless,
                 'card--no-padding': this.noPadding,
-            } }, h("slot", { key: '7b5f038e48aaddb6a1d2096e9194b47cc8f3c58b' })));
+            } }, h("slot", { key: '00f3f41675775d47e2ec25718a1ac4e097598f17' })));
     }
     get el() { return getElement(this); }
 };
@@ -42,7 +42,7 @@ const ScDashboardModule = class {
         this.loading = undefined;
     }
     render() {
-        return (h("div", { key: 'ce5b99e0647e068f8464306757f059a60d29e50e', class: "dashboard-module", part: "base" }, !!this.error && (h("sc-alert", { key: 'f2fef71d4471fffbc22c42189b123dc2c4a271c2', exportparts: "base:error__base, icon:error__icon, text:error__text, title:error__title, message:error__message", open: !!this.error, type: "danger" }, h("span", { key: '5befd8e32f6524f1309d37d45dafccce6c9ca089', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), h("div", { key: '6c317957fb94149ffa70ec573eecc0be0180b4d1', class: "heading", part: "heading" }, h("div", { key: '3ba86805063026026d4b6148879b87db9b2f6ff8', class: "heading__text", part: "heading-text" }, h("div", { key: '81e9ce253d138e0654470cbd6d8e363fdc3c0e7a', class: "heading__title", part: "heading-title" }, h("slot", { key: '2e3643e6642451ed2f3a53125007e7333f8c5450', name: "heading", "aria-label": this.heading }, this.heading)), h("div", { key: 'b2ae6bdc8f465f7fd621a858ccf9066d30c125b0', class: "heading__description", part: "heading-description" }, h("slot", { key: 'ddb666d16734427baebecbdd0ea4bd2e539dc68d', name: "description" }))), h("slot", { key: 'dc1e01e12b933b96276732ce401babe9e0eac9dc', name: "end" })), h("slot", { key: '92f335f5afc961f0f90fa3448eef30fed3ed1375' })));
+        return (h("div", { key: '9b503da887d9c2d70bf23af7e7cbc485ccee6ac1', class: "dashboard-module", part: "base" }, !!this.error && (h("sc-alert", { key: 'a83bfc549e284a9b99b2b15bbda956865c14bded', exportparts: "base:error__base, icon:error__icon, text:error__text, title:error__title, message:error__message", open: !!this.error, type: "danger" }, h("span", { key: 'bb7b5547a705e8d96993f654e64bd3859ea3aa73', slot: "title" }, wp.i18n.__('Error', 'surecart')), this.error)), h("div", { key: '6d7e70f079c94e78f901751e110073d6d8802363', class: "heading", part: "heading" }, h("div", { key: '60a9749ba081861b52eb9deb70416c30d42833ed', class: "heading__text", part: "heading-text" }, h("div", { key: 'f9ce06fddaae61a78708775f4bb6eb6241d2e7f4', class: "heading__title", part: "heading-title" }, h("slot", { key: '4b40299e832fe01ac38f401412e609066aef810b', name: "heading", "aria-label": this.heading }, this.heading)), h("div", { key: '25c78c8d6ef94f8b0b0e208dbc53c1e885b2701e', class: "heading__description", part: "heading-description" }, h("slot", { key: 'e7c34fdeabd76feb9d69604c1bc827b79b0e5169', name: "description" }))), h("slot", { key: '51c0236c0a5e56b5bd0e206b51c32c7f2500d2d9', name: "end" })), h("slot", { key: 'cdee456ddef8eb23b4b10631d68bde7379b75142' })));
     }
 };
 ScDashboardModule.style = ScDashboardModuleStyle0;

@@ -1,10 +1,11 @@
 import { r as registerInstance, c as createEvent, h, F as Fragment } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
 import { a as apiFetch } from './index-824c562b.js';
-import { c as createOrUpdateCheckout } from './index-4aa538b7.js';
+import { c as createOrUpdateCheckout } from './index-86fa6913.js';
 import { a as getValueFromUrl, b as isRateLimited } from './util-dfbf863e.js';
-import { s as state$1, C as CODE_SENT, o as onChange$1, U as UNVERIFIED, r as resetUser, V as VERIFYING, a as CODE_EXPIRED } from './store-02394e82.js';
-import { s as state, o as onChange } from './mutations-596ff451.js';
+import { r as resendAnchorFrom, g as getBlockedDuplicateSeconds } from './verification-00df9439.js';
+import { s as state$1, C as CODE_SENT, o as onChange$1, U as UNVERIFIED, r as resetUser, V as VERIFYING, a as CODE_EXPIRED } from './store-ac90a769.js';
+import { s as state, o as onChange } from './mutations-017e8c92.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 import './fetch-cdff67be.js';
@@ -86,7 +87,7 @@ const ScCustomerEmail = class {
             this.busy = true;
             this.error = '';
             this.loginMode = 'code';
-            await apiFetch({
+            const response = await apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/verification_codes',
                 data: {
@@ -96,7 +97,17 @@ const ScCustomerEmail = class {
             });
             state$1.email = this.value;
             state$1.verificationStatus = CODE_SENT;
-            speak(wp.i18n.__('Verification code is sent to your email. Please check your email.', 'surecart'), 'assertive');
+            // Anchor the resend cooldown to the platform's window (may be a resumed
+            // one when no fresh email was sent), so reload/tab switch stay accurate.
+            // Falls back to the default window if the platform omits the value.
+            state$1.resendAvailableAt = resendAnchorFrom(response === null || response === void 0 ? void 0 : response.resend_available_in);
+            // An in-window request resumes the existing code — don't announce a new email.
+            if ((response === null || response === void 0 ? void 0 : response.email_sent) === false) {
+                speak(wp.i18n.__('A verification code was already sent to your email. Please check your email.', 'surecart'), 'assertive');
+            }
+            else {
+                speak(wp.i18n.__('Verification code is sent to your email. Please check your email.', 'surecart'), 'assertive');
+            }
         }
         catch (e) {
             this.handleCodeSendError(e);
@@ -151,11 +162,15 @@ const ScCustomerEmail = class {
             this.loginMode = 'password';
             return;
         }
+        const blockedSeconds = getBlockedDuplicateSeconds(error);
         ((error === null || error === void 0 ? void 0 : error.additional_errors) || []).forEach((e) => {
             var _a;
             if ((e === null || e === void 0 ? void 0 : e.code) === 'verification_code.email.blocked_duplicate') {
                 state$1.email = ((_a = this.input) === null || _a === void 0 ? void 0 : _a.value) || '';
                 state$1.verificationStatus = CODE_SENT;
+                // Resume the countdown from the platform's reported backoff window
+                // (default window if the platform didn't include seconds).
+                state$1.resendAvailableAt = resendAnchorFrom(blockedSeconds);
             }
             else {
                 this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Verification code is not valid. Please try again.', 'surecart');

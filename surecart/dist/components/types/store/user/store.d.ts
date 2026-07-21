@@ -9,6 +9,8 @@ interface Store {
     name: string;
     avatarUrl: string;
     verificationStatus: 'code_sent' | 'verifying' | 'verified' | 'unverified' | 'code_expired' | null;
+    /** Absolute client-side timestamp (ms) when the next code resend is allowed. Anchors the cooldown across reload, tab switch, and "Change". */
+    resendAvailableAt: number | null;
 }
 declare const state: Store, onChange: import("@stencil/store/dist/types").OnChangeHandler<Store>, dispose: () => void;
 export declare const resetUser: () => void;

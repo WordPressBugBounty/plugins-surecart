@@ -5,9 +5,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 const index$2 = require('./index-7ced8198.js');
 const index$1 = require('./index-fb76df07.js');
-const store = require('./store-257cd191.js');
-const mutations = require('./mutations-5b4c8c9d.js');
+const store = require('./store-9c215436.js');
+const mutations = require('./mutations-927be23d.js');
 const util = require('./util-a15c420c.js');
+const verification = require('./verification-19455819.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./index-c3de642f.js');
@@ -35,12 +36,12 @@ const ScAvatar = class {
         this.hasError = false;
     }
     render() {
-        return (index.h("div", { key: '315283f0574a7050aa313b92458723361c5beca2', part: "base", class: {
+        return (index.h("div", { key: 'b9d5edc2dc385d19826d08dafde22a6f777adfb6', part: "base", class: {
                 'avatar': true,
                 'avatar--circle': this.shape === 'circle',
                 'avatar--rounded': this.shape === 'rounded',
                 'avatar--square': this.shape === 'square',
-            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: '9fc4a7b3c907ba55bdebeb1ba0324314cbba9c61', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
+            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: 'b4dd0031282277abe94eca4b2cdc54a0d6a0ea9e', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
     }
     static get watchers() { return {
         "image": ["handleImageChange"]
@@ -140,7 +141,7 @@ const ScCustomerLogin = class {
             this.error = '';
             this.codeResending = true;
             index$1.speak(wp.i18n.__('Sending code...', 'surecart'), 'assertive');
-            await index$2.apiFetch({
+            const response = await index$2.apiFetch({
                 method: 'POST',
                 path: 'surecart/v1/verification_codes',
                 data: {
@@ -148,8 +149,11 @@ const ScCustomerLogin = class {
                     checkout_mode: mutations.state.mode,
                 },
             });
-            index$1.speak(wp.i18n.__('Code sent', 'surecart'), 'assertive');
+            // An in-window request resumes the existing code — don't announce a new email.
+            index$1.speak((response === null || response === void 0 ? void 0 : response.email_sent) === false ? wp.i18n.__('A code was already sent to your email.', 'surecart') : wp.i18n.__('Code sent', 'surecart'), 'assertive');
             store.state.verificationStatus = store.UNVERIFIED;
+            // Always anchor a fresh window (falls back to default if platform omits it).
+            store.state.resendAvailableAt = verification.resendAnchorFrom(response === null || response === void 0 ? void 0 : response.resend_available_in);
             this.startCooldown();
         }
         catch (e) {
@@ -169,18 +173,34 @@ const ScCustomerLogin = class {
             this.startCooldown();
             return;
         }
+        const blockedSeconds = verification.getBlockedDuplicateSeconds(error);
         ((error === null || error === void 0 ? void 0 : error.additional_errors) || []).forEach((e) => {
             if ((e === null || e === void 0 ? void 0 : e.code) === 'verification_code.email.blocked_duplicate') {
-                this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('A code was just sent to you, please wait a minute before resending.', 'surecart');
+                this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('A code was recently sent to you. Please wait before requesting another.', 'surecart');
+                // Resume from the platform's reported backoff window (default if absent).
+                store.state.resendAvailableAt = verification.resendAnchorFrom(blockedSeconds);
                 this.startCooldown();
             }
         });
     }
+    /** Seconds left in the cooldown, always derived from the (decaying) anchor timestamp. */
+    remainingCooldown() {
+        return verification.secondsUntil(store.state.resendAvailableAt);
+    }
     startCooldown() {
         clearInterval(this.cooldownInterval);
-        this.resendCooldown = 60;
+        // Guarantee a concrete anchor so the countdown always decays to 0 and the
+        // resend link returns — never a stuck constant.
+        if (store.state.resendAvailableAt == null) {
+            store.state.resendAvailableAt = verification.resendAnchorFrom(verification.RESEND_COOLDOWN_SECONDS);
+        }
+        this.resendCooldown = this.remainingCooldown();
+        if (this.resendCooldown <= 0)
+            return;
+        // Recompute from the anchor each tick so the timer stays correct even if the
+        // tab was backgrounded (throttled intervals) or the page was reloaded.
         this.cooldownInterval = setInterval(() => {
-            this.resendCooldown--;
+            this.resendCooldown = this.remainingCooldown();
             if (this.resendCooldown <= 0) {
                 clearInterval(this.cooldownInterval);
                 this.cooldownInterval = null;
@@ -286,7 +306,7 @@ const ScCustomerLogin = class {
             } }, wp.i18n.__('Send new code', 'surecart')))), !isExpired && (!!this.error || !!this.codeError) && index.h("p", { class: "customer-code__error", role: "alert", innerHTML: this.error || this.codeError }), this.renderCodeFooter()));
     }
     render() {
-        return (index.h(index.Host, { key: '1e6a26d892e26460c2afff27d95869a1fd57f0c0' }, index.h("div", { key: 'eacc2e046915fb36a52c0eaeebb2593e199b67ac', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
+        return (index.h(index.Host, { key: '6060769aa096e03774f0b4dea7a81082cf5adeaf' }, index.h("div", { key: '348c822b81d84c15b5dcba5cf080e1cd3047901a', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
     }
     static get watchers() { return {
         "mode": ["handleModeChange"]

@@ -29,6 +29,8 @@ export declare class ScCustomerLogin {
     verifyCode(code: string): Promise<void>;
     resendCode(): Promise<void>;
     handleCodeSendError(error: any): void;
+    /** Seconds left in the cooldown, always derived from the (decaying) anchor timestamp. */
+    private remainingCooldown;
     startCooldown(): void;
     componentWillLoad(): void;
     /** When the user switches views, focus that view's first field after it renders. */

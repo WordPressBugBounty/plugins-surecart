@@ -12,21 +12,16 @@ export declare class ScCheckoutStockAlert {
     busy: boolean;
     /** Update stock error. */
     error: string;
-    /** Get the out of stock line items. */
-    getOutOfStockLineItems(): import("src/types").LineItem[];
+    /** Current checkout line items. */
+    get lineItems(): import("src/types").LineItem[];
     /**
-     * Build line items with adjusted quantities for out-of-stock items.
+     * Update the checkout to the max available stock.
      *
-     * Returns all line items, with out-of-stock items adjusted to max available stock.
-     */
-    getStockAdjustedLineItems(): {
-        variant?: string;
-        id: string;
-        price_id: string;
-        quantity: number;
-    }[];
-    /**
-     * Update the checkout line items stock to the max available.
+     * Bundle shortages reduce the whole bundle quantity (a bundle is atomic). A
+     * bundle that can't make even one unit (reduced to 0) is first rescued by
+     * swapping a gone variant to an in-stock sibling when one exists; otherwise
+     * the unfulfillable bundle is dropped from the cart, matching the "→ 0" the
+     * dialog already shows.
      */
     onSubmit(): Promise<void>;
     render(): any;
