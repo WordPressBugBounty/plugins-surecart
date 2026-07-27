@@ -221,13 +221,13 @@ const ScProductCheckoutSelectVariantOption = class {
         }))));
     }
     render() {
-        var _a, _b, _c, _d, _e;
-        return (index.h("sc-form-control", { key: '68bcbadc6502ef2e037f00407996e5fb7180eaca', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (this.product.variant_options.data || []).map(({ name, values, display_type }, index) => {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        return (index.h("sc-form-control", { key: '68bcbadc6502ef2e037f00407996e5fb7180eaca', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (((_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.variant_options) === null || _b === void 0 ? void 0 : _b.data) || []).map(({ name, values, display_type }, index) => {
             if (display_type === 'dropdown') {
                 return this.renderDropdown({ name, values, index });
             }
             return this.renderPills({ name, values, index });
-        }), ((_c = (_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.prices) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) > 1 && (index.h("sc-form-control", { key: 'e9cbda8a2f2059b659269c7a20cfad162ffefb67', label: !!((_d = this.product.variant_options.data) === null || _d === void 0 ? void 0 : _d.length) ? this.label : null }, index.h("sc-choices", { key: '073fb298a32c756eef968a8ad11d04c61530973c' }, (this.product.prices.data || [])
+        }), ((_e = (_d = (_c = this.product) === null || _c === void 0 ? void 0 : _c.prices) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.length) > 1 && (index.h("sc-form-control", { key: '897b2c7143bde76592b05e5e9c4629af62948708', label: !!((_h = (_g = (_f = this.product) === null || _f === void 0 ? void 0 : _f.variant_options) === null || _g === void 0 ? void 0 : _g.data) === null || _h === void 0 ? void 0 : _h.length) ? this.label : null }, index.h("sc-choices", { key: 'a2528fdeedf50814b5dee87a72778374d6436389' }, (this.product.prices.data || [])
             .sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position))
             .map(price => {
             var _a, _b, _c;
@@ -236,7 +236,7 @@ const ScProductCheckoutSelectVariantOption = class {
                         this.selectedPrice = price;
                     }
                 } }));
-        })))), index.h("input", { key: '33483527fc96a8e2b84e1be91430746baf6a6698', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_e = this.selectedVariant) === null || _e === void 0 ? void 0 : _e.id })));
+        })))), index.h("input", { key: 'cdf31c763f0e159be3e38c7e6cd3ed0cf5bd8ab2', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_j = this.selectedVariant) === null || _j === void 0 ? void 0 : _j.id })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
