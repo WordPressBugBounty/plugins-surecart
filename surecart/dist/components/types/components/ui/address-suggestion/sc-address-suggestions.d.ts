@@ -9,6 +9,9 @@ import { EventEmitter } from '../../../stencil-public-runtime';
 import { Address, AddressSuggestion } from '../../../types';
 export declare class ScAddressSuggestions {
     el: HTMLScAddressSuggestionsElement;
+    /** Reference to the inner sc-input so we can delegate validation to it — the browser's native constraint
+     *  validation can't see this input since it isn't form-associated. */
+    private input;
     private boundHandleKeyDown;
     private boundHandleOutsideClick;
     private abortController;
@@ -45,6 +48,9 @@ export declare class ScAddressSuggestions {
     scHideAddressFields: EventEmitter<void>;
     /** Focused index for keyboard navigation */
     focusedIndex: number;
+    /** Delegates to the inner sc-input so this field participates in form validation
+     *  (it was previously skipped entirely, allowing required addresses through empty). */
+    reportValidity(): Promise<boolean>;
     /** Whether Google Maps autocomplete is active. */
     isGoogleMapsActive(): boolean;
     debouncedFetchAddressSuggestions: import("lodash").DebouncedFunc<(input: string) => Promise<void>>;

@@ -1283,6 +1283,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Support\\Errors\\ErrorsTranslationService' => __DIR__ . '/../..' . '/app/src/Support/Errors/ErrorsTranslationService.php',
         'SureCart\\Support\\GitHubInstaller' => __DIR__ . '/../..' . '/app/src/Support/GitHubInstaller.php',
         'SureCart\\Support\\Interval' => __DIR__ . '/../..' . '/app/src/Support/Interval.php',
+        'SureCart\\Support\\PublicCatalogData' => __DIR__ . '/../..' . '/app/src/Support/PublicCatalogData.php',
         'SureCart\\Support\\Scripts\\AdminModelEditController' => __DIR__ . '/../..' . '/app/src/Support/Scripts/AdminModelEditController.php',
         'SureCart\\Support\\Server' => __DIR__ . '/../..' . '/app/src/Support/Server.php',
         'SureCart\\Support\\TimeDate' => __DIR__ . '/../..' . '/app/src/Support/TimeDate.php',

@@ -1193,6 +1193,7 @@ return array(
     'SureCart\\Support\\Errors\\ErrorsTranslationService' => $baseDir . '/app/src/Support/Errors/ErrorsTranslationService.php',
     'SureCart\\Support\\GitHubInstaller' => $baseDir . '/app/src/Support/GitHubInstaller.php',
     'SureCart\\Support\\Interval' => $baseDir . '/app/src/Support/Interval.php',
+    'SureCart\\Support\\PublicCatalogData' => $baseDir . '/app/src/Support/PublicCatalogData.php',
     'SureCart\\Support\\Scripts\\AdminModelEditController' => $baseDir . '/app/src/Support/Scripts/AdminModelEditController.php',
     'SureCart\\Support\\Server' => $baseDir . '/app/src/Support/Server.php',
     'SureCart\\Support\\TimeDate' => $baseDir . '/app/src/Support/TimeDate.php',

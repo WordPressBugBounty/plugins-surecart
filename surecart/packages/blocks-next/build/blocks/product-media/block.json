@@ -104,6 +104,5 @@
   ],
   "style": [
     "file:./style-index.css"
-  ],
-  "viewScriptModule": "@surecart/product-media"
+  ]
 }

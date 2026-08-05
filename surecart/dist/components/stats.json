@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-27T18:04:07",
+  "timestamp": "2026-08-05T17:48:30",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3629,8 +3629,6 @@
           "./dist/surecart/p-783da311.entry.js.map",
           "./dist/surecart/p-78468e45.js",
           "./dist/surecart/p-78468e45.js.map",
-          "./dist/surecart/p-787dd393.entry.js",
-          "./dist/surecart/p-787dd393.entry.js.map",
           "./dist/surecart/p-7a1f1383.entry.js",
           "./dist/surecart/p-7a1f1383.entry.js.map",
           "./dist/surecart/p-7b750012.entry.js",
@@ -3839,6 +3837,8 @@
           "./dist/surecart/p-e9ae48d3.js.map",
           "./dist/surecart/p-ea0e1d1f.entry.js",
           "./dist/surecart/p-ea0e1d1f.entry.js.map",
+          "./dist/surecart/p-ebd40b87.entry.js",
+          "./dist/surecart/p-ebd40b87.entry.js.map",
           "./dist/surecart/p-ec182234.js",
           "./dist/surecart/p-ec182234.js.map",
           "./dist/surecart/p-ec61f73d.entry.js",
@@ -4093,8 +4093,6 @@
           "./www/build/p-783da311.entry.js.map",
           "./www/build/p-78468e45.js",
           "./www/build/p-78468e45.js.map",
-          "./www/build/p-787dd393.entry.js",
-          "./www/build/p-787dd393.entry.js.map",
           "./www/build/p-7a1f1383.entry.js",
           "./www/build/p-7a1f1383.entry.js.map",
           "./www/build/p-7b750012.entry.js",
@@ -4303,6 +4301,8 @@
           "./www/build/p-e9ae48d3.js.map",
           "./www/build/p-ea0e1d1f.entry.js",
           "./www/build/p-ea0e1d1f.entry.js.map",
+          "./www/build/p-ebd40b87.entry.js",
+          "./www/build/p-ebd40b87.entry.js.map",
           "./www/build/p-ec182234.js",
           "./www/build/p-ec182234.js.map",
           "./www/build/p-ec61f73d.entry.js",
@@ -7198,8 +7198,8 @@
           "sc-phone-input",
           "sc-tax-id-input"
         ],
-        "bundleId": "p-787dd393",
-        "fileName": "p-787dd393.entry.js",
+        "bundleId": "p-ebd40b87",
+        "fileName": "p-ebd40b87.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-e2e1fe1f.js",
@@ -7213,7 +7213,7 @@
           "p-401e165e.js",
           "p-2b28ea49.js"
         ],
-        "originalByteSize": 614362
+        "originalByteSize": 615518
       },
       {
         "key": "sc-format-bytes.entry",
@@ -10413,7 +10413,7 @@
           "add-query-args-0e2a8393.js",
           "index-18f5a1bc.js"
         ],
-        "originalByteSize": 614434
+        "originalByteSize": 615590
       },
       {
         "key": "sc-format-bytes.entry",
@@ -13615,7 +13615,7 @@
           "add-query-args-49dcb630.js",
           "index-c3de642f.js"
         ],
-        "originalByteSize": 615073
+        "originalByteSize": 616229
       },
       {
         "key": "sc-format-bytes.entry",
@@ -14514,7 +14514,27 @@
       ],
       "internal": false,
       "listeners": [],
-      "methods": [],
+      "methods": [
+        {
+          "name": "reportValidity",
+          "docs": {
+            "text": "Delegates to the inner sc-input so this field participates in form validation\n(it was previously skipped entirely, allowing required addresses through empty).",
+            "tags": []
+          },
+          "complexType": {
+            "signature": "() => Promise<boolean>",
+            "parameters": [],
+            "references": {
+              "Promise": {
+                "location": "global",
+                "id": "global::Promise"
+              }
+            },
+            "return": "Promise<boolean>"
+          },
+          "internal": false
+        }
+      ],
       "potentialCmpRefs": [
         "sc-button",
         "sc-icon",
@@ -107329,7 +107349,27 @@
               "name": "focusedIndex"
             }
           ],
-          "methods": [],
+          "methods": [
+            {
+              "name": "reportValidity",
+              "docs": {
+                "text": "Delegates to the inner sc-input so this field participates in form validation\n(it was previously skipped entirely, allowing required addresses through empty).",
+                "tags": []
+              },
+              "complexType": {
+                "signature": "() => Promise<boolean>",
+                "parameters": [],
+                "references": {
+                  "Promise": {
+                    "location": "global",
+                    "id": "global::Promise"
+                  }
+                },
+                "return": "Promise<boolean>"
+              },
+              "internal": false
+            }
+          ],
           "listeners": [],
           "events": [
             {
@@ -107446,7 +107486,7 @@
           "hasListenerTargetBody": false,
           "hasListenerTargetParent": false,
           "hasMember": true,
-          "hasMethod": false,
+          "hasMethod": true,
           "hasMode": false,
           "hasAttribute": true,
           "hasProp": true,
@@ -107491,6 +107531,7 @@
             "onMouseEnter",
             "onMouseLeave",
             "key",
+            "ref",
             "exportparts",
             "value",
             "onScInput",
