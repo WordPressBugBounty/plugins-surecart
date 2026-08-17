@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.0
-Stable tag: 4.6.3
+Stable tag: 4.6.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -421,6 +421,18 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.6.4 - August 18th, 2026 =
+- New: Admin notice when the site's WordPress version is below the minimum SureCart requires.
+- New: Developer filters to customize the checkout success redirect and to turn off Google tracking.
+- Fix: Bundle Quick Add on the shop page skipping variant selection.
+- Fix: Quick Add button in Bricks and Elementor showing the loading spinner on every button instead of the clicked one.
+- Fix: Single image product media collapsing to 1px.
+- Fix: Toast messages appearing behind WordPress popovers and dropdowns.
+- Fix: Unknown email at checkout returning a 500 error instead of a proper not-found response.
+- Fix: Dark 3px borders on some elements caused by the new WordPress 7.0 border styles.
+- Fix: Customer dashboard back link not using the customized "back home" text for screen readers.
+- Fix: Shop page crash when a filter URL was requested with a single value instead of a list, which search bots often do.
 
 = 4.6.3 - August 5th, 2026 =
 - Fix: Issue where some address fields were not being required when google autocomplete is connected.

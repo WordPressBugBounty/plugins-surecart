@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const getters$2 = require('./getters-a7cb114b.js');
-const getters = require('./getters-6818073e.js');
+const getters$2 = require('./getters-c3cd6c93.js');
+const getters = require('./getters-4e5fc4d4.js');
 const watchers = require('./watchers-517825ae.js');
-const mutations = require('./mutations-927be23d.js');
+const mutations = require('./mutations-98f05402.js');
 const consumer = require('./consumer-b58230e6.js');
 const getters$1 = require('./getters-d68c08ed.js');
 require('./store-9c215436.js');
@@ -17,7 +17,7 @@ require('./add-query-args-49dcb630.js');
 require('./util-a15c420c.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./index-fb76df07.js');
-require('./google-59d23803.js');
+require('./google-8dbad1a6.js');
 require('./currency-71fce0f0.js');
 require('./store-01e8edc2.js');
 require('./price-da3cab3d.js');

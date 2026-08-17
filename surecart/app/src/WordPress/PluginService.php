@@ -48,6 +48,19 @@ class PluginService {
 	}
 
 	/**
+	 * Get the minimum WordPress version the plugin requires.
+	 *
+	 * @return string Required WordPress version, or empty string if not declared.
+	 */
+	public function requiredWPVersion() {
+		if ( ! \function_exists( 'get_plugin_data' ) ) {
+			require_once \ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		return \get_plugin_data( SURECART_PLUGIN_FILE, false, false )['RequiresWP'];
+	}
+
+	/**
 	 * Has the plugin version changed?
 	 *
 	 * @return boolean

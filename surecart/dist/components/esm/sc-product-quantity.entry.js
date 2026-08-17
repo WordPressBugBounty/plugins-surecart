@@ -1,10 +1,10 @@
 import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
-import { s as state, b as setProduct } from './watchers-17c3cde1.js';
+import { s as state, b as setProduct } from './watchers-81f32d01.js';
 import { g as getMaxStockQuantity } from './quantity-5c986f3d.js';
 import './index-18f5a1bc.js';
-import './google-ff13b5f8.js';
+import './google-52867ad8.js';
 import './currency-a0c9bff4.js';
-import './google-a86aa761.js';
+import './google-e9085e27.js';
 import './utils-f84b2118.js';
 import './util-dfbf863e.js';
 import './index-c5a96d53.js';

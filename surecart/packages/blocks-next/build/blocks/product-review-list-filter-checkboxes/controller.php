@@ -6,8 +6,7 @@ if ( ! $product || empty( $product->total_reviews ) ) {
 }
 
 $params         = \SureCart::block()->urlParams( 'reviews' );
-$ratings_filter = $params->getArg( 'ratings' ) ?? [];
-$ratings_filter = is_array( $ratings_filter ) ? $ratings_filter : [];
+$ratings_filter = $params->getAllStarArgs()['ratings'] ?? [];
 $options        = [];
 
 // Generate options for each star rating (5 to 1).

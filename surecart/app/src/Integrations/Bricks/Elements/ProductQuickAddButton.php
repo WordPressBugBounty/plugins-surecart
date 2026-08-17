@@ -199,6 +199,7 @@ class ProductQuickAddButton extends \Bricks\Element {
 			$this->set_attribute( '_root', 'aria-label', $aria_label );
 			$this->set_attribute( '_root', 'data-wp-on--click', 'callbacks.handleSubmit' );
 			$this->set_attribute( '_root', 'data-wp-on--keydown', 'callbacks.handleSubmit' );
+			$this->set_attribute( '_root', 'data-wp-class--sc-button__link--busy', 'context.busy' );
 		} else {
 			$this->set_attribute(
 				'_root',
@@ -215,11 +216,10 @@ class ProductQuickAddButton extends \Bricks\Element {
 			$this->set_attribute( '_root', 'data-wp-on--keydown', 'actions.open' );
 			$this->set_attribute( '_root', 'data-wp-on--mouseenter', 'actions.prefetch' );
 			$this->set_attribute( '_root', 'data-wp-interactive', '{ "namespace": "surecart/product-quick-view" }' );
+			$this->set_attribute( '_root', 'data-wp-class--sc-button__link--busy', 'state.isOpening' );
 		}
 
 		$this->set_attribute( '_root', 'class', 'wp-block-surecart-product-quick-view-button sc-button__link bricks-button' );
-		$this->set_attribute( '_root', 'data-wp-class--loading', 'state.loading' );
-		$this->set_attribute( '_root', 'data-wp-class--sc-button__link--busy', 'state.loading' );
 		$this->set_attribute( '_root', 'aria-disabled', $is_disabled );
 
 		if ( ! empty( $settings['size'] ) ) {

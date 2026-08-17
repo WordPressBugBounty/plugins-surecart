@@ -148,11 +148,31 @@ class URLParamService {
 	}
 
 	/**
+	 * Coerce a raw filter value into a list.
+	 *
+	 * Crawlers routinely drop the `[0]` out of a faceted URL, so
+	 * `?products-sc_collection=slug` arrives as a bare string where callers
+	 * expect the list that `?products-sc_collection[0]=slug` produces.
+	 *
+	 * @param  mixed $value Raw filter value.
+	 *
+	 * @return array
+	 */
+	protected function toList( $value ) {
+		return array_values(
+			array_filter(
+				is_array( $value ) ? $value : [ $value ],
+				fn( $item ) => is_scalar( $item ) && '' !== $item
+			)
+		);
+	}
+
+	/**
 	 * Get the filter arguments.
 	 *
 	 * @param  string $instance_id Unique instance ID.
 	 *
-	 * @return array
+	 * @return array Map of taxonomy name to a list of term slugs.
 	 */
 	public function getAllTaxonomyArgs( $instance_id = '' ) {
 		$instance_id   = $instance_id ? $instance_id : $this->instance_id;
@@ -161,8 +181,10 @@ class URLParamService {
 
 		foreach ( $args as $key => $value ) {
 			$taxonomy_name = $this->getName( $key, $instance_id );
-			if ( taxonomy_exists( $taxonomy_name ) ) {
-				$taxonomy_args[ $taxonomy_name ] = $value;
+			$terms         = $this->toList( $value );
+
+			if ( taxonomy_exists( $taxonomy_name ) && ! empty( $terms ) ) {
+				$taxonomy_args[ $taxonomy_name ] = $terms;
 			}
 		}
 
@@ -174,7 +196,7 @@ class URLParamService {
 	 *
 	 * @param  string $instance_id Unique instance ID.
 	 *
-	 * @return array
+	 * @return array Map of 'ratings' to a list of values.
 	 */
 	public function getAllStarArgs( $instance_id = '' ): array {
 		$instance_id = $instance_id ? $instance_id : $this->instance_id;
@@ -183,8 +205,10 @@ class URLParamService {
 
 		foreach ( $args as $key => $value ) {
 			$star_name = $this->getName( $key, $instance_id );
-			if ( 'ratings' === $star_name ) {
-				$star_args[ $star_name ] = $value;
+			$ratings   = $this->toList( $value );
+
+			if ( 'ratings' === $star_name && ! empty( $ratings ) ) {
+				$star_args[ $star_name ] = $ratings;
 			}
 		}
 
@@ -263,8 +287,7 @@ class URLParamService {
 		$key = $this->getKey( $key, $instance_id );
 
 		// get the existing filters.
-		$existing_filters = $_GET[ $key ] ?? [];
-		$existing_filters = is_array( $existing_filters ) ? $existing_filters : [];
+		$existing_filters = $this->toList( $_GET[ $key ] ?? null );
 
 		// add the new filter.
 		$filters = array_unique( array_merge( $existing_filters, [ $value ] ) );
@@ -295,7 +318,7 @@ class URLParamService {
 		$key = $this->getKey( $key, $instance_id );
 
 		// get the existing filters.
-		$existing_filters = $_GET[ $key ] ?? [];
+		$existing_filters = $this->toList( $_GET[ $key ] ?? null );
 
 		// check if the value exists in the existing filters.
 		return in_array( strval( $value ), $existing_filters, false );
@@ -371,8 +394,7 @@ class URLParamService {
 		$key = $this->getKey( $key, $instance_id );
 
 		// get the existing filters.
-		$existing_filters = $_GET[ $key ] ?? [];
-		$existing_filters = is_array( $existing_filters ) ? $existing_filters : [];
+		$existing_filters = $this->toList( $_GET[ $key ] ?? null );
 
 		// remove the new filter.
 		$filters = array_diff( $existing_filters, [ $value ] );

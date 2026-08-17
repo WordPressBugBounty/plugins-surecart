@@ -10,7 +10,7 @@ usort( $bundle_items, fn( $a, $b ) => ( $a->position ?? 0 ) <=> ( $b->position ?
 foreach ( $bundle_items as $bundle_item ) :
 	// Resolve the component (live associations on the buy page, else the
 	// component's own synced cache) so variant stock is always current.
-	$component = $page_block->resolveBundleComponent( $bundle_item );
+	$component = $product->resolveBundleComponent( $bundle_item );
 	if ( empty( $component->id ) ) {
 		continue;
 	}

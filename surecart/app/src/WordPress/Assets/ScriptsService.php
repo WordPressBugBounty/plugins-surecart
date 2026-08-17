@@ -83,6 +83,22 @@ class ScriptsService {
 	}
 
 	/**
+	 * Whether SureCart should automatically send Google Analytics (gtag/dataLayer) events.
+	 *
+	 * Stores running their own GA4/GTM stack can opt out to avoid double-tracking.
+	 *
+	 * @return bool
+	 */
+	public function isGoogleTrackingEnabled() {
+		/**
+		 * Filter whether SureCart automatically sends Google Analytics (gtag/dataLayer) events.
+		 *
+		 * @param bool $enabled Whether Google tracking is enabled. Default true.
+		 */
+		return (bool) apply_filters( 'surecart/tracking/google/enabled', true );
+	}
+
+	/**
 	 * Register the component scripts and translations.
 	 *
 	 * @return void
@@ -150,7 +166,11 @@ class ScriptsService {
 					'is_account_connected'      => \SureCart::account()->isConnected(),
 					'modern_order_bump'         => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
 					'google_map_api_key'        => \SureCart::googleMaps()->getApiKey(),
-					'facebook_tracking_enabled' => $this->isFacebookTrackingEnabled(),
+					// Nested so wp_localize_script() keeps the booleans — it string-casts top-level scalars.
+					'tracking'                  => array(
+						'facebook' => $this->isFacebookTrackingEnabled(),
+						'google'   => $this->isGoogleTrackingEnabled(),
+					),
 				]
 			)
 		);
@@ -386,7 +406,11 @@ class ScriptsService {
 					'is_account_connected'      => \SureCart::account()->isConnected(),
 					'modern_order_bump'         => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
 					'google_map_api_key'        => \SureCart::googleMaps()->getApiKey(),
-					'facebook_tracking_enabled' => $this->isFacebookTrackingEnabled(),
+					// Nested so wp_localize_script() keeps the booleans — it string-casts top-level scalars.
+					'tracking'                  => array(
+						'facebook' => $this->isFacebookTrackingEnabled(),
+						'google'   => $this->isGoogleTrackingEnabled(),
+					),
 				]
 			)
 		);

@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const price = require('./price-da3cab3d.js');
-const getters = require('./getters-a7cb114b.js');
+const getters = require('./getters-c3cd6c93.js');
 const getters$1 = require('./getters-d68c08ed.js');
-const mutations = require('./mutations-927be23d.js');
+const mutations = require('./mutations-98f05402.js');
 require('./currency-71fce0f0.js');
 require('./store-9c215436.js');
 require('./index-c3de642f.js');
@@ -16,7 +16,7 @@ require('./add-query-args-49dcb630.js');
 require('./store-01e8edc2.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./index-fb76df07.js');
-require('./google-59d23803.js');
+require('./google-8dbad1a6.js');
 
 const scProductSelectedPriceCss = ":host{display:block}sc-form{width:100%}.selected-price{display:flex;align-items:center;gap:var(--sc-spacing-small);flex-wrap:wrap}.selected-price__wrap{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--sc-spacing-xx-small);color:var(--sc-selected-price-color, var(--sc-color-gray-800));line-height:1}.selected-price__price{font-size:var(--sc-font-size-xxx-large);font-weight:var(--sc-font-weight-bold);white-space:nowrap}.selected-price__interval{font-weight:var(--sc-font-weight-bold);opacity:0.65;white-space:nowrap}.selected-price__scratch-price{opacity:0.65;font-weight:var(--sc-font-weight-normal);text-decoration:line-through}";
 const ScProductSelectedPriceStyle0 = scProductSelectedPriceCss;

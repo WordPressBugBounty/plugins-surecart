@@ -76,10 +76,11 @@ $data       = $controller->getData();
 					</sc-dropdown>
 				</header>
 
+				<?php $back_home_text = apply_filters( 'sc_customer_dashboard_back_home_text', __( 'Back Home', 'surecart' ) ); ?>
 				<div class="sc-dashboard__back sc-pin-bottom">
-					<sc-button href="<?php echo esc_url( apply_filters( 'sc_customer_dashboard_back_home_url', get_home_url() ) ); ?>" type="text" class="sc-link-home" aria-label="<?php esc_attr_e( 'Back Home', 'surecart' ); ?>" role="button">
+					<sc-button href="<?php echo esc_url( apply_filters( 'sc_customer_dashboard_back_home_url', get_home_url() ) ); ?>" type="text" class="sc-link-home" aria-label="<?php echo esc_attr( $back_home_text ); ?>" role="button">
 						<sc-icon name="arrow-left" slot="prefix"></sc-icon>
-						<?php echo esc_html( apply_filters( 'sc_customer_dashboard_back_home_text', __( 'Back Home', 'surecart' ) ) ); ?>
+						<?php echo esc_html( $back_home_text ); ?>
 					</sc-button>
 				</div>
 

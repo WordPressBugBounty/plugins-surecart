@@ -11,8 +11,6 @@
 
 namespace SureCart\WordPress;
 
-use SureCart\WordPress\Admin\Notices\AdminNoticesService;
-
 /**
  * Provides compatibility with other plugins.
  */
@@ -42,6 +40,9 @@ class CompatibilityService {
 
 		// Show gutenberg active notice.
 		add_action( 'admin_init', [ $this, 'gutenbergActiveNotice' ] );
+
+		// Warn when the WordPress version is below what the plugin requires.
+		add_action( 'current_screen', [ $this, 'minimumWpVersionNotice' ] );
 
 		// Load Divi Compatibility CSS.
 		add_action( 'wp_enqueue_scripts', [ $this, 'diviCompatibility' ] );
@@ -230,7 +231,7 @@ class CompatibilityService {
 	 */
 	public function gutenbergActiveNotice(): void {
 		if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
-			( new AdminNoticesService() )->add(
+			\SureCart::notices()->add(
 				[
 					'name'  => 'gutenberg_active_notice',
 					'type'  => 'warning',
@@ -239,6 +240,51 @@ class CompatibilityService {
 				]
 			);
 		}
+	}
+
+	/**
+	 * Warn admins when the site's WordPress version is below the plugin's minimum.
+	 *
+	 * @return void
+	 */
+	public function minimumWpVersionNotice(): void {
+		// Only surface to users who can actually update core.
+		if ( ! current_user_can( 'update_core' ) ) {
+			return;
+		}
+
+		// Limit to the plugins screen and SureCart's own admin pages to avoid
+		// polluting unrelated admin screens. Reuses the canonical screen-id list.
+		$screen = get_current_screen();
+		if ( empty( $screen ) ) {
+			return;
+		}
+
+		$allowed_screens = array_merge( [ 'plugins' ], \SureCart::plugin()->pages()->getSureCartPageScreenIds() );
+		if ( ! in_array( $screen->id, $allowed_screens, true ) ) {
+			return;
+		}
+
+		$required = \SureCart::plugin()->requiredWPVersion();
+
+		// Nothing declared, or the site already meets the minimum.
+		if ( empty( $required ) || ! version_compare( get_bloginfo( 'version' ), $required, '<' ) ) {
+			return;
+		}
+
+		\SureCart::notices()->add(
+			[
+				'type'  => 'error',
+				'title' => esc_html__( 'SureCart', 'surecart' ),
+				'text'  => wp_kses_post(
+					sprintf(
+						/* translators: %s: minimum required WordPress version. */
+						__( '<p>SureCart requires WordPress %s or higher. Please update WordPress to keep your store working correctly.</p>', 'surecart' ),
+						esc_html( $required )
+					)
+				),
+			]
+		);
 	}
 
 	/**

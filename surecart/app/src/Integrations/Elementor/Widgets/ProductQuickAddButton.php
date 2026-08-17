@@ -365,6 +365,7 @@ class ProductQuickAddButton extends \Elementor\Widget_Base {
 			$this->add_render_attribute( 'quick-add-button', 'aria-label', $aria_label );
 			$this->add_render_attribute( 'quick-add-button', 'data-wp-on--click', 'callbacks.handleSubmit' );
 			$this->add_render_attribute( 'quick-add-button', 'data-wp-on--keydown', 'callbacks.handleSubmit' );
+			$this->add_render_attribute( 'quick-add-button', 'data-wp-class--sc-button__link--busy', 'context.busy' );
 		} else {
 			$this->add_render_attribute(
 				'quick-add-button',
@@ -381,11 +382,10 @@ class ProductQuickAddButton extends \Elementor\Widget_Base {
 			$this->add_render_attribute( 'quick-add-button', 'data-wp-on--keydown', 'actions.open' );
 			$this->add_render_attribute( 'quick-add-button', 'data-wp-on--mouseenter', 'actions.prefetch' );
 			$this->add_render_attribute( 'quick-add-button', 'data-wp-interactive', '{ "namespace": "surecart/product-quick-view" }' );
+			$this->add_render_attribute( 'quick-add-button', 'data-wp-class--sc-button__link--busy', 'state.isOpening' );
 		}
 
 		$this->add_render_attribute( 'quick-add-button', 'class', 'wp-block-surecart-product-quick-view-button wp-block-button__link sc-button__link elementor-button elementor-button-link elementor-size-sm ' . $show_on_hover_class );
-		$this->add_render_attribute( 'quick-add-button', 'data-wp-class--loading', 'state.loading' );
-		$this->add_render_attribute( 'quick-add-button', 'data-wp-class--sc-button__link--busy', 'state.loading' );
 		$this->add_render_attribute( 'quick-add-button', 'aria-disabled', $is_disabled );
 
 		if ( $show_icon && ! empty( $settings['selected_icon']['value'] ) ) {

@@ -128,9 +128,31 @@ class Block extends BaseBlock {
 				'style'            => $this->getStyle( $attributes ),
 				'content'          => $content,
 				'id'               => 'sc-checkout-' . ( $attributes['form_id'] ?? $sc_form_id ),
-				'success_url'      => ! empty( $attributes['success_url'] ) ? $attributes['success_url'] : \SureCart::pages()->url( 'order-confirmation' ),
+				'success_url'      => $this->getSuccessUrl( $attributes ),
 			]
 		);
+	}
+
+	/**
+	 * Get the URL the customer is sent to after a successful checkout.
+	 *
+	 * @param  array $attributes Block attributes.
+	 * @return string
+	 */
+	public function getSuccessUrl( $attributes ) {
+		$url = ! empty( $attributes['success_url'] ) ? $attributes['success_url'] : \SureCart::pages()->url( 'order-confirmation' );
+
+		/**
+		 * Filter the URL the customer is sent to after a successful checkout.
+		 *
+		 * A `success_url` in the checkout's metadata still wins over this — the
+		 * front end prefers the per-checkout value so a single checkout can
+		 * override the form it was created from.
+		 *
+		 * @param string $url        Success URL, or an empty string when no order confirmation page is set.
+		 * @param array  $attributes Form block attributes.
+		 */
+		return (string) apply_filters( 'surecart/checkout/success_url', $url, $attributes );
 	}
 
 	/**

@@ -61,6 +61,20 @@ class Product extends Model implements PageModel {
 	protected $cache_key = 'products';
 
 	/**
+	 * Memoized bundle component lookups for this instance.
+	 *
+	 * @var array
+	 */
+	protected $component_cache = array();
+
+	/**
+	 * Whether bundle components have been batch-prefetched for this instance.
+	 *
+	 * @var boolean
+	 */
+	protected $components_prefetched = false;
+
+	/**
 	 * Hydrate the bundle_items collection from API expansion.
 	 *
 	 * @param array $value Bundle items payload.
@@ -711,19 +725,200 @@ class Product extends Model implements PageModel {
 
 	/**
 	 * Get the has options attribute.
-	 * Determines if product has options (variants, multiple prices, or ad hoc pricing).
+	 * Determines if the customer must make a choice before purchase (variants,
+	 * multiple prices, ad hoc pricing, or bundle components with variants).
 	 *
 	 * @return boolean
 	 */
 	public function getHasOptionsAttribute() {
-		// Check if product has variant options.
-		return $this->has_variants || $this->has_multiple_prices || ! empty( $this->active_ad_hoc_prices );
+		return $this->has_variants || $this->has_multiple_prices || ! empty( $this->active_ad_hoc_prices ) || $this->has_variable_components;
+	}
+
+	/**
+	 * Whether any bundle component has variant options, meaning the customer
+	 * must pick options before the bundle can be added to cart. Surfaces gating
+	 * on has_options (e.g. Quick Add) require a selection exactly when the
+	 * product page buy button would.
+	 *
+	 * @return boolean
+	 */
+	public function getHasVariableComponentsAttribute() {
+		return ! empty( $this->bundle_variable_component_ids );
+	}
+
+	/**
+	 * IDs of bundle components with variant options — the only ones a buy
+	 * button gates on when unfilled. Empty for non-bundles.
+	 *
+	 * @return array
+	 */
+	public function getBundleVariableComponentIdsAttribute() {
+		if ( empty( $this->bundle ) ) {
+			return array();
+		}
+
+		$ids = array();
+		foreach ( $this->bundle_items->data ?? array() as $item ) {
+			$component = $this->resolveBundleComponent( $item );
+			if ( empty( $component->id ) || empty( $component->variant_options->data ?? array() ) ) {
+				continue;
+			}
+			$ids[] = $component->id;
+		}
+		return $ids;
+	}
+
+	/**
+	 * Resolve a bundle component into a product-shaped object carrying its
+	 * variants and variant_options. The canonical resolver — every surface
+	 * (product page, quick add, variant pills) must agree on what a component's
+	 * variants are.
+	 *
+	 * Prefers the live shortcut associations on the bundle item (buy page live
+	 * fetch carries component_variants / component_variant_options). Falls back
+	 * to the component's own synced cache (the synced bundle omits component
+	 * variant data) — that cache stays fresh via the component's own product
+	 * webhooks. Using the live associations on the buy page is essential: a
+	 * component need not be synced as its own WP post, so the cache lookup can
+	 * miss it.
+	 *
+	 * @param object $item Bundle item.
+	 *
+	 * @return object|null Component product with variants/variant_options, or null.
+	 */
+	public function resolveBundleComponent( $item ) {
+		if ( empty( $item ) ) {
+			return null;
+		}
+
+		// Prime the memo for all items in one query before per-item resolution.
+		$this->prefetchBundleComponents();
+
+		// Live associations present (buy page): attach them to the component object.
+		if ( $this->hasLiveComponentAssociations( $item ) ) {
+			$component                  = $item->component_product;
+			$component->variants        = $item->component_variants;
+			$component->variant_options = $item->component_variant_options ?? (object) array( 'data' => array() );
+			return $component;
+		}
+
+		// Cached model: read the component's own synced cache.
+		return $this->getBundleComponentFromCache( $item->component_product_id );
+	}
+
+	/**
+	 * Whether a bundle item carries live component associations, letting
+	 * resolveBundleComponent() skip the synced-cache lookup. The single
+	 * definition keeps the prefetch skip logic and the resolver in lockstep.
+	 *
+	 * @param object $item Bundle item.
+	 *
+	 * @return boolean
+	 */
+	protected function hasLiveComponentAssociations( $item ) {
+		return is_object( $item->component_product ?? null ) && ! empty( $item->component_variants->data ?? array() );
+	}
+
+	/**
+	 * Batch-prime the component memo for every bundle item lacking live
+	 * associations — one sc_id IN (...) query per bundle instead of one query
+	 * per component. Runs once per instance; misses stay memoized as null so
+	 * single lookups don't re-query them.
+	 *
+	 * @return void
+	 */
+	protected function prefetchBundleComponents() {
+		if ( $this->components_prefetched ) {
+			return;
+		}
+		$this->components_prefetched = true;
+
+		$ids = array();
+		foreach ( $this->bundle_items->data ?? array() as $item ) {
+			// Skip items the live branch of resolveBundleComponent() handles.
+			if ( $this->hasLiveComponentAssociations( $item ) ) {
+				continue;
+			}
+			$component_id = $item->component_product_id;
+			if ( ! empty( $component_id ) && ! array_key_exists( $component_id, $this->component_cache ) ) {
+				$ids[ $component_id ] = true;
+			}
+		}
+		if ( ! empty( $ids ) ) {
+			$this->primeComponentCache( array_keys( $ids ) );
+		}
+	}
+
+	/**
+	 * Query synced component products by sc_id and memoize the hydrated models.
+	 * Misses are memoized as null so they are never re-queried. Queries by
+	 * sc_id directly instead of sc_get_product(), which short-circuits to the
+	 * current product inside product loops.
+	 *
+	 * @param array $ids Component product ids.
+	 *
+	 * @return void
+	 */
+	protected function primeComponentCache( $ids ) {
+		// Memoize misses up front; found posts overwrite below.
+		foreach ( $ids as $component_id ) {
+			$this->component_cache[ $component_id ] = null;
+		}
+
+		$posts = get_posts(
+			array(
+				'post_type'        => 'sc_product',
+				'post_status'      => array( 'publish', 'draft', 'sc_archived', 'private' ),
+				'posts_per_page'   => -1,
+				'no_found_rows'    => true,
+				'suppress_filters' => true,
+				'meta_query'       => array(
+					array(
+						'key'     => 'sc_id',
+						'value'   => $ids,
+						'compare' => 'IN',
+					),
+				),
+			)
+		);
+
+		foreach ( $posts as $post ) {
+			$component_id = get_post_meta( $post->ID, 'sc_id', true );
+			$product      = get_post_meta( $post->ID, 'product', true );
+			if ( empty( $component_id ) || empty( $product ) ) {
+				continue;
+			}
+			$decoded                                = is_string( $product ) ? json_decode( $product ) : json_decode( wp_json_encode( $product ) );
+			$this->component_cache[ $component_id ] = new static( $decoded );
+		}
+	}
+
+	/**
+	 * Load a bundle component product from its own synced post-meta cache.
+	 *
+	 * Usually a memo hit after prefetchBundleComponents(); the query only runs
+	 * for items outside this product's bundle_items.
+	 *
+	 * @param string|null $component_id Component product id.
+	 *
+	 * @return Product|null
+	 */
+	protected function getBundleComponentFromCache( $component_id ) {
+		if ( empty( $component_id ) ) {
+			return null;
+		}
+
+		if ( ! array_key_exists( $component_id, $this->component_cache ) ) {
+			$this->primeComponentCache( array( $component_id ) );
+		}
+
+		return $this->component_cache[ $component_id ];
 	}
 
 	/**
 	 * Get the featured image attribute.
 	 *
-	 * @return \SureCart\Support\Contracts\GalleryItem|null;
+	 * @return GalleryItem|null;
 	 */
 	public function getFeaturedImageAttribute() {
 		$gallery     = array_values( $this->gallery ?? array() );
