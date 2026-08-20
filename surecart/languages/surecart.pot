@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-17T19:38:07+00:00\n"
+"POT-Creation-Date: 2026-08-20T17:19:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -15,43 +15,43 @@ msgstr ""
 msgid "No matching template found"
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:196
+#: src/Abilities/Abilities/AbstractAbility.php:197
 msgid "Filter rule tree is too deeply nested."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:200
+#: src/Abilities/Abilities/AbstractAbility.php:201
 #: src/Abilities/Abilities/FilterCustomers.php:116
 #: src/Abilities/Abilities/FilterOrders.php:116
 #: src/Abilities/Abilities/FilterSubscriptions.php:116
 msgid "The filter must be a condition or group object."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:208
+#: src/Abilities/Abilities/AbstractAbility.php:209
 msgid "A group combinator must be \"and\" or \"or\"."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:213
+#: src/Abilities/Abilities/AbstractAbility.php:214
 msgid "A group must have at least one condition."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:217
+#: src/Abilities/Abilities/AbstractAbility.php:218
 msgid "A group has too many conditions (max 50)."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:246
+#: src/Abilities/Abilities/AbstractAbility.php:247
 msgid "Each rule must have a type of \"condition\" or \"group\"."
 msgstr ""
 
 #. translators: %s: comma-separated list of valid interval values
-#: src/Abilities/Abilities/AbstractAbility.php:278
+#: src/Abilities/Abilities/AbstractAbility.php:279
 msgid "Invalid interval. Allowed values: %s"
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:287
+#: src/Abilities/Abilities/AbstractAbility.php:288
 msgid "start_date must be in YYYY-MM-DD format."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:295
+#: src/Abilities/Abilities/AbstractAbility.php:296
 msgid "end_date must be in YYYY-MM-DD format."
 msgstr ""
 
@@ -1787,7 +1787,7 @@ msgstr ""
 msgid "Sale"
 msgstr ""
 
-#: src/Concerns/RestrictsAnonymousReads.php:110
+#: src/Concerns/RestrictsAnonymousReads.php:124
 #: src/Support/Errors/Translations/types.php:14
 #: Controllers/BaseController.php:115
 msgid "Not found."
@@ -4241,19 +4241,19 @@ msgstr ""
 msgid "The plugin download was redirected to a host that is not allowed."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:120
+#: src/Controllers/Rest/ProductsController.php:163
 msgid "The Cataloged at date cannot be in the future. Please provide a valid date."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:188
+#: src/Controllers/Rest/ProductsController.php:231
 msgid "WooCommerce is not active."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:198
+#: src/Controllers/Rest/ProductsController.php:241
 msgid "A WooCommerce import is already in progress."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:208
+#: src/Controllers/Rest/ProductsController.php:251
 msgid "WooCommerce import started."
 msgstr ""
 

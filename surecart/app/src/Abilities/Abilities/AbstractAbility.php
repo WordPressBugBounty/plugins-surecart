@@ -102,6 +102,7 @@ abstract class AbstractAbility {
 				return is_wp_error( $result ) ? $this->extract_detailed_error( $result ) : $result;
 			},
 			'meta'                => array(
+				'public'       => true, // Unified exposure flag (WP 7.1+).
 				'show_in_rest' => true,
 				'annotations'  => $this->get_annotations(),
 				'instructions' => $this->get_instructions(),

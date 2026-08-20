@@ -4,6 +4,8 @@ namespace SureCart\Controllers\Rest;
 
 use SureCart\Concerns\RestrictsAnonymousReads;
 use SureCart\Models\Product;
+use SureCart\Models\Purchase;
+use SureCart\Models\User;
 
 /**
  * Handle Product requests through the REST API
@@ -103,6 +105,47 @@ class ProductsController extends RestController {
 		}
 
 		return $class;
+	}
+
+	/**
+	 * Let a logged-in customer read their own hidden (draft) product.
+	 *
+	 * Subscriptions keep referencing a product after it moves back to draft,
+	 * and the dashboard switch UI fetches that product by id — the same
+	 * grandfathering reason archived stays readable on find (see $anonymous_scope).
+	 * Anonymous callers always keep the 404; access is only granted when the
+	 * current user's customer owns an unrevoked purchase of this exact product.
+	 *
+	 * @param \SureCart\Models\Product $model Fetched product.
+	 *
+	 * @return boolean
+	 */
+	protected function anonymousCanViewHidden( $model ) {
+		if ( ! is_user_logged_in() || empty( $model->id ) ) {
+			return false;
+		}
+
+		// must be a sequential list — the platform ignores (rather than filters on)
+		// associative customer_ids (see ModelPermissionsController::isListingOwnCustomerIds).
+		$customer_ids = array_values( array_filter( (array) User::current()->customerIds() ) );
+		if ( empty( $customer_ids ) ) {
+			return false;
+		}
+
+		$purchase = Purchase::where(
+			[
+				'customer_ids' => $customer_ids,
+				'product_ids'  => [ $model->id ],
+				'revoked'      => false,
+			]
+		)->first();
+
+		// fail closed on a lookup error or no purchase.
+		if ( is_wp_error( $purchase ) || empty( $purchase ) ) {
+			return false;
+		}
+
+		return $model->id === $purchase->product_id;
 	}
 
 	/**

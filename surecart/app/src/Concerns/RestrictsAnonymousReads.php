@@ -107,10 +107,40 @@ trait RestrictsAnonymousReads {
 		}
 
 		if ( $this->isHiddenFromAnonymous( $model ) ) {
-			return new \WP_Error( 'rest_not_found', __( 'Not found.', 'surecart' ), [ 'status' => 404 ] );
+			/**
+			 * Filters whether a caller without the edit capability may still read
+			 * a record that anonymous reads would otherwise hide (draft or archived).
+			 *
+			 * WARNING: this is a security control. Returning true re-exposes
+			 * unreleased catalog data to callers without the edit capability, so
+			 * any widening must verify ownership itself. Anonymous callers must
+			 * keep getting the 404.
+			 *
+			 * @param boolean                $allowed Whether the caller may read the hidden record.
+			 * @param \SureCart\Models\Model $model   Fetched model.
+			 * @param \WP_REST_Request       $request Request object.
+			 */
+			if ( ! apply_filters( 'surecart/rest/anonymous_can_view_hidden', $this->anonymousCanViewHidden( $model ), $model, $request ) ) {
+				return new \WP_Error( 'rest_not_found', __( 'Not found.', 'surecart' ), [ 'status' => 404 ] );
+			}
 		}
 
 		return $model;
+	}
+
+	/**
+	 * Ownership exception for records hidden from anonymous reads.
+	 *
+	 * Controllers override this to let a caller read a hidden record they can
+	 * prove ownership of (e.g. a customer's purchased draft product). Must
+	 * fail closed — anonymous callers keep the 404.
+	 *
+	 * @param \SureCart\Models\Model $model Fetched model.
+	 *
+	 * @return boolean
+	 */
+	protected function anonymousCanViewHidden( $model ) {
+		return false;
 	}
 
 	/**
