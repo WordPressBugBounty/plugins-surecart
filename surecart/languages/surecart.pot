@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-20T17:19:02+00:00\n"
+"POT-Creation-Date: 2026-08-20T22:23:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -4492,7 +4492,7 @@ msgstr ""
 #: src/blocks/product-review-reviewer-name/edit.js:42
 #: src/blocks/product-review-total-rating/edit.js:17
 #: src/blocks/product-selected-variant-image/edit.js:152
-#: src/blocks/product-title/edit.js:42
+#: src/blocks/product-title/edit.js:43
 msgid "Settings"
 msgstr ""
 
@@ -6618,7 +6618,7 @@ msgstr ""
 
 #: src/Integrations/Elementor/Widgets/PriceChooser.php:339
 #: auto-fees/utils/constants.js:36
-#: src/blocks/price-name/edit.js:17
+#: src/blocks/price-name/edit.js:18
 msgid "Price Name"
 msgstr ""
 
@@ -7100,7 +7100,7 @@ msgstr ""
 #: admin/products/import-results.php:185
 #: auto-fees/utils/constants.js:41
 #: products/CreateProduct.js:72
-#: src/blocks/product-title/edit.js:74
+#: src/blocks/product-title/edit.js:75
 msgid "Product Name"
 msgstr ""
 
@@ -26018,7 +26018,7 @@ msgid "Text settings"
 msgstr ""
 
 #: Blocks/Product/CollectionBadges/edit.js:63
-#: src/blocks/product-collection-tags/edit.js:64
+#: src/blocks/product-collection-tags/edit.js:66
 msgid "Number To Display"
 msgstr ""
 
@@ -29342,12 +29342,12 @@ msgid "Make image a link"
 msgstr ""
 
 #: src/blocks/product-image/edit.js:182
-#: src/blocks/product-title/edit.js:54
+#: src/blocks/product-title/edit.js:55
 msgid "Open in new tab"
 msgstr ""
 
 #: src/blocks/product-image/edit.js:192
-#: src/blocks/product-title/edit.js:65
+#: src/blocks/product-title/edit.js:66
 msgid "Link rel"
 msgstr ""
 
@@ -29851,7 +29851,7 @@ msgstr ""
 msgid "Grid view"
 msgstr ""
 
-#: src/blocks/product-title/edit.js:45
+#: src/blocks/product-title/edit.js:46
 msgid "Make title a link"
 msgstr ""
 
