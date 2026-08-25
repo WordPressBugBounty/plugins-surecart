@@ -1578,6 +1578,10 @@ export namespace Components {
          */
         "clearable": boolean;
         /**
+          * Where the badge is shown. 'customer' applies friendlier wording for some statuses.
+         */
+        "context": 'admin' | 'customer';
+        /**
           * Draws a pill-style tag with rounded edges.
          */
         "pill": boolean;
@@ -1593,6 +1597,10 @@ export namespace Components {
     interface ScFulfillments {
         "heading": string;
         "orderId": string;
+        /**
+          * Show the "Order Received" notice for shippable orders with no fulfillments yet.
+         */
+        "showPreShipmentNotice": boolean;
     }
     interface ScHeading {
         "size": 'small' | 'medium' | 'large';
@@ -2202,6 +2210,10 @@ export namespace Components {
          */
         "clearable": boolean;
         /**
+          * Where the badge is shown. 'customer' applies friendlier wording for some statuses.
+         */
+        "context": 'admin' | 'customer';
+        /**
           * Draws a pill-style tag with rounded edges.
          */
         "pill": boolean;
@@ -2655,7 +2667,7 @@ export namespace Components {
          */
         "name": string;
         /**
-          * A pattern to validate input against.
+          * A pattern to validate input against. Deliberately loose: it must keep accepting inputs the old (non-compiling, so never enforced) default let through — letters cover extensions ("ext 12", "x22"), comma/semicolon are dial-pause characters.
          */
         "pattern": string;
         /**
@@ -9011,6 +9023,10 @@ declare namespace LocalJSX {
          */
         "clearable"?: boolean;
         /**
+          * Where the badge is shown. 'customer' applies friendlier wording for some statuses.
+         */
+        "context"?: 'admin' | 'customer';
+        /**
           * Draws a pill-style tag with rounded edges.
          */
         "pill"?: boolean;
@@ -9026,6 +9042,10 @@ declare namespace LocalJSX {
     interface ScFulfillments {
         "heading"?: string;
         "orderId"?: string;
+        /**
+          * Show the "Order Received" notice for shippable orders with no fulfillments yet.
+         */
+        "showPreShipmentNotice"?: boolean;
     }
     interface ScHeading {
         "size"?: 'small' | 'medium' | 'large';
@@ -9647,6 +9667,10 @@ declare namespace LocalJSX {
          */
         "clearable"?: boolean;
         /**
+          * Where the badge is shown. 'customer' applies friendlier wording for some statuses.
+         */
+        "context"?: 'admin' | 'customer';
+        /**
           * Draws a pill-style tag with rounded edges.
          */
         "pill"?: boolean;
@@ -10128,7 +10152,7 @@ declare namespace LocalJSX {
          */
         "onScInput"?: (event: ScPhoneInputCustomEvent<void>) => void;
         /**
-          * A pattern to validate input against.
+          * A pattern to validate input against. Deliberately loose: it must keep accepting inputs the old (non-compiling, so never enforced) default let through — letters cover extensions ("ext 12", "x22"), comma/semicolon are dial-pause characters.
          */
         "pattern"?: string;
         /**

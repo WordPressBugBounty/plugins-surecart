@@ -129,13 +129,21 @@ class OrderController extends BaseController {
 
 			<div>
 			<?php
+			/**
+			 * Filter whether to show the "Order Received" pre-shipment notice on the customer
+			 * order page for paid/processing shippable orders that have no fulfillments yet.
+			 *
+			 * @param bool $show_pre_shipment_notice Whether to show the notice. Default true.
+			 */
+			$show_pre_shipment_notice = apply_filters( 'surecart/dashboard/order/pre_shipment_notice', true );
+
 			echo wp_kses_post(
-				Component::tag( 'sc-order' )
-				->id( 'sc-customer-order' )
+				Component::tag( 'sc-fulfillments' )
+				->id( 'sc-customer-fulfillments' )
 				->with(
 					[
-						'orderId'     => $this->getId(),
-						'customerIds' => array_values( (array) User::current()->customerIds() ),
+						'orderId'               => $this->getId(),
+						'showPreShipmentNotice' => (bool) $show_pre_shipment_notice,
 					]
 				)->render()
 			);
@@ -145,11 +153,12 @@ class OrderController extends BaseController {
 			<div>
 			<?php
 			echo wp_kses_post(
-				Component::tag( 'sc-fulfillments' )
-				->id( 'sc-customer-fulfillments' )
+				Component::tag( 'sc-order' )
+				->id( 'sc-customer-order' )
 				->with(
 					[
-						'orderId' => $this->getId(),
+						'orderId'     => $this->getId(),
+						'customerIds' => array_values( (array) User::current()->customerIds() ),
 					]
 				)->render()
 			);

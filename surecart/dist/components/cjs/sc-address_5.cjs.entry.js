@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 const address = require('./address-7404695f.js');
 const formData = require('./form-data-0da9940f.js');
-const googleMaps = require('./google-maps-0f9b7648.js');
+const googleMaps = require('./google-maps-8b4e4fed.js');
 const mutations = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const index$1 = require('./index-adacfa36.js');
@@ -17519,37 +17519,54 @@ function highlightMatch(text, query) {
     }
 }
 /**
- * Fetches address suggestions from the Google Maps API.
+ * The site locale in BCP-47 format ("en-US") — WordPress stores it with an underscore ("en_US").
  */
-async function fetchAddressSuggestions(input, country, regions, signal) {
+const getLanguageCode = () => { var _a; return (((_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.locale) || document.documentElement.lang || 'en').replace(/_/g, '-'); };
+/**
+ * Create a Places API session token. Groups autocomplete keystrokes and the final
+ * Place Details call into one billing session. Falls back for insecure contexts
+ * where crypto.randomUUID is unavailable.
+ */
+const createSessionToken = () => { var _a; return typeof ((_a = globalThis.crypto) === null || _a === void 0 ? void 0 : _a.randomUUID) === 'function' ? globalThis.crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`; };
+/**
+ * Fetches address predictions from the Google Places Autocomplete API.
+ *
+ * Autocomplete (not Text Search) is required here — Text Search matches businesses
+ * and POIs, so partial addresses returned shops instead of street addresses.
+ */
+async function fetchAddressSuggestions(input, country, sessionToken, signal) {
     var _a, _b;
-    const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
+    const response = await fetch('https://places.googleapis.com/v1/places:autocomplete', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-Goog-Api-Key': (_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key,
-            'X-Goog-FieldMask': 'places.id,places.displayName,places.types,places.primaryType,places.primaryTypeDisplayName,places.addressComponents',
         },
         body: JSON.stringify({
-            textQuery: input,
-            pageSize: 5,
-            regionCode: country,
+            input,
+            sessionToken,
+            languageCode: getLanguageCode(),
+            // Hard restriction — predictions outside the selected checkout country are excluded.
+            ...(country ? { includedRegionCodes: [country] } : {}),
         }),
         signal,
     });
-    const addressResponse = await response.json();
-    if ((_b = addressResponse === null || addressResponse === void 0 ? void 0 : addressResponse.error) === null || _b === void 0 ? void 0 : _b.message) {
-        throw new Error(addressResponse.error.message);
+    const data = await response.json();
+    if ((_b = data === null || data === void 0 ? void 0 : data.error) === null || _b === void 0 ? void 0 : _b.message) {
+        throw new Error(data.error.message);
     }
-    return ((addressResponse === null || addressResponse === void 0 ? void 0 : addressResponse.places) || []).map((place) => {
-        var _a, _b, _c, _d;
-        const { city, state, country } = googleMaps.getAddressLabels((place === null || place === void 0 ? void 0 : place.addressComponents) || [], regions);
-        return {
-            displayName: (_b = (_a = place === null || place === void 0 ? void 0 : place.displayName) === null || _a === void 0 ? void 0 : _a.text) !== null && _b !== void 0 ? _b : input,
-            fullDisplayName: [(_d = (_c = place === null || place === void 0 ? void 0 : place.displayName) === null || _c === void 0 ? void 0 : _c.text) !== null && _d !== void 0 ? _d : input, city, state, country].filter(Boolean).join(', '),
-            placeId: place === null || place === void 0 ? void 0 : place.id,
-            addressComponents: (place === null || place === void 0 ? void 0 : place.addressComponents) || null,
-        };
+    return ((data === null || data === void 0 ? void 0 : data.suggestions) || []).flatMap((suggestion) => {
+        var _a, _b, _c, _d, _e, _f, _g;
+        const prediction = suggestion === null || suggestion === void 0 ? void 0 : suggestion.placePrediction;
+        if (!(prediction === null || prediction === void 0 ? void 0 : prediction.placeId))
+            return [];
+        return [
+            {
+                displayName: (_e = (_c = (_b = (_a = prediction === null || prediction === void 0 ? void 0 : prediction.structuredFormat) === null || _a === void 0 ? void 0 : _a.mainText) === null || _b === void 0 ? void 0 : _b.text) !== null && _c !== void 0 ? _c : (_d = prediction === null || prediction === void 0 ? void 0 : prediction.text) === null || _d === void 0 ? void 0 : _d.text) !== null && _e !== void 0 ? _e : input,
+                fullDisplayName: (_g = (_f = prediction === null || prediction === void 0 ? void 0 : prediction.text) === null || _f === void 0 ? void 0 : _f.text) !== null && _g !== void 0 ? _g : input,
+                placeId: prediction.placeId,
+            },
+        ];
     });
 }
 /**
@@ -17574,16 +17591,33 @@ function buildReplacementAddressFromPlace(place, regions, previousName) {
     };
 }
 /**
- * Fetches place details from the Google Maps API.
+ * Fetches place details from the Google Places API and transforms them into an address.
+ *
+ * Passing the autocomplete session token here closes the billing session — the token
+ * is invalid afterwards, so the caller must discard it.
  */
-async function fetchPlaceDetails(placeId, addressSuggestions, address$1, regions) {
-    var _a;
-    const place = addressSuggestions.find((suggestion) => suggestion.placeId === placeId);
-    if (!(place === null || place === void 0 ? void 0 : place.addressComponents)) {
+async function fetchPlaceDetails(suggestion, address$1, regions, sessionToken) {
+    var _a, _b, _c;
+    if (!(suggestion === null || suggestion === void 0 ? void 0 : suggestion.placeId)) {
         throw new Error('Place details not found.');
     }
-    const { addressComponents } = place;
-    const country = ((_a = addressComponents.find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes('country'); })) === null || _a === void 0 ? void 0 : _a.shortText) || null;
+    const params = new URLSearchParams({
+        languageCode: getLanguageCode(),
+        ...(sessionToken ? { sessionToken } : {}),
+    });
+    const response = await fetch(`https://places.googleapis.com/v1/places/${suggestion.placeId}?${params.toString()}`, {
+        headers: {
+            'X-Goog-Api-Key': (_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key,
+            'X-Goog-FieldMask': 'addressComponents',
+        },
+    });
+    const data = await response.json();
+    if ((_b = data === null || data === void 0 ? void 0 : data.error) === null || _b === void 0 ? void 0 : _b.message) {
+        throw new Error(data.error.message);
+    }
+    const addressComponents = (data === null || data === void 0 ? void 0 : data.addressComponents) || [];
+    const place = { ...suggestion, addressComponents };
+    const country = ((_c = addressComponents.find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes('country'); })) === null || _c === void 0 ? void 0 : _c.shortText) || null;
     const updatedRegions = (address$1 === null || address$1 === void 0 ? void 0 : address$1.country) !== country ? await address.getCountryRegions(country) : regions;
     return {
         updatedAddress: buildReplacementAddressFromPlace(place, updatedRegions, address$1.name),
@@ -17603,6 +17637,8 @@ const ScAddressSuggestions = class {
         var _a;
         /** Tracks whether the local value was set by user input / browser autofill and hasn't been synced to the address prop yet. */
         this.hasUnsyncedLocalValue = false;
+        /** Places API session token — spans all autocomplete keystrokes until a place is selected. */
+        this.sessionToken = null;
         // Use Lodash debounce for fetchAddressSuggestions.
         this.debouncedFetchAddressSuggestions = lodash.exports.debounce(async (input) => {
             var _a, _b;
@@ -17610,7 +17646,9 @@ const ScAddressSuggestions = class {
             this.abortController = new AbortController();
             try {
                 this.loading = true;
-                this.addressSuggestions = await fetchAddressSuggestions(input, (_b = this.address) === null || _b === void 0 ? void 0 : _b.country, this.regions, this.abortController.signal);
+                // Reuse the token across keystrokes — it groups the whole search into one billed session.
+                this.sessionToken = this.sessionToken || createSessionToken();
+                this.addressSuggestions = await fetchAddressSuggestions(input, (_b = this.address) === null || _b === void 0 ? void 0 : _b.country, this.sessionToken, this.abortController.signal);
             }
             catch (error) {
                 if ((error === null || error === void 0 ? void 0 : error.name) === 'AbortError')
@@ -17682,6 +17720,8 @@ const ScAddressSuggestions = class {
         this.focusedIndex = -1;
         this.debouncedFetchAddressSuggestions.cancel();
         (_a = this.abortController) === null || _a === void 0 ? void 0 : _a.abort();
+        // Abandoned search ends the billing session — the next search must start a fresh token.
+        this.sessionToken = null;
     }
     handleAddressChange() {
         var _a;
@@ -17714,8 +17754,12 @@ const ScAddressSuggestions = class {
         // Cancel any queued/in-flight suggestions fetch so a stale response can't overwrite state after we close.
         this.debouncedFetchAddressSuggestions.cancel();
         (_a = this.abortController) === null || _a === void 0 ? void 0 : _a.abort();
+        const suggestion = this.addressSuggestions.find(item => item.placeId === placeId);
+        // The details call closes the billing session and invalidates the token either way.
+        const sessionToken = this.sessionToken;
+        this.sessionToken = null;
         try {
-            const { updatedAddress, updatedRegions } = await fetchPlaceDetails(placeId, this.addressSuggestions, this.address, this.regions);
+            const { updatedAddress, updatedRegions } = await fetchPlaceDetails(suggestion, this.address, this.regions, sessionToken);
             this.regions = updatedRegions;
             this.closeSuggestionsDropdown();
             this.scChangeAddress.emit(updatedAddress);
@@ -17765,8 +17809,7 @@ const ScAddressSuggestions = class {
                 }
                 break;
             case 'Escape':
-                this.showSuggestions = false;
-                this.addressSuggestions = [];
+                this.closeSuggestionsDropdown();
                 break;
         }
     }
@@ -17844,10 +17887,7 @@ const ScAddressSuggestions = class {
         if (!this.isSuggestionsVisible()) {
             return null;
         }
-        return (index.h("div", { class: "sc-address__suggestions--body" }, index.h("div", { class: "sc-address__suggestions--scroll" }, index.h("ul", { class: "sc-address__suggestions--list", part: "suggestions-list", role: "listbox", id: "address-suggestions-listbox" }, index.h("li", { class: "sc-address__suggestions--item sc-address__suggestions--item--no-select sc-address__suggestions--item--powered-by", part: "suggestion-item powered-by", role: "presentation", tabindex: "-1" }, index.h("span", null, wp.i18n.__('Suggestions powered by ', 'surecart'), index.h("a", { href: "https://policies.google.com/privacy", target: "_blank", rel: "noopener noreferrer", "aria-label": wp.i18n.__('Google Privacy Policy (opens in new tab)', 'surecart') }, index.h("span", null, wp.i18n.__('Google', 'surecart')))), index.h("sc-button", { type: "text", onMouseDown: e => e.preventDefault(), onClick: () => {
-                this.showSuggestions = false;
-                this.addressSuggestions = [];
-            }, "aria-label": wp.i18n.__('Close suggestions', 'surecart') }, index.h("sc-icon", { name: "x", style: { color: 'var(--sc-color-gray-500)' } }))), this.loading && this.addressSuggestions.length === 0 && (index.h("li", { class: "sc-address__suggestions--item sc-address__suggestions--item--no-select sc-address__suggestions--item--no-result", part: "suggestion-item no-result", role: "presentation", tabindex: "-1" }, wp.i18n.__('Loading...', 'surecart'))), !this.loading && this.addressSuggestions.length === 0 && (index.h("li", { class: "sc-address__suggestions--item sc-address__suggestions--item--no-select sc-address__suggestions--item--no-result", part: "suggestion-item no-result", role: "presentation", tabindex: "-1" }, wp.i18n.__('No results found', 'surecart'))), this.addressSuggestions.map((suggestion, index$1) => (index.h("li", { id: `suggestion-${index$1}`, class: {
+        return (index.h("div", { class: "sc-address__suggestions--body" }, index.h("div", { class: "sc-address__suggestions--scroll" }, index.h("ul", { class: "sc-address__suggestions--list", part: "suggestions-list", role: "listbox", id: "address-suggestions-listbox" }, index.h("li", { class: "sc-address__suggestions--item sc-address__suggestions--item--no-select sc-address__suggestions--item--powered-by", part: "suggestion-item powered-by", role: "presentation", tabindex: "-1" }, index.h("span", null, wp.i18n.__('Suggestions powered by ', 'surecart'), index.h("a", { href: "https://policies.google.com/privacy", target: "_blank", rel: "noopener noreferrer", "aria-label": wp.i18n.__('Google Privacy Policy (opens in new tab)', 'surecart') }, index.h("span", null, wp.i18n.__('Google', 'surecart')))), index.h("sc-button", { type: "text", onMouseDown: e => e.preventDefault(), onClick: () => this.closeSuggestionsDropdown(), "aria-label": wp.i18n.__('Close suggestions', 'surecart') }, index.h("sc-icon", { name: "x", style: { color: 'var(--sc-color-gray-500)' } }))), this.loading && this.addressSuggestions.length === 0 && (index.h("li", { class: "sc-address__suggestions--item sc-address__suggestions--item--no-select sc-address__suggestions--item--no-result", part: "suggestion-item no-result", role: "presentation", tabindex: "-1" }, wp.i18n.__('Loading...', 'surecart'))), !this.loading && this.addressSuggestions.length === 0 && (index.h("li", { class: "sc-address__suggestions--item sc-address__suggestions--item--no-select sc-address__suggestions--item--no-result", part: "suggestion-item no-result", role: "presentation", tabindex: "-1" }, wp.i18n.__('No results found', 'surecart'))), this.addressSuggestions.map((suggestion, index$1) => (index.h("li", { id: `suggestion-${index$1}`, class: {
                 'sc-address__suggestions--item': true,
                 'focused': this.focusedIndex === index$1,
             }, part: "suggestion-item", role: "option", "aria-selected": this.focusedIndex === index$1 ? 'true' : 'false', "aria-label": wp.i18n.sprintf(wp.i18n.__('Select suggestion %s', 'surecart'), suggestion.fullDisplayName), tabindex: "-1", onMouseDown: e => e.preventDefault(), onClick: () => this.selectSuggestion(suggestion === null || suggestion === void 0 ? void 0 : suggestion.placeId), innerHTML: highlightMatch(suggestion.fullDisplayName, this.value), onMouseEnter: () => (this.focusedIndex = index$1), onMouseLeave: () => (this.focusedIndex = -1) }))))), index.h("div", { class: "sc-address__suggestions--footer", part: "suggestion-item manually", role: "presentation" }, index.h("button", { type: "button", onMouseDown: e => e.preventDefault(), onClick: () => this.manualAddress(), "aria-label": wp.i18n.__('Enter address manually instead of using suggestions', 'surecart') }, wp.i18n.__('Enter address manually', 'surecart')))));
@@ -17855,7 +17895,7 @@ const ScAddressSuggestions = class {
     render() {
         var _a;
         const suggestionsVisible = this.isSuggestionsVisible();
-        return (index.h("div", { key: '1ff94aef717e1fb513130a32fa530eddded295f7', part: "base" }, this.isGoogleMapsActive() && index.h("span", { key: '5905584c70c9bdde8376c119a33573aa1e42a163', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), index.h("sc-input", { key: 'b715600146e9f91adb2a0c097ab47f86abb39444', ref: el => (this.input = el), exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), index.h("div", { key: '8eb415af53dd065ffe54a380c2a43a87bd2c1422', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), index.h("div", { key: '95d98b9e38f5d00e147c12370383b76efac0b879', class: {
+        return (index.h("div", { key: 'ebf78e7626cc4f6999fb89550cd5e47abc73e56d', part: "base" }, this.isGoogleMapsActive() && index.h("span", { key: '9b59550c5d3c707480db05b23c3c4a1885712033', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), index.h("sc-input", { key: 'c459045688b9f3a730854ec417ebb4756e5e7e46', ref: el => (this.input = el), exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), index.h("div", { key: '1791345141f4a065ced8506bc48d9fdcd626dcb8', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), index.h("div", { key: '8a792cb1397d303e8d2c654fe1ab5ae7e2cfbd01', class: {
                 'sc-address__suggestions': true,
                 'sc-address__suggestions--visible': suggestionsVisible,
             }, part: "suggestions", "aria-hidden": !suggestionsVisible ? 'true' : 'false' }, this.renderAddressSuggestions())));
@@ -18004,7 +18044,7 @@ const ScPhoneInput = class {
         this.min = undefined;
         this.max = undefined;
         this.step = undefined;
-        this.pattern = '[-s#0-9_+/().]*';
+        this.pattern = '[0-9a-zA-Z\\s,;#+\\(\\)\\.\\/_\\-]*';
         this.required = false;
         this.invalid = false;
         this.autocorrect = undefined;
@@ -18078,7 +18118,7 @@ const ScPhoneInput = class {
     }
     render() {
         var _a;
-        return (index.h(index.Host, { key: 'ee181e5674d4af8704aa44ad8df596f9c9401fe6', hidden: this.hidden }, index.h("sc-form-control", { key: '23d9a4ed3ab3b884e34ca96f1fa781e17dd85847', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name, "aria-label": this.label }, index.h("slot", { key: '5a8f53c96d843e11188ee0de228b40874a715883', name: "label-end", slot: "label-end" }), index.h("div", { key: '2b7796abfbf2f80a58414d9e243c18f85900210d', part: "base", class: {
+        return (index.h(index.Host, { key: '586c64af189c874e07a385255a5ddbac56c1395b', hidden: this.hidden }, index.h("sc-form-control", { key: '205eab1829f81e6b88c713fd57affbe17dab7346', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name, "aria-label": this.label }, index.h("slot", { key: '21631b07ee6b36e45bd7a5a61a97e93b53856ee2', name: "label-end", slot: "label-end" }), index.h("div", { key: '255d8a7be7152c290b5f64735414a2698d0d714b', part: "base", class: {
                 'input': true,
                 // Sizes
                 'input--small': this.size === 'small',
@@ -18093,9 +18133,9 @@ const ScPhoneInput = class {
                 'input--squared-top': this.squaredTop,
                 'input--squared-left': this.squaredLeft,
                 'input--squared-right': this.squaredRight,
-            } }, index.h("span", { key: '1bcbdfadb96b1e038dfdbdcd1615a04a08e08633', part: "prefix", class: "input__prefix" }, index.h("slot", { key: 'ea0fb2abef291e46bff35cb0d684fa384023c02d', name: "prefix" })), index.h("slot", { key: 'f29984bd7bbf496ed9902ac70c3185059b2857f7' }, index.h("input", { key: '96bfd1235b8c5adf33c5285228e79ef01cd37e16', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: "tel", name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
+            } }, index.h("span", { key: '14a5066ecfb26f5c379c9f05a8fbdedcdeaae662', part: "prefix", class: "input__prefix" }, index.h("slot", { key: '2e0193f76bfc9417d2d845f9792c045421097f22', name: "prefix" })), index.h("slot", { key: '7dd63d4c6584fa09cdcc165756de4d2e93976b29' }, index.h("input", { key: 'afe5bb2bdc229953f69b6dfb025d0c0652746908', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: "tel", name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
             // TODO: Test These below
-            autocomplete: 'tel', autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: index$1.applyFilters('surecart/sc-phone-input/pattern', this.pattern), inputmode: 'numeric', "aria-label": this.label, "aria-labelledby": this.label, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() })), index.h("span", { key: 'c8d1a6811bb4572fbdd427a13a3523be9359cbfb', part: "suffix", class: "input__suffix" }, index.h("slot", { key: '66d398512676426b076f004b8eda694d9f704201', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (index.h("button", { key: 'b515a09cdcc0b666c23d05ac43ae3820928826c2', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, index.h("slot", { key: 'f88f92ef50b60e67a40a1c8ff24ed395187dbed3', name: "clear-icon" }, index.h("svg", { key: '3b15d9b37d3e5ab89a10e535c775bffcb762bec1', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, index.h("line", { key: '2e0405784350f8eb76b02b2f05d05d4d92e3e97a', x1: "18", y1: "6", x2: "6", y2: "18" }), index.h("line", { key: '2db415644f456ee94b40ef87faefa98e289db4b3', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
+            autocomplete: 'tel', autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: index$1.applyFilters('surecart/sc-phone-input/pattern', this.pattern), inputmode: 'numeric', "aria-label": this.label, "aria-labelledby": this.label, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() })), index.h("span", { key: '0a995b036a02269e840ba5c5f70defaee84d63ac', part: "suffix", class: "input__suffix" }, index.h("slot", { key: '0e55211b2800293050b05d553fd6ffe2870e421e', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (index.h("button", { key: 'a27c56e090a09d89c3f24995f99a454f54b44b20', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, index.h("slot", { key: 'ff3760faa1f98c5f5319b500980550178e40bfca', name: "clear-icon" }, index.h("svg", { key: '388c5e844016a0ee4f8f695f3e3c2bd9ac21cf4c', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, index.h("line", { key: '31483b34cd591ae06913b76ea2064d367554ff96', x1: "18", y1: "6", x2: "6", y2: "18" }), index.h("line", { key: '239dc8710cd573fba99005c7e27f1e9df96b3744', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

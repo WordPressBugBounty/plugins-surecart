@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.6.6
+Stable tag: 4.7.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -421,6 +421,15 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.7.0 - August 25th, 2026 =
+- New: Ship orders from the fulfillment drawer — get live Shippo rates, buy a label, and track the package.
+- New: Warehouse management under Settings → Shipping for managing ship-from addresses.
+- New: "Live carrier rates" shipping rate type quotes real-time carrier rates at checkout from your connected Shippo account, with separate test/live mode support.
+- New: Customers see shipment tracking and status on their dashboard order page as soon as a label is purchased.
+- Improvement: Address autocomplete now uses Google's Places Autocomplete API instead of Text Search, returning street addresses instead of businesses and billing each search as a single session.
+- Fix: UK address autocomplete now picks the correct city and building/street line for addresses without a street number.
+- Fix: Hardened account creation at checkout confirmation to prevent an unauthenticated request from creating a WordPress user account (props to Jakub Herman of WPScan).
 
 = 4.6.6 - August 21st, 2026 =
 - Fix: Some product blocks showing "This block has encountered an error and cannot be previewed" in the editor on WordPress 7.1.

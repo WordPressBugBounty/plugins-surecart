@@ -46,6 +46,12 @@ class CustomerLinkService {
 			return $linked;
 		}
 
+		// Confirm is unauthenticated, so an anonymous caller can drive an empty draft through it.
+		// Provisioning follows a purchase — link nothing until the checkout is a real order.
+		if ( ! $this->isOrder() ) {
+			return false;
+		}
+
 		// link by email.
 		$email_linked = $this->linkUserWithEmail();
 		if ( $email_linked ) {
@@ -54,6 +60,30 @@ class CustomerLinkService {
 
 		// create a user to link.
 		return $this->linkNewUser();
+	}
+
+	/**
+	 * Does the checkout represent an actual order — paid, or committed to be paid?
+	 *
+	 * 'paid' and 'processing' are the plugin's own definition of a successful
+	 * checkout (see the session provider and checkout store); 'processing'
+	 * covers manual/offline methods awaiting settlement. Purchases are checked
+	 * as well so free and manually-granted orders link even if the status lags.
+	 *
+	 * @return bool
+	 */
+	protected function isOrder(): bool {
+		if ( in_array( $this->checkout->status ?? '', [ 'paid', 'processing' ], true ) ) {
+			return true;
+		}
+
+		foreach ( $this->checkout->purchases->data ?? [] as $purchase ) {
+			if ( empty( $purchase->revoked ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

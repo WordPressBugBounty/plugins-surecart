@@ -106,6 +106,15 @@ class ErrorsTranslationService {
 			return sprintf( __( 'The minimum order amount for the processor is %s.', 'surecart' ), Currency::format( $options['minimum_amount'], $options['currency'] ) );
 		}
 
+		if (
+			in_array( $attribute, [ 'weight', 'g_weight', 'shipments.weight', 'shipments.g_weight' ], true )
+			&& 'greater_than' === $type
+			&& isset( $options['count'] )
+		) {
+			// translators: %s is the minimum weight.
+			return sprintf( __( 'The weight must be greater than %s.', 'surecart' ), $options['count'] );
+		}
+
 		// Remind at period percent remaining translation.
 		if ( 'remind_at_period_percent_remaining' === $attribute && isset( $options['count'] ) ) {
 			if ( 'greater_than_or_equal_to' === $type ) {

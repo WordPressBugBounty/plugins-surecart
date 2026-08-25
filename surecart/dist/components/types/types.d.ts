@@ -398,6 +398,7 @@ export interface Product extends Object {
     permalink: string;
     weight: number;
     weight_unit: 'kg' | 'lb' | 'g' | 'oz';
+    shipping_enabled?: boolean;
     featured_product_media?: string | ProductMedia;
     prices: {
         object: 'list';
@@ -1129,8 +1130,8 @@ export type CheckoutStatus = 'draft' | 'finalized' | 'paid' | 'payment_intent_ca
 export type OrderStatus = 'paid' | 'payment_failed' | 'processing' | 'void' | 'canceled' | 'draft';
 export type InvoiceStatus = 'paid' | 'open' | 'draft';
 export type OrderFulFillmentStatus = 'fulfilled' | 'unfulfilled' | 'partially_fulfilled' | 'scheduled' | 'on_hold';
-export type OrderShipmentStatus = 'unshipped' | 'shipped' | 'partially_shipped' | 'delivered' | 'unshippable';
-export type FulfillmentStatus = 'unshipped' | 'shipped' | 'delivered' | 'unshippable';
+export type OrderShipmentStatus = 'unshipped' | 'shipped' | 'partially_shipped' | 'delivered' | 'unshippable' | 'label_purchased' | 'in_transit';
+export type FulfillmentStatus = 'unshipped' | 'shipped' | 'delivered' | 'unshippable' | 'label_purchased' | 'in_transit' | 'returned' | 'failed' | 'voided';
 export type ReturnRequestStatus = 'open' | 'completed';
 export interface PaymentMethod extends Object {
     id: string;
@@ -1322,13 +1323,19 @@ export interface GoogleMapAddressComponents extends Object {
     shortText: string;
     types: string[];
 }
-export interface GoogleMapPlace extends Object {
-    id?: string;
-    displayName: {
-        languageCode: string;
+export interface GoogleMapAutocompletePrediction extends Object {
+    placeId: string;
+    text?: {
         text: string;
     };
-    addressComponents: Array<GoogleMapAddressComponents>;
+    structuredFormat?: {
+        mainText?: {
+            text: string;
+        };
+        secondaryText?: {
+            text: string;
+        };
+    };
 }
 export interface AddressSuggestion extends Object {
     displayName: string;
@@ -1351,6 +1358,19 @@ export interface Fulfillment {
         pagination: Pagination;
         data: Array<FulfillmentItem>;
     };
+    shipments?: {
+        object: 'list';
+        pagination: Pagination;
+        data: Array<Shipment>;
+    };
+}
+export interface Shipment {
+    id?: string;
+    status?: 'draft' | 'quoted' | 'purchased' | 'voided';
+    tracking_number?: string;
+    tracking_url?: string;
+    carrier?: string;
+    label_url?: string;
 }
 export interface FulfillmentItem {
     id: string;

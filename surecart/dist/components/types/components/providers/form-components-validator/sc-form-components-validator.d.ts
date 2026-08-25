@@ -3,6 +3,8 @@ export declare class ScFormComponentsValidator {
     el: HTMLScFormComponentsValidatorElement;
     private removeCheckoutListener;
     private removePaymentRequiresShippingListener;
+    /** Whether *we* escalated the phone to required (vs. the merchant's own config), so we can undo it. */
+    private phoneRequiredByShipping;
     /** Disable validation? */
     disabled: boolean;
     /** The tax protocol */
@@ -36,6 +38,7 @@ export declare class ScFormComponentsValidator {
     handleShippingAddressRequired(): void;
     addAddressField(): void;
     addTaxIDField(): void;
+    handlePhoneRequiredForShipping(): void;
     addCustomerPhone(): void;
     addBumps(): void;
     addTaxLine(): void;

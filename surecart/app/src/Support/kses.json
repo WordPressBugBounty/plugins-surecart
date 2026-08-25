@@ -847,6 +847,7 @@
   },
   "sc-fulfillment-shipping-status-badge": {
     "clearable": true,
+    "context": true,
     "pill": true,
     "size": true,
     "status": true,
@@ -858,6 +859,7 @@
   "sc-fulfillments": {
     "heading": true,
     "order-id": true,
+    "show-pre-shipment-notice": true,
     "style": true,
     "id": true,
     "class": true,
@@ -1302,6 +1304,7 @@
   },
   "sc-order-shipment-badge": {
     "clearable": true,
+    "context": true,
     "pill": true,
     "size": true,
     "status": true,

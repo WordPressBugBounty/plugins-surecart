@@ -17,6 +17,8 @@ export declare class ScAddressSuggestions {
     private abortController;
     /** Tracks whether the local value was set by user input / browser autofill and hasn't been synced to the address prop yet. */
     private hasUnsyncedLocalValue;
+    /** Places API session token — spans all autocomplete keystrokes until a place is selected. */
+    private sessionToken;
     address: Partial<Address>;
     names: Partial<Address>;
     /** The label for the address input */

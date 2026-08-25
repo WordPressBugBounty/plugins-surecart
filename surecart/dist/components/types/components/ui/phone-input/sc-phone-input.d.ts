@@ -57,7 +57,12 @@ export declare class ScPhoneInput {
     max: number | string;
     /** The input's step attribute. */
     step: number;
-    /** A pattern to validate input against. */
+    /**
+     * A pattern to validate input against. Deliberately loose: it must keep
+     * accepting inputs the old (non-compiling, so never enforced) default let
+     * through — letters cover extensions ("ext 12", "x22"), comma/semicolon are
+     * dial-pause characters.
+     */
     pattern: string;
     /** Makes the input a required field. */
     required: boolean;

@@ -33,4 +33,14 @@ class Fulfillment extends Model {
 	public function setFulfillmentItemsAttribute( $value ) {
 		$this->setCollection( 'fulfillment_items', $value, FulfillmentItem::class );
 	}
+
+	/**
+	 * Set the shipments attribute.
+	 *
+	 * @param  object $value Array of shipment objects.
+	 * @return void
+	 */
+	public function setShipmentsAttribute( $value ) {
+		$this->setCollection( 'shipments', $value, Shipment::class );
+	}
 }

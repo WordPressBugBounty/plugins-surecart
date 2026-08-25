@@ -2,6 +2,9 @@
 
 namespace SureCart\Models;
 
+/**
+ * ParcelTemplate model.
+ */
 class ParcelTemplate extends Model {
 	/**
 	 * Rest API endpoint

@@ -64,31 +64,43 @@ class ParcelTemplateRestServiceProvider extends RestServiceProvider implements R
 	/**
 	 * Retrieve permissions.
 	 *
+	 * Matches the list check — order editors who can list templates must also be
+	 * able to hydrate a single record (core-data refetches by id after a save).
+	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 * @return true|\WP_Error True if the request has access to retrieve items, WP_Error object otherwise.
 	 */
 	public function get_item_permissions_check( $request ) {
-		return current_user_can( 'manage_sc_shop_settings' );
+		return current_user_can( 'edit_sc_orders' ) || current_user_can( 'manage_sc_shop_settings' );
 	}
 
 	/**
 	 * List permissions.
 	 *
+	 * Also allows order editors: the fulfilment drawer lists parcel templates so
+	 * a label can be bought against a saved box. Gating this on shop settings
+	 * alone left the Saved templates tab empty for anyone who can fulfil an
+	 * order but not manage settings.
+	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 * @return true|\WP_Error True if the request has access to list items, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
-		return current_user_can( 'manage_sc_shop_settings' );
+		return current_user_can( 'edit_sc_orders' ) || current_user_can( 'manage_sc_shop_settings' );
 	}
 
 	/**
 	 * Create permissions
 	 *
+	 * Also allows order editors, so a box measured while packing can be saved
+	 * for reuse without a trip to Settings. Editing and deleting stay restricted
+	 * to shop managers — those change templates other people's shipments use.
+	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		return current_user_can( 'manage_sc_shop_settings' );
+		return current_user_can( 'edit_sc_orders' ) || current_user_can( 'manage_sc_shop_settings' );
 	}
 
 	/**

@@ -565,6 +565,8 @@ const ScCheckoutUnsavedChangesWarning = class {
 const ScFormComponentsValidator = class {
     constructor(hostRef) {
         index.registerInstance(this, hostRef);
+        /** Whether *we* escalated the phone to required (vs. the merchant's own config), so we can undo it. */
+        this.phoneRequiredByShipping = false;
         this.disabled = undefined;
         this.taxProtocol = undefined;
         this.hasAddress = undefined;
@@ -588,6 +590,8 @@ const ScFormComponentsValidator = class {
         if (getters$2.shippingAddressRequired()) {
             this.addAddressField();
         }
+        // require the phone when the checkout needs a shipping label.
+        this.handlePhoneRequiredForShipping();
         // add order bumps.
         if ((_c = (_b = (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.recommended_bumps) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.length) {
             this.addBumps();
@@ -702,6 +706,30 @@ const ScFormComponentsValidator = class {
         payment.parentNode.insertBefore(taxInput, payment);
         this.hasTaxIDField = true;
     }
+    handlePhoneRequiredForShipping() {
+        const existing = this.el.querySelector('sc-customer-phone');
+        // needed only when the checkout requires a shipping label (live carrier rates).
+        const needed = getters$2.fullShippingAddressRequired();
+        if (!needed) {
+            // undo only our own escalation — if the merchant already placed a required phone block, we don't touch it.
+            if (this.phoneRequiredByShipping && existing) {
+                existing.required = false;
+                this.phoneRequiredByShipping = false;
+            }
+            return;
+        }
+        // if the merchant already placed the optional phone block, escalate it.
+        if (existing) {
+            if (!existing.required) {
+                existing.required = true;
+                this.phoneRequiredByShipping = true;
+            }
+            return;
+        }
+        // otherwise add a required phone field.
+        this.addCustomerPhone();
+        this.phoneRequiredByShipping = true;
+    }
     addCustomerPhone() {
         if (this.hasCustomerPhone)
             return;
@@ -805,7 +833,7 @@ const ScFormComponentsValidator = class {
         this.hasTrialLineItem = true;
     }
     render() {
-        return index.h("slot", { key: 'd6784d5b5d6bd353fd77b07e87f441ed8f6799a8' });
+        return index.h("slot", { key: '8a6fa5b922f635e11a27fe7c39ee54db7bff3e8a' });
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
