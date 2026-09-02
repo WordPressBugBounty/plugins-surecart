@@ -8,6 +8,8 @@ export declare class ScSessionProvider {
     prices: Array<PriceChoice>;
     /** Should we persist the session. */
     persist: boolean;
+    /** Disposers for the geolocation re-price subscriptions. */
+    private removeGeoListeners;
     /** Update line items event */
     scUpdateOrderState: EventEmitter<Checkout>;
     /** Update line items event */
@@ -35,6 +37,17 @@ export declare class ScSessionProvider {
     handleAbandonedCartUpdate(e: any): Promise<void>;
     /** Find or create session on load. */
     componentDidLoad(): void;
+    disconnectedCallback(): void;
+    /**
+     * Re-price the checkout when the browser resolves the shopper's location.
+     *
+     * Watches both the coordinates and the checkout so bailing is always safe — a
+     * later change re-runs the check. It converges because the platform echoes the
+     * coordinates back onto the checkout, which quiets the mismatch guard.
+     */
+    private watchGeoCoordinates;
+    /** Patch the checkout if the platform hasn't seen the resolved coordinates yet. */
+    private maybeRepriceForGeo;
     /** Find or create an order */
     findOrCreateOrder(): Promise<void | NodeJS.Timeout>;
     /** Handle payment instrument redirect status */

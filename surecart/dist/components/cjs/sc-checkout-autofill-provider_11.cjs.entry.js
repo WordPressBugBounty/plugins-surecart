@@ -1089,6 +1089,8 @@ const ScSessionProvider = class {
         this.scUpdateDraftState = index.createEvent(this, "scUpdateDraftState", 7);
         this.scPaid = index.createEvent(this, "scPaid", 7);
         this.scSetState = index.createEvent(this, "scSetState", 7);
+        /** Disposers for the geolocation re-price subscriptions. */
+        this.removeGeoListeners = [];
         this.prices = [];
         this.persist = true;
     }
@@ -1214,6 +1216,35 @@ const ScSessionProvider = class {
     /** Find or create session on load. */
     componentDidLoad() {
         this.findOrCreateOrder();
+        this.watchGeoCoordinates();
+    }
+    disconnectedCallback() {
+        this.removeGeoListeners.forEach(dispose => dispose());
+    }
+    /**
+     * Re-price the checkout when the browser resolves the shopper's location.
+     *
+     * Watches both the coordinates and the checkout so bailing is always safe — a
+     * later change re-runs the check. It converges because the platform echoes the
+     * coordinates back onto the checkout, which quiets the mismatch guard.
+     */
+    watchGeoCoordinates() {
+        if (!mutations.state.captureGeoAddressEnabled)
+            return;
+        this.removeGeoListeners = [mutations.onChange('geoCoordinates', () => this.maybeRepriceForGeo()), mutations.onChange('checkout', () => this.maybeRepriceForGeo())];
+    }
+    /** Patch the checkout if the platform hasn't seen the resolved coordinates yet. */
+    maybeRepriceForGeo() {
+        var _a;
+        const coordinates = mutations.state.geoCoordinates;
+        if (!coordinates || !((_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.id))
+            return;
+        if (mutations.state.checkout.latitude === coordinates.latitude && mutations.state.checkout.longitude === coordinates.longitude)
+            return;
+        if (getters.formLoading() || getters.formBusy())
+            return; // the in-flight request carries them via withDefaultData.
+        // An empty patch is enough: withDefaultData attaches the coordinates and the platform re-prices.
+        this.loadUpdate({});
     }
     /** Find or create an order */
     async findOrCreateOrder() {
@@ -1596,7 +1627,7 @@ const ScSessionProvider = class {
         }
     }
     render() {
-        return (index.h("sc-line-items-provider", { key: '3f3e2b8570b16d272135364bf84373106a15d564', order: mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '4aab176d4e7477428008d314765658692cbf2630' })));
+        return (index.h("sc-line-items-provider", { key: '51e958f5f4c7939cb9922223966a47e0c82202ca', order: mutations.state === null || mutations.state === void 0 ? void 0 : mutations.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: 'c14bbdb9d579dd1fd7e8cf4d24ee5039e8fa6c89' })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

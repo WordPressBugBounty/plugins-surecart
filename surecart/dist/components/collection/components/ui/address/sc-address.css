@@ -38,7 +38,7 @@
   position: relative;
   transform: translateY(0);
   transition: opacity 0.2s ease-in, transform 0.2s ease-in;
-  z-index: var(--sc-address-collapsible-z-index, 9);
+  z-index: var(--sc-address-collapsible-z-index, 1);
 }
 .sc-address__collapsible:focus-within {
   z-index: var(--sc-address-collapsible-focus-z-index, 10);

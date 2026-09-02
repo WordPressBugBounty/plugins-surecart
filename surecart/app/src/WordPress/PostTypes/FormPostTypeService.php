@@ -57,6 +57,9 @@ class FormPostTypeService {
 		add_action( 'init', [ $this, 'registerPostType' ] );
 
 		add_filter( "manage_{$this->post_type}_posts_columns", [ $this, 'postTypeColumns' ], 1 );
+		add_filter( 'post_row_actions', [ $this, 'addDuplicateRowAction' ], 10, 2 );
+		add_action( 'admin_notices', [ $this, 'showDuplicatedNotice' ] );
+		add_filter( 'removable_query_args', [ $this, 'addRemovableQueryArgs' ] );
 		add_action( 'in_admin_header', [ $this, 'showHeader' ] );
 		add_action( "manage_{$this->post_type}_posts_custom_column", [ $this, 'postTypeContent' ], 10, 2 );
 		add_action( 'use_block_editor_for_post', [ $this, 'forceGutenberg' ], 999, 2 );
@@ -281,6 +284,60 @@ class FormPostTypeService {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Let WordPress strip the duplicated flag from the URL so the notice doesn't re-show on refresh.
+	 *
+	 * @param array $args Removable query args.
+	 *
+	 * @return array
+	 */
+	public function addRemovableQueryArgs( $args ) {
+		$args[] = 'duplicated';
+		return $args;
+	}
+
+	/**
+	 * Add a "Duplicate" link to the form row actions.
+	 *
+	 * @param array    $actions Row actions.
+	 * @param \WP_Post $post    Current post.
+	 *
+	 * @return array
+	 */
+	public function addDuplicateRowAction( $actions, $post ) {
+		if ( $this->post_type !== $post->post_type || ! Form::canCreate() || ! current_user_can( 'edit_post', $post->ID ) ) {
+			return $actions;
+		}
+
+		$url = \SureCart::getUrl()->editModel( 'duplicate_form', $post->ID, admin_url( 'admin.php' ) );
+
+		$actions['duplicate'] = sprintf(
+			'<a href="%1$s" aria-label="%2$s">%3$s</a>',
+			esc_url( $url ),
+			/* translators: %s: form title. */
+			esc_attr( sprintf( __( 'Duplicate &#8220;%s&#8221;', 'surecart' ), get_the_title( $post ) ) ),
+			esc_html__( 'Duplicate', 'surecart' )
+		);
+
+		return $actions;
+	}
+
+	/**
+	 * Show a success notice on the forms list after duplicating.
+	 *
+	 * @return void
+	 */
+	public function showDuplicatedNotice() {
+		global $typenow, $pagenow;
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display-only flag.
+		if ( 'edit.php' !== $pagenow || $this->post_type !== $typenow || empty( $_GET['duplicated'] ) ) {
+			return;
+		}
+
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Checkout form duplicated. The copy was saved as a draft.', 'surecart' ) . '</p></div>';
 	}
 
 	/**

@@ -42,9 +42,12 @@ if ( ! $query->have_posts() ) {
 		// Render the inner blocks of the Post Template block with `dynamic` set to `false` to prevent calling
 		// `render_callback` and ensure that no wrapper markup is included.
 		$block_content = ( new WP_Block( $block_instance ) )->render( array( 'dynamic' => false ) );
-		$has_button    = ( new \WP_HTML_Tag_Processor( $block_content ?? '' ) )->next_tag( 'button' );
-		$has_link      = ( new \WP_HTML_Tag_Processor( $block_content ?? '' ) )->next_tag( 'a' );
-		$html_tag      = $has_link || $has_button ? 'form' : 'a';
+
+		// A card holding its own controls (variant pills, buy or quick view buttons) can't be
+		// wrapped in the product link — nested interactive content is invalid markup and traps
+		// keyboard users. Those cards get a stretched overlay link instead, which keeps the
+		// whole card clickable without swallowing the controls.
+		$has_controls = sc_has_interactive_content( $block_content );
 
 		remove_filter( 'render_block_context', $filter_block_context, 1 );
 		remove_filter( 'post_thumbnail_size', $change_thumbnail_size, 1 );
@@ -54,13 +57,14 @@ if ( ! $query->have_posts() ) {
 
 		$controller = new ProductPageBlock();
 		$state      = $controller->state();
-		$context    = $controller->context();
+		// Every card shares the page URL, so no card may write its variant selection to it.
+		$context = $controller->context( array( 'updateUrl' => false ) );
 
 		wp_interactivity_state( 'surecart/product-page', $state );
 		?>
 
-		<li class="sc-product-item sc-has-animation-fade-up" data-wp-key="post-template-item-<?php echo (int) $product_post_id; ?>">
-			<form 
+		<li class="<?php echo esc_attr( 'sc-product-item sc-has-animation-fade-up' . ( $has_controls ? ' sc-product-item--has-controls' : '' ) ); ?>" data-wp-key="post-template-item-<?php echo (int) $product_post_id; ?>">
+			<form
 				data-wp-interactive='{ "namespace": "surecart/product-page" }'
 				data-wp-on--submit="callbacks.handleSubmit"
 				data-wp-init="callbacks.init"
@@ -68,9 +72,14 @@ if ( ! $query->have_posts() ) {
 					echo wp_kses_data( wp_interactivity_data_wp_context( $context ) );
 				?>
 				>
-				<a class="sc-product-item-link" href="<?php echo esc_url( get_the_permalink() ); ?>">
+				<?php if ( $has_controls ) : ?>
+					<a class="sc-product-item-link" href="<?php echo esc_url( get_the_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>"></a>
 					<?php echo $block_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</a>
+				<?php else : ?>
+					<a class="sc-product-item-link" href="<?php echo esc_url( get_the_permalink() ); ?>">
+						<?php echo $block_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</a>
+				<?php endif; ?>
 			</form>
 		</li>
 	<?php endwhile; ?>

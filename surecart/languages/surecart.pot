@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-25T17:22:42+00:00\n"
+"POT-Creation-Date: 2026-09-02T18:01:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -1946,7 +1946,7 @@ msgstr ""
 #: src/Controllers/Admin/CancellationInsights/CancellationInsightsListTable.php:192
 #: src/Controllers/Admin/Invoices/InvoicesListTable.php:283
 #: src/Controllers/Admin/Tables/ListTable.php:151
-#: src/WordPress/PostTypes/FormPostTypeService.php:340
+#: src/WordPress/PostTypes/FormPostTypeService.php:397
 #: admin/user-profile.php:10
 #: admin/user-profile.php:18
 #: Blocks/Form/components/Mode.js:12
@@ -2429,7 +2429,7 @@ msgstr ""
 #: components/data-tables/charges-data-table/index.js:145
 #: invoices/components/OrderPageLink.js:37
 #: invoices/Invoice.js:150
-#: orders/Order.js:352
+#: orders/Order.js:361
 #: subscriptions/show/modules/modals/RetryPaymentModal.js:52
 #: subscriptions/show/modules/Periods.js:191
 msgid "View Order"
@@ -3591,7 +3591,7 @@ msgid "Invalid API Token"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:79
-#: orders/modules/Fulfillment/utils.js:18
+#: orders/modules/Fulfillment/utils.js:19
 #: orders/modules/Refund/RefundHistory.js:37
 #: settings/connection/IncomingWebhooks.js:26
 #: sc-fulfillment-shipping-status-badge2.js:14
@@ -3644,14 +3644,14 @@ msgid "All Shipment Statuses"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:414
-#: orders/modules/Fulfillment/utils.js:12
+#: orders/modules/Fulfillment/utils.js:13
 #: sc-fulfillment-shipping-status-badge2.js:8
 #: sc-order-shipment-badge2.js:8
 msgid "Not Shipped"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:415
-#: orders/modules/Fulfillment/utils.js:14
+#: orders/modules/Fulfillment/utils.js:15
 #: sc-fulfillment-shipping-status-badge2.js:9
 #: sc-order-shipment-badge2.js:9
 msgid "Shipped"
@@ -3663,7 +3663,7 @@ msgid "Partially Shipped"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:417
-#: orders/modules/Fulfillment/utils.js:16
+#: orders/modules/Fulfillment/utils.js:17
 #: sc-fulfillment-shipping-status-badge2.js:10
 #: sc-order-shipment-badge2.js:11
 msgid "Delivered"
@@ -3677,7 +3677,7 @@ msgstr ""
 #: components/data-tables/OrdersDataTable.js:27
 #: customers/modules/Orders.js:48
 #: dashboard/chart/index.js:295
-#: orders/Order.js:349
+#: orders/Order.js:358
 #: settings/export/ExportSettings.js:27
 #: Controllers/OrderController.php:62
 #: Controllers/OrderController.php:123
@@ -3759,7 +3759,7 @@ msgid "Search Orders"
 msgstr ""
 
 #: src/Controllers/Admin/ProductGroups/ProductGroupsListTable.php:176
-#: src/WordPress/PostTypes/FormPostTypeService.php:344
+#: src/WordPress/PostTypes/FormPostTypeService.php:401
 #: product-groups/list/fields/status.js:15
 #: settings/shipping/rate/ShippingRateCondition.js:66
 #: Blocks/Form/components/Mode.js:19
@@ -3889,6 +3889,7 @@ msgid "Sync"
 msgstr ""
 
 #: src/Controllers/Admin/Products/ProductsListTable.php:670
+#: src/WordPress/PostTypes/FormPostTypeService.php:321
 #: bundles/list/actions/index.js:103
 #: products/components/DuplicateModel.js:52
 #: products/list/actions/index.js:175
@@ -4849,7 +4850,7 @@ msgstr ""
 #: src/Routing/PermalinkSettingService.php:149
 #: src/Routing/PermalinkSettingService.php:167
 #: forms/default.php:6
-#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:137
+#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:114
 #: products/utility.js:8
 #: settings/display-currency/components/DisplayCurrenciesSettings.js:99
 #: settings/shipping/parcel/ParcelTemplates.js:223
@@ -4941,7 +4942,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:539
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:362
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:412
-#: src/Models/Blocks/ProductPageBlock.php:233
+#: src/Models/Blocks/ProductPageBlock.php:234
 #: Blocks/Product/BuyButton/Block.php:128
 #: Blocks/Upsell/SubmitButton/Block.php:131
 #: src/blocks/product-buy-button/view.php:17
@@ -4953,7 +4954,7 @@ msgstr ""
 
 #: src/Integrations/Bricks/Elements/BuyButton.php:228
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:540
-#: src/Models/Blocks/ProductPageBlock.php:234
+#: src/Models/Blocks/ProductPageBlock.php:235
 #: products/components/Availability/index.js:86
 #: Blocks/Product/BuyButton/Block.php:124
 #: Blocks/Product/BuyButton/Block.php:144
@@ -5023,7 +5024,7 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/Media.php:105
 #: src/Integrations/Elementor/Widgets/Media.php:130
 #: orders/modules/Fulfillment/components/PackageSelector/CustomPackageTab.js:83
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:462
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:466
 #: ui/Dimensions.js:103
 #: Blocks/ProductCollectionImage/dimension-controls.js:142
 #: Blocks/ProductCollectionImage/dimension-controls.js:152
@@ -5216,7 +5217,7 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/ProductQuickAddButton.php:196
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:538
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:362
-#: src/Models/Blocks/ProductPageBlock.php:232
+#: src/Models/Blocks/ProductPageBlock.php:233
 #: src/blocks/product-buy-button/view.php:16
 #: src/blocks/product-quick-view-button/button-cart.php:13
 msgid "Add to Cart"
@@ -6389,7 +6390,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/SaleBadge.php:197
 #: src/Integrations/Elementor/Widgets/SelectedPriceAdHocAmount.php:161
 #: orders/modules/Fulfillment/components/PackageSelector/CustomPackageTab.js:82
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:461
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:465
 #: products/modules/BuyLink.js:180
 #: ui/Dimensions.js:80
 #: Blocks/Cart/edit.js:69
@@ -6902,7 +6903,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/ProductReviewTotalRating.php:145
 #: src/Integrations/Elementor/Widgets/VariantPills.php:457
 #: Blocks/Product/VariantChoices/edit.js:60
-#: src/blocks/product-variant-pills/edit.js:33
+#: src/blocks/product-variant-pills/edit.js:97
 msgid "Color"
 msgstr ""
 
@@ -7248,7 +7249,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: src/Models/Blocks/ProductPageBlock.php:235
+#: src/Models/Blocks/ProductPageBlock.php:236
 msgid "Select options"
 msgstr ""
 
@@ -7332,6 +7333,19 @@ msgstr ""
 #. translators: %s: dispute status
 #: src/Models/Dispute.php:95
 msgid "Dispute %s"
+msgstr ""
+
+#: src/Models/Form.php:213
+msgid "Checkout form not found."
+msgstr ""
+
+#: src/Models/Form.php:217
+msgid "Sorry, you are not allowed to duplicate this checkout form."
+msgstr ""
+
+#. translators: %s: original form title.
+#: src/Models/Form.php:227
+msgid "%s (Copy)"
 msgstr ""
 
 #. translators: %s is the image title.
@@ -11442,7 +11456,7 @@ msgstr ""
 
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:299
 #: src/WordPress/PostTypes/CartPostTypeService.php:153
-#: src/WordPress/PostTypes/FormPostTypeService.php:98
+#: src/WordPress/PostTypes/FormPostTypeService.php:101
 msgid "Forms"
 msgstr ""
 
@@ -11734,7 +11748,7 @@ msgid "Deleting This is Restricted"
 msgstr ""
 
 #: src/WordPress/Pages/PageService.php:119
-#: src/WordPress/PostTypes/FormPostTypeService.php:152
+#: src/WordPress/PostTypes/FormPostTypeService.php:155
 msgid "Store Checkout"
 msgstr ""
 
@@ -11793,21 +11807,21 @@ msgid "Search Carts"
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:251
-#: src/WordPress/PostTypes/FormPostTypeService.php:236
+#: src/WordPress/PostTypes/FormPostTypeService.php:239
 #: src/WordPress/PostTypes/ProductPostTypeService.php:1065
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:44
 msgid "No checkout forms found."
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:252
-#: src/WordPress/PostTypes/FormPostTypeService.php:237
+#: src/WordPress/PostTypes/FormPostTypeService.php:240
 #: src/WordPress/PostTypes/ProductPostTypeService.php:1066
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:45
 msgid "No checkout forms found in Trash."
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:253
-#: src/WordPress/PostTypes/FormPostTypeService.php:238
+#: src/WordPress/PostTypes/FormPostTypeService.php:241
 #: src/WordPress/PostTypes/ProductPostTypeService.php:1067
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:46
 msgid "Filter checkout forms list"
@@ -11841,87 +11855,96 @@ msgstr ""
 msgid "Cart updated."
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:227
+#: src/WordPress/PostTypes/FormPostTypeService.php:230
 msgctxt "post type general name"
 msgid "Checkout Forms"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:228
+#: src/WordPress/PostTypes/FormPostTypeService.php:231
 msgctxt "post type singular name"
 msgid "Checkout Form"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:229
+#: src/WordPress/PostTypes/FormPostTypeService.php:232
 msgctxt "Checkout Form"
 msgid "Add New"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:230
+#: src/WordPress/PostTypes/FormPostTypeService.php:233
 msgid "Add new Checkout Form"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:231
+#: src/WordPress/PostTypes/FormPostTypeService.php:234
 msgid "New Checkout Form"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:232
+#: src/WordPress/PostTypes/FormPostTypeService.php:235
 msgid "Edit Checkout Form"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:233
+#: src/WordPress/PostTypes/FormPostTypeService.php:236
 msgid "View Checkout Form"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:234
+#: src/WordPress/PostTypes/FormPostTypeService.php:237
 msgid "All Checkout Forms"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:235
+#: src/WordPress/PostTypes/FormPostTypeService.php:238
 msgid "Search Checkout Forms"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:239
+#: src/WordPress/PostTypes/FormPostTypeService.php:242
 msgid "Checkout Forms list navigation"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:240
+#: src/WordPress/PostTypes/FormPostTypeService.php:243
 msgid "Checkout Forms list"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:241
+#: src/WordPress/PostTypes/FormPostTypeService.php:244
 msgid "Checkout Form published."
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:242
+#: src/WordPress/PostTypes/FormPostTypeService.php:245
 msgid "Checkout Form published privately."
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:243
+#: src/WordPress/PostTypes/FormPostTypeService.php:246
 msgid "Checkout Form reverted to draft."
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:244
+#: src/WordPress/PostTypes/FormPostTypeService.php:247
 msgid "Checkout Form scheduled."
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:245
+#: src/WordPress/PostTypes/FormPostTypeService.php:248
 msgid "Checkout Form updated."
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:297
+#. translators: %s: form title.
+#: src/WordPress/PostTypes/FormPostTypeService.php:320
+msgid "Duplicate &#8220;%s&#8221;"
+msgstr ""
+
+#: src/WordPress/PostTypes/FormPostTypeService.php:340
+msgid "Checkout form duplicated. The copy was saved as a draft."
+msgstr ""
+
+#: src/WordPress/PostTypes/FormPostTypeService.php:354
 msgid "Published In"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:298
+#: src/WordPress/PostTypes/FormPostTypeService.php:355
 msgid "Mode"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:299
+#: src/WordPress/PostTypes/FormPostTypeService.php:356
 #: settings/display-currency/components/CurrencySwitcherSettings.js:186
 msgid "Shortcode"
 msgstr ""
 
-#: src/WordPress/PostTypes/FormPostTypeService.php:368
+#: src/WordPress/PostTypes/FormPostTypeService.php:425
 #: products/components/SelectTemplate/index.js:72
 #: products/components/SelectTemplatePart/index.js:125
 #: reviews/list/fields/review.js:60
@@ -12274,7 +12297,7 @@ msgstr ""
 #: admin/affiliations/index.php:11
 #: admin/auto-fees/index.php:12
 #: admin/reviews/index.php:11
-#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:170
+#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:159
 #: Blocks/ProductCollection/edit.js:279
 #: Blocks/ProductItemList/edit.js:331
 #: src/blocks/product-list-search/view.php:31
@@ -12351,8 +12374,8 @@ msgstr[1] ""
 #: licenses/modules/modals/EditKeyModal.js:132
 #: orders/modules/ContactInfo/EditContactInfo.js:164
 #: orders/modules/Fulfillment/components/AddTracking.js:117
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:512
-#: orders/modules/Fulfillment/CreateFulfillment.js:434
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:471
+#: orders/modules/Fulfillment/CreateFulfillment.js:479
 #: orders/modules/MetaDataModal.js:175
 #: orders/modules/OrderStatusConfirmModal.js:73
 #: orders/modules/Refund/CreateRefund.js:467
@@ -13047,6 +13070,10 @@ msgstr ""
 msgid "Classic Product List"
 msgstr ""
 
+#: patterns/list-variants.php:9
+msgid "Product List with Variants"
+msgstr ""
+
 #: patterns/product-alternate.php:6
 msgid "Classic Product (Alternate)"
 msgstr ""
@@ -13094,7 +13121,7 @@ msgstr ""
 #: orders/modules/Fulfillment/components/StatusDropdown.js:64
 #: orders/modules/Fulfillment/Fulfilled.js:73
 #: orders/modules/Fulfillment/Fulfilled.js:105
-#: orders/Order.js:266
+#: orders/Order.js:275
 #: product-collections/modules/Image.js:41
 #: product-collections/modules/Image.js:49
 #: product-collections/modules/Image.js:85
@@ -13851,7 +13878,7 @@ msgstr ""
 #: affiliations/modules/Urls.js:28
 #: components/data-tables/affiliates/ClicksDataTable.js:44
 #: components/data-tables/affiliates/ClicksDataTable.js:53
-#: orders/modules/Fulfillment/CreateFulfillment.js:235
+#: orders/modules/Fulfillment/CreateFulfillment.js:280
 #: products/modules/BuyLink.js:65
 #: products/modules/Prices/Price/CopyInput.js:12
 #: settings/affiliation-protocol/AffiliationProtocolSettings.js:48
@@ -15403,7 +15430,7 @@ msgstr ""
 #: components/data-tables/charges-data-table/index.js:72
 #: orders/modules/LineItems/index.js:210
 #: orders/modules/Refund/CreateRefund.js:464
-#: orders/Order.js:398
+#: orders/Order.js:407
 #: settings/customer/CustomerSettings.js:450
 #: store/add-entities.js:340
 msgid "Refund"
@@ -15765,12 +15792,12 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: components/PriceSelector.js:136
+#: components/PriceSelector.js:210
 msgid "Selected Price"
 msgstr ""
 
-#: components/SelectPrice.js:92
-#: components/SelectPrice.js:128
+#: components/SelectPrice.js:104
+#: components/SelectPrice.js:140
 #: products/components/price/parts/SwapPriceSetting.js:91
 #: products/modules/integrations/NewIntegration.js:97
 #: products/modules/Prices/Price/BuyLink.js:54
@@ -15779,21 +15806,21 @@ msgstr ""
 msgid "%s available"
 msgstr ""
 
-#: components/SelectPrice.js:151
+#: components/SelectPrice.js:163
 #: subscriptions/edit/modules/Modals/UpdatePrice.js:34
 msgid "Select a price"
 msgstr ""
 
-#: components/SelectPrice.js:152
+#: components/SelectPrice.js:164
 msgid "Search for a price..."
 msgstr ""
 
-#: components/SelectPrice.js:158
+#: components/SelectPrice.js:170
 #: components/SelectPrice.js:189
 msgid "Variant Out of Stock."
 msgstr ""
 
-#: components/SelectPrice.js:174
+#: components/SelectPrice.js:186
 #: components/SelectPrice.js:236
 msgid "Add New Product"
 msgstr ""
@@ -16754,7 +16781,7 @@ msgid "Resend Invoice"
 msgstr ""
 
 #: invoices/Invoice.js:131
-#: orders/Order.js:276
+#: orders/Order.js:285
 msgid "Mark As Paid"
 msgstr ""
 
@@ -16872,7 +16899,7 @@ msgstr ""
 msgid "Add note"
 msgstr ""
 
-#: invoices/modules/LineItemNote/index.js:120
+#: invoices/modules/LineItemNote/index.js:122
 msgid "Add note..."
 msgstr ""
 
@@ -17533,24 +17560,19 @@ msgstr ""
 msgid "of %d"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:111
-#: settings/shipping/parcel/CarrierParcelSelect.js:16
-msgid "Custom size"
-msgstr ""
-
-#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:211
+#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:200
 #: src/blocks/cart-line-item-details/edit.js:102
 #: src/scripts/checkout/index.js:325
 #: sc-product-line-item2.js:67
 msgid "Show more"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:220
+#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:209
 #: orders/modules/Fulfillment/components/PackageSelector/CarrierScopeInfo.js:41
 msgid "Why these carriers?"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:295
+#: orders/modules/Fulfillment/components/PackageSelector/CarrierPackagePicker.js:284
 msgid "No packages found."
 msgstr ""
 
@@ -17581,7 +17603,7 @@ msgid "Poly mailer (Envelope)"
 msgstr ""
 
 #: orders/modules/Fulfillment/components/PackageSelector/CustomPackageTab.js:81
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:460
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:464
 #: ui/Dimensions.js:58
 msgid "Length"
 msgstr ""
@@ -17609,35 +17631,37 @@ msgstr ""
 msgid "Use this package"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:88
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:404
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:92
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:408
+#: orders/modules/Fulfillment/utils/package.js:270
 msgid "Custom package"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:292
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:296
+#: orders/modules/Fulfillment/components/ShipmentPackage.js:72
 #: settings/shipping/parcel/ParcelTemplateForm.js:306
 msgid "Package"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:341
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:345
 msgid "Select a package"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:380
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:384
 msgid "Package type"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:393
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:397
 #: settings/shipping/parcel/CarrierParcelSelect.js:85
 #: settings/shipping/parcel/ParcelTemplateForm.js:68
 msgid "Carrier package"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:400
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:404
 msgid "Saved template"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/index.js:438
+#: orders/modules/Fulfillment/components/PackageSelector/index.js:442
 msgid "Rates will show for this carrier only — change the package to search again."
 msgstr ""
 
@@ -17649,19 +17673,19 @@ msgstr ""
 msgid "Use item weight"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:82
+#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:59
 msgid "You have no saved templates."
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:84
+#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:61
 msgid "Pick a carrier package, enter custom dimensions, or save a template for boxes you reuse."
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:95
+#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:72
 msgid "Create a template"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:102
+#: orders/modules/Fulfillment/components/PackageSelector/SavedTemplatesTab.js:79
 msgid "Saved templates"
 msgstr ""
 
@@ -17674,13 +17698,13 @@ msgid "Clear selected package"
 msgstr ""
 
 #: orders/modules/Fulfillment/components/ShipmentConfirmation.js:36
-#: orders/modules/Fulfillment/utils.js:10
+#: orders/modules/Fulfillment/utils.js:11
 #: sc-fulfillment-shipping-status-badge2.js:15
 msgid "Label Voided"
 msgstr ""
 
 #: orders/modules/Fulfillment/components/ShipmentConfirmation.js:37
-#: orders/modules/Fulfillment/utils.js:13
+#: orders/modules/Fulfillment/utils.js:14
 #: sc-fulfillment-shipping-status-badge2.js:11
 #: sc-order-shipment-badge2.js:12
 msgid "Label Purchased"
@@ -17708,27 +17732,27 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:378
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:337
 msgid "Shipment details"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:379
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:338
 msgid "Buy shipping label"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:380
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:339
 msgid "Edit shipment"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:467
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:426
 msgid "Label file type"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:505
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:464
 msgid "Purchase label"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentDrawer.js:525
+#: orders/modules/Fulfillment/components/ShipmentDrawer.js:484
 msgid "Select a shipping rate to continue."
 msgstr ""
 
@@ -17864,117 +17888,125 @@ msgstr ""
 msgid "cm"
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:27
+#: orders/modules/Fulfillment/CreateFulfillment.js:51
 msgid "Select at least one item to fulfill before proceeding."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:31
+#: orders/modules/Fulfillment/CreateFulfillment.js:55
 msgid "Loading shipping providers…"
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:32
-msgid "Shipping provider is required. Please configure in Settings > Shipping."
+#: orders/modules/Fulfillment/CreateFulfillment.js:57
+msgid "Shipping provider is required. Please configure it in <a>Settings → Shipping</a>."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:36
-msgid "Shippo is disconnected or disabled. Reconnect it in Settings > Shipping to purchase labels."
+#: orders/modules/Fulfillment/CreateFulfillment.js:64
+msgid "Shippo is connected but not enabled, so labels cannot be purchased. Enable it in <a>Settings → Shipping</a>, or enter tracking manually in the Tracking fields above."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:40
+#: orders/modules/Fulfillment/CreateFulfillment.js:75
+msgid "This is a live order, but no live-mode shipping provider is connected. Connect Shippo in live mode from <a>Settings → Shipping</a>, or enter tracking manually in the Tracking fields above."
+msgstr ""
+
+#: orders/modules/Fulfillment/CreateFulfillment.js:79
+msgid "This is a test order, but no test-mode shipping provider is connected. Connect Shippo in test mode from <a>Settings → Shipping</a>, or enter tracking manually in the Tracking fields above."
+msgstr ""
+
+#: orders/modules/Fulfillment/CreateFulfillment.js:85
 msgid "Choose a carrier package, saved template, or custom size to continue."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:44
+#: orders/modules/Fulfillment/CreateFulfillment.js:89
 msgid "From address is incomplete. Add a street address, city, and country for the sender."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:48
+#: orders/modules/Fulfillment/CreateFulfillment.js:93
 msgid "From address needs a phone number — carriers require one for the sender."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:52
+#: orders/modules/Fulfillment/CreateFulfillment.js:97
 msgid "To address is incomplete. Add a street address, city, and country for the recipient."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:56
+#: orders/modules/Fulfillment/CreateFulfillment.js:101
 msgid "To address needs a phone number — carriers require one for the recipient."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:68
+#: orders/modules/Fulfillment/CreateFulfillment.js:113
 msgid "Package configuration is required for shipping rates."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:72
+#: orders/modules/Fulfillment/CreateFulfillment.js:117
 msgid "Please pick a carrier package, choose a saved template, or enter custom dimensions."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:76
+#: orders/modules/Fulfillment/CreateFulfillment.js:121
 msgid "Package weight is required when not inherited from line items."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:80
+#: orders/modules/Fulfillment/CreateFulfillment.js:125
 msgid "Package dimensions are required for custom packages."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:84
+#: orders/modules/Fulfillment/CreateFulfillment.js:129
 msgid "Please enter length, width, and height values greater than 0 in the package settings below."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:88
+#: orders/modules/Fulfillment/CreateFulfillment.js:133
 msgid "From address is required for shipping labels."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:92
+#: orders/modules/Fulfillment/CreateFulfillment.js:137
 msgid "Open the From address panel and add a street address, city, and country for the sender."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:96
+#: orders/modules/Fulfillment/CreateFulfillment.js:141
 msgid "To address is required for shipping labels."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:100
+#: orders/modules/Fulfillment/CreateFulfillment.js:145
 msgid "Open the To address panel and add a street address, city, and country for the recipient."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:104
+#: orders/modules/Fulfillment/CreateFulfillment.js:149
 msgid "From contact phone number is required for shipping labels."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:108
+#: orders/modules/Fulfillment/CreateFulfillment.js:153
 msgid "Open the From address panel and add a phone number for the sender."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:112
+#: orders/modules/Fulfillment/CreateFulfillment.js:157
 msgid "To contact phone number is required for shipping labels."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:116
+#: orders/modules/Fulfillment/CreateFulfillment.js:161
 msgid "Open the To address panel and add a phone number for the recipient."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:240
+#: orders/modules/Fulfillment/CreateFulfillment.js:285
 #: products/modules/BuyLink.js:70
 #: products/modules/Prices/Price/CopyInput.js:17
 msgid "Error copying to clipboard."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:302
+#: orders/modules/Fulfillment/CreateFulfillment.js:347
 msgid "Fulfillment created. Buy a label to finish."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:337
+#: orders/modules/Fulfillment/CreateFulfillment.js:382
 msgid "Fulfillment created."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:372
-#: orders/modules/Fulfillment/CreateFulfillment.js:421
+#: orders/modules/Fulfillment/CreateFulfillment.js:417
+#: orders/modules/Fulfillment/CreateFulfillment.js:466
 #: orders/modules/Fulfillment/Unfulfilled.js:118
 msgid "Fulfill Item"
 msgid_plural "Fulfill Items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:420
+#: orders/modules/Fulfillment/CreateFulfillment.js:465
 msgid "Fulfill & get rates"
 msgstr ""
 
@@ -18005,7 +18037,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: orders/modules/Fulfillment/Unfulfilled.js:64
-#: orders/modules/FulfillmentProgress/index.js:100
+#: orders/modules/FulfillmentProgress/index.js:101
 msgid "Awaiting Fulfillment"
 msgstr ""
 
@@ -18030,107 +18062,112 @@ msgid_plural "Fulfill %d Items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: orders/modules/Fulfillment/utils.js:11
+#: orders/modules/Fulfillment/utils.js:12
 msgid "Unshippable"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:15
+#: orders/modules/Fulfillment/utils.js:16
 #: sc-fulfillment-shipping-status-badge2.js:12
 #: sc-order-shipment-badge2.js:13
 msgid "In Transit"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:17
+#: orders/modules/Fulfillment/utils.js:18
 #: sc-fulfillment-shipping-status-badge2.js:13
 #: sc-order-return-badge.js:9
 msgid "Returned"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:61
+#: orders/modules/Fulfillment/utils.js:62
 msgid "Awaiting Label"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:295
+#: orders/modules/Fulfillment/utils.js:339
 msgid "Cheapest"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:296
+#: orders/modules/Fulfillment/utils.js:340
 msgid "Best Value"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:297
+#: orders/modules/Fulfillment/utils.js:341
 msgid "Fastest"
 msgstr ""
 
-#: orders/modules/Fulfillment/utils.js:352
+#: orders/modules/Fulfillment/utils.js:396
 msgid "%d days"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:19
-#: orders/modules/FulfillmentProgress/index.js:105
+#: orders/modules/Fulfillment/utils/package.js:122
+#: settings/shipping/parcel/CarrierParcelSelect.js:16
+msgid "Custom size"
+msgstr ""
+
+#: orders/modules/FulfillmentProgress/index.js:20
+#: orders/modules/FulfillmentProgress/index.js:106
 msgid "Fulfillment Progress"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:91
+#: orders/modules/FulfillmentProgress/index.js:92
 msgid "%d item pending"
 msgid_plural "%d items pending"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %1$d: fulfilled item count, %2$d: total item count.
-#: orders/modules/FulfillmentProgress/index.js:124
+#: orders/modules/FulfillmentProgress/index.js:125
 msgid "%1$d of %2$d item fulfilled"
 msgid_plural "%1$d of %2$d items fulfilled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: orders/modules/FulfillmentProgress/index.js:182
+#: orders/modules/FulfillmentProgress/index.js:183
 msgid "Pending %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:196
+#: orders/modules/FulfillmentProgress/index.js:197
 msgid "Awaiting Label %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:210
+#: orders/modules/FulfillmentProgress/index.js:211
 msgid "Not Shipped %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:224
+#: orders/modules/FulfillmentProgress/index.js:225
 msgid "Label Purchased %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:238
+#: orders/modules/FulfillmentProgress/index.js:239
 msgid "Shipped %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:252
+#: orders/modules/FulfillmentProgress/index.js:253
 msgid "Returned %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:266
+#: orders/modules/FulfillmentProgress/index.js:267
 msgid "Failed %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:280
+#: orders/modules/FulfillmentProgress/index.js:281
 msgid "Voided %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:294
+#: orders/modules/FulfillmentProgress/index.js:295
 msgid "Other %d"
 msgstr ""
 
-#: orders/modules/FulfillmentProgress/index.js:317
+#: orders/modules/FulfillmentProgress/index.js:318
 msgid "Label spend"
 msgstr ""
 
 #. translators: %1$s: amount the customer paid for shipping, %2$s: amount by which label spend exceeds it.
-#: orders/modules/FulfillmentProgress/index.js:340
+#: orders/modules/FulfillmentProgress/index.js:341
 msgid "Customer paid %1$s · %2$s over"
 msgstr ""
 
 #. translators: %s: amount the customer paid for shipping.
-#: orders/modules/FulfillmentProgress/index.js:355
+#: orders/modules/FulfillmentProgress/index.js:356
 msgid "Customer paid %s"
 msgstr ""
 
@@ -18180,13 +18217,13 @@ msgid "Are you sure you wish to cancel the order?"
 msgstr ""
 
 #: orders/modules/OrderCancelConfirmModal.js:76
-#: orders/Order.js:283
+#: orders/Order.js:292
 msgid "Cancel Order"
 msgstr ""
 
 #: orders/modules/OrderResendNotificationModal.js:46
 #: orders/modules/OrderResendNotificationModal.js:68
-#: orders/Order.js:290
+#: orders/Order.js:299
 msgid "Resend Notification"
 msgstr ""
 
@@ -18444,11 +18481,11 @@ msgstr ""
 msgid "Tax Information"
 msgstr ""
 
-#: orders/Order.js:312
+#: orders/Order.js:321
 msgid "Return"
 msgstr ""
 
-#: orders/Order.js:368
+#: orders/Order.js:377
 #: products/components/product/ActionsDropdown.js:33
 #: products/modules/BundleItems/BundleItem.js:95
 #: products/modules/Prices/Price/Header.js:190
@@ -18457,11 +18494,11 @@ msgstr ""
 msgid "More Actions"
 msgstr ""
 
-#: orders/Order.js:413
+#: orders/Order.js:424
 msgid "Download Receipt"
 msgstr ""
 
-#: orders/Order.js:431
+#: orders/Order.js:444
 msgid "Fulfill Items"
 msgstr ""
 
@@ -19602,7 +19639,7 @@ msgid "All Variants"
 msgstr ""
 
 #: products/modules/integrations/Price.js:155
-#: ui/LineItemLabel.js:34
+#: ui/LineItemLabel.js:35
 #: sc-product-line-item2.js:92
 msgid "SKU:"
 msgstr ""
@@ -27474,6 +27511,7 @@ msgstr ""
 
 #: Blocks/ProductItemPrice/edit.js:44
 #: src/blocks/product-price/edit.js:24
+#: src/blocks/product-variant-pills/edit.js:62
 msgid "Options"
 msgstr ""
 
@@ -30144,6 +30182,16 @@ msgstr ""
 msgid "Select %s"
 msgstr ""
 
+#. translators: %d: number of additional variant options revealed on click.
+#. translators: %d: number of variant options hidden behind the toggle.
+#. translators: %d: number of hidden bundle items
+#: src/blocks/product-variant-pills/radio.php:123
+#: src/blocks/product-variant-pills/edit.js:52
+#: src/scripts/checkout/index.js:321
+#: sc-product-line-item2.js:66
+msgid "+%d more"
+msgstr ""
+
 #: src/blocks/cart-close-button/edit.js:35
 #: src/blocks/cart-order-bump-pagination/query-pagination-arrow-controls.js:15
 #: src/blocks/product-pagination/query-pagination-arrow-controls.js:15
@@ -30956,6 +31004,22 @@ msgstr ""
 msgid "Make title a link"
 msgstr ""
 
+#: src/blocks/product-variant-pills/edit.js:64
+msgid "Show option label"
+msgstr ""
+
+#: src/blocks/product-variant-pills/edit.js:65
+msgid "Display the option name above the swatches. Turn this off for compact layouts — the label stays available to screen readers."
+msgstr ""
+
+#: src/blocks/product-variant-pills/edit.js:75
+msgid "Max visible options"
+msgstr ""
+
+#: src/blocks/product-variant-pills/edit.js:76
+msgid "Cap how many options show per attribute before a \"+N more\" toggle reveals the rest. Set to 0 to always show all options."
+msgstr ""
+
 #: src/blocks/sticky-purchase/edit.js:36
 msgid "Sticky purchase settings"
 msgstr ""
@@ -31009,12 +31073,6 @@ msgid "Includes %d item"
 msgid_plural "Includes %d items"
 msgstr[0] ""
 msgstr[1] ""
-
-#. translators: %d: number of hidden bundle items
-#: src/scripts/checkout/index.js:321
-#: sc-product-line-item2.js:66
-msgid "+%d more"
-msgstr ""
 
 #. translators: %d: number of items in the cart
 #: src/scripts/checkout/index.js:430
@@ -33886,23 +33944,23 @@ msgstr ""
 msgid "Nothing Found"
 msgstr ""
 
-#: sc-session-provider2.js:190
+#: sc-session-provider2.js:222
 msgid "Payment unsuccessful. Please try again."
 msgstr ""
 
-#: sc-session-provider2.js:195
+#: sc-session-provider2.js:227
 msgid "Could not find checkout. Please contact us before attempting to purchase again."
 msgstr ""
 
-#: sc-session-provider2.js:257
+#: sc-session-provider2.js:289
 msgid "Payment unsuccessful."
 msgstr ""
 
-#: sc-session-provider2.js:267
+#: sc-session-provider2.js:299
 msgid "Payment canceled. Please try again."
 msgstr ""
 
-#: sc-session-provider2.js:379
+#: sc-session-provider2.js:411
 msgid "Some products in your order were outdated and have been updated. Please review your order summary before proceeding to payment."
 msgstr ""
 

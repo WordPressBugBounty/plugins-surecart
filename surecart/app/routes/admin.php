@@ -575,6 +575,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /*
 |--------------------------------------------------------------------------
+| Checkout Forms
+|--------------------------------------------------------------------------
+*/
+\SureCart::route()
+	->get()
+	->where( 'sc_url_var', 'duplicate_form', 'action' )
+	->name( 'form.duplicate' )
+	->middleware( 'nonce:duplicate_form' )
+	->middleware( 'user.can:publish_posts' )
+	->handle( '\\SureCart\\Controllers\\Admin\\Forms\\FormsController@duplicate' );
+
+/*
+|--------------------------------------------------------------------------
 | Webhooks
 |--------------------------------------------------------------------------
 */

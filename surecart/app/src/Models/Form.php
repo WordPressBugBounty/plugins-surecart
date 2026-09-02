@@ -191,6 +191,67 @@ class Form {
 	}
 
 	/**
+	 * Whether the current user can create checkout forms.
+	 *
+	 * @return boolean
+	 */
+	protected function canCreate() {
+		$post_type = get_post_type_object( $this->getPostType() );
+		return $post_type && current_user_can( $post_type->cap->create_posts );
+	}
+
+	/**
+	 * Duplicate a form as a new draft, including its content and meta.
+	 *
+	 * @param integer $id Source form post id.
+	 *
+	 * @return integer|\WP_Error New post id, or error when the source is invalid or the user lacks permission.
+	 */
+	protected function duplicate( $id ) {
+		$this->post = get_post( $id );
+		if ( ! $this->post || $this->getPostType() !== $this->post->post_type ) {
+			return new \WP_Error( 'sc_form_not_found', __( 'Checkout form not found.', 'surecart' ), [ 'status' => 404 ] );
+		}
+
+		if ( ! $this->canCreate() || ! current_user_can( 'edit_post', $this->post->ID ) ) {
+			return new \WP_Error( 'sc_form_duplicate_forbidden', __( 'Sorry, you are not allowed to duplicate this checkout form.', 'surecart' ), [ 'status' => 403 ] );
+		}
+
+		// wp_insert_post() expects slashed data; block content holds \uXXXX escapes that would otherwise be stripped.
+		$new_id = wp_insert_post(
+			wp_slash(
+				[
+					'post_type'    => $this->getPostType(),
+					'post_status'  => 'draft',
+					/* translators: %s: original form title. */
+					'post_title'   => sprintf( __( '%s (Copy)', 'surecart' ), $this->post->post_title ),
+					'post_content' => $this->post->post_content,
+					'post_excerpt' => $this->post->post_excerpt,
+				]
+			),
+			true
+		);
+
+		if ( is_wp_error( $new_id ) ) {
+			return $new_id;
+		}
+
+		foreach ( get_post_meta( $this->post->ID ) as $key => $values ) {
+			// editor locks are per-post state, not settings.
+			if ( in_array( $key, [ '_edit_lock', '_edit_last' ], true ) ) {
+				continue;
+			}
+			foreach ( $values as $value ) {
+				// keyless get_post_meta() returns raw serialized values; unserialize so add_post_meta() re-serializes
+				// cleanly, and slash because add_post_meta() unslashes string values before saving.
+				add_post_meta( $new_id, $key, wp_slash( maybe_unserialize( $value ) ) );
+			}
+		}
+
+		return $new_id;
+	}
+
+	/**
 	 * Static Facade Accessor
 	 *
 	 * @param string $method Method to call.

@@ -1,6 +1,7 @@
 :host {
   display: block;
   font-family: var(--sc-font-sans);
+  overflow-wrap: anywhere;
 }
 
 .item {

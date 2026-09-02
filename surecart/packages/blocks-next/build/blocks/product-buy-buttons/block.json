@@ -13,6 +13,7 @@
   "ancestor": [
     "surecart/product-page",
     "surecart/product-quick-view",
+    "surecart/product-template",
     "surecart/sticky-purchase"
   ],
   "supports": {

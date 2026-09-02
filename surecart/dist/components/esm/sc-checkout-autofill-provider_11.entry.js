@@ -5,7 +5,7 @@ import { o as onChange, s as state } from './store-ac90a769.js';
 import { c as createOrUpdateCheckout, d as updateCheckout, e as expand, f as finalizeCheckout, g as fetchCheckout, h as createCheckout } from './index-a786f689.js';
 import { g as getCurrentCustomer, h as hasAddressData, i as isAddressEmpty } from './index-d602bc13.js';
 import { g as getGeoPermissionDefaults } from './geo-permission-62aea8ee.js';
-import { c as currentFormState } from './getters-4bb6cc1b.js';
+import { c as currentFormState, a as formLoading, f as formBusy } from './getters-4bb6cc1b.js';
 import { d as getPerBundleQuantity } from './index-17aac936.js';
 import './watchers-843c3dbe.js';
 import { s as state$2, f as getAvailableProcessor } from './getters-9cfeb0de.js';
@@ -1085,6 +1085,8 @@ const ScSessionProvider = class {
         this.scUpdateDraftState = createEvent(this, "scUpdateDraftState", 7);
         this.scPaid = createEvent(this, "scPaid", 7);
         this.scSetState = createEvent(this, "scSetState", 7);
+        /** Disposers for the geolocation re-price subscriptions. */
+        this.removeGeoListeners = [];
         this.prices = [];
         this.persist = true;
     }
@@ -1210,6 +1212,35 @@ const ScSessionProvider = class {
     /** Find or create session on load. */
     componentDidLoad() {
         this.findOrCreateOrder();
+        this.watchGeoCoordinates();
+    }
+    disconnectedCallback() {
+        this.removeGeoListeners.forEach(dispose => dispose());
+    }
+    /**
+     * Re-price the checkout when the browser resolves the shopper's location.
+     *
+     * Watches both the coordinates and the checkout so bailing is always safe — a
+     * later change re-runs the check. It converges because the platform echoes the
+     * coordinates back onto the checkout, which quiets the mismatch guard.
+     */
+    watchGeoCoordinates() {
+        if (!state$1.captureGeoAddressEnabled)
+            return;
+        this.removeGeoListeners = [onChange$1('geoCoordinates', () => this.maybeRepriceForGeo()), onChange$1('checkout', () => this.maybeRepriceForGeo())];
+    }
+    /** Patch the checkout if the platform hasn't seen the resolved coordinates yet. */
+    maybeRepriceForGeo() {
+        var _a;
+        const coordinates = state$1.geoCoordinates;
+        if (!coordinates || !((_a = state$1.checkout) === null || _a === void 0 ? void 0 : _a.id))
+            return;
+        if (state$1.checkout.latitude === coordinates.latitude && state$1.checkout.longitude === coordinates.longitude)
+            return;
+        if (formLoading() || formBusy())
+            return; // the in-flight request carries them via withDefaultData.
+        // An empty patch is enough: withDefaultData attaches the coordinates and the platform re-prices.
+        this.loadUpdate({});
     }
     /** Find or create an order */
     async findOrCreateOrder() {
@@ -1592,7 +1623,7 @@ const ScSessionProvider = class {
         }
     }
     render() {
-        return (h("sc-line-items-provider", { key: '3f3e2b8570b16d272135364bf84373106a15d564', order: state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: '4aab176d4e7477428008d314765658692cbf2630' })));
+        return (h("sc-line-items-provider", { key: '51e958f5f4c7939cb9922223966a47e0c82202ca', order: state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: 'c14bbdb9d579dd1fd7e8cf4d24ee5039e8fa6c89' })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

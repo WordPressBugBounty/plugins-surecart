@@ -51,31 +51,36 @@ class ProductPageMigrationService extends VersionMigration {
 
 		// update each template if it doesn't have the wp:surecart/product-page block.
 		foreach ( $product_templates as $product_template ) {
+			// thread one content variable through both transforms so the second
+			// doesn't overwrite the first with the original post content.
+			$content = $product_template->post_content;
 
-			if ( ! has_block( 'surecart/product-page', $product_template->post_content ) ) {
-				wp_update_post(
-					array(
-						'ID'           => $product_template->ID,
-						'post_content' => '<!-- wp:surecart/product-page {"align":"wide"} -->' . $product_template->post_content . '<!-- /wp:surecart/product-page -->',
-					)
+			if ( ! has_block( 'surecart/product-page', $content ) ) {
+				$content = '<!-- wp:surecart/product-page {"align":"wide"} -->' . $content . '<!-- /wp:surecart/product-page -->';
+			}
+
+			if ( ! has_block( 'surecart/product-selected-price-ad-hoc-amount', $content ) ) {
+				$insert_before_block = has_block( 'surecart/product-buy-buttons', $content ) ? 'surecart/product-buy-buttons' : 'surecart/product-buy-button';
+
+				$content = str_replace(
+					'<!-- wp:' . $insert_before_block,
+					'<!-- wp:surecart/product-selected-price-ad-hoc-amount /-->' . PHP_EOL . '<!-- wp:' . $insert_before_block,
+					$content
 				);
 			}
 
-			if ( ! has_block( 'surecart/product-selected-price-ad-hoc-amount', $product_template->post_content ) ) {
-				$insert_before_block = has_block( 'surecart/product-buy-buttons', $product_template ) ? 'surecart/product-buy-buttons' : 'surecart/product-buy-button';
+			// only save when something actually changed — an unconditional save
+			// would re-run every merchant-customized template through the save
+			// pipeline on every plugin update.
+			if ( $content === $product_template->post_content ) {
+				continue;
+			}
 
-				$new_content = str_replace(
-					'<!-- wp:' . $insert_before_block,
-					'<!-- wp:surecart/product-selected-price-ad-hoc-amount /-->' . PHP_EOL . '<!-- wp:' . $insert_before_block,
-					$product_template->post_content
-				);
+			$result = $this->updatePostContent( $product_template->ID, $content );
 
-				wp_update_post(
-					array(
-						'ID'           => $product_template->ID,
-						'post_content' => $new_content,
-					)
-				);
+			// a failed update defers completion so the next admin_init retries (see VersionMigration::complete()).
+			if ( is_wp_error( $result ) || empty( $result ) ) {
+				$this->failed = true;
 			}
 		}
 	}

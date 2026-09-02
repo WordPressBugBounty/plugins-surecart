@@ -1,3 +1,8 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
 .line-item-note {
   display: flex;
   align-items: flex-start;
@@ -16,6 +21,7 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+  overflow-wrap: anywhere;
   transition: all 0.2s;
 }
 .line-item-note--is-expanded .line-item-note__text {

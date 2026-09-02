@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.7.0
+Stable tag: 4.7.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -422,6 +422,18 @@ Accessibility is a huge priority for the entire team building SureCart. As you k
 
 == Changelog ==
 
+= 4.7.1 - September 2nd, 2026 =
+- New: Variant Pills and Buy Buttons blocks can now be added inside a Product List, so shoppers can pick a variant and add to cart without leaving the list.
+- New: "Product List with Variants" block pattern, built with the new Variant Pills and Buy Buttons support.
+- New: Native "Duplicate" row action for checkout forms, cloning a form as a new draft.
+- New: Order fulfillment timeline now shows the package a purchased shipping label was rated against (carrier package, saved template, or custom size).
+- Fix: Upsell Funnel and Order Bump price picker omitting valid prices on products with more than ~20 prices.
+- Fix: Product page migration silently stripping `<style>` tags and CSS backslash escapes from customized product templates on every plugin update.
+- Fix: Shipping provider status now shows the actual reason (not connected, disabled, or wrong mode) instead of a generic "disconnected or disabled" message.
+- Fix: Checkout location-based pricing not recalculating until the shopper interacted with the form after geo coordinates resolved.
+- Fix: Long product notes breaking the order line item layout on both the storefront and admin order screens.
+- Fix: Checkout address focus ring clipped on country and street line selects.
+
 = 4.7.0 - August 25th, 2026 =
 - New: Ship orders from the fulfillment drawer — get live Shippo rates, buy a label, and track the package.
 - New: Warehouse management under Settings → Shipping for managing ship-from addresses.
@@ -429,7 +441,7 @@ Accessibility is a huge priority for the entire team building SureCart. As you k
 - New: Customers see shipment tracking and status on their dashboard order page as soon as a label is purchased.
 - Improvement: Address autocomplete now uses Google's Places Autocomplete API instead of Text Search, returning street addresses instead of businesses and billing each search as a single session.
 - Fix: UK address autocomplete now picks the correct city and building/street line for addresses without a street number.
-- Fix: Hardened account creation at checkout confirmation to prevent an unauthenticated request from creating a WordPress user account (props to Jakub Herman of WPScan).
+- Fix: Hardened account creation at checkout confirmation to prevent an unauthenticated request from creating a WordPress user account (props to Jakub Herman).
 
 = 4.6.6 - August 21st, 2026 =
 - Fix: Some product blocks showing "This block has encountered an error and cannot be previewed" in the editor on WordPress 7.1.
@@ -453,7 +465,7 @@ Accessibility is a huge priority for the entire team building SureCart. As you k
 = 4.6.3 - August 5th, 2026 =
 - Fix: Issue where some address fields were not being required when google autocomplete is connected.
 - Fix: Issue with product thumbnail settings sometimes not applying on Elementor and Bricks.
-- Fix: Hardened access controls (props to Jakub Herman of WPScan)
+- Fix: Hardened access controls (props to Jakub Herman)
 - Fix: Hardened security of WooCommerce imports (props to TurboNexic of PatchStack)
 
 = 4.6.2 - July 27th, 2026 =

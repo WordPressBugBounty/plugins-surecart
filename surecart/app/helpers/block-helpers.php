@@ -40,3 +40,65 @@ if ( ! function_exists( 'sc_remove_interactivity_debug_notice' ) ) {
 		return false;
 	}
 }
+
+if ( ! function_exists( 'sc_has_interactive_content' ) ) {
+	/**
+	 * Does this markup contain anything a user can click, type into or tab to?
+	 *
+	 * Used to decide whether a chunk of block output can safely be wrapped in a link.
+	 * Alongside the interactive elements it also catches anything made focusable with
+	 * `tabindex`, which is how the variant pills present themselves.
+	 *
+	 * @param string $html The rendered markup to inspect.
+	 *
+	 * @return bool
+	 */
+	function sc_has_interactive_content( $html ) {
+		if ( empty( $html ) ) {
+			return false;
+		}
+
+		// `label` and `details` count because both act on a click without being form controls.
+		// Anything added here also needs lifting above the card link in
+		// product-template/style.scss, or it ends up unclickable.
+		$interactive_tags = [ 'A', 'BUTTON', 'SELECT', 'INPUT', 'TEXTAREA', 'DETAILS', 'LABEL' ];
+		$tags             = new \WP_HTML_Tag_Processor( $html );
+
+		while ( $tags->next_tag() ) {
+			if ( in_array( $tags->get_tag(), $interactive_tags, true ) ) {
+				return true;
+			}
+			if ( null !== $tags->get_attribute( 'tabindex' ) ) {
+				return true;
+			}
+		}
+
+		// Truncated markup stops the scan before the end of the string. Answer yes rather
+		// than let a caller wrap controls we simply never reached in a link.
+		return $tags->paused_at_incomplete_token();
+	}
+}
+
+if ( ! function_exists( 'sc_variant_pills_overflow_count' ) ) {
+	/**
+	 * How many variant option pills should hide behind the "+N more" toggle?
+	 *
+	 * Deliberately literal — a cap of 3 shows 3 pills and "+1 more" even though
+	 * the toggle takes the hidden pill's slot, because a setting that sometimes
+	 * shows more than it says reads as broken. 0 means no cap.
+	 *
+	 * @param int $total       Total number of option values.
+	 * @param int $max_visible Maximum pills to show before capping (0 = no cap).
+	 *
+	 * @return int Number of pills to hide. 0 when everything should show.
+	 */
+	function sc_variant_pills_overflow_count( $total, $max_visible ) {
+		$max_visible = max( 0, (int) $max_visible );
+
+		if ( $max_visible < 1 ) {
+			return 0;
+		}
+
+		return max( 0, (int) $total - $max_visible );
+	}
+}

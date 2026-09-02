@@ -15,9 +15,10 @@ class BricksServiceProvider implements ServiceProviderInterface {
 	 * @return void
 	 */
 	public function register( $container ) {
-		$container['surecart.bricks.elements']     = fn() => new BricksElementsService();
-		$container['surecart.bricks.dynamic_data'] = fn() => new BricksDynamicDataService();
-		$container['surecart.bricks.template']     = fn() => new BricksTemplateService();
+		$container['surecart.bricks.elements']          = fn() => new BricksElementsService();
+		$container['surecart.bricks.dynamic_data']      = fn() => new BricksDynamicDataService();
+		$container['surecart.bricks.template']          = fn() => new BricksTemplateService();
+		$container['surecart.bricks.duplicate_content'] = fn() => new BricksDuplicateContentService();
 	}
 
 	/**
@@ -29,5 +30,6 @@ class BricksServiceProvider implements ServiceProviderInterface {
 		$container['surecart.bricks.elements']->bootstrap();
 		$container['surecart.bricks.dynamic_data']->bootstrap();
 		$container['surecart.bricks.template']->bootstrap();
+		$container['surecart.bricks.duplicate_content']->bootstrap();
 	}
 }

@@ -150,6 +150,7 @@ class ProductPageBlock {
 				'mode'                       => \SureCart\Models\Form::getMode( \SureCart::forms()->getDefaultId() ),
 				'checkoutUrl'                => \SureCart::pages()->url( 'checkout' ),
 				'urlPrefix'                  => $this->urlParams()->getKey(),
+				'updateUrl'                  => true, // Only a single-product context owns the page URL. A product list renders many pills, so it doesn't update the URL.
 				'product'                    => ! empty( $product ) && ! empty( $product->id ) ? $product->only( [ 'id', 'name', 'has_unlimited_stock', 'available_stock', 'archived', 'permalink', 'preview_image' ] ) : null,
 				'selectedPrice'              => ! empty( $product->initial_price ) && ! empty( $product->initial_price->id ) ? $product->initial_price->only(
 					[

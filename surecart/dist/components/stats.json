@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-25T17:18:34",
+  "timestamp": "2026-09-02T17:57:32",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3431,8 +3431,6 @@
           "./dist/surecart/p-0380efa5.entry.js.map",
           "./dist/surecart/p-047da1d1.entry.js",
           "./dist/surecart/p-047da1d1.entry.js.map",
-          "./dist/surecart/p-05c7be39.entry.js",
-          "./dist/surecart/p-05c7be39.entry.js.map",
           "./dist/surecart/p-08305819.entry.js",
           "./dist/surecart/p-08305819.entry.js.map",
           "./dist/surecart/p-0895d42e.entry.js",
@@ -3497,6 +3495,8 @@
           "./dist/surecart/p-2c897704.entry.js.map",
           "./dist/surecart/p-2da8d1fe.js",
           "./dist/surecart/p-2da8d1fe.js.map",
+          "./dist/surecart/p-312762e7.entry.js",
+          "./dist/surecart/p-312762e7.entry.js.map",
           "./dist/surecart/p-31faf2b8.js",
           "./dist/surecart/p-31faf2b8.js.map",
           "./dist/surecart/p-32f61804.entry.js",
@@ -3525,8 +3525,6 @@
           "./dist/surecart/p-3ff52b6a.js.map",
           "./dist/surecart/p-401e165e.js",
           "./dist/surecart/p-401e165e.js.map",
-          "./dist/surecart/p-425572ba.entry.js",
-          "./dist/surecart/p-425572ba.entry.js.map",
           "./dist/surecart/p-426c19c8.entry.js",
           "./dist/surecart/p-426c19c8.entry.js.map",
           "./dist/surecart/p-42e498c0.entry.js",
@@ -3535,6 +3533,8 @@
           "./dist/surecart/p-46dfa7b9.entry.js.map",
           "./dist/surecart/p-4773325d.js",
           "./dist/surecart/p-4773325d.js.map",
+          "./dist/surecart/p-48e98b6a.entry.js",
+          "./dist/surecart/p-48e98b6a.entry.js.map",
           "./dist/surecart/p-493a53c9.entry.js",
           "./dist/surecart/p-493a53c9.entry.js.map",
           "./dist/surecart/p-49fdface.js",
@@ -3561,6 +3561,8 @@
           "./dist/surecart/p-5311cf53.entry.js.map",
           "./dist/surecart/p-545f1a84.entry.js",
           "./dist/surecart/p-545f1a84.entry.js.map",
+          "./dist/surecart/p-567dbf4f.entry.js",
+          "./dist/surecart/p-567dbf4f.entry.js.map",
           "./dist/surecart/p-58f433f0.entry.js",
           "./dist/surecart/p-58f433f0.entry.js.map",
           "./dist/surecart/p-5c88af47.entry.js",
@@ -3641,8 +3643,6 @@
           "./dist/surecart/p-80b51fe8.entry.js.map",
           "./dist/surecart/p-830ab1a3.js",
           "./dist/surecart/p-830ab1a3.js.map",
-          "./dist/surecart/p-83632b1c.entry.js",
-          "./dist/surecart/p-83632b1c.entry.js.map",
           "./dist/surecart/p-85870e72.js",
           "./dist/surecart/p-85870e72.js.map",
           "./dist/surecart/p-8619b578.entry.js",
@@ -3709,8 +3709,6 @@
           "./dist/surecart/p-a05cffde.entry.js.map",
           "./dist/surecart/p-a06f1c3b.entry.js",
           "./dist/surecart/p-a06f1c3b.entry.js.map",
-          "./dist/surecart/p-a0961383.entry.js",
-          "./dist/surecart/p-a0961383.entry.js.map",
           "./dist/surecart/p-a0974978.js",
           "./dist/surecart/p-a0974978.js.map",
           "./dist/surecart/p-a1377337.js",
@@ -3871,6 +3869,8 @@
           "./dist/surecart/p-f7b52f8d.entry.js.map",
           "./dist/surecart/p-f7e604f2.entry.js",
           "./dist/surecart/p-f7e604f2.entry.js.map",
+          "./dist/surecart/p-f86aea5b.entry.js",
+          "./dist/surecart/p-f86aea5b.entry.js.map",
           "./dist/surecart/p-fb28f84f.js",
           "./dist/surecart/p-fb28f84f.js.map",
           "./dist/surecart/p-fb868de2.entry.js",
@@ -3895,8 +3895,6 @@
           "./www/build/p-0380efa5.entry.js.map",
           "./www/build/p-047da1d1.entry.js",
           "./www/build/p-047da1d1.entry.js.map",
-          "./www/build/p-05c7be39.entry.js",
-          "./www/build/p-05c7be39.entry.js.map",
           "./www/build/p-08305819.entry.js",
           "./www/build/p-08305819.entry.js.map",
           "./www/build/p-0895d42e.entry.js",
@@ -3961,6 +3959,8 @@
           "./www/build/p-2c897704.entry.js.map",
           "./www/build/p-2da8d1fe.js",
           "./www/build/p-2da8d1fe.js.map",
+          "./www/build/p-312762e7.entry.js",
+          "./www/build/p-312762e7.entry.js.map",
           "./www/build/p-31faf2b8.js",
           "./www/build/p-31faf2b8.js.map",
           "./www/build/p-32f61804.entry.js",
@@ -3989,8 +3989,6 @@
           "./www/build/p-3ff52b6a.js.map",
           "./www/build/p-401e165e.js",
           "./www/build/p-401e165e.js.map",
-          "./www/build/p-425572ba.entry.js",
-          "./www/build/p-425572ba.entry.js.map",
           "./www/build/p-426c19c8.entry.js",
           "./www/build/p-426c19c8.entry.js.map",
           "./www/build/p-42e498c0.entry.js",
@@ -3999,6 +3997,8 @@
           "./www/build/p-46dfa7b9.entry.js.map",
           "./www/build/p-4773325d.js",
           "./www/build/p-4773325d.js.map",
+          "./www/build/p-48e98b6a.entry.js",
+          "./www/build/p-48e98b6a.entry.js.map",
           "./www/build/p-493a53c9.entry.js",
           "./www/build/p-493a53c9.entry.js.map",
           "./www/build/p-49fdface.js",
@@ -4025,6 +4025,8 @@
           "./www/build/p-5311cf53.entry.js.map",
           "./www/build/p-545f1a84.entry.js",
           "./www/build/p-545f1a84.entry.js.map",
+          "./www/build/p-567dbf4f.entry.js",
+          "./www/build/p-567dbf4f.entry.js.map",
           "./www/build/p-58f433f0.entry.js",
           "./www/build/p-58f433f0.entry.js.map",
           "./www/build/p-5c88af47.entry.js",
@@ -4105,8 +4107,6 @@
           "./www/build/p-80b51fe8.entry.js.map",
           "./www/build/p-830ab1a3.js",
           "./www/build/p-830ab1a3.js.map",
-          "./www/build/p-83632b1c.entry.js",
-          "./www/build/p-83632b1c.entry.js.map",
           "./www/build/p-85870e72.js",
           "./www/build/p-85870e72.js.map",
           "./www/build/p-8619b578.entry.js",
@@ -4173,8 +4173,6 @@
           "./www/build/p-a05cffde.entry.js.map",
           "./www/build/p-a06f1c3b.entry.js",
           "./www/build/p-a06f1c3b.entry.js.map",
-          "./www/build/p-a0961383.entry.js",
-          "./www/build/p-a0961383.entry.js.map",
           "./www/build/p-a0974978.js",
           "./www/build/p-a0974978.js.map",
           "./www/build/p-a1377337.js",
@@ -4335,6 +4333,8 @@
           "./www/build/p-f7b52f8d.entry.js.map",
           "./www/build/p-f7e604f2.entry.js",
           "./www/build/p-f7e604f2.entry.js.map",
+          "./www/build/p-f86aea5b.entry.js",
+          "./www/build/p-f86aea5b.entry.js.map",
           "./www/build/p-fb28f84f.js",
           "./www/build/p-fb28f84f.js.map",
           "./www/build/p-fb868de2.entry.js",
@@ -4385,8 +4385,8 @@
           "sc-quantity-select",
           "sc-spinner"
         ],
-        "bundleId": "p-83632b1c",
-        "fileName": "p-83632b1c.entry.js",
+        "bundleId": "p-f86aea5b",
+        "fileName": "p-f86aea5b.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-b0d8cd6e.js",
@@ -4394,7 +4394,7 @@
           "p-a05701be.js",
           "p-830ab1a3.js"
         ],
-        "originalByteSize": 61155
+        "originalByteSize": 61238
       },
       {
         "key": "sc-badge-notice.entry",
@@ -6538,8 +6538,8 @@
           "sc-order-confirm-provider",
           "sc-session-provider"
         ],
-        "bundleId": "p-a0961383",
-        "fileName": "p-a0961383.entry.js",
+        "bundleId": "p-312762e7",
+        "fileName": "p-312762e7.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-22f50d49.js",
@@ -6570,7 +6570,7 @@
           "p-fb28f84f.js",
           "p-e2e1fe1f.js"
         ],
-        "originalByteSize": 84712
+        "originalByteSize": 86293
       },
       {
         "key": "sc-checkout-mollie-payment.sc-checkout-paystack-payment-provider.sc-checkout-razorpay-payment-provider.entry",
@@ -7200,8 +7200,8 @@
           "sc-phone-input",
           "sc-tax-id-input"
         ],
-        "bundleId": "p-425572ba",
-        "fileName": "p-425572ba.entry.js",
+        "bundleId": "p-48e98b6a",
+        "fileName": "p-48e98b6a.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-e2e1fe1f.js",
@@ -7304,14 +7304,14 @@
           "sc-menu-label",
           "sc-select"
         ],
-        "bundleId": "p-05c7be39",
-        "fileName": "p-05c7be39.entry.js",
+        "bundleId": "p-567dbf4f",
+        "fileName": "p-567dbf4f.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-8b323bfb.js",
           "p-fb28f84f.js"
         ],
-        "originalByteSize": 61144
+        "originalByteSize": 61162
       },
       {
         "key": "sc-cc-logo.sc-tooltip.entry",
@@ -7594,7 +7594,7 @@
           "index-17aac936.js",
           "index-c5a96d53.js"
         ],
-        "originalByteSize": 61182
+        "originalByteSize": 61265
       },
       {
         "key": "sc-badge-notice.entry",
@@ -9770,7 +9770,7 @@
           "util-dfbf863e.js",
           "address-b8e2e4c8.js"
         ],
-        "originalByteSize": 84887
+        "originalByteSize": 86468
       },
       {
         "key": "sc-checkout-mollie-payment.sc-checkout-paystack-payment-provider.sc-checkout-razorpay-payment-provider.entry",
@@ -10511,7 +10511,7 @@
           "form-data-76641f16.js",
           "util-dfbf863e.js"
         ],
-        "originalByteSize": 61159
+        "originalByteSize": 61177
       },
       {
         "key": "sc-cc-logo.sc-tooltip.entry",
@@ -10796,7 +10796,7 @@
           "index-f3933112.js",
           "index-fb76df07.js"
         ],
-        "originalByteSize": 61775
+        "originalByteSize": 61858
       },
       {
         "key": "sc-badge-notice.entry",
@@ -12972,7 +12972,7 @@
           "util-a15c420c.js",
           "address-7404695f.js"
         ],
-        "originalByteSize": 86993
+        "originalByteSize": 88613
       },
       {
         "key": "sc-checkout-mollie-payment.sc-checkout-paystack-payment-provider.sc-checkout-razorpay-payment-provider.entry",
@@ -13713,7 +13713,7 @@
           "form-data-0da9940f.js",
           "util-a15c420c.js"
         ],
-        "originalByteSize": 61397
+        "originalByteSize": 61415
       },
       {
         "key": "sc-cc-logo.sc-tooltip.entry",
@@ -90109,7 +90109,7 @@
           "hasComponentDidRenderFn": false,
           "hasComponentDidUnloadFn": false,
           "hasConnectedCallbackFn": false,
-          "hasDisconnectedCallbackFn": false,
+          "hasDisconnectedCallbackFn": true,
           "hasElement": false,
           "hasEvent": true,
           "hasLifecycle": true,
