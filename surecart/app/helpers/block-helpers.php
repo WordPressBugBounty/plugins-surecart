@@ -43,11 +43,10 @@ if ( ! function_exists( 'sc_remove_interactivity_debug_notice' ) ) {
 
 if ( ! function_exists( 'sc_has_interactive_content' ) ) {
 	/**
-	 * Does this markup contain anything a user can click, type into or tab to?
+	 * Does this markup contain an element that cannot legally sit inside a link?
 	 *
-	 * Used to decide whether a chunk of block output can safely be wrapped in a link.
-	 * Alongside the interactive elements it also catches anything made focusable with
-	 * `tabindex`, which is how the variant pills present themselves.
+	 * Narrower than "is anything clickable": a role="button" div nests inside an anchor
+	 * fine and cancels its own click, so only real controls force the stretched overlay.
 	 *
 	 * @param string $html The rendered markup to inspect.
 	 *
@@ -59,16 +58,11 @@ if ( ! function_exists( 'sc_has_interactive_content' ) ) {
 		}
 
 		// `label` and `details` count because both act on a click without being form controls.
-		// Anything added here also needs lifting above the card link in
-		// product-template/style.scss, or it ends up unclickable.
 		$interactive_tags = [ 'A', 'BUTTON', 'SELECT', 'INPUT', 'TEXTAREA', 'DETAILS', 'LABEL' ];
 		$tags             = new \WP_HTML_Tag_Processor( $html );
 
 		while ( $tags->next_tag() ) {
 			if ( in_array( $tags->get_tag(), $interactive_tags, true ) ) {
-				return true;
-			}
-			if ( null !== $tags->get_attribute( 'tabindex' ) ) {
 				return true;
 			}
 		}

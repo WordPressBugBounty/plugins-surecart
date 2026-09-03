@@ -43,10 +43,8 @@ if ( ! $query->have_posts() ) {
 		// `render_callback` and ensure that no wrapper markup is included.
 		$block_content = ( new WP_Block( $block_instance ) )->render( array( 'dynamic' => false ) );
 
-		// A card holding its own controls (variant pills, buy or quick view buttons) can't be
-		// wrapped in the product link — nested interactive content is invalid markup and traps
-		// keyboard users. Those cards get a stretched overlay link instead, which keeps the
-		// whole card clickable without swallowing the controls.
+		// Real controls can't be wrapped in the product link, so those cards get a stretched
+		// overlay link instead.
 		$has_controls = sc_has_interactive_content( $block_content );
 
 		remove_filter( 'render_block_context', $filter_block_context, 1 );
@@ -73,8 +71,9 @@ if ( ! $query->have_posts() ) {
 				?>
 				>
 				<?php if ( $has_controls ) : ?>
-					<a class="sc-product-item-link" href="<?php echo esc_url( get_the_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>"></a>
 					<?php echo $block_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php // Link last, so it wins the z-index tie against a cover block's inner container. ?>
+					<a class="sc-product-item-link" href="<?php echo esc_url( get_the_permalink() ); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>"></a>
 				<?php else : ?>
 					<a class="sc-product-item-link" href="<?php echo esc_url( get_the_permalink() ); ?>">
 						<?php echo $block_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
