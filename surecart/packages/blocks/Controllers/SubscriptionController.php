@@ -149,6 +149,10 @@ class SubscriptionController extends BaseController {
 			]
 		)->find( $id );
 
+		if ( is_wp_error( $subscription ) ) {
+			return $this->notFound();
+		}
+
 		$should_delay_cancellation = $subscription->shouldDelayCancellation();
 		ob_start();
 		?>

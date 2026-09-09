@@ -125,6 +125,18 @@ class LearnDashGroupService extends IntegrationService implements IntegrationInt
 	}
 
 	/**
+	 * The id must be a real LearnDash group.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		$group = absint( $id ) ? get_post( absint( $id ) ) : null;
+		return ! empty( $group ) && 'groups' === $group->post_type;
+	}
+
+	/**
 	 * Enable Access to the course.
 	 *
 	 * @param \SureCart\Models\Integration $integration The integrations.

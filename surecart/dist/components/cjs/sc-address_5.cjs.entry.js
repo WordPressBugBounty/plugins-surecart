@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 const address = require('./address-7404695f.js');
 const formData = require('./form-data-0da9940f.js');
-const googleMaps = require('./google-maps-8b4e4fed.js');
+const googleMaps = require('./google-maps-f2f4405c.js');
 const mutations = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const index$1 = require('./index-adacfa36.js');
@@ -17579,7 +17579,7 @@ function buildReplacementAddressFromPlace(place, regions, previousName) {
         throw new Error('Place details not found.');
     }
     const placeDetails = googleMaps.transformPlaceDetails(place.addressComponents, regions);
-    const line1 = googleMaps.getStreetAddress(place.addressComponents) || place.displayName || '';
+    const line1 = googleMaps.getStreetAddress(place.addressComponents, place.addressLines) || place.displayName || '';
     return {
         name: previousName !== null && previousName !== void 0 ? previousName : null,
         line_1: line1,
@@ -17597,7 +17597,7 @@ function buildReplacementAddressFromPlace(place, regions, previousName) {
  * is invalid afterwards, so the caller must discard it.
  */
 async function fetchPlaceDetails(suggestion, address$1, regions, sessionToken) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     if (!(suggestion === null || suggestion === void 0 ? void 0 : suggestion.placeId)) {
         throw new Error('Place details not found.');
     }
@@ -17608,7 +17608,7 @@ async function fetchPlaceDetails(suggestion, address$1, regions, sessionToken) {
     const response = await fetch(`https://places.googleapis.com/v1/places/${suggestion.placeId}?${params.toString()}`, {
         headers: {
             'X-Goog-Api-Key': (_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key,
-            'X-Goog-FieldMask': 'addressComponents',
+            'X-Goog-FieldMask': 'addressComponents,postalAddress.addressLines',
         },
     });
     const data = await response.json();
@@ -17616,8 +17616,8 @@ async function fetchPlaceDetails(suggestion, address$1, regions, sessionToken) {
         throw new Error(data.error.message);
     }
     const addressComponents = (data === null || data === void 0 ? void 0 : data.addressComponents) || [];
-    const place = { ...suggestion, addressComponents };
-    const country = ((_c = addressComponents.find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes('country'); })) === null || _c === void 0 ? void 0 : _c.shortText) || null;
+    const place = { ...suggestion, addressComponents, addressLines: ((_c = data === null || data === void 0 ? void 0 : data.postalAddress) === null || _c === void 0 ? void 0 : _c.addressLines) || [] };
+    const country = ((_d = addressComponents.find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes('country'); })) === null || _d === void 0 ? void 0 : _d.shortText) || null;
     const updatedRegions = (address$1 === null || address$1 === void 0 ? void 0 : address$1.country) !== country ? await address.getCountryRegions(country) : regions;
     return {
         updatedAddress: buildReplacementAddressFromPlace(place, updatedRegions, address$1.name),

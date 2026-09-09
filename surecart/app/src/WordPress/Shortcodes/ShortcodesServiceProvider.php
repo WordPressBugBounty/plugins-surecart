@@ -286,10 +286,9 @@ class ShortcodesServiceProvider implements ServiceProviderInterface {
 		);
 
 		// generate shortcodes for all our blocks.
-		foreach ( glob( SURECART_PLUGIN_DIR . '/packages/blocks-next/build/blocks/**/block.json' ) as $file ) {
-			$metadata = wp_json_file_decode( $file, array( 'associative' => true ) );
-			$name     = str_replace( 'surecart/', '', $metadata['name'] );
-			$name     = str_replace( '-', '_', sanitize_title_with_dashes( $name ) );
+		foreach ( $this->getBlocksMetadata() as $metadata ) {
+			$name = str_replace( 'surecart/', '', $metadata['name'] );
+			$name = str_replace( '-', '_', sanitize_title_with_dashes( $name ) );
 
 			$old_shortcode_names = [
 				'product_title',
@@ -372,6 +371,30 @@ class ShortcodesServiceProvider implements ServiceProviderInterface {
 			'product-review-standard', // Pattern file name without path or extension.
 			[ 'supports_product_id' => true ]
 		);
+	}
+
+	/**
+	 * Get block metadata for all next-gen blocks.
+	 *
+	 * Uses the memoized build manifest when available (already loaded for block
+	 * registration), avoiding a second read+parse of every block.json. The
+	 * manifest helper owns the kill switch, so this falls back to the glob
+	 * whenever the collection is not in play.
+	 *
+	 * @return array List of block metadata arrays.
+	 */
+	protected function getBlocksMetadata(): array {
+		$manifest = function_exists( 'surecart_get_blocks_manifest' ) ? surecart_get_blocks_manifest() : null;
+
+		if ( null !== $manifest ) {
+			return array_values( $manifest );
+		}
+
+		$metadata = [];
+		foreach ( glob( SURECART_PLUGIN_DIR . '/packages/blocks-next/build/blocks/**/block.json' ) as $file ) {
+			$metadata[] = wp_json_file_decode( $file, array( 'associative' => true ) );
+		}
+		return $metadata;
 	}
 
 	/**

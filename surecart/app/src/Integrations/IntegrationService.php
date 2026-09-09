@@ -104,6 +104,20 @@ abstract class IntegrationService extends AbstractIntegration implements Integra
 	}
 
 	/**
+	 * Whether the id is an item this provider actually offers.
+	 *
+	 * Providers override this to reject arbitrary ids before an integration
+	 * is saved. Defaults to valid so providers without a specific check keep working.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		return true;
+	}
+
+	/**
 	 * Enable by default.
 	 *
 	 * @return boolean
@@ -134,6 +148,9 @@ abstract class IntegrationService extends AbstractIntegration implements Integra
 		// get items.
 		add_filter( "surecart/integrations/providers/{$this->getName()}/{$this->getModel()}/items", [ $this, 'getItems' ], 9, 2 );
 		add_filter( "surecart/integrations/providers/{$this->getName()}/item", [ $this, '_getItem' ], 9, 2 );
+
+		// validate the item id when an integration is saved.
+		add_filter( "surecart/integrations/providers/{$this->getName()}/is_valid_item", [ $this, '_isValidItem' ], 9, 2 );
 
 		// implement purchase events if purchase sync interface is implemented.
 		if ( is_subclass_of( $this, PurchaseSyncInterface::class ) ) {
@@ -327,6 +344,18 @@ abstract class IntegrationService extends AbstractIntegration implements Integra
 		$item       = (object) $this->getItem( $id );
 		$item->logo = esc_url_raw( $this->getLogo() );
 		return $item;
+	}
+
+	/**
+	 * Filter callback for item validation.
+	 *
+	 * @param bool   $valid Whether the item is valid so far.
+	 * @param string $id    Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function _isValidItem( $valid, $id ): bool {
+		return $valid && $this->isValidItem( $id );
 	}
 
 	/**

@@ -345,6 +345,21 @@ class TutorLMSService extends IntegrationService implements IntegrationInterface
 	}
 
 	/**
+	 * The id must be a real TutorLMS course.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		if ( ! function_exists( 'tutor' ) ) {
+			return false;
+		}
+		$course = absint( $id ) ? get_post( absint( $id ) ) : null;
+		return ! empty( $course ) && tutor()->course_post_type === $course->post_type;
+	}
+
+	/**
 	 * Enable Access to the course.
 	 *
 	 * @param \SureCart\Models\Integration $integration The integrations.

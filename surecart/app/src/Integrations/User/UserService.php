@@ -11,6 +11,46 @@ use SureCart\Integrations\IntegrationService;
  */
 class UserService extends IntegrationService implements IntegrationInterface, PurchaseSyncInterface {
 	/**
+	 * Capabilities that make a role admin-equivalent.
+	 *
+	 * A role granting any of these must never be assignable through this
+	 * integration — a purchase could otherwise escalate a customer to admin.
+	 * `unfiltered_html` is deliberately not listed: editor/author legitimately
+	 * carry it on single site, so granting such a role is an accepted risk here.
+	 *
+	 * @var string[]
+	 */
+	private const PRIVILEGED_CAPS = [
+		'level_10',
+		'manage_options',
+		'promote_users',
+		'edit_users',
+		'delete_users',
+		'create_users',
+		'remove_users',
+		'activate_plugins',
+		'install_plugins',
+		'edit_plugins',
+		'delete_plugins',
+		'update_plugins',
+		'install_themes',
+		'edit_themes',
+		'delete_themes',
+		'update_themes',
+		'edit_files',
+		'unfiltered_upload',
+		'update_core',
+		'manage_network',
+		'manage_network_options',
+		'manage_network_users',
+		'manage_network_plugins',
+		'manage_network_themes',
+		'manage_sites',
+		'setup_network',
+		'upgrade_network',
+	];
+
+	/**
 	 * Get the slug for the integration.
 	 *
 	 * @return string
@@ -79,8 +119,8 @@ class UserService extends IntegrationService implements IntegrationInterface, Pu
 		$roles          = [];
 		$editable_roles = \wp_roles()->roles;
 		foreach ( $editable_roles as $role => $details ) {
-			if ( 'administrator' === $role ) {
-				continue; // don't allow admin role.
+			if ( $this->isPrivilegedRole( $role ) ) {
+				continue; // never offer admin-equivalent roles.
 			}
 			$sub['id']      = esc_attr( $role );
 			$sub['label']   = translate_user_role( $details['name'] );
@@ -94,13 +134,44 @@ class UserService extends IntegrationService implements IntegrationInterface, Pu
 	 *
 	 * @param string $role The item role.
 	 *
-	 * @return array The item for the integration.
+	 * @return array The item for the integration, or an empty array if the role is missing or admin-equivalent.
 	 */
 	public function getItem( $role ) {
+		$names = wp_roles()->get_names();
+		if ( ! isset( $names[ $role ] ) || $this->isPrivilegedRole( $role ) ) {
+			return [];
+		}
 		return [
 			'id'    => $role,
-			'label' => wp_roles()->get_names()[ $role ],
+			'label' => $names[ $role ],
 		];
+	}
+
+	/**
+	 * Only roles this integration offers can be saved.
+	 *
+	 * @param string $id The role slug.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		return isset( $this->getItems()[ $id ] );
+	}
+
+	/**
+	 * Whether the role grants any admin-equivalent capability.
+	 *
+	 * @param string $role The role slug.
+	 *
+	 * @return bool
+	 */
+	private function isPrivilegedRole( $role ): bool {
+		$role_object = get_role( $role );
+		if ( ! $role_object ) {
+			return false;
+		}
+		$enabled = array_keys( array_filter( (array) $role_object->capabilities ) );
+		return ! empty( array_intersect( $enabled, self::PRIVILEGED_CAPS ) );
 	}
 
 	/**
@@ -152,6 +223,11 @@ class UserService extends IntegrationService implements IntegrationInterface, Pu
 		// make sure the role exists.
 		$role_object = get_role( $role );
 		if ( ! $role_object ) {
+			return;
+		}
+		// only ever add roles this integration offers — a stored admin-equivalent
+		// role must stay inert. Removal is still allowed (revokes are safe).
+		if ( $add && ! isset( $this->getItems()[ $role ] ) ) {
 			return;
 		}
 		// add or remove the role.

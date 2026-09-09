@@ -125,6 +125,18 @@ class LifterLMSService extends IntegrationService implements IntegrationInterfac
 	}
 
 	/**
+	 * The id must be a real LifterLMS course.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		$course = absint( $id ) ? get_post( absint( $id ) ) : null;
+		return ! empty( $course ) && 'course' === $course->post_type;
+	}
+
+	/**
 	 * Enable Access to the course.
 	 *
 	 * @param \SureCart\Models\Integration $integration The integrations.

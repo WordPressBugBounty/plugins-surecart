@@ -26,8 +26,52 @@ class IntegrationsController extends RestController {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function create( \WP_REST_Request $request ) {
+		$valid = $this->validateIntegrationItem( $this->sanitizeFilterParam( $request->get_param( 'provider' ) ), $request->get_param( 'integration_id' ) );
+		if ( is_wp_error( $valid ) ) {
+			return $valid;
+		}
+
 		do_action( 'surecart/integrations/create', $request->get_params() );
 		return Integration::create( $request->get_params() );
+	}
+
+	/**
+	 * Validate the item id against the provider that will consume it.
+	 *
+	 * The registered provider service decides whether the id is one of its
+	 * own items — this stops arbitrary ids (roles, memberships, courses)
+	 * from being stored and later granted on purchase.
+	 *
+	 * @param string|null $provider       The sanitized integration provider slug.
+	 * @param mixed       $integration_id The raw provider item id.
+	 *
+	 * @return true|\WP_Error
+	 */
+	protected function validateIntegrationItem( $provider, $integration_id ) {
+		// an unregistered slug has no service to validate against, and MySQL would
+		// still match a case variant of a real one on dispatch — so refuse it outright.
+		if ( null === $provider || ! has_filter( "surecart/integrations/providers/find/{$provider}" ) ) {
+			return new \WP_Error(
+				'invalid_integration_provider',
+				__( 'This integration provider is not available.', 'surecart' ),
+				[ 'status' => 400 ]
+			);
+		}
+
+		// skip only when the id is genuinely absent — empty() would also skip a literal "0" id.
+		if ( null === $integration_id || '' === $integration_id ) {
+			return true;
+		}
+
+		if ( false === apply_filters( "surecart/integrations/providers/{$provider}/is_valid_item", true, $integration_id ) ) {
+			return new \WP_Error(
+				'invalid_integration_item',
+				__( 'This item is not available for this integration.', 'surecart' ),
+				[ 'status' => 400 ]
+			);
+		}
+
+		return true;
 	}
 
 	/**
@@ -111,6 +155,22 @@ class IntegrationsController extends RestController {
 		if ( is_wp_error( $model ) ) {
 			return $model;
 		}
+
+		// fall back to the stored record so a partial update cannot skip validation.
+		$existing = Integration::find( $this->sanitizeFilterParam( $request['id'] ) );
+		if ( is_wp_error( $existing ) ) {
+			return $existing;
+		}
+		$valid = $this->validateIntegrationItem(
+			$this->sanitizeFilterParam( $request->get_param( 'provider' ) ) ?? $existing->provider,
+			$request->get_param( 'integration_id' ) ?? $existing->integration_id
+		);
+		if ( is_wp_error( $valid ) ) {
+			return $valid;
+		}
+
+		// the provider param also scopes the where() below, so a decoy provider
+		// sent to dodge a permission gate matches no stored row instead of mutating one.
 		return $model->where(
 			array_filter(
 				[

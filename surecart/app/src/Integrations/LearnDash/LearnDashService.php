@@ -125,6 +125,18 @@ class LearnDashService extends IntegrationService implements IntegrationInterfac
 	}
 
 	/**
+	 * The id must be a real LearnDash course.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		$course = absint( $id ) ? get_post( absint( $id ) ) : null;
+		return ! empty( $course ) && 'sfwd-courses' === $course->post_type;
+	}
+
+	/**
 	 * Enable Access to the course.
 	 *
 	 * @param \SureCart\Models\Integration $integration The integrations.

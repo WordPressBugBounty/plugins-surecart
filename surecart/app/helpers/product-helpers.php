@@ -40,8 +40,19 @@ if ( ! function_exists( 'sc_get_product' ) ) {
 			return null;
 		}
 
-		// get the product.
-		$product = get_post_meta( $post->ID, 'product', true );
+		return \SureCart::productPost()->getModel( $post->ID );
+	}
+}
+
+if ( ! function_exists( 'sc_hydrate_product_meta' ) ) {
+	/**
+	 * Build a Product model from the synced `product` post meta value.
+	 *
+	 * @param array|string|mixed $product The raw meta value (array, JSON string, or already a model).
+	 *
+	 * @return \SureCart\Models\Product|null Null when the meta is empty; an already-built model is returned as-is.
+	 */
+	function sc_hydrate_product_meta( $product ) {
 		if ( empty( $product ) ) {
 			return null;
 		}
@@ -51,8 +62,7 @@ if ( ! function_exists( 'sc_get_product' ) ) {
 			if ( json_last_error() !== JSON_ERROR_NONE ) {
 				wp_trigger_error( '', 'JSON decode error: ' . json_last_error_msg() );
 			}
-			$product = new \SureCart\Models\Product( $decoded );
-			return $product;
+			return new \SureCart\Models\Product( $decoded );
 		}
 
 		// decode the product.
@@ -61,8 +71,7 @@ if ( ! function_exists( 'sc_get_product' ) ) {
 			if ( json_last_error() !== JSON_ERROR_NONE ) {
 				wp_trigger_error( '', 'JSON decode error: ' . json_last_error_msg() );
 			}
-			$product = new \SureCart\Models\Product( $decoded );
-			return $product;
+			return new \SureCart\Models\Product( $decoded );
 		}
 
 		// return the product.

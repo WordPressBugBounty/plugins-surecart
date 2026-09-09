@@ -42,9 +42,9 @@ abstract class ModelPermissionsController {
 				return false;
 			}
 
-			// check permission.
+			// strict: a WP_Error or other truthy non-bool from a check must never grant.
 			$permission = $this->$name( $user, $args, $allcaps );
-			if ( $permission ) {
+			if ( true === $permission ) {
 				$allcaps[ $caps[0] ] = true;
 				return $allcaps;
 			}
@@ -63,10 +63,11 @@ abstract class ModelPermissionsController {
 	 */
 	public function belongsToUser( $model, $id, $user ) {
 		$model = $model::find( $id );
-		if ( is_wp_error( $model ) ) {
-			return $model;
+		// fail closed: an API error must not read as ownership.
+		if ( ! $model || is_wp_error( $model ) ) {
+			return false;
 		}
-		return $model->belongsToUser( $user );
+		return (bool) $model->belongsToUser( $user );
 	}
 
 	/**

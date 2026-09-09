@@ -16,6 +16,15 @@ class ProductPostTypeService {
 	protected $post_type = 'sc_product';
 
 	/**
+	 * Hydrated Product models for this request, keyed by post ID.
+	 * Each entry keeps the raw meta it was built from, so a hit is only served
+	 * while WordPress still returns that same meta — no invalidation of our own.
+	 *
+	 * @var array<int, array{raw: mixed, model: \SureCart\Models\Product}>
+	 */
+	protected $models = array();
+
+	/**
 	 * Bootstrap service.
 	 *
 	 * @return void
@@ -118,6 +127,46 @@ class ProductPostTypeService {
 			// validate FSE template and return single if invalid.
 			add_filter( 'template_include', array( $this, 'validateFSETemplate' ), 10, 1 );
 		}
+	}
+
+	/**
+	 * Get the hydrated Product model for a synced post, built at most once per request.
+	 *
+	 * Hydration creates a model per variant/price/media, so it is expensive on large
+	 * catalogs, and blocks plus thumbnail filters ask for the same product dozens of
+	 * times per render.
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @return \SureCart\Models\Product|null
+	 */
+	public function getModel( $post_id ) {
+		// WordPress caches and invalidates this read; comparing against it is what keeps us correct.
+		$raw = get_post_meta( $post_id, 'product', true );
+		if ( empty( $raw ) ) {
+			return null;
+		}
+
+		$hit = $this->models[ $post_id ] ?? null;
+		if ( $hit && $hit['raw'] == $raw ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+			return $hit['model'];
+		}
+
+		$product = sc_hydrate_product_meta( $raw );
+		if ( ! ( $product instanceof \SureCart\Models\Product ) ) {
+			return $product;
+		}
+
+		// A web request touches a page of products; long CLI/sync loops should not accumulate models.
+		if ( ! isset( $this->models[ $post_id ] ) && count( $this->models ) >= 50 ) {
+			$this->models = array();
+		}
+		$this->models[ $post_id ] = array(
+			'raw'   => $raw,
+			'model' => $product,
+		);
+
+		return $product;
 	}
 
 	/**

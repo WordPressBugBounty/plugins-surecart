@@ -131,6 +131,21 @@ class MemberPressService extends IntegrationService implements IntegrationInterf
 	}
 
 	/**
+	 * The id must be a real MemberPress membership.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		if ( ! class_exists( 'MeprProduct' ) ) {
+			return false;
+		}
+		$membership = absint( $id ) ? get_post( absint( $id ) ) : null;
+		return ! empty( $membership ) && \MeprProduct::$cpt === $membership->post_type;
+	}
+
+	/**
 	 * Enable Access to the course.
 	 *
 	 * @param \SureCart\Models\Integration $integration The integrations.

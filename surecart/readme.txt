@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.7.2
+Stable tag: 4.7.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -421,6 +421,16 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.7.3 - September 9th, 2026 =
+- Improvement: Faster block registration using a build-time metadata manifest.
+- Fix: Shop page and Quick View load time on stores with many product variants, cutting it from 20-30s to a few seconds.
+- Fix: SureCart disabling LiteSpeed Cache's page caching site-wide.
+- Fix: Address autocomplete reversing the street name and house number order for countries that write them in that order.
+- Fix: Cancelling or editing a subscription that no longer exists now shows a "Not found" message on the customer dashboard instead of a fatal error.
+- Fix: Hardened product integrations against user-role privilege escalation (props to TurboNexic of PatchStack).
+- Fix: Hardened subscription, order, and license activation permission checks.
+- Fix: PayPal button reloading on every checkout field change.
 
 = 4.7.2 - September 3rd, 2026 =
 - Fix: Product image unclickable in the Shop page product list when the image sits inside a Cover block.

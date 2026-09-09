@@ -7,6 +7,8 @@ export declare class ScPaypalButtons {
     private cardContainer;
     /** Holds the paypal buttons */
     private paypalContainer;
+    /** Monotonic id so only the latest bootstrap renders. */
+    private bootstrapId;
     /** Client id for the script. */
     clientId: string;
     /** Is this busy? */
@@ -30,7 +32,7 @@ export declare class ScPaypalButtons {
     /** Set the state machine */
     scSetState: EventEmitter<string>;
     scPaid: EventEmitter<void>;
-    handleOrderChange(val: any, prev: any): void;
+    handleOrderChange(val: Checkout, prev: Checkout): void;
     /** Load the script */
     loadScript(): Promise<void>;
     /** Load the script on component load. */

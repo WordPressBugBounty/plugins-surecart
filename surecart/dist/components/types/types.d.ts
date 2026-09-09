@@ -1342,6 +1342,7 @@ export interface AddressSuggestion extends Object {
     fullDisplayName: string;
     placeId: string;
     addressComponents?: GoogleMapAddressComponents[];
+    addressLines?: string[];
 }
 export interface Fulfillment {
     id: string;

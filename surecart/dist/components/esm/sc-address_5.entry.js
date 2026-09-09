@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, a as getElement, H as Host, F as Fragment } from './index-25e5af33.js';
 import { g as getCountryDetails, c as countryChoices, a as getCountryRegions } from './address-b8e2e4c8.js';
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
-import { g as getCurrentUserCountryCode, t as transformPlaceDetails, a as getStreetAddress } from './google-maps-e93d3bc5.js';
+import { g as getCurrentUserCountryCode, t as transformPlaceDetails, a as getStreetAddress } from './google-maps-68226fae.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import { a as applyFilters } from './index-871d88b8.js';
@@ -17575,7 +17575,7 @@ function buildReplacementAddressFromPlace(place, regions, previousName) {
         throw new Error('Place details not found.');
     }
     const placeDetails = transformPlaceDetails(place.addressComponents, regions);
-    const line1 = getStreetAddress(place.addressComponents) || place.displayName || '';
+    const line1 = getStreetAddress(place.addressComponents, place.addressLines) || place.displayName || '';
     return {
         name: previousName !== null && previousName !== void 0 ? previousName : null,
         line_1: line1,
@@ -17593,7 +17593,7 @@ function buildReplacementAddressFromPlace(place, regions, previousName) {
  * is invalid afterwards, so the caller must discard it.
  */
 async function fetchPlaceDetails(suggestion, address, regions, sessionToken) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     if (!(suggestion === null || suggestion === void 0 ? void 0 : suggestion.placeId)) {
         throw new Error('Place details not found.');
     }
@@ -17604,7 +17604,7 @@ async function fetchPlaceDetails(suggestion, address, regions, sessionToken) {
     const response = await fetch(`https://places.googleapis.com/v1/places/${suggestion.placeId}?${params.toString()}`, {
         headers: {
             'X-Goog-Api-Key': (_a = window === null || window === void 0 ? void 0 : window.scData) === null || _a === void 0 ? void 0 : _a.google_map_api_key,
-            'X-Goog-FieldMask': 'addressComponents',
+            'X-Goog-FieldMask': 'addressComponents,postalAddress.addressLines',
         },
     });
     const data = await response.json();
@@ -17612,8 +17612,8 @@ async function fetchPlaceDetails(suggestion, address, regions, sessionToken) {
         throw new Error(data.error.message);
     }
     const addressComponents = (data === null || data === void 0 ? void 0 : data.addressComponents) || [];
-    const place = { ...suggestion, addressComponents };
-    const country = ((_c = addressComponents.find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes('country'); })) === null || _c === void 0 ? void 0 : _c.shortText) || null;
+    const place = { ...suggestion, addressComponents, addressLines: ((_c = data === null || data === void 0 ? void 0 : data.postalAddress) === null || _c === void 0 ? void 0 : _c.addressLines) || [] };
+    const country = ((_d = addressComponents.find(component => { var _a; return (_a = component.types) === null || _a === void 0 ? void 0 : _a.includes('country'); })) === null || _d === void 0 ? void 0 : _d.shortText) || null;
     const updatedRegions = (address === null || address === void 0 ? void 0 : address.country) !== country ? await getCountryRegions(country) : regions;
     return {
         updatedAddress: buildReplacementAddressFromPlace(place, updatedRegions, address.name),

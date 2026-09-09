@@ -4,12 +4,71 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+if ( ! function_exists( 'surecart_load_blocks_manifest' ) ) {
+	/**
+	 * Load and validate the built blocks manifest, memoized per request.
+	 *
+	 * Core requires a registered manifest unvalidated, so a corrupt file must be caught here.
+	 *
+	 * @return array|null Manifest array keyed by block dir basename, or null when absent/invalid.
+	 */
+	function surecart_load_blocks_manifest(): ?array {
+		static $loaded = false, $data = null;
+		if ( $loaded ) {
+			return $data;
+		}
+		$loaded   = true;
+		$manifest = __DIR__ . '/build/blocks-manifest.php';
+		if ( ! file_exists( $manifest ) ) {
+			return null; // build/ is gitignored; avoid the include warning on fresh clones.
+		}
+		try {
+			$result = include $manifest;
+		} catch ( \Throwable $e ) {
+			return null;
+		}
+		$data = ( is_array( $result ) && ! empty( $result ) ) ? $result : null;
+		return $data;
+	}
+}
+
+if ( ! function_exists( 'surecart_get_blocks_manifest' ) ) {
+	/**
+	 * The blocks manifest, or null when absent, invalid, or disabled by filter.
+	 *
+	 * Shared by block registration and ShortcodesServiceProvider so one filter switches both.
+	 *
+	 * @return array|null Manifest array keyed by block dir basename, or null.
+	 */
+	function surecart_get_blocks_manifest(): ?array {
+		$manifest = surecart_load_blocks_manifest();
+
+		/**
+		 * Filter whether to use the built blocks manifest (metadata collection + shortcodes).
+		 *
+		 * @param bool $use_collection Default true.
+		 */
+		if ( null === $manifest || ! apply_filters( 'surecart/blocks/use_metadata_collection', true ) ) {
+			return null;
+		}
+
+		return $manifest;
+	}
+}
+
 /**
  * Register all blocks.
  */
 add_action(
 	'init',
 	function () {
+		// A manifest entry wins over its block.json on disk; blocks missing from it fall back to the file.
+		$manifest_data = surecart_get_blocks_manifest();
+
+		if ( null !== $manifest_data && function_exists( 'wp_register_block_metadata_collection' ) ) {
+			wp_register_block_metadata_collection( __DIR__ . '/build/blocks', __DIR__ . '/build/blocks-manifest.php' );
+		}
+
 		foreach ( glob( __DIR__ . '/build/blocks/**/block.json' ) as $file ) {
 			register_block_type( dirname( $file ) );
 		}
@@ -19,10 +78,14 @@ add_action(
 /**
  * Use our controller view pattern.
  */
+// Core resolves symlinks in $metadata['file']; match that so the prefix check works on symlinked installs.
+$surecart_blocks_realpath   = realpath( __DIR__ . '/build/blocks' );
+$surecart_blocks_build_path = trailingslashit( wp_normalize_path( $surecart_blocks_realpath ? $surecart_blocks_realpath : __DIR__ . '/build/blocks' ) );
 add_filter(
 	'block_type_metadata_settings',
-	function ( $settings, $metadata ) {
-		if ( empty( $metadata['file'] ) ) {
+	function ( $settings, $metadata ) use ( $surecart_blocks_build_path ) {
+		// Runs for every block on the site; only ours may have a controller.php.
+		if ( empty( $metadata['file'] ) || 0 !== strpos( $metadata['file'], $surecart_blocks_build_path ) ) {
 			return $settings;
 		}
 

@@ -2,14 +2,18 @@
 
 namespace SureCart\Rest;
 
+use SureCart\Concerns\SanitizesRestParams;
 use SureCart\Controllers\Rest\IntegrationProvidersController;
 use SureCart\Controllers\Rest\IntegrationsController;
+use SureCart\Models\Integration;
 use SureCart\Rest\RestServiceInterface;
 
 /**
  * Service provider for Price Rest Requests
  */
 class IntegrationsRestServiceProvider extends RestServiceProvider implements RestServiceInterface {
+	use SanitizesRestParams;
+
 	/**
 	 * Endpoint.
 	 *
@@ -154,6 +158,10 @@ class IntegrationsRestServiceProvider extends RestServiceProvider implements Res
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
+		$provider = $this->sanitizeFilterParam( $request->get_param( 'provider' ) );
+		if ( null === $provider || ! $this->canUseProvider( $provider ) ) {
+			return false;
+		}
 		return current_user_can( 'publish_sc_products' );
 	}
 
@@ -164,7 +172,47 @@ class IntegrationsRestServiceProvider extends RestServiceProvider implements Res
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function update_item_permissions_check( $request ) {
+		$provider = $this->sanitizeFilterParam( $request->get_param( 'provider' ) );
+
+		// a partial update can omit the provider, so fall back to the stored
+		// record — the controller's edit() re-validates the stored pair either way.
+		if ( null === $provider && ! empty( $request['id'] ) ) {
+			$existing = Integration::find( sanitize_text_field( $request['id'] ) );
+			if ( ! is_wp_error( $existing ) ) {
+				$provider = $existing->provider;
+			}
+		}
+
+		if ( null !== $provider && ! $this->canUseProvider( $provider ) ) {
+			return false;
+		}
+
 		return current_user_can( 'edit_sc_products' );
+	}
+
+	/**
+	 * Whether the current user may save an integration for this provider.
+	 *
+	 * The provider must be registered under this exact slug. The `provider`
+	 * column is compared case-insensitively by MySQL when integrations are
+	 * dispatched on purchase, so a slug variant like `SureCart/User-Role`
+	 * would otherwise dodge every string comparison here yet still run.
+	 *
+	 * @param string $provider The sanitized provider slug.
+	 *
+	 * @return bool
+	 */
+	protected function canUseProvider( $provider ) {
+		if ( ! has_filter( "surecart/integrations/providers/find/{$provider}" ) ) {
+			return false;
+		}
+
+		// assigning a WordPress role requires the native role-granting capability.
+		if ( 'surecart/user-role' === $provider && ! current_user_can( 'promote_users' ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**

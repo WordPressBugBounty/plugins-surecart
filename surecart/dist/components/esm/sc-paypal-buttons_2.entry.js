@@ -23,6 +23,8 @@ const ScPaypalButtons = class {
         registerInstance(this, hostRef);
         this.scSetState = createEvent(this, "scSetState", 7);
         this.scPaid = createEvent(this, "scPaid", 7);
+        /** Monotonic id so only the latest bootstrap renders. */
+        this.bootstrapId = 0;
         this.clientId = undefined;
         this.busy = false;
         this.merchantId = undefined;
@@ -32,14 +34,14 @@ const ScPaypalButtons = class {
         this.buttons = ['paypal', 'card'];
         this.label = 'paypal';
         this.color = 'gold';
-        this.loaded = undefined;
+        this.loaded = false;
     }
     handleOrderChange(val, prev) {
-        if ((val === null || val === void 0 ? void 0 : val.updated_at) === (prev === null || prev === void 0 ? void 0 : prev.updated_at)) {
+        // Only these two feed the SDK bootstrap; everything else is read at click time.
+        // Keying on updated_at tore down a working button on every checkout PATCH.
+        if ((val === null || val === void 0 ? void 0 : val.currency) === (prev === null || prev === void 0 ? void 0 : prev.currency) && Boolean(val === null || val === void 0 ? void 0 : val.reusable_payment_method_required) === Boolean(prev === null || prev === void 0 ? void 0 : prev.reusable_payment_method_required)) {
             return;
         }
-        this.cardContainer.innerHTML = '';
-        this.paypalContainer.innerHTML = '';
         this.loadScript();
     }
     /** Load the script */
@@ -47,6 +49,8 @@ const ScPaypalButtons = class {
         var _a, _b, _c;
         if (!this.clientId || !this.merchantId)
             return;
+        const bootstrapId = ++this.bootstrapId;
+        this.loaded = false;
         try {
             const paypal = await loadScript(getScriptLoadParams({
                 clientId: this.clientId,
@@ -56,6 +60,15 @@ const ScPaypalButtons = class {
                 currency: (_b = this.order) === null || _b === void 0 ? void 0 : _b.currency,
                 locale: (_c = window.scData) === null || _c === void 0 ? void 0 : _c.locale,
             }));
+            // A newer bootstrap started while the SDK was loading.
+            if (bootstrapId !== this.bootstrapId)
+                return;
+            if (this.cardContainer) {
+                this.cardContainer.innerHTML = '';
+            }
+            if (this.paypalContainer) {
+                this.paypalContainer.innerHTML = '';
+            }
             this.renderButtons(paypal);
         }
         catch (err) {
@@ -154,7 +167,8 @@ const ScPaypalButtons = class {
                 return reject();
             });
         };
-        if (paypal.FUNDING.PAYPAL) {
+        // Only boot the funding sources we show; each is a separate iframe bootstrap.
+        if (paypal.FUNDING.PAYPAL && this.buttons.includes('paypal')) {
             const paypalButton = paypal.Buttons({
                 fundingSource: paypal.FUNDING.PAYPAL,
                 style: {
@@ -164,10 +178,10 @@ const ScPaypalButtons = class {
                 ...config,
             });
             if (paypalButton.isEligible()) {
-                paypalButton.render(this.paypalContainer);
+                paypalButton.render(this.paypalContainer).catch(err => console.error('failed to render the PayPal button', err));
             }
         }
-        if (paypal.FUNDING.CARD) {
+        if (paypal.FUNDING.CARD && this.buttons.includes('card')) {
             const cardButton = paypal.Buttons({
                 fundingSource: paypal.FUNDING.CARD,
                 style: {
@@ -176,12 +190,12 @@ const ScPaypalButtons = class {
                 ...config,
             });
             if (cardButton.isEligible()) {
-                cardButton.render(this.cardContainer);
+                cardButton.render(this.cardContainer).catch(err => console.error('failed to render the PayPal card button', err));
             }
         }
     }
     render() {
-        return (h("div", { key: 'aa9f35be95907fdb4a81cd100bc2b7bfea61e36d', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '33d621f25ffe2b9cdc9ad0718082c18f0b35e178', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: 'c0f9dfbfda3e1a461ae4c77544a443fb76a47664', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: 'b081f2f9b8c4fa8a86fd5a1c8ebfc1b3fddf3287', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '28ed4cf0b8f36f0be7b4a167c6f577eaea8e5f63', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
+        return (h("div", { key: 'f681d1010c35f672f46a4c5f737f759e573d1a4a', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: 'a85b9f0aa7defe49024c3c41f2e0c577191df877', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '6306ac9b752f4701d773c73afa586361eb5bbbae', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: '69c70f93ce4ff3ca4ae19d6575f436a0913c71f8', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '7f8af65055e23fc39316737e619d4ddd77b62aec', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

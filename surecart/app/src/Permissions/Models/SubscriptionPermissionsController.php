@@ -32,13 +32,18 @@ class SubscriptionPermissionsController extends ModelPermissionsController {
 			return false;
 		}
 
-		// if we should delay cancellation.
 		$subscription = Subscription::find( $args[2] );
+		if ( ! $subscription || is_wp_error( $subscription ) ) {
+			return false;
+		}
+
 		if ( $subscription->shouldDelayCancellation() ) {
 			return false;
 		}
 
-		return $this->belongsToUser( Subscription::class, $args[2], $user );
+		// ownership is checked on the model we already fetched — a second find is
+		// a second API round-trip and a second place for an error to slip through.
+		return (bool) $subscription->belongsToUser( $user );
 	}
 
 	/**

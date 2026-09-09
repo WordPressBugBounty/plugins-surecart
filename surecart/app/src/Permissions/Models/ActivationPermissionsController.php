@@ -130,12 +130,9 @@ class ActivationPermissionsController extends ModelPermissionsController {
 	 */
 	public function belongsToUser( $model, $id, $user ) {
 		$model = $model::with( [ 'license' ] )->find( $id );
-		if ( is_wp_error( $model ) ) {
-			return $model;
-		}
-		if ( ! $model->license ) {
+		if ( ! $model || is_wp_error( $model ) || empty( $model->license ) ) {
 			return false;
 		}
-		return $model->license->belongsToUser( $user );
+		return (bool) $model->license->belongsToUser( $user );
 	}
 }

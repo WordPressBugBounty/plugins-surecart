@@ -39,10 +39,10 @@ class OrderPermissionsController extends ModelPermissionsController {
 	 */
 	public function belongsToUser( $model, $id, $user ) {
 		$order = Order::with( [ 'checkout' ] )->find( $id );
-		if ( is_wp_error( $order ) ) {
-			return $order;
+		if ( ! $order || is_wp_error( $order ) || empty( $order->checkout ) ) {
+			return false;
 		}
-		return $order->checkout->belongsToUser( $user );
+		return (bool) $order->checkout->belongsToUser( $user );
 	}
 
 	/**

@@ -133,6 +133,21 @@ class BuddyBossService extends IntegrationService implements IntegrationInterfac
 	}
 
 	/**
+	 * The id must be a real BuddyBoss group.
+	 *
+	 * @param string $id Id for the record.
+	 *
+	 * @return bool
+	 */
+	public function isValidItem( $id ): bool {
+		if ( ! function_exists( 'groups_get_group' ) ) {
+			return false;
+		}
+		$group = groups_get_group( absint( $id ) );
+		return ! empty( $group->id );
+	}
+
+	/**
 	 * Enable Access to the group.
 	 *
 	 * @param \SureCart\Models\Integration $integration The integrations.
