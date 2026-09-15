@@ -1,19 +1,19 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { l as loadScript, g as getScriptLoadParams } from './functions-4f009ce1.js';
 import './fetch-cdff67be.js';
-import { g as fetchCheckout } from './index-a786f689.js';
+import { g as fetchCheckout } from './index-9fa5ca8c.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
-import './mutations-9ffd30f4.js';
+import './mutations-eb426408.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
 import './index-c5a96d53.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './store-b1758b00.js';
-import './price-1ff6aa07.js';
+import './price-39d60d32.js';
 
 const paypalButtonsCss = ":host{display:block}.paypal-buttons{position:relative;line-height:0;text-align:center}.paypal-buttons:not(.paypal-buttons--busy):after{content:\" \";border-bottom:1px solid var(--sc-input-border-color);width:100%;height:0;top:50%;left:0;right:0;position:absolute}";
 const ScPaypalButtonsStyle0 = paypalButtonsCss;
@@ -42,6 +42,12 @@ const ScPaypalButtons = class {
         if ((val === null || val === void 0 ? void 0 : val.currency) === (prev === null || prev === void 0 ? void 0 : prev.currency) && Boolean(val === null || val === void 0 ? void 0 : val.reusable_payment_method_required) === Boolean(prev === null || prev === void 0 ? void 0 : prev.reusable_payment_method_required)) {
             return;
         }
+        this.loadScript();
+    }
+    handleButtonsChange(val, prev) {
+        // The parent passes a fresh array literal every render.
+        if ((val === null || val === void 0 ? void 0 : val.join()) === (prev === null || prev === void 0 ? void 0 : prev.join()))
+            return;
         this.loadScript();
     }
     /** Load the script */
@@ -195,11 +201,12 @@ const ScPaypalButtons = class {
         }
     }
     render() {
-        return (h("div", { key: 'f681d1010c35f672f46a4c5f737f759e573d1a4a', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: 'a85b9f0aa7defe49024c3c41f2e0c577191df877', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '6306ac9b752f4701d773c73afa586361eb5bbbae', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: '69c70f93ce4ff3ca4ae19d6575f436a0913c71f8', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '7f8af65055e23fc39316737e619d4ddd77b62aec', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
+        return (h("div", { key: 'b3157e1b376976219e2aaf806ddae33b4773de97', part: `base ${this.busy || (!this.loaded && 'base--busy')}`, class: { 'paypal-buttons': true, 'paypal-buttons--busy': this.busy || !this.loaded } }, (!this.loaded || this.busy) && h("sc-skeleton", { key: '6718cdeb1aa36f1db25db8f4c15875ed27f1e02e', style: { 'height': '55px', '--border-radius': '4px', 'cursor': 'wait' } }), h("div", { key: '1140d5203820e1581d473fb3c6f8bc076ea1f577', class: "sc-paypal-button-container", hidden: !this.loaded || this.busy }, h("div", { key: '383046c87558c40bfb517ddcd1b0d2942f40512d', part: "paypal-card-button", hidden: !this.buttons.includes('card'), class: "sc-paypal-card-button", ref: el => (this.cardContainer = el) }), h("div", { key: '61aec56d76b14b60093dc5213431f6fe320c7ba6', part: "paypal-button", hidden: !this.buttons.includes('paypal'), class: "sc-paypal-button", ref: el => (this.paypalContainer = el) }))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
-        "order": ["handleOrderChange"]
+        "order": ["handleOrderChange"],
+        "buttons": ["handleButtonsChange"]
     }; }
 };
 ScPaypalButtons.style = ScPaypalButtonsStyle0;

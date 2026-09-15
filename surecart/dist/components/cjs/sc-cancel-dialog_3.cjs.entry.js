@@ -49,21 +49,21 @@ const ScCancelDialog = class {
         this.reset();
     }
     render() {
-        return (index.h("sc-dialog", { key: '5ae1e6faedc83250d1534ac85cefdce852b18416', style: {
+        return (index.h("sc-dialog", { key: 'cd046286aedbd1f52fefc4c1e60dac9c3fdca4f9', style: {
                 '--width': this.step === 'survey' ? '675px' : '500px',
                 '--body-spacing': 'var(--sc-spacing-xxx-large)',
-            }, noHeader: true, open: this.open, onScRequestClose: () => this.close() }, index.h("div", { key: '8c15f4d9e582c9abf1914990ec61efd48cc91e7c', class: {
+            }, noHeader: true, open: this.open, onScRequestClose: () => this.close() }, index.h("div", { key: '68b0e04fa4d8c35c6523027b630dcd2eb665626a', class: {
                 cancel: true,
-            } }, index.h("sc-button", { key: 'b62d8741ac25c51e51bb3c4ec85575346da6f6ca', class: "close__button", type: "text", circle: true, onClick: () => this.close() }, index.h("sc-icon", { key: 'e88b2bf4fb2f97002742adfbf39e175d97b5b73b', name: "x" })), this.step === 'cancel' && (index.h("sc-subscription-cancel", { key: 'adf9a7b0a2f20870183c690b9bca9733c275ed89', subscription: this.subscription, protocol: this.protocol, reason: this.reason, comment: this.comment, onScAbandon: () => this.close(), onScCancelled: () => {
+            } }, index.h("sc-button", { key: '479d17c9adf9916b94732e6d1a98aef3545ddc00', class: "close__button", type: "text", circle: true, onClick: () => this.close() }, index.h("sc-icon", { key: '49b2d905743a56ef606ea78dc90c233f4e10a54a', name: "x" })), this.step === 'cancel' && (index.h("sc-subscription-cancel", { key: 'c18c2ab8ffbd5d67ae85fed2d3cf90b07c23cdb3', subscription: this.subscription, protocol: this.protocol, reason: this.reason, comment: this.comment, onScAbandon: () => this.close(), onScCancelled: () => {
                 this.scRefresh.emit();
                 this.reset();
                 this.scRequestClose.emit('close-button');
-            } }, index.h("slot", { key: 'f16afb1cd03512b2e6231cd8e1916d909ead741c', name: "cancel-popup-content", slot: "cancel-popup-content" }))), this.step === 'survey' && (index.h("sc-cancel-survey", { key: 'c79f59458ed389a3fcf7deaae78aae43bec090be', protocol: this.protocol, onScAbandon: () => this.close(), onScSubmitReason: e => {
+            } }, index.h("slot", { key: 'c74b58911e49b397fa4247456efb8bd747c3e6c1', name: "cancel-popup-content", slot: "cancel-popup-content" }))), this.step === 'survey' && (index.h("sc-cancel-survey", { key: 'dc2fa0553fa64e95a153a79b678d26146473bebb', protocol: this.protocol, onScAbandon: () => this.close(), onScSubmitReason: e => {
                 const { comment, reason } = e.detail;
                 this.reason = reason;
                 this.comment = comment;
                 this.step = (reason === null || reason === void 0 ? void 0 : reason.coupon_enabled) ? 'discount' : 'cancel';
-            } })), this.step === 'discount' && (index.h("sc-cancel-discount", { key: '0734bfda47e92ba941c60ace2be1a21fa6f5c07f', protocol: this.protocol, subscription: this.subscription, reason: this.reason, comment: this.comment, onScCancel: () => (this.step = 'cancel'), onScPreserved: () => {
+            } })), this.step === 'discount' && (index.h("sc-cancel-discount", { key: '4f2357a797d2a0de1831a58607bb81768586b610', protocol: this.protocol, subscription: this.subscription, reason: this.reason, comment: this.comment, onScCancel: () => (this.step = 'cancel'), onScPreserved: () => {
                 this.scRefresh.emit();
                 this.reset();
                 this.scRequestClose.emit('close-button');
@@ -233,13 +233,13 @@ const ScSubscriptionReactivate = class {
     }
     render() {
         var _a, _b, _c;
-        return (index.h("sc-dialog", { key: '537bc2241418bdbd1e71d6f0284f6f029a464c78', noHeader: true, open: this.open, style: { '--width': '600px', '--body-spacing': 'var(--sc-spacing-xxx-large)' } }, index.h("sc-dashboard-module", { key: 'a799f408b1328a6620aec4dbb448dcb0ca01dfdc', loading: this.loading, heading: wp.i18n.__('Resubscribe', 'surecart'), class: "subscription-reactivate", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, this.loading ? (this.renderLoading()) : (index.h(index.Fragment, null, index.h("div", { slot: "description" }, index.h("sc-alert", { open: true, type: "warning", title: wp.i18n.__('Confirm Charge', 'surecart') }, wp.i18n.__('You will be charged', 'surecart'), " ", (_b = (_a = this.upcomingPeriod) === null || _a === void 0 ? void 0 : _a.checkout) === null || _b === void 0 ? void 0 :
+        return (index.h("sc-dialog", { key: '7996556e1e48336adaa3de4f68aeff76c1286073', noHeader: true, open: this.open, style: { '--width': '600px', '--body-spacing': 'var(--sc-spacing-xxx-large)' } }, index.h("sc-dashboard-module", { key: '73cbc61afd7958e380ccf8269f6189bc869443ab', loading: this.loading, heading: wp.i18n.__('Resubscribe', 'surecart'), class: "subscription-reactivate", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, this.loading ? (this.renderLoading()) : (index.h(index.Fragment, null, index.h("div", { slot: "description" }, index.h("sc-alert", { open: true, type: "warning", title: wp.i18n.__('Confirm Charge', 'surecart') }, wp.i18n.__('You will be charged', 'surecart'), " ", (_b = (_a = this.upcomingPeriod) === null || _a === void 0 ? void 0 : _a.checkout) === null || _b === void 0 ? void 0 :
             _b.amount_due_display_amount, ' ', wp.i18n.__('immediately for your subscription.', 'surecart')), index.h("sc-text", { style: {
                 '--font-size': 'var(--sc-font-size-medium)',
                 '--color': 'var(--sc-input-label-color)',
                 '--line-height': 'var(--sc-line-height-dense)',
                 'margin-top': 'var(--sc-spacing-medium)',
-            } }, wp.i18n.__('Your subscription will be reactivated and will renew automatically on', 'surecart'), " ", index.h("strong", null, (_c = this.upcomingPeriod) === null || _c === void 0 ? void 0 : _c.end_at_date))), index.h("sc-flex", { justifyContent: "flex-start" }, index.h("sc-button", { type: "primary", loading: this.busy, disabled: this.busy, onClick: () => this.reactivateSubscription() }, wp.i18n.__('Yes, Reactivate', 'surecart')), index.h("sc-button", { disabled: this.busy, style: { color: 'var(--sc-color-gray-500)' }, type: "text", onClick: () => this.scRequestClose.emit() }, wp.i18n.__('No, Keep Inactive', 'surecart'))))), this.busy && index.h("sc-block-ui", { key: 'b09af698f84efb4e8cc16af2fdbcdaa4cc1db4be' }))));
+            } }, wp.i18n.__('Your subscription will be reactivated and will renew automatically on', 'surecart'), " ", index.h("strong", null, (_c = this.upcomingPeriod) === null || _c === void 0 ? void 0 : _c.end_at_date))), index.h("sc-flex", { justifyContent: "flex-start" }, index.h("sc-button", { type: "primary", loading: this.busy, disabled: this.busy, onClick: () => this.reactivateSubscription() }, wp.i18n.__('Yes, Reactivate', 'surecart')), index.h("sc-button", { disabled: this.busy, style: { color: 'var(--sc-color-gray-500)' }, type: "text", onClick: () => this.scRequestClose.emit() }, wp.i18n.__('No, Keep Inactive', 'surecart'))))), this.busy && index.h("sc-block-ui", { key: 'e466731ef6e83d3bd02bfce813793ffe3a87dd65' }))));
     }
     static get watchers() { return {
         "open": ["openChanged"]

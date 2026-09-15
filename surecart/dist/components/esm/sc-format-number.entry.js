@@ -1,5 +1,5 @@
 import { r as registerInstance } from './index-25e5af33.js';
-import { m as maybeConvertAmount } from './currency-a0c9bff4.js';
+import { m as maybeConvertAmount } from './currency-eb33deae.js';
 
 const UNIT_TYPES = {
     kg: 'kilogram',

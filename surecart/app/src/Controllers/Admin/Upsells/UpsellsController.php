@@ -3,6 +3,7 @@
 namespace SureCart\Controllers\Admin\Upsells;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Models\UpsellFunnel;
 use SureCartCore\Responses\RedirectResponse;
 
@@ -10,21 +11,31 @@ use SureCartCore\Responses\RedirectResponse;
  * Handles upsell admin requests.
  */
 class UpsellsController extends AdminController {
+	use RendersEnhancedAdminView;
 
 	/**
-	 * Bumps index.
+	 * Render the DataViews SPA view for upsell funnels.
 	 */
-	public function index() {
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( UpsellScriptsController::class );
+		return $this->renderSpaShell( 'admin/upsell-funnels/spa', 'upsells' );
+	}
+
+	/**
+	 * Render the legacy WP_List_Table view for upsell funnels.
+	 */
+	protected function renderWpListView() {
 		$table = new UpsellsListTable();
 		$table->prepare_items();
 		$this->withHeader(
 			array(
-				'breadcrumbs' => [
+				'breadcrumbs'         => [
 					'upsells' => [
-						'title' => __( 'Upsell Funnels', 'surecart' ),
+						'title' => $this->pageTitle(),
 					],
 				],
-				'report_url' => SURECART_REPORTS_URL . 'upsells',
+				'report_url'          => $this->reportUrl(),
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 		return \SureCart::view( 'admin/upsell-funnels/index' )->with( [ 'table' => $table ] );
@@ -35,7 +46,7 @@ class UpsellsController extends AdminController {
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( UpsellScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( UpsellScriptsController::class );
 
 		$upsell = null;
 
@@ -74,8 +85,8 @@ class UpsellsController extends AdminController {
 			99
 		);
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs.
+		return $this->renderSpaShell( 'admin/upsell-funnels/spa' );
 	}
 
 	/**

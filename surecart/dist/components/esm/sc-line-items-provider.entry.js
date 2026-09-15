@@ -97,7 +97,7 @@ const ScLineItemsProvider = class {
         return existingLineData;
     }
     render() {
-        return h("slot", { key: '57e02156dc368698b190d48ecbc0c4b4c930f9a7' });
+        return h("slot", { key: '3b494e373f0db7cca0014955a015a0eef1be5a78' });
     }
     static get watchers() { return {
         "syncItems": ["syncItemsHandler"]

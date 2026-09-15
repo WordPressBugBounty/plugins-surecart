@@ -225,7 +225,8 @@ class ShortcodesServiceProvider implements ServiceProviderInterface {
 			[
 				'auto_height' => true,
 				'id'          => null,
-			]
+			],
+			[ 'supports_product_id' => true ]
 		);
 		$this->container['surecart.shortcodes']->registerBlockShortcodeByName(
 			'sc_product_quantity',

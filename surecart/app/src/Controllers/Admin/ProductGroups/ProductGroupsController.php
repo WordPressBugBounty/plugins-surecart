@@ -45,11 +45,7 @@ class ProductGroupsController extends AdminController {
 	 */
 	protected function renderSpaView() {
 		$this->enqueueSpaScripts( ProductGroupsScriptsController::class );
-		return $this->renderSpaShell(
-			'admin/product-groups/spa',
-			'product-groups',
-			__( 'Upgrade Groups', 'surecart' )
-		);
+		return $this->renderSpaShell( 'admin/product-groups/spa', 'product-groups' );
 	}
 
 	/**

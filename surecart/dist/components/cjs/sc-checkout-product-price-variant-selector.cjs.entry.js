@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const getters = require('./getters-c3cd6c93.js');
-const mutations = require('./mutations-98f05402.js');
+const getters = require('./getters-54d5656d.js');
+const mutations = require('./mutations-cf1fc87c.js');
 const util = require('./util-a15c420c.js');
-const index$1 = require('./index-c2d0eb49.js');
+const index$1 = require('./index-f32edd4b.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
 const utils = require('./utils-a9d13080.js');
 require('./store-9c215436.js');
@@ -16,9 +16,9 @@ require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./index-fb76df07.js');
 require('./google-8dbad1a6.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 require('./store-01e8edc2.js');
-require('./price-da3cab3d.js');
+require('./price-9dddd853.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 
@@ -222,12 +222,12 @@ const ScProductCheckoutSelectVariantOption = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-        return (index.h("sc-form-control", { key: '68bcbadc6502ef2e037f00407996e5fb7180eaca', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (((_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.variant_options) === null || _b === void 0 ? void 0 : _b.data) || []).map(({ name, values, display_type }, index) => {
+        return (index.h("sc-form-control", { key: '0b991cc8246b155d363376a138a6e241919418a2', class: "sc-checkout-product-price-variant-selector", label: this.selectorTitle }, (((_b = (_a = this.product) === null || _a === void 0 ? void 0 : _a.variant_options) === null || _b === void 0 ? void 0 : _b.data) || []).map(({ name, values, display_type }, index) => {
             if (display_type === 'dropdown') {
                 return this.renderDropdown({ name, values, index });
             }
             return this.renderPills({ name, values, index });
-        }), ((_e = (_d = (_c = this.product) === null || _c === void 0 ? void 0 : _c.prices) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.length) > 1 && (index.h("sc-form-control", { key: '897b2c7143bde76592b05e5e9c4629af62948708', label: !!((_h = (_g = (_f = this.product) === null || _f === void 0 ? void 0 : _f.variant_options) === null || _g === void 0 ? void 0 : _g.data) === null || _h === void 0 ? void 0 : _h.length) ? this.label : null }, index.h("sc-choices", { key: 'a2528fdeedf50814b5dee87a72778374d6436389' }, (this.product.prices.data || [])
+        }), ((_e = (_d = (_c = this.product) === null || _c === void 0 ? void 0 : _c.prices) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.length) > 1 && (index.h("sc-form-control", { key: '6b0b1ca14a43220c09478b60f2ba9d8ce54ab4f9', label: !!((_h = (_g = (_f = this.product) === null || _f === void 0 ? void 0 : _f.variant_options) === null || _g === void 0 ? void 0 : _g.data) === null || _h === void 0 ? void 0 : _h.length) ? this.label : null }, index.h("sc-choices", { key: 'a6e58b92054bfa142509e2d8ad49aa11ee8a6783' }, (this.product.prices.data || [])
             .sort((a, b) => (a === null || a === void 0 ? void 0 : a.position) - (b === null || b === void 0 ? void 0 : b.position))
             .map(price => {
             var _a, _b, _c;
@@ -236,7 +236,7 @@ const ScProductCheckoutSelectVariantOption = class {
                         this.selectedPrice = price;
                     }
                 } }));
-        })))), index.h("input", { key: 'cdf31c763f0e159be3e38c7e6cd3ed0cf5bd8ab2', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_j = this.selectedVariant) === null || _j === void 0 ? void 0 : _j.id })));
+        })))), index.h("input", { key: 'b05da12233bd262febb8a9d5191c1476e3ae718c', class: "sc-checkout-product-price-variant-selector__hidden-input", ref: el => (this.input = el), value: (_j = this.selectedVariant) === null || _j === void 0 ? void 0 : _j.id })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

@@ -3,6 +3,7 @@
 namespace SureCart\Models;
 
 use SureCart\Models\Traits\HasCoupon;
+use SureCart\Models\Traits\HasDates;
 use SureCart\Support\TimeDate;
 
 /**
@@ -10,6 +11,7 @@ use SureCart\Support\TimeDate;
  */
 class Promotion extends Model {
 	use HasCoupon;
+	use HasDates;
 
 	/**
 	 * Rest API endpoint

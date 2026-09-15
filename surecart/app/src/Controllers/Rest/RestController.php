@@ -30,6 +30,23 @@ abstract class RestController {
 	protected $resource = '';
 
 	/**
+	 * Query params safe to forward to the platform API.
+	 *
+	 * @param \WP_REST_Request $request Rest Request.
+	 *
+	 * @return array
+	 */
+	protected function forwardableQueryParams( \WP_REST_Request $request ) {
+		$params = $request->get_query_params();
+
+		// `expand_mode` is a REST-layer control flag only — never forward it
+		// to the platform API.
+		unset( $params['expand_mode'] );
+
+		return $params;
+	}
+
+	/**
 	 * Run some middleware to run before request.
 	 *
 	 * @param \SureCart\Models\Model $class Model class instance.
@@ -58,7 +75,7 @@ abstract class RestController {
 			$model = $model->with( $this->with );
 		}
 
-		return $model->where( $request->get_query_params() )->create( $request->get_json_params() );
+		return $model->where( $this->forwardableQueryParams( $request ) )->create( $request->get_json_params() );
 	}
 
 	/**
@@ -74,11 +91,21 @@ abstract class RestController {
 			return $model;
 		}
 
-		if ( ! empty( $this->with ) ) {
+		// `expand_mode=replace` lets a caller opt out of the forced `$with`
+		// and own the expand set. No plugin-side allow-list: the additive
+		// path already forwards client expands verbatim, and the platform
+		// API is the authority on which relations each endpoint may expand.
+		$replace_expands = 'replace' === $request->get_param( 'expand_mode' );
+
+		if ( ! empty( $this->with ) && ! $replace_expands ) {
 			$model = $model->with( $this->with );
 		}
 
 		$args = $request->get_params();
+
+		// `expand_mode` is a REST-layer control flag only — never forward it to
+		// the platform API.
+		unset( $args['expand_mode'] );
 
 		/**
 		 * Filter the query args for any list endpoint.
@@ -143,11 +170,14 @@ abstract class RestController {
 			return $model;
 		}
 
-		if ( ! empty( $this->with ) ) {
+		// `expand_mode=replace` lets a caller opt out of the forced `$with`
+		// and own the expand set entirely, matching index().
+		$replace_expands = 'replace' === $request->get_param( 'expand_mode' );
+		if ( ! empty( $this->with ) && ! $replace_expands ) {
 			$model = $model->with( $this->with );
 		}
 
-		return $model->where( $request->get_query_params() )->find( $request['id'] );
+		return $model->where( $this->forwardableQueryParams( $request ) )->find( $request['id'] );
 	}
 
 	/**
@@ -163,11 +193,14 @@ abstract class RestController {
 			return $model;
 		}
 
-		if ( ! empty( $this->with ) ) {
+		// `expand_mode=replace` lets a caller opt out of the forced `$with`
+		// and own the expand set entirely, matching index().
+		$replace_expands = 'replace' === $request->get_param( 'expand_mode' );
+		if ( ! empty( $this->with ) && ! $replace_expands ) {
 			$model = $model->with( $this->with );
 		}
 
-		return $model->where( $request->get_query_params() )->update( $request->get_json_params() );
+		return $model->where( $this->forwardableQueryParams( $request ) )->update( $request->get_json_params() );
 	}
 
 	/**

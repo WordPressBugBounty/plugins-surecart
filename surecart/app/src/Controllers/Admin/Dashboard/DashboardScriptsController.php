@@ -27,5 +27,5 @@ class DashboardScriptsController extends AdminModelEditController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/dashboard';
+	protected $path = self::UNIFIED_SPA_PATH;
 }

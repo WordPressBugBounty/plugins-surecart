@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const index$1 = require('./index-fb76df07.js');
-const mutations = require('./mutations-98f05402.js');
+const mutations = require('./mutations-cf1fc87c.js');
 const getters = require('./getters-d68c08ed.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
 require('./index-c3de642f.js');
@@ -12,9 +12,9 @@ require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./google-8dbad1a6.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 require('./store-01e8edc2.js');
-require('./price-da3cab3d.js');
+require('./price-9dddd853.js');
 
 const scOrderSummaryCss = ":host{display:block;font-family:var(--sc-font-sans);font-size:var(--sc-checkout-font-size, 16px)}.collapse-link{display:flex;align-items:center;gap:0.35em}.summary__content--empty{display:none}.collapse-link__icon{width:18px;height:18px;color:var(--sc-order-collapse-link-icon-color, var(--sc-color-gray-500))}.item__product+.item__product{margin-top:20px}.empty{color:var(--sc-order-summary-color, var(--sc-color-gray-500))}.price{display:inline-flex;flex-wrap:wrap;justify-content:flex-end;align-items:baseline;opacity:0;visibility:hidden;transform:translateY(5px);transition:var(--sc-input-transition, var(--sc-transition-medium)) visibility ease, var(--sc-input-transition, var(--sc-transition-medium)) opacity ease, var(--sc-input-transition, var(--sc-transition-medium)) transform ease}.price--collapsed{opacity:1;visibility:visible;transform:translateY(0)}.summary{position:relative;user-select:none}.summary--collapsible{cursor:pointer}.summary .collapse-link__icon{transition:transform 0.25s ease-in-out}.summary .scratch-price{text-decoration:line-through;color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}.summary--open .collapse-link__icon{transform:rotate(180deg)}::slotted(*){margin:4px 0 !important}::slotted(sc-divider){margin:20px 0 !important}sc-line-item~sc-line-item{margin-top:14px}.total-price{white-space:nowrap}";
 const ScOrderSummaryStyle0 = scOrderSummaryCss;
@@ -102,10 +102,10 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (index.h("div", { key: 'c086e181e8f4ebb5bd7ebfe35b74fc8213888d38', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), index.h("div", { key: 'c1b9341219338f7d94413671cb89dabe25ca1247', ref: el => (this.body = el), class: {
+        return (index.h("div", { key: '223318641f132e6f38c547dbd3f4f7baea9a742b', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), index.h("div", { key: '4dea4a091ec1f35068723db98aaacaf99c179f91', ref: el => (this.body = el), class: {
                 'summary__content': true,
                 'summary__content--empty': this.empty() && !getters.formBusy(),
-            } }, index.h("slot", { key: 'a1109a6168c80af25d2613de38d4d61bdd66d937' })), this.empty() && !getters.formBusy() && index.h("p", { key: '8ae5184c1d91d34aaba973157dafd7ec8e8bf7c6', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
+            } }, index.h("slot", { key: '9bfcc73433eb53273c2bf87a7ad7d3b94a82fb81' })), this.empty() && !getters.formBusy() && index.h("p", { key: '89021ff5921e8600f2f10fd675830f1444ae4194', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

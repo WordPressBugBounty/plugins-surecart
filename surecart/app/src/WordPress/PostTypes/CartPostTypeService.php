@@ -150,7 +150,7 @@ class CartPostTypeService {
 			[
 				'breadcrumbs' => [
 					'forms' => [
-						'title' => __( 'Forms', 'surecart' ),
+						'title' => __( 'Cart', 'surecart' ),
 					],
 				],
 				'claim_url'   => ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',

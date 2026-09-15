@@ -55,7 +55,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->where( 'admin', 'sc-dashboard' )
 ->middleware( 'user.can:manage_sc_shop_settings' )
 ->middleware( 'assets.components' )
-->middleware( 'assets.brand_colors' )
 ->name( 'dashboard.show' )
 ->setNamespace( '\\SureCart\\Controllers\\Admin\\Dashboard\\' )
 ->handle( 'DashboardController@index' );
@@ -70,7 +69,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->where( 'admin', 'sc-learn' )
 ->middleware( 'user.can:manage_options' )
 ->middleware( 'assets.components' )
-->middleware( 'assets.brand_colors' )
 ->setNamespace( '\\SureCart\\Controllers\\Admin\\Learn\\' )
 ->handle( 'LearnController@index' );
 
@@ -575,19 +573,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /*
 |--------------------------------------------------------------------------
-| Checkout Forms
-|--------------------------------------------------------------------------
-*/
-\SureCart::route()
-	->get()
-	->where( 'sc_url_var', 'duplicate_form', 'action' )
-	->name( 'form.duplicate' )
-	->middleware( 'nonce:duplicate_form' )
-	->middleware( 'user.can:publish_posts' )
-	->handle( '\\SureCart\\Controllers\\Admin\\Forms\\FormsController@duplicate' );
-
-/*
-|--------------------------------------------------------------------------
 | Webhooks
 |--------------------------------------------------------------------------
 */
@@ -627,5 +612,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'RestoreController@index' );
 		\SureCart::route()->post()->middleware( 'nonce:restore_missing_page' )->handle( 'RestoreController@restore' );
+	}
+);
+
+/*
+|--------------------------------------------------------------------------
+| Custom Forms
+|--------------------------------------------------------------------------
+|
+| The modern list is our own page; the classic list is WordPress's `edit.php`
+| screen for `sc_form`, and forms are edited in the block editor. The duplicate
+| route serves the classic list's row action and so is not scoped to a page.
+|
+*/
+\SureCart::route()
+->get()
+->where( 'sc_url_var', 'duplicate_form', 'action' )
+->name( 'form.duplicate' )
+->middleware( 'user.can:edit_posts' )
+->middleware( 'nonce:duplicate_form' )
+->handle( '\\SureCart\\Controllers\\Admin\\Forms\\FormsController@duplicate' );
+
+\SureCart::route()
+->where( 'admin', 'sc-forms' )
+->middleware( 'user.can:edit_posts' )
+->middleware( 'assets.components' )
+->middleware( 'assets.admin_colors' )
+->setNamespace( '\\SureCart\\Controllers\\Admin\\Forms\\' )
+->group(
+	function () {
+		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'FormsController@index' );
 	}
 );

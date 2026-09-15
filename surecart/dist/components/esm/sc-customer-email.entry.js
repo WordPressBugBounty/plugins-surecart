@@ -1,20 +1,20 @@
 import { r as registerInstance, c as createEvent, h, F as Fragment } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
 import { a as apiFetch } from './index-824c562b.js';
-import { c as createOrUpdateCheckout } from './index-a786f689.js';
+import { c as createOrUpdateCheckout } from './index-9fa5ca8c.js';
 import { a as getValueFromUrl, b as isRateLimited } from './util-dfbf863e.js';
 import { r as resendAnchorFrom, g as getBlockedDuplicateSeconds } from './verification-00df9439.js';
 import { s as state$1, C as CODE_SENT, o as onChange$1, U as UNVERIFIED, r as resetUser, V as VERIFYING, a as CODE_EXPIRED } from './store-ac90a769.js';
-import { s as state, o as onChange } from './mutations-9ffd30f4.js';
+import { s as state, o as onChange } from './mutations-eb426408.js';
 import './add-query-args-0e2a8393.js';
 import './remove-query-args-938c53ea.js';
 import './fetch-cdff67be.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './store-b1758b00.js';
-import './price-1ff6aa07.js';
+import './price-39d60d32.js';
 
 const scCustomerEmailCss = ":host{display:block;position:relative}a{color:var(--sc-color-primary-500)}.email-preview{display:flex;align-items:center;justify-content:space-between;position:relative;width:100%;box-sizing:border-box;font-family:var(--sc-input-font-family);font-weight:var(--sc-input-font-weight);letter-spacing:var(--sc-input-letter-spacing);background-color:var(--sc-input-background-color);border:solid 1px var(--sc-input-border-color, var(--sc-input-border));vertical-align:middle;box-shadow:var(--sc-input-box-shadow);transition:var(--sc-input-transition, var(--sc-transition-medium)) color, var(--sc-input-transition, var(--sc-transition-medium)) border, var(--sc-input-transition, var(--sc-transition-medium)) box-shadow;border-radius:var(--sc-input-border-radius-medium);padding:var(--sc-input-spacing-small);font-size:var(--sc-font-size-small)}.email-preview sc-avatar{--sc-avatar-size:38px}.email-preview__info{display:flex;align-items:center;gap:1em}.email-preview__text{line-height:var(--sc-line-height-dense)}.email-preview__text :last-child:not(:first-child){color:var(--sc-input-help-text-color)}.email-preview__name{font-weight:var(--sc-font-weight-bold)}a.customer-email__login-link{color:var(--sc-customer-login-link-color, var(--sc-input-placeholder-color));text-decoration:none;font-size:var(--sc-font-size-small)}.tracking-confirmation-message{font-size:var(--sc-font-size-xx-small)}.tracking-confirmation-message span{opacity:0.75}.account-loader{line-height:0}";
 const ScCustomerEmailStyle0 = scCustomerEmailCss;

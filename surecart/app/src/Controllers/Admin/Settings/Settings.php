@@ -48,7 +48,7 @@ class Settings {
 		wp_enqueue_style( 'wp-format-library' );
 
 		// automatically load dependencies and version.
-		$asset_file = include plugin_dir_path( SURECART_PLUGIN_FILE ) . "dist/$path.asset.php";
+		$asset_file = sc_get_asset_file( plugin_dir_path( SURECART_PLUGIN_FILE ) . "dist/$path.asset.php" );
 
 		wp_enqueue_script(
 			$handle,

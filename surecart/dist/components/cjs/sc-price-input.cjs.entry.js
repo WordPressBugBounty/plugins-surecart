@@ -3,9 +3,9 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const price = require('./price-da3cab3d.js');
+const price = require('./price-9dddd853.js');
 const formData = require('./form-data-0da9940f.js');
-const currency = require('./currency-71fce0f0.js');
+const currency = require('./currency-b438c76d.js');
 
 const scPriceInputCss = ":host{display:block}";
 const ScPriceInputStyle0 = scPriceInputCss;
@@ -79,7 +79,7 @@ const ScPriceInput = class {
     updateValue() {
         // This fixes issues on mobile Safari where a decimal point is added to the end of the input value
         // does not have an input value.
-        const parsed = parseFloat(this.input.value);
+        const parsed = currency.parseLocaleFloat(this.input.value, currency.getInputLocale());
         if (isNaN(parsed)) {
             this.value = '';
             return;
@@ -105,16 +105,14 @@ const ScPriceInput = class {
         const parsedAmount = parseFloat(this.value);
         if (isNaN(parsedAmount))
             return '';
-        return currency.maybeConvertAmount(parsedAmount, this.currencyCode).toString();
+        return currency.formatLocaleNumber(currency.maybeConvertAmount(parsedAmount, this.currencyCode), currency.getInputLocale());
     }
     render() {
-        return (index.h("sc-input", { key: 'b328887f403197a57d135c7cce3597f13b197c2b', exportparts: "base, input, form-control, label, help-text, prefix, suffix", size: this.size, label: this.label, showLabel: this.showLabel, help: this.help, ref: el => (this.input = el), type: "text" // we cannot use number because it's basically the worst. https://stackoverflow.blog/2022/12/26/why-the-number-input-is-the-worst-input/
+        return (index.h("sc-input", { key: 'fd89010982014f4025e2fb9fa81fe87735fada41', exportparts: "base, input, form-control, label, help-text, prefix, suffix", size: this.size, label: this.label, showLabel: this.showLabel, help: this.help, ref: el => (this.input = el), type: "text" // we cannot use number because it's basically the worst. https://stackoverflow.blog/2022/12/26/why-the-number-input-is-the-worst-input/
             ,
             name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: !!this.min ? this.min / 100 : 0.0, step: 0.01, max: !!this.max ? this.max / 100 : null,
             // TODO: Test These below
-            autofocus: this.autofocus, inputmode: 'decimal', onScChange: () => this.handleChange(), onScInput: () => this.handleInput(), onScBlur: () => this.scBlur.emit(), onScFocus: () => this.scFocus.emit(), pattern: "^\\d*(\\.\\d{0,2})?$" // This prevents more than two decimal places
-            ,
-            value: this.getFormattedValue() }, index.h("span", { key: 'b0f2d9d485a02daad98ec6b6924a3b600b6931ec', style: { opacity: '0.5' }, slot: "prefix" }, price.getCurrencySymbol(this.currencyCode)), index.h("span", { key: '1928eddff6ba481206b07dcb4dde2e9fa16ff61e', slot: "suffix" }, index.h("slot", { key: '1ec7381ec4e06e5b248e90f5d001416c89c48a5d', name: "suffix" }, this.showCode && (this === null || this === void 0 ? void 0 : this.currencyCode) && index.h("span", { key: 'eae58ef3d84e0ace4d267c5facdd53f927da7fd8', style: { opacity: '0.5' } }, this.currencyCode.toUpperCase())))));
+            autofocus: this.autofocus, inputmode: 'decimal', onScChange: () => this.handleChange(), onScInput: () => this.handleInput(), onScBlur: () => this.scBlur.emit(), onScFocus: () => this.scFocus.emit(), pattern: currency.PRICE_INPUT_PATTERN, value: this.getFormattedValue() }, index.h("span", { key: '6cf148f5a7b5a996dfafb1e21f0e55f1331a3475', style: { opacity: '0.5' }, slot: "prefix" }, price.getCurrencySymbol(this.currencyCode)), index.h("span", { key: '3d93330ffff0ffe14380fe1668bb2f739c277e9d', slot: "suffix" }, index.h("slot", { key: 'd21f1ccd165a1b99b3196221ac2ad946284fb07e', name: "suffix" }, this.showCode && (this === null || this === void 0 ? void 0 : this.currencyCode) && index.h("span", { key: '27e4036ecc22e36d608b56de35cb359933d9138f', style: { opacity: '0.5' } }, this.currencyCode.toUpperCase())))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {

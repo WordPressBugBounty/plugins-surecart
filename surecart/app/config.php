@@ -53,6 +53,7 @@ return array(
 
 		// REST providers.
 		\SureCart\Rest\SiteHealthRestServiceProvider::class,
+		\SureCart\Rest\LearnBootRestServiceProvider::class,
 		\SureCart\Rest\AbandonedCheckoutRestServiceProvider::class,
 		\SureCart\Rest\AbandonedCheckoutProtocolRestServiceProvider::class,
 		\SureCart\Rest\BlockPatternsRestServiceProvider::class,
@@ -62,6 +63,7 @@ return array(
 		\SureCart\Rest\BundleItemsRestServiceProvider::class,
 		\SureCart\Rest\UpsellFunnelRestServiceProvider::class,
 		\SureCart\Rest\UpsellRestServiceProvider::class,
+		\SureCart\Rest\FormsRestServiceProvider::class,
 		\SureCart\Rest\FulfillmentRestServiceProvider::class,
 		\SureCart\Rest\LoginRestServiceProvider::class,
 		\SureCart\Rest\PurchasesRestServiceProvider::class,
@@ -83,6 +85,7 @@ return array(
 		\SureCart\Rest\ProductGroupsRestServiceProvider::class,
 		\SureCart\Rest\ProductCollectionsRestServiceProvider::class,
 		\SureCart\Rest\BatchesRestServiceProvider::class,
+		\SureCart\Rest\BatchOperationsRestServiceProvider::class,
 		\SureCart\Rest\PriceRestServiceProvider::class,
 		\SureCart\Rest\CouponRestServiceProvider::class,
 		\SureCart\Rest\PromotionRestServiceProvider::class,

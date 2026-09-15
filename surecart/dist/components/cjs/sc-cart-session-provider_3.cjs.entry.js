@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const mutations$1 = require('./mutations-98f05402.js');
-const index$1 = require('./index-c2d0eb49.js');
+const mutations$1 = require('./mutations-cf1fc87c.js');
+const index$1 = require('./index-f32edd4b.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
-const mutations = require('./mutations-627c79a0.js');
+const mutations = require('./mutations-ac396944.js');
 const animationRegistry = require('./animation-registry-b597d2f4.js');
 const getters = require('./getters-68a0d178.js');
 require('./index-c3de642f.js');
@@ -15,9 +15,9 @@ require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');
 require('./index-fb76df07.js');
 require('./google-8dbad1a6.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 require('./store-01e8edc2.js');
-require('./price-da3cab3d.js');
+require('./price-9dddd853.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 
@@ -91,7 +91,7 @@ const ScCartSessionProvider = class {
         }
     }
     render() {
-        return (index.h("sc-line-items-provider", { key: '4f389805680c0bba62eb5a90cc326aaad4e2fc31', order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '45559f39cf7a79348a0fa5b89dd567ecb368b4d6' })));
+        return (index.h("sc-line-items-provider", { key: 'c04d655d468ea86306f3711925beb4063e2d2429', order: mutations$1.state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, index.h("slot", { key: '36208ad96cd596bbde32921d5d9620a269a8470c' })));
     }
     get el() { return index.getElement(this); }
 };

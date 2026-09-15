@@ -53,8 +53,10 @@ class ProductPageBlocksMigrationService {
 			return;
 		}
 
-		// translators: %s: block name.
-		wp_trigger_error( '', sprintf( esc_html__( 'Passing an id to the [%s] shortcode is deprecated. Please use these shortcodes on product pages directly.', 'surecart' ), $shortcode_name ) );
+		// still deprecated — log only, since trigger_error prints into page output when display_errors is on.
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( sprintf( 'SureCart: Passing an id to the [%s] shortcode is deprecated. Please use these shortcodes on product pages directly.', $shortcode_name ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+		}
 		$block_content = '<!-- wp:' . $this->old_block_name . ' ' . wp_json_encode( $this->attributes ) . ' /-->';
 
 		return do_blocks( $block_content );

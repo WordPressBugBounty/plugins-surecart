@@ -3,6 +3,7 @@
 namespace SureCart\Controllers\Admin\Invoices;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Controllers\Admin\Invoices\InvoicesListTable;
 use SureCart\Models\Invoice;
 
@@ -10,20 +11,23 @@ use SureCart\Models\Invoice;
  * Handles invoice admin requests.
  */
 class InvoicesViewController extends AdminController {
+	use RendersEnhancedAdminView;
+
 	/**
-	 * Invoices index.
+	 * Render the legacy WP_List_Table view for invoices.
 	 */
-	public function index() {
+	protected function renderWpListView() {
 		$table = new InvoicesListTable();
 		$table->prepare_items();
 		$this->withHeader(
 			array(
-				'breadcrumbs'      => [
+				'breadcrumbs'         => [
 					'invoices' => [
 						'title' => __( 'Invoices', 'surecart' ),
 					],
 				],
-				'test_mode_toggle' => true,
+				'test_mode_toggle'    => true,
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 		return \SureCart::view( 'admin/invoices/index' )->with(
@@ -34,11 +38,21 @@ class InvoicesViewController extends AdminController {
 	}
 
 	/**
+	 * Render the DataViews SPA view for invoices.
+	 */
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( InvoiceScriptsController::class );
+		return $this->renderSpaShell( 'admin/invoices/spa', 'invoices' );
+	}
+
+	/**
 	 * Edit the invoice.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( InvoiceScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( InvoiceScriptsController::class );
 
 		$invoice = null;
 		if ( $request->query( 'id' ) ) {
@@ -84,8 +98,9 @@ class InvoicesViewController extends AdminController {
 			);
 		}
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs, so no
+		// breadcrumb is passed to the shell.
+		return $this->renderSpaShell( 'admin/invoices/spa' );
 	}
 
 	/**
@@ -96,7 +111,7 @@ class InvoicesViewController extends AdminController {
 	 * @return void
 	 */
 	public function create( $request ): void {
-		$live_mode = isset( $_GET['live_mode'] ) ? rest_sanitize_boolean( $_GET['live_mode'] ) : true;
+		$live_mode = isset( $_GET['live_mode'] ) ? rest_sanitize_boolean( $_GET['live_mode'] ) : true; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$live_mode = $live_mode ? 'true' : 'false';
 
 		$invoice = Invoice::create(
@@ -106,7 +121,7 @@ class InvoicesViewController extends AdminController {
 		);
 
 		if ( is_wp_error( $invoice ) ) {
-			wp_die( $invoice->get_error_message() );
+			wp_die( $invoice->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		wp_safe_redirect(

@@ -23,31 +23,4 @@
 		sc_allowed_svg_html()
 	);
 	?>
-	
-	<?php if ( $lightbox ) : ?>
-		<button
-			class="lightbox-trigger"
-			type="button"
-			aria-haspopup="dialog"
-			aria-label="<?php esc_attr_e( 'Expand image', 'surecart' ); ?>"
-			data-wp-init="callbacks.initTriggerButton"
-			data-wp-on--click="actions.showLightbox"
-			data-wp-style--right="state.imageButtonRight"
-			data-wp-style--top="state.imageButtonTop"
-		> 
-			<?php
-			echo wp_kses(
-				\SureCart::svg()->get(
-					'maximize',
-					[
-						'width'       => 16,
-						'height'      => 16,
-						'aria-hidden' => 'true',
-					]
-				),
-				sc_allowed_svg_html()
-			);
-			?>
-		</button>
-	<?php endif; ?>
 </figure>

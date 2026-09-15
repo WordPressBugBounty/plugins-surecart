@@ -102,10 +102,20 @@ class OrderRestServiceProvider extends RestServiceProvider implements RestServic
 
 		$data = is_a( $data, 'WP_REST_Response' ) ? $data->get_data() : $data;
 
+		// `$data` may be an array or an object depending on the caller, so read
+		// the customer relation defensively before comparing to the current user.
+		$customer = is_array( $data ) ? ( $data['customer'] ?? null ) : ( is_object( $data ) ? ( $data->customer ?? null ) : null );
+
 		// if the user is logged in, and we have customer data.
 		// if it matches the current customer, then we can show the edit context.
-		if ( is_user_logged_in() && ! empty( $data['customer'] ) ) {
-			$customer_id = ! empty( $data['customer']['id'] ) ? $data['customer']['id'] : $data['customer'];
+		if ( is_user_logged_in() && ! empty( $customer ) ) {
+			if ( is_array( $customer ) ) {
+				$customer_id = $customer['id'] ?? $customer;
+			} elseif ( is_object( $customer ) ) {
+				$customer_id = $customer->id ?? $customer;
+			} else {
+				$customer_id = $customer;
+			}
 			if ( User::current()->customerId() === $customer_id ) {
 				return rest_filter_response_by_context( $data, $schema, 'edit' );
 			}
@@ -144,4 +154,5 @@ class OrderRestServiceProvider extends RestServiceProvider implements RestServic
 	public function resend_notification_permissions_check( $request ) {
 		return current_user_can( 'edit_sc_orders' );
 	}
+
 }

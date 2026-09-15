@@ -5,11 +5,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 require('./fetch-5e8dc1d5.js');
 const lazy = require('./lazy-2b509fa7.js');
-const price = require('./price-da3cab3d.js');
+const price = require('./price-9dddd853.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 
 const scSubscriptionSwitchCss = ":host{display:block;position:relative}[hidden]{display:none !important}.subscriptions-switch{display:grid;gap:0.5em}.subscriptions-switch__switcher{background:rgba(0, 0, 0, 0.035);padding:2px;line-height:1;border-radius:var(--sc-border-radius-small)}";
 const ScSubscriptionSwitchStyle0 = scSubscriptionSwitchCss;

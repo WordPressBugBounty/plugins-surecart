@@ -33,6 +33,7 @@ export declare class ScPaypalButtons {
     scSetState: EventEmitter<string>;
     scPaid: EventEmitter<void>;
     handleOrderChange(val: Checkout, prev: Checkout): void;
+    handleButtonsChange(val: string[], prev: string[]): void;
     /** Load the script */
     loadScript(): Promise<void>;
     /** Load the script on component load. */

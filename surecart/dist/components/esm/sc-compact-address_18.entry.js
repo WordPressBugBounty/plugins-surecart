@@ -2,16 +2,16 @@ import { r as registerInstance, c as createEvent, h, a as getElement, H as Host,
 import { g as getCountryDetails, c as countryChoices } from './address-b8e2e4c8.js';
 import { r as reportChildrenValidity, F as FormSubmitController } from './form-data-76641f16.js';
 import { g as getCurrentUserCountryCode } from './google-maps-68226fae.js';
-import { o as onChange, s as state, u as updateFormState } from './mutations-9ffd30f4.js';
+import { o as onChange, s as state, u as updateFormState } from './mutations-eb426408.js';
 import { f as formBusy, a as formLoading } from './getters-4bb6cc1b.js';
 import { s as state$1 } from './store-b1758b00.js';
 import { o as openWormhole } from './consumer-f1775a76.js';
-import { l as lockCheckout, b as unLockCheckout, r as removeCheckoutLineItem, a as addCheckoutLineItem, t as trackOrderBump } from './mutations-ae7167ad.js';
-import { c as createOrUpdateCheckout } from './index-a786f689.js';
+import { l as lockCheckout, b as unLockCheckout, r as removeCheckoutLineItem, a as addCheckoutLineItem, t as trackOrderBump } from './mutations-0c4375d0.js';
+import { c as createOrUpdateCheckout } from './index-9fa5ca8c.js';
 import { i as isAddressEmpty } from './index-d602bc13.js';
 import { s as speak } from './index-c5a96d53.js';
-import { i as intervalString, g as getFormattedPrice } from './price-1ff6aa07.js';
-import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-7090a9c1.js';
+import { i as intervalString, g as getFormattedPrice } from './price-39d60d32.js';
+import { f as fullShippingAddressRequired, s as shippingAddressRequired, a as checkoutIsLocked } from './getters-222ef4b5.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isRtl } from './page-align-0cdacf32.js';
 import './add-query-args-0e2a8393.js';
@@ -19,7 +19,7 @@ import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './fetch-cdff67be.js';
 import './index-824c562b.js';
 import './store-ac90a769.js';
@@ -469,7 +469,7 @@ const ScOrderBillingAddress = class {
     }
     render() {
         var _a, _b;
-        return (h(Fragment, { key: 'fba7f7f30478cf9db8a296cc46e39b77a84efa43' }, this.shippingAddressFieldExists() && (h("sc-checkbox", { key: '41b0408fd0a4d6817f6de847e23552547e515472', class: "order-billing-address__toggle", onScChange: e => this.onToggleBillingMatchesShipping(e), checked: (_a = state.checkout) === null || _a === void 0 ? void 0 : _a.billing_matches_shipping }, this.toggleLabel)), (!this.shippingAddressFieldExists() || !((_b = state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping)) && (h("sc-address", { key: '154cd2dd179e6099840a101141a607ef8b76a41d', exportparts: "label, help-text, form-control, input__base, select__base, columns, search__base, menu__base", ref: el => {
+        return (h(Fragment, { key: '37f6b15d134af61a483bc6a070303d7632c07648' }, this.shippingAddressFieldExists() && (h("sc-checkbox", { key: 'bfbd4337f387d66cedcaa51ede1119a98b55ced4', class: "order-billing-address__toggle", onScChange: e => this.onToggleBillingMatchesShipping(e), checked: (_a = state.checkout) === null || _a === void 0 ? void 0 : _a.billing_matches_shipping }, this.toggleLabel)), (!this.shippingAddressFieldExists() || !((_b = state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping)) && (h("sc-address", { key: 'de24a6ed5a31f1f3289548b947518a5b49fc6dd6', exportparts: "label, help-text, form-control, input__base, select__base, columns, search__base, menu__base", ref: el => {
                 this.input = el;
             }, label: this.label || wp.i18n.__('Billing Address', 'surecart'), names: {
                 name: 'billing_name',
@@ -810,7 +810,7 @@ const ScOrderTaxIdInput = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g;
-        return (h("sc-tax-id-input", { key: 'a1025cc63d419d9d2ea88b5926249a7ba105156a', ref: el => (this.input = el), show: this.show, number: (_b = (_a = state.checkout) === null || _a === void 0 ? void 0 : _a.tax_identifier) === null || _b === void 0 ? void 0 : _b.number, type: ((_d = (_c = state.checkout) === null || _c === void 0 ? void 0 : _c.tax_identifier) === null || _d === void 0 ? void 0 : _d.number_type) || ((_e = this.taxIdTypesData) === null || _e === void 0 ? void 0 : _e[0]) || 'eu_vat', country: (_g = (_f = state.checkout) === null || _f === void 0 ? void 0 : _f.shipping_address) === null || _g === void 0 ? void 0 : _g.country, status: this.getStatus(), loading: formBusy(), onScChange: e => {
+        return (h("sc-tax-id-input", { key: '9e3b5eafbcf54e305f9e191ce5a52d4627a0c3b8', ref: el => (this.input = el), show: this.show, number: (_b = (_a = state.checkout) === null || _a === void 0 ? void 0 : _a.tax_identifier) === null || _b === void 0 ? void 0 : _b.number, type: ((_d = (_c = state.checkout) === null || _c === void 0 ? void 0 : _c.tax_identifier) === null || _d === void 0 ? void 0 : _d.number_type) || ((_e = this.taxIdTypesData) === null || _e === void 0 ? void 0 : _e[0]) || 'eu_vat', country: (_g = (_f = state.checkout) === null || _f === void 0 ? void 0 : _f.shipping_address) === null || _g === void 0 ? void 0 : _g.country, status: this.getStatus(), loading: formBusy(), onScChange: e => {
                 e.stopImmediatePropagation();
                 this.updateOrder(e.detail);
             }, otherLabel: this.otherLabel, caGstLabel: this.caGstLabel, auAbnLabel: this.auAbnLabel, gbVatLabel: this.gbVatLabel, euVatLabel: this.euVatLabel, help: this.helpText, taxIdTypes: this.taxIdTypesData, required: this.isRequired() }));

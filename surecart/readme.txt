@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.7.3
+Stable tag: 4.8.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -421,6 +421,18 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.8.0 - September 15th, 2026 =
+- New: Added the modern DataViews list experience to the rest of the SureCart admin pages.
+- New: Fully client-side, SPA-like navigation across the SureCart admin.
+- New: Product integrations list now has an edit action and a richer view.
+- Improvement: Print the JS translation catalog once per page instead of once per block handle (~150 copies down to 1), fixing a blank block editor on WP 7.1 (Chromium).
+- Fix: Checkout only requires a phone number for physical products when shipping actually needs one, instead of always.
+- Fix: Collection sync now adopts an existing unlinked term instead of failing when a collection term creation collides with it.
+- Fix: `sc_product_media` shortcode rendering a placeholder instead of the WP media library gallery when passing an id.
+- Fix: Price input fields ignoring the site locale and only accepting a dot as the decimal separator.
+- Fix: PayPal's Credit Card option losing its button or reverting to the regular PayPal button after a checkout field change like email or address.
+- Fix: Product page migration wrapping WooCommerce's `single-product` block template, corrupting product pages on hybrid WooCommerce/SureCart sites.
 
 = 4.7.3 - September 9th, 2026 =
 - Improvement: Faster block registration using a build-time metadata manifest.

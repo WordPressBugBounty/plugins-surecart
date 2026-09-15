@@ -3,17 +3,28 @@
 namespace SureCart\Controllers\Admin\AffiliationPayouts;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Models\Payout;
 
 /**
  * Handles affiliate payout admin routes.
  */
 class AffiliationPayoutsController extends AdminController {
+	use RendersEnhancedAdminView;
+
+	/**
+	 * Render the DataViews SPA view for affiliate payouts.
+	 */
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( AffiliationPayoutsScriptsController::class );
+		return $this->renderSpaShell( 'admin/affiliation-payouts/spa', 'affiliate_payouts' );
+	}
+
 
 	/**
 	 * Affiliate Payout index.
 	 */
-	public function index() {
+	protected function renderWpListView() {
 		$table = new AffiliationPayoutsListTable();
 		$table->prepare_items();
 
@@ -21,11 +32,12 @@ class AffiliationPayoutsController extends AdminController {
 			array(
 				'breadcrumbs' => [
 					'affiliate_payouts' => [
-						'title' => __( 'Affiliate Payouts', 'surecart' ),
+						'title' => $this->pageTitle(),
 					],
 				],
 				'suffix'      => '<sc-button href="' . esc_url( admin_url( 'admin.php?page=sc-affiliate-payouts&action=export' ) ) . '"  type="primary">' . __( 'Export Payouts', 'surecart' ) . '</sc-button>',
-				'report_url'  => SURECART_REPORTS_URL . 'payouts',
+				'report_url'  => $this->reportUrl(),
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 
@@ -49,19 +61,19 @@ class AffiliationPayoutsController extends AdminController {
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( AffiliationPayoutsScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( AffiliationPayoutsScriptsController::class );
 
 		$this->preloadPaths(
 			[
 				'/wp/v2/users/me',
 				'/wp/v2/types?context=view',
 				'/wp/v2/types?context=edit',
-				'/surecart/v1/affiliation_payouts/' . $request->query( 'id' ) . '?context=edit',
+				'/surecart/v1/payouts/' . $request->query( 'id' ) . '?context=edit',
 			]
 		);
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs.
+		return $this->renderSpaShell( 'admin/affiliation-payouts/spa' );
 	}
 
 	/**
@@ -72,19 +84,19 @@ class AffiliationPayoutsController extends AdminController {
 	 * @return string
 	 */
 	public function export( $request ) {
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( AffiliationPayoutsScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( AffiliationPayoutsScriptsController::class );
 
 		$this->preloadPaths(
 			[
 				'/wp/v2/users/me?context=edit',
 				'/wp/v2/types?context=view',
 				'/wp/v2/types?context=edit',
-				'/surecart/v1/affiliation_payouts/' . $request->query( 'id' ) . '?context=edit',
+				'/surecart/v1/payouts/' . $request->query( 'id' ) . '?context=edit',
 			]
 		);
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs.
+		return $this->renderSpaShell( 'admin/affiliation-payouts/spa' );
 	}
 
 	/**

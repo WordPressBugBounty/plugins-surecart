@@ -20,5 +20,5 @@ class BundleScriptsController extends ProductScriptsController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/bundles';
+	protected $path = self::UNIFIED_SPA_PATH;
 }

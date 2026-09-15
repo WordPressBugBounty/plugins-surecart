@@ -15,7 +15,7 @@ const ScBlockUi = class {
         this.spinner = undefined;
     }
     render() {
-        return (index.h("div", { key: 'da4a3d9d4aae87c6ef9a51dd335e391a373c0d9e', part: "base", class: { overlay: true, transparent: this.transparent }, style: { 'z-index': this.zIndex.toString() } }, index.h("div", { key: 'ad4555f0ec7c9431941664d6dd47c12cec737ed0', class: "overlay__content", part: "content" }, index.h("slot", { key: 'b226d9bc01759054a83b4d17d10f91ec22b429e2', name: "spinner" }, !this.transparent && this.spinner && index.h("sc-spinner", { key: 'ba47a361179c0944612831d43408a0a680b1399a' })), index.h("slot", { key: 'efbfee08ebd450a42c4399555d24e78712b0e73c' }))));
+        return (index.h("div", { key: '6fe10f376c659216e350a934fe515316e7e64c8f', part: "base", class: { overlay: true, transparent: this.transparent }, style: { 'z-index': this.zIndex.toString() } }, index.h("div", { key: '6b1817a0aec720042940292035aea65b940833e5', class: "overlay__content", part: "content" }, index.h("slot", { key: 'b30a2a36957dabcbab80cbd09583972ae27dea6c', name: "spinner" }, !this.transparent && this.spinner && index.h("sc-spinner", { key: '67e191d3cf1525671930032b7ba8fb97ba8d81ea' })), index.h("slot", { key: 'c025c3112e07027cd358bf068f0fac6fd03c3fd0' }))));
     }
 };
 ScBlockUi.style = ScBlockUiStyle0;

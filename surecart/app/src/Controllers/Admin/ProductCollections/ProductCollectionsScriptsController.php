@@ -20,7 +20,7 @@ class ProductCollectionsScriptsController extends AdminModelEditController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/product-collections';
+	protected $path = self::UNIFIED_SPA_PATH;
 
 	/**
 	 * Opt into the dataviews stylesheet enqueue (handled by the parent).

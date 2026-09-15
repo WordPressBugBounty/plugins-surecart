@@ -6,16 +6,16 @@ const index = require('./index-be4abba1.js');
 const address = require('./address-7404695f.js');
 const formData = require('./form-data-0da9940f.js');
 const googleMaps = require('./google-maps-f2f4405c.js');
-const mutations = require('./mutations-98f05402.js');
+const mutations = require('./mutations-cf1fc87c.js');
 const getters = require('./getters-d68c08ed.js');
 const store = require('./store-01e8edc2.js');
 const consumer = require('./consumer-b58230e6.js');
-const mutations$1 = require('./mutations-627c79a0.js');
-const index$2 = require('./index-c2d0eb49.js');
+const mutations$1 = require('./mutations-ac396944.js');
+const index$2 = require('./index-f32edd4b.js');
 const index$1 = require('./index-a4a4f390.js');
 const index$3 = require('./index-fb76df07.js');
-const price = require('./price-da3cab3d.js');
-const getters$1 = require('./getters-c3cd6c93.js');
+const price = require('./price-9dddd853.js');
+const getters$1 = require('./getters-54d5656d.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./add-query-args-49dcb630.js');
@@ -23,7 +23,7 @@ require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./google-8dbad1a6.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 require('./store-9c215436.js');
@@ -473,7 +473,7 @@ const ScOrderBillingAddress = class {
     }
     render() {
         var _a, _b;
-        return (index.h(index.Fragment, { key: 'fba7f7f30478cf9db8a296cc46e39b77a84efa43' }, this.shippingAddressFieldExists() && (index.h("sc-checkbox", { key: '41b0408fd0a4d6817f6de847e23552547e515472', class: "order-billing-address__toggle", onScChange: e => this.onToggleBillingMatchesShipping(e), checked: (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.billing_matches_shipping }, this.toggleLabel)), (!this.shippingAddressFieldExists() || !((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping)) && (index.h("sc-address", { key: '154cd2dd179e6099840a101141a607ef8b76a41d', exportparts: "label, help-text, form-control, input__base, select__base, columns, search__base, menu__base", ref: el => {
+        return (index.h(index.Fragment, { key: '37f6b15d134af61a483bc6a070303d7632c07648' }, this.shippingAddressFieldExists() && (index.h("sc-checkbox", { key: 'bfbd4337f387d66cedcaa51ede1119a98b55ced4', class: "order-billing-address__toggle", onScChange: e => this.onToggleBillingMatchesShipping(e), checked: (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.billing_matches_shipping }, this.toggleLabel)), (!this.shippingAddressFieldExists() || !((_b = mutations.state.checkout) === null || _b === void 0 ? void 0 : _b.billing_matches_shipping)) && (index.h("sc-address", { key: 'de24a6ed5a31f1f3289548b947518a5b49fc6dd6', exportparts: "label, help-text, form-control, input__base, select__base, columns, search__base, menu__base", ref: el => {
                 this.input = el;
             }, label: this.label || wp.i18n.__('Billing Address', 'surecart'), names: {
                 name: 'billing_name',
@@ -814,7 +814,7 @@ const ScOrderTaxIdInput = class {
     }
     render() {
         var _a, _b, _c, _d, _e, _f, _g;
-        return (index.h("sc-tax-id-input", { key: 'a1025cc63d419d9d2ea88b5926249a7ba105156a', ref: el => (this.input = el), show: this.show, number: (_b = (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.tax_identifier) === null || _b === void 0 ? void 0 : _b.number, type: ((_d = (_c = mutations.state.checkout) === null || _c === void 0 ? void 0 : _c.tax_identifier) === null || _d === void 0 ? void 0 : _d.number_type) || ((_e = this.taxIdTypesData) === null || _e === void 0 ? void 0 : _e[0]) || 'eu_vat', country: (_g = (_f = mutations.state.checkout) === null || _f === void 0 ? void 0 : _f.shipping_address) === null || _g === void 0 ? void 0 : _g.country, status: this.getStatus(), loading: getters.formBusy(), onScChange: e => {
+        return (index.h("sc-tax-id-input", { key: '9e3b5eafbcf54e305f9e191ce5a52d4627a0c3b8', ref: el => (this.input = el), show: this.show, number: (_b = (_a = mutations.state.checkout) === null || _a === void 0 ? void 0 : _a.tax_identifier) === null || _b === void 0 ? void 0 : _b.number, type: ((_d = (_c = mutations.state.checkout) === null || _c === void 0 ? void 0 : _c.tax_identifier) === null || _d === void 0 ? void 0 : _d.number_type) || ((_e = this.taxIdTypesData) === null || _e === void 0 ? void 0 : _e[0]) || 'eu_vat', country: (_g = (_f = mutations.state.checkout) === null || _f === void 0 ? void 0 : _f.shipping_address) === null || _g === void 0 ? void 0 : _g.country, status: this.getStatus(), loading: getters.formBusy(), onScChange: e => {
                 e.stopImmediatePropagation();
                 this.updateOrder(e.detail);
             }, otherLabel: this.otherLabel, caGstLabel: this.caGstLabel, auAbnLabel: this.auAbnLabel, gbVatLabel: this.gbVatLabel, euVatLabel: this.euVatLabel, help: this.helpText, taxIdTypes: this.taxIdTypesData, required: this.isRequired() }));

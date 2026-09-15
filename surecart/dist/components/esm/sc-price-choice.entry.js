@@ -1,11 +1,11 @@
 import { r as registerInstance, c as createEvent, h, F as Fragment, H as Host } from './index-25e5af33.js';
 import { o as openWormhole } from './consumer-f1775a76.js';
 import { i as isPriceInOrder } from './index-17aac936.js';
-import { i as intervalString } from './price-1ff6aa07.js';
+import { i as intervalString } from './price-39d60d32.js';
 import './fetch-cdff67be.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import { a as apiFetch } from './index-824c562b.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './remove-query-args-938c53ea.js';
 
 function _defineProperties(target, props) {

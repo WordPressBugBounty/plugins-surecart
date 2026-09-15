@@ -7,6 +7,7 @@ use SureCart\Models\Traits\HasCheckout;
 use SureCart\Models\Traits\HasDates;
 use SureCart\Models\Traits\HasPayout;
 use SureCart\Models\Traits\HasReferralItems;
+use SureCart\Support\Currency;
 
 /**
  * Referral model
@@ -170,6 +171,15 @@ class Referral extends Model {
 			'approved'  => __( 'Approved', 'surecart' ),
 		];
 		return $statuses[ $this->status ] ?? '';
+	}
+
+	/**
+	 * Get the commission amount formatted in the referral's currency.
+	 *
+	 * @return string
+	 */
+	public function getCommissionDisplayAmountAttribute() {
+		return Currency::format( $this->commission_amount, $this->currency );
 	}
 
 	/**

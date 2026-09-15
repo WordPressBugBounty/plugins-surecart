@@ -1,6 +1,6 @@
 import { r as registerInstance, h, F as Fragment } from './index-25e5af33.js';
 import { f as formBusy } from './getters-4bb6cc1b.js';
-import { s as state } from './mutations-9ffd30f4.js';
+import { s as state } from './mutations-eb426408.js';
 import './store-b1758b00.js';
 import './index-18f5a1bc.js';
 import './utils-f84b2118.js';
@@ -8,8 +8,8 @@ import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
-import './price-1ff6aa07.js';
+import './currency-eb33deae.js';
+import './price-39d60d32.js';
 
 const scLineItemTotalCss = ":host{display:block}sc-line-item{text-align:left}.line-item-total__group sc-line-item{margin:4px 0px !important}.scratch-price{text-decoration:line-through;color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}sc-line-item::part(base){grid-template-columns:max-content auto auto}.total-price{white-space:nowrap}.currency-label{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-xx-small);margin-right:var(--sc-spacing-xx-small);vertical-align:middle}sc-divider{margin:16px 0 !important}.conversion-description{color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}.total-payments-tooltip::part(base){display:flex;align-items:center;gap:0.25em}";
 const ScLineItemTotalStyle0 = scLineItemTotalCss;

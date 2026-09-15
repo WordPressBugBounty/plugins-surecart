@@ -3,6 +3,7 @@
 namespace SureCart\Support\Scripts;
 
 use SureCart\Support\Currency;
+use SureCart\WordPress\Admin\AdminPageRegistry;
 
 /**
  * Class for model edit pages to extend.
@@ -14,6 +15,13 @@ abstract class AdminModelEditController {
 	 * @var string
 	 */
 	protected $path = '';
+
+	/**
+	 * The webpack entry shared by every unified-SPA list screen.
+	 *
+	 * @var string
+	 */
+	const UNIFIED_SPA_PATH = 'admin/app';
 
 	/**
 	 * Script handle.
@@ -56,6 +64,68 @@ abstract class AdminModelEditController {
 	 */
 	protected function condition() {
 		return true;
+	}
+
+	/**
+	 * Give unified-SPA pages the union of every resource's boot data.
+	 *
+	 * With one bundle serving many screens, a client-side navigation mounts a
+	 * resource whose PHP controller never ran — so whichever page boots the
+	 * document must carry the data every resource reads from `scData`, not
+	 * just its own.
+	 */
+	protected function applyUnifiedSpaData(): void {
+		if ( self::UNIFIED_SPA_PATH !== $this->path ) {
+			return;
+		}
+
+		// Any unified page can render a DataViews list after a client-side
+		// swap, so the boot page must carry the stylesheet and the
+		// enhanced-views flag even when its own screen has no list (e.g.
+		// the dashboard) — otherwise list apps mounted client-side read a
+		// missing flag and bounce to a full server render.
+		$this->needs_dataviews_style = true;
+
+		// Color variables must not depend on which page booted the document;
+		// brand styles ride along inert (scoped to `body.sc-brand-ui`).
+		\SureCart::assets()->printAdminColors();
+		\SureCart::assets()->printBrandColors();
+
+		$this->with_data = array_unique(
+			array_merge(
+				$this->with_data,
+				array(
+					'currency',
+					'supported_currencies',
+					'links',
+					'checkout_page_url',
+					'i18n',
+					'google_map_api_key',
+					'claimed',
+					'claim_url',
+					'claim_expired',
+				)
+			)
+		);
+
+		$this->data['invoice_create_url']            = \SureCart::getUrl()->create( 'invoices' );
+		$this->data['bulk_delete_nonce']             = wp_create_nonce( 'bulk_delete_nonce' );
+		$this->data['can_manage_abandoned_settings'] = current_user_can( 'manage_sc_shop_settings' );
+		$this->data['spa_pages']                     = AdminPageRegistry::UNIFIED_SPA_PAGES;
+		$this->data['menu_families']                 = \SureCart\WordPress\Admin\Menus\AdminMenuPageService::MENU_FAMILIES;
+		// Per-page header data for menuSync.js after a client-side swap.
+		$this->data['page_chrome']                   = AdminPageRegistry::pageChrome();
+
+		// Show the JSON code editor for the unified SPA pages, which is used in the order meta and other places.
+		wp_enqueue_code_editor(
+			[
+				'type'       => 'application/json',
+				'codemirror' => [
+					'indentUnit' => 2,
+					'tabSize'    => 2,
+				],
+			]
+		);
 	}
 
 	/**
@@ -103,11 +173,22 @@ abstract class AdminModelEditController {
 		if ( ! file_exists( $abs_path ) ) {
 			return;
 		}
+
+		$version  = defined( 'SURECART_VERSION' ) ? SURECART_VERSION : (string) filemtime( $abs_path );
+		$base_url = trailingslashit( \SureCart::core()->assets()->getUrl() );
+
+		// The stylesheet references `--wpds-*` tokens but no longer defines
+		// them, so this has to load first or nothing is sized or coloured.
+		$tokens_relative = 'dist/vendor/design-tokens.css';
+		if ( file_exists( plugin_dir_path( SURECART_PLUGIN_FILE ) . $tokens_relative ) ) {
+			wp_enqueue_style( 'sc-design-tokens', $base_url . $tokens_relative, [], $version );
+		}
+
 		wp_enqueue_style(
 			'sc-dataviews',
-			trailingslashit( \SureCart::core()->assets()->getUrl() ) . $relative,
-			[],
-			defined( 'SURECART_VERSION' ) ? SURECART_VERSION : (string) filemtime( $abs_path )
+			$base_url . $relative,
+			wp_style_is( 'sc-design-tokens', 'registered' ) ? [ 'sc-design-tokens' ] : [],
+			$version
 		);
 	}
 
@@ -120,6 +201,21 @@ abstract class AdminModelEditController {
 		if ( ! $this->condition() ) {
 			return;
 		}
+
+		// With enhanced views disabled, list screens are server-rendered
+		// tables — the unified SPA bundle would load and mount nothing. Edit
+		// and create routes (`action` present) always render the SPA shell,
+		// so they pass through regardless of the flag.
+		if (
+			self::UNIFIED_SPA_PATH === $this->path
+			&& empty( $_GET['action'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& ! (bool) get_option( 'surecart_enhanced_admin_views', true )
+		) {
+			$this->enqueueComponents();
+			return;
+		}
+
+		$this->applyUnifiedSpaData();
 
 		// components are also used on index pages.
 		$this->enqueueComponents();

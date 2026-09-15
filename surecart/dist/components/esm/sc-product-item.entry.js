@@ -12,7 +12,7 @@ const ScProductItem = class {
     render() {
         var _a;
         console.log(this.product);
-        return (h("a", { key: '431c643cac05b4eee23dc1402a99721a4035af47', href: (_a = this.product) === null || _a === void 0 ? void 0 : _a.permalink, class: { 'product-item': true } }, this.product &&
+        return (h("a", { key: 'ba456438febdc0adfa1ec1c74de457461c5c0bf5', href: (_a = this.product) === null || _a === void 0 ? void 0 : _a.permalink, class: { 'product-item': true } }, this.product &&
             (this.layoutConfig || []).map(layout => {
                 var _a, _b, _c, _d;
                 const attributes = layout.attributes || {};

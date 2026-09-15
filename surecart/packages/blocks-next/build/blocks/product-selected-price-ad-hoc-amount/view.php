@@ -17,15 +17,20 @@
 	<div class="sc-input-group">
 		<span class="sc-input-group-text" id="basic-addon1" data-wp-text="context.selectedPrice.currency_symbol"></span>
 
+		<?php
+		// `type="text"`, not `number`: a number input drops any character it does
+		// not recognise as a decimal mark before JS can read the value, gluing
+		// "12٫90" into 1290. Mirrors sc-price-input. No `min`/`max` here — they are
+		// inert on a text input, so `setAdHocAmount` enforces the ad-hoc range.
+		?>
 		<input
 			class="sc-form-control"
 			id="sc-product-custom-amount"
-			type="number"
-			step="0.01"
-			data-wp-bind--value="context.adHocAmount"
+			type="text"
+			inputmode="decimal"
+			data-wp-bind--pattern="state.pricePattern"
+			data-wp-bind--value="state.adHocAmountDisplay"
 			data-wp-on--input="callbacks.setAdHocAmount"
-			data-wp-bind--min="context.selectedPrice.converted_ad_hoc_min_amount"
-			data-wp-bind--max="context.selectedPrice.converted_ad_hoc_max_amount"
 			data-wp-bind--required="context.selectedPrice.ad_hoc"
 		/>
 	</div>

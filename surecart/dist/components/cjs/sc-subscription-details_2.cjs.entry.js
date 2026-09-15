@@ -4,12 +4,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 require('./fetch-5e8dc1d5.js');
-const price = require('./price-da3cab3d.js');
+const price = require('./price-9dddd853.js');
 const index$2 = require('./index-f3933112.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 
 const maybeConvertAmount = (amount, currency) => {
 	return [
@@ -201,11 +201,11 @@ const ScSubscriptionDetails = class {
         return ((_h = (_g = this.subscription) === null || _g === void 0 ? void 0 : _g.price) === null || _h === void 0 ? void 0 : _h.amount) !== 0;
     }
     render() {
-        return (index.h("div", { key: '0af8aaeeffdd06301794468798575a49c655e791', class: "subscription-details" }, this.hasPendingUpdate && (index.h("div", { key: 'b543b7dfb1960beb1bf2ea7dba29384586d941e1' }, index.h("sc-tag", { key: '32077623289e99dbf40619b88c2ff71a13c76fbb', size: "small", type: "warning" }, wp.i18n.__('Update Scheduled', 'surecart')))), index.h("sc-flex", { key: '2323ea492755eef1c6c6b00aa31e48d63403fc02', alignItems: "center", justifyContent: "flex-start" }, index.h("sc-text", { key: 'e974fb27e46435cdb057a1c722749516db98748f', "aria-label": wp.i18n.sprintf(
+        return (index.h("div", { key: '732ccf757fa4b20ba15a214078bfbd676af55e52', class: "subscription-details" }, this.hasPendingUpdate && (index.h("div", { key: 'eda665974dfd3656c8d189b9fafeb21a1a1d7982' }, index.h("sc-tag", { key: 'f9b03fb724b4f9fd4de42e248ffe04604d427f9e', size: "small", type: "warning" }, wp.i18n.__('Update Scheduled', 'surecart')))), index.h("sc-flex", { key: '6af10f94ae20325ad56225a99f287295c230eacc', alignItems: "center", justifyContent: "flex-start" }, index.h("sc-text", { key: '503c6b558767e10918464a603f7a7fa5c4b3c68e', "aria-label": wp.i18n.sprintf(
             /* translators: %s: plan name */
-            wp.i18n.__('Plan name - %s', 'surecart'), this.renderName()), style: { '--font-weight': 'var(--sc-font-weight-bold)' } }, this.renderName()), this.renderActivations()), !this.hideRenewalText && index.h("div", { key: 'a6f540c039f5435561f0d1375e9aeb79b89ca72e' }, this.renderRenewalText(), " "), this.renderBundleComponents(), index.h("slot", { key: 'f3fd579417b5d1da39262eb9cb6ab8f038965d96' }), index.h("sc-dialog", { key: '3cf68ce55917febef8f773c786cfa604a0703d5c', label: wp.i18n.__('Activations', 'surecart'), onScRequestClose: () => (this.activationsModal = false), open: !!this.activationsModal }, index.h("sc-card", { key: '4ce37429a8a8cfd4cd52bb47b2bc5667fdaa9f57', "no-padding": true, style: { '--overflow': 'hidden' } }, index.h("sc-stacked-list", { key: 'ff19f56ad27ec67865f030beb132f715a3742a99' }, (this.getActivations() || []).map(activation => {
+            wp.i18n.__('Plan name - %s', 'surecart'), this.renderName()), style: { '--font-weight': 'var(--sc-font-weight-bold)' } }, this.renderName()), this.renderActivations()), !this.hideRenewalText && index.h("div", { key: '2678403db7c9a4930fdc71d178bc0e224ce7308b' }, this.renderRenewalText(), " "), this.renderBundleComponents(), index.h("slot", { key: 'b6c439185354f7d27644dad6efdb2a9c039c13af' }), index.h("sc-dialog", { key: '95298fc3ebe2aa6ff7e90e2799b6db865b83c587', label: wp.i18n.__('Activations', 'surecart'), onScRequestClose: () => (this.activationsModal = false), open: !!this.activationsModal }, index.h("sc-card", { key: '19e943d576a8f0ff9e3ac497778ec08aad82e5ef', "no-padding": true, style: { '--overflow': 'hidden' } }, index.h("sc-stacked-list", { key: '8dadc9e7057017fa58389457fa4e84683e61060d' }, (this.getActivations() || []).map(activation => {
             return (index.h("sc-stacked-list-row", { style: { '--columns': '2' }, mobileSize: 0 }, index.h("sc-text", { style: { '--line-height': 'var(--sc-line-height-dense)' } }, index.h("strong", null, activation === null || activation === void 0 ? void 0 : activation.name), index.h("div", null, index.h("sc-text", { style: { '--color': 'var(--sc-color-gray-500)' } }, activation === null || activation === void 0 ? void 0 : activation.fingerprint))), index.h("sc-text", { style: { '--color': 'var(--sc-color-gray-500)' } }, activation === null || activation === void 0 ? void 0 : activation.created_at_date)));
-        })))), this.showWarning() && (index.h("div", { key: '614dc9d79cd3acd0f99f50b8418b66b8086e8563' }, index.h("sc-tag", { key: '79541f44622d0fc6dbe89e499a238da6d0479901', type: "warning" }, index.h("div", { key: 'c4cd2e30a88fc289ef894d0cefc6412e9c2ee97b', class: "subscription-details__missing-method" }, index.h("sc-icon", { key: 'f04ee1ef6bfa4821c302d2a97b87ff03f07a3d4e', name: "alert-triangle" }), wp.i18n.__('Payment Method Missing', 'surecart')))))));
+        })))), this.showWarning() && (index.h("div", { key: 'efeed182d2e25b0280e26f1f01a3b608ec3f7f08' }, index.h("sc-tag", { key: 'eeb17773ff80ce70a8eff86f89d25df6aa6521bd', type: "warning" }, index.h("div", { key: '035dce45d51c85e92f2b5739178131bd3733da5a', class: "subscription-details__missing-method" }, index.h("sc-icon", { key: 'edd2667cd6b3e9692c09cb082a4b7dddc1edba2f', name: "alert-triangle" }), wp.i18n.__('Payment Method Missing', 'surecart')))))));
     }
     static get watchers() { return {
         "subscription": ["handleSubscriptionChange"]

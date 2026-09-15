@@ -9,6 +9,14 @@ use SureCartCore\ServiceProviders\ServiceProviderInterface;
  */
 class TranslationsServiceProvider implements ServiceProviderInterface {
 	/**
+	 * WP_Scripts instances that already printed the catalog, keyed by spl_object_id.
+	 * Holding the instance keeps PHP from reusing its id mid-request.
+	 *
+	 * @var \WP_Scripts[]
+	 */
+	protected $catalog_printed_for = [];
+
+	/**
 	 * Register all dependencies in the IoC container.
 	 *
 	 * @param \Pimple\Container $container Service container.
@@ -27,7 +35,52 @@ class TranslationsServiceProvider implements ServiceProviderInterface {
 	public function bootstrap( $container ) {
 		add_filter( 'loco_compile_single_json', [ $this, 'compileSingleJSON' ], 999, 2 );
 		add_filter( 'load_script_translation_file', [ $this, 'loadSingleTranslationFile' ], 999, 3 );
+		add_filter( 'pre_load_script_translations', [ $this, 'skipPrintedCatalog' ], 10, 4 );
+		add_filter( 'load_script_translations', [ $this, 'markCatalogPrinted' ], 10, 4 );
 		add_action( 'init', [ $this, 'loadPluginTextDomain' ], 0 );
+	}
+
+	/**
+	 * Print the surecart JS catalog once per document instead of once per script handle.
+	 *
+	 * Every handle shares the same whole-domain JSON, so the block editor was inlining it ~150
+	 * times (~40 MB). The editor canvas iframe is its own document with its own WP_Scripts, so
+	 * the check is per instance rather than per request.
+	 *
+	 * @param string|false|null $translations Short-circuit value.
+	 * @param string|false      $file         Translation file path.
+	 * @param string            $handle       Script handle.
+	 * @param string            $domain       Text domain.
+	 *
+	 * @return string|false|null
+	 */
+	public function skipPrintedCatalog( $translations, $file, $handle, $domain ) {
+		if ( 'surecart' === $domain && isset( $this->catalog_printed_for[ spl_object_id( wp_scripts() ) ] ) ) {
+			return false;
+		}
+		return $translations;
+	}
+
+	/**
+	 * Remember that this WP_Scripts instance has printed the catalog.
+	 *
+	 * Runs after a successful file read on purpose: WP retries a missed path with $file = false,
+	 * and marking on the first attempt would swallow that retry.
+	 *
+	 * @param string       $translations JSON catalog.
+	 * @param string|false $file         Translation file path.
+	 * @param string       $handle       Script handle.
+	 * @param string       $domain       Text domain.
+	 *
+	 * @return string
+	 */
+	public function markCatalogPrinted( $translations, $file, $handle, $domain ) {
+		if ( 'surecart' === $domain && $translations ) {
+			$scripts = wp_scripts();
+
+			$this->catalog_printed_for[ spl_object_id( $scripts ) ] = $scripts;
+		}
+		return $translations;
 	}
 
 	/**

@@ -16,7 +16,7 @@
 		"guzzlehttp/psr7": "^2.7.0",
 		"typisttech/imposter-plugin": "^0.6.2",
 		"surecart/wp-query-builder": "dev-master",
-		"woocommerce/action-scheduler": "^3.6",
+		"woocommerce/action-scheduler": "^3.9",
 		"brainstormforce/nps-survey": "^1.0"
 	},
 	"require-dev": {

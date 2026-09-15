@@ -5,7 +5,7 @@ namespace SureCart\Controllers\Admin\Orders;
 use SureCart\Support\Scripts\AdminModelEditController;
 
 /**
- * Coupon page
+ * Enqueues the orders admin app scripts.
  */
 class OrderScriptsController extends AdminModelEditController {
 	/**
@@ -27,24 +27,13 @@ class OrderScriptsController extends AdminModelEditController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/orders';
+	protected $path = self::UNIFIED_SPA_PATH;
 
 	/**
-	 * Enqueue scripts.
+	 * Opt into the dataviews stylesheet enqueue (handled by the parent).
 	 *
-	 * @return void
+	 * @var bool
 	 */
-	public function enqueue() {
-		parent::enqueue();
-		// Enqueue CodeMirror editor with wp.codeEditor API.
-		wp_enqueue_code_editor(
-			[
-				'type'       => 'application/json',
-				'codemirror' => [
-					'indentUnit' => 2,
-					'tabSize'    => 2,
-				],
-			]
-		);
-	}
+	protected $needs_dataviews_style = true;
+
 }

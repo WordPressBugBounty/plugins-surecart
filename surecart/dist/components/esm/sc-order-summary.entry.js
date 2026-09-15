@@ -1,6 +1,6 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
-import { s as state } from './mutations-9ffd30f4.js';
+import { s as state } from './mutations-eb426408.js';
 import { f as formBusy, a as formLoading } from './getters-4bb6cc1b.js';
 import { s as setDefaultAnimation, a as stopAnimations, g as getAnimation, b as animateTo, c as shimKeyframesHeightAuto } from './animation-registry-de37bd7e.js';
 import './index-18f5a1bc.js';
@@ -8,9 +8,9 @@ import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './store-b1758b00.js';
-import './price-1ff6aa07.js';
+import './price-39d60d32.js';
 
 const scOrderSummaryCss = ":host{display:block;font-family:var(--sc-font-sans);font-size:var(--sc-checkout-font-size, 16px)}.collapse-link{display:flex;align-items:center;gap:0.35em}.summary__content--empty{display:none}.collapse-link__icon{width:18px;height:18px;color:var(--sc-order-collapse-link-icon-color, var(--sc-color-gray-500))}.item__product+.item__product{margin-top:20px}.empty{color:var(--sc-order-summary-color, var(--sc-color-gray-500))}.price{display:inline-flex;flex-wrap:wrap;justify-content:flex-end;align-items:baseline;opacity:0;visibility:hidden;transform:translateY(5px);transition:var(--sc-input-transition, var(--sc-transition-medium)) visibility ease, var(--sc-input-transition, var(--sc-transition-medium)) opacity ease, var(--sc-input-transition, var(--sc-transition-medium)) transform ease}.price--collapsed{opacity:1;visibility:visible;transform:translateY(0)}.summary{position:relative;user-select:none}.summary--collapsible{cursor:pointer}.summary .collapse-link__icon{transition:transform 0.25s ease-in-out}.summary .scratch-price{text-decoration:line-through;color:var(--sc-color-gray-500);font-size:var(--sc-font-size-small);margin-right:var(--sc-spacing-xx-small)}.summary--open .collapse-link__icon{transform:rotate(180deg)}::slotted(*){margin:4px 0 !important}::slotted(sc-divider){margin:20px 0 !important}sc-line-item~sc-line-item{margin-top:14px}.total-price{white-space:nowrap}";
 const ScOrderSummaryStyle0 = scOrderSummaryCss;
@@ -98,10 +98,10 @@ const ScOrderSummary = class {
         }
     }
     render() {
-        return (h("div", { key: 'c086e181e8f4ebb5bd7ebfe35b74fc8213888d38', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), h("div", { key: 'c1b9341219338f7d94413671cb89dabe25ca1247', ref: el => (this.body = el), class: {
+        return (h("div", { key: '223318641f132e6f38c547dbd3f4f7baea9a742b', class: { 'summary': true, 'summary--open': !this.collapsed, 'summary--collapsible': this.collapsible } }, this.collapsible && this.renderHeader(), h("div", { key: '4dea4a091ec1f35068723db98aaacaf99c179f91', ref: el => (this.body = el), class: {
                 'summary__content': true,
                 'summary__content--empty': this.empty() && !formBusy(),
-            } }, h("slot", { key: 'a1109a6168c80af25d2613de38d4d61bdd66d937' })), this.empty() && !formBusy() && h("p", { key: '8ae5184c1d91d34aaba973157dafd7ec8e8bf7c6', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
+            } }, h("slot", { key: '9bfcc73433eb53273c2bf87a7ad7d3b94a82fb81' })), this.empty() && !formBusy() && h("p", { key: '89021ff5921e8600f2f10fd675830f1444ae4194', class: "empty" }, wp.i18n.__('Your cart is empty.', 'surecart'))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

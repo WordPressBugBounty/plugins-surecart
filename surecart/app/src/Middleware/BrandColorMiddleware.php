@@ -18,6 +18,16 @@ class BrandColorMiddleware {
 	 */
 	public function handle( RequestInterface $request, Closure $next ) {
 		\SureCart::assets()->printBrandColors();
+
+		// The styles are scoped to this class so client-side swaps in the
+		// unified admin app can toggle branding per screen.
+		add_filter(
+			'admin_body_class',
+			function ( $classes ) {
+				return $classes . ' sc-brand-ui';
+			}
+		);
+
 		return $next( $request );
 	}
 }

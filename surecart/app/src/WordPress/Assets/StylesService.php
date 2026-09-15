@@ -125,7 +125,11 @@ class StylesService {
 	public function addInlineBrandColors( $handle ) {
 		ob_start();
 		?>
-		:root:root {
+		/* Scoped to the brand-styled screens (dashboard, learn, settings,
+			onboarding) via a body class the unified shell can toggle on
+			client-side swaps — unscoped, the remap leaks brand colors into
+			the neutral list screens sharing the document. */
+		body.sc-brand-ui {
 			--sc-color-primary-500: var(--sc-color-brand-primary);
 			--sc-focus-ring-color-primary: var(--sc-color-brand-primary);
 			--sc-input-border-color-focus: var(--sc-color-brand-primary);
@@ -140,10 +144,10 @@ class StylesService {
 			--sc-color-primary-text: white;
 		}
 
-		sc-tab:not([active]):not(:hover) sc-icon {
+		body.sc-brand-ui sc-tab:not([active]):not(:hover) sc-icon {
 			color: var(--sc-color-gray-500);
 		}
-		sc-tab::part(base) {
+		body.sc-brand-ui sc-tab::part(base) {
 			font-weight: 400;
 		}
 		<?php

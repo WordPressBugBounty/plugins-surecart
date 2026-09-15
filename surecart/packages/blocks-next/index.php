@@ -277,7 +277,7 @@ add_action(
 		}
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/fetch/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/fetch/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/api-fetch',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/fetch/index.js',
@@ -306,7 +306,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/dialog/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/dialog/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/dialog',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/dialog/index.js',
@@ -320,7 +320,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/dropdown/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/dropdown/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/dropdown',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/dropdown/index.js',
@@ -334,7 +334,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/google/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/google/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/google-events',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/google/index.js',
@@ -343,7 +343,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/facebook/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/facebook/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/facebook-events',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/facebook/index.js',
@@ -352,7 +352,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-page/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-page/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/product-page',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/product-page/index.js',
@@ -382,7 +382,7 @@ add_action(
 		);
 
 		// Product review script.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-review/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-review/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/product-review',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/product-review/index.js',
@@ -400,7 +400,7 @@ add_action(
 		);
 
 		// Product review form script.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-review-form/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-review-form/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/product-review-form',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/product-review-form/index.js',
@@ -422,7 +422,7 @@ add_action(
 		);
 
 		// Sticky purchase button interactivity script.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/sticky-purchase/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/sticky-purchase/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/sticky-purchase',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/sticky-purchase/index.js',
@@ -440,7 +440,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-list/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-list/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/product-list',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/product-list/index.js',
@@ -466,7 +466,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/image-slider/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/image-slider/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/image-slider',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/image-slider/index.js',
@@ -480,7 +480,7 @@ add_action(
 		);
 
 		// instead, use a static loader that injects the script at runtime.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/lightbox/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/lightbox/index.asset.php' );
 		wp_register_script_module(
 			'surecart/lightbox',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/lightbox/index.js',
@@ -493,7 +493,7 @@ add_action(
 			$static_assets['version']
 		);
 
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/video/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/video/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/video',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/video/index.js',
@@ -507,7 +507,7 @@ add_action(
 		);
 
 		// Checkout actions.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout-actions/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout-actions/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/checkout-service',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/checkout-actions/index.js',
@@ -525,7 +525,7 @@ add_action(
 		);
 
 		// Checkout events.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout-events/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout-events/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/checkout-events',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/checkout-events/index.js',
@@ -534,7 +534,7 @@ add_action(
 		);
 
 		// Cart side drawer.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/cart/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/cart/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/cart',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/cart/index.js',
@@ -556,7 +556,7 @@ add_action(
 		);
 
 		// Product Quick View.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-quick-view/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/product-quick-view/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/product-quick-view',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/product-quick-view/index.js',
@@ -594,7 +594,7 @@ add_action(
 		);
 
 		// Cart side drawer.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/sidebar/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/sidebar/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/sidebar',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/sidebar/index.js',
@@ -608,7 +608,7 @@ add_action(
 		);
 
 		// SureCart Checkout.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/checkout',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/checkout/index.js',
@@ -642,7 +642,7 @@ add_action(
 		);
 
 		// Line Item Details (collapsible container for bundle items).
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/line-item-details/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/line-item-details/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/line-item-details',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/line-item-details/index.js',
@@ -656,7 +656,7 @@ add_action(
 		);
 
 		// Line Item Note (standalone collapsible note).
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/line-item-note/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/line-item-note/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/line-item-note',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/line-item-note/index.js',
@@ -670,7 +670,7 @@ add_action(
 		);
 
 		// Order Bumps.
-		$static_assets = include trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/order-bumps/index.asset.php';
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/order-bumps/index.asset.php' );
 		wp_register_script_module(
 			'@surecart/order-bumps',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/order-bumps/index.js',

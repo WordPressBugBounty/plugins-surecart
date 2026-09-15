@@ -5,11 +5,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index$1 = require('./index-be4abba1.js');
 const consumer = require('./consumer-b58230e6.js');
 const index$2 = require('./index-f3933112.js');
-const price$1 = require('./price-da3cab3d.js');
+const price$1 = require('./price-9dddd853.js');
 require('./fetch-5e8dc1d5.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index = require('./index-7ced8198.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 require('./remove-query-args-b57e8cd3.js');
 
 function _defineProperties(target, props) {

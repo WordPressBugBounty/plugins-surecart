@@ -5,7 +5,7 @@ namespace SureCart\Controllers\Admin\Invoices;
 use SureCart\Support\Scripts\AdminModelEditController;
 
 /**
- * Coupon page
+ * Enqueues the invoices admin app scripts.
  */
 class InvoiceScriptsController extends AdminModelEditController {
 	/**
@@ -27,5 +27,13 @@ class InvoiceScriptsController extends AdminModelEditController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/invoices';
+	protected $path = self::UNIFIED_SPA_PATH;
+
+	/**
+	 * Opt into the dataviews stylesheet enqueue (handled by the parent).
+	 *
+	 * @var bool
+	 */
+	protected $needs_dataviews_style = true;
+
 }

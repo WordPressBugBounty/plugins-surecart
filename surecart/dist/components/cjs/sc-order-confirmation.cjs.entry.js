@@ -106,10 +106,10 @@ const ScOrderConfirmation = class {
     }
     render() {
         var _a, _b;
-        return (index.h(universe.Universe.Provider, { key: '30a75bbb9e89cf05ba338e7296138f76e76a18dd', state: this.state() }, index.h("div", { key: '427d288659261313d78e3eb32394cd3ed8a1302e', class: { 'order-confirmation': true } }, index.h("div", { key: 'f8535b9f36a5f30c3db8e0e17c80e47c1e3c3161', class: {
+        return (index.h(universe.Universe.Provider, { key: '2b577e8efc31a9535053cac06e3648a2514cdcc9', state: this.state() }, index.h("div", { key: '11e07dbf8476b61b39dadbea3a27064ae8afe942', class: { 'order-confirmation': true } }, index.h("div", { key: '969371dcbd212edcc8b0900ba03cf23de8c90a33', class: {
                 'order-confirmation__content': true,
                 'hidden': !((_a = this.order) === null || _a === void 0 ? void 0 : _a.id) && !this.loading,
-            } }, index.h("sc-order-confirm-components-validator", { key: '44c3e632868452b5747635f92f2bdc4a76f6d181', checkout: this.order }, index.h("slot", { key: '898ea9000314f833d17a3291a96622625f7d1cc9' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (index.h("sc-heading", { key: '2b64b397480de2cdcd9b5380e83f2c2eb2f0cc89' }, wp.i18n.__('Order not found.', 'surecart'), index.h("span", { key: 'eef77f6dbf8180af810e37311da6bc0067497852', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
+            } }, index.h("sc-order-confirm-components-validator", { key: 'a66e1c4b4bfa54c33a2456cbbc21e7149b5e8439', checkout: this.order }, index.h("slot", { key: '1c7f445218de8f8c22a7c768ab12b7edbb2e20e4' }))), !((_b = this.order) === null || _b === void 0 ? void 0 : _b.id) && !this.loading && (index.h("sc-heading", { key: '26d652e296c663962892fa8607a6f96802620600' }, wp.i18n.__('Order not found.', 'surecart'), index.h("span", { key: 'e0b6f05c980f208600c48e027387c9a6b46f186e', slot: "description" }, wp.i18n.__('This order could not be found. Please try again.', 'surecart')))))));
     }
 };
 ScOrderConfirmation.style = ScOrderConfirmationStyle0;

@@ -42,11 +42,7 @@ class ProductCollectionsController extends AdminController {
 	 */
 	protected function renderSpaView() {
 		$this->enqueueSpaScripts( ProductCollectionsScriptsController::class );
-		return $this->renderSpaShell(
-			'admin/product-collections/spa',
-			'product-collections',
-			__( 'Product Collections', 'surecart' )
-		);
+		return $this->renderSpaShell( 'admin/product-collections/spa', 'product-collections' );
 	}
 
 	/**

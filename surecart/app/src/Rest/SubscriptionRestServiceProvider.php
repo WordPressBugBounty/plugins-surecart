@@ -170,6 +170,30 @@ class SubscriptionRestServiceProvider extends RestServiceProvider implements Res
 	}
 
 	/**
+	 * Get the collection params.
+	 *
+	 * @return array
+	 */
+	public function get_collection_params() {
+		$to_literal_bool = function ( $value ) {
+			return rest_sanitize_boolean( $value ) ? 'true' : 'false';
+		};
+
+		return [
+			'cancel_at_period_end' => [
+				'description'       => esc_html__( 'Only return subscriptions scheduled to cancel at the end of the current period.', 'surecart' ),
+				'type'              => 'boolean',
+				'sanitize_callback' => $to_literal_bool,
+			],
+			'with_restore_at'      => [
+				'description'       => esc_html__( 'Only return canceled subscriptions that can still be restored.', 'surecart' ),
+				'type'              => 'boolean',
+				'sanitize_callback' => $to_literal_bool,
+			],
+		];
+	}
+
+	/**
 	 * Anyone can get a specific subscription
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.

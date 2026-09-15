@@ -35,10 +35,11 @@ class ProductPageMigrationService extends VersionMigration {
 		}
 
 		// filter out the templates that have post_name as product.
+		// `single-product` is deliberately absent from the list because it is a legacy template that is no longer used.
 		$product_templates = array_filter(
 			$templates,
 			function ( $template ) {
-				return in_array( $template->post_name, array( 'product-info', 'single-product' ) ) ||
+				return in_array( $template->post_name, array( 'product-info' ), true ) ||
 				strpos( $template->post_name, 'sc-part-products-info-' ) !== false ||
 				strpos( $template->post_name, 'sc-products-' ) !== false;
 			}

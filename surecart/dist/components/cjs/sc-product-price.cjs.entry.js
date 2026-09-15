@@ -3,18 +3,18 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const watchers = require('./watchers-b5cd03f1.js');
-require('./watchers-08c6f04b.js');
+const watchers = require('./watchers-758fd4c1.js');
+require('./watchers-ba22d6cd.js');
 const store = require('./store-401bdb4d.js');
 require('./index-c3de642f.js');
-require('./google-5d965da2.js');
-require('./currency-71fce0f0.js');
+require('./google-15c85d5e.js');
+require('./currency-b438c76d.js');
 require('./google-8dbad1a6.js');
 require('./utils-a9d13080.js');
 require('./util-a15c420c.js');
 require('./index-fb76df07.js');
 require('./getters-bc65a40b.js');
-require('./mutations-463da571.js');
+require('./mutations-e8aed27a.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
@@ -53,7 +53,7 @@ const ScProductPrice = class {
         return (index.h("sc-price", { currency: price === null || price === void 0 ? void 0 : price.currency, amount: amount, displayAmount: displayAmount, scratchAmount: scratchAmount, scratchDisplayAmount: scratchDisplayAmount, saleText: this.saleText, adHoc: price === null || price === void 0 ? void 0 : price.ad_hoc, trialDurationDays: price === null || price === void 0 ? void 0 : price.trial_duration_days, setupFeeText: price === null || price === void 0 ? void 0 : price.setup_fee_text, setupFeeAmount: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_amount : null, setupFeeName: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_name : null, recurringPeriodCount: price === null || price === void 0 ? void 0 : price.recurring_period_count, recurringInterval: price === null || price === void 0 ? void 0 : price.recurring_interval, recurringIntervalCount: price === null || price === void 0 ? void 0 : price.recurring_interval_count }));
     }
     render() {
-        return (index.h(index.Host, { key: '452f8da20c5a84acde6e78dec14bf59e678938eb', role: "paragraph" }, (() => {
+        return (index.h(index.Host, { key: '82a241ba9ffa2fe11603c27e0cd964c666ca94ac', role: "paragraph" }, (() => {
             var _a, _b, _c, _d, _e;
             if ((_a = watchers.state[this.productId]) === null || _a === void 0 ? void 0 : _a.selectedVariant) {
                 return this.renderVariantPrice((_b = watchers.state[this.productId]) === null || _b === void 0 ? void 0 : _b.selectedVariant);

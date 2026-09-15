@@ -1,5 +1,6 @@
 <div
 	class="sc-image-media"
+	<?php echo ! empty( $wrapper_style ) ? 'style="' . esc_attr( $wrapper_style ) . '"' : ''; ?>
 	data-wp-class--sc-image-slider="state.active"
 	data-wp-class--sc-image-gallery="!state.active"
 	data-wp-interactive='{ "namespace": "surecart/image-slider" }'
@@ -46,7 +47,7 @@
 			</div>
 
 			<div class="swiper">
-				<div class="swiper-wrapper <?php echo esc_attr( 'sc-has-' . $attributes['thumbnails_per_page'] . '-thumbs' ); ?>">
+				<div class="swiper-wrapper <?php echo esc_attr( 'sc-has-' . $thumbnails_per_page . '-thumbs' ); ?>">
 					<?php foreach ( $gallery as $thumb_index => $media ) : ?>
 						<div
 							data-wp-interactive='{ "namespace": "surecart/product-page" }'
@@ -68,7 +69,7 @@
 									$media->{ $media->isVideo() ? 'video_thumbnail_html' : 'html' }(
 										'thumbnail',
 										array(
-											'loading' => $thumb_index > $attributes['thumbnails_per_page'] ? 'lazy' : 'eager',
+											'loading' => $thumb_index > $thumbnails_per_page ? 'lazy' : 'eager',
 										)
 									),
 									sc_allowed_svg_html()

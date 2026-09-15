@@ -215,6 +215,8 @@ class BulkActionService {
 
 		if ( ! empty( $status_parts ) ) {
 			$status_summary = esc_html__( 'Bulk Action Summary:', 'surecart' ) . ' ' . implode( ', ', $status_parts ) . '.';
+			// Wrapped so the unified SPA shell can clear it on client navigation.
+			echo '<div id="sc-bulk-action-notice">';
 			echo wp_kses_post(
 				\SureCart::notices()->render(
 					[
@@ -224,6 +226,7 @@ class BulkActionService {
 					]
 				)
 			);
+			echo '</div>';
 		}
 	}
 

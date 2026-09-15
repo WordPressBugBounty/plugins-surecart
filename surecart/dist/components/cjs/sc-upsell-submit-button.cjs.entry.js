@@ -3,18 +3,18 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-require('./watchers-08c6f04b.js');
+require('./watchers-ba22d6cd.js');
 const store = require('./store-401bdb4d.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
-const watchers = require('./watchers-b5cd03f1.js');
-const mutations = require('./mutations-463da571.js');
+const watchers = require('./watchers-758fd4c1.js');
+const mutations = require('./mutations-e8aed27a.js');
 const getters = require('./getters-bc65a40b.js');
 require('./add-query-args-49dcb630.js');
 require('./utils-a9d13080.js');
 require('./index-c3de642f.js');
 require('./index-fb76df07.js');
-require('./google-5d965da2.js');
-require('./currency-71fce0f0.js');
+require('./google-15c85d5e.js');
+require('./currency-b438c76d.js');
 require('./google-8dbad1a6.js');
 require('./util-a15c420c.js');
 require('./fetch-5e8dc1d5.js');
@@ -37,13 +37,13 @@ const ScUpsellSubmitButton = class {
         mutations.accept();
     }
     render() {
-        return (index.h(index.Host, { key: 'c1306c0a36e0ca4c9cf76f9b8417c82392dd1e69', class: {
+        return (index.h(index.Host, { key: '30ffb26cd68ad6ec9d829aef0c6aa963b4eea116', class: {
                 'is-busy': getters.isBusy(),
                 'is-disabled': store.state.disabled,
                 // TODO: change this to out of stock error message.
                 'is-sold-out': (watchers.isProductOutOfStock(this.getUpsellProductId()) && !watchers.isSelectedVariantMissing(this.getUpsellProductId())) || (mutations$1.state === null || mutations$1.state === void 0 ? void 0 : mutations$1.state.code) === 'out_of_stock',
                 'is-unavailable': watchers.isSelectedVariantMissing(this.getUpsellProductId()) || (mutations$1.state === null || mutations$1.state === void 0 ? void 0 : mutations$1.state.code) === 'expired',
-            }, onClick: e => this.handleAddToOrderClick(e) }, index.h("slot", { key: 'a311418425c1786ed6e87fc0388bdb59c8d4182f' })));
+            }, onClick: e => this.handleAddToOrderClick(e) }, index.h("slot", { key: '0b9b3306c684c63d061536c6648bbb91384034f8' })));
     }
     get el() { return index.getElement(this); }
 };

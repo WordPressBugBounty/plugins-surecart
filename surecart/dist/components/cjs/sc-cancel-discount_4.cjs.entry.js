@@ -4,12 +4,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 require('./fetch-5e8dc1d5.js');
-const price = require('./price-da3cab3d.js');
+const price = require('./price-9dddd853.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index$1 = require('./index-7ced8198.js');
 const formData = require('./form-data-0da9940f.js');
 require('./remove-query-args-b57e8cd3.js');
-require('./currency-71fce0f0.js');
+require('./currency-b438c76d.js');
 
 /**
  * Replace the {{ name }} in a string with a new value
@@ -89,7 +89,7 @@ const ScCancelDiscount = class {
     render() {
         var _a, _b;
         const { title, description, button, cancel_link } = getCurrentBehaviourContent(this.protocol, (_b = (_a = this.subscription) === null || _a === void 0 ? void 0 : _a.discount) === null || _b === void 0 ? void 0 : _b.id);
-        return (index.h("div", { key: 'f475776785d88156748e76fa0dbdbbe92c46c18f', class: "cancel-discount" }, index.h("sc-dashboard-module", { key: 'f5ccc3a5c3c126b944ecfb911a31e76fe5d6c370', heading: title, style: { '--sc-dashboard-module-spacing': '2em' } }, index.h("span", { key: '6f22f03d47845c33857b0be9f19d0b314aa88d33', slot: "description" }, description), index.h("sc-flex", { key: '47018fb1dfbb5e22919dec6a8d65ebfd4c435eb0', justifyContent: "flex-start" }, index.h("sc-button", { key: 'fec7d85439d197373aed86bfc46336ae113539ee', type: "primary", onClick: () => this.addDiscount() }, button), index.h("sc-button", { key: '5850cee34d4985ec4d9cf03a45794eed0125aec2', class: "cancel-discount__abort-link", type: "text", onClick: () => this.scCancel.emit() }, cancel_link)), !!this.loading && index.h("sc-block-ui", { key: '265fde6ecb1ef2ecbe5a66754c4c27088360138e', spinner: true }))));
+        return (index.h("div", { key: '46f052bd78ac871b183bb1171f5283208ad15eae', class: "cancel-discount" }, index.h("sc-dashboard-module", { key: '5a813d71276b9bd4e8c125b22ec79fe4b1f04687', heading: title, style: { '--sc-dashboard-module-spacing': '2em' } }, index.h("span", { key: '60a042d799f892adc0f26251f73009bcac0951a4', slot: "description" }, description), index.h("sc-flex", { key: '4de51679d747382d8ef982d9cd09da337f5e688e', justifyContent: "flex-start" }, index.h("sc-button", { key: '7527eeda6ce74842418b7e582a80b51084f24a18', type: "primary", onClick: () => this.addDiscount() }, button), index.h("sc-button", { key: 'a906bd74740a557316b5b318de36a0aebded4c4a', class: "cancel-discount__abort-link", type: "text", onClick: () => this.scCancel.emit() }, cancel_link)), !!this.loading && index.h("sc-block-ui", { key: 'dde4ac0fa769fa31144d78f32c8e317fd8f926dc', spinner: true }))));
     }
 };
 ScCancelDiscount.style = ScCancelDiscountStyle0;
@@ -234,7 +234,7 @@ const ScSubscriptionCancel = class {
             keepButtonText = window.wp.hooks.applyFilters('surecart_dashboard_subscription_cancel_popup_keep_button_text', keepButtonText, this === null || this === void 0 ? void 0 : this.subscription);
             content = window.wp.hooks.applyFilters('surecart_dashboard_subscription_cancel_popup_content', content, this === null || this === void 0 ? void 0 : this.subscription);
         }
-        return (index.h("sc-dashboard-module", { key: '2ab232987ba6a6c549a5ede203c66dc64719a022', heading: heading, class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, index.h("div", { key: '1650111f3e5d498592b5cf8c8dd6267428b75f4b', slot: "description" }, content, index.h("slot", { key: 'e17ff0f1a64014b68f5df53141841a4177479540', name: "cancel-popup-content" })), index.h("sc-flex", { key: 'fbfbdea23a3a41b9edd5f1c514d3645d7cf689ed', justifyContent: "flex-start" }, index.h("sc-button", { key: '1551fe6e6fb3c871854eff9408d2993ea81783db', type: "primary", loading: this.loading || this.busy, disabled: this.loading || this.busy, onClick: () => this.cancelSubscription() }, cancelButtonText), index.h("sc-button", { key: '259bec891dcc6e0b09f7101eb2898d7905e3913d', type: "text", onClick: () => this.scAbandon.emit(), loading: this.loading || this.busy, disabled: this.loading || this.busy }, keepButtonText)), this.busy && index.h("sc-block-ui", { key: '6522bf5c93ca5cc4dc4da58aa39c61848666b8f7' })));
+        return (index.h("sc-dashboard-module", { key: '04497caed27e3ae8162f3b64dd2ce000dd26043b', heading: heading, class: "subscription-cancel", error: this.error, style: { '--sc-dashboard-module-spacing': '1em' } }, index.h("div", { key: 'f7caf8ae8c663c62e99f993602ae4b7f576598cc', slot: "description" }, content, index.h("slot", { key: '7d1dcabe5dde6482ba1253c5d3c943c739c13a0e', name: "cancel-popup-content" })), index.h("sc-flex", { key: '67d82211ec0d1c7c2a849155ef4a02b855048aa5', justifyContent: "flex-start" }, index.h("sc-button", { key: '8aa72049de6b7401b886b1335d6d434cab132505', type: "primary", loading: this.loading || this.busy, disabled: this.loading || this.busy, onClick: () => this.cancelSubscription() }, cancelButtonText), index.h("sc-button", { key: '392b704107b68aa85881bf2545b59681b14c2fff', type: "text", onClick: () => this.scAbandon.emit(), loading: this.loading || this.busy, disabled: this.loading || this.busy }, keepButtonText)), this.busy && index.h("sc-block-ui", { key: '14110715787c6564b1d48cfdc507e8a57f34102b' })));
     }
 };
 ScSubscriptionCancel.style = ScSubscriptionCancelStyle0;

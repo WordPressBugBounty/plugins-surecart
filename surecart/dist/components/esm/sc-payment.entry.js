@@ -1,7 +1,7 @@
 import { r as registerInstance, h, F as Fragment, H as Host, a as getElement } from './index-25e5af33.js';
-import { s as state$1 } from './mutations-9ffd30f4.js';
-import './watchers-843c3dbe.js';
-import { s as state, h as hasOtherAvailableCreditCardProcessor, p as processorSupportsCurrentCurrency, c as availableMethodTypes, d as hasMultipleProcessorChoices, e as hasMultipleMethodChoices, f as getAvailableProcessor, a as availableProcessors, b as availableManualPaymentMethods } from './getters-9cfeb0de.js';
+import { s as state$1 } from './mutations-eb426408.js';
+import './watchers-c8d9fb89.js';
+import { s as state, h as hasOtherAvailableCreditCardProcessor, p as processorSupportsCurrentCurrency, c as availableMethodTypes, d as hasMultipleProcessorChoices, e as hasMultipleMethodChoices, f as getAvailableProcessor, a as availableProcessors, b as availableManualPaymentMethods } from './getters-ebc39b0e.js';
 import { s as state$2 } from './watchers-c7bbc6b2.js';
 import { M as ManualPaymentMethods, a as MockProcessor } from './MockProcessor-5c5e066a.js';
 import { g as getRazorpayMethodLabel, a as getRazorpayMethodIcon } from './razorpay-4c4a3d31.js';
@@ -11,9 +11,9 @@ import './utils-f84b2118.js';
 import './remove-query-args-938c53ea.js';
 import './index-c5a96d53.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './store-b1758b00.js';
-import './price-1ff6aa07.js';
+import './price-39d60d32.js';
 import './util-dfbf863e.js';
 
 const scPaymentCss = ":host{display:flex !important;flex-direction:column;gap:var(--sc-input-label-margin);position:relative;font-family:var(--sc-font-sans)}.sc-payment-toggle-summary{line-height:1;display:flex;align-items:center;gap:0.5em;font-weight:var(--sc-font-weight-semibold)}.sc-payment-label{display:flex;justify-content:space-between}.sc-payment-instructions{color:var(--sc-color-gray-600);font-size:var(--sc-font-size-small);line-height:var(--sc-line-height-dense)}.sc-payment__stripe-card-element{display:flex !important;flex-direction:column;gap:var(--sc-input-label-margin);position:relative}";

@@ -2,6 +2,7 @@
 
 namespace SureCart\Models;
 
+use SureCart\Models\Traits\HasDates;
 use SureCart\Models\Traits\HasPrice;
 use SureCart\Support\Contracts\PageModel;
 
@@ -9,6 +10,7 @@ use SureCart\Support\Contracts\PageModel;
  * Holds the data of the Upsell.
  */
 class Upsell extends Model implements PageModel {
+	use HasDates;
 	use HasPrice;
 
 	/**

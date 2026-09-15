@@ -11,14 +11,14 @@ class Collection {
 	use Facade;
 
 	/**
-	 * The post.
+	 * The synced term.
 	 *
-	 * @var \WP_Post
+	 * @var \WP_Term
 	 */
 	protected $term;
 
 	/**
-	 * The post type.
+	 * The taxonomy.
 	 *
 	 * @var string
 	 */
@@ -29,7 +29,7 @@ class Collection {
 	 *
 	 * @param string $model_id The model id.
 	 *
-	 * @return \WP_Post|\WP_Error|null
+	 * @return \WP_Term|\WP_Error|null
 	 */
 	protected function findByModelId( string $model_id ) {
 		// if we don't have a model id, return null.
@@ -62,7 +62,7 @@ class Collection {
 	 *
 	 * @param \SureCart\Models\ProductCollection $model The model.
 	 *
-	 * @return \WP_Post|\WP_Error
+	 * @return \WP_Term|\WP_Error
 	 */
 	protected function sync( \SureCart\Models\ProductCollection $model ) {
 		$this->term = $this->findByModelId( $model->id );
@@ -79,7 +79,7 @@ class Collection {
 	 *
 	 * @param string $id The model id.
 	 *
-	 * @return \WP_Post|\WP_Error|false|null
+	 * @return bool|int|\WP_Error
 	 */
 	protected function delete( string $id ) {
 		$this->term = $this->findByModelId( $id );
@@ -97,7 +97,7 @@ class Collection {
 	 *
 	 * @param \SureCart\Models\ProductCollection $collection The collection model.
 	 *
-	 * @return \WP_Post|\WP_Error
+	 * @return \WP_Term|\WP_Error|null
 	 */
 	protected function create( \SureCart\Models\ProductCollection $collection ) {
 		// don't do these actions as they can slow down the sync.
@@ -119,6 +119,17 @@ class Collection {
 				'slug'        => $collection->slug,
 			]
 		);
+
+		// a same-named term can already exist (e.g. created directly in the taxonomy
+		// before the platform collection) — adopt it instead of failing, but only if
+		// it isn't already linked to another collection.
+		if ( is_wp_error( $term ) && 'term_exists' === $term->get_error_code() ) {
+			$existing = get_term( (int) $term->get_error_data( 'term_exists' ), $this->taxonomy );
+			if ( $existing instanceof \WP_Term && empty( get_term_meta( $existing->term_id, 'sc_id', true ) ) ) {
+				$this->term = $existing;
+				return $this->update( $collection );
+			}
+		}
 
 		// handle errors.
 		if ( is_wp_error( $term ) ) {
@@ -143,7 +154,7 @@ class Collection {
 	 *
 	 * @param \SureCart\Models\ProductCollection $collection The collection model.
 	 *
-	 * @return \WP_Post|\WP_Error
+	 * @return \WP_Term|\WP_Error|null
 	 */
 	protected function update( \SureCart\Models\ProductCollection $collection ) {
 		// find the post.

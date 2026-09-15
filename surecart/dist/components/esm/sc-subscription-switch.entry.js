@@ -1,11 +1,11 @@
 import { r as registerInstance, h, F as Fragment, a as getElement } from './index-25e5af33.js';
 import './fetch-cdff67be.js';
 import { o as onFirstVisible } from './lazy-deb42890.js';
-import { i as intervalString } from './price-1ff6aa07.js';
+import { i as intervalString } from './price-39d60d32.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import { a as apiFetch } from './index-824c562b.js';
 import './remove-query-args-938c53ea.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 
 const scSubscriptionSwitchCss = ":host{display:block;position:relative}[hidden]{display:none !important}.subscriptions-switch{display:grid;gap:0.5em}.subscriptions-switch__switcher{background:rgba(0, 0, 0, 0.035);padding:2px;line-height:1;border-radius:var(--sc-border-radius-small)}";
 const ScSubscriptionSwitchStyle0 = scSubscriptionSwitchCss;

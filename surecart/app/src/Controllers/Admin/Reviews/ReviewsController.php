@@ -26,7 +26,7 @@ class ReviewsController extends AdminController {
 			array(
 				'breadcrumbs'         => [
 					'reviews' => [
-						'title' => __( 'Product Reviews', 'surecart' ),
+						'title' => __( 'Reviews', 'surecart' ),
 					],
 				],
 				'enhanced_view_promo' => admin_url( 'admin.php?page=sc-reviews' ),
@@ -51,11 +51,7 @@ class ReviewsController extends AdminController {
 	 */
 	protected function renderSpaView() {
 		$this->enqueueSpaScripts( ReviewsScriptsController::class );
-		return $this->renderSpaShell(
-			'admin/reviews/spa',
-			'reviews',
-			__( 'Reviews', 'surecart' )
-		);
+		return $this->renderSpaShell( 'admin/reviews/spa', 'reviews' );
 	}
 
 	/**

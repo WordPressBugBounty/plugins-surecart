@@ -3,6 +3,7 @@
 namespace SureCart\Controllers\Admin\AutoFees;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Controllers\Admin\AutoFees\AutoFeesListTable;
 use SureCart\Controllers\Admin\AutoFees\AutoFeesScriptsController;
 use SureCart\Models\AutoFee;
@@ -11,19 +12,30 @@ use SureCart\Models\AutoFee;
  * Handles auto fees admin requests.
  */
 class AutoFeesController extends AdminController {
+	use RendersEnhancedAdminView;
+
 	/**
-	 * Auto Fees index.
+	 * Render the DataViews SPA view for dynamic pricing.
 	 */
-	public function index() {
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( AutoFeesScriptsController::class );
+		return $this->renderSpaShell( 'admin/auto-fees/spa', 'auto_fee' );
+	}
+
+	/**
+	 * Render the legacy WP_List_Table view for dynamic pricing.
+	 */
+	protected function renderWpListView() {
 		$table = new AutoFeesListTable();
 		$table->prepare_items();
 		$this->withHeader(
 			array(
-				'breadcrumbs' => [
+				'breadcrumbs'         => [
 					'auto_fee' => [
 						'title' => __( 'Dynamic Pricing', 'surecart' ),
 					],
 				],
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 
@@ -63,19 +75,21 @@ class AutoFeesController extends AdminController {
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( AutoFeesScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( AutoFeesScriptsController::class );
 
-		$this->preloadPaths(
-			[
-				'/wp/v2/users/me',
-				'/wp/v2/types?context=view',
-				'/wp/v2/types?context=edit',
-				'/surecart/v1/auto_fees/' . $request->query( 'id' ) . '?context=edit',
-			]
-		);
+		if ( $request->query( 'id' ) ) {
+			$this->preloadPaths(
+				[
+					'/wp/v2/users/me',
+					'/wp/v2/types?context=view',
+					'/wp/v2/types?context=edit',
+					'/surecart/v1/auto_fees/' . $request->query( 'id' ) . '?context=edit',
+				]
+			);
+		}
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs.
+		return $this->renderSpaShell( 'admin/auto-fees/spa' );
 	}
 
 	/**

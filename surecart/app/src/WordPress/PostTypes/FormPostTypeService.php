@@ -55,6 +55,7 @@ class FormPostTypeService {
 	public function bootstrap() {
 		add_action( 'display_post_states', [ $this, 'displayDefaultFormStatus' ] );
 		add_action( 'init', [ $this, 'registerPostType' ] );
+		add_action( 'rest_api_init', [ $this, 'registerRestFields' ] );
 
 		add_filter( "manage_{$this->post_type}_posts_columns", [ $this, 'postTypeColumns' ], 1 );
 		add_filter( 'post_row_actions', [ $this, 'addDuplicateRowAction' ], 10, 2 );
@@ -63,6 +64,7 @@ class FormPostTypeService {
 		add_action( 'in_admin_header', [ $this, 'showHeader' ] );
 		add_action( "manage_{$this->post_type}_posts_custom_column", [ $this, 'postTypeContent' ], 10, 2 );
 		add_action( 'use_block_editor_for_post', [ $this, 'forceGutenberg' ], 999, 2 );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'pointEditorBackLinkAtModernList' ] );
 		add_action( 'surecart/payments/mode', [ $this, 'forceTestModeForProvisionalAccounts' ] );
 	}
 
@@ -96,13 +98,14 @@ class FormPostTypeService {
 		return \SureCart::render(
 			'layouts/partials/admin-header',
 			[
-				'breadcrumbs'   => [
+				'breadcrumbs'         => [
 					'forms' => [
-						'title' => __( 'Forms', 'surecart' ),
+						'title' => __( 'Checkout Forms', 'surecart' ),
 					],
 				],
-				'claim_url'     => ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',
-				'claim_expired' => \SureCart::account()->claim_expired ?? false,
+				'claim_url'           => ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',
+				'claim_expired'       => \SureCart::account()->claim_expired ?? false,
+				'enhanced_view_promo' => admin_url( 'admin.php?page=sc-forms' ),
 			]
 		);
 	}
@@ -287,6 +290,94 @@ class FormPostTypeService {
 	}
 
 	/**
+	 * Expose the form's payment mode to the REST API.
+	 *
+	 * It lives in the `surecart/form` block's attributes rather than a column,
+	 * so the admin list would otherwise have to parse post content client-side.
+	 *
+	 * @return void
+	 */
+	public function registerRestFields() {
+		register_rest_field(
+			$this->post_type,
+			'mode',
+			[
+				'get_callback'    => function ( $post ) {
+					return Form::getMode( $post['id'] );
+				},
+				'update_callback' => null,
+				'schema'          => [
+					'description' => __( 'Payment mode of the form.', 'surecart' ),
+					'type'        => 'string',
+					'enum'        => [ 'live', 'test', '' ],
+					'context'     => [ 'view', 'edit' ],
+					'readonly'    => true,
+				],
+			]
+		);
+	}
+
+	/**
+	 * Send the form editor's "back" links to whichever list the store is using.
+	 *
+	 * The block editor builds those links as `edit.php?post_type=sc_form` in JS,
+	 * with no filter to change them, so a delegated click handler retargets them
+	 * while the modern list is active. Same hook the product content editor uses
+	 * to adjust its own editor chrome.
+	 *
+	 * @return void
+	 */
+	public function pointEditorBackLinkAtModernList() {
+		if ( ! is_admin() || ! get_option( 'surecart_enhanced_admin_views', true ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( ! $screen || $this->post_type !== $screen->post_type ) {
+			return;
+		}
+
+		wp_add_inline_script(
+			'wp-edit-post',
+			sprintf(
+				'( function () {
+					var listUrl = %s;
+					var postType = %s;
+					document.addEventListener( "click", function ( event ) {
+						var link = event.target && event.target.closest ? event.target.closest( "a[href*=\'edit.php\']" ) : null;
+						if ( ! link ) {
+							return;
+						}
+						var url;
+						try {
+							url = new URL( link.href, window.location.origin );
+						} catch ( e ) {
+							return;
+						}
+						// Only retarget the plain list link — Trash/filtered
+						// links carry extra params and must keep working.
+						if ( url.pathname.indexOf( "edit.php" ) === -1 ) {
+							return;
+						}
+						var params = new URLSearchParams( url.search );
+						if ( params.get( "post_type" ) !== postType ) {
+							return;
+						}
+						params.delete( "post_type" );
+						if ( Array.from( params.keys() ).length ) {
+							return;
+						}
+						event.preventDefault();
+						window.location.href = listUrl;
+					} );
+				} )();',
+				wp_json_encode( admin_url( 'admin.php?page=sc-forms' ) ),
+				wp_json_encode( $this->post_type )
+			)
+		);
+	}
+
+	/**
 	 * Let WordPress strip the duplicated flag from the URL so the notice doesn't re-show on refresh.
 	 *
 	 * @param array $args Removable query args.
@@ -308,6 +399,12 @@ class FormPostTypeService {
 	 */
 	public function addDuplicateRowAction( $actions, $post ) {
 		if ( $this->post_type !== $post->post_type || ! Form::canCreate() || ! current_user_can( 'edit_post', $post->ID ) ) {
+			return $actions;
+		}
+
+		// Trashed forms can't be duplicated (see Form::duplicate), and WordPress
+		// still runs this filter for them — don't offer a link that would fail.
+		if ( 'trash' === $post->post_status ) {
 			return $actions;
 		}
 

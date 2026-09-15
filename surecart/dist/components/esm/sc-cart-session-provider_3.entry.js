@@ -1,8 +1,8 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
-import { u as updateFormState, s as state } from './mutations-9ffd30f4.js';
-import { d as updateCheckout } from './index-a786f689.js';
+import { u as updateFormState, s as state } from './mutations-eb426408.js';
+import { d as updateCheckout } from './index-9fa5ca8c.js';
 import { c as createErrorNotice, s as state$1 } from './mutations-7458343f.js';
-import { c as clearCheckout } from './mutations-ae7167ad.js';
+import { c as clearCheckout } from './mutations-0c4375d0.js';
 import { s as setDefaultAnimation, g as getAnimation, b as animateTo, a as stopAnimations } from './animation-registry-de37bd7e.js';
 import { g as getAdditionalErrorMessages } from './getters-1049a6f8.js';
 import './index-18f5a1bc.js';
@@ -11,9 +11,9 @@ import './remove-query-args-938c53ea.js';
 import './add-query-args-0e2a8393.js';
 import './index-c5a96d53.js';
 import './google-e9085e27.js';
-import './currency-a0c9bff4.js';
+import './currency-eb33deae.js';
 import './store-b1758b00.js';
-import './price-1ff6aa07.js';
+import './price-39d60d32.js';
 import './fetch-cdff67be.js';
 import './index-824c562b.js';
 
@@ -87,7 +87,7 @@ const ScCartSessionProvider = class {
         }
     }
     render() {
-        return (h("sc-line-items-provider", { key: '4f389805680c0bba62eb5a90cc326aaad4e2fc31', order: state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: '45559f39cf7a79348a0fa5b89dd567ecb368b4d6' })));
+        return (h("sc-line-items-provider", { key: 'c04d655d468ea86306f3711925beb4063e2d2429', order: state.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: '36208ad96cd596bbde32921d5d9620a269a8470c' })));
     }
     get el() { return getElement(this); }
 };

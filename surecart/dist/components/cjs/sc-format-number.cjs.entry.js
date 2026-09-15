@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const currency = require('./currency-71fce0f0.js');
+const currency = require('./currency-b438c76d.js');
 
 const UNIT_TYPES = {
     kg: 'kilogram',

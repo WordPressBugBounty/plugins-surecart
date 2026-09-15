@@ -3,19 +3,21 @@
 namespace SureCart\Controllers\Admin\Customers;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Models\Customer;
 use SureCart\Controllers\Admin\Customers\CustomersListTable;
 use SureCart\Background\BulkActionService;
 
 /**
- * Handles product admin requests.
+ * Handles customer admin requests.
  */
 class CustomersController extends AdminController {
+	use RendersEnhancedAdminView;
 
 	/**
-	 * Customers index.
+	 * Render the legacy WP_List_Table view for customers.
 	 */
-	public function index() {
+	protected function renderWpListView() {
 		// instantiate the bulk actions service.
 		$bulk_action_service = new BulkActionService();
 		$bulk_action_service->bootstrap();
@@ -25,14 +27,23 @@ class CustomersController extends AdminController {
 		$table->prepare_items();
 		$this->withHeader(
 			array(
-				'breadcrumbs' => [
+				'breadcrumbs'         => [
 					'customers' => [
 						'title' => __( 'Customers', 'surecart' ),
 					],
 				],
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 		return \SureCart::view( 'admin/customers/index' )->with( [ 'table' => $table ] );
+	}
+
+	/**
+	 * Render the DataViews SPA view for customers.
+	 */
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( CustomersScriptsController::class );
+		return $this->renderSpaShell( 'admin/customers/spa', 'customers' );
 	}
 
 	/**
@@ -42,19 +53,21 @@ class CustomersController extends AdminController {
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( CustomersScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( CustomersScriptsController::class );
 
-		$this->preloadPaths(
-			[
-				'/wp/v2/users/me',
-				'/wp/v2/types?context=view',
-				'/wp/v2/types?context=edit',
-				'/surecart/v1/customers/' . $request->query( 'id' ) . '?context=edit&expand%5B0%5D=balances',
-			]
-		);
+		if ( $request->query( 'id' ) ) {
+			$this->preloadPaths(
+				[
+					'/wp/v2/users/me',
+					'/wp/v2/types?context=view',
+					'/wp/v2/types?context=edit',
+					'/surecart/v1/customers/' . $request->query( 'id' ) . '?context=edit&expand%5B0%5D=balances',
+				]
+			);
+		}
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs.
+		return $this->renderSpaShell( 'admin/customers/spa' );
 	}
 
 	/**

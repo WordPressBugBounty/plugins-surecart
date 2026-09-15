@@ -97,8 +97,8 @@ const ScButton = class {
     }
     render() {
         const Tag = this.href ? 'a' : 'button';
-        const interior = (index.h(index.Fragment, { key: '84d023e2186c1abc388d1de326806f9a8a658808' }, index.h("span", { key: 'c32560928901007caed8336c15d0f663be0f09f7', part: "prefix", class: "button__prefix" }, index.h("slot", { key: '46de2a01772f62073e3d08135d5b96d14243918a', onSlotchange: () => this.handleSlotChange(), name: "prefix" })), index.h("span", { key: '5db06a1370062fa8e1d23d40f876192e436a87ce', part: "label", class: "button__label" }, index.h("slot", { key: 'e7fcc1fa23f9c0c277e66332cedd5958b7a3d64d', onSlotchange: () => this.handleSlotChange() })), index.h("span", { key: '4a3b90458d4751d4f80942e792c55d18370f2173', part: "suffix", class: "button__suffix" }, index.h("slot", { key: '5b45213af863a205f706e0462650ab6c87f24a9e', onSlotchange: () => this.handleSlotChange(), name: "suffix" })), this.caret ? (index.h("span", { part: "caret", class: "button__caret" }, index.h("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round" }, index.h("polyline", { points: "6 9 12 15 18 9" })))) : (''), this.loading || this.busy ? index.h("sc-spinner", { exportparts: "base:spinner" }) : ''));
-        return (index.h(Tag, { key: '25a87670748d993aeab7bf5f045f48de4cea6b54', part: "base", class: {
+        const interior = (index.h(index.Fragment, { key: '654e94b67de0cd8c349455f42a02ba3f22cf33a4' }, index.h("span", { key: 'a8f21993463440796c51ba31887b0dacc3c2d711', part: "prefix", class: "button__prefix" }, index.h("slot", { key: '443b0b2f9f6f6adfc9c348e646e7422bbcadf034', onSlotchange: () => this.handleSlotChange(), name: "prefix" })), index.h("span", { key: '248e62de956f04b9e8ef990456b42ac5d6b6c50a', part: "label", class: "button__label" }, index.h("slot", { key: 'd3d8cc55165ec48fa21105e2aea2b659f91491f4', onSlotchange: () => this.handleSlotChange() })), index.h("span", { key: '7002d291ed55dea004898b8186cf7646be664fe7', part: "suffix", class: "button__suffix" }, index.h("slot", { key: 'bdab7f0bf45654187115824568dbb67fdaa27f46', onSlotchange: () => this.handleSlotChange(), name: "suffix" })), this.caret ? (index.h("span", { part: "caret", class: "button__caret" }, index.h("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round" }, index.h("polyline", { points: "6 9 12 15 18 9" })))) : (''), this.loading || this.busy ? index.h("sc-spinner", { exportparts: "base:spinner" }) : ''));
+        return (index.h(Tag, { key: '156d63314dcaf2108729c328a17d20a06defc588', part: "base", class: {
                 'button': true,
                 [`button--${this.type}`]: !!this.type,
                 [`button--${this.size}`]: true,
@@ -256,7 +256,7 @@ const ScIcon = class {
         }
     }
     render() {
-        return index.h("div", { key: '18d7d08cbf7a046767fcb296769c3a403af6c46b', part: "base", class: "icon", role: "img", "aria-label": this.getLabel(), innerHTML: this.svg });
+        return index.h("div", { key: '25b571f8e2d520b9e9641907660810da2a969719', part: "base", class: "icon", role: "img", "aria-label": this.getLabel(), innerHTML: this.svg });
     }
     static get assetsDirs() { return ["icon-assets"]; }
     static get watchers() { return {

@@ -85,7 +85,7 @@ class UserService extends IntegrationService implements IntegrationInterface, Pu
 	 * @return string
 	 */
 	public function getLabel() {
-		return __( 'Add WordPress User Role', 'surecart' );
+		return __( 'WordPress User Role', 'surecart' );
 	}
 
 	/**

@@ -15,7 +15,6 @@ class ShortcodesService {
 	 */
 	protected $old_blocks_by_name = [
 		'surecart/product-collection-tags' => 'surecart/product-collection-tags',
-		'surecart/product-media'           => 'surecart/product-media-old',
 		'surecart/product-title'           => 'surecart/product-title-old',
 		'surecart/product-description'     => 'surecart/product-description-old',
 		'surecart/product-price'           => 'surecart/product-price',
@@ -117,6 +116,10 @@ class ShortcodesService {
 
 					$shortcode_attrs = apply_filters( "shortcode_atts_{$name}", $shortcode_attrs, $shortcode_attrs, $shortcode_attrs, $name );
 
+					// WP validates block attributes against block.json but never coerces them,
+					// so a shortcode author's "false" would otherwise read as true.
+					$shortcode_attrs = $this->castAttributesToBlockTypes( $block_name, $shortcode_attrs );
+
 					// If the block is old block, we need to process it differently.
 					$block = (object) [
 						'parsed_block' => [
@@ -149,6 +152,53 @@ class ShortcodesService {
 				$options
 			)
 		);
+	}
+
+	/**
+	 * Cast string shortcode values to the block's registered attribute types.
+	 *
+	 * Only strings are touched: booleans accept true/false, 1/0, yes/no, on/off (anything else
+	 * is left for WP to reject), numbers are cast only when numeric. Everything else passes through unchanged.
+	 *
+	 * @param string $block_name The registered block name.
+	 * @param array  $attributes Shortcode attributes with defaults applied.
+	 *
+	 * @return array
+	 */
+	protected function castAttributesToBlockTypes( string $block_name, array $attributes ): array {
+		$block_type = \WP_Block_Type_Registry::get_instance()->get_registered( $block_name );
+		if ( ! $block_type || empty( $block_type->attributes ) ) {
+			return $attributes;
+		}
+
+		foreach ( $attributes as $key => $value ) {
+			if ( ! is_string( $value ) || empty( $block_type->attributes[ $key ]['type'] ) ) {
+				continue;
+			}
+
+			switch ( $block_type->attributes[ $key ]['type'] ) {
+				case 'boolean':
+					$bool = filter_var( $value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE );
+					if ( null !== $bool ) {
+						$attributes[ $key ] = $bool;
+					}
+					break;
+				case 'integer':
+					if ( is_numeric( $value ) ) {
+						$attributes[ $key ] = (int) $value;
+					}
+					break;
+				case 'number':
+					if ( is_numeric( $value ) ) {
+						// + 0 keeps "4" an int; a float cast would emit 4.0 into the block JSON
+						// and break integer-only consumers (e.g. grid repeat()).
+						$attributes[ $key ] = $value + 0;
+					}
+					break;
+			}
+		}
+
+		return $attributes;
 	}
 
 	/**

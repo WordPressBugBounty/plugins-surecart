@@ -768,6 +768,11 @@ abstract class DatabaseModel implements ArrayAccess, JsonSerializable, Arrayable
 			return $item;
 		}
 
+		// The row may have been deleted in the meantime.
+		if ( empty( $item ) ) {
+			return new \WP_Error( 'not_found', __( 'This does not exist.', 'surecart' ), [ 'status' => 404 ] );
+		}
+
 		$update = $this->getQuery()->where( 'id', $item->id )->update(
 			array_merge(
 				[ 'updated_at' => current_time( 'mysql' ) ],

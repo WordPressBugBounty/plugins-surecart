@@ -24,9 +24,9 @@ const ScUpsellCountdownTimer = class {
         }, 1000);
     }
     render() {
-        return (h(Host, { key: '3494bf984bd24e5fac3d8d2c30cb88ac225a36ca', role: "timer", class: {
+        return (h(Host, { key: '1a3947d65f0a98d0c95c2aedcdffb37c8d0d8667', role: "timer", class: {
                 'sc-upsell-countdown-timer': true,
-            } }, this.showIcon && h("sc-icon", { key: 'cbc5fab4d5152f10a549ac869cfa8e36f42bbe0c', name: "clock" }), h("span", { key: '6341a0a1df3542dc60b973b06c8ebe2b0f8df13e' }, h("slot", { key: '6e9d40ed94611a86810ba6c1fee82eb512a566ee', name: "offer-expire-text" }), " ", h("strong", { key: '6690bdd080931561c855d508d311f0e27660322a' }, this.formattedTime))));
+            } }, this.showIcon && h("sc-icon", { key: 'a8ab4b4819ecc8de5a2a4d3937f9b1962db7b1e0', name: "clock" }), h("span", { key: 'c19a6d56f5caf854bbfee1f663f4ffa9a984131f' }, h("slot", { key: 'd952c7530908e3dc7e1978a3250db8ae7bb142d6', name: "offer-expire-text" }), " ", h("strong", { key: '36339f6f95269f30ca34a6128d82dd37b853e784' }, this.formattedTime))));
     }
 };
 ScUpsellCountdownTimer.style = ScUpsellCountdownTimerStyle0;

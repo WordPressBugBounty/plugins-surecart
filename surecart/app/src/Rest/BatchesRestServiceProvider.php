@@ -98,6 +98,11 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 			'per_page' => [
 				'description' => __( 'Items per page (1-100).', 'surecart' ),
 				'type'        => 'integer',
+				// Matches the page size every shipped caller sends (see
+				// util/batches.js) so an omitted per_page still yields a
+				// correct X-WP-TotalPages instead of guessing from the
+				// current page's row count.
+				'default'     => 100,
 			],
 		];
 	}
@@ -109,21 +114,27 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 	 * @var array<string, string>
 	 */
 	private const RESOURCE_CAP_SUFFIX = [
-		'products'            => 'sc_products',
-		'product_collections' => 'sc_products',
-		'product_groups'      => 'sc_products',
-		'prices'              => 'sc_prices',
-		'reviews'             => 'sc_reviews',
-		'orders'              => 'sc_orders',
-		'customers'           => 'sc_customers',
-		'subscriptions'       => 'sc_subscriptions',
-		'invoices'            => 'sc_invoices',
-		'coupons'             => 'sc_coupons',
-		'promotions'          => 'sc_promotions',
-		'affiliations'        => 'sc_affiliates',
-		'licenses'            => 'sc_licenses',
-		'webhooks'            => 'sc_webhooks',
-		'medias'              => 'sc_medias',
+		'products'             => 'sc_products',
+		'product_collections'  => 'sc_products',
+		'product_groups'       => 'sc_products',
+		'prices'               => 'sc_prices',
+		'bumps'                => 'sc_prices',
+		'auto_fees'            => 'sc_prices',
+		'upsell_funnels'       => 'sc_prices',
+		'reviews'              => 'sc_reviews',
+		'orders'               => 'sc_orders',
+		'customers'            => 'sc_customers',
+		'subscriptions'        => 'sc_subscriptions',
+		'invoices'             => 'sc_invoices',
+		'coupons'              => 'sc_coupons',
+		'promotions'           => 'sc_promotions',
+		'affiliations'         => 'sc_affiliates',
+		'referrals'            => 'sc_affiliates',
+		'payouts'              => 'sc_affiliates',
+		'affiliation_requests' => 'sc_affiliates',
+		'licenses'             => 'sc_licenses',
+		'webhooks'             => 'sc_webhooks',
+		'medias'               => 'sc_medias',
 	];
 
 	public function get_items_permissions_check( $request ) {
@@ -158,7 +169,7 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 		}
 
 		foreach ( $operations as $op ) {
-			$cap = $this->requiredCapabilityFor(
+			$cap = self::requiredCapabilityFor(
 				$op['http_method'] ?? '',
 				$op['path'] ?? ''
 			);
@@ -202,7 +213,7 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 	 * @param string $path        e.g. `/v1/products/abc`.
 	 * @return string|null
 	 */
-	private function requiredCapabilityFor( string $http_method, string $path ): ?string {
+	public static function requiredCapabilityFor( string $http_method, string $path ): ?string {
 		if ( ! preg_match( '#^/v1/([a-z_]+)#i', $path, $matches ) ) {
 			return null;
 		}
@@ -214,6 +225,12 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 
 		$verb = strtoupper( $http_method );
 		if ( 'GET' === $verb ) {
+			// Price-family resources (prices, bumps, auto_fees, upsell_funnels)
+			// gate GET with edit_, not read_ — see e.g.
+			// BumpRestServiceProvider::get_items_permissions_check().
+			if ( 'sc_prices' === $suffix ) {
+				return 'edit_' . $suffix;
+			}
 			return 'read_' . $suffix;
 		}
 		if ( 'DELETE' === $verb ) {

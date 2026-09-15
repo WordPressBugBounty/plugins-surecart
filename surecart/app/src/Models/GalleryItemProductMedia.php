@@ -48,13 +48,11 @@ class GalleryItemProductMedia extends ModelsGalleryItem implements GalleryItem {
 
 		$image = '';
 
-		// Handle media.
+		// Fall through so expanded media gets the same lightbox wiring (directives, metadata, trigger) as the url branch.
 		if ( isset( $this->item->media ) ) {
-			return $this->item->media->html( $size, $attr );
-		}
-
-		// Handle media url.
-		if ( isset( $this->item->url ) ) {
+			$image = $this->item->media->html( $size, $attr );
+		} elseif ( isset( $this->item->url ) ) {
+			// Handle media url.
 			$attributes = $this->attributes( $size, $attr );
 
 			// build the image tag.
@@ -68,9 +66,12 @@ class GalleryItemProductMedia extends ModelsGalleryItem implements GalleryItem {
 		// add any styles.
 		$tags = new \WP_HTML_Tag_Processor( $image );
 
+		// get the image tag.
+		$has_image = $tags->next_tag( 'img' );
+
 		// add inline styles.
 		if ( ! empty( $attr['style'] ) ) {
-			if ( $tags->next_tag( 'img' ) && ! empty( $attr['style'] ) ) {
+			if ( $has_image && ! empty( $attr['style'] ) ) {
 				$tags->set_attribute( 'style', $attr['style'] );
 			}
 		}
@@ -90,12 +91,14 @@ class GalleryItemProductMedia extends ModelsGalleryItem implements GalleryItem {
 						$this->id => wp_parse_args(
 							$metadata,
 							array(
-								'uploadedSrc'      => $full_data->src,
-								'imgClassNames'    => $full_data->class,
+								'uploadedSrc'      => $full_data->src ?? '',
+								'imgClassNames'    => $full_data->class ?? '',
+								'targetWidth'      => $full_data->width ?? 0,
+								'targetHeight'     => $full_data->height ?? 0,
 								'scaleAttr'        => false, // false or 'contain'.
-								'alt'              => $full_data->alt,
+								'alt'              => $full_data->alt ?? '',
 								// translators: %s is the image title.
-								'screenReaderText' => sprintf( __( 'Viewing image: %s.', 'surecart' ), $full_data->alt ),
+								'screenReaderText' => sprintf( __( 'Viewing image: %s.', 'surecart' ), $full_data->alt ?? '' ),
 								'galleryId'        => get_the_ID(),
 							),
 						),

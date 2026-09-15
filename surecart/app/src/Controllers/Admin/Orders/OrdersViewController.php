@@ -3,26 +3,30 @@
 namespace SureCart\Controllers\Admin\Orders;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Controllers\Admin\Orders\OrdersListTable;
 
 /**
- * Handles product admin requests.
+ * Handles order admin requests.
  */
 class OrdersViewController extends AdminController {
+	use RendersEnhancedAdminView;
+
 	/**
-	 * Orders index.
+	 * Render the legacy WP_List_Table view for orders.
 	 */
-	public function index() {
+	protected function renderWpListView() {
 		$table = new OrdersListTable();
 		$table->prepare_items();
 		$this->withHeader(
 			array(
-				'breadcrumbs' => [
+				'breadcrumbs'         => [
 					'orders' => [
 						'title' => __( 'Orders', 'surecart' ),
 					],
 				],
-				'report_url'       => SURECART_REPORTS_URL . 'orders',
+				'report_url'          => $this->reportUrl(),
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 		return \SureCart::view( 'admin/orders/index' )->with(
@@ -33,11 +37,21 @@ class OrdersViewController extends AdminController {
 	}
 
 	/**
-	 * Orders edit
+	 * Render the DataViews SPA view for orders.
+	 */
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( OrderScriptsController::class );
+		return $this->renderSpaShell( 'admin/orders/spa', 'orders' );
+	}
+
+	/**
+	 * Orders edit.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( OrderScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( OrderScriptsController::class );
 
 		// preload some requests.
 		if ( $request->query( 'id' ) ) {
@@ -51,15 +65,18 @@ class OrdersViewController extends AdminController {
 			);
 		}
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs, so no
+		// breadcrumb is passed to the shell.
+		return $this->renderSpaShell( 'admin/orders/spa' );
 	}
 
 	/**
 	 * Archive orders.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
 	 */
 	public function archive( $request ) {
-		// flash an error message
+		// flash an error message.
 		\SureCart::flash()->add( 'errors', 'Please enter a valid email address.' );
 		// redirect to order index page.
 		return \SureCart::redirect()->to( \SureCart::getUrl()->index( 'order' ) );

@@ -3,6 +3,7 @@
 namespace SureCart\Controllers\Admin\AffiliationReferrals;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Models\Referral;
 use SureCartCore\Responses\RedirectResponse;
 
@@ -10,10 +11,20 @@ use SureCartCore\Responses\RedirectResponse;
  * Handles affiliate referrals admin routes.
  */
 class AffiliationReferralsController extends AdminController {
+	use RendersEnhancedAdminView;
+
+	/**
+	 * Render the DataViews SPA view for affiliate referrals.
+	 */
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( AffiliationReferralsScriptsController::class );
+		return $this->renderSpaShell( 'admin/affiliation-referrals/spa', 'affiliate_referrals' );
+	}
+
 	/**
 	 * Affiliate Referral index.
 	 */
-	public function index() {
+	protected function renderWpListView() {
 		$table = new AffiliationReferralsListTable();
 		$table->prepare_items();
 
@@ -21,10 +32,11 @@ class AffiliationReferralsController extends AdminController {
 			array(
 				'breadcrumbs' => [
 					'affiliate_referrals' => [
-						'title' => __( 'Affiliate Referrals', 'surecart' ),
+						'title' => $this->pageTitle(),
 					],
 				],
-				'report_url'  => SURECART_REPORTS_URL . 'referrals',
+				'report_url'  => $this->reportUrl(),
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 
@@ -49,19 +61,19 @@ class AffiliationReferralsController extends AdminController {
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( AffiliationReferralsScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( AffiliationReferralsScriptsController::class );
 
 		$this->preloadPaths(
 			[
 				'/wp/v2/users/me',
 				'/wp/v2/types?context=view',
 				'/wp/v2/types?context=edit',
-				'/surecart/v1/affiliation_referrals/' . $request->query( 'id' ) . '?context=edit',
+				'/surecart/v1/referrals/' . $request->query( 'id' ) . '?context=edit&expand%5B0%5D=affiliation&expand%5B1%5D=checkout&expand%5B2%5D=checkout.order&expand%5B3%5D=payout',
 			]
 		);
 
 		// return view.
-		return '<div id ="app"></div>';
+		return $this->renderSpaShell( 'admin/affiliation-referrals/spa' );
 	}
 
 	/**

@@ -26,7 +26,8 @@ class ProductContextShortcodeWrapper {
 		}
 
 		return function ( $attributes = '', $content = null ) use ( $callback ) {
-			// Accept both `id` and `product_id`; `product_id` (these shortcodes' native param) wins.
+			// Accept both `id` and `product_id`; `product_id` wins here. Note this diverges from
+			// the alias-merge in ShortcodesService (`id` wins) — only observable when both are passed.
 			$product_id = is_array( $attributes )
 				? ( $attributes['product_id'] ?? $attributes['id'] ?? '' )
 				: '';

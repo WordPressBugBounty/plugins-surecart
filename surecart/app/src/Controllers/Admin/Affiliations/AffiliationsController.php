@@ -3,6 +3,7 @@
 namespace SureCart\Controllers\Admin\Affiliations;
 
 use SureCart\Controllers\Admin\AdminController;
+use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Controllers\Admin\Affiliations\AffiliationsListTable;
 use SureCart\Models\Affiliation;
 
@@ -10,10 +11,20 @@ use SureCart\Models\Affiliation;
  * Handles Affiliation admin routes.
  */
 class AffiliationsController extends AdminController {
+	use RendersEnhancedAdminView;
+
+	/**
+	 * Render the DataViews SPA view for affiliates.
+	 */
+	protected function renderSpaView() {
+		$this->enqueueSpaScripts( AffiliationsScriptsController::class );
+		return $this->renderSpaShell( 'admin/affiliations/spa', 'affiliates' );
+	}
+
 	/**
 	 * Affiliates index.
 	 */
-	public function index() {
+	protected function renderWpListView() {
 		$table = new AffiliationsListTable();
 		$table->prepare_items();
 
@@ -24,6 +35,7 @@ class AffiliationsController extends AdminController {
 						'title' => __( 'Affiliates', 'surecart' ),
 					],
 				],
+				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
 
@@ -42,7 +54,7 @@ class AffiliationsController extends AdminController {
 	 */
 	public function edit( $request ) {
 		// enqueue needed script.
-		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( AffiliationsScriptsController::class, 'enqueue' ) );
+		$this->enqueueSpaScripts( AffiliationsScriptsController::class );
 
 		$this->preloadPaths(
 			[
@@ -53,8 +65,8 @@ class AffiliationsController extends AdminController {
 			]
 		);
 
-		// return view.
-		return '<div id="app"></div>';
+		// The React detail component renders its own breadcrumbs.
+		return $this->renderSpaShell( 'admin/affiliations/spa' );
 	}
 
 	/**

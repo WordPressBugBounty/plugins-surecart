@@ -22,6 +22,11 @@ export declare const fullShippingAddressRequired: () => boolean;
  */
 export declare const shippingAddressRequired: () => boolean;
 /**
+ * Is the phone required for the checkout?
+ * Set by the platform — e.g. for specific payment processors or a shipping label provider.
+ */
+export declare const phoneRequired: () => boolean;
+/**
  * Get a complete address by type, with Stripe-formatted field names (line1/line2).
  */
 export declare const getCompleteAddress: (type?: 'shipping' | 'billing') => {

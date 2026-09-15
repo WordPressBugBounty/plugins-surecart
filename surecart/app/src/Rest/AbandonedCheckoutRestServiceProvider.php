@@ -56,7 +56,7 @@ class AbandonedCheckoutRestServiceProvider extends RestServiceProvider implement
 					'readonly'    => true,
 				],
 				'notification_status'         => [
-					'description' => esc_html__( 'The current notification status for this abandonded checkout, which can be one of not_sent, scheduled, or sent.', 'surecart' ),
+					'description' => esc_html__( 'The current notification status for this abandoned checkout, which can be one of not_scheduled, scheduled, or sent.', 'surecart' ),
 					'type'        => 'string',
 					'readonly'    => true,
 				],

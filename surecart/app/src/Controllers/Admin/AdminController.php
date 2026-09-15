@@ -49,6 +49,7 @@ abstract class AdminController {
 						'claim_expired'       => \SureCart::account()->claim_expired ?? false,
 						'report_url'          => $args['report_url'] ?? '',
 						'enhanced_view_promo' => $args['enhanced_view_promo'] ?? null,
+						'hidden'              => $args['hidden'] ?? false,
 					]
 				);
 			}

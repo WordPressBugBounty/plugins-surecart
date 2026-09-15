@@ -881,6 +881,7 @@ export interface Checkout extends Object {
     shipping_display_amount?: string;
     shipping_address?: string | Address;
     shipping_enabled?: boolean;
+    phone_required?: boolean;
     shipping_choices?: {
         object: 'list';
         pagination: Pagination;

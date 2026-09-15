@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
+class ComposerStaticInit99943149487d380e19d53f33d878f7b2
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -589,6 +589,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AdminController.php',
         'SureCart\\Controllers\\Admin\\AffiliationClicks\\AffiliationClicksController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AffiliationClicks/AffiliationClicksController.php',
         'SureCart\\Controllers\\Admin\\AffiliationClicks\\AffiliationClicksListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AffiliationClicks/AffiliationClicksListTable.php',
+        'SureCart\\Controllers\\Admin\\AffiliationClicks\\AffiliationClicksScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AffiliationClicks/AffiliationClicksScriptsController.php',
         'SureCart\\Controllers\\Admin\\AffiliationPayoutGroups\\AffiliationPayoutGroupsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AffiliationPayoutGroups/AffiliationPayoutGroupsController.php',
         'SureCart\\Controllers\\Admin\\AffiliationPayoutGroups\\AffiliationPayoutGroupsScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AffiliationPayoutGroups/AffiliationPayoutGroupsScriptsController.php',
         'SureCart\\Controllers\\Admin\\AffiliationPayouts\\AffiliationPayoutsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/AffiliationPayouts/AffiliationPayoutsController.php',
@@ -614,6 +615,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Controllers\\Admin\\Bundles\\BundlesListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Bundles/BundlesListTable.php',
         'SureCart\\Controllers\\Admin\\CancellationInsights\\CancellationInsightsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/CancellationInsights/CancellationInsightsController.php',
         'SureCart\\Controllers\\Admin\\CancellationInsights\\CancellationInsightsListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/CancellationInsights/CancellationInsightsListTable.php',
+        'SureCart\\Controllers\\Admin\\CancellationInsights\\CancellationInsightsScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/CancellationInsights/CancellationInsightsScriptsController.php',
         'SureCart\\Controllers\\Admin\\Cart\\CartController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Cart/CartController.php',
         'SureCart\\Controllers\\Admin\\Cart\\CartScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Cart/CartScriptsController.php',
         'SureCart\\Controllers\\Admin\\Checkouts\\CheckoutScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Checkouts/CheckoutScriptsController.php',
@@ -627,6 +629,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Controllers\\Admin\\Dashboard\\DashboardController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Dashboard/DashboardController.php',
         'SureCart\\Controllers\\Admin\\Dashboard\\DashboardScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Dashboard/DashboardScriptsController.php',
         'SureCart\\Controllers\\Admin\\Forms\\FormsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Forms/FormsController.php',
+        'SureCart\\Controllers\\Admin\\Forms\\FormsScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Forms/FormsScriptsController.php',
         'SureCart\\Controllers\\Admin\\Invoices\\InvoiceScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Invoices/InvoiceScriptsController.php',
         'SureCart\\Controllers\\Admin\\Invoices\\InvoicesListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Invoices/InvoicesListTable.php',
         'SureCart\\Controllers\\Admin\\Invoices\\InvoicesViewController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Invoices/InvoicesViewController.php',
@@ -658,8 +661,6 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Controllers\\Admin\\Settings\\CacheSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/CacheSettings.php',
         'SureCart\\Controllers\\Admin\\Settings\\MCPSettings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/MCPSettings.php',
         'SureCart\\Controllers\\Admin\\Settings\\Settings' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Settings/Settings.php',
-        'SureCart\\Controllers\\Admin\\Subscriptions\\Scripts\\EditScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Subscriptions/Scripts/EditScriptsController.php',
-        'SureCart\\Controllers\\Admin\\Subscriptions\\Scripts\\ShowScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Subscriptions/Scripts/ShowScriptsController.php',
         'SureCart\\Controllers\\Admin\\Subscriptions\\SubscriptionScriptsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Subscriptions/SubscriptionScriptsController.php',
         'SureCart\\Controllers\\Admin\\Subscriptions\\SubscriptionsController' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Subscriptions/SubscriptionsController.php',
         'SureCart\\Controllers\\Admin\\Subscriptions\\SubscriptionsListTable' => __DIR__ . '/../..' . '/app/src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php',
@@ -680,6 +681,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Controllers\\Rest\\AutoFeeProtocolController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AutoFeeProtocolController.php',
         'SureCart\\Controllers\\Rest\\AutoFeesController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/AutoFeesController.php',
         'SureCart\\Controllers\\Rest\\BalanceTransactionsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BalanceTransactionsController.php',
+        'SureCart\\Controllers\\Rest\\BatchOperationsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BatchOperationsController.php',
         'SureCart\\Controllers\\Rest\\BatchesController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BatchesController.php',
         'SureCart\\Controllers\\Rest\\BrandController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BrandController.php',
         'SureCart\\Controllers\\Rest\\BumpsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/BumpsController.php',
@@ -699,6 +701,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Controllers\\Rest\\DownloadsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/DownloadsController.php',
         'SureCart\\Controllers\\Rest\\DraftCheckoutsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/DraftCheckoutsController.php',
         'SureCart\\Controllers\\Rest\\ExportsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ExportsController.php',
+        'SureCart\\Controllers\\Rest\\FormsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/FormsController.php',
         'SureCart\\Controllers\\Rest\\FulfillmentsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/FulfillmentsController.php',
         'SureCart\\Controllers\\Rest\\ImportRowsController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/ImportRowsController.php',
         'SureCart\\Controllers\\Rest\\IncomingWebhooksController' => __DIR__ . '/../..' . '/app/src/Controllers/Rest/IncomingWebhooksController.php',
@@ -980,6 +983,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Models\\AutoFeeProtocol' => __DIR__ . '/../..' . '/app/src/Models/AutoFeeProtocol.php',
         'SureCart\\Models\\BalanceTransaction' => __DIR__ . '/../..' . '/app/src/Models/BalanceTransaction.php',
         'SureCart\\Models\\Batch' => __DIR__ . '/../..' . '/app/src/Models/Batch.php',
+        'SureCart\\Models\\BatchOperation' => __DIR__ . '/../..' . '/app/src/Models/BatchOperation.php',
         'SureCart\\Models\\Blocks\\AbstractProductListBlock' => __DIR__ . '/../..' . '/app/src/Models/Blocks/AbstractProductListBlock.php',
         'SureCart\\Models\\Blocks\\ProductListBlock' => __DIR__ . '/../..' . '/app/src/Models/Blocks/ProductListBlock.php',
         'SureCart\\Models\\Blocks\\ProductPageBlock' => __DIR__ . '/../..' . '/app/src/Models/Blocks/ProductPageBlock.php',
@@ -1183,6 +1187,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Rest\\AutoFeeProtocolRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AutoFeeProtocolRestServiceProvider.php',
         'SureCart\\Rest\\AutoFeeRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/AutoFeeRestServiceProvider.php',
         'SureCart\\Rest\\BalanceTransactionRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BalanceTransactionRestServiceProvider.php',
+        'SureCart\\Rest\\BatchOperationsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BatchOperationsRestServiceProvider.php',
         'SureCart\\Rest\\BatchesRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BatchesRestServiceProvider.php',
         'SureCart\\Rest\\BlockPatternsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BlockPatternsRestServiceProvider.php',
         'SureCart\\Rest\\BrandRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/BrandRestServiceProvider.php',
@@ -1203,6 +1208,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Rest\\DownloadRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/DownloadRestServiceProvider.php',
         'SureCart\\Rest\\DraftCheckoutRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/DraftCheckoutRestServiceProvider.php',
         'SureCart\\Rest\\ExportsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ExportsRestServiceProvider.php',
+        'SureCart\\Rest\\FormsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/FormsRestServiceProvider.php',
         'SureCart\\Rest\\FulfillmentRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/FulfillmentRestServiceProvider.php',
         'SureCart\\Rest\\ImportRowsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/ImportRowsRestServiceProvider.php',
         'SureCart\\Rest\\IncomingWebhooksRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/IncomingWebhooksRestServiceProvider.php',
@@ -1210,6 +1216,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Rest\\IntegrationsCatalogRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/IntegrationsCatalogRestServiceProvider.php',
         'SureCart\\Rest\\IntegrationsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/IntegrationsRestServiceProvider.php',
         'SureCart\\Rest\\InvoicesRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/InvoicesRestServiceProvider.php',
+        'SureCart\\Rest\\LearnBootRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/LearnBootRestServiceProvider.php',
         'SureCart\\Rest\\LicenseRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/LicenseRestServiceProvider.php',
         'SureCart\\Rest\\LineItemsRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/LineItemsRestServiceProvider.php',
         'SureCart\\Rest\\LoginRestServiceProvider' => __DIR__ . '/../..' . '/app/src/Rest/LoginRestServiceProvider.php',
@@ -1333,6 +1340,7 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
         'SureCart\\Webhooks\\WebhooksService' => __DIR__ . '/../..' . '/app/src/Webhooks/WebhooksService.php',
         'SureCart\\Webhooks\\WebhooksServiceProvider' => __DIR__ . '/../..' . '/app/src/Webhooks/WebhooksServiceProvider.php',
         'SureCart\\WordPress\\ActionsService' => __DIR__ . '/../..' . '/app/src/WordPress/ActionsService.php',
+        'SureCart\\WordPress\\Admin\\AdminPageRegistry' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/AdminPageRegistry.php',
         'SureCart\\WordPress\\Admin\\Menus\\AdminMenuPageService' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/AdminMenuPageService.php',
         'SureCart\\WordPress\\Admin\\Menus\\AdminMenuPageServiceProvider' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/AdminMenuPageServiceProvider.php',
         'SureCart\\WordPress\\Admin\\Menus\\AdminToolbarService' => __DIR__ . '/../..' . '/app/src/WordPress/Admin/Menus/AdminToolbarService.php',
@@ -1423,10 +1431,10 @@ class ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb9dce34efcc86fc0cbd5b4acb6ef2c69::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit99943149487d380e19d53f33d878f7b2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit99943149487d380e19d53f33d878f7b2::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit99943149487d380e19d53f33d878f7b2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit99943149487d380e19d53f33d878f7b2::$classMap;
 
         }, null, ClassLoader::class);
     }

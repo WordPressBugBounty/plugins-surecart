@@ -27,5 +27,12 @@ class CouponScriptsController extends AdminModelEditController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/coupons';
+	protected $path = self::UNIFIED_SPA_PATH;
+
+	/**
+	 * Opt into the dataviews stylesheet enqueue (handled by the parent).
+	 *
+	 * @var bool
+	 */
+	protected $needs_dataviews_style = true;
 }

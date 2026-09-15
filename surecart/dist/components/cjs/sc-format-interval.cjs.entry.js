@@ -3,8 +3,8 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const price = require('./price-da3cab3d.js');
-require('./currency-71fce0f0.js');
+const price = require('./price-9dddd853.js');
+require('./currency-b438c76d.js');
 
 const ScFormatInterval = class {
     constructor(hostRef) {

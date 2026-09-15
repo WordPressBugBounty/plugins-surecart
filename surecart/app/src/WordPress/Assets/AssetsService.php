@@ -108,7 +108,7 @@ class AssetsService {
 			// enqueue it.
 			wp_enqueue_style( 'surecart-themes-default' );
 
-			$asset_file = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/templates/customer-dashboard.asset.php';
+			$asset_file = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/templates/customer-dashboard.asset.php' );
 			wp_enqueue_style(
 				'surecart-templates-customer-dashboard',
 				trailingslashit( \SureCart::core()->assets()->getUrl() ) . 'dist/templates/customer-dashboard.css',

@@ -39,6 +39,12 @@ if ( count( $gallery ) === 1 ) {
 wp_enqueue_style( 'surecart-image-slider' );
 wp_enqueue_script_module( '@surecart/image-slider' );
 
+// the slide visibility directives use the surecart/product-page store, which no ancestor enqueues when this renders standalone (e.g. via shortcode). Idempotent on product pages.
+wp_enqueue_script_module( '@surecart/product-page' );
+
+// shortcode attributes are strings — Swiper needs an int for slidesPerView/slidesPerGroup.
+$thumbnails_per_page = (int) ( $attributes['thumbnails_per_page'] ?? 5 );
+
 // handle slideshow.
 $slider_options = array(
 	'activeBreakpoint'   => apply_filters( 'surecart/image-slider/active-breakpoint', $attributes['desktop_gallery'] ? 782 : false ),
@@ -47,12 +53,12 @@ $slider_options = array(
 		'spaceBetween' => 40,
 	),
 	'thumbSliderOptions' => array(
-		'slidesPerView'  => $attributes['thumbnails_per_page'] ?? 5,
-		'slidesPerGroup' => $attributes['thumbnails_per_page'] ?? 5,
+		'slidesPerView'  => $thumbnails_per_page,
+		'slidesPerGroup' => $thumbnails_per_page,
 		'breakpoints'    => array(
 			320 => array(
-				'slidesPerView'  => $attributes['thumbnails_per_page'] ?? 5,
-				'slidesPerGroup' => $attributes['thumbnails_per_page'] ?? 5,
+				'slidesPerView'  => $thumbnails_per_page,
+				'slidesPerGroup' => $thumbnails_per_page,
 			),
 		),
 	),
@@ -62,6 +68,10 @@ $height = 'auto';
 if ( ! $auto_height && ! empty( $attributes['height'] ) ) {
 	$height = $attributes['height'];
 }
+
+// `width` caps the whole slideshow, not just each slide, or the thumb strip stays full width.
+// Centered here because the slideshow root has no block wrapper class (its img/text-align rules would hit the slider).
+$wrapper_style = ! empty( $width ) ? 'max-width: min(' . $width . ', 100%); margin-left: auto; margin-right: auto;' : '';
 
 wp_interactivity_state(
 	'surecart/image-slider',

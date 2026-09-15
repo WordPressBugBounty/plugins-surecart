@@ -10,7 +10,7 @@ const ScMenuLabel = class {
         registerInstance(this, hostRef);
     }
     render() {
-        return (h("div", { key: 'df374e90e3b6700b7dee08d59b3bb2d95e16d269', part: "base", class: "menu-label" }, h("slot", { key: '7f81110eae1ed110080e4edd3fd92e350a85eef4' })));
+        return (h("div", { key: 'dd8b606b8661a03b0f7ad425571bc207910f9f6d', part: "base", class: "menu-label" }, h("slot", { key: 'b682fe0585c8eff989bb77db72d98cc5241fadee' })));
     }
 };
 ScMenuLabel.style = ScMenuLabelStyle0;

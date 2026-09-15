@@ -55,7 +55,7 @@ class RequestCacheService {
 		$expand = $this->args['query']['expand'] ?? [];
 		// if any expand has nested expansion, do not cache.
 		foreach ( $expand as $item ) {
-			if ( strpos( '.', $item ) !== false ) {
+			if ( strpos( $item, '.' ) !== false ) {
 				return false;
 			}
 		}

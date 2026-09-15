@@ -115,7 +115,7 @@ class ScriptsService {
 			);
 		} else {
 			// instead, use a static loader that injects the script at runtime.
-			$static_assets = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/components/static-loader.asset.php';
+			$static_assets = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/components/static-loader.asset.php' );
 			wp_register_script(
 				'surecart-components',
 				trailingslashit( \SureCart::core()->assets()->getUrl() ) . 'dist/components/static-loader.js',
@@ -178,7 +178,7 @@ class ScriptsService {
 		wp_localize_script( 'surecart-components', 'scIcons', [ 'path' => esc_url_raw( plugin_dir_url( SURECART_PLUGIN_FILE ) . 'dist/icon-assets' ) ] );
 
 		// core-data.
-		$asset_file                   = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/store/data.asset.php';
+		$asset_file                   = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/store/data.asset.php' );
 		$asset_file['dependencies'][] = 'regenerator-runtime';
 		wp_register_script(
 			'sc-core-data',
@@ -189,7 +189,7 @@ class ScriptsService {
 		);
 
 		// ui.
-		$asset_file                   = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/store/ui.asset.php';
+		$asset_file                   = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/store/ui.asset.php' );
 		$asset_file['dependencies'][] = 'regenerator-runtime';
 		wp_register_script(
 			'sc-ui-data',
@@ -210,7 +210,7 @@ class ScriptsService {
 		}
 
 		// templates.
-		$asset_file                   = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/templates/admin.asset.php';
+		$asset_file                   = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/templates/admin.asset.php' );
 		$asset_file['dependencies'][] = 'regenerator-runtime';
 		wp_register_script(
 			'surecart-templates-admin',
@@ -221,7 +221,7 @@ class ScriptsService {
 		);
 
 		// admin notices.
-		$asset_file = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/styles/webhook-notice.asset.php';
+		$asset_file = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/styles/webhook-notice.asset.php' );
 		wp_register_style(
 			'surecart-webhook-admin-notices',
 			trailingslashit( \SureCart::core()->assets()->getUrl() ) . 'dist/styles/webhook-notice.css',
@@ -337,7 +337,7 @@ class ScriptsService {
 			)
 		) : [];
 		// blocks.
-		$asset_file = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/blocks/library.asset.php';
+		$asset_file = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/blocks/library.asset.php' );
 		$deps       = $asset_file['dependencies'] ?? [];
 		// fix bug in deps array.
 		$deps[ array_search( 'wp-blockEditor', $deps ) ] = 'wp-block-editor';
@@ -350,7 +350,7 @@ class ScriptsService {
 		);
 
 		// only register.
-		$asset_file = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/blocks/product.asset.php';
+		$asset_file = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/blocks/product.asset.php' );
 		$deps       = $asset_file['dependencies'] ?? [];
 		// fix bug in deps array.
 		$deps[ array_search( 'wp-blockEditor', $deps ) ] = 'wp-block-editor';
@@ -363,7 +363,7 @@ class ScriptsService {
 		);
 
 		// Register product collection blocks.
-		$asset_file = include trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/blocks/product_collection.asset.php';
+		$asset_file = sc_get_asset_file( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/blocks/product_collection.asset.php' );
 		$deps       = $asset_file['dependencies'] ?? [];
 		$deps[ array_search( 'wp-blockEditor', $deps ) ] = 'wp-block-editor';
 		wp_register_script(

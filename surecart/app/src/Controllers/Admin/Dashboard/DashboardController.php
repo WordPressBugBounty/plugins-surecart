@@ -16,7 +16,19 @@ class DashboardController extends AdminController {
 		// enqueue needed script.
 		add_action( 'admin_enqueue_scripts', \SureCart::closure()->method( DashboardScriptsController::class, 'enqueue' ) );
 
+		// The dashboard renders its own header bar, but the standard admin
+		// header must still exist (hidden) in the document — the unified
+		// shell can swap this page to a list client-side, and lists show it.
+		$this->withHeader(
+			[
+				'breadcrumbs' => [
+					[ 'title' => __( 'Dashboard', 'surecart' ) ],
+				],
+				'hidden'      => true,
+			]
+		);
+
 		// return view.
-		return '<div id="app"></div>';
+		return '<div id="sc-dashboard-app"></div>';
 	}
 }

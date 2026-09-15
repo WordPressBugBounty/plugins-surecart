@@ -217,6 +217,12 @@ class Form {
 			return new \WP_Error( 'sc_form_duplicate_forbidden', __( 'Sorry, you are not allowed to duplicate this checkout form.', 'surecart' ), [ 'status' => 403 ] );
 		}
 
+		// Both lists hide the action for trashed forms; refuse it here too so the
+		// API can't produce a draft copy of something on its way out.
+		if ( 'trash' === $this->post->post_status ) {
+			return new \WP_Error( 'sc_form_duplicate_trashed', __( 'Restore this checkout form before duplicating it.', 'surecart' ), [ 'status' => 422 ] );
+		}
+
 		// wp_insert_post() expects slashed data; block content holds \uXXXX escapes that would otherwise be stripped.
 		$new_id = wp_insert_post(
 			wp_slash(

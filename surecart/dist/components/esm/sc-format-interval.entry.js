@@ -1,6 +1,6 @@
 import { r as registerInstance } from './index-25e5af33.js';
-import { t as translateInterval } from './price-1ff6aa07.js';
-import './currency-a0c9bff4.js';
+import { t as translateInterval } from './price-39d60d32.js';
+import './currency-eb33deae.js';
 
 const ScFormatInterval = class {
     constructor(hostRef) {

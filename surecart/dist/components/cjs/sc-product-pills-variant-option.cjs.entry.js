@@ -3,10 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-const watchers = require('./watchers-b5cd03f1.js');
+const watchers = require('./watchers-758fd4c1.js');
 require('./index-c3de642f.js');
-require('./google-5d965da2.js');
-require('./currency-71fce0f0.js');
+require('./google-15c85d5e.js');
+require('./currency-b438c76d.js');
 require('./google-8dbad1a6.js');
 require('./utils-a9d13080.js');
 require('./util-a15c420c.js');
@@ -23,7 +23,7 @@ const ScProductPillsVariantOption = class {
         this.productId = undefined;
     }
     render() {
-        return (index.h("sc-form-control", { key: '125baefe2b88d9c2eea35b13d59b3c6412f4af3e', label: this.label }, index.h("span", { key: '0e08d93c8aae556bad0ae36a538b7b93a1439966', slot: "label" }, this.label), index.h("div", { key: '891fc231b975e294870ce1296b788e55dfffdf21', class: "sc-product-pills-variant-option__wrapper" }, (watchers.state[this.productId].variant_options[this.optionNumber - 1].values || []).map(value => {
+        return (index.h("sc-form-control", { key: 'f9642a809b78f6efc657a8357f17c06bb5f0923e', label: this.label }, index.h("span", { key: 'c1d55fde9433c5c4f7f0cb25682dfe8df97f521a', slot: "label" }, this.label), index.h("div", { key: 'b9b847083e2931bdd3dbef4d38366539533005ef', class: "sc-product-pills-variant-option__wrapper" }, (watchers.state[this.productId].variant_options[this.optionNumber - 1].values || []).map(value => {
             const isUnavailable = watchers.isOptionSoldOut(this.productId, this.optionNumber, value) || watchers.isOptionMissing(this.productId, this.optionNumber, value);
             return (index.h("sc-pill-option", { isUnavailable: isUnavailable, isSelected: watchers.state[this.productId].variantValues[`option_${this.optionNumber}`] === value, onClick: () => watchers.setProduct(this.productId, {
                     variantValues: {

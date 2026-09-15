@@ -142,13 +142,12 @@ class Block extends \SureCartBlocks\Blocks\BuyButton\Block {
 							<input
 								class="sc-form-control"
 								id="sc-product-custom-amount"
-								type="number"
-								step="0.01"
+								type="text"
+								inputmode="decimal"
 								required
 								placeholder="<?php echo esc_attr( $attributes['placeholder'] ?? '' ); ?>"
-								data-wp-bind--min="context.selectedPrice.converted_ad_hoc_min_amount"
-								data-wp-bind--max="context.selectedPrice.converted_ad_hoc_max_amount"
-								data-wp-bind--value="context.adHocAmount"
+								data-wp-bind--pattern="state.pricePattern"
+								data-wp-bind--value="state.adHocAmountDisplay"
 								data-wp-on--input="callbacks.setAdHocAmount"
 							/>
 						</div>

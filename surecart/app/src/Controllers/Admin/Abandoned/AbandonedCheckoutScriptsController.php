@@ -5,7 +5,7 @@ namespace SureCart\Controllers\Admin\Abandoned;
 use SureCart\Support\Scripts\AdminModelEditController;
 
 /**
- * Coupon page
+ * Enqueues the abandoned checkouts admin app scripts.
  */
 class AbandonedCheckoutScriptsController extends AdminModelEditController {
 	/**
@@ -27,5 +27,13 @@ class AbandonedCheckoutScriptsController extends AdminModelEditController {
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/abandoned-checkouts';
+	protected $path = self::UNIFIED_SPA_PATH;
+
+	/**
+	 * Opt into the dataviews stylesheet enqueue (handled by the parent).
+	 *
+	 * @var bool
+	 */
+	protected $needs_dataviews_style = true;
+
 }

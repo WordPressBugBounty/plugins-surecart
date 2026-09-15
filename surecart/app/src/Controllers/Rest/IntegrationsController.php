@@ -151,39 +151,49 @@ class IntegrationsController extends RestController {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function edit( \WP_REST_Request $request ) {
-		$model = $this->middleware( new $this->class( $this->sanitizeFilterParam( $request['id'] ) ), $request );
+		// Match by primary key from the URL (not body) so the row updated is the one authorized.
+		$url_params = $request->get_url_params();
+		$id         = $this->sanitizeFilterParam( $url_params['id'] ?? '' );
+
+		if ( empty( $id ) ) {
+			return new \WP_Error(
+				'rest_invalid_param',
+				__( 'Missing integration id.', 'surecart' ),
+				[ 'status' => 400 ]
+			);
+		}
+
+		$model = $this->middleware( new $this->class( $id ), $request );
 		if ( is_wp_error( $model ) ) {
 			return $model;
 		}
 
-		// fall back to the stored record so a partial update cannot skip validation.
-		$existing = Integration::find( $this->sanitizeFilterParam( $request['id'] ) );
-		if ( is_wp_error( $existing ) ) {
-			return $existing;
-		}
-		$valid = $this->validateIntegrationItem(
-			$this->sanitizeFilterParam( $request->get_param( 'provider' ) ) ?? $existing->provider,
-			$request->get_param( 'integration_id' ) ?? $existing->integration_id
+		// Whitelist mutable columns. The body could contain any fillable field;
+		// only these four make sense to edit on an existing integration.
+		// Cast guards against null bodies and non-array JSON payloads.
+		$body    = (array) ( $request->get_json_params() ?? [] );
+		$allowed = array_map(
+			[ $this, 'sanitizeFilterParam' ],
+			array_intersect_key(
+				$body,
+				array_flip( [ 'integration_id', 'price_id', 'variant_id', 'provider' ] )
+			)
 		);
-		if ( is_wp_error( $valid ) ) {
-			return $valid;
+
+		// Fall back to the stored record so a partial update cannot skip validation.
+		// A missing row is left for update() below, which 404s with the right status.
+		$existing = Integration::find( $id );
+		if ( ! is_wp_error( $existing ) ) {
+			$valid = $this->validateIntegrationItem(
+				$allowed['provider'] ?? $existing->provider,
+				$allowed['integration_id'] ?? $existing->integration_id
+			);
+			if ( is_wp_error( $valid ) ) {
+				return $valid;
+			}
 		}
 
-		// the provider param also scopes the where() below, so a decoy provider
-		// sent to dodge a permission gate matches no stored row instead of mutating one.
-		return $model->where(
-			array_filter(
-				[
-					'model_id'       => $this->sanitizeFilterParam( $request->get_param( 'model_id' ) ),
-					'integration_id' => $this->sanitizeFilterParam( $request->get_param( 'integration_id' ) ),
-					'model_name'     => $this->sanitizeFilterParam( $request->get_param( 'model_name' ) ),
-					'provider'       => $this->sanitizeFilterParam( $request->get_param( 'provider' ) ),
-				],
-				function ( $value ) {
-					return null !== $value;
-				}
-			)
-		)->update( $request->get_json_params() );
+		return $model->where( [ 'id' => $id ] )->update( $allowed );
 	}
 
 	/**
