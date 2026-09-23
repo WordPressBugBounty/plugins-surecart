@@ -2,10 +2,10 @@ import { r as registerInstance, c as createEvent, h, F as Fragment, a as getElem
 import { p as pure } from './pure-963214cb.js';
 import { o as openWormhole } from './consumer-f1775a76.js';
 import { s as state } from './watchers-c7bbc6b2.js';
-import { a as availableProcessors } from './getters-ebc39b0e.js';
+import { a as availableProcessors } from './getters-ca49a7c8.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
-import { u as updateFormState } from './mutations-eb426408.js';
-import { t as toStripeAddress, b as getResolvedBillingEmail, d as getResolvedBillingAddress } from './getters-222ef4b5.js';
+import { u as updateFormState } from './mutations-d28ed918.js';
+import { t as toStripeAddress, b as getResolvedBillingEmail, d as getResolvedBillingAddress } from './getters-3d8a82d3.js';
 import './index-18f5a1bc.js';
 import './util-dfbf863e.js';
 import './utils-f84b2118.js';
@@ -189,7 +189,7 @@ const ScStripeElement = class {
         this.element.on('blur', () => (this.hasFocus = false));
     }
     render() {
-        return (h(Fragment, { key: '4538fdd4aa38beb484c525818ca2311316c9232e' }, h("sc-form-control", { key: 'f98d9dd5bb129bb36c6d8a17b6d57bb46eef7162', class: "sc-stripe", size: this.size, label: this.label }, h("div", { key: '1561f2eacde91c1b3ff1aab142ecf4e654f3b5ff', class: "sc-stripe-element", ref: el => (this.container = el) })), this.error && (h("sc-text", { key: '31a91821bfe483d225bb70b020d22e6cc859f486', style: {
+        return (h(Fragment, { key: 'fa9880e890760659def442e0d409d838fff881ca' }, h("sc-form-control", { key: '3be7814ac51e0e45cd724c9ed8471920f3ebadc5', class: "sc-stripe", size: this.size, label: this.label }, h("div", { key: 'df564eaa19338f532afefdc517565a876809567c', class: "sc-stripe-element", ref: el => (this.container = el) })), this.error && (h("sc-text", { key: 'db0c1df5341d28e23c465f1cab4dde1d59aa34ce', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginTop': '0.5em',

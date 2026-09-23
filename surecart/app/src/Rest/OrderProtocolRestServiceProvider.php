@@ -92,12 +92,12 @@ class OrderProtocolRestServiceProvider extends RestServiceProvider implements Re
 					'context' => [ 'edit' ],
 				],
 				'footer'        => [
-					'description' => esc_html__( 'The default footer that is shown on all order statements (i.e. invoices and receipts).', 'surecart' ),
+					'description' => esc_html__( 'The default footer that is shown on all invoices and receipts.', 'surecart' ),
 					'type'        => 'string',
 					'context'     => [ 'view', 'edit', 'embed' ],
 				],
 				'memo'          => [
-					'description' => esc_html__( 'The default memo that is shown on all order statements (i.e. invoices and receipts).', 'surecart' ),
+					'description' => esc_html__( 'The default memo that is shown on all invoices and receipts.', 'surecart' ),
 					'type'        => 'string',
 					'context'     => [ 'view', 'edit', 'embed' ],
 				],

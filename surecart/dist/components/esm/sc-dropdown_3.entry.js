@@ -201,11 +201,11 @@ const ScDropdown = class {
         }
     }
     render() {
-        return (h("div", { key: 'e441923fb35721375eb517859b4b36c46432b321', part: "base", class: {
+        return (h("div", { key: '1d3d112839edce0579a64fc3b3deeff011d81725', part: "base", class: {
                 'dropdown': true,
                 'dropdown--open': this.open,
                 'dropdown--disabled': this.disabled,
-            } }, h("span", { key: '8ca99b58022738eef2b0f2ad2efe112a564fd415', part: "trigger", class: "dropdown__trigger", ref: el => (this.trigger = el), onClick: () => {
+            } }, h("span", { key: '9d82af86fd639c1f4d2681e1e27c90a10f22b96f', part: "trigger", class: "dropdown__trigger", ref: el => (this.trigger = el), onClick: () => {
                 if (this.disabled)
                     return;
                 if (this.open) {
@@ -216,13 +216,13 @@ const ScDropdown = class {
                         this.show();
                     }, 0);
                 }
-            }, "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "true" }, h("slot", { key: '36019ea522f751deaae663b8f17e35b7bbc3da50', name: "trigger" })), h("div", { key: 'd0f0c27434c0b87bf34fa1630b76c2c533a0dadd', class: "dropdown__positioner", ref: el => (this.positioner = el) }, h("div", { key: '01cf8b10115845c477bec31db650f4f0476efbc3', part: "panel", class: {
+            }, "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "true" }, h("slot", { key: 'bfb96fe77195ab377ef6da3fc6064174bb09346e', name: "trigger" })), h("div", { key: '0d0ebfd1b823e241805fe3c87220e13c7f12e008', class: "dropdown__positioner", ref: el => (this.positioner = el) }, h("div", { key: '87e9ce64f2ea2b2adfb08e30c9bdc725d1da7f18', part: "panel", class: {
                 'dropdown__panel': true,
                 'position--top-left': this.position === 'top-left',
                 'position--top-right': this.position === 'top-right',
                 'position--bottom-left': this.position === 'bottom-left',
                 'position--bottom-right': this.position === 'bottom-right',
-            }, "aria-orientation": "vertical", tabindex: "-1", onClick: e => this.handleClick(e), ref: el => (this.panel = el) }, h("slot", { key: '6b21f22615785d9690091b499627be0ee6869de0' })))));
+            }, "aria-orientation": "vertical", tabindex: "-1", onClick: e => this.handleClick(e), ref: el => (this.panel = el) }, h("slot", { key: 'eea5f9ca0890e431332b1276c23684637de6353f' })))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -318,7 +318,7 @@ const ScMenu = class {
         this.syncItems();
     }
     render() {
-        return (h("div", { key: '60325efd7fab67f17c676fcda899ef0c8fb31162', part: "base", class: "menu", tabindex: "0", onKeyDown: e => this.handleKeyDown(e) }, h("slot", { key: '04f3cc7e3596ca52bc3b696dec8475e5d674d4b4', onSlotchange: () => this.handleSlotChange() })));
+        return (h("div", { key: '76c475f029fc6437f9eab162f4cdc2aa962b0b09', part: "base", class: "menu", tabindex: "0", onKeyDown: e => this.handleKeyDown(e) }, h("slot", { key: '2f1ec36074581ea6cbfb91800253ddd405a055e1', onSlotchange: () => this.handleSlotChange() })));
     }
     get el() { return getElement(this); }
 };
@@ -353,7 +353,7 @@ const ScMenuItem = class {
     }
     render() {
         const Tag = this.href ? 'a' : 'div';
-        return (h(Tag, { key: '7b4393da38e7417d4dc2c643e54d1b04147ad18e', ref: el => (this.menuItem = el), part: "base", class: {
+        return (h(Tag, { key: 'f96ff934c58eba33766701000c91b0144fd6823c', ref: el => (this.menuItem = el), part: "base", class: {
                 'menu-item': true,
                 'menu-item--checked': this.checked,
                 'menu-item--disabled': this.disabled,
@@ -363,7 +363,7 @@ const ScMenuItem = class {
                 if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') {
                     this.menuItem.click();
                 }
-            }, "aria-label": this.el.innerText, target: this.target }, h("span", { key: '5a82ece53ab5bdc159ecaf81b9b5b77479afe1d3', part: "checked-icon", class: "menu-item__check" }, h("svg", { key: '0684556b713ab0e65b26e757ae4f73cb8de64de2', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", class: "bi bi-check", viewBox: "0 0 16 16" }, h("path", { key: 'db81b2f59cf49d53e9b7405560342ef7ee872740', d: "M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" }))), h("span", { key: '2f212dda79b3dd1cd4c257ae91e771ea8233215b', part: "prefix", class: "menu-item__prefix" }, h("slot", { key: 'b0b6e97b3b97702659f8e7d35ef0b3e532c4bd44', name: "prefix" })), h("span", { key: '85ac52204d42f3e4211b01631c57c0b9c8f23091', part: "label", class: "menu-item__label" }, h("slot", { key: '9e43cd4c810e6d7d25f6b053439c995714f1812f' })), h("span", { key: '8d7e66a1564823103f52acc99ab2a85b29677a26', part: "suffix", class: "menu-item__suffix" }, h("slot", { key: '16dc91447b73a6f208683e55711ca35c053ead92', name: "suffix" }))));
+            }, "aria-label": this.el.innerText, target: this.target }, h("span", { key: '8ec5e94fc32170c9a1018cf678783ced0f7ac1aa', part: "checked-icon", class: "menu-item__check" }, h("svg", { key: '9b83d1a947e32ebf92f97aba0a7ed15cf47a7848', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", class: "bi bi-check", viewBox: "0 0 16 16" }, h("path", { key: '639e4f8a2a03e2d9651569684d7e9976a05dc335', d: "M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" }))), h("span", { key: 'b4a8fe12257bf41d769c545e9c6a1cf544af082b', part: "prefix", class: "menu-item__prefix" }, h("slot", { key: '8035342d80144f32eda7f7610a01760853ecb183', name: "prefix" })), h("span", { key: 'c25d9eae754053e05d892500d272c32fd0ef71cb', part: "label", class: "menu-item__label" }, h("slot", { key: '746779d03b6294c1651d49f10c8c923d2738e2d3' })), h("span", { key: '7e072ccd03115489962b184e6bfbcd64e9cfaad2', part: "suffix", class: "menu-item__suffix" }, h("slot", { key: '0916bd1fac750f3c91bedb7a285d6c2d562c0a67', name: "suffix" }))));
     }
     get el() { return getElement(this); }
 };

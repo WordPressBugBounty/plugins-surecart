@@ -44,10 +44,10 @@ export declare class ScCart {
         empty: boolean;
         order: Checkout;
         lineItems: import("../../../../types").LineItem[];
-        tax_status: "disabled" | "address_invalid" | "estimated" | "calculated";
+        tax_status: import("../../../../types").TaxStatus;
         customerShippingAddress: string | import("../../../../types").Address;
         shippingAddress: string | import("../../../../types").Address;
-        taxStatus: "disabled" | "address_invalid" | "estimated" | "calculated";
+        taxStatus: import("../../../../types").TaxStatus;
         formId: string;
     };
     render(): any;

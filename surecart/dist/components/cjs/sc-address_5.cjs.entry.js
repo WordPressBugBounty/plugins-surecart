@@ -10,7 +10,7 @@ const mutations = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 const index$1 = require('./index-adacfa36.js');
 const index$2 = require('./index-fb76df07.js');
-const tax = require('./tax-a4582e73.js');
+const tax = require('./tax-1568db23.js');
 require('./add-query-args-49dcb630.js');
 require('./index-c3de642f.js');
 
@@ -269,10 +269,10 @@ const ScAddress = class {
         const bottomFields = allFields.filter(f => this.collapsibleFieldNames.includes(f.name));
         // Compute rounded props based on visible field count.
         const totalForRounding = isExpanded ? allFields.length : topFields.length;
-        return (index.h("div", { key: 'a9f745b79df38c8dcb78871d5667c61632246258', class: "sc-address", part: "base" }, index.h("sc-form-control", { key: '5e5080aea5a0c4f1a137494bc7487d2f0b3a27b7', label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, topFields.map((field, index) => {
+        return (index.h("div", { key: 'ea1b671525f5e3aa6c60e1f9ba2168647ac496cf', class: "sc-address", part: "base" }, index.h("sc-form-control", { key: '17ac343b0aa99ba3359ac99488b2b1df0451f5c6', label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, topFields.map((field, index) => {
             const roundedProps = this.getRoundedProps(index, totalForRounding);
             return this.renderField(field, roundedProps, this.required);
-        }), index.h("div", { key: 'ee937d4f51a466e21ba6c6d32ef2b05656696bb4', class: {
+        }), index.h("div", { key: 'd2a00c9ffb99aadf4271c96b4c4e5c5da2bfac68', class: {
                 'sc-address__collapsible': true,
                 'sc-address__collapsible--expanded': isExpanded,
             }, "aria-hidden": !isExpanded ? 'true' : 'false' }, bottomFields.map((field, index) => {
@@ -281,7 +281,7 @@ const ScAddress = class {
             // Don't require fields when collapsed — prevents hidden required validation errors.
             const isRequired = this.required && isExpanded;
             return this.renderField(field, roundedProps, isRequired);
-        }))), this.loading && index.h("sc-block-ui", { key: 'c083540296dec26dd5e80199322cd92c09363d5a', exportparts: "base:block-ui, content:block-ui__content" })));
+        }))), this.loading && index.h("sc-block-ui", { key: '82822557100abc94f15387e32b6044319468be6b', exportparts: "base:block-ui, content:block-ui__content" })));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -17895,7 +17895,7 @@ const ScAddressSuggestions = class {
     render() {
         var _a;
         const suggestionsVisible = this.isSuggestionsVisible();
-        return (index.h("div", { key: '93db1940a0733e540c80f27395bef254e521101e', part: "base" }, this.isGoogleMapsActive() && index.h("span", { key: 'a2bb3fd0ff43b3b5d5df7cb284a5ed745a0a3c98', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), index.h("sc-input", { key: '7283dadb0b1f783e27099356a3e30dacd3fcd055', ref: el => (this.input = el), exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), index.h("div", { key: '7de3145ad2e5567fa77f1e029397f82c87bc1360', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), index.h("div", { key: 'dff4abecee3c62ce0dad438381910b8bd04a1e01', class: {
+        return (index.h("div", { key: 'e671e3d7a5d27f96f07f1dff46e836c2705c74ac', part: "base" }, this.isGoogleMapsActive() && index.h("span", { key: '9a09da1df55d985b1827003f52832b2fb45944f0', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), index.h("sc-input", { key: 'b14e4a980b661cacc6ebe86d143c4754159cb814', ref: el => (this.input = el), exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), index.h("div", { key: '514037b633f098ce46cd2f200da3f105a8721a67', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), index.h("div", { key: 'e1f0b8ac77f05c24885f489e8e87daf2e111a298', class: {
                 'sc-address__suggestions': true,
                 'sc-address__suggestions--visible': suggestionsVisible,
             }, part: "suggestions", "aria-hidden": !suggestionsVisible ? 'true' : 'false' }, this.renderAddressSuggestions())));
@@ -17958,6 +17958,7 @@ const ScCheckbox = class {
     handleClick() {
         this.checked = !this.checked;
         this.indeterminate = false;
+        this.scChange.emit();
     }
     handleBlur() {
         this.hasFocus = false;
@@ -17975,7 +17976,6 @@ const ScCheckbox = class {
     handleStateChange() {
         this.input.checked = this.checked;
         this.input.indeterminate = this.indeterminate;
-        this.scChange.emit();
     }
     componentDidLoad() {
         this.formController = new formData.FormSubmitController(this.el, {
@@ -17988,7 +17988,7 @@ const ScCheckbox = class {
     }
     render() {
         const Tag = this.edit ? 'div' : 'label';
-        return (index.h(Tag, { key: '057ba5ab48d0fcd9246ffe166877bccbd5dcb35b', part: "base", class: {
+        return (index.h(Tag, { key: '9490fcf116fc0f287141215e0f349dff8320b582', part: "base", class: {
                 'checkbox': true,
                 'checkbox--is-required': this.required,
                 'checkbox--checked': this.checked,
@@ -17996,7 +17996,7 @@ const ScCheckbox = class {
                 'checkbox--focused': this.hasFocus,
                 'checkbox--indeterminate': this.indeterminate,
                 'checkbox--is-rtl': pageAlign.isRtl()
-            }, htmlFor: this.inputId, onMouseDown: () => this.handleLabelMouseDown() }, index.h("span", { key: 'bf132df6dc467ad827fceafb6a54156fef684a5c', part: "control", class: "checkbox__control" }, this.checked ? (index.h("span", { part: "checked-icon", class: "checkbox__icon" }, index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(3.428571, 3.428571)" }, index.h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), index.h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" }))))))) : (''), !this.checked && this.indeterminate ? (index.h("span", { part: "indeterminate-icon", class: "checkbox__icon" }, index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(2.285714, 6.857143)" }, index.h("path", { d: "M10.2857143,1.14285714 L1.14285714,1.14285714" }))))))) : (''), index.h("input", { key: '3b1dd24356701a817395d803f97e19a8130e93ff', id: this.inputId, ref: el => (this.input = el), type: "checkbox", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, required: this.required, role: "checkbox", "aria-checked": this.checked ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: () => this.handleClick(), onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() })), index.h("span", { key: 'ec22113ed61ef570fc001d64b1f8430c0347ace6', part: "label", id: this.labelId, class: "checkbox__label" }, index.h("slot", { key: '5d64ffbcf99f0547105f3793a808c65e8139be61' }))));
+            }, htmlFor: this.inputId, onMouseDown: () => this.handleLabelMouseDown() }, index.h("span", { key: '67447d3ae4486f39bf725717e90a0485356fd409', part: "control", class: "checkbox__control" }, this.checked ? (index.h("span", { part: "checked-icon", class: "checkbox__icon" }, index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(3.428571, 3.428571)" }, index.h("path", { d: "M0,5.71428571 L3.42857143,9.14285714" }), index.h("path", { d: "M9.14285714,0 L3.42857143,9.14285714" }))))))) : (''), !this.checked && this.indeterminate ? (index.h("span", { part: "indeterminate-icon", class: "checkbox__icon" }, index.h("svg", { viewBox: "0 0 16 16" }, index.h("g", { stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd", "stroke-linecap": "round" }, index.h("g", { stroke: "currentColor", "stroke-width": "2" }, index.h("g", { transform: "translate(2.285714, 6.857143)" }, index.h("path", { d: "M10.2857143,1.14285714 L1.14285714,1.14285714" }))))))) : (''), index.h("input", { key: 'be2ffe6a26558b49a82d7f7782a85d0f081b7999', id: this.inputId, ref: el => (this.input = el), type: "checkbox", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, required: this.required, role: "checkbox", "aria-checked": this.checked ? 'true' : 'false', "aria-labelledby": this.labelId, onClick: () => this.handleClick(), onBlur: () => this.handleBlur(), onFocus: () => this.handleFocus() })), index.h("span", { key: '50fc814c65ab1b623ef7f208687cd684c1ac03a4', part: "label", id: this.labelId, class: "checkbox__label" }, index.h("slot", { key: '35a8364c346da6825ea46e18087e9d66f2510e28' }))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -18118,7 +18118,7 @@ const ScPhoneInput = class {
     }
     render() {
         var _a;
-        return (index.h(index.Host, { key: '586c64af189c874e07a385255a5ddbac56c1395b', hidden: this.hidden }, index.h("sc-form-control", { key: '205eab1829f81e6b88c713fd57affbe17dab7346', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name, "aria-label": this.label }, index.h("slot", { key: '21631b07ee6b36e45bd7a5a61a97e93b53856ee2', name: "label-end", slot: "label-end" }), index.h("div", { key: '255d8a7be7152c290b5f64735414a2698d0d714b', part: "base", class: {
+        return (index.h(index.Host, { key: 'e1c3a7374d6b606caacb051225cc6c901c9c305c', hidden: this.hidden }, index.h("sc-form-control", { key: '1257a8afb5b9abb7917d40b0fd0e9df0435ac9e2', exportparts: "label, help-text, form-control", size: this.size, required: this.required, label: this.label, showLabel: this.showLabel, help: this.help, inputId: this.inputId, helpId: this.helpId, labelId: this.labelId, name: this.name, "aria-label": this.label }, index.h("slot", { key: '933fb6f18abd41c332758b32412b5d576df1e04e', name: "label-end", slot: "label-end" }), index.h("div", { key: 'b246b21e55328597563b339c278dfa7ab302535b', part: "base", class: {
                 'input': true,
                 // Sizes
                 'input--small': this.size === 'small',
@@ -18133,9 +18133,9 @@ const ScPhoneInput = class {
                 'input--squared-top': this.squaredTop,
                 'input--squared-left': this.squaredLeft,
                 'input--squared-right': this.squaredRight,
-            } }, index.h("span", { key: '14a5066ecfb26f5c379c9f05a8fbdedcdeaae662', part: "prefix", class: "input__prefix" }, index.h("slot", { key: '2e0193f76bfc9417d2d845f9792c045421097f22', name: "prefix" })), index.h("slot", { key: '7dd63d4c6584fa09cdcc165756de4d2e93976b29' }, index.h("input", { key: 'afe5bb2bdc229953f69b6dfb025d0c0652746908', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: "tel", name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
+            } }, index.h("span", { key: '5a2828d1f63c5cb705e17d11ea91322fd5ff39e5', part: "prefix", class: "input__prefix" }, index.h("slot", { key: '4b982f946ce957aa7094df1c1986699a4fe65ea3', name: "prefix" })), index.h("slot", { key: '650fad5f0793194485f53952a014529a0d8feaf5' }, index.h("input", { key: 'b24399493e255d9f0019c588a10f54d50605de82', part: "input", id: this.inputId, class: "input__control", ref: el => (this.input = el), type: "tel", name: this.name, disabled: this.disabled, readonly: this.readonly, required: this.required, placeholder: this.placeholder, minlength: this.minlength, maxlength: this.maxlength, min: this.min, max: this.max, step: this.step,
             // TODO: Test These below
-            autocomplete: 'tel', autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: index$1.applyFilters('surecart/sc-phone-input/pattern', this.pattern), inputmode: 'numeric', "aria-label": this.label, "aria-labelledby": this.label, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() })), index.h("span", { key: '0a995b036a02269e840ba5c5f70defaee84d63ac', part: "suffix", class: "input__suffix" }, index.h("slot", { key: '0e55211b2800293050b05d553fd6ffe2870e421e', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (index.h("button", { key: 'a27c56e090a09d89c3f24995f99a454f54b44b20', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, index.h("slot", { key: 'ff3760faa1f98c5f5319b500980550178e40bfca', name: "clear-icon" }, index.h("svg", { key: '388c5e844016a0ee4f8f695f3e3c2bd9ac21cf4c', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, index.h("line", { key: '31483b34cd591ae06913b76ea2064d367554ff96', x1: "18", y1: "6", x2: "6", y2: "18" }), index.h("line", { key: '239dc8710cd573fba99005c7e27f1e9df96b3744', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
+            autocomplete: 'tel', autocorrect: this.autocorrect, autofocus: this.autofocus, spellcheck: this.spellcheck, pattern: index$1.applyFilters('surecart/sc-phone-input/pattern', this.pattern), inputmode: 'numeric', "aria-label": this.label, "aria-labelledby": this.label, "aria-invalid": this.invalid ? true : false, value: this.value, onChange: () => this.handleChange(), onInput: () => this.handleInput(), onFocus: () => this.handleFocus(), onBlur: () => this.handleBlur() })), index.h("span", { key: '48115877454ad2e804f15533bef64708d13dd985', part: "suffix", class: "input__suffix" }, index.h("slot", { key: '550deee68f1b7b270ea7dd421b3c18067897908b', name: "suffix" })), this.clearable && ((_a = this.value) === null || _a === void 0 ? void 0 : _a.length) > 0 && (index.h("button", { key: '5bfbac22fdeea8a1f15c68ede2e2ab3ba7a4de02', part: "clear-button", class: "input__clear", type: "button", onClick: e => this.handleClearClick(e), tabindex: "-1" }, index.h("slot", { key: '87a262ac7d3f6ecb088d0755db889ce01c80ee61', name: "clear-icon" }, index.h("svg", { key: '4af6bd9431fc0fc092b7eb31c37a668b34bfd23c', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", class: "feather feather-x" }, index.h("line", { key: '0f25e2ac98941e07f18876fc5c30a7202ce7fe06', x1: "18", y1: "6", x2: "6", y2: "18" }), index.h("line", { key: '8fb3597a33ba9f02768e6d50386138bb931ddd37', x1: "6", y1: "6", x2: "18", y2: "18" })))))))));
     }
     get el() { return index.getElement(this); }
     static get watchers() { return {
@@ -18217,7 +18217,9 @@ const ScTaxIdInput = class {
     }
     render() {
         var _a, _b, _c, _d, _e;
-        return (index.h(index.Fragment, { key: '9420f8158a6ede3cd3b264ffc75d427479bb4e46' }, index.h("sc-input", { key: 'dab5b64c9c2c75e52f15dabe1cae04dcee7925a6', name: "tax_identifier.number_type", required: this.required, value: this.type, style: { display: 'none' } }), index.h("sc-input", { key: '94f37db2d89d991458d8f0e83a005ad69bb02e56', ref: el => (this.input = el), label: this.getZoneLabel(), "aria-label": wp.i18n.__('Tax ID', 'surecart'), placeholder: wp.i18n.__('Enter Tax ID', 'surecart'), name: "tax_identifier.number", value: this.number, onScInput: (e) => {
+        return (index.h(index.Fragment, { key: '6a02ff23a596c52e40cfcd46626f8f969ecd6e2d' }, index.h("sc-input", { key: '092d51a1346d061a5ed9312d08e7413f443ded22', name: "tax_identifier.number_type", required: this.required, value: this.type, style: { display: 'none' } }), index.h("sc-input", { key: 'b22e33d32fa172019ea26bf759c8e73d7aa28f0e', ref: el => (this.input = el), label: this.getZoneLabel(), "aria-label": wp.i18n.__('Tax ID', 'surecart'),
+            // translators: %s is the selected tax ID type label, e.g. "EU VAT".
+            placeholder: wp.i18n.sprintf(wp.i18n.__('Enter %s', 'surecart'), this.getZoneLabel() || wp.i18n.__('Tax ID', 'surecart')), name: "tax_identifier.number", value: this.number, onScInput: (e) => {
                 e.stopImmediatePropagation();
                 this.scInput.emit({
                     number: e.target.value,

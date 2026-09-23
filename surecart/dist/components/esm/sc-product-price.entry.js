@@ -49,7 +49,7 @@ const ScProductPrice = class {
         return (h("sc-price", { currency: price === null || price === void 0 ? void 0 : price.currency, amount: amount, displayAmount: displayAmount, scratchAmount: scratchAmount, scratchDisplayAmount: scratchDisplayAmount, saleText: this.saleText, adHoc: price === null || price === void 0 ? void 0 : price.ad_hoc, trialDurationDays: price === null || price === void 0 ? void 0 : price.trial_duration_days, setupFeeText: price === null || price === void 0 ? void 0 : price.setup_fee_text, setupFeeAmount: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_amount : null, setupFeeName: (price === null || price === void 0 ? void 0 : price.setup_fee_enabled) ? price === null || price === void 0 ? void 0 : price.setup_fee_name : null, recurringPeriodCount: price === null || price === void 0 ? void 0 : price.recurring_period_count, recurringInterval: price === null || price === void 0 ? void 0 : price.recurring_interval, recurringIntervalCount: price === null || price === void 0 ? void 0 : price.recurring_interval_count }));
     }
     render() {
-        return (h(Host, { key: '82a241ba9ffa2fe11603c27e0cd964c666ca94ac', role: "paragraph" }, (() => {
+        return (h(Host, { key: '6c9dc5c45ee08793918387dc302f94c9994cfddf', role: "paragraph" }, (() => {
             var _a, _b, _c, _d, _e;
             if ((_a = state[this.productId]) === null || _a === void 0 ? void 0 : _a.selectedVariant) {
                 return this.renderVariantPrice((_b = state[this.productId]) === null || _b === void 0 ? void 0 : _b.selectedVariant);

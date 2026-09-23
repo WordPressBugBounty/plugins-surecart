@@ -34,7 +34,7 @@ const ScInvoiceStatusBadge = class {
         }
     }
     render() {
-        return (h("sc-tag", { key: '172039bba9b8f87cd3b535b310187f94e1dd5392', type: this.getType(), pill: this.pill }, this.getText()));
+        return (h("sc-tag", { key: 'cf567f71c8ec468c7279f1d0b615830b7bb792a4', type: this.getType(), pill: this.pill }, this.getText()));
     }
 };
 ScInvoiceStatusBadge.style = ScInvoiceStatusBadgeStyle0;

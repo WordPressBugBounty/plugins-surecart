@@ -11,7 +11,7 @@ const ScBlockUi = class {
         this.spinner = undefined;
     }
     render() {
-        return (h("div", { key: '6fe10f376c659216e350a934fe515316e7e64c8f', part: "base", class: { overlay: true, transparent: this.transparent }, style: { 'z-index': this.zIndex.toString() } }, h("div", { key: '6b1817a0aec720042940292035aea65b940833e5', class: "overlay__content", part: "content" }, h("slot", { key: 'b30a2a36957dabcbab80cbd09583972ae27dea6c', name: "spinner" }, !this.transparent && this.spinner && h("sc-spinner", { key: '67e191d3cf1525671930032b7ba8fb97ba8d81ea' })), h("slot", { key: 'c025c3112e07027cd358bf068f0fac6fd03c3fd0' }))));
+        return (h("div", { key: 'c4d3c484d28607f990b0c0fb4d777fc99a0c1b42', part: "base", class: { overlay: true, transparent: this.transparent }, style: { 'z-index': this.zIndex.toString() } }, h("div", { key: '40ed68918d30c654123ec892b34358aa6d3b3ea9', class: "overlay__content", part: "content" }, h("slot", { key: '18a1bbb7f3fceb4ebf84a70df68a1b7075dac9db', name: "spinner" }, !this.transparent && this.spinner && h("sc-spinner", { key: 'eae4b8b804bfcbf47f223280033e51c8b6c6e2c0' })), h("slot", { key: '1a76935f6a4f1c5622bfe8ea6463877809b5b687' }))));
     }
 };
 ScBlockUi.style = ScBlockUiStyle0;

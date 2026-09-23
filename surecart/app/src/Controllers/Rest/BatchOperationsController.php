@@ -2,6 +2,7 @@
 
 namespace SureCart\Controllers\Rest;
 
+use SureCart\Concerns\ReadsBatchOperations;
 use SureCart\Models\BatchOperation;
 
 /**
@@ -12,6 +13,8 @@ use SureCart\Models\BatchOperation;
  * callers list the operations of a finished batch to learn per-row outcomes.
  */
 class BatchOperationsController extends RestController {
+	use ReadsBatchOperations;
+
 	/**
 	 * Class to make the requests.
 	 *
@@ -90,21 +93,5 @@ class BatchOperationsController extends RestController {
 		}
 
 		return $operation;
-	}
-
-	/**
-	 * Whether the current user could have created (and so may read) the operation.
-	 *
-	 * @param object|array $operation Batch operation (model or array shape).
-	 *
-	 * @return bool
-	 */
-	protected function currentUserCanReadOperation( $operation ) {
-		$method = is_object( $operation ) ? ( $operation->http_method ?? '' ) : ( $operation['http_method'] ?? '' );
-		$path   = is_object( $operation ) ? ( $operation->path ?? '' ) : ( $operation['path'] ?? '' );
-
-		$cap = \SureCart\Rest\BatchesRestServiceProvider::requiredCapabilityFor( (string) $method, (string) $path );
-
-		return $cap && current_user_can( $cap );
 	}
 }

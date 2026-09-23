@@ -122,10 +122,7 @@ class AssetsService {
 			return;
 		}
 
-		$tracking_enabled         = $account->affiliation_protocol->wordpress_plugin_tracking_enabled ?? false;
-		$affiliate_script_defined = defined( 'SURECART_ENABLE_AFFILIATE_SCRIPT' ) && ! empty( SURECART_ENABLE_AFFILIATE_SCRIPT );
-
-		if ( ( $tracking_enabled || $affiliate_script_defined ) && $account->entitlements->affiliates ) {
+		if ( $account->isAffiliateTrackingEnabled() ) {
 			wp_enqueue_script( 'surecart-affiliate-tracking' );
 		}
 	}

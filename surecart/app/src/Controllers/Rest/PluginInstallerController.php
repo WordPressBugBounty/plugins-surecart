@@ -2,6 +2,7 @@
 
 namespace SureCart\Controllers\Rest;
 
+use SureCart\Concerns\GuardsPluginDownloads;
 use SureCart\Models\IntegrationCatalog;
 use SureCart\Support\GitHubInstaller;
 
@@ -12,6 +13,8 @@ use SureCart\Support\GitHubInstaller;
  * GitHubInstaller before it is handed to WordPress' Plugin_Upgrader.
  */
 class PluginInstallerController {
+	use GuardsPluginDownloads;
+
 	/**
 	 * Install (and activate) the plugin for a catalog integration.
 	 *
@@ -27,12 +30,9 @@ class PluginInstallerController {
 		}
 
 		// Respect sites that lock down file modifications.
-		if ( defined( 'DISALLOW_FILE_MODS' ) && DISALLOW_FILE_MODS ) {
-			return new \WP_Error(
-				'sc_file_mods_disabled',
-				__( 'Plugin installation is disabled on this site (DISALLOW_FILE_MODS).', 'surecart' ),
-				[ 'status' => 403 ]
-			);
+		$file_mods_error = $this->assertFileModsAllowed();
+		if ( $file_mods_error ) {
+			return $file_mods_error;
 		}
 
 		$record = IntegrationCatalog::find( $id );
@@ -160,25 +160,6 @@ class PluginInstallerController {
 	 */
 	protected function getPluginFile( $record ) {
 		return (string) ( ( $record->acf ?? [] )['plugin_file'] ?? '' );
-	}
-
-	/**
-	 * Force WP HTTP to reject internal/loopback URLs for the plugin download.
-	 *
-	 * Closes the SSRF vector where a redirect points at a private or loopback
-	 * address. Only touches the streamed download chain ($args['filename'] is set
-	 * by download_url() and preserved across redirect hops); any other request in
-	 * the install window is left as-is.
-	 *
-	 * @param array $args The http request args.
-	 *
-	 * @return array
-	 */
-	public function rejectUnsafeDownloadUrls( $args ) {
-		if ( ! empty( $args['filename'] ) ) {
-			$args['reject_unsafe_urls'] = true;
-		}
-		return $args;
 	}
 
 	/**

@@ -27,5 +27,5 @@ class AffiliationPayoutGroupsScriptsController extends AdminModelEditController 
 	 *
 	 * @var string
 	 */
-	protected $path = 'admin/affiliation-payouts-groups';
+	protected $path = self::UNIFIED_SPA_PATH;
 }

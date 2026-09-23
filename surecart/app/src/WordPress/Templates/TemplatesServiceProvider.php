@@ -53,6 +53,10 @@ class TemplatesServiceProvider implements ServiceProviderInterface {
 			);
 		};
 
+		$container['surecart.templates.buy'] = function () {
+			return new BuyTemplatesService();
+		};
+
 		$container['surecart.templates.blocks'] = function ( $c ) {
 			$root_path = trailingslashit( $c[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . '/templates/';
 			return new BlockTemplatesService( $root_path . 'templates', $root_path . 'parts' );
@@ -73,6 +77,7 @@ class TemplatesServiceProvider implements ServiceProviderInterface {
 		$container['surecart.templates.product']->bootstrap();
 		$container['surecart.templates.collection']->bootstrap();
 		$container['surecart.templates.upsell']->bootstrap();
+		$container['surecart.templates.buy']->bootstrap();
 		$container['surecart.templates.blocks']->bootstrap();
 	}
 }

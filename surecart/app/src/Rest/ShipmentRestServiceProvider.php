@@ -126,8 +126,25 @@ class ShipmentRestServiceProvider extends RestServiceProvider implements RestSer
 				],
 			],
 			'status'          => [
-				'description' => esc_html__( 'Filter by shipment status.', 'surecart' ),
-				'type'        => 'string',
+				'description' => esc_html__( 'Filter by shipment status. Accepts a single value or array (e.g., `status[]=draft&status[]=quoted`).', 'surecart' ),
+				'type'        => [ 'string', 'array' ],
+				'items'       => [
+					'type' => 'string',
+				],
+			],
+			'ids'             => [
+				'description' => esc_html__( 'Only return shipments with the given IDs.', 'surecart' ),
+				'type'        => 'array',
+				'items'       => [
+					'type' => 'string',
+				],
+			],
+			'expand'          => [
+				'description' => esc_html__( 'Comma-separated or array list of related objects to expand.', 'surecart' ),
+				'type'        => [ 'string', 'array' ],
+				'items'       => [
+					'type' => 'string',
+				],
 			],
 		];
 	}

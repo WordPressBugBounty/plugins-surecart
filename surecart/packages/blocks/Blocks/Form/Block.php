@@ -51,25 +51,26 @@ class Block extends BaseBlock {
 			array_filter(
 				[
 					'checkout'   => [
-						'formId'                   => $attributes['form_id'] ?? $sc_form_id,
-						'mode'                     => apply_filters( 'surecart/payments/mode', $attributes['mode'] ?? 'live' ),
+						'formId'                        => $attributes['form_id'] ?? $sc_form_id,
+						'mode'                          => apply_filters( 'surecart/payments/mode', $attributes['mode'] ?? 'live' ),
 						// Serialized into public page state — strip private catalog fields.
-						'product'                  => PublicCatalogData::product( $attributes['product'] ?? [] ),
-						'currencyCode'             => $attributes['currency'] ?? \SureCart::account()->currency,
-						'groupId'                  => 'sc-checkout-' . ( $attributes['form_id'] ?? $sc_form_id ),
-						'abandonedCheckoutEnabled' => ! is_admin(),
-						'captureGeoAddressEnabled' => (bool) ( \SureCart::account()->order_protocol->capture_geo_address_enabled ?? false ),
-						'geoCapture'               => [
+						'product'                       => PublicCatalogData::product( $attributes['product'] ?? [] ),
+						'currencyCode'                  => $attributes['currency'] ?? \SureCart::account()->currency,
+						'groupId'                       => 'sc-checkout-' . ( $attributes['form_id'] ?? $sc_form_id ),
+						'abandonedCheckoutEnabled'      => ! is_admin(),
+						'captureGeoAddressEnabled'      => (bool) ( \SureCart::account()->order_protocol->capture_geo_address_enabled ?? false ),
+						'geoAddressCapturableCountries' => array_values( (array) ( \SureCart::account()->order_protocol->geo_address_capturable_countries ?? [] ) ),
+						'geoCapture'                    => [
 							'title'        => (string) get_option( 'surecart_checkout_geo_capture_title' ),
 							'content'      => (string) get_option( 'surecart_checkout_geo_capture_content' ),
 							'allowLabel'   => (string) get_option( 'surecart_checkout_geo_capture_allow_label' ),
 							'declineLabel' => (string) get_option( 'surecart_checkout_geo_capture_decline_label' ),
 						],
-						'showLoginPrompt'          => (bool) get_option( 'surecart_checkout_show_login_prompt', false ),
-						'taxProtocol'              => \SureCart::account()->tax_protocol,
-						'isCheckoutPage'           => true,
-						'validateStock'            => ! is_admin(),
-						'persist'                  => $this->getPeristance( $attributes, $attributes['form_id'] ?? $sc_form_id ),
+						'showLoginPrompt'               => (bool) get_option( 'surecart_checkout_show_login_prompt', false ),
+						'taxProtocol'                   => \SureCart::account()->tax_protocol,
+						'isCheckoutPage'                => true,
+						'validateStock'                 => ! is_admin(),
+						'persist'                       => $this->getPeristance( $attributes, $attributes['form_id'] ?? $sc_form_id ),
 					],
 					'processors' => [
 						'processors'           => array_values(

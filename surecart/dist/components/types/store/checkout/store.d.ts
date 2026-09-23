@@ -9,6 +9,7 @@ interface Store {
     currencyCode: string;
     abandonedCheckoutEnabled: boolean;
     captureGeoAddressEnabled: boolean;
+    geoAddressCapturableCountries: string[];
     geoCapture: GeoCapture | null;
     geoCoordinates: GeoCoordinates | null;
     showLoginPrompt: boolean;

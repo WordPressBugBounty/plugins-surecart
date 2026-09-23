@@ -99,6 +99,9 @@ class StylesService {
 			--wp-admin-theme-color: #007cba;
 			--wp-admin-theme-color-darker-10: #1f63a0;
 			--wp-admin-theme-color-darker-20: #1a5080;
+			--wp-components-color-accent: var(--wp-admin-theme-color);
+			--wp-components-color-accent-darker-10: var(--wp-admin-theme-color-darker-10);
+			--wp-components-color-accent-darker-20: var(--wp-admin-theme-color-darker-20);
 			--sc-color-primary-500: var(--wp-admin-theme-color);
 			--sc-focus-ring-color-primary: var(
 				--wp-admin-theme-color

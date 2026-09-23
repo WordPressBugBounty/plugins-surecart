@@ -178,6 +178,7 @@ class UsersService {
 				'single'       => true,
 			)
 		);
+
 	}
 
 	/**

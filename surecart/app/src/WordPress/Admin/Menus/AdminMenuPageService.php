@@ -50,7 +50,7 @@ class AdminMenuPageService {
 	 * @var array<string, string[]>
 	 */
 	const MENU_FAMILIES = array(
-		'sc-orders'        => array( 'sc-abandoned-checkouts', 'sc-invoices' ),
+		'sc-orders'        => array( 'sc-abandoned-checkouts', 'sc-invoices', 'sc-shipping-labels' ),
 		'sc-products'      => array( 'sc-bundles', 'sc-product-collections', 'sc-product-groups', 'sc-reviews' ),
 		'sc-coupons'       => array( 'sc-coupons', 'sc-auto-fees', 'sc-bumps', 'sc-upsell-funnels' ),
 		'sc-subscriptions' => array( 'sc-cancellation-insights' ),
@@ -351,8 +351,9 @@ class AdminMenuPageService {
 		// visibility CSS below collapses inactive families, so the unified
 		// admin app can expand them client-side without a reload.
 		$this->pages += array(
-			'abandoned' => \add_submenu_page( $this->slug, __( 'Abandoned', 'surecart' ), '↳ ' . __( 'Abandoned', 'surecart' ), 'edit_sc_orders', 'sc-abandoned-checkouts', '__return_false' ),
-			'invoices'  => \add_submenu_page( $this->slug, __( 'Invoices', 'surecart' ), '↳ ' . __( 'Invoices', 'surecart' ), 'edit_sc_invoices', 'sc-invoices', '__return_false' ),
+			'abandoned'       => \add_submenu_page( $this->slug, __( 'Abandoned', 'surecart' ), '↳ ' . __( 'Abandoned', 'surecart' ), 'edit_sc_orders', 'sc-abandoned-checkouts', '__return_false' ),
+			'invoices'        => \add_submenu_page( $this->slug, __( 'Invoices', 'surecart' ), '↳ ' . __( 'Invoices', 'surecart' ), 'edit_sc_invoices', 'sc-invoices', '__return_false' ),
+			'shipping-labels' => \add_submenu_page( $this->slug, __( 'Shipping Labels', 'surecart' ), '↳ ' . __( 'Shipping Labels', 'surecart' ), 'publish_sc_orders', 'sc-shipping-labels', '__return_false' ),
 		);
 
 		/**

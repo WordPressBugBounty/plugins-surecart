@@ -10,7 +10,7 @@
 					'class'        => 'sc-star-row__label__svg',
 					'height'       => esc_attr( $size ),
 					'width'        => esc_attr( $size ),
-					'fill'         => $fill_color,
+					'fill'         => $should_fill ? $fill_color : 'none',
 					'fill-opacity' => $should_fill ? 1 : 0,
 					'stroke'       => $fill_color,
 					'stroke-width' => 2,

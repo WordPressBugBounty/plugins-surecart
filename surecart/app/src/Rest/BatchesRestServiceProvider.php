@@ -123,6 +123,8 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 		'upsell_funnels'       => 'sc_prices',
 		'reviews'              => 'sc_reviews',
 		'orders'               => 'sc_orders',
+		'fulfillments'         => 'sc_orders',
+		'shipments'            => 'sc_orders',
 		'customers'            => 'sc_customers',
 		'subscriptions'        => 'sc_subscriptions',
 		'invoices'             => 'sc_invoices',
@@ -137,10 +139,26 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 		'medias'               => 'sc_medias',
 	];
 
+	/**
+	 * Index permissions.
+	 *
+	 * @param \WP_REST_Request $request Full details about the request.
+	 * @return bool
+	 */
 	public function get_items_permissions_check( $request ) {
 		return $this->userCanUseBatches();
 	}
 
+	/**
+	 * Find permissions.
+	 *
+	 * Coarse gate only — no platform call here, the client polls this route on
+	 * an interval. Ownership is enforced in BatchesController::find() on the
+	 * one fetch it already makes.
+	 *
+	 * @param \WP_REST_Request $request Full details about the request.
+	 * @return bool
+	 */
 	public function get_item_permissions_check( $request ) {
 		return $this->userCanUseBatches();
 	}
@@ -149,6 +167,9 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 	 * Validates every operation against the cap the caller would have needed
 	 * to perform it directly — otherwise a user with `edit_sc_products` could
 	 * smuggle `DELETE /v1/customers/{id}` through the batch proxy.
+	 *
+	 * @param \WP_REST_Request $request Full details about the request.
+	 * @return true|\WP_Error
 	 */
 	public function create_item_permissions_check( $request ) {
 		if ( ! $this->userCanUseBatches() ) {
@@ -235,6 +256,12 @@ class BatchesRestServiceProvider extends RestServiceProvider implements RestServ
 		}
 		if ( 'DELETE' === $verb ) {
 			return 'delete_' . $suffix;
+		}
+		// A collection-level POST is a create, which the direct endpoints gate
+		// with publish_ (e.g. FulfillmentRestServiceProvider). POST on an item
+		// sub-action such as /shipments/{id}/purchase is still an edit.
+		if ( 'POST' === $verb && preg_match( '#^/v1/[a-z_]+/?$#i', $path ) ) {
+			return 'publish_' . $suffix;
 		}
 
 		return 'edit_' . $suffix;

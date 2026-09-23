@@ -18,7 +18,7 @@ const ScTag = class {
     }
     render() {
         const Tag = this.clearable ? 'button' : 'span';
-        return (h(Tag, { key: '98e2c613ae487aa5e3590457909f91c0f3100e0d', part: "base", onClick: () => this.handleClearClick(), class: {
+        return (h(Tag, { key: '6ddb049b5de9c419b483e275fb3300642157441a', part: "base", onClick: () => this.handleClearClick(), class: {
                 'tag': true,
                 // Types
                 'tag--primary': this.type === 'primary',
@@ -34,7 +34,7 @@ const ScTag = class {
                 // Modifers
                 'tag--pill': this.pill,
                 'tag--clearable': this.clearable,
-            }, "aria-label": this.ariaLabel }, h("span", { key: '87864e87c7aad456f02152812ee40cb4438d71b1', class: "tag__prefix", part: "prefix" }, h("slot", { key: '7ad2f4c8ba74a0f9b97376ace935f9ec2479d969', name: "prefix" })), h("span", { key: '8a97b6e7ed446ccecd389d322817b76e7bdbe188', part: "content", class: "tag__content" }, h("slot", { key: '0c6dde233c67f44c64240217f90858b1f80399e3' })), !!this.clearable && (h("svg", { key: '51f59fa2989514daad6091c3908c65145a32c2c5', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", class: "bi bi-x", viewBox: "0 0 16 16" }, h("path", { key: '659e354d9be71425700d2f63f530b4336b609ad9', d: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" }))), h("span", { key: '4557ed7e9b4947ee5cccc0195c6ab21b8f1b15ae', class: "tag__suffix", part: "suffix" }, h("slot", { key: 'bc54abf56a2df1b8ccb543ae832e63d20878766d', name: "suffix" }))));
+            }, "aria-label": this.ariaLabel }, h("span", { key: '8596bdcb5552406e7d736abdb9882c48bcdd8b0f', class: "tag__prefix", part: "prefix" }, h("slot", { key: '115850b24c8a5b6c433586194071820a75228c57', name: "prefix" })), h("span", { key: '9ca94aef1d79b44d0c8dfb5cd3320f41b95125ac', part: "content", class: "tag__content" }, h("slot", { key: 'ead872e24800a27651a30e9bdeb9e186537adbd5' })), !!this.clearable && (h("svg", { key: '4df5487c07dd0c1757c37f34b092ee54f5742729', xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "currentColor", class: "bi bi-x", viewBox: "0 0 16 16" }, h("path", { key: '7088a94897544af42975c17542df16fb3e8473de', d: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" }))), h("span", { key: '689aff0e879086b6d3cc5eea67c4fb18a1e3848e', class: "tag__suffix", part: "suffix" }, h("slot", { key: '4359fbd3221e25ca168581cb3cc72b861bfec859', name: "suffix" }))));
     }
 };
 ScTag.style = ScTagStyle0;

@@ -22,6 +22,13 @@ class BuyPageController extends BasePageController {
 		add_action( 'wp_head', [ $this, 'addSeoMetaData' ] );
 		// add json schema.
 		add_action( 'wp_head', [ $this, 'addProductJsonSchema' ] );
+		// the buy page is singular sc_product now — remove the product page's own hooks
+		// for the things this controller (via BasePageController) prints itself.
+		remove_action( 'wp_head', [ \SureCart::productPost(), 'addProductSeoMeta' ], 10 );
+		remove_action( 'wp_head', [ \SureCart::productPost(), 'addProductJsonSchema' ], 10 );
+		remove_action( 'admin_bar_menu', [ \SureCart::productPost(), 'addEditLink' ], 99 );
+		remove_filter( 'document_title_parts', [ \SureCart::productPost(), 'documentTitle' ] );
+		remove_filter( 'pre_get_document_title', [ \SureCart::productPost(), 'disallowPreTitle' ], 214748364 );
 	}
 
 	/**
@@ -47,6 +54,11 @@ class BuyPageController extends BasePageController {
 	 * @return void
 	 */
 	public function addEditProductLink( $wp_admin_bar ) {
+		// the buy page is singular sc_product now — the admin toolbar adds its own edit node.
+		if ( \SureCart::adminToolbar()->isEnabled() ) {
+			return;
+		}
+
 		if ( empty( $this->model->id ) ) {
 			return;
 		}
@@ -241,8 +253,8 @@ class BuyPageController extends BasePageController {
 			return;
 		}
 
-		// render the seo meta.
-		\SureCart::productPost()->renderProductSeoMeta( $product );
+		// render the seo meta. og:url must be the buy link — the mirrored post permalink can 404 for buy-link-only products.
+		\SureCart::productPost()->renderProductSeoMeta( $product, $product->checkout_permalink );
 	}
 
 	/**

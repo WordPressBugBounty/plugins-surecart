@@ -1328,10 +1328,12 @@ class ProductPostTypeService {
 	 * Render the SEO meta tags for the product.
 	 *
 	 * @param \SureCart\Models\Product $product The product.
+	 * @param string                   $permalink Optional. The canonical URL for og:url. Defaults to the product permalink.
 	 *
 	 * @return void
 	 */
-	public function renderProductSeoMeta( $product ) {
+	public function renderProductSeoMeta( $product, $permalink = '' ) {
+		$permalink         = $permalink ?: $product->permalink;
 		$image_attributes  = $product->featured_image ? $product->featured_image->attributes( apply_filters( 'surecart/og:image/size', 'full' ) ) : null;
 		$product_image_url = $image_attributes ? ( $image_attributes->src ?? '' ) : '';
 		?>
@@ -1341,7 +1343,7 @@ class ProductPostTypeService {
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="<?php echo esc_attr( $product->page_title ); ?>" />
 		<meta property="og:description" content="<?php echo esc_attr( sanitize_text_field( $product->meta_description ) ); ?>" />
-		<meta property="og:url" content="<?php echo esc_url( $product->permalink ); ?>" />
+		<meta property="og:url" content="<?php echo esc_url( $permalink ); ?>" />
 		<meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="<?php echo esc_attr( $product->page_title ); ?>" />

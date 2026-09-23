@@ -641,6 +641,16 @@ export interface PriceChoice {
 }
 export type CheckoutState = 'idle' | 'loading' | 'draft' | 'updating' | 'finalized' | 'paid' | 'failure';
 export type TaxStatus = 'disabled' | 'address_invalid' | 'reverse_charged' | 'tax_registration_not_found' | 'tax_zone_not_found' | 'estimated' | 'calculated';
+/** One rate within a checkout's tax total; a checkout with GST + PST has two. */
+export interface TaxBreakdownItem {
+    tax_rate: number;
+    tax_label: string | null;
+    taxable_amount: number;
+    tax_amount: number;
+    /** Added by the PHP Checkout model, not the platform. */
+    tax_display_amount?: string;
+    taxable_display_amount?: string;
+}
 export interface Invoice extends Object {
     id: string;
     object: 'invoice';
@@ -773,9 +783,10 @@ export interface Checkout extends Object {
     tax_display_amount: string;
     tax_inclusive_amount: number;
     tax_exclusive_amount: number;
-    tax_status: 'disabled' | 'address_invalid' | 'estimated' | 'calculated';
+    tax_status: TaxStatus;
     tax_label: string;
     tax_percent: number;
+    tax_breakdown?: TaxBreakdownItem[];
     tax_enabled: boolean;
     email_exists: boolean;
     show_converted_total: boolean;
@@ -875,6 +886,7 @@ export interface Checkout extends Object {
     discount?: DiscountResponse;
     billing_address?: string | Address;
     geo_address?: string | Address;
+    ip_geo_address?: string | Address;
     latitude?: number;
     longitude?: number;
     shipping_amount?: number;

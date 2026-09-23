@@ -8,6 +8,16 @@ use SureCart\Controllers\Admin\AdminController;
  * Handles affiliate payout groups admin routes.
  */
 class AffiliationPayoutGroupsController extends AdminController {
+	/**
+	 * Payout batches have no list of their own, so the action-less URL
+	 * belongs to Payouts, where they are listed.
+	 *
+	 * @return void
+	 */
+	public function index(): void {
+		wp_safe_redirect( admin_url( 'admin.php?page=sc-affiliate-payouts' ) );
+		exit;
+	}
 
 	/**
 	 * Edit an affiliate payout group.
@@ -30,6 +40,6 @@ class AffiliationPayoutGroupsController extends AdminController {
 		);
 
 		// return view.
-		return '<div id="app"></div>';
+		return '<div id="sc-affiliate-payout-groups-app"></div>';
 	}
 }

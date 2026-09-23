@@ -66,6 +66,16 @@ class TaxRegistrationRestServiceProvider extends RestServiceProvider implements 
 					'type'        => 'object',
 					'context'     => [ 'view', 'edit', 'embed' ],
 				],
+				'label'          => [
+					'description' => esc_html__( 'The tax label shown to customers for this registration.', 'surecart' ),
+					'type'        => [ 'string', 'null' ],
+					'context'     => [ 'view', 'edit', 'embed' ],
+				],
+				'manual_rate'    => [
+					'description' => esc_html__( 'The tax rate for zones that require a manual rate.', 'surecart' ),
+					'type'        => [ 'number', 'null' ],
+					'context'     => [ 'view', 'edit', 'embed' ],
+				],
 			],
 		];
 

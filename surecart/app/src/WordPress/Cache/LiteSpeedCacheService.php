@@ -7,16 +7,15 @@ namespace SureCart\WordPress\Cache;
  */
 class LiteSpeedCacheService extends CacheService {
 	/**
-	 * Bootstrap the service.
+	 * Register the plugin's cache hooks.
+	 *
+	 * Does not call parent::registerHooks() — LiteSpeed's finalize hook
+	 * (onControlFinalize()) replaces the base 'wp' hook for cache-control
+	 * decisions, so only the REST API and purge hooks are shared.
 	 *
 	 * @return void
 	 */
-	public function bootstrap() {
-		// Early return if LiteSpeed Cache plugin is not active.
-		if ( ! $this->isCachePluginActive() ) {
-			return;
-		}
-
+	protected function registerHooks(): void {
 		// Use LiteSpeed's finalize hook for cache control decisions.
 		add_action( 'litespeed_control_finalize', [ $this, 'onControlFinalize' ] );
 
@@ -24,7 +23,7 @@ class LiteSpeedCacheService extends CacheService {
 		add_filter( 'litespeed_vary_cookies', [ $this, 'addVaryCookies' ] );
 
 		// Exclude critical WordPress scripts from JS defer.
-		add_filter( 'litespeed_optm_js_defer_exc', [ $this, 'excludeScriptsFromDefer' ] );
+		add_filter( 'litespeed_optm_js_defer_exc', [ $this, 'getMergedJsDeferExcludes' ] );
 
 		// Disable cache for SureCart REST API requests.
 		add_action( 'rest_api_init', [ $this, 'maybeDisableCacheForRestApi' ], 1 );
@@ -64,25 +63,8 @@ class LiteSpeedCacheService extends CacheService {
 			return;
 		}
 
-		if ( $this->isCustomerDashboardPage() ) {
-			$this->disableCacheWithBrowserHeaders( 'SureCart customer dashboard' );
-			return;
-		}
-
-		if ( $this->isCheckoutPage() ) {
-			$this->disableCacheWithBrowserHeaders( 'SureCart checkout page' );
-			return;
-		}
-
-		if ( $this->hasCheckoutFormBlock() ) {
-			$this->disableCacheWithBrowserHeaders( 'SureCart checkout form block' );
-			return;
-		}
-
-		if ( $this->isBuyPage() ) {
-			$this->disableCacheWithBrowserHeaders( 'SureCart buy page' );
-			return;
-		}
+		// Delegate so additions to the shared exclusion logic propagate automatically.
+		$this->maybeDisableCache();
 	}
 
 	/**
@@ -100,47 +82,14 @@ class LiteSpeedCacheService extends CacheService {
 	}
 
 	/**
-	 * Exclude critical scripts from JS defer.
+	 * Purge LiteSpeed's cache for a single post.
 	 *
-	 * @param array $excludes Existing excluded scripts.
-	 * @return array
-	 */
-	public function excludeScriptsFromDefer( $excludes ) {
-		if ( ! is_array( $excludes ) ) {
-			$excludes = [];
-		}
-
-		return array_merge( $excludes, $this->getJsDeferExcludes() );
-	}
-
-	/**
-	 * Purge product cache when stock is adjusted.
-	 *
-	 * @param \SureCart\Models\Product $product The product model.
+	 * @param int $post_id Post ID.
 	 * @return void
 	 */
-	public function purgeProductCacheOnStockAdjustment( $product ) {
-		// Only purge if the action is available.
-		if ( ! has_action( 'litespeed_purge_post' ) ) {
-			return;
-		}
-
-		if ( empty( $product ) ) {
-			return;
-		}
-
-		// Get the WordPress post ID for the product.
-		$post_id = $product->metadata->wp_id ?? null;
-
-		if ( ! empty( $post_id ) ) {
+	protected function purgeCachedPost( int $post_id ): void {
+		if ( has_action( 'litespeed_purge_post' ) ) {
 			do_action( 'litespeed_purge_post', $post_id );
 		}
-
-		/**
-		 * Action fired after purging cache for a product on stock adjustment.
-		 *
-		 * @param \SureCart\Models\Product $product The product model.
-		 */
-		do_action( 'surecart/cache/purged_product', $product );
 	}
 }

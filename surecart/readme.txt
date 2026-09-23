@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.8.0
+Stable tag: 4.9.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -421,6 +421,23 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.9.0 - September 23rd, 2026 =
+- New: Bulk shipping labels — pick multiple orders under Orders → Shipping Labels, compare rates, and buy labels in one go.
+- New: "Start With a Complete Site" onboarding option to preview and import a ready-made SureCart starter template.
+- New: Checkout, orders, invoices, and subscriptions show each tax rate on its own line when a region stacks taxes (e.g. Canadian GST + PST).
+- New: Tax overrides can carry a custom Tax Label (e.g. "GST + PST") shown at checkout and on receipts.
+- New: "Limit Location Capture To" setting asks only buyers in the countries you pick for their location.
+- New: First-party integrations with WP Rocket, Perfmatters, and SiteGround Optimizer — SureCart registers the cache and delay-JS exclusions they need.
+- Improvement: Affiliate click tracking now runs through your own site, so ad blockers no longer drop clicks.
+- Improvement: Customer-facing "invoice" wording is now "receipt" where the downloaded document is a receipt.
+- Improvement: Tax ID placeholder now names the expected type for the selected zone (e.g. "Enter EU VAT").
+- Improvement: Dynamic pricing rules now warn when a Geo Address Country rule targets a country location capture will not collect.
+- Fix: Instant Checkout `/buy/` pages treated as the blog index, giving SEO plugins the wrong canonical, robots, and duplicate Open Graph tags.
+- Fix: Product review pagination disabled state, and unfilled rating stars rendering incorrectly.
+- Fix: Payout batch creation was left on the legacy admin screen — it now opens in the modern admin, from an "Add Payout Batch" button on the Payouts list.
+- Fix: Shippo labels ignoring the selected "Label file type" when buying a label unless Re-quote was clicked first.
+- Fix: Hardened batch permission checks so users can only read batches and batch operations they are allowed to see.
 
 = 4.8.0 - September 15th, 2026 =
 - New: Added the modern DataViews list experience to the rest of the SureCart admin pages.

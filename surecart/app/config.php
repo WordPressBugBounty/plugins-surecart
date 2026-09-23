@@ -32,6 +32,7 @@ return array(
 		\SureCart\WordPress\Shortcodes\ShortcodesServiceProvider::class,
 		\SureCart\WordPress\Admin\Menus\AdminMenuPageServiceProvider::class,
 		\SureCart\WordPress\Admin\Notices\AdminNoticesServiceProvider::class,
+		\SureCart\WordPress\Admin\StarterTemplates\StarterTemplatesAjaxBridgeServiceProvider::class,
 		\SureCart\WordPress\CLI\CLIServiceProvider::class,
 		\SureCart\WordPress\Cache\CacheServiceProvider::class,
 		\SureCartAppCore\Assets\AssetsServiceProvider::class,
@@ -138,6 +139,7 @@ return array(
 		\SureCart\Rest\VariantOptionsRestServiceProvider::class,
 		\SureCart\Rest\VariantValuesRestServiceProvider::class,
 		\SureCart\Rest\ClicksRestServiceProvider::class,
+		\SureCart\Rest\VisitsRestServiceProvider::class,
 		\SureCart\Rest\ReferralItemsRestServiceProvider::class,
 		\SureCart\Rest\PayoutsRestServiceProvider::class,
 		\SureCart\Rest\PayoutGroupsRestServiceProvider::class,
@@ -152,6 +154,8 @@ return array(
 		\SureCart\Rest\AutoFeeRestServiceProvider::class,
 		\SureCart\Rest\AutoFeeProtocolRestServiceProvider::class,
 		\SureCart\Rest\RuleSchemaRestServiceProvider::class,
+		\SureCart\Rest\StarterTemplatesRestServiceProvider::class,
+		\SureCart\Rest\OnboardingRestServiceProvider::class,
 
 		// integrations.
 		\SureCart\Integrations\DiviServiceProvider::class,

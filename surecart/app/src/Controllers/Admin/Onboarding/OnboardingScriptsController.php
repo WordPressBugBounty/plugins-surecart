@@ -51,6 +51,10 @@ class OnboardingScriptsController extends AdminModelEditController {
 		$this->data['user_email']  = is_user_logged_in() ? wp_get_current_user()->user_email : '';
 		$this->data['success_url'] = esc_url_raw( \SureCart::getUrl()->index( 'products' ) );
 
+		// The "Complete Site" flow drives Starter Templates' browser-only import
+		// AJAX endpoints, which live on admin-ajax.php.
+		$this->data['admin_ajax_url'] = esc_url_raw( admin_url( 'admin-ajax.php' ) );
+
 		parent::enqueue();
 	}
 }

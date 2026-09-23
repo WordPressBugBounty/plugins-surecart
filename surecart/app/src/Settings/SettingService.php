@@ -42,7 +42,9 @@ class SettingService {
 		$value = isset( $_POST['value'] ) ? (bool) absint( wp_unslash( $_POST['value'] ) ) : false;
 		update_option( 'surecart_enhanced_admin_views', $value );
 
-		$redirect = isset( $_POST['redirect_to'] ) ? esc_url_raw( wp_unslash( $_POST['redirect_to'] ) ) : admin_url();
+		// Keep redirects on-host even with a valid nonce.
+		$requested = isset( $_POST['redirect_to'] ) ? esc_url_raw( wp_unslash( $_POST['redirect_to'] ) ) : '';
+		$redirect  = wp_validate_redirect( $requested, admin_url() );
 		wp_safe_redirect( $redirect );
 		exit;
 	}

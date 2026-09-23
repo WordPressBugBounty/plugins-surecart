@@ -826,4 +826,30 @@ class Checkout extends Model {
 	public function getTaxDisplayAmountAttribute() {
 		return Currency::format( $this->tax_amount, $this->currency );
 	}
+
+	/**
+	 * Add formatted amounts to each tax breakdown entry.
+	 *
+	 * The platform returns raw cents per rate; the storefront needs the
+	 * display-currency strings, same as the other *_display_amount accessors.
+	 *
+	 * @param array|null $value Raw tax breakdown from the API.
+	 *
+	 * @return array|null
+	 */
+	public function getTaxBreakdownAttribute( $value ) {
+		if ( empty( $value ) || ! is_array( $value ) ) {
+			return $value;
+		}
+
+		return array_map(
+			function ( $item ) {
+				$item                           = (array) $item;
+				$item['tax_display_amount']     = Currency::format( $item['tax_amount'] ?? 0, $this->currency );
+				$item['taxable_display_amount'] = Currency::format( $item['taxable_amount'] ?? 0, $this->currency );
+				return $item;
+			},
+			$value
+		);
+	}
 }

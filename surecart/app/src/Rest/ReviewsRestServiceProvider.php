@@ -26,9 +26,21 @@ class ReviewsRestServiceProvider extends RestServiceProvider implements RestServ
 	/**
 	 * Register Additional REST Routes
 	 *
+	 * Also installs the `surecart/reviews/list/query_args` translator here
+	 * (instead of in the controller's constructor) so it's only wired up
+	 * during `rest_api_init` — CLI/unit instantiation of the controller
+	 * won't leak a global filter as a side effect.
+	 *
 	 * @return void
 	 */
 	public function registerRoutes() {
+		add_filter(
+			'surecart/reviews/list/query_args',
+			[ ReviewsController::class, 'translateStatusArgKey' ],
+			10,
+			1
+		);
+
 		register_rest_route(
 			"$this->name/v$this->version",
 			$this->endpoint . '/(?P<id>\S+)/publish/',

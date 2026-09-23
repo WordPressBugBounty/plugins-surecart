@@ -228,25 +228,6 @@ class ScriptsService {
 			$asset_file['dependencies'],
 			$asset_file['version']
 		);
-
-		wp_register_script(
-			'surecart-affiliate-tracking',
-			esc_url_raw( untrailingslashit( SURECART_JS_URL ) . '/v1/affiliates' ),
-			[],
-			'1.1',
-			[
-				'strategy' => 'defer',
-			]
-		);
-
-		wp_add_inline_script(
-			'surecart-affiliate-tracking',
-			'window.SureCartAffiliatesConfig = {
-				"publicToken": "' . \SureCart::account()->public_token . '",
-				"baseURL":"' . esc_url_raw( untrailingslashit( SURECART_API_URL ) ) . '/v1"
-			};',
-			'before'
-		);
 	}
 
 	/**

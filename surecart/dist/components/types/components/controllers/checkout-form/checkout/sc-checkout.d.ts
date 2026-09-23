@@ -108,11 +108,11 @@ export declare class ScCheckout {
         stripePaymentIntent: import("../../../../types").PaymentIntent;
         error: ResponseError;
         customer: Customer;
-        tax_status: "disabled" | "address_invalid" | "estimated" | "calculated";
+        tax_status: import("../../../../types").TaxStatus;
         taxEnabled: boolean;
         customerShippingAddress: string | import("../../../../types").Address;
         shippingAddress: string | import("../../../../types").Address;
-        taxStatus: "disabled" | "address_invalid" | "estimated" | "calculated";
+        taxStatus: import("../../../../types").TaxStatus;
         taxIdentifier: {
             number: string;
             number_type: string;

@@ -21,17 +21,32 @@ class CacheServiceProvider implements ServiceProviderInterface {
 	 * @param  \Pimple\Container $container Service Container.
 	 */
 	public function register( $container ) {
-		$container['surecart.litespeed_cache'] = function () {
+		$container['surecart.litespeed_cache']              = function () {
 			return new LiteSpeedCacheService();
 		};
-		$container['surecart.wpfastest_cache'] = function () {
+		$container['surecart.wpfastest_cache']              = function () {
 			return new WpFastestCacheService();
 		};
-		$container['surecart.w3total_cache']   = function () {
+		$container['surecart.w3total_cache']                = function () {
 			return new W3TotalCacheService();
 		};
-		$container['surecart.donotcache_page'] = function () {
+		$container['surecart.donotcache_page']              = function () {
 			return new DoNotCachePageService();
+		};
+		$container['surecart.migrations.wprocket_config']   = function () {
+			return new WpRocketConfigMigrationService();
+		};
+		$container['surecart.wprocket_cache']               = function () use ( $container ) {
+			return new WpRocketCacheService( $container['surecart.migrations.wprocket_config'] );
+		};
+		$container['surecart.perfmatters_cache']            = function () {
+			return new PerfmattersCacheService();
+		};
+		$container['surecart.migrations.siteground_config'] = function () {
+			return new SiteGroundConfigMigrationService();
+		};
+		$container['surecart.siteground_cache']             = function () use ( $container ) {
+			return new SiteGroundCacheService( $container['surecart.migrations.siteground_config'] );
 		};
 	}
 
@@ -50,6 +65,9 @@ class CacheServiceProvider implements ServiceProviderInterface {
 				$container['surecart.wpfastest_cache']->bootstrap();
 				$container['surecart.w3total_cache']->bootstrap();
 				$container['surecart.donotcache_page']->bootstrap();
+				$container['surecart.wprocket_cache']->bootstrap();
+				$container['surecart.perfmatters_cache']->bootstrap();
+				$container['surecart.siteground_cache']->bootstrap();
 			},
 			999 // Late priority to ensure it runs after most plugins have loaded.
 		);

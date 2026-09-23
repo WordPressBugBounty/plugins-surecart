@@ -56,6 +56,11 @@ class TaxOverrideRestServiceProvider extends RestServiceProvider implements Rest
 					'type'    => 'integer',
 					'context' => [ 'view', 'edit', 'embed' ],
 				],
+				'label'      => [
+					'description' => esc_html__( 'The tax label shown to customers for this override. Falls back to the zone or registration label when blank.', 'surecart' ),
+					'type'        => [ 'string', 'null' ],
+					'context'     => [ 'view', 'edit', 'embed' ],
+				],
 			],
 		];
 

@@ -32,6 +32,33 @@ class ReviewsController extends RestController {
 	protected $with = [ 'product', 'product.price', 'product.featured_product_media' ];
 
 	/**
+	 * Rename `status` → `status[]` for the outbound platform request — WP
+	 * REST strips the brackets off incoming `$_GET` keys.
+	 *
+	 * Registered as a filter in `ReviewsRestServiceProvider::registerRoutes()`
+	 * so it only fires on `rest_api_init`.
+	 *
+	 * @param array $args Query args from the REST request.
+	 *
+	 * @return array
+	 */
+	public static function translateStatusArgKey( array $args ): array {
+		if ( ! array_key_exists( 'status', $args ) ) {
+			return $args;
+		}
+
+		$value = $args['status'];
+		unset( $args['status'] );
+
+		if ( is_array( $value ) && empty( $value ) ) {
+			return $args;
+		}
+
+		$args['status[]'] = $value;
+		return $args;
+	}
+
+	/**
 	 * Middleware before we make the request.
 	 *
 	 * @param \SureCart\Models\Model $class Model class instance.

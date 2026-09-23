@@ -5,7 +5,7 @@
 		echo wp_kses_data(
 			sc_html_attributes(
 				[
-					'class'                  => 'sc-page-link',
+					'class'                  => 'sc-page-link' . ( $pagination_link['current'] ? ' sc-page-link--disabled' : '' ),
 					'role'                   => 'link',
 					'href'                   => esc_url( $pagination_link['href'] ),
 					'disabled'               => $pagination_link['current'] ? 'disabled' : null,

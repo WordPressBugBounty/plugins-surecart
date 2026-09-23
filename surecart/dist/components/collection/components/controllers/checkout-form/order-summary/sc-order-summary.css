@@ -72,6 +72,10 @@
   margin: 20px 0 !important;
 }
 
+::slotted(sc-line-item-tax) {
+  --sc-line-item-tax-gap: 8px;
+}
+
 sc-line-item ~ sc-line-item {
   margin-top: 14px;
 }

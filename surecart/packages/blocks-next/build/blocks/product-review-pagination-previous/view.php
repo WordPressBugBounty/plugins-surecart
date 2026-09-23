@@ -4,7 +4,7 @@
 		get_block_wrapper_attributes(
 			array_filter(
 				[
-					'class'                  => 'has-arrow-type-' . $pagination_arrow,
+					'class'                  => 'sc-page-link has-arrow-type-' . $pagination_arrow . ( empty( $page_link ) ? ' sc-page-link--disabled' : '' ),
 					'href'                   => esc_url( $page_link ),
 					'role'                   => 'link',
 					'aria-disabled'          => empty( $page_link ) ? 'true' : null,

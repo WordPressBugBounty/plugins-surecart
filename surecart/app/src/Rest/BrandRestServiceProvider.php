@@ -116,17 +116,17 @@ class BrandRestServiceProvider extends RestServiceProvider implements RestServic
 					'context'     => [ 'view', 'edit' ],
 				],
 				'email'            => [
-					'description' => esc_html__( 'The email address that will be shown to customers for support, on invoices, etc.', 'surecart' ),
+					'description' => esc_html__( 'The email address that will be shown to customers for support, on invoices, receipts, etc.', 'surecart' ),
 					'type'        => 'string',
 					'context'     => [ 'edit' ],
 				],
 				'phone'            => [
-					'description' => esc_html__( 'The phone number that will be shown to customers for support, on invoices, etc.', 'surecart' ),
+					'description' => esc_html__( 'The phone number that will be shown to customers for support, on invoices, receipts, etc.', 'surecart' ),
 					'type'        => 'string',
 					'context'     => [ 'edit' ],
 				],
 				'website'          => [
-					'description' => esc_html__( 'The website that will be shown to customers for support, on invoices, etc.', 'surecart' ),
+					'description' => esc_html__( 'The website that will be shown to customers for support, on invoices, receipts, etc.', 'surecart' ),
 					'type'        => 'string',
 					'context'     => [ 'view', 'edit' ],
 				],

@@ -1,14 +1,20 @@
 /**
  * Explains why location is requested (e.g. regional / purchasing-power-parity pricing) and gates
- * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant.
+ * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant
+ * (and, if the merchant limited countries, behind the buyer's IP-resolved country).
  */
 export declare class ScCheckoutGeoPermission {
     /** Whether the explainer dialog is open. */
     open: boolean;
-    /** Disposer for the checkout store subscription while we wait for the cart to load. */
-    private removeCartListener?;
-    /** Whether the cart currently has at least one line item. */
-    cartHasItems(): boolean;
+    /** Disposer for the checkout store subscription while we wait for the checkout to be ready. */
+    private removeCheckoutListener?;
+    /**
+     * Whether the checkout is ready to be asked about: it has items to price, and the
+     * IP-resolved country is one the merchant captures for. Both arrive async — the
+     * persisted checkout may predate the `ip_geo_address` expansion — so callers wait
+     * for the first checkout that passes rather than judging one snapshot.
+     */
+    isReady(): boolean;
     /** Whether the customer dismissed our explainer ("Not now") on a previous visit. */
     wasDismissed(): boolean;
     /** Remember a dismissal so we don't re-show the explainer on every visit. */

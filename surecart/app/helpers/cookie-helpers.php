@@ -67,4 +67,7 @@ function sc_setcookie( $name, $value, $expire = 0, $secure = false, $httponly = 
 		headers_sent( $file, $line );
 		trigger_error( "{$name} cookie cannot be set - headers already sent by {$file} on line {$line}", E_USER_NOTICE ); // @codingStandardsIgnoreLine
 	}
+
+	// Make the value visible to code reading $_COOKIE later in this same request.
+	$_COOKIE[ $name ] = $value;
 }

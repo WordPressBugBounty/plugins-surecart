@@ -5,12 +5,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 const index = require('./index-be4abba1.js');
 const functions = require('./functions-033a6a55.js');
 require('./fetch-5e8dc1d5.js');
-const index$1 = require('./index-f32edd4b.js');
+const index$1 = require('./index-e9537dd8.js');
 const mutations = require('./mutations-d5d6ddf1.js');
 const index$2 = require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');
-require('./mutations-cf1fc87c.js');
+require('./mutations-c0d1a15f.js');
 require('./index-c3de642f.js');
 require('./utils-a9d13080.js');
 require('./index-fb76df07.js');
@@ -223,7 +223,7 @@ const ScSecureNotice = class {
         index.registerInstance(this, hostRef);
     }
     render() {
-        return (index.h("div", { key: 'ae73fd89aad081ab32ba575f9e9116226cbcf855', class: "notice", part: "base" }, index.h("svg", { key: '34b1bd815392d7d9b6aae77574f6a2575b4c55ef', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, index.h("path", { key: '7d3085568edf591f6fb6e43aeebd78aa8a82379a', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), index.h("span", { key: '32127abd73cbd43f720161ee8d789377019969cb', class: "notice__text", part: "text" }, index.h("slot", { key: 'e05ebd2f3a873185072cb40577f4bcf4e4e6716f', name: "prefix" }), index.h("slot", { key: 'cf1333caa00bdc4402e1efa96f0cecb8fa905c4a' }), index.h("slot", { key: 'dcbc649f7f642a189afbc54064a8ceb5de914d2e', name: "suffix" }))));
+        return (index.h("div", { key: '0a7415001dd7d32c03073ecd0a16e20207552b10', class: "notice", part: "base" }, index.h("svg", { key: '61ca5defd459c5552a026c3e1c0954bc26fa48b7', class: "notice__icon", part: "icon", xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 512 512", fill: "currentColor" }, index.h("path", { key: 'd439c6c8775e6b32b3cdf0679da68d8928c171e9', d: "M368,192H352V112a96,96,0,1,0-192,0v80H144a64.07,64.07,0,0,0-64,64V432a64.07,64.07,0,0,0,64,64H368a64.07,64.07,0,0,0,64-64V256A64.07,64.07,0,0,0,368,192Zm-48,0H192V112a64,64,0,1,1,128,0Z" })), index.h("span", { key: 'f0684909fed6fade6c615ce30389545c928369fd', class: "notice__text", part: "text" }, index.h("slot", { key: '0171cdf6ae159dcc6afc7a5db85fd3d6e524a2d1', name: "prefix" }), index.h("slot", { key: '64baf61e6cf6c15da9495a9a9dd6b7168bc0b33a' }), index.h("slot", { key: '41629d1d4df88dfbc254ef53b3f905eff0745077', name: "suffix" }))));
     }
 };
 ScSecureNotice.style = ScSecureNoticeStyle0;

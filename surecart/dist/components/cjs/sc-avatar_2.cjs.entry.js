@@ -6,7 +6,7 @@ const index = require('./index-be4abba1.js');
 const index$2 = require('./index-7ced8198.js');
 const index$1 = require('./index-fb76df07.js');
 const store = require('./store-9c215436.js');
-const mutations = require('./mutations-cf1fc87c.js');
+const mutations = require('./mutations-c0d1a15f.js');
 const util = require('./util-a15c420c.js');
 const verification = require('./verification-19455819.js');
 require('./add-query-args-49dcb630.js');
@@ -36,12 +36,12 @@ const ScAvatar = class {
         this.hasError = false;
     }
     render() {
-        return (index.h("div", { key: 'b9d5edc2dc385d19826d08dafde22a6f777adfb6', part: "base", class: {
+        return (index.h("div", { key: 'da737fda47d527e7ce56312e652d33f61aa3610e', part: "base", class: {
                 'avatar': true,
                 'avatar--circle': this.shape === 'circle',
                 'avatar--rounded': this.shape === 'rounded',
                 'avatar--square': this.shape === 'square',
-            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: 'b4dd0031282277abe94eca4b2cdc54a0d6a0ea9e', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
+            }, role: "img", "aria-label": this.label }, this.initials ? (index.h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (index.h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, index.h("slot", { name: "icon" }, index.h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && index.h("img", { key: '8c4a6a63796d5bf64de09ac67210da1227977d57', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
     }
     static get watchers() { return {
         "image": ["handleImageChange"]

@@ -4,9 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const watchers = require('./watchers-517825ae.js');
-const getters = require('./getters-54d5656d.js');
+const getters = require('./getters-efe39911.js');
 require('./index-c3de642f.js');
-require('./mutations-cf1fc87c.js');
+require('./mutations-c0d1a15f.js');
 require('./utils-a9d13080.js');
 require('./remove-query-args-b57e8cd3.js');
 require('./add-query-args-49dcb630.js');

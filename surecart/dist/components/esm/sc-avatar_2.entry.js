@@ -2,7 +2,7 @@ import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
 import { a as apiFetch } from './index-824c562b.js';
 import { s as speak } from './index-c5a96d53.js';
 import { s as state, V as VERIFYING, b as VERIFIED, a as CODE_EXPIRED, U as UNVERIFIED, r as resetUser } from './store-ac90a769.js';
-import { s as state$1 } from './mutations-eb426408.js';
+import { s as state$1 } from './mutations-d28ed918.js';
 import { b as isRateLimited } from './util-dfbf863e.js';
 import { r as resendAnchorFrom, g as getBlockedDuplicateSeconds, s as secondsUntil, R as RESEND_COOLDOWN_SECONDS } from './verification-00df9439.js';
 import './add-query-args-0e2a8393.js';
@@ -32,12 +32,12 @@ const ScAvatar = class {
         this.hasError = false;
     }
     render() {
-        return (h("div", { key: 'b9d5edc2dc385d19826d08dafde22a6f777adfb6', part: "base", class: {
+        return (h("div", { key: 'da737fda47d527e7ce56312e652d33f61aa3610e', part: "base", class: {
                 'avatar': true,
                 'avatar--circle': this.shape === 'circle',
                 'avatar--rounded': this.shape === 'rounded',
                 'avatar--square': this.shape === 'square',
-            }, role: "img", "aria-label": this.label }, this.initials ? (h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, h("slot", { name: "icon" }, h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && h("img", { key: 'b4dd0031282277abe94eca4b2cdc54a0d6a0ea9e', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
+            }, role: "img", "aria-label": this.label }, this.initials ? (h("div", { part: "initials", class: "avatar__initials" }, this.initials)) : (h("div", { part: "icon", class: "avatar__icon", "aria-hidden": "true" }, h("slot", { name: "icon" }, h("sl-icon", { name: "person-fill", library: "system" })))), this.image && !this.hasError && h("img", { key: '8c4a6a63796d5bf64de09ac67210da1227977d57', part: "image", class: "avatar__image", src: this.image, loading: this.loading, alt: "", onError: () => (this.hasError = true) })));
     }
     static get watchers() { return {
         "image": ["handleImageChange"]

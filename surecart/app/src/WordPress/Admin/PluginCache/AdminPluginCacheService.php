@@ -40,7 +40,7 @@ class AdminPluginCacheService {
 				// 'litespeed-cache/litespeed-cache.php', // we added support for this in the plugin
 				// 'sg-cachepress/sg-cachepress.php', // we added support for this in the plugin
 				// 'wp-fastest-cache/wpFastestCache.php', // we added support for this in the plugin
-				'wp-rocket/wp-rocket.php',
+				// 'wp-rocket/wp-rocket.php', // we added support for this in the plugin
 				'wp-super-cache/wp-cache.php',
 				'autoptimize/autoptimize.php',
 				'cache-enabler/cache-enabler.php',
@@ -48,7 +48,7 @@ class AdminPluginCacheService {
 				'hummingbird-performance/wp-hummingbird.php',
 				'wp-optimize/wp-optimize.php',
 				'nitropack/main.php',
-				'perfmatters/perfmatters.php',
+				// 'perfmatters/perfmatters.php', // we added support for this in the plugin
 				'wp-asset-clean-up/wpacu.php',
 				'flying-pages/flying-pages.php',
 				'fast-velocity-minify/fvm.php',

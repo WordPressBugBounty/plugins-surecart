@@ -164,6 +164,18 @@ class AccountService {
 	}
 
 	/**
+	 * Should affiliate click tracking run on this store?
+	 *
+	 * @return boolean
+	 */
+	public function isAffiliateTrackingEnabled(): bool {
+		$tracking_enabled = $this->affiliation_protocol->wordpress_plugin_tracking_enabled ?? false;
+		$script_defined   = defined( 'SURECART_ENABLE_AFFILIATE_SCRIPT' ) && ! empty( SURECART_ENABLE_AFFILIATE_SCRIPT );
+
+		return ( $tracking_enabled || $script_defined ) && ! empty( $this->entitlements->affiliates );
+	}
+
+	/**
 	 * Get the account model attribute
 	 *
 	 * @param string $attribute Attribute name.

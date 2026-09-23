@@ -551,7 +551,8 @@ export namespace Components {
     }
     /**
      * Explains why location is requested (e.g. regional / purchasing-power-parity pricing) and gates
-     * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant.
+     * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant
+     * (and, if the merchant limited countries, behind the buyer's IP-resolved country).
      */
     interface ScCheckoutGeoPermission {
     }
@@ -4979,7 +4980,8 @@ declare global {
     };
     /**
      * Explains why location is requested (e.g. regional / purchasing-power-parity pricing) and gates
-     * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant.
+     * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant
+     * (and, if the merchant limited countries, behind the buyer's IP-resolved country).
      */
     interface HTMLScCheckoutGeoPermissionElement extends Components.ScCheckoutGeoPermission, HTMLStencilElement {
     }
@@ -7846,7 +7848,8 @@ declare namespace LocalJSX {
     }
     /**
      * Explains why location is requested (e.g. regional / purchasing-power-parity pricing) and gates
-     * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant.
+     * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant
+     * (and, if the merchant limited countries, behind the buyer's IP-resolved country).
      */
     interface ScCheckoutGeoPermission {
     }
@@ -12306,7 +12309,8 @@ declare module "@stencil/core" {
             "sc-checkout-form-errors": LocalJSX.ScCheckoutFormErrors & JSXBase.HTMLAttributes<HTMLScCheckoutFormErrorsElement>;
             /**
              * Explains why location is requested (e.g. regional / purchasing-power-parity pricing) and gates
-             * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant.
+             * the browser geolocation prompt behind an explicit opt-in when capture is enabled by the merchant
+             * (and, if the merchant limited countries, behind the buyer's IP-resolved country).
              */
             "sc-checkout-geo-permission": LocalJSX.ScCheckoutGeoPermission & JSXBase.HTMLAttributes<HTMLScCheckoutGeoPermissionElement>;
             "sc-checkout-mollie-payment": LocalJSX.ScCheckoutMolliePayment & JSXBase.HTMLAttributes<HTMLScCheckoutMolliePaymentElement>;

@@ -151,11 +151,11 @@ const ScPopover = class {
         this.trigger.focus();
     }
     render() {
-        return (h("div", { key: '6e49e44acc2f3d7b1c1aa52e6c7cf5e693a7344e', part: "base", class: {
+        return (h("div", { key: 'cce921602076d67e1c0da05ea773c537437159ee', part: "base", class: {
                 'popover': true,
                 'popover--open': this.open,
                 'popover--disabled': this.disabled,
-            } }, h("span", { key: '0d575624139ed244643297021ccb14281ae3014e', part: "trigger", class: "popover__trigger", ref: el => (this.trigger = el), onClick: () => {
+            } }, h("span", { key: '6e62d815870e8856b621f02408ec0bcc31bce0dc', part: "trigger", class: "popover__trigger", ref: el => (this.trigger = el), onClick: () => {
                 if (this.disabled)
                     return;
                 if (this.open) {
@@ -166,7 +166,7 @@ const ScPopover = class {
                         this.show();
                     }, 0);
                 }
-            }, onKeyDown: e => this.handleTriggerKeyDown(e), tabindex: "0", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "dialog", "aria-label": wp.i18n.__('Press Enter to open popover', 'surecart') }, h("slot", { key: 'a7bd5eae97f38c064a79c65ce903cfe31d1f8b32', name: "trigger" })), h("div", { key: 'ea18eab0fcf11ed26c0f909d19b749ffbcdf119a', class: "popover__positioner", ref: el => (this.positioner = el) }, h("div", { key: '586f6a6a95f52ca7df821687f798d1fdeb5b2efe', part: "panel", class: "popover__panel", role: "dialog", "aria-modal": "false", tabindex: "-1", ref: el => (this.panel = el) }, h("div", { key: 'b483144e216859cd81cb89429fbf74ee7ff73135', class: "popover__header" }, h("slot", { key: 'eab96c1eb751b6dc752d6cfdf23f9d25341868d9', name: "title" }), h("button", { key: '37d62cac388161b350f0002c21b19a265f9b29ac', type: "button", class: "popover__header-close-button", onClick: () => this.handleHide(), onKeyDown: e => e.key === 'Enter' && this.handleHide(), "aria-label": wp.i18n.__('Close', 'surecart') }, h("sc-icon", { key: '59940be45cbee4e2bfe9042762f43f59375f5306', class: "popover__header-close-icon", name: "x" }))), h("slot", { key: '8d64d04256e7d37b66bb14bb21867b96a2674b0f', name: "content" }), h("div", { key: 'd4ca910cf2dc35284c1dc175bd07bf807f8c7560', class: "popover__footer" }, h("slot", { key: '45670b68299ba102aa12207adcace2e6cb2e7c49', name: "footer" }))))));
+            }, onKeyDown: e => this.handleTriggerKeyDown(e), tabindex: "0", role: "button", "aria-expanded": this.open ? 'true' : 'false', "aria-haspopup": "dialog", "aria-label": wp.i18n.__('Press Enter to open popover', 'surecart') }, h("slot", { key: '86fbfd165eb809c2d6496a53f5710321a468d79d', name: "trigger" })), h("div", { key: '3d5dead654e5b53b847c4930fd115197dc213e2a', class: "popover__positioner", ref: el => (this.positioner = el) }, h("div", { key: '0e9728f44c082c2104614630e97a9b758edc06b4', part: "panel", class: "popover__panel", role: "dialog", "aria-modal": "false", tabindex: "-1", ref: el => (this.panel = el) }, h("div", { key: '0d91b7bd925daeaadd324d87b7a39579d3c13a86', class: "popover__header" }, h("slot", { key: 'e60261e2f551d330cf68e0386a4509965192b9ac', name: "title" }), h("button", { key: 'caf0be2cbd79155ffa77d82cb4d8ce9e0e071926', type: "button", class: "popover__header-close-button", onClick: () => this.handleHide(), onKeyDown: e => e.key === 'Enter' && this.handleHide(), "aria-label": wp.i18n.__('Close', 'surecart') }, h("sc-icon", { key: 'e2cf1084c7f1fe9d072b7d20559d1d07a70e8561', class: "popover__header-close-icon", name: "x" }))), h("slot", { key: '11dfab5a6f42ee96036084e73bb3266385839508', name: "content" }), h("div", { key: '81f3b12f62118fcfbe4a0c5827f9f777c47ba556', class: "popover__footer" }, h("slot", { key: 'c51b7adb11cecdd6b963b0dc2f521d599f59db9f', name: "footer" }))))));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

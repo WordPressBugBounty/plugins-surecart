@@ -116,6 +116,7 @@
 				"PKSA-s25b-vbmp-jvhh",
 				"PKSA-jn72-4kr8-gj3h"
 			]
-		}
+		},
+		"process-timeout": 0
 	}
 }

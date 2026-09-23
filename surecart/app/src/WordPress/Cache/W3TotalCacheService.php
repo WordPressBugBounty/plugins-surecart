@@ -7,17 +7,12 @@ namespace SureCart\WordPress\Cache;
  */
 class W3TotalCacheService extends CacheService {
 	/**
-	 * Bootstrap the service.
+	 * Register the plugin's cache hooks.
 	 *
 	 * @return void
 	 */
-	public function bootstrap() {
-		// Early return if W3 Total Cache plugin is not active.
-		if ( ! $this->isCachePluginActive() ) {
-			return;
-		}
-
-		parent::bootstrap();
+	protected function registerHooks(): void {
+		parent::registerHooks();
 
 		// Use W3TC's filter to prevent caching of SureCart pages.
 		add_filter( 'w3tc_can_cache', [ $this, 'maybePreventCaching' ], 10, 2 );
@@ -27,6 +22,9 @@ class W3TotalCacheService extends CacheService {
 
 		// Exclude SureCart scripts from defer.
 		add_filter( 'w3tc_minify_js_script_tags', [ $this, 'excludeScriptsFromDefer' ] );
+
+		// Purge cache when product stock is adjusted.
+		add_action( 'surecart/product_stock_adjusted', [ $this, 'purgeProductCacheOnStockAdjustment' ] );
 	}
 
 	/**
@@ -72,34 +70,15 @@ class W3TotalCacheService extends CacheService {
 	}
 
 	/**
-	 * Purge product cache when stock is adjusted.
+	 * Purge W3TC's cache for a single post.
 	 *
-	 * @param \SureCart\Models\Product $product The product model.
+	 * @param int $post_id Post ID.
 	 * @return void
 	 */
-	public function purgeProductCacheOnStockAdjustment( $product ) {
-		// Check if W3TC flush function exists.
-		if ( ! function_exists( 'w3tc_flush_post' ) ) {
-			return;
-		}
-
-		if ( empty( $product ) ) {
-			return;
-		}
-
-		// Get the WordPress post ID for the product.
-		$post_id = $product->metadata->wp_id ?? null;
-
-		if ( ! empty( $post_id ) ) {
+	protected function purgeCachedPost( int $post_id ): void {
+		if ( function_exists( 'w3tc_flush_post' ) ) {
 			w3tc_flush_post( $post_id );
 		}
-
-		/**
-		 * Action fired after purging cache for a product on stock adjustment.
-		 *
-		 * @param \SureCart\Models\Product $product The product model.
-		 */
-		do_action( 'surecart/cache/purged_product', $product );
 	}
 
 	/**

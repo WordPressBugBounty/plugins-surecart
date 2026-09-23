@@ -72,7 +72,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->setNamespace( '\\SureCart\\Controllers\\Admin\\Learn\\' )
 ->handle( 'LearnController@index' );
 
-
 /*
 |--------------------------------------------------------------------------
 | Complete Signup
@@ -111,6 +110,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 		\SureCart::route()->get()->where( 'sc_url_var', 'archive', 'action' )->handle( 'OrdersViewController@archive' );
 	}
 );
+
+/*
+|--------------------------------------------------------------------------
+| Bulk Shipping Labels
+|--------------------------------------------------------------------------
+*/
+\SureCart::route()
+->get()
+->where( 'admin', 'sc-shipping-labels' )
+->middleware( 'user.can:publish_sc_orders' )
+->middleware( 'assets.components' )
+->middleware( 'assets.admin_colors' )
+->setNamespace( '\\SureCart\\Controllers\\Admin\\Orders\\' )
+->handle( 'ShippingLabelsViewController@index' );
 
 /*
 |--------------------------------------------------------------------------
@@ -508,6 +521,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->setNamespace( '\\SureCart\\Controllers\\Admin\\AffiliationPayoutGroups\\' )
 ->group(
 	function () {
+		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'AffiliationPayoutGroupsController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'AffiliationPayoutGroupsController@edit' );
 	}
 );

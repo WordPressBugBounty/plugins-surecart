@@ -6,10 +6,10 @@ const index = require('./index-be4abba1.js');
 const pure = require('./pure-bd6f0a6e.js');
 const consumer = require('./consumer-b58230e6.js');
 const watchers = require('./watchers-517825ae.js');
-const getters = require('./getters-8dfdf301.js');
+const getters = require('./getters-563d55a1.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
-const mutations = require('./mutations-cf1fc87c.js');
-const getters$1 = require('./getters-54d5656d.js');
+const mutations = require('./mutations-c0d1a15f.js');
+const getters$1 = require('./getters-efe39911.js');
 require('./index-c3de642f.js');
 require('./util-a15c420c.js');
 require('./utils-a9d13080.js');
@@ -193,7 +193,7 @@ const ScStripeElement = class {
         this.element.on('blur', () => (this.hasFocus = false));
     }
     render() {
-        return (index.h(index.Fragment, { key: '4538fdd4aa38beb484c525818ca2311316c9232e' }, index.h("sc-form-control", { key: 'f98d9dd5bb129bb36c6d8a17b6d57bb46eef7162', class: "sc-stripe", size: this.size, label: this.label }, index.h("div", { key: '1561f2eacde91c1b3ff1aab142ecf4e654f3b5ff', class: "sc-stripe-element", ref: el => (this.container = el) })), this.error && (index.h("sc-text", { key: '31a91821bfe483d225bb70b020d22e6cc859f486', style: {
+        return (index.h(index.Fragment, { key: 'fa9880e890760659def442e0d409d838fff881ca' }, index.h("sc-form-control", { key: '3be7814ac51e0e45cd724c9ed8471920f3ebadc5', class: "sc-stripe", size: this.size, label: this.label }, index.h("div", { key: 'df564eaa19338f532afefdc517565a876809567c', class: "sc-stripe-element", ref: el => (this.container = el) })), this.error && (index.h("sc-text", { key: 'db0c1df5341d28e23c465f1cab4dde1d59aa34ce', style: {
                 'color': 'var(--sc-color-danger-500)',
                 '--font-size': 'var(--sc-font-size-small)',
                 'marginTop': '0.5em',
