@@ -21,7 +21,7 @@ class Block extends CartBlock {
 		ob_start(); ?>
 
 		<sc-line-item-bump
-			label="<?php echo esc_attr( $attributes['label'] ?? '' ); ?>"
+			label="<?php echo esc_attr( $attributes['label'] ?? __( 'Bundle Discount', 'surecart' ) ); ?>"
 			class="<?php echo esc_attr( $attributes['className'] ?? '' ); ?>"
 			style="<?php echo esc_attr( $this->getStyle( $attributes ) ); ?>"></sc-line-item-bump>
 

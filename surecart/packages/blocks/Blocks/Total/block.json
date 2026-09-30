@@ -13,24 +13,19 @@
 	},
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "Total"
+			"type": "string"
 		},
 		"due_amount_text": {
-			"type": "string",
-			"default": "Amount Due"
+			"type": "string"
 		},
 		"subscription_text": {
-			"type": "string",
-			"default": "Total Due Today"
+			"type": "string"
 		},
 		"first_payment_total_text": {
-			"type": "string",
-			"default": "Subtotal"
+			"type": "string"
 		},
 		"free_trial_text": {
-			"type": "string",
-			"default": "Trial"
+			"type": "string"
 		}
 	}
 }

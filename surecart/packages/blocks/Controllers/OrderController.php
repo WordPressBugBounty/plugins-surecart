@@ -39,7 +39,7 @@ class OrderController extends BaseController {
 						]
 					),
 				]
-			)->render( $attributes['title'] ? "<span slot='heading'>" . $attributes['title'] . '</span>' : '' )
+			)->render( ( $attributes['title'] ?? __( 'Order History', 'surecart' ) ) ? "<span slot='heading'>" . ( $attributes['title'] ?? __( 'Order History', 'surecart' ) ) . '</span>' : '' )
 		);
 	}
 

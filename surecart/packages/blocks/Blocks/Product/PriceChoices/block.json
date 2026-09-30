@@ -8,8 +8,7 @@
 	"keywords": ["price", "product", "choice"],
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Pricing"
+			"type": "string"
 		},
 		"columns": {
 			"type": "number",

@@ -6,8 +6,8 @@ return [
 	'title'      => __( 'Simple', 'surecart' ),
 	'categories' => [ 'surecart_form' ],
 	'blockTypes' => [ 'surecart/form' ],
-	'content'    => '<!-- wp:surecart/price-selector {"label":"Choose A Plan"} -->
-	<sc-price-choices label="Choose A Plan" type="radio" columns="1"><div><!-- wp:surecart/price-choice -->
+	'content'    => '<!-- wp:surecart/price-selector {"label":' . wp_json_encode( __( 'Choose A Plan', 'surecart' ) ) . '} -->
+	<sc-price-choices label="' . esc_attr__( 'Choose A Plan', 'surecart' ) . '" type="radio" columns="1"><div><!-- wp:surecart/price-choice -->
 		<sc-price-choice type="radio" show-label="1" show-price="1" show-control="1"></sc-price-choice>
 		<!-- /wp:surecart/price-choice --></div></sc-price-choices>
 		<!-- /wp:surecart/price-selector -->
@@ -16,8 +16,8 @@ return [
 		<sc-customer-email label="Email" autocomplete="email" inputmode="email" required class="wp-block-surecart-email"></sc-customer-email>
 		<!-- /wp:surecart/email -->
 
-		<!-- wp:surecart/payment {"secure_notice":"This is a secure, encrypted payment"} -->
-		<sc-payment label="Payment" secure-notice="This is a secure, encrypted payment" class="wp-block-surecart-payment"></sc-payment>
+		<!-- wp:surecart/payment {"secure_notice":' . wp_json_encode( __( 'This is a secure, encrypted payment', 'surecart' ) ) . '} -->
+		<sc-payment label="Payment" secure-notice="' . esc_attr__( 'This is a secure, encrypted payment', 'surecart' ) . '" class="wp-block-surecart-payment"></sc-payment>
 		<!-- /wp:surecart/payment -->
 
 		<!-- wp:surecart/totals {"collapsible":true,"collapsed":true} -->
@@ -39,8 +39,8 @@ return [
 
 		<!-- wp:surecart/trial-line-item /-->
 
-		<!-- wp:surecart/coupon {"text":"Add Coupon Code","button_text":"Apply Coupon"} -->
-		<sc-order-coupon-form label="Add Coupon Code">Apply Coupon</sc-order-coupon-form>
+		<!-- wp:surecart/coupon {"button_text":' . wp_json_encode( __( 'Apply Coupon', 'surecart' ) ) . '} -->
+		<sc-order-coupon-form label="Add Coupon Code">' . esc_html__( 'Apply Coupon', 'surecart' ) . '</sc-order-coupon-form>
 		<!-- /wp:surecart/coupon -->
 
 		<!-- wp:surecart/tax-line-item -->

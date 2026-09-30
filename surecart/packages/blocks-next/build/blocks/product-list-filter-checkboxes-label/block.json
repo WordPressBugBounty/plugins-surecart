@@ -16,8 +16,7 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Filter by"
+      "type": "string"
     }
   },
   "supports": {

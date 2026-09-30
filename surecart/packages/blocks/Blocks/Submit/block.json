@@ -20,8 +20,7 @@
 	},
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "Purchase"
+			"type": "string"
 		},
 		"show_secure_notice": {
 			"type": "boolean",

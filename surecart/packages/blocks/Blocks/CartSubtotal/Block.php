@@ -9,7 +9,7 @@ use SureCartBlocks\Blocks\CartBlock;
  */
 class Block extends CartBlock {
 	/**
-	 * Render the block
+	 * Render the block.
 	 *
 	 * @param array  $attributes Block attributes.
 	 * @param string $content Post content.
@@ -26,7 +26,7 @@ class Block extends CartBlock {
 			class="<?php echo esc_attr( $attributes['className'] ?? '' ); ?>"
 			style="<?php echo esc_attr( $this->getStyle( $attributes ) ); ?>"
 		>
-			<span slot="title"><?php echo wp_kses_post( $attributes['label'] ?? __( 'Total', 'surecart' ) ); ?></span>
+			<span slot="title"><?php echo wp_kses_post( $attributes['label'] ?? __( 'Subtotal', 'surecart' ) ); ?></span>
 		</sc-line-item-total>
 
 		<?php

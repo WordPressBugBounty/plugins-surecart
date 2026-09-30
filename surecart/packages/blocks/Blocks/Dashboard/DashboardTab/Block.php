@@ -29,7 +29,7 @@ class Block extends BaseBlock {
 			'blocks/dashboard-tab',
 			[
 				'active' => $tab === $attributes['panel'] ? 'true' : 'false',
-				'title'  => $attributes['title'] ?? '',
+				'title'  => ! empty( $attributes['title'] ) ? $attributes['title'] : __( 'Tab', 'surecart' ),
 				'icon'   => $attributes['icon'] ?? 'home',
 				'href'   => esc_url( add_query_arg( [ 'tab' => sanitize_title( $attributes['panel'] ) ], remove_query_arg( array_keys( $_GET ) ) ) ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			]

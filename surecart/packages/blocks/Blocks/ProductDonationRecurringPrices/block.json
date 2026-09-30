@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Yes, count me in!"
+			"type": "string"
 		},
 		"recurring": {
 			"type": "boolean",
@@ -28,8 +27,7 @@
 			"title": "Recurring",
 			"description": "Add a button to add the product to the cart.",
 			"attributes": {
-				"recurring": true,
-				"label": "Yes, count me in!"
+				"recurring": true
 			},
 			"isDefault": true,
 			"isActive": ["recurring"],
@@ -40,8 +38,7 @@
 			"title": "Non Recurring",
 			"description": "Add a button to add the product to the cart.",
 			"attributes": {
-				"recurring": false,
-				"label": "No, donate once."
+				"recurring": false
 			},
 			"isActive": ["recurring"],
 			"scope": ["inserter", "block", "transform"]

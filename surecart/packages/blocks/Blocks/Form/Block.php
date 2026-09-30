@@ -46,6 +46,10 @@ class Block extends BaseBlock {
 			$processors = [];
 		}
 
+		// Hoist the optional text-override arrays to locals before subscript access.
+		$loading_text = is_array( $attributes['loading_text'] ?? null ) ? $attributes['loading_text'] : [];
+		$success_text = is_array( $attributes['success_text'] ?? null ) ? $attributes['success_text'] : [];
+
 		// set the initial state.
 		sc_initial_state(
 			array_filter(
@@ -98,8 +102,22 @@ class Block extends BaseBlock {
 						[
 							'text' => array_filter(
 								[
-									'loading' => array_filter( $attributes['loading_text'] ?? [] ),
-									'success' => array_filter( $attributes['success_text'] ?? [] ),
+									'loading' => array_filter(
+										[
+											'finalizing'  => $loading_text['finalizing'] ?? __( 'Submitting...', 'surecart' ),
+											'paying'      => $loading_text['paying'] ?? __( 'Processing...', 'surecart' ),
+											'confirming'  => $loading_text['confirming'] ?? __( 'Finalizing...', 'surecart' ),
+											'confirmed'   => $loading_text['confirmed'] ?? __( 'Success!', 'surecart' ),
+											'redirecting' => $loading_text['redirecting'] ?? __( 'Success! Redirecting...', 'surecart' ),
+										]
+									),
+									'success' => array_filter(
+										[
+											'title'       => $success_text['title'] ?? __( 'Thank you!', 'surecart' ),
+											'description' => $success_text['description'] ?? __( 'Your payment was successful. A receipt is on its way to your inbox.', 'surecart' ),
+											'button'      => $success_text['button'] ?? __( 'Continue', 'surecart' ),
+										]
+									),
 								]
 							),
 						]

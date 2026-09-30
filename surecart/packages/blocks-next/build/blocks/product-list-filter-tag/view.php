@@ -9,6 +9,7 @@
 	); ?>
 	id="sc-product-list-filter-tag-<?php echo (int) $filter_tag->id; ?>"
 	href="<?php echo esc_url( $filter_tag->href ); ?>"
+	rel="nofollow"
 	data-wp-on--click="surecart/product-list::actions.navigate"
 	data-wp-on--mouseenter="surecart/product-list::actions.prefetch"
 	role="listitem"

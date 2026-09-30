@@ -1,3 +1,4 @@
+<?php $label = $attributes['label'] ?? __( 'Applied Filters', 'surecart' ); ?>
 <span
 	<?php echo wp_kses_data(
 		get_block_wrapper_attributes(
@@ -7,6 +8,6 @@
 		)
 	); ?>
 >
-	<?php echo wp_kses_post( $attributes['label'] ); ?>
+	<?php echo wp_kses_post( $label ); ?>
 </span>
 

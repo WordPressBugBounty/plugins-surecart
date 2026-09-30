@@ -44,10 +44,10 @@ class Block extends BaseBlock {
 			'sc-payment',
 			'#sc-payment-' . (int) self::$instance,
 			[
-				'label'                  => $attributes['label'] ?? '',
+				'label'                  => $attributes['label'] ?? __( 'Payment', 'surecart' ),
 				'disabledProcessorTypes' => $attributes['disabled_methods'] ?? [],
 				'manualPaymentMethods'   => ManualPaymentMethod::where( [ 'archived' => false ] )->get() ?? [],
-				'secureNotice'           => $attributes['secure_notice'] ?? '',
+				'secureNotice'           => $attributes['secure_notice'] ?? __( 'This is a secure, encrypted payment.', 'surecart' ),
 			]
 		);
 

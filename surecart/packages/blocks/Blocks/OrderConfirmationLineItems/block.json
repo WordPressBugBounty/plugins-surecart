@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string",
-			"default": "Summary"
+			"type": "string"
 		}
 	}
 }

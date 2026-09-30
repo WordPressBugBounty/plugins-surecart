@@ -78,7 +78,7 @@ class Block extends \SureCartBlocks\Blocks\BuyButton\Block {
 							],
 						]
 					),
-					'label' => $attributes['button_text'] ?? __( 'Buy Now', 'surecart' ),
+					'label' => ! empty( $attributes['button_text'] ) ? $attributes['button_text'] : __( 'Buy Now', 'surecart' ),
 				]
 			);
 		}
@@ -134,7 +134,7 @@ class Block extends \SureCartBlocks\Blocks\BuyButton\Block {
 				<?php if ( ! empty( $price->ad_hoc ) ) : ?>
 					<div class="sc-form-group">
 						<label for="sc-product-custom-amount" class="sc-form-label">
-							<?php echo wp_kses_post( $attributes['ad_hoc_label'] ?? esc_html_e( 'Amount', 'surecart' ) ); ?>
+							<?php echo wp_kses_post( $attributes['ad_hoc_label'] ?? __( 'Amount', 'surecart' ) ); ?>
 						</label>
 						<div class="sc-input-group">
 							<span class="sc-input-group-text" id="basic-addon1" data-wp-text="context.selectedPrice.currency_symbol"></span>
@@ -180,7 +180,7 @@ class Block extends \SureCartBlocks\Blocks\BuyButton\Block {
 						<span class="sc-button__link-text">
 							<?php
 							// pass content for shortcode usage.
-							echo wp_kses_post( ! empty( $content ) ? $content : $attributes['button_text'] );
+							echo wp_kses_post( ! empty( $content ) ? $content : ( ! empty( $attributes['button_text'] ) ? $attributes['button_text'] : __( 'Add To Cart', 'surecart' ) ) );
 							?>
 						</span>
 					</button>

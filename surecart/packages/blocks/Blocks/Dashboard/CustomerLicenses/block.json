@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string",
-			"default": "Licenses"
+			"type": "string"
 		}
 	}
 }

@@ -38,7 +38,7 @@ class Block extends ProductBlock {
 
 		$attributes = get_block_wrapper_attributes(
 			[
-				'sale-text'  => esc_attr( $attributes['sale_text'] ?? '' ),
+				'sale-text'  => esc_attr( $attributes['sale_text'] ?? __( 'Sale', 'surecart' ) ),
 				'class'      => esc_attr( $this->getClasses( $attributes ) . ' product-price surecart-block' ),
 				'style'      => esc_attr( $this->getStyles( $attributes ) . ' --sc-product-price-alignment:' . esc_attr( $attributes['alignment'] ?? 'left' ) . '; text-align:' . esc_attr( $attributes['alignment'] ?? 'left' ) . ';' ),
 				'product-id' => esc_attr( $product->id ),

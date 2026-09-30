@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string",
-			"default": "Cart"
+			"type": "string"
 		},
 		"width": {
 			"type": "string",

@@ -1,3 +1,4 @@
+<?php $label = ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Filters', 'surecart' ); ?>
 <div
 	<?php
 	echo wp_kses_data(
@@ -10,7 +11,7 @@
 	?>
 	id="review-filters"
 	role="region"
-	aria-label="<?php echo esc_attr( $attributes['label'] ); ?>"
+	aria-label="<?php echo esc_attr( $label ); ?>"
 	data-wp-interactive='{ "namespace": "surecart/sidebar" }'
 	data-wp-bind--hidden="!state.open"
 	data-wp-on-window--resize="actions.close"
@@ -23,7 +24,7 @@
 	role="dialog"
 	aria-modal="true"
 	data-wp-interactive='{ "namespace": "surecart/sidebar" }'
-	aria-label="<?php echo esc_attr( $attributes['label'] ); ?>"
+	aria-label="<?php echo esc_attr( $label ); ?>"
 	data-wp-on-window--resize="actions.close"
 	data-wp-class--open="surecart/sidebar::state.mobileOpen"
 	data-wp-on--keydown="surecart/sidebar::actions.handleKeydown"
@@ -41,7 +42,7 @@
 	>
 		<div class="sc-sidebar-header">
 			<span class="sc-sidebar-header__title" inert>
-				<?php echo wp_kses_post( $attributes['label'] ); ?>
+				<?php echo wp_kses_post( $label ); ?>
 			</span>
 			<div
 				class="sc-sidebar-header__close"

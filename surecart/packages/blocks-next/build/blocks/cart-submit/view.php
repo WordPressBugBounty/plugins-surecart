@@ -20,7 +20,7 @@
 			data-wp-class--sc-button__link--busy="state.loading"
 		>
 			<span class="sc-spinner" aria-hidden="false"></span>
-			<span class="sc-button__link-text"><?php echo wp_kses_post( $attributes['text'] ); ?></span>
+			<span class="sc-button__link-text"><?php echo wp_kses_post( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'Checkout', 'surecart' ) ); ?></span>
 		</a>
 	</div>
 </div>

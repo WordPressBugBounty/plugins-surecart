@@ -9,8 +9,9 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title'       => __( 'Affiliate Payouts', 'surecart' ),
-			'after_title' => \SureCart::view( 'admin/affiliation-payouts/new-payout-button' )->toString(),
+			'title'           => __( 'Affiliate Payouts', 'surecart' ),
+			'after_title'     => \SureCart::view( 'admin/affiliation-payouts/new-payout-button' )->toString(),
+			'export_resource' => 'payouts',
 		]
 	);
 	?>

@@ -3,7 +3,9 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title' => __( 'Reviews', 'surecart' ),
+			'title'           => __( 'Reviews', 'surecart' ),
+			'import_resource' => 'reviews',
+			'export_resource' => 'reviews',
 		]
 	);
 	?>

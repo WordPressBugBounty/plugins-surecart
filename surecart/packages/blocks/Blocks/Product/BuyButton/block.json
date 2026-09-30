@@ -6,19 +6,17 @@
 	"category": "surecart",
 	"description": "Add a buy now or add to cart button.",
 	"keywords": ["buy"],
-	"textdomain": "default",
+	"textdomain": "surecart",
 	"attributes": {
 		"add_to_cart": {
 			"type": "boolean",
 			"default": false
 		},
 		"out_of_stock_text": {
-			"type": "string",
-			"default": "Sold out"
+			"type": "string"
 		},
 		"unavailable_text": {
-			"type": "string",
-			"default": "Unavailable"
+			"type": "string"
 		},
 		"textAlign": {
 			"type": "string"
@@ -98,8 +96,7 @@
 			"icon": "cart",
 			"description": "Add a button to add the product to the cart.",
 			"attributes": {
-				"add_to_cart": true,
-				"text": "Add To Cart"
+				"add_to_cart": true
 			},
 			"isDefault": true,
 			"isActive": ["add_to_cart"],
@@ -111,8 +108,7 @@
 			"icon": "store",
 			"description": "Add a button to buy the product.",
 			"attributes": {
-				"add_to_cart": false,
-				"text": "Buy Now"
+				"add_to_cart": false
 			},
 			"isActive": ["add_to_cart"],
 			"scope": ["inserter", "block", "transform"]

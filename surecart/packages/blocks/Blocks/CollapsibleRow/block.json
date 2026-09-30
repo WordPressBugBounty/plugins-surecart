@@ -13,8 +13,7 @@
 	},
 	"attributes": {
 		"heading": {
-			"type": "string",
-			"default": "Collapsible row"
+			"type": "string"
 		},
 		"icon": {
 			"type": "string",

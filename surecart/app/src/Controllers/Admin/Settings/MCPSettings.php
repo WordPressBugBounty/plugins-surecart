@@ -58,6 +58,7 @@ class MCPSettings {
 			'nonce'                    => wp_create_nonce( 'sc_mcp_adapter_action' ),
 			'site_url'                 => site_url(),
 			'rest_url'                 => rest_url( 'mcp/mcp-adapter-default-server' ),
+			'abilities_rest_url'       => rest_url( 'wp-abilities/v1' ),
 			'app_passwords_url'        => admin_url( 'profile.php#application-passwords-section' ),
 			'wp_version'               => get_bloginfo( 'version' ),
 			'abilities_api_available'  => function_exists( 'wp_register_ability_category' ),

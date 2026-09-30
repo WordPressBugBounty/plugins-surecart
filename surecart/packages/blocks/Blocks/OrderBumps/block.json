@@ -15,8 +15,7 @@
 	},
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Recommended"
+			"type": "string"
 		},
 		"show_control": {
 			"type": "boolean",

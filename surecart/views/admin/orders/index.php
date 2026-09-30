@@ -4,8 +4,30 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title' => __( 'Orders', 'surecart' ),
-			'new_link' => \SureCart::getUrl()->create( 'invoices' ) . '&live_mode=true',
+			'title'            => __( 'Orders', 'surecart' ),
+			'new_link'         => \SureCart::getUrl()->create( 'invoices' ) . '&live_mode=true',
+			'export_resources' => [
+				[
+					'resource' => 'orders',
+					'label'    => __( 'Orders', 'surecart' ),
+				],
+				[
+					'resource' => 'line_items',
+					'label'    => __( 'Line Items', 'surecart' ),
+				],
+				[
+					'resource' => 'charges',
+					'label'    => __( 'Charges', 'surecart' ),
+				],
+				[
+					'resource' => 'refunds',
+					'label'    => __( 'Refunds', 'surecart' ),
+				],
+				[
+					'resource' => 'purchases',
+					'label'    => __( 'Purchases', 'surecart' ),
+				],
+			],
 		]
 	);
 	?>

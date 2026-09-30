@@ -26,7 +26,7 @@ class LicenseController extends BaseController {
 				->with(
 					[
 						'isCustomer' => User::current()->isCustomer(),
-						'heading'    => $attributes['title'],
+						'heading'    => $attributes['title'] ?? __( 'Licenses', 'surecart' ),
 						'query'      => [
 							'customer_ids' => array_values( User::current()->customerIds() ),
 							'page'         => 1,

@@ -33,7 +33,7 @@ class Block extends ProductBlock {
 
 		$attributes = get_block_wrapper_attributes(
 			[
-				'label'      => esc_attr( $attributes['label'] ?? '' ),
+				'label'      => esc_attr( $attributes['label'] ?? __( 'Pricing', 'surecart' ) ),
 				'class'      => 'surecart-block product-price-choices',
 				'product-id' => esc_attr( $product->id ),
 				'style'      => esc_attr( $this->getVars( $attributes, '--sc-choice' ) . ' --columns: ' . $attributes['columns'] ?? 2 . '; border: none; ' . $styles ),

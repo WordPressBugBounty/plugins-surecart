@@ -4,7 +4,7 @@ namespace SureCartBlocks\Blocks\Email;
 
 use SureCartBlocks\Blocks\BaseBlock;
 /**
- * Logout Button Block.
+ * Customer Email Block.
  */
 class Block extends BaseBlock {
 	/**
@@ -24,7 +24,7 @@ class Block extends BaseBlock {
 
 		<sc-customer-email
 			class="<?php echo esc_attr( $attributes['className'] ?? '' ); ?>"
-			label="<?php echo esc_attr( $attributes['label'] ?? '' ); ?>"
+			label="<?php echo esc_attr( $attributes['label'] ?? __( 'Email', 'surecart' ) ); ?>"
 			<?php echo ! empty( $attributes['placeholder'] ) ? 'placeholder="' . esc_attr( $attributes['placeholder'] ) . '"' : false; ?>
 			<?php echo ! empty( $attributes['help'] ) ? 'help="' . esc_attr( $attributes['help'] ) . '"' : false; ?>
 			<?php echo ! empty( $attributes['autofocus'] ) ? 'autofocus' : false; ?>

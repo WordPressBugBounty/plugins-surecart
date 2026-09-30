@@ -32,8 +32,8 @@ return [
 					<!-- /wp:surecart/column --></sc-columns>
 					<!-- /wp:surecart/columns -->
 
-					<!-- wp:surecart/payment {"secure_notice":"This is a secure, encrypted payment"} -->
-					<sc-payment label="Payment" secure-notice="This is a secure, encrypted payment" class="wp-block-surecart-payment"></sc-payment>
+					<!-- wp:surecart/payment {"secure_notice":' . wp_json_encode( __( 'This is a secure, encrypted payment', 'surecart' ) ) . '} -->
+					<sc-payment label="Payment" secure-notice="' . esc_attr__( 'This is a secure, encrypted payment', 'surecart' ) . '" class="wp-block-surecart-payment"></sc-payment>
 					<!-- /wp:surecart/payment -->
 
 					<!-- wp:surecart/totals {"collapsible":true,"collapsed":true} -->
@@ -55,8 +55,8 @@ return [
 
 					<!-- wp:surecart/trial-line-item /-->
 
-					<!-- wp:surecart/coupon {"text":"Add Coupon Code","button_text":"Apply Coupon"} -->
-					<sc-order-coupon-form label="Add Coupon Code">Apply Coupon</sc-order-coupon-form>
+					<!-- wp:surecart/coupon {"button_text":' . wp_json_encode( __( 'Apply Coupon', 'surecart' ) ) . '} -->
+					<sc-order-coupon-form label="Add Coupon Code">' . esc_html__( 'Apply Coupon', 'surecart' ) . '</sc-order-coupon-form>
 					<!-- /wp:surecart/coupon -->
 
 					<!-- wp:surecart/tax-line-item -->
@@ -72,7 +72,7 @@ return [
 					<!-- /wp:surecart/total --></sc-order-summary>
 					<!-- /wp:surecart/totals -->
 
-					<!-- wp:surecart/submit {"text":"Donate","show_total":true,"full":true} -->
-					<sc-order-submit type="primary" full="true" size="large" icon="lock" show-total="true" class="wp-block-surecart-submit">Donate</sc-order-submit>
+					<!-- wp:surecart/submit {"text":' . wp_json_encode( __( 'Donate', 'surecart' ) ) . ',"show_total":true,"full":true} -->
+					<sc-order-submit type="primary" full="true" size="large" icon="lock" show-total="true" class="wp-block-surecart-submit">' . esc_html__( 'Donate', 'surecart' ) . '</sc-order-submit>
 					<!-- /wp:surecart/submit -->',
 ];

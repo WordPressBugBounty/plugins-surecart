@@ -11,8 +11,7 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Bundle Discount"
+      "type": "string"
     },
     "border": {
       "type": "boolean",

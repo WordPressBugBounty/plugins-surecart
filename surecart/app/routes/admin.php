@@ -106,6 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'OrdersViewController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'OrdersViewController@edit' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'archive', 'action' )->handle( 'OrdersViewController@archive' );
 	}
@@ -176,6 +177,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'ProductsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'delete', 'action' )->handle( 'ProductsController@confirmBulkDelete' );
 		\SureCart::route()->post()->middleware( 'nonce:bulk_delete_nonce' )->handle( 'ProductsController@bulkDelete' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'ProductsController@edit' );
@@ -226,6 +228,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'CouponsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'CouponsController@edit' );
 	}
 );
@@ -244,6 +247,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'CustomersController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'delete', 'action' )->handle( 'CustomersController@confirmBulkDelete' );
 		\SureCart::route()->post()->middleware( 'nonce:bulk_delete_nonce' )->handle( 'CustomersController@bulkDelete' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'CustomersController@edit' );
@@ -300,6 +304,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'SubscriptionsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'show', 'action' )->handle( 'SubscriptionsController@show' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'SubscriptionsController@edit' );
 	}
@@ -371,6 +376,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'ProductCollectionsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'ProductCollectionsController@edit' );
 	}
 );
@@ -427,6 +433,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'ReviewsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'ReviewsController@edit' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'publish', 'action' )->middleware( 'nonce:publish_review' )->handle( 'ReviewsController@publish' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'unpublish', 'action' )->middleware( 'nonce:unpublish_review' )->handle( 'ReviewsController@unpublish' );
@@ -448,6 +455,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'AffiliationsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'AffiliationsController@edit' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'activate', 'action' )->middleware( 'nonce:activate_affiliation' )->handle( 'AffiliationsController@activate' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'deactivate', 'action' )->middleware( 'nonce:deactivate_affiliation' )->handle( 'AffiliationsController@deactivate' );
@@ -488,6 +496,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'AffiliationReferralsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'AffiliationReferralsController@edit' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'delete', 'action' )->middleware( 'nonce:delete_affiliation' )->handle( 'AffiliationReferralsController@delete' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'approve', 'action' )->middleware( 'nonce:approve_affiliation' )->handle( 'AffiliationReferralsController@approve' );
@@ -505,8 +514,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ->group(
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'AffiliationPayoutsController@index' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'AffiliationPayoutsController@edit' );
-		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( 'AffiliationPayoutsController@export' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'delete', 'action' )->middleware( 'nonce:delete_affiliation_payout' )->handle( 'AffiliationPayoutsController@delete' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'complete', 'action' )->middleware( 'nonce:complete_affiliation_payout' )->handle( 'AffiliationPayoutsController@complete' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'make_processing', 'action' )->middleware( 'nonce:make_processing_affiliation_payout' )->handle( 'AffiliationPayoutsController@makeProcessing' );

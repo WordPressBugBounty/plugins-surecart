@@ -4,8 +4,9 @@
 $customer_reviews = esc_html__( 'Customer Reviews', 'surecart' );
 $based_on         = esc_html__( 'Based on', 'surecart' );
 $no_reviews_yet   = esc_html__( 'No reviews yet.', 'surecart' );
-$filters          = esc_attr__( 'Filters', 'surecart' );
-$verified_buyer   = esc_attr__( 'Verified Buyer', 'surecart' );
+// JSON-encoded because these go into block comment attributes.
+$filters        = wp_json_encode( __( 'Filters', 'surecart' ) );
+$verified_buyer = wp_json_encode( __( 'Verified Buyer', 'surecart' ) );
 
 return [
 	'title'      => __( 'Default Review List', 'surecart' ),
@@ -50,7 +51,7 @@ return [
 	<!-- /wp:surecart/product-review-summary -->
 
 	<!-- wp:group {"metadata":{"name":"Header"},"style":{"spacing":{"margin":{"bottom":"10px"},"padding":{"top":"0","bottom":"0","left":"0","right":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-	<div class="wp-block-group" style="margin-bottom:10px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:surecart/product-review-list-sidebar-toggle {"label":"' . $filters . '"} /-->
+	<div class="wp-block-group" style="margin-bottom:10px;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:surecart/product-review-list-sidebar-toggle {"label":' . $filters . '} /-->
 
 	<!-- wp:surecart/product-review-add-button {"width":100,"className":"is-style-fill","style":{"elements":{"link":{"color":{"text":"#ffffff"}}}},"backgroundColor":"surecart","textColor":"white"} /--></div>
 	<!-- /wp:group -->
@@ -83,7 +84,7 @@ return [
 	<div class="wp-block-group sc-review-header-group" style="margin-top:0;margin-bottom:16px;padding-right:0px;padding-left:0px"><!-- wp:group {"style":{"spacing":{"blockGap":"8px","padding":{"right":"0px","left":"0px"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 	<div class="wp-block-group" style="margin-top:0;margin-bottom:0;padding-right:0px;padding-left:0px"><!-- wp:surecart/product-review-reviewer-name {"style":{"spacing":{"padding":{"top":"0","bottom":"0"},"margin":{"right":"8px"}},"typography":{"fontStyle":"normal","fontWeight":"500","fontSize":"16px"}}} /-->
 
-	<!-- wp:surecart/product-review-verified-badge {"label":"' . $verified_buyer . '","style":{"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"16px"},"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"center","orientation":"horizontal"}} /--></div>
+	<!-- wp:surecart/product-review-verified-badge {"label":' . $verified_buyer . ',"style":{"typography":{"fontStyle":"normal","fontWeight":"400","fontSize":"16px"},"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex","justifyContent":"center","verticalAlignment":"center","orientation":"horizontal"}} /--></div>
 	<!-- /wp:group -->
 
 	<!-- wp:surecart/product-review-date {"datetime":"2025-10-02T09:37:00.225Z","format":"human-diff","style":{"typography":{"fontSize":"14px"}}} /--></div>
@@ -109,7 +110,7 @@ return [
 	<!-- /wp:surecart/product-reviews -->
 
 	<!-- wp:surecart/product-review-list-no-reviews -->
-	<!-- wp:paragraph {"align":"left","placeholder":"Add text or blocks that will display when a query returns no reviews."} -->
+	<!-- wp:paragraph {"align":"left","placeholder":' . wp_json_encode( __( 'Add text or blocks that will display when a query returns no reviews.', 'surecart' ) ) . '} -->
 	<p class="has-text-align-left">' . $no_reviews_yet . '</p>
 	<!-- /wp:paragraph -->
 

@@ -17,8 +17,7 @@
   },
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Enter an amount"
+      "type": "string"
     },
     "width": {
       "type": "string",

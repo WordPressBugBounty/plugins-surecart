@@ -16,8 +16,7 @@
 			"type": "string"
 		},
 		"title": {
-			"type": "string",
-			"default": "Tab"
+			"type": "string"
 		},
 		"panel": {
 			"type": "string",

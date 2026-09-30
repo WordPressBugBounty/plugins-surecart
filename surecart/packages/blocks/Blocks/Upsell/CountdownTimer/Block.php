@@ -114,7 +114,7 @@ class Block extends BaseBlock {
 				esc_attr( $attributes['show_icon'] ),
 				esc_attr( $this->getClasses( $attributes ) ),
 				esc_attr( $this->getStyles( $attributes ) ),
-				wp_kses_post( $attributes['offer_expire_text'] ?? '' )
+				wp_kses_post( $attributes['offer_expire_text'] ?? __( 'Offer Expires In', 'surecart' ) )
 			)
 		);
 	}

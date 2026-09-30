@@ -14,20 +14,20 @@ return [
 <sc-checkout-form-errors></sc-checkout-form-errors>
 <!-- /wp:surecart/checkout-errors -->
 
-	<!-- wp:surecart/price-selector {"label":"Choose A Product"} -->
-	<sc-price-choices label="Choose A Product" type="radio" columns="1"><div><!-- wp:surecart/price-choice -->
+	<!-- wp:surecart/price-selector {"label":' . wp_json_encode( __( 'Choose A Product', 'surecart' ) ) . '} -->
+	<sc-price-choices label="' . esc_attr__( 'Choose A Product', 'surecart' ) . '" type="radio" columns="1"><div><!-- wp:surecart/price-choice -->
 		<sc-price-choice type="radio" show-label="1" show-price="1" show-control="1"></sc-price-choice>
 	<!-- /wp:surecart/price-choice --></div></sc-price-choices>
 	<!-- /wp:surecart/price-selector -->
 
 	<!-- wp:surecart/email {"placeholder":"your@email.com"} /-->
 
-	<!-- wp:surecart/name {"required":true,"placeholder":"Your Full Name"} -->
-	<sc-customer-name label="Name" placeholder="Your Full Name" required class="wp-block-surecart-name"></sc-customer-name>
+	<!-- wp:surecart/name {"required":true,"placeholder":' . wp_json_encode( __( 'Your Full Name', 'surecart' ) ) . '} -->
+	<sc-customer-name label="Name" placeholder="' . esc_attr__( 'Your Full Name', 'surecart' ) . '" required class="wp-block-surecart-name"></sc-customer-name>
 	<!-- /wp:surecart/name -->
 
-	<!-- wp:surecart/payment {"secure_notice":"This is a secure, encrypted payment"} -->
-	<sc-payment label="Payment" default-processor="stripe" secure-notice="This is a secure, encrypted payment" class="wp-block-surecart-payment"></sc-payment>
+	<!-- wp:surecart/payment {"secure_notice":' . wp_json_encode( __( 'This is a secure, encrypted payment', 'surecart' ) ) . '} -->
+	<sc-payment label="Payment" default-processor="stripe" secure-notice="' . esc_attr__( 'This is a secure, encrypted payment', 'surecart' ) . '" class="wp-block-surecart-payment"></sc-payment>
 	<!-- /wp:surecart/payment -->
 
 	<!-- wp:surecart/submit {"show_total":true,"full":true} -->

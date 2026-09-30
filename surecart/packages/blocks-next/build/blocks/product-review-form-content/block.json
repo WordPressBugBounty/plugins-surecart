@@ -12,12 +12,10 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Your review"
+      "type": "string"
     },
     "placeholder": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     },
     "rows": {
       "type": "number",

@@ -5,8 +5,19 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title'       => __( 'Products', 'surecart' ),
-			'after_title' => \SureCart::view( 'admin/products/add-new-product-button' )->toString(),
+			'title'            => __( 'Products', 'surecart' ),
+			'new_link'         => \SureCart::getUrl()->edit( 'product' ),
+			'import_resource'  => 'products',
+			'export_resources' => [
+				[
+					'resource' => 'prices',
+					'label'    => __( 'Prices', 'surecart' ),
+				],
+				[
+					'resource' => 'variants',
+					'label'    => __( 'Variants', 'surecart' ),
+				],
+			],
 		]
 	);
 	?>

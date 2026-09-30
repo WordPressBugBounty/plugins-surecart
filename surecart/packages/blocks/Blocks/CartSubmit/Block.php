@@ -97,7 +97,7 @@ class Block extends CartBlock {
 		<div class="wp-block-buttons" style="<?php echo esc_attr( $this->getStyle( array_merge( $attributes, array_filter( [ 'backgroundColor' => $attributes['sectionBackgroundColor'] ?? '' ] ) ) ) ); ?>">
 			<sc-cart-submit class="wp-block-button">
 				<a href="<?php echo esc_attr( \SureCart::pages()->url( 'checkout' ) ); ?>" class="wp-block-button__link wp-element-button sc-button <?php echo esc_attr( $this->getClasses( $attributes ) ); ?>" style="<?php echo esc_attr( $this->getStyles( $attributes ) ); ?>">
-					<span data-text><?php echo wp_kses_post( $attributes['text'] ); ?></span>
+					<span data-text><?php echo wp_kses_post( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'Checkout', 'surecart' ) ); ?></span>
 					<sc-spinner data-loader></sc-spinner>
 				</a>
 			</sc-cart-submit>

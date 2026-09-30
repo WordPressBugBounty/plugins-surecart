@@ -1,3 +1,4 @@
+<?php $label = $attributes['label'] ?? __( 'Remove', 'surecart' ); ?>
 <div
 	<?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>
 	data-wp-bind--aria-label="surecart/checkout::state.removeItemAriaLabel"
@@ -10,6 +11,6 @@
 		<?php echo wp_kses( SureCart::svg()->get( $attributes['icon'], [ 'class' => 'wp-block-surecart-cart-line-item-remove__icon' ] ), sc_allowed_svg_html() ); ?>
 	<?php endif; ?>
 	<span class="<?php echo empty( $attributes['show_label'] ) ? 'sc-screen-reader-text' : 'wp-block-surecart-cart-line-item-remove__label'; ?>">
-		<?php echo wp_kses_post( $attributes['label'] ); ?>
+		<?php echo wp_kses_post( $label ); ?>
 	</span>
 </div>

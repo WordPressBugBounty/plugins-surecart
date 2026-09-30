@@ -31,7 +31,6 @@ export declare class ScSubscription {
     /** Get all subscriptions */
     getSubscription(): Promise<void>;
     renderName(subscription: Subscription): string;
-    renderRenewalText(subscription: any): any;
     renderEmpty(): any;
     renderLoading(): any;
     renderContent(): any;

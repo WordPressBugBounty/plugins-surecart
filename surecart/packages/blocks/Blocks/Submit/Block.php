@@ -46,7 +46,7 @@ class Block extends BaseBlock {
 			<?php echo $text_color ? 'text-color="' . esc_attr( $text_color ) . '"' : ''; ?>
 			<?php echo $background_color ? 'background-color="' . esc_attr( $background_color ) . '"' : ''; ?>
 			class="wp-block-surecart-submit"
-		><?php echo wp_kses_post( $attributes['text'] ?? __( 'Purchase', 'surecart' ) ); ?></sc-order-submit>
+		><?php echo wp_kses_post( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'Purchase', 'surecart' ) ); ?></sc-order-submit>
 		<?php
 		return ob_get_clean();
 	}

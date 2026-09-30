@@ -1,5 +1,5 @@
 <?php
-$label       = $attributes['label'] ?? __( 'Review Content', 'surecart' );
+$label       = $attributes['label'] ?? __( 'Your review', 'surecart' );
 $placeholder = $attributes['placeholder'] ?? '';
 $required    = $attributes['required'] ?? true;
 $rows        = $attributes['rows'] ?? 4;

@@ -16,16 +16,13 @@
   ],
   "attributes": {
     "text": {
-      "type": "string",
-      "default": "Add Coupon Code"
+      "type": "string"
     },
     "button_text": {
-      "type": "string",
-      "default": "Apply"
+      "type": "string"
     },
     "placeholder": {
-      "type": "string",
-      "default": "Enter coupon code"
+      "type": "string"
     },
     "collapsed": {
       "type": "boolean",

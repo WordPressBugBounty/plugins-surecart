@@ -40,7 +40,7 @@ class Block extends BaseBlock {
 				'type'      => $attributes['type'] ?? 'primary',
 				'size'      => $attributes['size'] ?? 'medium',
 				'show_icon' => (bool) $attributes['show_icon'] ?? false,
-				'label'     => $attributes['label'] ?? __( 'Logout', 'surecart' ),
+				'label'     => ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Logout', 'surecart' ),
 			]
 		);
 	}

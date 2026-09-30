@@ -3,7 +3,8 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title' => __( 'Affiliates', 'surecart' ),
+			'title'           => __( 'Affiliates', 'surecart' ),
+			'export_resource' => 'affiliations',
 		]
 	);
 	?>

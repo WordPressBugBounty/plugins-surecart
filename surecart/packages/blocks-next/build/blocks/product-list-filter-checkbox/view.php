@@ -10,6 +10,7 @@
 		)
 	); ?>
 	href="<?php echo esc_url( $checkbox->href ); ?>"
+	rel="nofollow"
 	data-wp-on--click="surecart/product-list::actions.navigate"
 	data-wp-on--mouseenter="surecart/product-list::actions.prefetch"
 	role="checkbox"

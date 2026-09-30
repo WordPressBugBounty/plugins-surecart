@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Donation Amount"
+			"type": "string"
 		},
 		"default_amount": {
 			"type": "number"

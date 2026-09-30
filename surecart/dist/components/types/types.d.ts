@@ -1103,6 +1103,7 @@ export interface Subscription extends Object {
     updated_at: number;
     updated_at_date: string;
     restore_at?: number;
+    restore_at_date?: string;
     can_modify?: boolean;
 }
 export interface CancellationAct {

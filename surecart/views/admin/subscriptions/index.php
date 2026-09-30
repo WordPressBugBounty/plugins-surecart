@@ -16,7 +16,9 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title' => __( 'Subscriptions', 'surecart' ),
+			'title'           => __( 'Subscriptions', 'surecart' ),
+			'import_resource' => 'subscriptions',
+			'export_resource' => 'subscriptions',
 		]
 	);
 	?>

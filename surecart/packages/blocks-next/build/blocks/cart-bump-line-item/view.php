@@ -15,7 +15,7 @@
 				<div class="sc-product-line-item__text-details">
 					<div class="sc-bump-line-item__description">
 						<span>
-							<?php echo wp_kses_post( $attributes['label'] ?? __( 'Bundle Discount', 'surecart' ) ); ?>
+							<?php echo wp_kses_post( ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Bundle Discount', 'surecart' ) ); ?>
 						</span>
 					</div>
 				</div>

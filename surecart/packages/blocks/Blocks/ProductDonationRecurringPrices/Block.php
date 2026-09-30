@@ -24,10 +24,12 @@ class Block extends BaseBlock {
 			]
 		);
 
+		$default = ! empty( $attributes['recurring'] ) ? __( 'Yes, count me in!', 'surecart' ) : __( 'No, donate once.', 'surecart' );
+
 		return wp_sprintf(
 			'<sc-product-donation-choices %s>%s</sc-product-donation-choices>',
 			$wrapper_attributes,
-			esc_attr( $attributes['label'] ?? '' )
+			esc_html( ! empty( $attributes['label'] ) ? $attributes['label'] : $default )
 		);
 	}
 }

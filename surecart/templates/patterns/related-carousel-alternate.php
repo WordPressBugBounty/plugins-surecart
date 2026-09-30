@@ -11,8 +11,7 @@ return [
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"right":"0px","left":"0px"},"margin":{"bottom":"30px"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"bottom"}} -->
 <div class="wp-block-group alignwide" style="margin-bottom:30px;padding-right:0px;padding-left:0px">
 	<!-- wp:heading {"textAlign":"center","level":3,"className":"is-style-default","style":{"typography":{"fontSize":"34px"}}} -->
-	<h3 class="wp-block-heading has-text-align-center is-style-default" style="font-size:34px">You may also like
-	</h3>
+	<h3 class="wp-block-heading has-text-align-center is-style-default" style="font-size:34px">' . esc_html__( 'You may also like', 'surecart' ) . '	</h3>
 	<!-- /wp:heading -->
 
 	<!-- wp:surecart/product-pagination {"paginationArrow":"chevron","showLabel":false,"style":{"typography":{"fontSize":"24px"},"spacing":{"blockGap":"10px"}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->

@@ -6,6 +6,7 @@ const index = require('./index-be4abba1.js');
 require('./fetch-5e8dc1d5.js');
 const lazy = require('./lazy-2b509fa7.js');
 const price = require('./price-9dddd853.js');
+const subscription = require('./subscription-331e5091.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 const index$1 = require('./index-7ced8198.js');
 require('./remove-query-args-b57e8cd3.js');
@@ -136,25 +137,6 @@ const ScSubscription = class {
         }
         return wp.i18n.__('Subscription', 'surecart');
     }
-    renderRenewalText(subscription) {
-        const tag = index.h("sc-subscription-status-badge", { subscription: subscription });
-        if ((subscription === null || subscription === void 0 ? void 0 : subscription.cancel_at_period_end) && subscription.current_period_end_at) {
-            return (index.h("span", null, tag, ' ', 
-            /* translators: %s: current period end date */
-            wp.i18n.sprintf(wp.i18n.__('Your plan will be canceled on %s', 'surecart'), subscription.current_period_end_at_date)));
-        }
-        if (subscription.status === 'trialing' && subscription.trial_end_at) {
-            return (index.h("span", null, tag, ' ', 
-            /* translators: %s: trial end date */
-            wp.i18n.sprintf(wp.i18n.__('Your plan begins on %s', 'surecart'), subscription.trial_end_at_date)));
-        }
-        if (subscription.status === 'active' && subscription.current_period_end_at) {
-            return (index.h("span", null, tag, ' ', 
-            /* translators: %s: current period end date */
-            wp.i18n.sprintf(wp.i18n.__('Your plan renews on %s', 'surecart'), subscription.current_period_end_at_date)));
-        }
-        return tag;
-    }
     renderEmpty() {
         return index.h("slot", { name: "empty" }, wp.i18n.__('This subscription does not exist.', 'surecart'));
     }
@@ -171,22 +153,22 @@ const ScSubscription = class {
         return (index.h(index.Fragment, null, index.h("sc-subscription-next-payment", { subscription: this.subscription, updatePaymentMethodUrl: this.updatePaymentMethodUrl }, index.h("sc-subscription-details", { subscription: this.subscription }))));
     }
     render() {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
-        const paymentMethodExists = (this === null || this === void 0 ? void 0 : this.subscription.payment_method) || (this === null || this === void 0 ? void 0 : this.subscription.manual_payment);
-        return (index.h("sc-dashboard-module", { key: 'e2114ebb0863be79d847d3687e4d062149921519', heading: this.heading || wp.i18n.__('Current Plan', 'surecart'), class: "subscription", error: this.error }, !!this.subscription && ((_a = this === null || this === void 0 ? void 0 : this.subscription) === null || _a === void 0 ? void 0 : _a.can_modify) && (index.h("sc-flex", { key: 'ddd50fa424831301ae95b5b7d10ae01ebbef1bcc', slot: "end", class: "subscription__action-buttons" }, this.updatePaymentMethodUrl && paymentMethodExists && (index.h("sc-button", { key: '478ab4a1545de4cefa1b801b0c82c9815808465c', type: "link", href: this.updatePaymentMethodUrl }, index.h("sc-icon", { key: 'ac812c10843a71bc06ae31e4bd00325a7a0a7b46', name: "credit-card", slot: "prefix" }), wp.i18n.__('Update Payment Method', 'surecart'))), !paymentMethodExists && (index.h("sc-button", { key: 'f1990108db9c353dadedc25924c6e4105d6dfcf9', type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        const paymentMethodExists = ((_a = this === null || this === void 0 ? void 0 : this.subscription) === null || _a === void 0 ? void 0 : _a.payment_method) || ((_b = this === null || this === void 0 ? void 0 : this.subscription) === null || _b === void 0 ? void 0 : _b.manual_payment);
+        return (index.h("sc-dashboard-module", { key: 'ff792f94c9623ac3c9dc65a293cc0c80d80b6b61', heading: this.heading || wp.i18n.__('Current Plan', 'surecart'), class: "subscription", error: this.error }, !!this.subscription && ((_c = this === null || this === void 0 ? void 0 : this.subscription) === null || _c === void 0 ? void 0 : _c.can_modify) && (index.h("sc-flex", { key: '379a47feb29666e6091b60e7f2c5be80fcdf80da', slot: "end", class: "subscription__action-buttons" }, this.updatePaymentMethodUrl && paymentMethodExists && (index.h("sc-button", { key: 'e27801d8d32d9c47d12744a849225344a025522a', type: "link", href: this.updatePaymentMethodUrl }, index.h("sc-icon", { key: '0ea676a261613456344203863d47d60fc1d8d9a8', name: "credit-card", slot: "prefix" }), wp.i18n.__('Update Payment Method', 'surecart'))), !paymentMethodExists && (index.h("sc-button", { key: 'aa2006d492d2463be9678973299267ef9e9be3d6', type: "link", href: addQueryArgs.addQueryArgs(window.location.href, {
                 action: 'create',
                 model: 'payment_method',
                 id: this === null || this === void 0 ? void 0 : this.subscription.id,
-                ...(((_b = this === null || this === void 0 ? void 0 : this.subscription) === null || _b === void 0 ? void 0 : _b.live_mode) === false ? { live_mode: false } : {}),
-            }) }, index.h("sc-icon", { key: '0bd649aecfb353f68ac487f80375de8c8f5773cc', name: "credit-card", slot: "prefix" }), wp.i18n.__('Add Payment Method', 'surecart'))), !!Object.keys((_c = this.subscription) === null || _c === void 0 ? void 0 : _c.pending_update).length && (index.h("sc-button", { key: '9f272a76e808ba6ec28d941e1543a5df92f94d0a', type: "link", onClick: () => this.cancelPendingUpdate() }, index.h("sc-icon", { key: '1350ce77c32dcb9f72f9b7564f1d50683b5401f3', name: "x-octagon", slot: "prefix" }), wp.i18n.__('Cancel Scheduled Update', 'surecart'))), ((_d = this === null || this === void 0 ? void 0 : this.subscription) === null || _d === void 0 ? void 0 : _d.cancel_at_period_end) ? (index.h("sc-button", { type: "link", onClick: () => this.renewSubscription() }, index.h("sc-icon", { name: "repeat", slot: "prefix" }), wp.i18n.__('Restore Plan', 'surecart'))) : (((_e = this.subscription) === null || _e === void 0 ? void 0 : _e.status) !== 'canceled' &&
-            ((_f = this.subscription) === null || _f === void 0 ? void 0 : _f.current_period_end_at) &&
-            this.showCancel && (index.h("sc-button", { type: "link", onClick: () => (this.cancelModal = true) }, index.h("sc-icon", { name: "x", slot: "prefix" }), wp.i18n.__('Cancel Plan', 'surecart')))), ((_g = this.subscription) === null || _g === void 0 ? void 0 : _g.status) === 'canceled' && (index.h("sc-button", { key: '15d9073f4bffe524aeab3299a8875d9a500ed4dc', type: "link", ...(!!((_h = this.subscription) === null || _h === void 0 ? void 0 : _h.payment_method) || (this === null || this === void 0 ? void 0 : this.subscription.manual_payment)
+                ...(((_d = this === null || this === void 0 ? void 0 : this.subscription) === null || _d === void 0 ? void 0 : _d.live_mode) === false ? { live_mode: false } : {}),
+            }) }, index.h("sc-icon", { key: 'd74e67b5331703252cd927e4f68aba02c445fa13', name: "credit-card", slot: "prefix" }), wp.i18n.__('Add Payment Method', 'surecart'))), !!Object.keys(((_e = this.subscription) === null || _e === void 0 ? void 0 : _e.pending_update) || {}).length && (index.h("sc-button", { key: '73b6e252baaeea7de2b210ca6f8f0cd91c671767', type: "link", onClick: () => this.cancelPendingUpdate() }, index.h("sc-icon", { key: '3887b3f8cbccaef122022684faa5feaac1162fa2', name: "x-octagon", slot: "prefix" }), wp.i18n.__('Cancel Scheduled Update', 'surecart'))), ((_f = this === null || this === void 0 ? void 0 : this.subscription) === null || _f === void 0 ? void 0 : _f.cancel_at_period_end) ? (index.h("sc-button", { type: "link", onClick: () => this.renewSubscription() }, index.h("sc-icon", { name: "repeat", slot: "prefix" }), subscription.isPauseScheduled(this.subscription) ? wp.i18n.__("Don't Pause", 'surecart') : wp.i18n.__('Restore Plan', 'surecart'))) : (((_g = this.subscription) === null || _g === void 0 ? void 0 : _g.status) !== 'canceled' &&
+            ((_h = this.subscription) === null || _h === void 0 ? void 0 : _h.current_period_end_at) &&
+            this.showCancel && (index.h("sc-button", { type: "link", onClick: () => (this.cancelModal = true) }, index.h("sc-icon", { name: "x", slot: "prefix" }), wp.i18n.__('Cancel Plan', 'surecart')))), ((_j = this.subscription) === null || _j === void 0 ? void 0 : _j.status) === 'canceled' && (index.h("sc-button", { key: 'e73aa9a993fb0909d51a6020075832381bee61d4', type: "link", ...(!!((_k = this.subscription) === null || _k === void 0 ? void 0 : _k.payment_method) || (this === null || this === void 0 ? void 0 : this.subscription.manual_payment)
                 ? {
                     onClick: () => (this.resubscribeModal = true),
                 }
                 : {
                     href: this === null || this === void 0 ? void 0 : this.updatePaymentMethodUrl,
-                }) }, index.h("sc-icon", { key: 'dc1abce5a632b8265dd8886b191c493a216ad9c8', name: "repeat", slot: "prefix" }), wp.i18n.__('Resubscribe', 'surecart'))))), index.h("sc-card", { key: '0fb0c75ccde2eb1c0a7e9945b8a17bd8289964e1', style: { '--overflow': 'hidden' }, noPadding: true }, this.renderContent()), this.busy && index.h("sc-block-ui", { key: '042a01ddd3142a8dea8862c354ca52211092d50a', spinner: true }), index.h("sc-cancel-dialog", { key: 'b8242ff66a9ae00131a4ff677fc97f1ae1e399d8', subscription: this.subscription, protocol: this.protocol, open: this.cancelModal, onScRequestClose: () => (this.cancelModal = false), onScRefresh: () => this.getSubscription() }, index.h("slot", { key: '7493b1a52c8a898ebc8627bbc3d5889b1753f908', name: "cancel-popup-content", slot: "cancel-popup-content" })), index.h("sc-subscription-reactivate", { key: 'd315ccbfcb99278c5866ad542d475e622f33a78f', subscription: this.subscription, open: this.resubscribeModal, onScRequestClose: () => (this.resubscribeModal = false), onScRefresh: () => this.getSubscription() })));
+                }) }, index.h("sc-icon", { key: 'ec63ef4d0d5d87de567f8244da33c1b7d2ac6232', name: "repeat", slot: "prefix" }), wp.i18n.__('Resubscribe', 'surecart'))))), index.h("sc-card", { key: 'b2499d3ed23f77eb47586fe05f2ab2588d9f793f', style: { '--overflow': 'hidden' }, noPadding: true }, this.renderContent()), this.busy && index.h("sc-block-ui", { key: '237d5f5e00c4903a3a27f7f79eb750ec23e83b85', spinner: true }), index.h("sc-cancel-dialog", { key: '46538b48ac57f3940a35f5d40aa9051642914240', subscription: this.subscription, protocol: this.protocol, open: this.cancelModal, onScRequestClose: () => (this.cancelModal = false), onScRefresh: () => this.getSubscription() }, index.h("slot", { key: '8cb01629eebb39aedb233aac1ca34ba0f236e742', name: "cancel-popup-content", slot: "cancel-popup-content" })), index.h("sc-subscription-reactivate", { key: '93ccc6ed1d2dd7d09d33b398c519b34656fd197b', subscription: this.subscription, open: this.resubscribeModal, onScRequestClose: () => (this.resubscribeModal = false), onScRefresh: () => this.getSubscription() })));
     }
     get el() { return index.getElement(this); }
 };

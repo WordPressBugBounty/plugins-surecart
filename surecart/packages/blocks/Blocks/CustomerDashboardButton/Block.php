@@ -30,7 +30,7 @@ class Block extends BaseBlock {
 				<?php if ( ! empty( $attributes['show_icon'] ) ) : ?>
 					<sc-icon name="user" style="font-size: 18px" slot="prefix"></sc-icon>
 				<?php endif; ?>
-				<?php echo esc_html( ! empty( $label ) ? $label : __( 'Dashboard', 'surecart' ) ); ?>
+				<?php echo esc_html( ! empty( $label ) ? $label : __( 'Customer Dashboard', 'surecart' ) ); ?>
 			</sc-button>
 		</div>
 

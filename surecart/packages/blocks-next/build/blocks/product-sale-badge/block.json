@@ -23,8 +23,7 @@
   },
   "attributes": {
     "text": {
-      "type": "string",
-      "default": "Sale"
+      "type": "string"
     }
   },
   "supports": {

@@ -13,9 +13,10 @@
 		wp_interactivity_data_wp_context(
 			array(
 				'checkoutUrl'     => esc_url( \SureCart::pages()->url( 'checkout' ) ),
-				'buttonText'      => $attributes['text'] ?? ( $add_to_cart ? __( 'Add to Cart', 'surecart' ) : __( 'Buy Now', 'surecart' ) ),
-				'outOfStockText'  => esc_attr( $attributes['out_of_stock_text'] ?? __( 'Sold Out', 'surecart' ) ),
-				'unavailableText' => esc_attr( $attributes['unavailable_text'] ?? __( 'Unavailable', 'surecart' ) ),
+				'buttonText'      => ! empty( $attributes['text'] ) ? $attributes['text'] : ( $add_to_cart ? __( 'Add to Cart', 'surecart' ) : __( 'Buy Now', 'surecart' ) ),
+				// Context is JSON-encoded and rendered via data-wp-text, so escaping here would show entities.
+				'outOfStockText'  => ! empty( $attributes['out_of_stock_text'] ) ? $attributes['out_of_stock_text'] : __( 'Sold Out', 'surecart' ),
+				'unavailableText' => ! empty( $attributes['unavailable_text'] ) ? $attributes['unavailable_text'] : __( 'Unavailable', 'surecart' ),
 				'addToCart'       => $add_to_cart ?? true,
 			)
 		)

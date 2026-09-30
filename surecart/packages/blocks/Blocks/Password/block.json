@@ -40,8 +40,7 @@
 			"default": ""
 		},
 		"label": {
-			"type": "string",
-			"default": "Set A Password"
+			"type": "string"
 		},
 		"help": {
 			"type": "string"
@@ -63,8 +62,7 @@
 			"default": false
 		},
 		"confirmation_label": {
-			"type": "string",
-			"default": "Password Confirmation"
+			"type": "string"
 		},
 		"confirmation_placeholder": {
 			"type": "string",

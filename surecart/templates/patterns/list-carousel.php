@@ -10,7 +10,7 @@ return [
 	'content'    => '<!-- wp:surecart/product-list {"query":{"perPage":3,"pages":0,"offset":0,"postType":"sc_product","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"include":[],"sticky":"","inherit":true,"taxQuery":null,"parents":[]},"metadata":{"categories":["surecart_shop"],"patternName":"surecart-list-carousel","name":"Classic Product Carousel"},"align":"wide","style":{"spacing":{"blockGap":"24px"}}} -->
 <!-- wp:group {"style":{"position":{"type":""},"spacing":{"margin":{"bottom":"24px"},"padding":{"right":"0","left":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","orientation":"horizontal","verticalAlignment":"bottom"}} -->
 <div class="wp-block-group" style="margin-bottom:24px;padding-right:0;padding-left:0"><!-- wp:heading {"style":{"typography":{"fontSize":"36px"}}} -->
-<h2 class="wp-block-heading" style="font-size:36px">Shop Bestsellers</h2>
+<h2 class="wp-block-heading" style="font-size:36px">' . esc_html__( 'Shop Bestsellers', 'surecart' ) . '</h2>
 <!-- /wp:heading -->
 
 <!-- wp:surecart/product-pagination {"showLabel":false,"style":{"layout":{"selfStretch":"fit","flexSize":null},"spacing":{"blockGap":"18px"}},"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center","flexWrap":"nowrap"}} -->
@@ -38,8 +38,8 @@ return [
 <!-- /wp:group -->
 <!-- /wp:surecart/product-template -->
 <!-- wp:surecart/product-list-no-products -->
-	<!-- wp:paragraph {"align":"center","placeholder":"Add text or blocks that will display when a query returns no products."} -->
-		<p class="has-text-align-center">No products found.</p>
+	<!-- wp:paragraph {"align":"center","placeholder":' . wp_json_encode( __( 'Add text or blocks that will display when a query returns no products.', 'surecart' ) ) . '} -->
+		<p class="has-text-align-center">' . esc_html__( 'No products found.', 'surecart' ) . '</p>
 	<!-- /wp:paragraph -->
 <!-- /wp:surecart/product-list-no-products -->
 <!-- /wp:surecart/product-list -->',

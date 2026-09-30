@@ -33,7 +33,7 @@ class Block extends BaseBlock {
 				'style' => $styles,
 				'class' => 'sc-button wp-element-button wp-block-button__link sc-button__link',
 				'href'  => $this->href( $attributes['line_items'] ?? [] ),
-				'label' => $attributes['label'] ?? __( 'Buy Now', 'surecart' ),
+				'label' => ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Buy Now', 'surecart' ),
 			]
 		);
 	}

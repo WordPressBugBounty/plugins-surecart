@@ -16,8 +16,7 @@
 			"type": "string"
 		},
 		"label": {
-			"type": "string",
-			"default": "Enter An Amount"
+			"type": "string"
 		},
 		"help": {
 			"type": "string",

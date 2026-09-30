@@ -8,7 +8,7 @@
 					'href'                   => esc_url( $page_link ),
 					'role'                   => 'link',
 					'aria-disabled'          => empty( $page_link ) ? 'true' : null,
-					'aria-label'             => $attributes['label'] ?? __( 'Next Page', 'surecart' ),
+					'aria-label'             => ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Next Page', 'surecart' ),
 					'data-wp-on--click'      => 'surecart/product-review::actions.navigate',
 					'data-wp-on--mouseenter' => 'surecart/product-review::actions.prefetch',
 				]
@@ -19,7 +19,7 @@
 	>
 
 	<span class="<?php echo empty( $show_label ) ? 'sc-screen-reader-text' : 'sc-page-link-label'; ?>">
-		<?php echo wp_kses_post( $attributes['label'] ?? __( 'Next', 'surecart' ) ); ?>
+		<?php echo wp_kses_post( ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Next', 'surecart' ) ); ?>
 	</span>
 
 	<?php if ( ! empty( $arrow_name ) ) : ?>

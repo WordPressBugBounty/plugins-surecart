@@ -13,8 +13,7 @@
 	},
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "Estimated Tax"
+			"type": "string"
 		}
 	}
 }

@@ -4,8 +4,10 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title'    => __( 'Customers', 'surecart' ),
-			'new_link' => \SureCart::getUrl()->edit( 'customers' ),
+			'title'           => __( 'Customers', 'surecart' ),
+			'new_link'        => \SureCart::getUrl()->edit( 'customers' ),
+			'import_resource' => 'customers',
+			'export_resource' => 'customers',
 		]
 	);
 	?>

@@ -42,8 +42,7 @@
       "default": 15
     },
     "label": {
-      "type": "string",
-      "default": "Write a Review"
+      "type": "string"
     },
     "button_type": {
       "type": "string",

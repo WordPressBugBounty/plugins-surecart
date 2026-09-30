@@ -122,17 +122,17 @@ class Block extends BaseBlock {
 					<?php if ( ! empty( $icon ) ) : ?>
 						<sc-icon slot="prefix" name="<?php echo esc_attr( $icon ); ?>" slot="prefix" aria-hidden="true"></sc-icon>
 					<?php endif; ?>
-					<?php echo wp_kses_post( $product->archived || empty( $product->prices->data ) ? __( 'Unavailable For Purchase', 'surecart' ) : $attributes['text'] ); ?>
+					<?php echo wp_kses_post( $product->archived || empty( $product->prices->data ) ? __( 'Unavailable For Purchase', 'surecart' ) : ( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'Add To My Order', 'surecart' ) ) ); ?>
 				</span>
 
 				<sc-spinner data-loader></sc-spinner>
 			</a>
 			<button disabled class="wp-block-button__link sc-block-button__link wp-element-button sc-block-button--sold-out <?php echo esc_attr( $this->getClasses( $attributes ) ); ?>" style="<?php echo esc_attr( $this->getStyles( $attributes ) ); ?>">
-				<span data-text><?php echo esc_html( $attributes['out_of_stock_text'] ?? __( 'Sold Out', 'surecart' ) ); ?></span>
+				<span data-text><?php echo esc_html( ! empty( $attributes['out_of_stock_text'] ) ? $attributes['out_of_stock_text'] : __( 'Sold out', 'surecart' ) ); ?></span>
 				<sc-spinner data-loader></sc-spinner>
 			</button>
 			<button disabled class="wp-block-button__link sc-block-button__link wp-element-button sc-block-button--unavailable <?php echo esc_attr( $this->getClasses( $attributes ) ); ?>" style="<?php echo esc_attr( $this->getStyles( $attributes ) ); ?>">
-				<span data-text><?php echo esc_html( $attributes['unavailable_text'] ?? __( 'Unavailable', 'surecart' ) ); ?></span>
+				<span data-text><?php echo esc_html( ! empty( $attributes['unavailable_text'] ) ? $attributes['unavailable_text'] : __( 'Unavailable', 'surecart' ) ); ?></span>
 				<sc-spinner data-loader></sc-spinner>
 			</button>
 		</sc-upsell-submit-button>
@@ -146,7 +146,7 @@ class Block extends BaseBlock {
 			function() use ( $attributes, $product ) {
 				?>
 				<sc-product-price-modal addToCart="false" ?>>
-					<?php echo wp_kses_post( $product->archived || empty( $product->prices->data ) ? __( 'Unavailable For Purchase', 'surecart' ) : $attributes['text'] ); ?>
+					<?php echo wp_kses_post( $product->archived || empty( $product->prices->data ) ? __( 'Unavailable For Purchase', 'surecart' ) : ( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'Add To My Order', 'surecart' ) ) ); ?>
 				</sc-product-price-modal>
 				<?php
 			}

@@ -12,8 +12,7 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Applied Filters"
+      "type": "string"
     }
   },
   "supports": {

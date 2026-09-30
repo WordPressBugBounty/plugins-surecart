@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Trial"
+			"type": "string"
 		}
 	}
 }

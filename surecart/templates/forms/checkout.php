@@ -16,12 +16,12 @@ return [
 
 	<!-- wp:surecart/email {"placeholder":"your@email.com"} /-->
 
-	<!-- wp:surecart/name {"required":true,"placeholder":"Your Full Name"} -->
-	<sc-customer-name label="Name" placeholder="Your Full Name" required class="wp-block-surecart-name"></sc-customer-name>
+	<!-- wp:surecart/name {"required":true,"placeholder":' . wp_json_encode( __( 'Your Full Name', 'surecart' ) ) . '} -->
+	<sc-customer-name label="Name" placeholder="' . esc_attr__( 'Your Full Name', 'surecart' ) . '" required class="wp-block-surecart-name"></sc-customer-name>
 	<!-- /wp:surecart/name -->
 
-	<!-- wp:surecart/payment {"secure_notice":"This is a secure, encrypted payment"} -->
-	<sc-payment label="Payment" default-processor="stripe" secure-notice="This is a secure, encrypted payment" class="wp-block-surecart-payment"></sc-payment>
+	<!-- wp:surecart/payment {"secure_notice":' . wp_json_encode( __( 'This is a secure, encrypted payment', 'surecart' ) ) . '} -->
+	<sc-payment label="Payment" default-processor="stripe" secure-notice="' . esc_attr__( 'This is a secure, encrypted payment', 'surecart' ) . '" class="wp-block-surecart-payment"></sc-payment>
 	<!-- /wp:surecart/payment -->
 
 	<!-- wp:surecart/submit {"show_total":true,"full":true} -->

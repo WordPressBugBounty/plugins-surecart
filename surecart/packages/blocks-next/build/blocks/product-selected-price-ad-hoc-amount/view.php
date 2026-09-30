@@ -11,7 +11,7 @@
 	hidden
 >
 	<label for="sc-product-custom-amount" class="sc-form-label">
-		<?php echo wp_kses_post( $attributes['label'] ?? esc_html_e( 'Amount', 'surecart' ) ); ?>
+		<?php echo wp_kses_post( $attributes['label'] ?? __( 'Enter an amount', 'surecart' ) ); ?>
 	</label>
 
 	<div class="sc-input-group">

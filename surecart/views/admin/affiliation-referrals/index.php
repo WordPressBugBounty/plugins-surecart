@@ -25,8 +25,9 @@ if ( ! empty( $mode ) && 'test' === $mode ) {
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title'    => __( 'Affiliate Referrals', 'surecart' ),
-			'new_link' => \SureCart::getUrl()->edit( 'affiliate-referral' ),
+			'title'           => __( 'Affiliate Referrals', 'surecart' ),
+			'new_link'        => \SureCart::getUrl()->edit( 'affiliate-referral' ),
+			'export_resource' => 'referrals',
 		]
 	);
 	?>

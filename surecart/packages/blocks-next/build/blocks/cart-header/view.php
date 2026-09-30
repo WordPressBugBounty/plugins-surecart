@@ -18,7 +18,7 @@
 	</div>
 
 	<span class="wp-block-surecart-slide-out-cart-header__title" inert>
-		<?php echo wp_kses_post( $attributes['text'] ); ?>
+		<?php echo wp_kses_post( $attributes['text'] ?? __( 'Cart', 'surecart' ) ); ?>
 	</span>
 
 	<div class="sc-tag sc-tag--default">

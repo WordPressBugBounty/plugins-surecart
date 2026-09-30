@@ -304,6 +304,7 @@ abstract class AdminModelEditController {
 		$this->data['surecart_app_url']      = defined( 'SURECART_APP_URL' ) ? SURECART_APP_URL : '';
 		$this->data['account_id']            = \SureCart::account()->id ?? '';
 		$this->data['account_slug']          = \SureCart::account()->slug ?? '';
+		$this->data['import_export']         = \SureCart::importExport()->deepLinks();
 		$this->data['api_url']               = \SureCart::requests()->getBaseUrl();
 		$this->data['plugin_url']            = \SureCart::core()->assets()->getUrl();
 		$this->data['locale']                = str_replace( '_', '-', get_locale() );

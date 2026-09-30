@@ -52,8 +52,7 @@
 	},
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Make It Recurring"
+			"type": "string"
 		},
 		"columns": {
 			"type": "number",

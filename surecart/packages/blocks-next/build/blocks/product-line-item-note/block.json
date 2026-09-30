@@ -18,8 +18,7 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Note"
+      "type": "string"
     },
     "placeholder": {
       "type": "string"

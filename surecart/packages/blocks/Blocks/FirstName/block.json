@@ -17,8 +17,7 @@
 			"default": false
 		},
 		"label": {
-			"type": "string",
-			"default": "First Name"
+			"type": "string"
 		},
 		"help": {
 			"type": "string",

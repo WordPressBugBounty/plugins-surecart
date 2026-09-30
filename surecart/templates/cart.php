@@ -14,7 +14,7 @@ return [
 	<!-- wp:paragraph {"style":{"typography":{"fontSize":"16px","lineHeight":"1","fontStyle":"normal","fontWeight":"500"},"spacing":{"padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"},"margin":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"color":{"text":"#4b5563"},"elements":{"link":{"color":{"text":"#4b5563"}}}}} -->
 	<p class="has-text-color has-link-color"
 		style="color:#4b5563;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px;font-size:16px;font-style:normal;font-weight:500;line-height:1">
-		Review My Order</p>
+		' . esc_html__( 'Review My Order', 'surecart' ) . '</p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:surecart/cart-count {"style":{"layout":{"selfStretch":"fit","flexSize":null},"typography":{"lineHeight":"1","fontWeight":"600","fontSize":"14px","fontStyle":"normal"},"spacing":{"padding":{"top":"6px","bottom":"6px","left":"10px","right":"10px"}},"border":{"radius":"4px"}}} /-->
@@ -106,13 +106,11 @@ return [
 		<!-- wp:paragraph {"style":{"color":{"text":"#4b5563"},"typography":{"fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"1.4"},"spacing":{"margin":{"top":"0px","bottom":"0px"}}}} -->
 		<p class="has-text-color"
 			style="color:#4b5563;margin-top:0px;margin-bottom:0px;font-size:18px;font-style:normal;font-weight:500;line-height:1.4">
-			Subtotal</p>
+			' . esc_html__( 'Subtotal', 'surecart' ) . '</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:paragraph {"style":{"typography":{"fontSize":"14px","lineHeight":"1.4"},"color":{"text":"#828c99"},"elements":{"link":{"color":{"text":"#828c99"}}}}} -->
-		<p class="has-text-color has-link-color" style="color:#828c99;font-size:14px;line-height:1.4">Taxes &amp;
-			shipping calculated at
-			checkout</p>
+		<p class="has-text-color has-link-color" style="color:#828c99;font-size:14px;line-height:1.4">' . esc_html__( 'Taxes & shipping calculated at checkout', 'surecart' ) . '</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

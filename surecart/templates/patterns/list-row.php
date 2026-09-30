@@ -26,8 +26,8 @@ return [
 <!-- /wp:group -->
 <!-- /wp:surecart/product-template -->
 <!-- wp:surecart/product-list-no-products -->
-	<!-- wp:paragraph {"align":"center","placeholder":"Add text or blocks that will display when a query returns no products."} -->
-		<p class="has-text-align-center">No products found.</p>
+	<!-- wp:paragraph {"align":"center","placeholder":' . wp_json_encode( __( 'Add text or blocks that will display when a query returns no products.', 'surecart' ) ) . '} -->
+		<p class="has-text-align-center">' . esc_html__( 'No products found.', 'surecart' ) . '</p>
 	<!-- /wp:paragraph -->
 <!-- /wp:surecart/product-list-no-products -->
 <!-- /wp:surecart/product-list -->',

@@ -29,8 +29,7 @@
 			"default": ""
 		},
 		"label": {
-			"type": "string",
-			"default": "Email"
+			"type": "string"
 		},
 		"help": {
 			"type": "string"

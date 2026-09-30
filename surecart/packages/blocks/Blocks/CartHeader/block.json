@@ -15,8 +15,7 @@
 	"ancestor": ["surecart/cart"],
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "Cart"
+			"type": "string"
 		},
 		"border": {
 			"type": "boolean",

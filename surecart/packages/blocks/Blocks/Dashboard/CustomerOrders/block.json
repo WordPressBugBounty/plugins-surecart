@@ -13,8 +13,7 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string",
-			"default": "Order History"
+			"type": "string"
 		},
 		"paginate": {
 			"type": "boolean",

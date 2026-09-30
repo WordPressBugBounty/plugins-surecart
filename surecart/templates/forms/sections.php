@@ -6,14 +6,14 @@ return [
 	'title'      => __( 'Sections', 'surecart' ),
 	'categories' => [ 'surecart_form' ],
 	'blockTypes' => [ 'surecart/form' ],
-	'content'    => '<!-- wp:surecart/price-selector {"label":"Choose A Plan"} -->
-	<sc-price-choices label="Choose A Plan" type="radio" columns="1"><div><!-- wp:surecart/price-choice {"price_id":"9182e0aa-95b4-41ff-adeb-477fae3400f7","label":"","quantity":1,"checked":true} -->
+	'content'    => '<!-- wp:surecart/price-selector {"label":' . wp_json_encode( __( 'Choose A Plan', 'surecart' ) ) . '} -->
+	<sc-price-choices label="' . esc_attr__( 'Choose A Plan', 'surecart' ) . '" type="radio" columns="1"><div><!-- wp:surecart/price-choice {"price_id":"9182e0aa-95b4-41ff-adeb-477fae3400f7","label":"","quantity":1,"checked":true} -->
 	<sc-price-choice price-id="9182e0aa-95b4-41ff-adeb-477fae3400f7" type="radio" label="" checked show-label="1" show-price="1" show-control="1" quantity="1"></sc-price-choice>
 	<!-- /wp:surecart/price-choice --></div></sc-price-choices>
 	<!-- /wp:surecart/price-selector -->
 
-	<!-- wp:surecart/heading {"title":"Contact Information"} -->
-	<sc-heading>Contact Information<span slot="description"></span><span slot="end"></span></sc-heading>
+	<!-- wp:surecart/heading {"title":' . wp_json_encode( __( 'Contact Information', 'surecart' ) ) . '} -->
+	<sc-heading>' . esc_html__( 'Contact Information', 'surecart' ) . '<span slot="description"></span><span slot="end"></span></sc-heading>
 	<!-- /wp:surecart/heading -->
 
 	<!-- wp:surecart/columns -->
@@ -40,20 +40,20 @@ return [
 	<div style="height:1px" aria-hidden="true" class="wp-block-spacer"></div>
 	<!-- /wp:spacer -->
 
-	<!-- wp:surecart/heading {"title":"Payment"} -->
-	<sc-heading>Payment<span slot="description"></span><span slot="end"></span></sc-heading>
+	<!-- wp:surecart/heading {"title":' . wp_json_encode( __( 'Payment', 'surecart' ) ) . '} -->
+	<sc-heading>' . esc_html__( 'Payment', 'surecart' ) . '<span slot="description"></span><span slot="end"></span></sc-heading>
 	<!-- /wp:surecart/heading -->
 
-	<!-- wp:surecart/payment {"secure_notice":"This is a secure, encrypted payment","label":""} -->
-	<sc-payment label="" secure-notice="This is a secure, encrypted payment" class="wp-block-surecart-payment"></sc-payment>
+	<!-- wp:surecart/payment {"secure_notice":' . wp_json_encode( __( 'This is a secure, encrypted payment', 'surecart' ) ) . ',"label":""} -->
+	<sc-payment label="" secure-notice="' . esc_attr__( 'This is a secure, encrypted payment', 'surecart' ) . '" class="wp-block-surecart-payment"></sc-payment>
 	<!-- /wp:surecart/payment -->
 
 	<!-- wp:spacer {"height":1} -->
 	<div style="height:1px" aria-hidden="true" class="wp-block-spacer"></div>
 	<!-- /wp:spacer -->
 
-	<!-- wp:surecart/heading {"title":"Totals"} -->
-	<sc-heading>Totals<span slot="description"></span><span slot="end"></span></sc-heading>
+	<!-- wp:surecart/heading {"title":' . wp_json_encode( __( 'Totals', 'surecart' ) ) . '} -->
+	<sc-heading>' . esc_html__( 'Totals', 'surecart' ) . '<span slot="description"></span><span slot="end"></span></sc-heading>
 	<!-- /wp:surecart/heading -->
 
 	<!-- wp:surecart/totals -->
@@ -75,8 +75,8 @@ return [
 
 	<!-- wp:surecart/trial-line-item /-->
 
-	<!-- wp:surecart/coupon {"text":"Add Coupon Code","button_text":"Apply Coupon"} -->
-	<sc-order-coupon-form label="Add Coupon Code">Apply Coupon</sc-order-coupon-form>
+	<!-- wp:surecart/coupon {"button_text":' . wp_json_encode( __( 'Apply Coupon', 'surecart' ) ) . '} -->
+	<sc-order-coupon-form label="Add Coupon Code">' . esc_html__( 'Apply Coupon', 'surecart' ) . '</sc-order-coupon-form>
 	<!-- /wp:surecart/coupon -->
 
 	<!-- wp:surecart/tax-line-item -->

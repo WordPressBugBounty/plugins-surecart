@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string",
-			"default": "Downloads"
+			"type": "string"
 		}
 	}
 }

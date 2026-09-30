@@ -52,8 +52,7 @@
 	},
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "Add To My Order"
+			"type": "string"
 		},
 		"type": {
 			"type": "string",
@@ -72,12 +71,10 @@
 			"default": "large"
 		},
 		"out_of_stock_text": {
-			"type": "string",
-			"default": "Sold out"
+			"type": "string"
 		},
 		"unavailable_text": {
-			"type": "string",
-			"default": "Unavailable"
+			"type": "string"
 		},
 		"textAlign": {
 			"type": "string"

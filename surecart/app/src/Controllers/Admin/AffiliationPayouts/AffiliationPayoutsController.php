@@ -30,13 +30,12 @@ class AffiliationPayoutsController extends AdminController {
 
 		$this->withHeader(
 			array(
-				'breadcrumbs' => [
+				'breadcrumbs'         => [
 					'affiliate_payouts' => [
 						'title' => $this->pageTitle(),
 					],
 				],
-				'suffix'      => '<sc-button href="' . esc_url( admin_url( 'admin.php?page=sc-affiliate-payouts&action=export' ) ) . '"  type="primary">' . __( 'Export Payouts', 'surecart' ) . '</sc-button>',
-				'report_url'  => $this->reportUrl(),
+				'report_url'          => $this->reportUrl(),
 				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
@@ -66,29 +65,6 @@ class AffiliationPayoutsController extends AdminController {
 		$this->preloadPaths(
 			[
 				'/wp/v2/users/me',
-				'/wp/v2/types?context=view',
-				'/wp/v2/types?context=edit',
-				'/surecart/v1/payouts/' . $request->query( 'id' ) . '?context=edit',
-			]
-		);
-
-		// The React detail component renders its own breadcrumbs.
-		return $this->renderSpaShell( 'admin/affiliation-payouts/spa' );
-	}
-
-	/**
-	 * Export affiliate payouts.
-	 *
-	 * @param \SureCartCore\Http\Request $request Request object.
-	 *
-	 * @return string
-	 */
-	public function export( $request ) {
-		$this->enqueueSpaScripts( AffiliationPayoutsScriptsController::class );
-
-		$this->preloadPaths(
-			[
-				'/wp/v2/users/me?context=edit',
 				'/wp/v2/types?context=view',
 				'/wp/v2/types?context=edit',
 				'/surecart/v1/payouts/' . $request->query( 'id' ) . '?context=edit',

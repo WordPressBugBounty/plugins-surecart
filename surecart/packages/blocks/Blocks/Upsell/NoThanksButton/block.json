@@ -9,8 +9,7 @@
 	"textdomain": "surecart",
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "No Thanks"
+			"type": "string"
 		},
 		"type": {
 			"type": "string",

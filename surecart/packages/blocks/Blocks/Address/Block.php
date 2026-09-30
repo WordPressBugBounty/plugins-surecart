@@ -21,7 +21,7 @@ class Block extends BaseBlock {
 
 		ob_start(); ?>
 		<sc-order-shipping-address
-			label="<?php echo esc_attr( $attributes['label'] ); ?>"
+			label="<?php echo esc_attr( $attributes['label'] ?? __( 'Shipping Address', 'surecart' ) ); ?>"
 			<?php echo $attributes['full'] ? 'full' : null; ?>
 			<?php echo $attributes['show_name'] ? 'show-name' : null; ?>
 			<?php echo $attributes['line_2'] ? 'show-line-2' : null; ?>
@@ -33,8 +33,8 @@ class Block extends BaseBlock {
 		if ( $attributes['collect_billing'] ) {
 			?>
 			<sc-order-billing-address
-			label="<?php echo esc_attr( $attributes['billing_label'] ); ?>"
-			toggle-label="<?php echo esc_attr( $attributes['billing_toggle_label'] ); ?>"
+			label="<?php echo esc_attr( $attributes['billing_label'] ?? __( 'Billing Address', 'surecart' ) ); ?>"
+			toggle-label="<?php echo esc_attr( $attributes['billing_toggle_label'] ?? __( 'Billing address is same as shipping', 'surecart' ) ); ?>"
 			<?php echo $attributes['show_name'] ? 'show-name' : null; ?>
 			<?php echo $attributes['line_2'] ? 'show-line-2' : null; ?>
 			default-country="<?php echo esc_attr( $default_country ); ?>"

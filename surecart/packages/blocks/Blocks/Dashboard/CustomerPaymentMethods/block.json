@@ -13,8 +13,7 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string",
-			"default": "Payment Methods"
+			"type": "string"
 		}
 	}
 }

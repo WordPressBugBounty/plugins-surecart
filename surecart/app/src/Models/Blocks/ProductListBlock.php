@@ -7,6 +7,29 @@ namespace SureCart\Models\Blocks;
  */
 class ProductListBlock extends AbstractProductListBlock {
 	/**
+	 * Queries already run this request, keyed by their resolved query vars.
+	 *
+	 * One shop page renders the list, template, search and pagination blocks,
+	 * and every one of them resolves this same query. Without this each runs
+	 * its own SQL_CALC_FOUND_ROWS query, so a single render costs six or more.
+	 *
+	 * @var \WP_Query[]
+	 */
+	protected static $query_cache = [];
+
+	/**
+	 * Flush the cached queries.
+	 *
+	 * Needed in tests: the cache is process-static while the DB resets between
+	 * tests, so a query cached by one test would be served to the next.
+	 *
+	 * @return void
+	 */
+	public static function flushQueryCache() {
+		self::$query_cache = [];
+	}
+
+	/**
 	 * Get the query context.
 	 *
 	 * @return array
@@ -18,7 +41,7 @@ class ProductListBlock extends AbstractProductListBlock {
 	/**
 	 * Build the query
 	 *
-	 * @return $this
+	 * @return array The resolved WP_Query vars.
 	 */
 	public function parse_query() {
 		$query = $this->getQueryContext();
@@ -265,13 +288,37 @@ class ProductListBlock extends AbstractProductListBlock {
 	 */
 	public function query() {
 		$query_vars = $this->parse_query();
+
+		/**
+		 * Filter whether a query already run for these exact query vars may be reused.
+		 *
+		 * @param bool      $reuse      Whether to reuse the query.
+		 * @param array     $query_vars The resolved query vars.
+		 * @param \WP_Block $block      The block asking for the query.
+		 */
+		$reuse     = apply_filters( 'surecart/product_list/reuse_query', true, $query_vars, $this->block );
+		$cache_key = md5( (string) wp_json_encode( $query_vars ) );
+
+		// Runs on both paths: a reused query must leave the global post state
+		// exactly as a freshly run one would.
 		wp_reset_postdata();
+
+		if ( $reuse && isset( self::$query_cache[ $cache_key ] ) ) {
+			$this->query = self::$query_cache[ $cache_key ];
+			// A block that stopped part way through the loop must not leave the pointer there.
+			$this->query->rewind_posts();
+			return $this;
+		}
 
 		add_filter( 'found_posts', [ $this, 'offsetFoundPosts' ], 1 );
 		$this->query = new \WP_Query( $query_vars );
 		remove_filter( 'found_posts', [ $this, 'offsetFoundPosts' ], 1 );
 
 		$this->primeAttachmentCaches();
+
+		if ( $reuse ) {
+			self::$query_cache[ $cache_key ] = $this->query;
+		}
 
 		return $this;
 	}

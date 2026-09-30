@@ -17,6 +17,6 @@
 		type="submit"
 	>
 		<span class="sc-spinner" aria-hidden="true" data-wp-bind--hidden="!context.busy"></span>
-		<span class="sc-button__link-text"><?php echo wp_kses_post( $attributes['text'] ?? __( 'Submit Review', 'surecart' ) ); ?></span>
+		<span class="sc-button__link-text"><?php echo wp_kses_post( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'Submit Review', 'surecart' ) ); ?></span>
 	</button>
 </div>

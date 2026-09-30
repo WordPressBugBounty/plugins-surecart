@@ -12,8 +12,7 @@
 			"default": "center"
 		},
 		"offer_expire_text": {
-			"type": "string",
-			"default": "Offer Expires In"
+			"type": "string"
 		},
 		"show_icon": {
 			"type": "boolean",

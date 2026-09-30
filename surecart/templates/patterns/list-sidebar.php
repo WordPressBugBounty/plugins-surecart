@@ -9,7 +9,7 @@ return [
 	'priority'   => 1,
 	'content'    => '<!-- wp:surecart/product-list {"limit":null,"query":{"perPage":9,"pages":0,"offset":0,"postType":"sc_product","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"include":[],"sticky":"","inherit":true,"taxQuery":null,"parents":[]},"metadata":{"categories":["surecart_shop"],"patternName":"surecart-list-sidebar","name":"Product List Sidebar"},"align":"wide"} -->
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group"><!-- wp:surecart/product-list-sidebar-toggle {"label":"Filters"} /-->
+<div class="wp-block-group"><!-- wp:surecart/product-list-sidebar-toggle {"label":' . wp_json_encode( __( 'Filters', 'surecart' ) ) . '} /-->
 
 <!-- wp:surecart/product-list-search {"style":{"layout":{"selfStretch":"fixed","flexSize":"300px"}}} /--></div>
 <!-- /wp:group -->
@@ -35,7 +35,7 @@ return [
 <!-- /wp:surecart/product-list-sort-radio-group -->
 
 <!-- wp:surecart/product-list-filter-checkboxes {"layout":{"type":"flex","orientation":"vertical"},"style":{"spacing":{"blockGap":"8px"}}} -->
-<!-- wp:surecart/product-list-filter-checkboxes-label {"label":"Collections","style":{"typography":{"fontWeight":"700","fontStyle":"normal","fontSize":"16px"}}} /-->
+<!-- wp:surecart/product-list-filter-checkboxes-label {"label":' . wp_json_encode( __( 'Collections', 'surecart' ) ) . ',"style":{"typography":{"fontWeight":"700","fontStyle":"normal","fontSize":"16px"}}} /-->
 
 <!-- wp:surecart/product-list-filter-checkboxes-template {"style":{"spacing":{"blockGap":"6px","margin":{"top":"0","bottom":"0"}},"typography":{"fontSize":"16px"}}} -->
 <!-- wp:surecart/product-list-filter-checkbox {"style":{"typography":{"fontSize":"16px"}}} /-->
@@ -69,8 +69,8 @@ return [
 <!-- /wp:surecart/product-template -->
 
 <!-- wp:surecart/product-list-no-products -->
-<!-- wp:paragraph {"align":"center","placeholder":"Add text or blocks that will display when a query returns no products."} -->
-<p class="has-text-align-center">No products found.</p>
+<!-- wp:paragraph {"align":"center","placeholder":' . wp_json_encode( __( 'Add text or blocks that will display when a query returns no products.', 'surecart' ) ) . '} -->
+<p class="has-text-align-center">' . esc_html__( 'No products found.', 'surecart' ) . '</p>
 <!-- /wp:paragraph -->
 <!-- /wp:surecart/product-list-no-products -->
 <!-- /wp:surecart/product-template-container -->

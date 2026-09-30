@@ -19,8 +19,7 @@
 			"default": "customer.name"
 		},
 		"label": {
-			"type": "string",
-			"default": "Customer Name"
+			"type": "string"
 		}
 	}
 }

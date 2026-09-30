@@ -14,12 +14,10 @@
 	},
 	"attributes": {
 		"button_text": {
-			"type": "string",
-			"default": "Add To Cart"
+			"type": "string"
 		},
 		"ad_hoc_label": {
-			"type": "string",
-			"default": "Amount"
+			"type": "string"
 		},
 		"backgroundColor": {
 			"type": "string"

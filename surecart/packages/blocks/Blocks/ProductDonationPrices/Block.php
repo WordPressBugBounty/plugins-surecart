@@ -50,7 +50,7 @@ class Block extends BaseBlock {
 				</sc-choices>
 			</div>',
 			$wrapper_attributes,
-			esc_attr( $attributes['label'] ),
+			esc_attr( $attributes['label'] ?? __( 'Make It Recurring', 'surecart' ) ),
 			$this->block->context['surecart/product-donation/required'] ? 'true' : 'false',
 			filter_block_content( $content )
 		);

@@ -16,8 +16,7 @@
 			"type": "boolean"
 		},
 		"label": {
-			"type": "string",
-			"default": "Name"
+			"type": "string"
 		},
 		"help": {
 			"type": "string",

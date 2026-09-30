@@ -10,11 +10,11 @@ return [
 	'content'    => '<!-- wp:group {"metadata":{"categories":["surecart_shop"],"patternName":"surecart-list-bento","name":"Product Bento"},"style":{"spacing":{"blockGap":"20px","padding":{"right":"0px","left":"0px","top":"0px","bottom":"0px"}}},"layout":{"type":"default"}} -->
 <div class="wp-block-group" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><!-- wp:group {"style":{"spacing":{"padding":{"right":"0","left":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"bottom","justifyContent":"space-between"}} -->
 <div class="wp-block-group" style="padding-right:0;padding-left:0"><!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"28px"}}} -->
-<h3 class="wp-block-heading" style="font-size:28px">Featured</h3>
+<h3 class="wp-block-heading" style="font-size:28px">' . esc_html__( 'Featured', 'surecart' ) . '</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"#000"}}},"typography":{"textDecoration":"none"}},"textColor":"black"} -->
-<p class="has-black-color has-text-color has-link-color" style="text-decoration:none"><a href="#">Shop All →</a></p>
+<p class="has-black-color has-text-color has-link-color" style="text-decoration:none"><a href="#">' . esc_html__( 'Shop All →', 'surecart' ) . '</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -61,8 +61,8 @@ return [
 <!-- /wp:group -->
 <!-- /wp:surecart/product-template -->
 <!-- wp:surecart/product-list-no-products -->
-	<!-- wp:paragraph {"align":"center","placeholder":"Add text or blocks that will display when a query returns no products."} -->
-		<p class="has-text-align-center">No products found.</p>
+	<!-- wp:paragraph {"align":"center","placeholder":' . wp_json_encode( __( 'Add text or blocks that will display when a query returns no products.', 'surecart' ) ) . '} -->
+		<p class="has-text-align-center">' . esc_html__( 'No products found.', 'surecart' ) . '</p>
 	<!-- /wp:paragraph -->
 <!-- /wp:surecart/product-list-no-products -->
 <!-- /wp:surecart/product-list --></div>

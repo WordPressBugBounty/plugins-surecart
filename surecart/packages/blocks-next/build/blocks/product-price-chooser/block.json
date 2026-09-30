@@ -34,8 +34,7 @@
   },
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Pricing"
+      "type": "string"
     },
     "columns": {
       "type": "number",

@@ -27,7 +27,7 @@ class Block extends BaseBlock {
 					<?php if ( ! empty( $attributes['icon'] ) ) : ?>
 						<sc-icon name="<?php echo esc_attr( $attributes['icon'] ); ?>" style="font-size: 18px"></sc-icon>
 					<?php endif; ?>
-					<span><?php echo wp_kses_post( $attributes['heading'] ?? '' ); ?></span>
+					<span><?php echo wp_kses_post( $attributes['heading'] ?? __( 'Collapsible row', 'surecart' ) ); ?></span>
 				</span>
 				<?php echo filter_block_content( $content, 'post' ); ?>
 			</sc-toggle>

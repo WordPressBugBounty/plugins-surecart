@@ -22,8 +22,7 @@
   },
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Quantity"
+      "type": "string"
     },
     "hidden_label": {
       "type": "boolean",

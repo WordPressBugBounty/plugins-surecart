@@ -9,8 +9,7 @@
 	"ancestor": ["surecart/upsell"],
 	"attributes": {
 		"sale_text": {
-			"type": "string",
-			"default": "Sale"
+			"type": "string"
 		},
 		"id": {
 			"type": "string"

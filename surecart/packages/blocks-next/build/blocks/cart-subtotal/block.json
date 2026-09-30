@@ -17,8 +17,7 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Subtotal"
+      "type": "string"
     },
     "border": {
       "type": "boolean",

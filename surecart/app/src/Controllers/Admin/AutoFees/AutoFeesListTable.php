@@ -283,7 +283,7 @@ class AutoFeesListTable extends ListTable {
 		return $this->row_actions(
 			array_filter(
 				[
-					'edit'   => '<a href="' . esc_url( \SureCart::getUrl()->edit( 'auto-fee', $auto_fees->id ) ) . '" aria-label="' . esc_attr( 'Edit Dynamic Pricing', 'surecart' ) . '">' . esc_html__( 'Edit', 'surecart' ) . '</a>',
+					'edit'   => '<a href="' . esc_url( \SureCart::getUrl()->edit( 'auto-fee', $auto_fees->id ) ) . '" aria-label="' . esc_attr__( 'Edit Dynamic Pricing', 'surecart' ) . '">' . esc_html__( 'Edit', 'surecart' ) . '</a>',
 					'delete' => '<a href="' . esc_url( $this->get_action_url( $auto_fees->id, 'delete' ) ) . '">' . esc_html__( 'Delete', 'surecart' ) . '</a>',
 				]
 			)

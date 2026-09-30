@@ -76,6 +76,11 @@ class ActivationService {
 	public function deactivate() {
 		// clear webhooks.
 		RegisteredWebhook::delete();
+
+		// Drop the cached rules so WordPress rebuilds them without our post types on
+		// the next request. Flushing here would just re-save them, since our post
+		// types are still registered in the request doing the deactivating.
+		delete_option( 'rewrite_rules' );
 	}
 
 	/**

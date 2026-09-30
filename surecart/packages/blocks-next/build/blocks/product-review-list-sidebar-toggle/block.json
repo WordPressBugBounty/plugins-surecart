@@ -12,8 +12,7 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Filter"
+      "type": "string"
     },
     "icon": {
       "type": "string",

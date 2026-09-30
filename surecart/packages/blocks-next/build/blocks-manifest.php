@@ -15,8 +15,7 @@ return array(
 		),
 		'attributes' => array(
 			'title' => array(
-				'type' => 'string',
-				'default' => 'Cart'
+				'type' => 'string'
 			),
 			'width' => array(
 				'type' => 'string',
@@ -99,8 +98,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Bundle Discount'
+				'type' => 'string'
 			),
 			'border' => array(
 				'type' => 'boolean',
@@ -253,16 +251,13 @@ return array(
 		),
 		'attributes' => array(
 			'text' => array(
-				'type' => 'string',
-				'default' => 'Add Coupon Code'
+				'type' => 'string'
 			),
 			'button_text' => array(
-				'type' => 'string',
-				'default' => 'Apply'
+				'type' => 'string'
 			),
 			'placeholder' => array(
-				'type' => 'string',
-				'default' => 'Enter coupon code'
+				'type' => 'string'
 			),
 			'collapsed' => array(
 				'type' => 'boolean',
@@ -324,8 +319,7 @@ return array(
 		),
 		'attributes' => array(
 			'text' => array(
-				'type' => 'string',
-				'default' => 'Cart'
+				'type' => 'string'
 			),
 			'border' => array(
 				'type' => 'boolean',
@@ -490,8 +484,7 @@ return array(
 		),
 		'attributes' => array(
 			'text' => array(
-				'type' => 'string',
-				'default' => 'Checkout'
+				'type' => 'string'
 			),
 			'width' => array(
 				'type' => 'number',
@@ -1056,8 +1049,7 @@ return array(
 				'default' => true
 			),
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Remove'
+				'type' => 'string'
 			),
 			'icon' => array(
 				'type' => 'string',
@@ -2230,8 +2222,7 @@ return array(
 		),
 		'attributes' => array(
 			'text' => array(
-				'type' => 'string',
-				'default' => 'Checkout'
+				'type' => 'string'
 			),
 			'border' => array(
 				'type' => 'boolean'
@@ -2294,8 +2285,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Subtotal'
+				'type' => 'string'
 			),
 			'border' => array(
 				'type' => 'boolean',
@@ -3413,8 +3403,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Note'
+				'type' => 'string'
 			),
 			'placeholder' => array(
 				'type' => 'string'
@@ -4076,8 +4065,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Filter by'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -4287,8 +4275,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Clear all'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -4335,8 +4322,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Applied Filters'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -4382,8 +4368,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Applied Filters'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -4597,8 +4582,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Filters'
+				'type' => 'string'
 			),
 			'open' => array(
 				'type' => 'boolean',
@@ -4682,8 +4666,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Filter'
+				'type' => 'string'
 			),
 			'icon' => array(
 				'type' => 'string',
@@ -4889,8 +4872,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Sort by'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -5567,8 +5549,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Pricing'
+				'type' => 'string'
 			),
 			'columns' => array(
 				'type' => 'number',
@@ -5608,8 +5589,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Quantity'
+				'type' => 'string'
 			),
 			'hidden_label' => array(
 				'type' => 'boolean',
@@ -6027,8 +6007,7 @@ return array(
 				'default' => 'before'
 			),
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Add'
+				'type' => 'string'
 			),
 			'quick_view_button_type' => array(
 				'type' => 'string',
@@ -6189,8 +6168,7 @@ return array(
 				'default' => 15
 			),
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Write a Review'
+				'type' => 'string'
 			),
 			'button_type' => array(
 				'type' => 'string',
@@ -6847,12 +6825,10 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Your review'
+				'type' => 'string'
 			),
 			'placeholder' => array(
-				'type' => 'string',
-				'default' => ''
+				'type' => 'string'
 			),
 			'rows' => array(
 				'type' => 'number',
@@ -6924,8 +6900,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Your rating'
+				'type' => 'string'
 			),
 			'size' => array(
 				'type' => 'string',
@@ -7147,12 +7122,10 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Title'
+				'type' => 'string'
 			),
 			'placeholder' => array(
-				'type' => 'string',
-				'default' => 'Enter a title for your review'
+				'type' => 'string'
 			),
 			'text_align' => array(
 				'type' => 'string'
@@ -8140,8 +8113,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Filter by'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -8348,8 +8320,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Clear all'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -8396,8 +8367,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Applied Filters'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -8443,8 +8413,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Applied Filters'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -8556,8 +8525,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Filters'
+				'type' => 'string'
 			),
 			'open' => array(
 				'type' => 'boolean',
@@ -8636,8 +8604,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Filter'
+				'type' => 'string'
 			),
 			'icon' => array(
 				'type' => 'string',
@@ -9456,8 +9423,7 @@ return array(
 		),
 		'attributes' => array(
 			'text' => array(
-				'type' => 'string',
-				'default' => 'Sale'
+				'type' => 'string'
 			)
 		),
 		'supports' => array(
@@ -9584,8 +9550,7 @@ return array(
 		),
 		'attributes' => array(
 			'label' => array(
-				'type' => 'string',
-				'default' => 'Enter an amount'
+				'type' => 'string'
 			),
 			'width' => array(
 				'type' => 'string',

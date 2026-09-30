@@ -284,4 +284,31 @@ abstract class BaseBlock {
 	public function render( $attributes, $content ) {
 		return '';
 	}
+
+	/**
+	 * Swap the English default a static save baked into the root tag for its translation.
+	 *
+	 * Only touches attributes the author never set, so custom text and every other
+	 * saved attribute (classes, flags) stay exactly as saved.
+	 *
+	 * @param string $content    Saved block markup.
+	 * @param array  $attributes Block attributes.
+	 * @param array  $defaults   Map of block attribute => [ html attribute, translated default ].
+	 *
+	 * @return string
+	 */
+	protected function withTranslatedDefaults( $content, $attributes, $defaults ) {
+		$tags = new \WP_HTML_Tag_Processor( (string) $content );
+		if ( ! $tags->next_tag() ) {
+			return $content;
+		}
+
+		foreach ( $defaults as $key => [ $html_attribute, $translated ] ) {
+			if ( ! isset( $attributes[ $key ] ) ) {
+				$tags->set_attribute( $html_attribute, $translated );
+			}
+		}
+
+		return $tags->get_updated_html();
+	}
 }

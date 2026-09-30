@@ -3,8 +3,9 @@
 	\SureCart::render(
 		'layouts/partials/admin-index-header',
 		[
-			'title'    => __( 'Product Collections', 'surecart' ),
-			'new_link' => \SureCart::getUrl()->edit( 'product_collection' ),
+			'title'           => __( 'Product Collections', 'surecart' ),
+			'new_link'        => \SureCart::getUrl()->edit( 'product_collection' ),
+			'import_resource' => 'product_collections',
 		]
 	);
 	?>

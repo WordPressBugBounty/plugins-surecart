@@ -11,7 +11,7 @@
 				<div class="sc-product-line-item__text-details">
 					<div class="sc-product-line-item__title">
 						<span>
-							<?php echo wp_kses_post( $attributes['label'] ?? __( 'Total', 'surecart' ) ); ?>
+							<?php echo wp_kses_post( $attributes['label'] ?? __( 'Subtotal', 'surecart' ) ); ?>
 						</span>
 					</div>
 				</div>

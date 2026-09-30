@@ -56,7 +56,7 @@ class SubscriptionController extends BaseController {
 			->id( 'customer-subscriptions-preview' )
 			->with(
 				[
-					'heading'    => $attributes['title'] ?? null,
+					'heading'    => $attributes['title'] ?? __( 'Plans', 'surecart' ),
 					'isCustomer' => User::current()->isCustomer(),
 					'allLink'    => add_query_arg(
 						[
@@ -76,7 +76,7 @@ class SubscriptionController extends BaseController {
 						]
 					),
 				]
-			)->render( $attributes['title'] ? "<span slot='heading'>" . $attributes['title'] . '</span>' : '' )
+			)->render( ( $attributes['title'] ?? __( 'Plans', 'surecart' ) ) ? "<span slot='heading'>" . ( $attributes['title'] ?? __( 'Plans', 'surecart' ) ) . '</span>' : '' )
 		);
 	}
 

@@ -16,8 +16,7 @@ return [
 <!-- /wp:group -->
 
 <!-- wp:heading {"textAlign":"center","level":3,"className":"is-style-default","style":{"typography":{"fontSize":"32px"}}} -->
-<h3 class="wp-block-heading has-text-align-center is-style-default" style="font-size:32px">You may also like
-		</h3>
+<h3 class="wp-block-heading has-text-align-center is-style-default" style="font-size:32px">' . esc_html__( 'You may also like', 'surecart' ) . '		</h3>
 <!-- /wp:heading -->
 
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"0px","left":"0px"}}},"layout":{"type":"default"}} -->

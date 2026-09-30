@@ -76,13 +76,15 @@ class ExportsRestServiceProvider extends RestServiceProvider implements RestServ
 	 * @return true|\WP_Error True if the request has create access, WP_Error object otherwise.
 	 */
 	public function create_item_permissions_check( $request ) {
-		$type = $request->get_params()['type'] ?? '';
+		$type       = sanitize_key( $request->get_params()['type'] ?? '' );
+		$capability = \SureCart::importExport()->exportCapability( $type );
 
-		if ( 'payouts' === $type ) {
-			return current_user_can( 'publish_sc_affiliates' );
+		// Unknown/unsupported export type.
+		if ( empty( $capability ) ) {
+			return false;
 		}
 
-		return current_user_can( 'publish_sc_' . $type );
+		return current_user_can( $capability );
 	}
 
 	/**

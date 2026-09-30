@@ -87,9 +87,9 @@ return [
 
 		<!-- wp:surecart/product-buy-buttons {"style":{"spacing":{"blockGap":"5px"}}} -->
 		<div class="wp-block-surecart-product-buy-buttons wp-block-buttons sc-block-buttons is-layout-flex">
-			<!-- wp:surecart/product-buy-button {"add_to_cart":true,"text":"Add To Cart"} /-->
+			<!-- wp:surecart/product-buy-button {"add_to_cart":true} /-->
 
-			<!-- wp:surecart/product-buy-button {"text":"Buy Now","className":"is-style-outline"} /-->
+			<!-- wp:surecart/product-buy-button {"className":"is-style-outline"} /-->
 		</div>
 		<!-- /wp:surecart/product-buy-buttons -->
 	</div>

@@ -39,7 +39,7 @@ class PaymentMethodController extends BaseController {
 						'reusable'     => true,
 					],
 				]
-			)->render( $attributes['title'] ? "<span slot='heading'>" . $attributes['title'] . '</span>' : '' )
+			)->render( ( $attributes['title'] ?? __( 'Payment Methods', 'surecart' ) ) ? "<span slot='heading'>" . ( $attributes['title'] ?? __( 'Payment Methods', 'surecart' ) ) . '</span>' : '' )
 		);
 	}
 
@@ -47,7 +47,7 @@ class PaymentMethodController extends BaseController {
 		return array_values(
 			array_filter(
 				Processor::get() ?? [],
-				function( $processor ) {
+				function ( $processor ) {
 					return $processor->live_mode === $this->isLiveMode() && $processor->recurring_enabled && $processor->enabled;
 				}
 			)
@@ -135,7 +135,7 @@ class PaymentMethodController extends BaseController {
 		$processor_names = array_filter(
 			array_values(
 				array_map(
-					function( $processor ) {
+					function ( $processor ) {
 						return $processor->processor_type;
 					},
 					$this->getProcessors() ?? []
@@ -169,7 +169,7 @@ class PaymentMethodController extends BaseController {
 						)
 					);
 					?>
-				 ">
+				">
 					<?php esc_html_e( 'Billing', 'surecart' ); ?>
 				</sc-breadcrumb>
 				<sc-breadcrumb>

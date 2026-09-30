@@ -19,12 +19,10 @@
 			"type": "boolean"
 		},
 		"order_summary_text": {
-			"type": "string",
-			"default": "Summary"
+			"type": "string"
 		},
 		"invoice_summary_text": {
-			"type": "string",
-			"default": "Invoice Summary"
+			"type": "string"
 		},
 		"collapsedOnMobile": {
 			"type": "boolean",

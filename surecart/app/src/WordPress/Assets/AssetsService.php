@@ -71,6 +71,7 @@ class AssetsService {
 
 		// block editor.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editorAssets' ) );
+		add_filter( 'block_editor_settings_all', array( $this, 'editorPlaceholderStyles' ) );
 
 		// Shortcode usages scripts load.
 		add_action( 'wp_head', array( $this, 'maybeEnqueueScriptsForNonBlocks' ) );
@@ -160,6 +161,27 @@ class AssetsService {
 	public function editorAssets() {
 		$this->scripts->enqueueEditor();
 		$this->styles->enqueueEditor();
+	}
+
+	/**
+	 * Make SureCart block RichText placeholders fully visible in the editor canvas.
+	 *
+	 * Static block labels now live as RichText placeholders so WPML/Polylang can
+	 * translate them. Core dims every placeholder to 0.62 opacity, but for our
+	 * blocks the placeholder *is* the real label, so it must read clearly. Scoped
+	 * by the `surecart/` block prefix to never affect core or third-party blocks.
+	 * Injected via `block_editor_settings_all` so it reaches the iframed canvas
+	 * (WP 6.3+), unlike `enqueue_block_editor_assets`.
+	 *
+	 * @param array $settings Block editor settings.
+	 *
+	 * @return array
+	 */
+	public function editorPlaceholderStyles( $settings ) {
+		$settings['styles'][] = array(
+			'css' => '[data-type^="surecart/"] .rich-text [data-rich-text-placeholder]:after{opacity:1}',
+		);
+		return $settings;
 	}
 
 	/**

@@ -114,7 +114,7 @@ class Block extends BaseBlock {
 					'style' => esc_attr( $this->getStyles( $attributes ) ),
 				]
 			),
-			wp_kses_post( $attributes['text'] ?? __( 'No Thanks', 'surecart' ) )
+			wp_kses_post( ! empty( $attributes['text'] ) ? $attributes['text'] : __( 'No Thanks', 'surecart' ) )
 		);
 	}
 }

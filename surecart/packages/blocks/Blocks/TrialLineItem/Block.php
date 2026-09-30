@@ -17,7 +17,8 @@ class Block extends BaseBlock {
 	 * @return string
 	 */
 	public function render( $attributes, $content ) {
-		$wrapper_attributes = get_block_wrapper_attributes( [ 'label' => esc_attr( $attributes['label'] ) ] );
+		$label              = $attributes['label'] ?? __( 'Trial', 'surecart' );
+		$wrapper_attributes = get_block_wrapper_attributes( [ 'label' => esc_attr( $label ) ] );
 
 		return wp_sprintf(
 			'<sc-line-item-trial %s></sc-line-item-trial>',

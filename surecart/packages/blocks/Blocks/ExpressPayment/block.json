@@ -14,8 +14,7 @@
 	},
 	"attributes": {
 		"divider_text": {
-			"type": "string",
-			"default": "or"
+			"type": "string"
 		}
 	}
 }

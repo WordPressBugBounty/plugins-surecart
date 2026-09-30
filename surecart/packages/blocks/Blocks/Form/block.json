@@ -36,22 +36,10 @@
 			"type": "string"
 		},
 		"loading_text": {
-			"type": "object",
-			"default": {
-				"finalizing": "Submitting...",
-				"paying": "Processing...",
-				"confirming": "Finalizing...",
-				"confirmed": "Success!",
-				"redirecting": "Success! Redirecting..."
-			}
+			"type": "object"
 		},
 		"success_text": {
-			"type": "object",
-			"default": {
-				"title": "Thank you!",
-				"description": "Your payment was successful. A receipt is on its way to your inbox.",
-				"button": "Continue"
-			}
+			"type": "object"
 		},
 		"persist_cart": {
 			"type": "string",

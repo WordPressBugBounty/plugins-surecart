@@ -1,7 +1,7 @@
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
 	<?php if ( empty( $attributes['hidden_label'] ) ) : ?>
 		<label for="sc-quantity" class="sc-form-label">
-			<?php echo wp_kses_post( $attributes['label'] ?? esc_html__( 'Quantity', 'surecart' ) ); ?>
+			<?php echo wp_kses_post( ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Quantity', 'surecart' ) ); ?>
 		</label>
 	<?php endif; ?>
 
@@ -35,7 +35,7 @@
 			step="1"
 			autocomplete="off"
 			role="spinbutton"
-			aria-label="<?php echo esc_attr( $attributes['label'] ?? esc_html__( 'Quantity', 'surecart' ) ); ?>"
+			aria-label="<?php echo esc_attr( ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Quantity', 'surecart' ) ); ?>"
 		/>
 		<div
 			class="sc-input-group-text sc-quantity-selector__increase"

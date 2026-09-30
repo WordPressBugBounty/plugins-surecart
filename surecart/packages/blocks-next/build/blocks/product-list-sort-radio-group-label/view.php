@@ -1,3 +1,4 @@
+<?php $label = $attributes['label'] ?? __( 'Sort by', 'surecart' ); ?>
 <span
 	<?php
 	echo wp_kses_data(
@@ -9,6 +10,6 @@
 	);
 	?>
 >
-	<?php echo wp_kses_post( $attributes['label'] ); ?>
+	<?php echo wp_kses_post( $label ); ?>
 </span>
 

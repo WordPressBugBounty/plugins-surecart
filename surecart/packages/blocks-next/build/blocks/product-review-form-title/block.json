@@ -12,12 +12,10 @@
   ],
   "attributes": {
     "label": {
-      "type": "string",
-      "default": "Title"
+      "type": "string"
     },
     "placeholder": {
-      "type": "string",
-      "default": "Enter a title for your review"
+      "type": "string"
     },
     "text_align": {
       "type": "string"

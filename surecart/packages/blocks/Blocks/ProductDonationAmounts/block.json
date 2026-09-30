@@ -42,8 +42,7 @@
 	},
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Donation Amount"
+			"type": "string"
 		},
 		"columns": {
 			"type": "number",

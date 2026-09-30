@@ -15,8 +15,7 @@
 	"ancestor": ["surecart/cart"],
 	"attributes": {
 		"label": {
-			"type": "string",
-			"default": "Subtotal"
+			"type": "string"
 		},
 		"border": {
 			"type": "boolean",

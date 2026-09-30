@@ -20,8 +20,7 @@
       "default": true
     },
     "label": {
-      "type": "string",
-      "default": "Remove"
+      "type": "string"
     },
     "icon": {
       "type": "string",

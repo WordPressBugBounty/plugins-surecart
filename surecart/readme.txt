@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, stripe, payments
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.9.0
+Stable tag: 4.9.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -421,6 +421,19 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.9.1 - September 30th, 2026 =
+- New: Connect SureCart to ChatGPT with a Custom GPT and manage your store by chatting with it.
+- New: Import and Export options on admin list pages, grouped under one menu. Exports now run right inside your dashboard.
+- Improvement: Google and Facebook conversion tracking now counts accepted post-purchase upsells.
+- Improvement: Search engines no longer crawl the endless filter and sort variations of your shop page, which keeps your SEO clean.
+- Improvement: Block labels such as button and field text now appear in your site's language instead of always in English.
+- Fix: Dates picked in the admin (coupons, invoices, trials, subscriptions, affiliates, payouts, fees) now follow your site's timezone instead of your computer's.
+- Fix: A subscription scheduled to pause was shown as "cancelling" to both you and your customer.
+- Fix: You can now choose a specific variant of a physical product when adding it to a checkout form.
+- Fix: When picking a price for a Name Your Own Price product in the checkout form editor, every price looked the same, and product search did not work.
+- Fix: Saving changes to a subscription in the admin failed with an error.
+- Fix: Broken spacing on SureCart admin pages when Astra's Design Library is active.
 
 = 4.9.0 - September 23rd, 2026 =
 - New: Bulk shipping labels — pick multiple orders under Orders → Shipping Labels, compare rates, and buy labels in one go.

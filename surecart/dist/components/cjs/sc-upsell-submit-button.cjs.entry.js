@@ -3,19 +3,19 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
-require('./watchers-ba22d6cd.js');
-const store = require('./store-401bdb4d.js');
+require('./facebook-3c183c7a.js');
+const store = require('./store-3ddee299.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
-const watchers = require('./watchers-758fd4c1.js');
-const mutations = require('./mutations-e8aed27a.js');
-const getters = require('./getters-bc65a40b.js');
+const watchers = require('./watchers-24b78a31.js');
+const mutations = require('./mutations-8b2b6c99.js');
+const getters = require('./getters-e8c6cb31.js');
 require('./add-query-args-49dcb630.js');
-require('./utils-a9d13080.js');
+require('./google-8dbad1a6.js');
+require('./currency-b438c76d.js');
+require('./utils-f5ea3c23.js');
 require('./index-c3de642f.js');
 require('./index-fb76df07.js');
 require('./google-15c85d5e.js');
-require('./currency-b438c76d.js');
-require('./google-8dbad1a6.js');
 require('./util-a15c420c.js');
 require('./fetch-5e8dc1d5.js');
 require('./index-7ced8198.js');

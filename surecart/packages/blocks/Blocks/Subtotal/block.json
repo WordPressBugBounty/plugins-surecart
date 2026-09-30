@@ -14,16 +14,13 @@
 	},
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": "Subtotal"
+			"type": "string"
 		},
 		"total_payments_text": {
-			"type": "string",
-			"default": "Total Installments"
+			"type": "string"
 		},
 		"first_payment_subtotal_text": {
-			"type": "string",
-			"default": "Initial Payment"
+			"type": "string"
 		}
 	}
 }

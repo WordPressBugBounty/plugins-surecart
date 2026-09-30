@@ -56,7 +56,7 @@ return [
 <!-- /wp:surecart/product-variant-pills -->
 
 <!-- wp:surecart/product-buy-buttons {"style":{"spacing":{"padding":{"top":"12px"}}}} -->
-<div class="wp-block-surecart-product-buy-buttons wp-block-buttons sc-block-buttons is-layout-flex" style="padding-top:12px"><!-- wp:surecart/product-buy-button {"add_to_cart":true,"text":"Add To Cart","style":{"typography":{"fontSize":"14px"},"border":{"radius":"100px"}}} /--></div>
+<div class="wp-block-surecart-product-buy-buttons wp-block-buttons sc-block-buttons is-layout-flex" style="padding-top:12px"><!-- wp:surecart/product-buy-button {"add_to_cart":true,"style":{"typography":{"fontSize":"14px"},"border":{"radius":"100px"}}} /--></div>
 <!-- /wp:surecart/product-buy-buttons --></div>
 <!-- /wp:group -->
 <!-- /wp:surecart/product-template -->
@@ -70,8 +70,8 @@ return [
 <!-- /wp:surecart/product-pagination -->
 
 <!-- wp:surecart/product-list-no-products -->
-<!-- wp:paragraph {"align":"center","placeholder":"Add text or blocks that will display when a query returns no products."} -->
-<p class="has-text-align-center">No products found.</p>
+<!-- wp:paragraph {"align":"center","placeholder":' . wp_json_encode( __( 'Add text or blocks that will display when a query returns no products.', 'surecart' ) ) . '} -->
+<p class="has-text-align-center">' . esc_html__( 'No products found.', 'surecart' ) . '</p>
 <!-- /wp:paragraph -->
 <!-- /wp:surecart/product-list-no-products -->
 <!-- /wp:surecart/product-list -->',
