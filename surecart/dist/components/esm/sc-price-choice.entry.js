@@ -695,9 +695,10 @@ const ScPriceChoice = class {
     /** Keep price up to date. */
     handlePricesChange() {
         var _a, _b, _c;
-        if (!Object.keys(this.prices || {}).length || !Object.keys(this.products || {}).length)
+        const price = (_a = this.prices) === null || _a === void 0 ? void 0 : _a[this.priceId];
+        if (!price)
             return;
-        this.price = (_a = this === null || this === void 0 ? void 0 : this.prices) === null || _a === void 0 ? void 0 : _a[this.priceId];
+        this.price = price;
         this.product = (_b = this === null || this === void 0 ? void 0 : this.products) === null || _b === void 0 ? void 0 : _b[(_c = this === null || this === void 0 ? void 0 : this.price) === null || _c === void 0 ? void 0 : _c.product];
     }
     handlePriseChange() {

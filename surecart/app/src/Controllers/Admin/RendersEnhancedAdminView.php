@@ -87,7 +87,7 @@ trait RendersEnhancedAdminView {
 	 * @return string
 	 */
 	private function currentAdminPageSlug(): string {
-		return isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return AdminPageRegistry::currentSlug();
 	}
 
 	/**

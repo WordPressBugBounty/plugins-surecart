@@ -15,6 +15,8 @@ $aria_label   = $is_enhanced
 	method="post"
 	action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>"
 	class="sc-enhanced-views-promo<?php echo $is_enhanced ? ' is-enhanced' : ''; ?>"
+	<?php // Initial state only; menuSync.js owns visibility after a client-side swap. ?>
+	<?php echo ! empty( $hidden ) ? 'style="display:none"' : ''; ?>
 >
 	<?php wp_nonce_field( 'sc_set_enhanced_admin_views' ); ?>
 	<input type="hidden" name="action" value="sc_set_enhanced_admin_views" />

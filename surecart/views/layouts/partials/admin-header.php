@@ -52,7 +52,12 @@
 				<?php endforeach; ?>
 			</sc-breadcrumbs>
 		<?php endif; ?>
-		<?php if ( ! empty( $suffix ) || ! empty( $report_url ) || ! empty( $enhanced_view_promo ) ) : ?>
+		<?php
+		// Swappable pages always get the toggle and report slots; menuSync.js shows/hides them.
+		// Derived here, not in withHeader(): FormPostTypeService renders this partial directly.
+		$has_slots = ! empty( $swappable ) || ! empty( $enhanced_view_promo );
+		?>
+		<?php if ( ! empty( $suffix ) || ! empty( $report_url ) || $has_slots ) : ?>
 		<div class="sc-admin-suffix">
 			<?php
 			if ( ! empty( $suffix ) ) {
@@ -60,18 +65,18 @@
 			}
 			?>
 			<?php
-			if ( ! empty( $enhanced_view_promo ) ) {
+			if ( $has_slots ) {
 				\SureCart::render(
 					'layouts/partials/enhanced-views-promo',
 					[
 						'return_url' => is_string( $enhanced_view_promo ) ? $enhanced_view_promo : admin_url(),
+						'hidden'     => empty( $enhanced_view_promo ),
 					]
 				);
 			}
 			?>
 			<?php
-			// Swappable pages always get the slot; menuSync.js shows/hides it.
-			if ( ! empty( $report_url ) || ! empty( $enhanced_view_promo ) ) {
+			if ( ! empty( $report_url ) || $has_slots ) {
 				?>
 				<sc-button
 					id="sc-admin-report-link"

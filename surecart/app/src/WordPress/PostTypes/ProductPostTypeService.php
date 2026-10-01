@@ -1243,20 +1243,6 @@ class ProductPostTypeService {
 	 * @return array
 	 */
 	public function getJsonSchemaArray( $product ): array {
-		$active_prices = (array) $product->active_prices;
-
-		$offers = array_map(
-			function ( $price ) use ( $product ) {
-				return array(
-					'@type'         => 'Offer',
-					'price'         => Currency::maybeConvertAmount( $price->amount, $price->currency ),
-					'priceCurrency' => $price->currency,
-					'availability'  => $product->in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-				);
-			},
-			$active_prices ?? array()
-		);
-
 		$gallery_image_urls = ! empty( $product->gallery ) ? array_map(
 			function ( $media ) {
 				return $media->attributes()->src ?? '';
@@ -1264,19 +1250,77 @@ class ProductPostTypeService {
 			$product->gallery
 		) : '';
 
-		return apply_filters(
-			'surecart/product/json_schema',
-			array(
-				'@context'        => 'http://schema.org',
-				'@type'           => 'Product',
-				'name'            => $product->name,
-				'image'           => $gallery_image_urls,
-				'description'     => sanitize_text_field( $product->description ),
-				'offers'          => $offers,
-				'aggregateRating' => $this->getAggregateRatingSchema( $product ),
-			),
-			$this
+		$schema = array(
+			'@context'        => 'http://schema.org',
+			'@type'           => 'Product',
+			'name'            => $product->name,
+			'image'           => $gallery_image_urls,
+			'description'     => sanitize_text_field( $product->description ),
+			'offers'          => $this->getOffersSchema( $product ),
+			'aggregateRating' => $this->getAggregateRatingSchema( $product ),
 		);
+
+		// Google flags an empty offers array as invalid.
+		if ( empty( $schema['offers'] ) ) {
+			unset( $schema['offers'] );
+		}
+
+		// Google rejects SKUs containing whitespace.
+		$sku = (string) $product->sku;
+		if ( '' !== $sku && ! preg_match( '/\s/', $sku ) ) {
+			$schema['sku'] = $sku;
+		}
+
+		return apply_filters( 'surecart/product/json_schema', $schema, $this, $product );
+	}
+
+	/**
+	 * Get the offer for the price the product page preselects, if Google can list it.
+	 *
+	 * @param \SureCart\Models\Product $product The product.
+	 *
+	 * @return array
+	 */
+	public function getOffersSchema( $product ): array {
+		$price = $product->initial_price;
+
+		if ( empty( $price ) || ! empty( $price->recurring_interval ) || ! empty( $price->ad_hoc ) ) {
+			return array();
+		}
+
+		// Matches the amount the page displays, which is the initial variant's for variant-priced products.
+		$amount = (int) $product->initial_amount;
+		if ( $amount <= 0 ) {
+			return array();
+		}
+
+		$currency = strtoupper( (string) $price->currency );
+
+		$offer = array(
+			'@type'         => 'Offer',
+			// Unpublished products have no product page; the buy page is the only public URL.
+			'url'           => $product->is_published ? $product->permalink : $product->buyLink()->url(),
+			'price'         => Currency::maybeConvertAmount( $amount, $price->currency ),
+			'priceCurrency' => $currency,
+			'availability'  => $product->in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+			'itemCondition' => apply_filters( 'surecart/product/json_schema/condition', 'https://schema.org/NewCondition', $product ),
+		);
+
+		// The scratch amount belongs to the price, so it only applies when no variant amount overrides it.
+		if ( $price->is_on_sale && (int) $price->amount === $amount ) {
+			$offer['priceSpecification'] = array(
+				'@type'         => 'UnitPriceSpecification',
+				'priceType'     => 'https://schema.org/StrikethroughPrice',
+				'price'         => Currency::maybeConvertAmount( $price->scratch_amount, $price->currency ),
+				'priceCurrency' => $currency,
+			);
+		}
+
+		if ( empty( $offer['itemCondition'] ) ) {
+			unset( $offer['itemCondition'] );
+		}
+
+		return array( $offer );
 	}
 
 	/**

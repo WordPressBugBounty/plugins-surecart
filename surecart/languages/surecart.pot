@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-30T13:28:49+00:00\n"
+"POT-Creation-Date: 2026-10-01T19:32:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -1733,7 +1733,7 @@ msgstr ""
 #: src/BlockLibrary/BlockServiceProvider.php:138
 #: src/Support/Blocks/TemplateUtilityService.php:379
 #: src/Support/Blocks/TemplateUtilityService.php:380
-#: src/WordPress/Admin/AdminPageRegistry.php:95
+#: src/WordPress/Admin/AdminPageRegistry.php:105
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:405
 #: settings/order/OrderProtocol.js:302
 #: upsell-funnels/FunnelsList.js:226
@@ -2078,7 +2078,7 @@ msgid "Filter"
 msgstr ""
 
 #: src/Controllers/Admin/Abandoned/AbandonedCheckoutViewController.php:31
-#: src/WordPress/Admin/AdminPageRegistry.php:89
+#: src/WordPress/Admin/AdminPageRegistry.php:99
 #: admin/abandoned-orders/index.php:18
 #: abandoned-checkouts/AbandonedCheckout.js:189
 #: abandoned-checkouts/AbandonedCheckoutsList.js:78
@@ -2089,7 +2089,7 @@ msgstr ""
 
 #: src/Controllers/Admin/AffiliationClicks/AffiliationClicksController.php:32
 #: src/Controllers/Admin/Affiliations/AffiliationsListTable.php:97
-#: src/WordPress/Admin/AdminPageRegistry.php:101
+#: src/WordPress/Admin/AdminPageRegistry.php:111
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:432
 #: admin/affiliation-clicks/index.php:6
 #: affiliation-clicks/ClicksList.js:78
@@ -2254,7 +2254,7 @@ msgstr ""
 
 #: src/Controllers/Admin/AffiliationPayouts/AffiliationPayoutsListTable.php:115
 #: src/Controllers/Admin/Affiliations/AffiliationsListTable.php:98
-#: src/WordPress/Admin/AdminPageRegistry.php:104
+#: src/WordPress/Admin/AdminPageRegistry.php:114
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:433
 #: affiliation-payouts/list/fields/index.js:91
 #: affiliation-referrals/EditAffiliationReferral.js:229
@@ -2671,7 +2671,7 @@ msgid "In Payout"
 msgstr ""
 
 #: src/Controllers/Admin/AffiliationRequests/AffiliationRequestsController.php:33
-#: src/WordPress/Admin/AdminPageRegistry.php:105
+#: src/WordPress/Admin/AdminPageRegistry.php:115
 #: admin/affiliation-requests/index.php:6
 #: affiliation-requests/EditAffiliationRequest.js:226
 #: affiliation-requests/RequestsList.js:180
@@ -2786,7 +2786,7 @@ msgid "Pending"
 msgstr ""
 
 #: src/Controllers/Admin/Affiliations/AffiliationsController.php:35
-#: src/WordPress/Admin/AdminPageRegistry.php:100
+#: src/WordPress/Admin/AdminPageRegistry.php:110
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:427
 #: admin/affiliations/index.php:6
 #: affiliations/AffiliationsList.js:190
@@ -2916,7 +2916,7 @@ msgid "Inactive"
 msgstr ""
 
 #: src/Controllers/Admin/AutoFees/AutoFeesController.php:35
-#: src/WordPress/Admin/AdminPageRegistry.php:96
+#: src/WordPress/Admin/AdminPageRegistry.php:106
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:403
 #: admin/auto-fees/index.php:6
 #: auto-fees/AutoFeesList.js:199
@@ -3055,7 +3055,7 @@ msgstr ""
 #: sc-order-confirmation-totals2.js:57
 #: sc-order.js:172
 #: sc-price-choice-container2.js:72
-#: sc-price-choice.js:819
+#: sc-price-choice.js:820
 #: sc-recurring-price-choice-container2.js:86
 msgid "Discount"
 msgstr ""
@@ -3174,7 +3174,7 @@ msgid "Edit Bump"
 msgstr ""
 
 #: src/Controllers/Admin/Bundles/BundlesController.php:59
-#: src/WordPress/Admin/AdminPageRegistry.php:83
+#: src/WordPress/Admin/AdminPageRegistry.php:93
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:370
 #: admin/bundles/index.php:8
 #: bundles/BundlesList.js:306
@@ -3454,7 +3454,7 @@ msgid "Coupon Applied"
 msgstr ""
 
 #: src/Controllers/Admin/Coupons/CouponsController.php:26
-#: src/WordPress/Admin/AdminPageRegistry.php:93
+#: src/WordPress/Admin/AdminPageRegistry.php:103
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:402
 #: admin/coupons/index.php:6
 #: admin/coupons/index.php:11
@@ -3660,7 +3660,7 @@ msgid "Move to Trash"
 msgstr ""
 
 #: src/Controllers/Admin/Customers/CustomersController.php:32
-#: src/WordPress/Admin/AdminPageRegistry.php:92
+#: src/WordPress/Admin/AdminPageRegistry.php:102
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:442
 #: admin/customers/index.php:7
 #: bumps/modules/Conditions.js:80
@@ -3715,7 +3715,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Dashboard/DashboardController.php:25
 #: src/Controllers/Web/DashboardController.php:121
-#: src/WordPress/Admin/AdminPageRegistry.php:81
+#: src/WordPress/Admin/AdminPageRegistry.php:91
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:321
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:339
 #: web/buy.php:72
@@ -3877,7 +3877,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Invoices/InvoicesViewController.php:26
 #: src/Controllers/Web/DashboardController.php:139
-#: src/WordPress/Admin/AdminPageRegistry.php:88
+#: src/WordPress/Admin/AdminPageRegistry.php:98
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:355
 #: admin/invoices/index.php:10
 #: invoices/Invoice.js:278
@@ -3893,14 +3893,14 @@ msgid "Invoices"
 msgstr ""
 
 #: src/Controllers/Admin/Learn/LearnController.php:24
-#: src/WordPress/Admin/AdminPageRegistry.php:106
+#: src/WordPress/Admin/AdminPageRegistry.php:116
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:461
 #: settings/learn/LearnResource.js:86
 msgid "Learn"
 msgstr ""
 
 #: src/Controllers/Admin/Licenses/LicensesController.php:25
-#: src/WordPress/Admin/AdminPageRegistry.php:97
+#: src/WordPress/Admin/AdminPageRegistry.php:107
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:412
 #: admin/licenses/index.php:7
 #: components/data-tables/licenses-data-table/index.js:26
@@ -4089,7 +4089,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersViewController.php:25
 #: src/Controllers/Web/DashboardController.php:127
-#: src/WordPress/Admin/AdminPageRegistry.php:87
+#: src/WordPress/Admin/AdminPageRegistry.php:97
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:348
 #: admin/orders/index.php:7
 #: admin/orders/index.php:12
@@ -4167,7 +4167,7 @@ msgid "Create shipping labels"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/ShippingLabelsViewController.php:60
-#: src/WordPress/Admin/AdminPageRegistry.php:91
+#: src/WordPress/Admin/AdminPageRegistry.php:101
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:356
 #: admin/shipping-labels/index.php:59
 #: shipping-labels/ShippingLabelsList.js:326
@@ -4179,7 +4179,7 @@ msgstr ""
 #: src/Routing/PermalinkSettingService.php:153
 #: src/Support/Blocks/TemplateUtilityService.php:373
 #: src/Support/Blocks/TemplateUtilityService.php:374
-#: src/WordPress/Admin/AdminPageRegistry.php:84
+#: src/WordPress/Admin/AdminPageRegistry.php:94
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:371
 #: admin/product-collections/index.php:6
 #: product-collections/ProductCollectionsList.js:138
@@ -4198,7 +4198,7 @@ msgstr ""
 #: src/Controllers/Admin/Products/ProductsController.php:481
 #: src/Support/Blocks/TemplateUtilityService.php:371
 #: src/Support/Blocks/TemplateUtilityService.php:372
-#: src/WordPress/Admin/AdminPageRegistry.php:82
+#: src/WordPress/Admin/AdminPageRegistry.php:92
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:363
 #: admin/products/index.php:8
 #: bumps/modules/Conditions.js:73
@@ -4236,7 +4236,7 @@ msgid "Theme Layout"
 msgstr ""
 
 #: src/Controllers/Admin/ProductGroups/ProductGroupsController.php:27
-#: src/WordPress/Admin/AdminPageRegistry.php:85
+#: src/WordPress/Admin/AdminPageRegistry.php:95
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:386
 #: admin/product-groups/index.php:20
 #: product-groups/EditProductGroup.js:179
@@ -4423,7 +4423,7 @@ msgid "Unable to restore page. Please try again."
 msgstr ""
 
 #: src/Controllers/Admin/Reviews/ReviewsController.php:29
-#: src/WordPress/Admin/AdminPageRegistry.php:86
+#: src/WordPress/Admin/AdminPageRegistry.php:96
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:387
 #: admin/reviews/index.php:6
 #: products/modules/Reviews/index.js:29
@@ -4549,7 +4549,7 @@ msgid "You do not have permission to activate plugins."
 msgstr ""
 
 #: src/Controllers/Admin/Subscriptions/SubscriptionsController.php:26
-#: src/WordPress/Admin/AdminPageRegistry.php:90
+#: src/WordPress/Admin/AdminPageRegistry.php:100
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:419
 #: admin/subscriptions/index.php:19
 #: web/dashboard/orders/show.php:58
@@ -6600,7 +6600,7 @@ msgstr ""
 #: src/Models/Price.php:139
 #: products/modules/Prices/Price/Header.js:129
 #: sc-price-choice-container2.js:52
-#: sc-price-choice.js:808
+#: sc-price-choice.js:809
 #: sc-price2.js:32
 #: sc-recurring-price-choice-container2.js:77
 msgid "Custom Amount"
@@ -8165,7 +8165,7 @@ msgstr ""
 #: checkouts/modules/Price.js:190
 #: invoices/modules/Price.js:195
 #: sc-price-choice-container2.js:71
-#: sc-price-choice.js:818
+#: sc-price-choice.js:819
 #: sc-recurring-price-choice-container2.js:86
 msgid "Starting in %s day"
 msgid_plural "Starting in %s days"
@@ -8191,7 +8191,7 @@ msgstr ""
 #: subscriptions/show/modules/CurrentPlan.js:187
 #: src/blocks/product-selected-price-fees/edit.js:16
 #: sc-price-choice-container2.js:72
-#: sc-price-choice.js:819
+#: sc-price-choice.js:820
 #: sc-price2.js:60
 #: sc-recurring-price-choice-container2.js:86
 msgid "Setup Fee"
@@ -12082,7 +12082,7 @@ msgstr ""
 msgid "SureCart Webhook Registration Error"
 msgstr ""
 
-#: src/WordPress/Admin/AdminPageRegistry.php:94
+#: src/WordPress/Admin/AdminPageRegistry.php:104
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:404
 #: bumps/BumpsList.js:183
 #: bumps/BumpsList.js:195
@@ -12090,7 +12090,7 @@ msgstr ""
 msgid "Order Bumps"
 msgstr ""
 
-#: src/WordPress/Admin/AdminPageRegistry.php:98
+#: src/WordPress/Admin/AdminPageRegistry.php:108
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:486
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:494
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:495
@@ -12100,14 +12100,14 @@ msgstr ""
 msgid "Checkout Forms"
 msgstr ""
 
-#: src/WordPress/Admin/AdminPageRegistry.php:99
+#: src/WordPress/Admin/AdminPageRegistry.php:109
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:423
 #: cancellations/CancellationsList.js:73
 #: cancellations/CancellationsList.js:78
 msgid "Cancellations"
 msgstr ""
 
-#: src/WordPress/Admin/AdminPageRegistry.php:102
+#: src/WordPress/Admin/AdminPageRegistry.php:112
 #: src/WordPress/Admin/Menus/AdminMenuPageService.php:434
 #: affiliation-payouts/PayoutsList.js:197
 #: affiliation-payouts/PayoutsList.js:224
@@ -12117,7 +12117,7 @@ msgstr ""
 msgid "Payouts"
 msgstr ""
 
-#: src/WordPress/Admin/AdminPageRegistry.php:103
+#: src/WordPress/Admin/AdminPageRegistry.php:113
 msgid "Payout Batches"
 msgstr ""
 
@@ -13617,7 +13617,7 @@ msgstr ""
 msgid "This user is not a customer."
 msgstr ""
 
-#: layouts/partials/admin-header.php:85
+#: layouts/partials/admin-header.php:90
 msgid "View Reports"
 msgstr ""
 
@@ -36165,8 +36165,8 @@ msgstr ""
 #: sc-price-choice-container2.js:43
 #: sc-price-choice-container2.js:60
 #: sc-price-choice-container2.js:69
-#: sc-price-choice.js:792
-#: sc-price-choice.js:816
+#: sc-price-choice.js:793
+#: sc-price-choice.js:817
 #: sc-price2.js:45
 #: sc-price2.js:58
 #: sc-product-price-choices.js:28
@@ -36464,7 +36464,7 @@ msgstr ""
 msgid "This payment plan has"
 msgstr ""
 
-#: sc-price-choice.js:778
+#: sc-price-choice.js:779
 msgid "This product has been archived."
 msgstr ""
 

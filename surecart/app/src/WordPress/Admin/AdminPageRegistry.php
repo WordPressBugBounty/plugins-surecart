@@ -45,6 +45,16 @@ class AdminPageRegistry {
 	);
 
 	/**
+	 * Unified pages with no server-rendered classic view to toggle to.
+	 *
+	 * @var string[]
+	 */
+	const SPA_ONLY_PAGES = array(
+		'sc-dashboard',
+		'sc-learn',
+	);
+
+	/**
 	 * Reports dashboard section per page slug — the header's "View Reports" button.
 	 *
 	 * @var string[]
@@ -126,12 +136,34 @@ class AdminPageRegistry {
 	}
 
 	/**
-	 * Where the view toggle returns to for a page.
+	 * Admin page slug of the current request, or ''.
+	 *
+	 * @return string
+	 */
+	public static function currentSlug(): string {
+		return isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	/**
+	 * Whether a page has a classic view, i.e. whether the view toggle applies to it.
+	 *
+	 * @param string $slug Admin page slug.
+	 * @return bool
+	 */
+	public static function hasClassicView( string $slug ): bool {
+		return ! in_array( $slug, self::SPA_ONLY_PAGES, true );
+	}
+
+	/**
+	 * Where the view toggle returns to for a page, or '' when it has no classic view.
 	 *
 	 * @param string $slug Admin page slug.
 	 * @return string
 	 */
 	public static function classicViewUrl( string $slug ): string {
+		if ( ! self::hasClassicView( $slug ) ) {
+			return '';
+		}
 		return admin_url( self::CLASSIC_VIEW_URLS[ $slug ] ?? 'admin.php?page=' . $slug );
 	}
 

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-30T13:24:38",
+  "timestamp": "2026-10-01T19:27:14",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3513,8 +3513,6 @@
           "./dist/surecart/p-3446c590.entry.js.map",
           "./dist/surecart/p-34d97bf5.entry.js",
           "./dist/surecart/p-34d97bf5.entry.js.map",
-          "./dist/surecart/p-3533ca9c.entry.js",
-          "./dist/surecart/p-3533ca9c.entry.js.map",
           "./dist/surecart/p-357f8597.entry.js",
           "./dist/surecart/p-357f8597.entry.js.map",
           "./dist/surecart/p-37ca3a58.entry.js",
@@ -3737,6 +3735,8 @@
           "./dist/surecart/p-a3b2d596.entry.js.map",
           "./dist/surecart/p-a4800ec4.js",
           "./dist/surecart/p-a4800ec4.js.map",
+          "./dist/surecart/p-a80defb9.entry.js",
+          "./dist/surecart/p-a80defb9.entry.js.map",
           "./dist/surecart/p-a850b1aa.entry.js",
           "./dist/surecart/p-a850b1aa.entry.js.map",
           "./dist/surecart/p-a85dc83e.entry.js",
@@ -3979,8 +3979,6 @@
           "./www/build/p-3446c590.entry.js.map",
           "./www/build/p-34d97bf5.entry.js",
           "./www/build/p-34d97bf5.entry.js.map",
-          "./www/build/p-3533ca9c.entry.js",
-          "./www/build/p-3533ca9c.entry.js.map",
           "./www/build/p-357f8597.entry.js",
           "./www/build/p-357f8597.entry.js.map",
           "./www/build/p-37ca3a58.entry.js",
@@ -4203,6 +4201,8 @@
           "./www/build/p-a3b2d596.entry.js.map",
           "./www/build/p-a4800ec4.js",
           "./www/build/p-a4800ec4.js.map",
+          "./www/build/p-a80defb9.entry.js",
+          "./www/build/p-a80defb9.entry.js.map",
           "./www/build/p-a850b1aa.entry.js",
           "./www/build/p-a850b1aa.entry.js.map",
           "./www/build/p-a85dc83e.entry.js",
@@ -5596,8 +5596,8 @@
         "components": [
           "sc-price-choice"
         ],
-        "bundleId": "p-3533ca9c",
-        "fileName": "p-3533ca9c.entry.js",
+        "bundleId": "p-a80defb9",
+        "fileName": "p-a80defb9.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-4773325d.js",
@@ -5609,7 +5609,7 @@
           "p-0cb2e619.js",
           "p-d3366af3.js"
         ],
-        "originalByteSize": 29021
+        "originalByteSize": 28930
       },
       {
         "key": "sc-price-choices.entry",
@@ -8812,7 +8812,7 @@
           "currency-eb33deae.js",
           "remove-query-args-938c53ea.js"
         ],
-        "originalByteSize": 29084
+        "originalByteSize": 28993
       },
       {
         "key": "sc-price-choices.entry",
@@ -12017,7 +12017,7 @@
           "currency-b438c76d.js",
           "remove-query-args-b57e8cd3.js"
         ],
-        "originalByteSize": 29308
+        "originalByteSize": 29217
       },
       {
         "key": "sc-price-choices.entry",

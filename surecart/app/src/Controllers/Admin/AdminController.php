@@ -2,6 +2,7 @@
 
 namespace SureCart\Controllers\Admin;
 
+use SureCart\WordPress\Admin\AdminPageRegistry;
 use SureCartCore\Responses\RedirectResponse;
 
 abstract class AdminController {
@@ -37,9 +38,11 @@ abstract class AdminController {
 	 * @return void
 	 */
 	public function withHeader( $args ) {
+		$page = AdminPageRegistry::currentSlug();
+
 		add_action(
 			'in_admin_header',
-			function () use ( $args ) {
+			function () use ( $args, $page ) {
 				return \SureCart::render(
 					'layouts/partials/admin-header',
 					[
@@ -50,6 +53,8 @@ abstract class AdminController {
 						'report_url'          => $args['report_url'] ?? '',
 						'enhanced_view_promo' => $args['enhanced_view_promo'] ?? null,
 						'hidden'              => $args['hidden'] ?? false,
+						// A client-side swap can land any unified page here, so menuSync.js needs the slots.
+						'swappable'           => in_array( $page, AdminPageRegistry::UNIFIED_SPA_PAGES, true ),
 					]
 				);
 			}

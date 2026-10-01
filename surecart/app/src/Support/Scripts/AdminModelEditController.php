@@ -193,6 +193,22 @@ abstract class AdminModelEditController {
 	}
 
 	/**
+	 * Whether this request is a server-rendered classic list, where the unified
+	 * bundle would load and mount nothing.
+	 *
+	 * Edit/create routes (`action` present) and SPA-only screens always boot the
+	 * bundle, whatever the enhanced-views flag says.
+	 *
+	 * @return bool
+	 */
+	protected function servesClassicList(): bool {
+		return self::UNIFIED_SPA_PATH === $this->path
+			&& empty( $_GET['action'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			&& AdminPageRegistry::hasClassicView( AdminPageRegistry::currentSlug() )
+			&& ! (bool) get_option( 'surecart_enhanced_admin_views', true );
+	}
+
+	/**
 	 * Enqueue scripts
 	 *
 	 * @return void
@@ -202,15 +218,7 @@ abstract class AdminModelEditController {
 			return;
 		}
 
-		// With enhanced views disabled, list screens are server-rendered
-		// tables — the unified SPA bundle would load and mount nothing. Edit
-		// and create routes (`action` present) always render the SPA shell,
-		// so they pass through regardless of the flag.
-		if (
-			self::UNIFIED_SPA_PATH === $this->path
-			&& empty( $_GET['action'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			&& ! (bool) get_option( 'surecart_enhanced_admin_views', true )
-		) {
+		if ( $this->servesClassicList() ) {
 			$this->enqueueComponents();
 			return;
 		}
