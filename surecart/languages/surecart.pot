@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-01T19:32:38+00:00\n"
+"POT-Creation-Date: 2026-10-05T14:09:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -1822,7 +1822,7 @@ msgstr ""
 msgid "Plugin installation is disabled on this site (DISALLOW_FILE_MODS)."
 msgstr ""
 
-#: src/Concerns/RestrictsAnonymousReads.php:124
+#: src/Concerns/RestrictsAnonymousReads.php:139
 #: src/Support/Errors/Translations/types.php:14
 #: Controllers/BaseController.php:115
 msgid "Not found."
@@ -4797,19 +4797,19 @@ msgstr ""
 msgid "The plugin download was redirected to a host that is not allowed."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:163
+#: src/Controllers/Rest/ProductsController.php:238
 msgid "The Cataloged at date cannot be in the future. Please provide a valid date."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:231
+#: src/Controllers/Rest/ProductsController.php:306
 msgid "WooCommerce is not active."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:241
+#: src/Controllers/Rest/ProductsController.php:316
 msgid "A WooCommerce import is already in progress."
 msgstr ""
 
-#: src/Controllers/Rest/ProductsController.php:251
+#: src/Controllers/Rest/ProductsController.php:326
 msgid "WooCommerce import started."
 msgstr ""
 

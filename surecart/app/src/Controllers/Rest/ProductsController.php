@@ -121,21 +121,95 @@ class ProductsController extends RestController {
 	 * @return boolean
 	 */
 	protected function anonymousCanViewHidden( $model ) {
-		if ( ! is_user_logged_in() || empty( $model->id ) ) {
+		$customer_ids = $this->currentCustomerIds();
+		if ( empty( $customer_ids ) || empty( $model->id ) ) {
 			return false;
 		}
 
-		// must be a sequential list — the platform ignores (rather than filters on)
-		// associative customer_ids (see ModelPermissionsController::isListingOwnCustomerIds).
-		$customer_ids = array_values( array_filter( (array) User::current()->customerIds() ) );
+		return $this->ownsAnyProduct( $customer_ids, [ $model->id ] );
+	}
+
+	/**
+	 * Let a customer list draft products of an upgrade group they belong to.
+	 *
+	 * Upgrade groups often hold members-only (draft) products, and the dashboard
+	 * switch UI lists the group to offer them. Only widened for a single group
+	 * the customer owns an unrevoked purchase in; archived stays excluded.
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 *
+	 * @return array
+	 */
+	protected function anonymousScope( \WP_REST_Request $request ) {
+		$group_ids = array_values( array_filter( (array) $request->get_param( 'product_group_ids' ), 'is_string' ) );
+		if ( 1 !== count( $group_ids ) || ! $this->ownsProductInGroup( $group_ids[0] ) ) {
+			return $this->anonymous_scope;
+		}
+
+		// pin the group so the widened status can never apply to another listing.
+		return [
+			'archived'          => false,
+			'status'            => [ 'published', 'draft' ],
+			'product_group_ids' => $group_ids,
+		];
+	}
+
+	/**
+	 * Does the current customer own an unrevoked purchase of any product in this group?
+	 *
+	 * @param string $group_id Product group id.
+	 *
+	 * @return boolean
+	 */
+	protected function ownsProductInGroup( $group_id ) {
+		$customer_ids = $this->currentCustomerIds();
 		if ( empty( $customer_ids ) ) {
+			return false;
+		}
+
+		// unscoped on purpose: the owned product itself may be draft or archived (grandfathered).
+		$products = Product::where( [ 'product_group_ids' => [ $group_id ] ] )->get();
+		if ( is_wp_error( $products ) || empty( $products ) ) {
+			return false;
+		}
+
+		return $this->ownsAnyProduct( $customer_ids, array_map( fn( $product ) => $product->id, $products ) );
+	}
+
+	/**
+	 * Customer ids of the logged-in user.
+	 *
+	 * Must be a sequential list — the platform ignores (rather than filters on)
+	 * associative customer_ids (see ModelPermissionsController::isListingOwnCustomerIds).
+	 *
+	 * @return array
+	 */
+	protected function currentCustomerIds() {
+		if ( ! is_user_logged_in() ) {
+			return [];
+		}
+
+		return array_values( array_filter( (array) User::current()->customerIds() ) );
+	}
+
+	/**
+	 * Do these customers hold an unrevoked purchase of any of these products?
+	 *
+	 * @param array $customer_ids Customer ids.
+	 * @param array $product_ids  Product ids.
+	 *
+	 * @return boolean
+	 */
+	protected function ownsAnyProduct( $customer_ids, $product_ids ) {
+		$product_ids = array_values( array_filter( $product_ids ) );
+		if ( empty( $product_ids ) ) {
 			return false;
 		}
 
 		$purchase = Purchase::where(
 			[
 				'customer_ids' => $customer_ids,
-				'product_ids'  => [ $model->id ],
+				'product_ids'  => $product_ids,
 				'revoked'      => false,
 			]
 		)->first();
@@ -145,7 +219,8 @@ class ProductsController extends RestController {
 			return false;
 		}
 
-		return $model->id === $purchase->product_id;
+		// don't trust the platform filters alone.
+		return empty( $purchase->revoked ) && in_array( $purchase->product_id, $product_ids, true );
 	}
 
 	/**

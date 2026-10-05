@@ -82,11 +82,26 @@ trait RestrictsAnonymousReads {
 			$request->set_param( 'expand', array_values( array_intersect( array_filter( (array) $request['expand'], 'is_string' ), $anonymous_expands ) ) );
 		}
 
-		if ( ! empty( $this->anonymous_scope ) ) {
-			$class->where( $this->anonymous_scope );
+		$scope = $this->anonymousScope( $request );
+		if ( ! empty( $scope ) ) {
+			$class->where( $scope );
 		}
 
 		return $class;
+	}
+
+	/**
+	 * Query filters forced onto list requests from callers without the edit capability.
+	 *
+	 * Controllers override this to widen the scope for a caller who can prove
+	 * ownership. Must fail closed to `$anonymous_scope`.
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 *
+	 * @return array
+	 */
+	protected function anonymousScope( \WP_REST_Request $request ) {
+		return $this->anonymous_scope ?? [];
 	}
 
 	/**
