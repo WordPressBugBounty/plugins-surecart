@@ -191,6 +191,11 @@ class Block extends BaseBlock {
 			return 'url';
 		}
 
+		// Buy-now checkouts must not overwrite the cart, so persist them in the URL instead.
+		if ( ! empty( $_GET['no_cart'] ) ) {
+			return 'url';
+		}
+
 		// default checkout form should persist in the browser.
 		if ( \SureCart::forms()->getDefaultId() === (int) $id ) {
 			return 'browser';

@@ -3,6 +3,8 @@
 namespace SureCart\Models\Traits;
 
 trait HasAttributes {
+	use SafelyUnserializes;
+
 	/**
 	 * Keeps track of booted models
 	 *
@@ -135,12 +137,14 @@ trait HasAttributes {
 				continue;
 			}
 
+			$value = $this->unserializeStoredValue( $value );
+
 			// set attribute.
 			if ( ! $is_guarded ) {
-				$this->setAttribute( $key, maybe_unserialize( maybe_unserialize( $value ) ) );
+				$this->setAttribute( $key, $value );
 			} else {
 				if ( $this->isFillable( $key ) ) {
-					$this->setAttribute( $key, maybe_unserialize( maybe_unserialize( $value ) ) );
+					$this->setAttribute( $key, $value );
 				}
 			}
 		}

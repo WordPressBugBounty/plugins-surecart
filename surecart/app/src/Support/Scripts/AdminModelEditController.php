@@ -104,6 +104,7 @@ abstract class AdminModelEditController {
 					'claimed',
 					'claim_url',
 					'claim_expired',
+					'tax_protocol',
 				)
 			)
 		);

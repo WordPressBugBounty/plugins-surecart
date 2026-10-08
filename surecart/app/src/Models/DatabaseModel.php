@@ -5,12 +5,15 @@ namespace SureCart\Models;
 use ArrayAccess;
 use JsonSerializable;
 use SureCart\Concerns\Arrayable;
+use SureCart\Models\Traits\SafelyUnserializes;
 use SureCartVendors\PluginEver\QueryBuilder\Query;
 
 /**
  * Model class
  */
 abstract class DatabaseModel implements ArrayAccess, JsonSerializable, Arrayable, ModelInterface {
+	use SafelyUnserializes;
+
 	/**
 	 * Keeps track of booted models
 	 *
@@ -397,11 +400,13 @@ abstract class DatabaseModel implements ArrayAccess, JsonSerializable, Arrayable
 				continue;
 			}
 
+			$value = $this->unserializeStoredValue( $value );
+
 			// set attribute.
 			if ( ! $is_guarded ) {
-				$this->setAttribute( $key, maybe_unserialize( maybe_unserialize( $value ) ) );
+				$this->setAttribute( $key, $value );
 			} elseif ( $this->isFillable( $key ) ) {
-					$this->setAttribute( $key, maybe_unserialize( maybe_unserialize( $value ) ) );
+					$this->setAttribute( $key, $value );
 			}
 		}
 
