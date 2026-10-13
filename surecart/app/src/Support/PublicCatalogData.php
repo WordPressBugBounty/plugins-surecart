@@ -31,8 +31,9 @@ class PublicCatalogData {
 	 * - purchase_limit: quantity caps (getMaxStockQuantity).
 	 * - archived: render gates (sc-price-choice, product store getters).
 	 *
-	 * The REST providers keep stripping these — the storefront renders stock
-	 * state server-side, the anonymous REST catalog does not need to.
+	 * The catalog REST providers keep stripping these — the storefront renders
+	 * stock state server-side. The checkout and line item routes go through
+	 * response() and keep them: the cart caps quantities from them.
 	 *
 	 * @return array
 	 */
@@ -90,44 +91,57 @@ class PublicCatalogData {
 	}
 
 	/**
-	 * Strip catalog data expanded onto a checkout's line items.
+	 * Strip every catalog object expanded anywhere in a guest-facing response.
 	 *
-	 * The checkout routes accept anonymous callers by design (guest checkout),
-	 * and `expand=price.product` pulls a full product into the response — the
-	 * same data the page output strips, reachable without a purchase. Applied
-	 * to the view context only, so the owner and the matching customer still
-	 * get the full record.
+	 * The checkout and line item routes accept anonymous callers by design
+	 * (guest checkout), and the platform applies `price.product` / `variant.product`
+	 * to every price or variant in the response — line items, swaps, bundle
+	 * components, bumps, upsells, the upsell funnel. Matching on `object` instead
+	 * of known paths means a new expandable relation can't reopen the leak.
 	 *
-	 * @param array|mixed $data Checkout response data. Anything else passes through untouched.
+	 * @param array|mixed $data Response data. Anything else passes through untouched.
 	 *
 	 * @return array|mixed
 	 */
-	public static function lineItems( $data ) {
-		if ( ! is_array( $data ) || empty( $data['line_items']['data'] ) || ! is_array( $data['line_items']['data'] ) ) {
+	public static function response( $data ) {
+		return ( new self() )->stripCatalogTree( $data );
+	}
+
+	/**
+	 * Depth-first strip of catalog objects, keyed by their `object` type.
+	 *
+	 * @param array|mixed $data Response data.
+	 *
+	 * @return array|mixed
+	 */
+	private function stripCatalogTree( $data ) {
+		// accessor values can still be raw objects after Model::toArray; keep their JSON shape.
+		if ( $data instanceof \stdClass ) {
+			return (object) $this->stripCatalogTree( (array) $data );
+		}
+
+		if ( ! is_array( $data ) ) {
 			return $data;
 		}
 
-		$data['line_items']['data'] = array_map(
-			function ( $item ) {
-				if ( ! is_array( $item ) ) {
-					return $item;
-				}
+		foreach ( $data as $key => $value ) {
+			$data[ $key ] = $this->stripCatalogTree( $value );
+		}
 
-				// the price strip recurses into its expanded product.
-				if ( ! empty( $item['price'] ) && is_array( $item['price'] ) ) {
-					$item['price'] = self::price( $item['price'] );
-				}
-
-				if ( ! empty( $item['variant'] ) && is_array( $item['variant'] ) ) {
-					$item['variant'] = self::variant( $item['variant'] );
-				}
-
-				return $item;
-			},
-			$data['line_items']['data']
+		// keyed by each model's $object_name — a new catalog model with private fields must be added here.
+		$strippers = array(
+			'product'            => 'stripPrivateProductFields',
+			'price'              => 'stripPrivatePriceFields',
+			'variant'            => 'stripPrivateVariantFields',
+			'variant_option'     => 'stripPrivateVariantOptionFields',
+			'bundle_item'        => 'stripPrivateBundleItemFields',
+			'product_collection' => 'stripPrivateCollectionFields',
+			'review'             => 'stripPrivateReviewFields',
 		);
 
-		return $data;
+		$type = is_string( $data['object'] ?? null ) ? $data['object'] : '';
+
+		return isset( $strippers[ $type ] ) ? $this->{$strippers[ $type ]}( $data ) : $data;
 	}
 
 	/**

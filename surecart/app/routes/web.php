@@ -81,6 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// handle login.
 	->middleware( LoginLinkMiddleware::class )
 	// redirect in this order.
+	->middleware( ProductReviewRedirectMiddleware::class )
 	->middleware( PathRedirectMiddleware::class )
 	->middleware( OrderRedirectMiddleware::class )
 	->middleware( InvoiceRedirectMiddleware::class )
@@ -91,5 +92,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// customer dashboard redirect is the fallback if there is a customer_id present.
 	->middleware( CustomerDashboardRedirectMiddleware::class )
 	->middleware( CustomerDashboardLinkRedirectMiddleware::class )
-	->middleware( ProductReviewRedirectMiddleware::class )
 	->handle( 'DashboardController@show' );

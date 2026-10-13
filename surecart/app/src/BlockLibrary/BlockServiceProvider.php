@@ -96,8 +96,8 @@ class BlockServiceProvider implements ServiceProviderInterface {
 				);
 			}
 		);
-		// allow our web components in wp_kses contexts.
-		add_filter( 'wp_kses_allowed_html', array( $this, 'ksesComponents' ) );
+		// allow our web components in the wp_kses_post context.
+		add_filter( 'wp_kses_allowed_html', array( $this, 'ksesComponents' ), 10, 2 );
 		// register our blocks.
 		add_action( 'init', array( $this, 'registerBlocks' ) );
 		// register our category.
@@ -143,13 +143,21 @@ class BlockServiceProvider implements ServiceProviderInterface {
 	}
 
 	/**
-	 * Add iFrame to allowed wp_kses_post tags
+	 * Allow our web components in the wp_kses_post context only.
 	 *
-	 * @param array $tags Allowed tags, attributes, and/or entities.
+	 * Comments, data and explicit contexts stay untouched so users without
+	 * unfiltered_html cannot store sc-* markup there.
+	 *
+	 * @param array  $tags    Allowed tags, attributes, and/or entities.
+	 * @param string $context Context name, 'explicit' when an array was passed.
 	 *
 	 * @return array
 	 */
-	public function ksesComponents( $tags ) {
+	public function ksesComponents( $tags, $context = '' ) {
+		if ( 'post' !== $context ) {
+			return $tags;
+		}
+
 		if ( empty( self::$components ) ) {
 			self::$components = json_decode( file_get_contents( plugin_dir_path( SURECART_PLUGIN_FILE ) . 'app/src/Support/kses.json' ), true );
 		}

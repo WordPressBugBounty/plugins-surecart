@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.9.4
+Stable tag: 4.9.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -443,12 +443,17 @@ Accessibility is a huge priority for the entire team building SureCart. As you k
 
 == Changelog ==
 
+= 4.9.5 - October 12th, 2026 =
+- Fix: The "Leave a review" link in Review Request emails opened the customer dashboard instead of the product's review form.
+- Fix: Hardened data access checks to keep information scoped to the right users (props to Erwan from WPScan).
+- Fix: Improved output escaping and input sanitization in several areas (props to dzaku of PatchStack and UKO - Korea University of Wordfence).
+
 = 4.9.4 - October 9th, 2026 =
 - Improvement: The MCP settings tab now installs the MCP Adapter plugin from WordPress.org, so it appears under Plugins and receives normal updates.
 - Fix: The "Charge tax on this product" toggle showed as off and disabled when opening a product by navigating within the admin instead of loading the page directly.
 - Fix: Refreshing the checkout page after clicking Buy Now no longer loses the checkout. It is now kept in the URL, so a refresh shows the same items instead of an empty checkout or the saved cart.
-- Security: Hardened how stored data is restored in local database models to prevent PHP object injection.
-- Security: Escaped the status filter links on the Invoices admin list to prevent reflected cross-site scripting.
+- Fix: Hardened handling of stored data to only accept expected formats (props to Ananda Dhakal of PatchStack).
+- Fix: Improved output escaping in an additional area (props to neurotx of PatchStack).
 
 = 4.9.3 - October 5th, 2026 =
 - Fix: In the customer dashboard, switching plans within an upgrade group did not show the group's draft (members-only) products to customers who own a product in that group.

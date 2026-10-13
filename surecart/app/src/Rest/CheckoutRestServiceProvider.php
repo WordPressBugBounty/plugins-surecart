@@ -283,7 +283,7 @@ class CheckoutRestServiceProvider extends RestServiceProvider implements RestSer
 			}
 		}
 
-		return rest_filter_response_by_context( PublicCatalogData::lineItems( $data ), $schema, 'view' );
+		return rest_filter_response_by_context( PublicCatalogData::response( $data ), $schema, 'view' );
 	}
 
 

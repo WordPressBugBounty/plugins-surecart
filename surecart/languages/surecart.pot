@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-08T20:35:29+00:00\n"
+"POT-Creation-Date: 2026-10-12T17:58:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -3835,7 +3835,7 @@ msgstr ""
 #: invoices/list/useStatusTabs.js:24
 #: settings/mcp/components/ClaudeDesktopSteps.js:19
 #: Blocks/Dashboard/CustomerInvoices/edit.js:87
-#: sc-icon2.js:41
+#: sc-icon2.js:69
 #: sc-invoice-status-badge2.js:32
 msgid "Open"
 msgstr ""
@@ -6415,8 +6415,8 @@ msgstr ""
 #: src/blocks/cart-order-bump-pagination-previous/index.js:21
 #: src/blocks/product-pagination-previous/edit.js:39
 #: src/blocks/product-review-pagination-previous/edit.js:42
-#: sc-icon2.js:44
-#: sc-icon2.js:46
+#: sc-icon2.js:72
+#: sc-icon2.js:74
 #: sc-pagination2.js:42
 msgid "Previous"
 msgstr ""
@@ -6433,8 +6433,8 @@ msgstr ""
 #: src/blocks/cart-order-bump-pagination-next/index.js:21
 #: src/blocks/product-pagination-next/edit.js:29
 #: src/blocks/product-review-pagination-next/edit.js:32
-#: sc-icon2.js:43
-#: sc-icon2.js:45
+#: sc-icon2.js:71
+#: sc-icon2.js:73
 #: sc-login-form.js:165
 #: sc-pagination2.js:42
 #: sc-subscription-ad-hoc-confirm.js:38
@@ -8427,7 +8427,7 @@ msgstr ""
 #: src/Rest/IntegrationsCatalogRestServiceProvider.php:76
 #: src/Rest/IntegrationsRestServiceProvider.php:82
 #: src/Rest/LicenseRestServiceProvider.php:54
-#: src/Rest/LineItemsRestServiceProvider.php:107
+#: src/Rest/LineItemsRestServiceProvider.php:115
 #: src/Rest/ManualPaymentMethodsRestServiceProvider.php:47
 #: src/Rest/MediaRestServiceProvider.php:53
 #: src/Rest/OrderProtocolRestServiceProvider.php:81
@@ -8569,7 +8569,7 @@ msgstr ""
 #: src/Rest/IntegrationsCatalogRestServiceProvider.php:99
 #: src/Rest/IntegrationsRestServiceProvider.php:122
 #: src/Rest/LicenseRestServiceProvider.php:73
-#: src/Rest/LineItemsRestServiceProvider.php:138
+#: src/Rest/LineItemsRestServiceProvider.php:146
 #: src/Rest/MediaRestServiceProvider.php:72
 #: src/Rest/PriceRestServiceProvider.php:139
 #: src/Rest/ProductCollectionsRestServiceProvider.php:126
@@ -8591,7 +8591,7 @@ msgstr ""
 #: src/Rest/IntegrationsCatalogRestServiceProvider.php:103
 #: src/Rest/IntegrationsRestServiceProvider.php:126
 #: src/Rest/LicenseRestServiceProvider.php:77
-#: src/Rest/LineItemsRestServiceProvider.php:142
+#: src/Rest/LineItemsRestServiceProvider.php:150
 #: src/Rest/MediaRestServiceProvider.php:76
 #: src/Rest/PriceRestServiceProvider.php:143
 #: src/Rest/ProductCollectionsRestServiceProvider.php:130
@@ -9018,11 +9018,11 @@ msgstr ""
 msgid "The model to get integration providers for."
 msgstr ""
 
-#: src/Rest/LineItemsRestServiceProvider.php:113
+#: src/Rest/LineItemsRestServiceProvider.php:121
 msgid "The checkout for the line item."
 msgstr ""
 
-#: src/Rest/LineItemsRestServiceProvider.php:118
+#: src/Rest/LineItemsRestServiceProvider.php:126
 msgid "The customer associated with the checkout."
 msgstr ""
 
@@ -16749,7 +16749,7 @@ msgstr ""
 #: src/blocks/cart-close-button/edit.js:83
 #: sc-dialog2.js:164
 #: sc-drawer2.js:149
-#: sc-icon2.js:42
+#: sc-icon2.js:70
 #: sc-popover2.js:172
 msgid "Close"
 msgstr ""
@@ -35999,15 +35999,15 @@ msgstr ""
 msgid "Tracking number via %s"
 msgstr ""
 
-#: sc-icon2.js:47
+#: sc-icon2.js:75
 msgid "Down"
 msgstr ""
 
-#: sc-icon2.js:48
+#: sc-icon2.js:76
 msgid "Up"
 msgstr ""
 
-#: sc-icon2.js:49
+#: sc-icon2.js:77
 msgid "Alert"
 msgstr ""
 

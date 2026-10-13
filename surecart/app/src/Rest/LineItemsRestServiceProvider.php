@@ -4,6 +4,7 @@ namespace SureCart\Rest;
 
 use SureCart\Rest\RestServiceInterface;
 use SureCart\Controllers\Rest\LineItemsController;
+use SureCart\Support\PublicCatalogData;
 
 /**
  * Service provider for Price Rest Requests
@@ -36,6 +37,13 @@ class LineItemsRestServiceProvider extends RestServiceProvider implements RestSe
 	 * @var array
 	 */
 	protected $methods = [ 'index', 'edit', 'create', 'find', 'delete' ];
+
+	/**
+	 * Filter index list items by schema context.
+	 *
+	 * @var boolean
+	 */
+	protected $filters_list_items = true;
 
 	/**
 	 * Register REST Routes.
@@ -152,7 +160,7 @@ class LineItemsRestServiceProvider extends RestServiceProvider implements RestSe
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function get_item_permissions_check( $request ) {
-		return true;
+		return $this->forbidEditContextWithout( $request, 'edit_sc_prices' );
 	}
 
 	/**
@@ -162,6 +170,12 @@ class LineItemsRestServiceProvider extends RestServiceProvider implements RestSe
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
+		// edit context skips the per-item strip in callback().
+		$check = $this->forbidEditContextWithout( $request, 'edit_sc_prices' );
+		if ( is_wp_error( $check ) ) {
+			return $check;
+		}
+
 		// if not listing based on a single checkout, the person must be able to list prices.
 		if ( empty( $request['checkout_ids'] ) || count( $request['checkout_ids'] ) > 1 ) {
 			return current_user_can( 'read_sc_prices' );
@@ -198,5 +212,26 @@ class LineItemsRestServiceProvider extends RestServiceProvider implements RestSe
 	 */
 	public function delete_item_permissions_check( $request ) {
 		return true;
+	}
+
+	/**
+	 * Strip private catalog data expanded onto line items for guests.
+	 *
+	 * Decided by capability, not the requested context: the write routes are
+	 * open to guests too and don't gate `context=edit`.
+	 *
+	 * @param array|\WP_REST_Response $data    Response data to filter.
+	 * @param string                  $context Context defined in the schema.
+	 *
+	 * @return array Filtered response.
+	 */
+	public function filter_response_by_context( $data, $context ) {
+		if ( current_user_can( 'edit_sc_prices' ) ) {
+			return parent::filter_response_by_context( $data, $context );
+		}
+
+		$data = is_a( $data, 'WP_REST_Response' ) ? $data->get_data() : $data;
+
+		return parent::filter_response_by_context( PublicCatalogData::response( $data ), 'view' );
 	}
 }

@@ -117,7 +117,38 @@ const ScButton = class {
 };
 ScButton.style = ScButtonStyle0;
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const REMOVED_TAGS = new Set(['script', 'foreignobject', 'set', 'animate', 'style']);
 const iconFiles = new Map();
+/**
+ * Parse an SVG string and strip anything that can execute script.
+ *
+ * DOMParser documents are inert, so nothing in the markup runs or loads while we sanitize.
+ * The `src` URL can be author-supplied, so the result must be safe to render via innerHTML.
+ */
+const sanitizeSvg = (text) => {
+    const doc = new DOMParser().parseFromString(text, 'text/html');
+    const svg = doc.body.firstElementChild;
+    if (!svg || svg.tagName.toLowerCase() !== 'svg') {
+        return '';
+    }
+    // Non-SVG elements can re-parse as HTML (mXSS); <style> is in REMOVED_TAGS for the same reason.
+    Array.from(svg.querySelectorAll('*')).forEach(el => {
+        if (REMOVED_TAGS.has(el.tagName.toLowerCase()) || el.namespaceURI !== SVG_NS) {
+            el.remove();
+        }
+    });
+    [svg, ...Array.from(svg.querySelectorAll('*'))].forEach(el => {
+        Array.from(el.attributes).forEach(attr => {
+            // Covers href/xlink:href and animate/set values="javascript:..." injections.
+            const value = attr.value.replace(/[\s\u0000-\u001F]/g, '').toLowerCase();
+            if (attr.name.toLowerCase().startsWith('on') || value.includes('javascript:')) {
+                el.removeAttribute(attr.name);
+            }
+        });
+    });
+    return svg.outerHTML;
+};
 const requestIcon = (url) => {
     if (iconFiles.has(url)) {
         return iconFiles.get(url);
@@ -125,13 +156,10 @@ const requestIcon = (url) => {
     else {
         const request = fetch(url).then(async (response) => {
             if (response.ok) {
-                const div = document.createElement('div');
-                div.innerHTML = await response.text();
-                const svg = div.firstElementChild;
                 return {
                     ok: response.ok,
                     status: response.status,
-                    svg: svg && svg.tagName.toLowerCase() === 'svg' ? svg.outerHTML : '',
+                    svg: sanitizeSvg(await response.text()),
                 };
             }
             else {

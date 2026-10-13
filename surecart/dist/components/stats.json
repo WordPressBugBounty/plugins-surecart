@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-08T20:30:00",
+  "timestamp": "2026-10-12T17:53:03",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -9,11 +9,11 @@
     "fsNamespace": "surecart",
     "components": 241,
     "entries": 241,
-    "bundles": 4357,
+    "bundles": 4359,
     "outputs": [
       {
         "name": "dist-collection",
-        "files": 1376,
+        "files": 1378,
         "generatedFiles": [
           "./dist/collection/components/context/consumer/sc-consumer.js",
           "./dist/collection/components/context/consumer/sc-consumer.js.map",
@@ -731,6 +731,8 @@
           "./dist/collection/components/ui/icon/sc-icon.js.map",
           "./dist/collection/components/ui/icon/test/library.spec.js",
           "./dist/collection/components/ui/icon/test/library.spec.js.map",
+          "./dist/collection/components/ui/icon/test/request.spec.js",
+          "./dist/collection/components/ui/icon/test/request.spec.js.map",
           "./dist/collection/components/ui/icon/test/sc-icon.e2e.js",
           "./dist/collection/components/ui/icon/test/sc-icon.e2e.js.map",
           "./dist/collection/components/ui/icon/test/sc-icon.spec.js",
@@ -3741,6 +3743,8 @@
           "./dist/surecart/p-a850b1aa.entry.js.map",
           "./dist/surecart/p-a85dc83e.entry.js",
           "./dist/surecart/p-a85dc83e.entry.js.map",
+          "./dist/surecart/p-a8d14466.entry.js",
+          "./dist/surecart/p-a8d14466.entry.js.map",
           "./dist/surecart/p-a8d78b6a.entry.js",
           "./dist/surecart/p-a8d78b6a.entry.js.map",
           "./dist/surecart/p-ab917b13.entry.js",
@@ -3769,8 +3773,6 @@
           "./dist/surecart/p-b76220ee.entry.js.map",
           "./dist/surecart/p-b81337c4.entry.js",
           "./dist/surecart/p-b81337c4.entry.js.map",
-          "./dist/surecart/p-b84b63f2.entry.js",
-          "./dist/surecart/p-b84b63f2.entry.js.map",
           "./dist/surecart/p-b897a7fd.entry.js",
           "./dist/surecart/p-b897a7fd.entry.js.map",
           "./dist/surecart/p-b95f85b8.js",
@@ -4207,6 +4209,8 @@
           "./www/build/p-a850b1aa.entry.js.map",
           "./www/build/p-a85dc83e.entry.js",
           "./www/build/p-a85dc83e.entry.js.map",
+          "./www/build/p-a8d14466.entry.js",
+          "./www/build/p-a8d14466.entry.js.map",
           "./www/build/p-a8d78b6a.entry.js",
           "./www/build/p-a8d78b6a.entry.js.map",
           "./www/build/p-ab917b13.entry.js",
@@ -4235,8 +4239,6 @@
           "./www/build/p-b76220ee.entry.js.map",
           "./www/build/p-b81337c4.entry.js",
           "./www/build/p-b81337c4.entry.js.map",
-          "./www/build/p-b84b63f2.entry.js",
-          "./www/build/p-b84b63f2.entry.js.map",
           "./www/build/p-b897a7fd.entry.js",
           "./www/build/p-b897a7fd.entry.js.map",
           "./www/build/p-b95f85b8.js",
@@ -4419,8 +4421,8 @@
           "sc-quantity-select",
           "sc-spinner"
         ],
-        "bundleId": "p-b84b63f2",
-        "fileName": "p-b84b63f2.entry.js",
+        "bundleId": "p-a8d14466",
+        "fileName": "p-a8d14466.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-b0d8cd6e.js",
@@ -4428,7 +4430,7 @@
           "p-a05701be.js",
           "p-830ab1a3.js"
         ],
-        "originalByteSize": 61238
+        "originalByteSize": 62451
       },
       {
         "key": "sc-badge-notice.entry",
@@ -7631,7 +7633,7 @@
           "index-17aac936.js",
           "index-c5a96d53.js"
         ],
-        "originalByteSize": 61265
+        "originalByteSize": 62478
       },
       {
         "key": "sc-badge-notice.entry",
@@ -10836,7 +10838,7 @@
           "index-f3933112.js",
           "index-fb76df07.js"
         ],
-        "originalByteSize": 61858
+        "originalByteSize": 63071
       },
       {
         "key": "sc-badge-notice.entry",
@@ -125625,6 +125627,9 @@
     ],
     "./src/components/ui/icon/test/library.spec.ts": [
       "./src/components/ui/icon/library"
+    ],
+    "./src/components/ui/icon/test/request.spec.ts": [
+      "./src/components/ui/icon/request"
     ],
     "./src/components/ui/icon/test/sc-icon.e2e.ts": [],
     "./src/components/ui/icon/test/sc-icon.spec.tsx": [
