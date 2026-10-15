@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.9.5
+Stable tag: 4.9.6
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -442,6 +442,14 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.9.6 - October 16th, 2026 =
+- New: Product variants can now appear as individual listings in Google rich results and Google Merchant Center.
+- Fix: Creating an invoice failed for stores using Shippo, because a phone number was required but there was no field to enter it.
+- Fix: The product page template could put classic themes into quirks mode, causing layout issues.
+- Fix: The checkout now only redirects to a custom success URL on your own site. A success URL on another domain falls back to the form's success page.
+- Fix: Hardened data access checks to keep information scoped to the right users (props to Erwan from WPScan).
+- Fix: Strengthened security of the passwordless login code flow (props to Wordfence).
 
 = 4.9.5 - October 12th, 2026 =
 - Fix: The "Leave a review" link in Review Request emails opened the customer dashboard instead of the product's review form.

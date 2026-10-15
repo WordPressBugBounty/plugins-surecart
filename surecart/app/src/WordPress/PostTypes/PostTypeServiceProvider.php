@@ -26,11 +26,15 @@ class PostTypeServiceProvider implements ServiceProviderInterface {
 		$container['surecart.post_types.upsell_page'] = function () {
 			return new ProductUpsellPagePostTypeService();
 		};
+		$container['surecart.product_seo']            = function () {
+			return new ProductSeoService( new ProductJsonSchema() );
+		};
 
 		$app = $container[ SURECART_APPLICATION_KEY ];
 		$app->alias( 'forms', 'surecart.forms' );
 		$app->alias( 'cartPost', 'surecart.cart.post' );
 		$app->alias( 'productPost', 'surecart.post_types.product' );
+		$app->alias( 'productSeo', 'surecart.product_seo' );
 	}
 
 	/**
@@ -43,5 +47,6 @@ class PostTypeServiceProvider implements ServiceProviderInterface {
 		$container['surecart.cart.post']->bootstrap();
 		$container['surecart.post_types.product']->bootstrap();
 		$container['surecart.post_types.upsell_page']->bootstrap();
+		$container['surecart.product_seo']->bootstrap();
 	}
 }

@@ -637,15 +637,14 @@ const normalizeEntities = (data) => {
 	return {};
 };
 
-const getPricesAndProducts = async ({ ids, archived = false }) => {
-    const prices = (await apiFetch({
-        path: addQueryArgs('surecart/v1/prices/', {
-            ids,
-            archived,
+// Uses the public find route because listing prices is staff-only; archived prices are dropped as the old list did.
+const getPriceWithProduct = async (id) => {
+    const price = (await apiFetch({
+        path: addQueryArgs(`surecart/v1/prices/${id}`, {
             expand: ['product'],
         }),
     }));
-    return normalizePrices(prices);
+    return normalizePrices((price === null || price === void 0 ? void 0 : price.archived) ? [] : [price]);
 };
 const normalizePrices = (prices) => {
     const { entities } = normalizeEntities(prices);
@@ -731,10 +730,7 @@ const ScPriceChoice = class {
             return;
         try {
             this.loading = true;
-            const { products, prices } = await getPricesAndProducts({
-                archived: false,
-                ids: [this.priceId],
-            });
+            const { products, prices } = await getPriceWithProduct(this.priceId);
             // add to central store.
             this.scAddEntities.emit({ prices, products });
         }

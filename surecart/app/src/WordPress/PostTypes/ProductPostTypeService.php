@@ -2,8 +2,6 @@
 
 namespace SureCart\WordPress\PostTypes;
 
-use SureCart\Support\Currency;
-
 /**
  * Form post type service class.
  */
@@ -110,10 +108,6 @@ class ProductPostTypeService {
 
 		// disallow pre title filter.
 		add_filter( 'pre_get_document_title', [ $this, 'disallowPreTitle' ], 214748364 );
-
-		// add schema and seo meta.
-		add_action( 'wp_head', array( $this, 'addProductJsonSchema' ), 10 );
-		add_action( 'wp_head', array( $this, 'addProductSeoMeta' ), 10 );
 
 		// Product permalink support for custom taxonomies.
 		add_filter( 'post_type_link', array( $this, 'postTypeLink' ), 10, 2 );
@@ -1206,202 +1200,6 @@ class ProductPostTypeService {
 	}
 
 	/**
-	 * Add the JSON-LD schema for the product.
-	 *
-	 * @return void
-	 */
-	public function addProductJsonSchema() {
-		if ( ! is_singular( 'sc_product' ) ) {
-			return;
-		}
-
-		$product = sc_get_product();
-
-		if ( empty( $product ) ) {
-			return;
-		}
-
-		$display_schema = apply_filters( 'sc_display_product_json_ld_schema', true, $product );
-		if ( ! $display_schema ) {
-			return;
-		}
-
-		$schema = $this->getJsonSchemaArray( $product ) ?? [];
-		if ( empty( $schema ) ) {
-			return;
-		}
-		?>
-		<script type="application/ld+json"><?php echo wp_json_encode( $schema ); ?></script>
-		<?php
-	}
-
-	/**
-	 * Get the JSON-LD schema for the product.
-	 *
-	 * @param \SureCart\Models\Product $product The product.
-	 *
-	 * @return array
-	 */
-	public function getJsonSchemaArray( $product ): array {
-		$gallery_image_urls = ! empty( $product->gallery ) ? array_map(
-			function ( $media ) {
-				return $media->attributes()->src ?? '';
-			},
-			$product->gallery
-		) : '';
-
-		$schema = array(
-			'@context'        => 'http://schema.org',
-			'@type'           => 'Product',
-			'name'            => $product->name,
-			'image'           => $gallery_image_urls,
-			'description'     => sanitize_text_field( $product->description ),
-			'offers'          => $this->getOffersSchema( $product ),
-			'aggregateRating' => $this->getAggregateRatingSchema( $product ),
-		);
-
-		// Google flags an empty offers array as invalid.
-		if ( empty( $schema['offers'] ) ) {
-			unset( $schema['offers'] );
-		}
-
-		// Google rejects SKUs containing whitespace.
-		$sku = (string) $product->sku;
-		if ( '' !== $sku && ! preg_match( '/\s/', $sku ) ) {
-			$schema['sku'] = $sku;
-		}
-
-		return apply_filters( 'surecart/product/json_schema', $schema, $this, $product );
-	}
-
-	/**
-	 * Get the offer for the price the product page preselects, if Google can list it.
-	 *
-	 * @param \SureCart\Models\Product $product The product.
-	 *
-	 * @return array
-	 */
-	public function getOffersSchema( $product ): array {
-		$price = $product->initial_price;
-
-		if ( empty( $price ) || ! empty( $price->recurring_interval ) || ! empty( $price->ad_hoc ) ) {
-			return array();
-		}
-
-		// Matches the amount the page displays, which is the initial variant's for variant-priced products.
-		$amount = (int) $product->initial_amount;
-		if ( $amount <= 0 ) {
-			return array();
-		}
-
-		$currency = strtoupper( (string) $price->currency );
-
-		$offer = array(
-			'@type'         => 'Offer',
-			// Unpublished products have no product page; the buy page is the only public URL.
-			'url'           => $product->is_published ? $product->permalink : $product->buyLink()->url(),
-			'price'         => Currency::maybeConvertAmount( $amount, $price->currency ),
-			'priceCurrency' => $currency,
-			'availability'  => $product->in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-			'itemCondition' => apply_filters( 'surecart/product/json_schema/condition', 'https://schema.org/NewCondition', $product ),
-		);
-
-		// The scratch amount belongs to the price, so it only applies when no variant amount overrides it.
-		if ( $price->is_on_sale && (int) $price->amount === $amount ) {
-			$offer['priceSpecification'] = array(
-				'@type'         => 'UnitPriceSpecification',
-				'priceType'     => 'https://schema.org/StrikethroughPrice',
-				'price'         => Currency::maybeConvertAmount( $price->scratch_amount, $price->currency ),
-				'priceCurrency' => $currency,
-			);
-		}
-
-		if ( empty( $offer['itemCondition'] ) ) {
-			unset( $offer['itemCondition'] );
-		}
-
-		return array( $offer );
-	}
-
-	/**
-	 * Get the aggregate rating schema for the product.
-	 *
-	 * @param \SureCart\Models\Product $product The product.
-	 *
-	 * @return array
-	 */
-	public function getAggregateRatingSchema( $product ): array {
-		if ( empty( $product->total_reviews ) ) {
-			return array();
-		}
-
-		return array(
-			'@type'       => 'AggregateRating',
-			'ratingValue' => (string) $product->average_stars,
-			'reviewCount' => (int) $product->total_reviews,
-			'bestRating'  => 5,
-			'worstRating' => 1,
-		);
-	}
-
-	/**
-	 * Add SEO Meta Tags for the product.
-	 *
-	 * @return void
-	 */
-	public function addProductSeoMeta() {
-		if ( ! is_singular( 'sc_product' ) ) {
-			return;
-		}
-
-		$product = sc_get_product();
-
-		if ( empty( $product ) ) {
-			return;
-		}
-
-		$display_seo_meta = apply_filters( 'sc_display_product_seo_meta', true, $product );
-		if ( ! $display_seo_meta ) {
-			return;
-		}
-
-		$this->renderProductSeoMeta( $product );
-	}
-
-	/**
-	 * Render the SEO meta tags for the product.
-	 *
-	 * @param \SureCart\Models\Product $product The product.
-	 * @param string                   $permalink Optional. The canonical URL for og:url. Defaults to the product permalink.
-	 *
-	 * @return void
-	 */
-	public function renderProductSeoMeta( $product, $permalink = '' ) {
-		$permalink         = $permalink ?: $product->permalink;
-		$image_attributes  = $product->featured_image ? $product->featured_image->attributes( apply_filters( 'surecart/og:image/size', 'full' ) ) : null;
-		$product_image_url = $image_attributes ? ( $image_attributes->src ?? '' ) : '';
-		?>
-
-		<meta name="description" content="<?php echo esc_attr( sanitize_text_field( $product->meta_description ) ); ?>">
-		<meta property="og:locale" content="<?php echo esc_attr( get_locale() ); ?>" />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="<?php echo esc_attr( $product->page_title ); ?>" />
-		<meta property="og:description" content="<?php echo esc_attr( sanitize_text_field( $product->meta_description ) ); ?>" />
-		<meta property="og:url" content="<?php echo esc_url( $permalink ); ?>" />
-		<meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="<?php echo esc_attr( $product->page_title ); ?>" />
-		<meta name="twitter:description" content="<?php echo esc_attr( sanitize_text_field( $product->meta_description ) ); ?>" />
-
-		<?php if ( ! empty( $product_image_url ) ) : ?>
-		<meta property="og:image" content="<?php echo esc_url( $product_image_url ); ?>" />
-		<meta name="twitter:image" content="<?php echo esc_url( $product_image_url ); ?>" />
-		<?php endif; ?>
-
-		<?php
-	}
-
-	/**
 	 * Filter the post type link for products.
 	 *
 	 * @param string   $permalink The post's permalink.
@@ -1487,5 +1285,86 @@ class ProductPostTypeService {
 		$query_vars = isset( $_GET ) && is_array( $_GET ) ? $_GET : array(); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		wp_safe_redirect( add_query_arg( $query_vars, get_permalink( get_the_ID() ) ), 301 );
 		exit();
+	}
+
+	/**
+	 * Deprecated: moved to ProductSeoService.
+	 *
+	 * @deprecated 4.9.6 Use \SureCart::productSeo()->addProductJsonSchema().
+	 *
+	 * @return void
+	 */
+	public function addProductJsonSchema() {
+		_deprecated_function( __METHOD__, '4.9.6', '\SureCart::productSeo()->addProductJsonSchema()' );
+		\SureCart::productSeo()->addProductJsonSchema();
+	}
+
+	/**
+	 * Deprecated: moved to ProductSeoService.
+	 *
+	 * @deprecated 4.9.6 Use \SureCart::productSeo()->getJsonSchemaArray().
+	 *
+	 * @param \SureCart\Models\Product $product The product.
+	 *
+	 * @return array
+	 */
+	public function getJsonSchemaArray( $product ): array {
+		_deprecated_function( __METHOD__, '4.9.6', '\SureCart::productSeo()->getJsonSchemaArray()' );
+		return \SureCart::productSeo()->getJsonSchemaArray( $product );
+	}
+
+	/**
+	 * Deprecated: moved to ProductJsonSchema.
+	 *
+	 * @deprecated 4.9.6 Use ProductJsonSchema::getOffersSchema().
+	 *
+	 * @param \SureCart\Models\Product $product The product.
+	 *
+	 * @return array
+	 */
+	public function getOffersSchema( $product ): array {
+		_deprecated_function( __METHOD__, '4.9.6', 'ProductJsonSchema::getOffersSchema()' );
+		return ( new ProductJsonSchema() )->getOffersSchema( $product );
+	}
+
+	/**
+	 * Deprecated: moved to ProductJsonSchema.
+	 *
+	 * @deprecated 4.9.6 Use ProductJsonSchema::getAggregateRatingSchema().
+	 *
+	 * @param \SureCart\Models\Product $product The product.
+	 *
+	 * @return array
+	 */
+	public function getAggregateRatingSchema( $product ): array {
+		_deprecated_function( __METHOD__, '4.9.6', 'ProductJsonSchema::getAggregateRatingSchema()' );
+		return ( new ProductJsonSchema() )->getAggregateRatingSchema( $product );
+	}
+
+	/**
+	 * Deprecated: moved to ProductSeoService.
+	 *
+	 * @deprecated 4.9.6 Use \SureCart::productSeo()->addProductSeoMeta().
+	 *
+	 * @return void
+	 */
+	public function addProductSeoMeta() {
+		_deprecated_function( __METHOD__, '4.9.6', '\SureCart::productSeo()->addProductSeoMeta()' );
+		\SureCart::productSeo()->addProductSeoMeta();
+	}
+
+	/**
+	 * Deprecated: moved to ProductSeoService.
+	 *
+	 * @deprecated 4.9.6 Use \SureCart::productSeo()->renderProductSeoMeta().
+	 *
+	 * @param \SureCart\Models\Product $product   The product.
+	 * @param string                   $permalink Optional. The canonical URL for og:url.
+	 *
+	 * @return void
+	 */
+	public function renderProductSeoMeta( $product, $permalink = '' ) {
+		_deprecated_function( __METHOD__, '4.9.6', '\SureCart::productSeo()->renderProductSeoMeta()' );
+		\SureCart::productSeo()->renderProductSeoMeta( $product, $permalink );
 	}
 }

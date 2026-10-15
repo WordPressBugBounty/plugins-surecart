@@ -151,10 +151,16 @@ class ProductMediaRestServiceProvider extends RestServiceProvider implements Res
 	/**
 	 * Who can list product media
 	 *
+	 * Staff-only: the list exposes media of draft products (CVE-2026-108085).
+	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
+		if ( ! current_user_can( 'read_sc_products' ) ) {
+			return false;
+		}
+
 		$check = $this->forbidEditContextWithout( $request, 'edit_sc_products' );
 		if ( is_wp_error( $check ) ) {
 			return $check;

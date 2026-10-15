@@ -90,6 +90,10 @@ class VariantValuesRestServiceProvider extends RestServiceProvider implements Re
 	 * @return true | \WP_Error true if the request has access to create items, WP_Error object otherwise .
 	 */
 	public function get_items_permissions_check( $request ) {
+		if ( ! current_user_can( 'read_sc_prices' ) ) {
+			return false;
+		}
+
 		$check = $this->forbidEditContextWithout( $request, 'edit_sc_prices' );
 		if ( is_wp_error( $check ) ) {
 			return $check;

@@ -48,7 +48,9 @@ class ProductPageBlock {
 		// use initial defaults to only get args needed.
 		$args = [];
 		foreach ( $initial_defaults as $key => $value ) {
-			$args[ $key ] = $this->url->getArg( $key );
+			$arg = $this->url->getArg( $key );
+			// A crafted ?color[]=red is an array, which fatals sanitize_title().
+			$args[ $key ] = is_scalar( $arg ) ? (string) $arg : null;
 		}
 
 		// merge the args with the initial defaults.
@@ -329,7 +331,7 @@ class ProductPageBlock {
 		foreach ( $variant_options as $key => $option ) {
 			$arg_key  = 'bundle-' . $identifier . '-' . sanitize_title( $option->name );
 			$arg_slug = $this->url->getArg( $arg_key );
-			if ( empty( $arg_slug ) ) {
+			if ( empty( $arg_slug ) || ! is_scalar( $arg_slug ) ) {
 				continue;
 			}
 

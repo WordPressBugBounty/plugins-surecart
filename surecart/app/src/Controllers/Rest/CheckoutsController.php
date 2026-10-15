@@ -31,6 +31,14 @@ class CheckoutsController extends RestController {
 		// Set the return url.
 		$request->set_param( 'external_url', esc_url_raw( get_home_url( null, 'surecart/redirect' ) ) );
 
+		// guest-writable and followed after payment, so never allow an off-site redirect.
+		// runs before the open_invoice return below since `type` is request-controlled too.
+		$metadata = $request->get_param( 'metadata' );
+		if ( isset( $metadata['success_url'] ) ) {
+			$metadata['success_url'] = is_string( $metadata['success_url'] ) ? wp_validate_redirect( $metadata['success_url'], '' ) : '';
+			$request->set_param( 'metadata', $metadata );
+		}
+
 		// if this is an open invoice, we don't set the user.
 		if ( 'open_invoice' === $request->get_param( 'type' ) ) {
 			return apply_filters( 'surecart/request/model', $class, $request );

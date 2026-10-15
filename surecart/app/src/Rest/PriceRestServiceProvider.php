@@ -164,10 +164,17 @@ class PriceRestServiceProvider extends RestServiceProvider implements RestServic
 	/**
 	 * Who can list prices
 	 *
+	 * Staff-only: the list exposes price ids of draft products (CVE-2026-108085).
+	 * Finding a known id stays public.
+	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
+		if ( ! current_user_can( 'read_sc_prices' ) ) {
+			return false;
+		}
+
 		$check = $this->forbidEditContextWithout( $request, 'edit_sc_prices' );
 		if ( is_wp_error( $check ) ) {
 			return $check;

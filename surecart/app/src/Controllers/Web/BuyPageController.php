@@ -24,8 +24,8 @@ class BuyPageController extends BasePageController {
 		add_action( 'wp_head', [ $this, 'addProductJsonSchema' ] );
 		// the buy page is singular sc_product now — remove the product page's own hooks
 		// for the things this controller (via BasePageController) prints itself.
-		remove_action( 'wp_head', [ \SureCart::productPost(), 'addProductSeoMeta' ], 10 );
-		remove_action( 'wp_head', [ \SureCart::productPost(), 'addProductJsonSchema' ], 10 );
+		remove_action( 'wp_head', [ \SureCart::productSeo(), 'addProductSeoMeta' ], 10 );
+		remove_action( 'wp_head', [ \SureCart::productSeo(), 'addProductJsonSchema' ], 10 );
 		remove_action( 'admin_bar_menu', [ \SureCart::productPost(), 'addEditLink' ], 99 );
 		remove_filter( 'document_title_parts', [ \SureCart::productPost(), 'documentTitle' ] );
 		remove_filter( 'pre_get_document_title', [ \SureCart::productPost(), 'disallowPreTitle' ], 214748364 );
@@ -254,7 +254,7 @@ class BuyPageController extends BasePageController {
 		}
 
 		// render the seo meta. og:url must be the buy link — the mirrored post permalink can 404 for buy-link-only products.
-		\SureCart::productPost()->renderProductSeoMeta( $product, $product->checkout_permalink );
+		\SureCart::productSeo()->renderProductSeoMeta( $product, $product->checkout_permalink );
 	}
 
 	/**
@@ -274,12 +274,6 @@ class BuyPageController extends BasePageController {
 			return;
 		}
 
-		$schema = \SureCart::productPost()->getJsonSchemaArray( $product ) ?? [];
-		if ( empty( $schema ) ) {
-			return;
-		}
-		?>
-		<script type="application/ld+json"><?php echo wp_json_encode( $schema ); ?></script>
-		<?php
+		\SureCart::productSeo()->renderJsonSchema( $product );
 	}
 }

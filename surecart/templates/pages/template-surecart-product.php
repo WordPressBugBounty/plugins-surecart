@@ -6,7 +6,9 @@ $block_template = get_block_template( $template_id, 'wp_template_part' );
 if ( empty( $block_template ) ) {
 	$block_template = get_block_template( 'surecart/surecart//product-info', 'wp_template_part' );
 }
+// Render before get_header() so block assets enqueue in time for wp_head.
 $content = surecart_get_the_block_template_html( $block_template->content ?? '' );
+get_header();
 echo '<style>
 .sc-template-wrapper,
 .sc-template-container {
@@ -18,7 +20,6 @@ echo '<style>
 	margin-right: auto;
 }
 </style>';
-get_header();
 ?>
 <div class="wp-block-group is-layout-constrained sc-template-wrapper" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
 	<div class="wp-block-group alignwide sc-template-container">

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-12T17:58:23+00:00\n"
+"POT-Creation-Date: 2026-10-15T20:44:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -3055,7 +3055,7 @@ msgstr ""
 #: sc-order-confirmation-totals2.js:57
 #: sc-order.js:172
 #: sc-price-choice-container2.js:72
-#: sc-price-choice.js:820
+#: sc-price-choice.js:816
 #: sc-recurring-price-choice-container2.js:86
 msgid "Discount"
 msgstr ""
@@ -3966,8 +3966,8 @@ msgstr ""
 #: src/Controllers/Admin/Products/ProductsListTable.php:147
 #: src/Controllers/Web/BuyPageController.php:70
 #: src/WordPress/Admin/Menus/AdminToolbarService.php:289
-#: src/WordPress/PostTypes/ProductPostTypeService.php:474
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1109
+#: src/WordPress/PostTypes/ProductPostTypeService.php:468
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1103
 #: products/hooks/useBundleLabels.js:32
 #: components/PriceInfo.js:111
 msgid "Edit Product"
@@ -4108,7 +4108,7 @@ msgid "Orders"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/ShippingLabelsListTable.php:117
-#: invoices/modules/Address.js:156
+#: invoices/modules/Address.js:159
 #: shipping-labels/components/RateTable.js:97
 #: shipping-labels/list/fields/ship_to.js:24
 msgid "Ship to"
@@ -4286,7 +4286,7 @@ msgid "Product duplicated successfully."
 msgstr ""
 
 #: src/Controllers/Admin/Products/ProductsController.php:104
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1110
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1104
 #: licenses/modules/Purchase.js:56
 #: products/hooks/useBundleLabels.js:27
 #: products/list/actions/index.js:166
@@ -4691,7 +4691,7 @@ msgid "You are not allowed to view this batch operation."
 msgstr ""
 
 #: src/Controllers/Rest/CheckEmailController.php:23
-#: src/Controllers/Rest/VerificationCodeController.php:206
+#: src/Controllers/Rest/VerificationCodeController.php:266
 msgid "There is no account with that username or email address."
 msgstr ""
 
@@ -4700,7 +4700,7 @@ msgstr ""
 msgid "The username <strong>%s</strong> is not registered on this site. If you are unsure of your username, try your email address instead."
 msgstr ""
 
-#: src/Controllers/Rest/CheckoutsController.php:284
+#: src/Controllers/Rest/CheckoutsController.php:292
 msgid "Spam check failed. Please try again."
 msgstr ""
 
@@ -4794,13 +4794,17 @@ msgstr ""
 msgid "You must be logged in to submit a review."
 msgstr ""
 
-#: src/Controllers/Rest/VerificationCodeController.php:43
-#: src/Controllers/Rest/VerificationCodeController.php:241
+#: src/Controllers/Rest/VerificationCodeController.php:64
 msgid "The user could not be found."
 msgstr ""
 
-#: src/Controllers/Rest/VerificationCodeController.php:226
+#: src/Controllers/Rest/VerificationCodeController.php:276
+#: src/Controllers/Rest/VerificationCodeController.php:308
 msgid "Invalid verification code"
+msgstr ""
+
+#: src/Controllers/Rest/VerificationCodeController.php:285
+msgid "Too many attempts. Please try again later."
 msgstr ""
 
 #: src/Controllers/Rest/VisitsController.php:27
@@ -5465,7 +5469,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:539
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:362
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:412
-#: src/Models/Blocks/ProductPageBlock.php:234
+#: src/Models/Blocks/ProductPageBlock.php:236
 #: src/blocks/product-buy-button/view.php:18
 #: src/blocks/product-quick-view-button/button-cart.php:13
 #: src/blocks/product-quick-view-button/button-cart.php:46
@@ -5476,7 +5480,7 @@ msgstr ""
 
 #: src/Integrations/Bricks/Elements/BuyButton.php:228
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:540
-#: src/Models/Blocks/ProductPageBlock.php:235
+#: src/Models/Blocks/ProductPageBlock.php:237
 #: products/components/Availability/index.js:86
 #: Blocks/Product/BuyButton/Block.php:125
 #: Blocks/Product/BuyButton/Block.php:145
@@ -5740,7 +5744,7 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/ProductQuickAddButton.php:196
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:538
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:362
-#: src/Models/Blocks/ProductPageBlock.php:233
+#: src/Models/Blocks/ProductPageBlock.php:235
 #: src/blocks/product-buy-button/view.php:16
 #: src/blocks/product-quick-view-button/button-cart.php:13
 msgid "Add to Cart"
@@ -6577,7 +6581,7 @@ msgstr ""
 #: src/Models/Price.php:139
 #: products/modules/Prices/Price/Header.js:129
 #: sc-price-choice-container2.js:52
-#: sc-price-choice.js:809
+#: sc-price-choice.js:805
 #: sc-price2.js:32
 #: sc-recurring-price-choice-container2.js:77
 msgid "Custom Amount"
@@ -6639,7 +6643,7 @@ msgid "Enable access to a BuddyBoss Group."
 msgstr ""
 
 #: src/Integrations/Elementor/Conditions/Conditions.php:47
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1112
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1106
 #: Blocks/ProductItemList/edit.js:391
 #: Blocks/ProductItemList/edit.js:494
 #: src/blocks/product-list/inspector-controls/index.js:112
@@ -7816,7 +7820,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: src/Models/Blocks/ProductPageBlock.php:236
+#: src/Models/Blocks/ProductPageBlock.php:238
 msgid "Select options"
 msgstr ""
 
@@ -8142,7 +8146,7 @@ msgstr ""
 #: checkouts/modules/Price.js:190
 #: invoices/modules/Price.js:195
 #: sc-price-choice-container2.js:71
-#: sc-price-choice.js:819
+#: sc-price-choice.js:815
 #: sc-recurring-price-choice-container2.js:86
 msgid "Starting in %s day"
 msgid_plural "Starting in %s days"
@@ -8168,7 +8172,7 @@ msgstr ""
 #: subscriptions/show/modules/CurrentPlan.js:187
 #: src/blocks/product-selected-price-fees/edit.js:16
 #: sc-price-choice-container2.js:72
-#: sc-price-choice.js:820
+#: sc-price-choice.js:816
 #: sc-price2.js:60
 #: sc-recurring-price-choice-container2.js:86
 msgid "Setup Fee"
@@ -10396,7 +10400,7 @@ msgstr ""
 #: src/Support/Errors/Translations/attributes.php:28
 #: customers/list/fields/index.js:55
 #: customers/modules/Details.js:77
-#: invoices/modules/PhoneNumber.js:42
+#: invoices/modules/PhoneNumber.js:50
 #: invoices/modules/PhoneNumberDisplay.js:37
 #: orders/modules/ContactInfo/EditContactInfo.js:134
 #: orders/modules/Fulfillment/components/CombinedAddressEditor.js:246
@@ -10424,7 +10428,7 @@ msgstr ""
 #: src/Support/Errors/Translations/attributes.php:30
 #: abandoned-checkouts/modules/Address.js:10
 #: customers/EditCustomer.js:208
-#: invoices/modules/Address.js:286
+#: invoices/modules/Address.js:289
 #: orders/modules/Fulfillment/components/CombinedAddressEditor.js:255
 #: orders/Sidebar.js:101
 #: settings/account/AccountSettings.js:409
@@ -12485,21 +12489,21 @@ msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:251
 #: src/WordPress/PostTypes/FormPostTypeService.php:242
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1114
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1108
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:44
 msgid "No checkout forms found."
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:252
 #: src/WordPress/PostTypes/FormPostTypeService.php:243
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1115
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1109
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:45
 msgid "No checkout forms found in Trash."
 msgstr ""
 
 #: src/WordPress/PostTypes/CartPostTypeService.php:253
 #: src/WordPress/PostTypes/FormPostTypeService.php:244
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1116
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1110
 #: src/WordPress/PostTypes/ProductUpsellPagePostTypeService.php:46
 msgid "Filter checkout forms list"
 msgstr ""
@@ -12635,7 +12639,7 @@ msgstr ""
 msgid "(no title)"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:390
+#: src/WordPress/PostTypes/ProductPostTypeService.php:384
 #: products/list/variants/cells/name.js:16
 #: products/modules/Prices/Price/BuyLink.js:30
 #: products/modules/Variations/Variants.js:132
@@ -12643,88 +12647,88 @@ msgstr ""
 msgid "Variant"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:394
+#: src/WordPress/PostTypes/ProductPostTypeService.php:388
 msgid "Enter the variant name as it appears in Option Values (e.g., Black, White, Light Green)."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:394
+#: src/WordPress/PostTypes/ProductPostTypeService.php:388
 msgid "Learn More."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1017
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1011
 msgid "Product gallery"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1104
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1098
 msgctxt "post type general name"
 msgid "SureCart Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1105
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1099
 msgctxt "post type singular name"
 msgid "SureCart Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1106
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1100
 msgctxt "Product"
 msgid "Add New"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1107
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1101
 msgid "Add new Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1108
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1102
 msgid "New Product"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1111
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1105
 msgid "View Products"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1113
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1107
 #: admin/products/index.php:25
 msgid "Search Products"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1117
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1111
 msgid "Products list navigation"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1118
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1112
 msgid "Products list"
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1119
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1113
 msgid "Product published."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1120
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1114
 msgid "Product published privately."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1121
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1115
 msgid "Product reverted to draft."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1122
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1116
 msgid "Product scheduled."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1123
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1117
 #: products/EditProduct.js:81
 #: products/hooks/useBundleLabels.js:38
 #: products/modules/integrations/Integrations.js:43
 msgid "Product updated."
 msgstr ""
 
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1161
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1155
 msgctxt "post"
 msgid "Archived"
 msgstr ""
 
 #. translators: %s: number of posts.
-#: src/WordPress/PostTypes/ProductPostTypeService.php:1170
+#: src/WordPress/PostTypes/ProductPostTypeService.php:1164
 msgid "Archived <span class=\"count\">(%s)</span>"
 msgid_plural "Archived <span class=\"count\">(%s)</span>"
 msgstr[0] ""
@@ -14225,14 +14229,14 @@ msgstr ""
 
 #: abandoned-checkouts/AbandonedCheckout.js:228
 #: checkouts/modules/Address.js:76
-#: invoices/modules/Address.js:239
+#: invoices/modules/Address.js:242
 msgid "Shipping & Tax Address"
 msgstr ""
 
 #: abandoned-checkouts/AbandonedCheckout.js:237
 #: components/address/EditAddress.js:101
 #: components/address/ViewAddress.js:180
-#: invoices/modules/Address.js:267
+#: invoices/modules/Address.js:270
 #: Blocks/Address/Block.php:36
 #: Blocks/Address/edit.js:102
 #: Blocks/Address/edit.js:201
@@ -16618,7 +16622,7 @@ msgid "Shipping Address"
 msgstr ""
 
 #: components/address/EditAddress.js:93
-#: invoices/modules/Address.js:259
+#: invoices/modules/Address.js:262
 msgid "Billing address is same as shipping address"
 msgstr ""
 
@@ -16636,8 +16640,8 @@ msgstr ""
 #: invoices/components/DueDate.js:60
 #: invoices/components/IssueDate.js:61
 #: invoices/components/PaymentCollectionDueDate.js:60
-#: invoices/modules/Address.js:328
-#: invoices/modules/Address.js:369
+#: invoices/modules/Address.js:331
+#: invoices/modules/Address.js:372
 #: invoices/modules/Tax/TaxId.js:110
 #: orders/modules/TaxInfo/index.js:158
 #: starter-templates/components/CategoryFilter.js:84
@@ -18374,7 +18378,7 @@ msgid "Okay"
 msgstr ""
 
 #: hocs/withConfirm.js:51
-#: invoices/modules/Address.js:344
+#: invoices/modules/Address.js:347
 #: orders/modules/OrderCancelConfirmModal.js:57
 #: orders/modules/OrderStatusConfirmModal.js:61
 #: orders/modules/ReturnRequest/ReturnCancelConfirmModal.js:51
@@ -18562,34 +18566,34 @@ msgstr ""
 msgid "Additional Options"
 msgstr ""
 
-#: invoices/modules/Address.js:175
+#: invoices/modules/Address.js:178
 msgid "No shipping address has been set."
 msgstr ""
 
-#: invoices/modules/Address.js:204
+#: invoices/modules/Address.js:207
 msgid "Bill to"
 msgstr ""
 
-#: invoices/modules/Address.js:220
+#: invoices/modules/Address.js:223
 msgid "No billing address has been set."
 msgstr ""
 
-#: invoices/modules/Address.js:297
-#: invoices/modules/Address.js:303
+#: invoices/modules/Address.js:300
+#: invoices/modules/Address.js:306
 msgid "Fill Customer Address"
 msgstr ""
 
-#: invoices/modules/Address.js:351
-#: invoices/modules/Address.js:376
+#: invoices/modules/Address.js:354
+#: invoices/modules/Address.js:379
 #: settings/shipping/zone/ConfirmDeleteZone.js:41
 msgid "Are you sure?"
 msgstr ""
 
-#: invoices/modules/Address.js:358
+#: invoices/modules/Address.js:361
 msgid "This will set the shipping and billing addresses to the customer's default."
 msgstr ""
 
-#: invoices/modules/Address.js:383
+#: invoices/modules/Address.js:386
 msgid "This will remove the shipping and billing addresses from the invoice."
 msgstr ""
 
@@ -36148,8 +36152,8 @@ msgstr ""
 #: sc-price-choice-container2.js:43
 #: sc-price-choice-container2.js:60
 #: sc-price-choice-container2.js:69
-#: sc-price-choice.js:793
-#: sc-price-choice.js:817
+#: sc-price-choice.js:789
+#: sc-price-choice.js:813
 #: sc-price2.js:45
 #: sc-price2.js:58
 #: sc-product-price-choices.js:28
@@ -36447,7 +36451,7 @@ msgstr ""
 msgid "This payment plan has"
 msgstr ""
 
-#: sc-price-choice.js:779
+#: sc-price-choice.js:775
 msgid "This product has been archived."
 msgstr ""
 

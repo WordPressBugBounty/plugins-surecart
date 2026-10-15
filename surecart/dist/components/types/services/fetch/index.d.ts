@@ -1,8 +1,5 @@
 import { Price, Product } from '../../types';
-export declare const getPricesAndProducts: ({ ids, archived }: {
-    ids: Array<string>;
-    archived: boolean;
-}) => Promise<{
+export declare const getPriceWithProduct: (id: string) => Promise<{
     prices: any;
     products: any;
 }>;

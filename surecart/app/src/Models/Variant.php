@@ -89,20 +89,33 @@ class Variant extends Model {
 	 * @return object
 	 */
 	public function getLineItemImageAttribute() {
-		// we have wp media.
+		$attributes = $this->imageAttributes( 'thumbnail' );
+
+		// always return an empty object.
+		return null === $attributes ? (object) [] : sc_sanitize_image_attributes( $attributes );
+	}
+
+	/**
+	 * Get the variant's own image attributes: its WP media first, then the platform media.
+	 *
+	 * Unsanitized, including plugin-added keys; pass through sc_sanitize_image_attributes() before rendering into JS.
+	 *
+	 * @param string|int[] $size The image size.
+	 *
+	 * @return object|null Null when the variant has no image of its own.
+	 */
+	public function imageAttributes( $size = 'full' ) {
 		if ( ! empty( $this->metadata->wp_media ) ) {
 			$item = GalleryItemAttachment::create( $this->metadata->wp_media );
 			if ( ! empty( $item ) && $item->exists() ) {
-				return sc_sanitize_image_attributes( $item->attributes( 'thumbnail' ) );
+				return $item->attributes( $size );
 			}
 		}
 
-		// we have a fallback model from the platform.
-		if ( is_a( $this->image, \SureCart\Models\Media::class ) ) {
-			return sc_sanitize_image_attributes( $this->image->attributes( 'thumbnail' ) );
+		if ( is_a( $this->image, Media::class ) ) {
+			return $this->image->attributes( $size );
 		}
 
-		// always return an empty object.
-		return (object) [];
+		return null;
 	}
 }

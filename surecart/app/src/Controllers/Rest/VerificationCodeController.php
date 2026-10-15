@@ -24,6 +24,27 @@ class VerificationCodeController extends RestController {
 	const RESEND_TRANSIENT_PREFIX = 'sc_vcode_resend_';
 
 	/**
+	 * Transient key prefix for the per-email verify attempt counter.
+	 *
+	 * @var string
+	 */
+	const ATTEMPT_TRANSIENT_PREFIX = 'sc_vcode_attempts_';
+
+	/**
+	 * Verify attempts allowed per email before a temporary lockout.
+	 *
+	 * @var int
+	 */
+	const MAX_VERIFY_ATTEMPTS = 5;
+
+	/**
+	 * Lockout window. Outlasts the code's 10-minute validity so a fresh code can't reset the limit.
+	 *
+	 * @var int
+	 */
+	const LOCKOUT_WINDOW = 15 * MINUTE_IN_SECONDS;
+
+	/**
 	 * Create model.
 	 *
 	 * @param \WP_REST_Request $request Rest Request.
@@ -45,6 +66,17 @@ class VerificationCodeController extends RestController {
 
 		$email = $user->user_email;
 		$mode  = $request->get_param( 'checkout_mode' );
+
+		// Privileged users can't use code login: fake a sent response and never
+		// send the email, blocking admin login and email-bombing.
+		if ( ! $this->canLoginWithCode( $user->getUser() ) ) {
+			return new VerificationCode(
+				[
+					'email'      => $email,
+					'email_sent' => true,
+				]
+			);
+		}
 
 		// A code was already sent and we're still inside the platform's resend
 		// window. Resume that countdown instead of asking the platform again —
@@ -143,6 +175,33 @@ class VerificationCodeController extends RestController {
 	}
 
 	/**
+	 * Whether a user may authenticate through the passwordless login code.
+	 *
+	 * Privileged users (anyone who can edit content, manage the site, or manage
+	 * the SureCart shop) are blocked by default so the storefront-only code flow
+	 * can never hand out an admin session. A site can loosen this through the filter.
+	 *
+	 * @param \WP_User $user The resolved target user — not the (anonymous) requester.
+	 *
+	 * @return bool
+	 */
+	protected function canLoginWithCode( \WP_User $user ): bool {
+		$can = ! ( user_can( $user, 'edit_posts' ) || user_can( $user, 'manage_options' ) || user_can( $user, 'manage_sc_shop_settings' ) );
+		return (bool) apply_filters( 'surecart/verification_code/can_login', $can, $user );
+	}
+
+	/**
+	 * Build the verify-attempt transient key for an email.
+	 *
+	 * @param string $email Normalized against case so the counter is stable.
+	 *
+	 * @return string
+	 */
+	public static function verifyAttemptTransientKey( $email ) {
+		return self::ATTEMPT_TRANSIENT_PREFIX . md5( strtolower( $email ) );
+	}
+
+	/**
 	 * Pull the backoff window out of a platform "blocked duplicate" error and store it.
 	 *
 	 * @param \WP_Error $error The translated platform error.
@@ -199,6 +258,7 @@ class VerificationCodeController extends RestController {
 			return $model;
 		}
 
+		// Resolve the target user once up front.
 		$user = $this->getUser( $request->get_param( 'login' ) );
 		if ( ! $user ) {
 			return new \WP_Error(
@@ -208,10 +268,32 @@ class VerificationCodeController extends RestController {
 			);
 		}
 
+		$email = $user->user_email;
+
+		// Gate privileged accounts before any platform call, using the same generic
+		// error as a bad code so valid and invalid codes look identical.
+		if ( ! $this->canLoginWithCode( $user->getUser() ) ) {
+			return new \WP_Error( 'invalid_code', __( 'Invalid verification code', 'surecart' ), [ 'status' => 400 ] );
+		}
+
+		// Too many attempts for this email — lock it out.
+		$key      = self::verifyAttemptTransientKey( $email );
+		$attempts = (int) get_transient( $key );
+		if ( $attempts >= self::MAX_VERIFY_ATTEMPTS ) {
+			return new \WP_Error(
+				'too_many_attempts',
+				__( 'Too many attempts. Please try again later.', 'surecart' ),
+				[ 'status' => 429 ]
+			);
+		}
+
+		// Count before the platform call to narrow the parallel-guess window; not atomic, so a soft cap.
+		set_transient( $key, $attempts + 1, self::LOCKOUT_WINDOW );
+
 		// verify the code.
 		$verify = $model->where( $request->get_query_params() )->verify(
 			[
-				'email' => $user->user_email,
+				'email' => $email,
 				'code'  => $request->get_param( 'code' ),
 			]
 		);
@@ -231,15 +313,8 @@ class VerificationCodeController extends RestController {
 		// that no longer exists. Verify requests don't carry checkout_mode, so
 		// clear both modes; if a genuine platform window remains, the next
 		// create re-stores it from the blocked_duplicate error.
-		$this->clearResendWindow( $user->user_email );
-
-		// get the user based on the login value.
-		$user = $this->getUser( $request->get_param( 'login' ) );
-
-		// bail if no user.
-		if ( ! $user ) {
-			return new \WP_Error( 'user_not_found', __( 'The user could not be found.', 'surecart' ), [ 'status' => 404 ] );
-		}
+		$this->clearResendWindow( $email );
+		delete_transient( $key );
 
 		// login the user.
 		$logged_in = $user->login();
