@@ -28,6 +28,7 @@ class SettingsController {
 				'slide_out_cart_disabled'     => (bool) get_option( 'sc_slide_out_cart_disabled', false ),
 				'load_block_assets_on_demand' => (bool) get_option( 'surecart_load_block_assets_on_demand', false ),
 				'modern_order_bump'           => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
+				'telemetry_consent'           => true === \SureCart::telemetry()->consent(),
 			]
 		);
 	}
@@ -92,6 +93,11 @@ class SettingsController {
 		// update order bump design option.
 		if ( isset( $request['modern_order_bump'] ) ) {
 			update_option( 'surecart_order_bump_design', (bool) $request->get_param( 'modern_order_bump' ) ? 'modern' : 'classic' );
+		}
+
+		// update telemetry consent.
+		if ( isset( $request['telemetry_consent'] ) ) {
+			\SureCart::telemetry()->setConsent( (bool) $request->get_param( 'telemetry_consent' ), sanitize_key( $request->get_param( 'telemetry_consent_screen' ) ?? 'settings' ) );
 		}
 
 		return rest_ensure_response( $this->find( $request ) );

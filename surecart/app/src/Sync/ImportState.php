@@ -43,8 +43,6 @@ final class ImportState {
 		return "sc_{$this->type}_import_{$suffix}";
 	}
 
-	// --- Session ---
-
 	/**
 	 * Get or create the session ID for this import run.
 	 * Matches current behavior: lazy session creation on first call.
@@ -70,8 +68,6 @@ final class ImportState {
 		return $session_id ? $session_id : null;
 	}
 
-	// --- Result IDs ---
-
 	/**
 	 * Append an import batch ID to the accumulated results.
 	 *
@@ -95,8 +91,6 @@ final class ImportState {
 	public function getResultIds(): array {
 		return get_option( $this->key( 'ids' ), [] );
 	}
-
-	// --- Skipped items (transient, 7-day TTL) ---
 
 	/**
 	 * Merge skipped items into the session's transient.
@@ -151,8 +145,6 @@ final class ImportState {
 		return is_array( $items ) ? $items : [];
 	}
 
-	// --- All-skipped flag ---
-
 	/**
 	 * Mark this import as all-skipped (stores current session ID).
 	 *
@@ -182,12 +174,56 @@ final class ImportState {
 		return $session_id ? $session_id : null;
 	}
 
-	// --- Lifecycle ---
+	/**
+	 * Add to the number of products the API accepted.
+	 *
+	 * Not concurrency-safe: read-modify-write. Safe under single-import constraint (isRunning() guard).
+	 *
+	 * @param int $count Products in an accepted batch.
+	 *
+	 * @return void
+	 */
+	public function addImportedCount( int $count ): void {
+		update_option( $this->key( 'imported_count' ), $this->getImportedCount() + $count, false );
+	}
+
+	/**
+	 * Get the number of products the API accepted.
+	 *
+	 * @return int
+	 */
+	public function getImportedCount(): int {
+		return (int) get_option( $this->key( 'imported_count' ), 0 );
+	}
+
+	/**
+	 * Mark this run's completion as not yet sent to telemetry.
+	 *
+	 * @return void
+	 */
+	public function markCompletionUnreported(): void {
+		update_option( $this->key( 'unreported' ), 1, false );
+	}
+
+	/**
+	 * Claim this run's completion for telemetry.
+	 *
+	 * @return bool True for the one caller that cleared the flag, so concurrent status checks report it once.
+	 */
+	public function claimCompletionReport(): bool {
+		// Runs on every admin page via the completion notice; get_option() is cached, delete_option() always queries.
+		if ( ! get_option( $this->key( 'unreported' ) ) ) {
+			return false;
+		}
+
+		return delete_option( $this->key( 'unreported' ) );
+	}
 
 	/**
 	 * Clear all option-based state.
 	 *
-	 * Deletes sc_{type}_import_ids, sc_{type}_import_session_id, sc_{type}_import_all_skipped.
+	 * Deletes sc_{type}_import_ids, sc_{type}_import_session_id, sc_{type}_import_all_skipped,
+	 * sc_{type}_import_imported_count and sc_{type}_import_unreported.
 	 *
 	 * Only deletes options, not transients. Skipped items transient expires via 7-day TTL.
 	 * This matches the current dispatch() and importResults() cleanup behavior.
@@ -198,5 +234,7 @@ final class ImportState {
 		delete_option( $this->key( 'ids' ) );
 		delete_option( $this->key( 'session_id' ) );
 		delete_option( $this->key( 'all_skipped' ) );
+		delete_option( $this->key( 'imported_count' ) );
+		delete_option( $this->key( 'unreported' ) );
 	}
 }

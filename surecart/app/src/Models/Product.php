@@ -167,7 +167,10 @@ class Product extends Model implements PageModel {
 		}
 
 		// if there are no syncable expands, let's fetch them.
-		$this->with( $this->sync_expands )->where( array( 'cached' => false ) )->find( $this->id );
+		$found = $this->with( $this->sync_expands )->where( array( 'cached' => false ) )->find( $this->id );
+		if ( is_wp_error( $found ) ) {
+			return $found;
+		}
 
 		// sync the product.
 		$synced = \SureCart::sync()->product()->sync( $this );

@@ -44,6 +44,9 @@ class PluginSettings {
 		// save token.
 		ApiToken::save( $api_token );
 
+		// A new token can mean a different store; the cached account would pin the old one.
+		\SureCart::account()->clearCache();
+
 		return \SureCart::redirect()->to( esc_url_raw( add_query_arg( 'status', 'saved', $url ) ) );
 	}
 }

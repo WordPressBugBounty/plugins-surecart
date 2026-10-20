@@ -15,6 +15,10 @@ class Svg {
 	 * @return string SVG file contents
 	 */
 	public function get( $filename, $attributes = array() ): string {
+		if ( ! preg_match( '/^[a-zA-Z0-9_-]+$/', (string) $filename ) ) {
+			return '';
+		}
+
 		$plugin_dir = SURECART_DIST_DIR . '/icon-assets';
 		$file_path  = $plugin_dir . '/' . $filename . '.svg';
 

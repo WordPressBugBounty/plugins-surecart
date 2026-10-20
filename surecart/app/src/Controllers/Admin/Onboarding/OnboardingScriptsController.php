@@ -35,26 +35,33 @@ class OnboardingScriptsController extends AdminModelEditController {
 	 * @return void
 	 */
 	public function enqueue() {
-		$this->data['connect_url'] = esc_url(
-			add_query_arg(
-				[
-					'onboarding' => [
-						'account_name'      => get_bloginfo( 'name' ),
-						'account_url'       => get_site_url(),
-						'return_url'        => esc_url_raw( admin_url( 'admin.php?page=sc-complete-signup' ) ),
-						'account_time_zone' => wp_timezone_string(),
-					],
-				],
-				untrailingslashit( SURECART_APP_URL ) . '/session/new'
-			)
-		);
-		$this->data['user_email']  = is_user_logged_in() ? wp_get_current_user()->user_email : '';
-		$this->data['success_url'] = esc_url_raw( \SureCart::getUrl()->index( 'products' ) );
-
-		// The "Complete Site" flow drives Starter Templates' browser-only import
-		// AJAX endpoints, which live on admin-ajax.php.
-		$this->data['admin_ajax_url'] = esc_url_raw( admin_url( 'admin-ajax.php' ) );
+		$this->data['user_email']      = is_user_logged_in() ? wp_get_current_user()->user_email : '';
+		$this->data['setup_guide_url'] = esc_url_raw( admin_url( 'admin.php?page=sc-setup-guide&from=after_onboarding' ) );
+		// True, false, or null when unanswered. wp_localize_script() stringifies the booleans.
+		$this->data['telemetry_consent']     = \SureCart::telemetry()->consent();
+		$this->data['telemetry_privacy_url'] = \SureCart\Telemetry\TelemetryService::PRIVACY_URL;
+		$this->data['surecart_terms_url']    = 'https://surecart.com/terms';
+		$this->data['suggested_store_name']  = $this->suggestedStoreName();
 
 		parent::enqueue();
+	}
+
+	/**
+	 * The site title to prefill the store name with, unless it is WordPress's default.
+	 *
+	 * Not `site_name`: the parent sets that after this runs, HTML-escaped.
+	 *
+	 * @return string
+	 */
+	protected function suggestedStoreName(): string {
+		$name = trim( wp_specialchars_decode( get_bloginfo( 'name', 'raw' ), ENT_QUOTES ) );
+
+		$defaults = [
+			'My WordPress Website',
+			// phpcs:ignore WordPress.WP.I18n.MissingArgDomain -- WordPress core's own default site title.
+			__( 'My WordPress Website' ),
+		];
+
+		return in_array( $name, $defaults, true ) ? '' : $name;
 	}
 }

@@ -65,11 +65,11 @@ class ProvisionalAccount extends Model {
 
 		// set account name as the site name if nothing is provided.
 		if ( empty( $attributes['account_name'] ) ) {
-			$attributes['account_name'] = get_bloginfo( 'name' ) ? get_bloginfo( 'name' ) : get_bloginfo( 'url' );
+			$attributes['account_name'] = $this->defaultAccountName();
 		}
 
 		// Prevent minimum 3 character requirement error for account name.
-		if ( strlen( $attributes['account_name'] ) < 3 ) {
+		if ( mb_strlen( $attributes['account_name'] ) < 3 ) {
 			return new \WP_Error( 'invalid_account_name', __( 'Store name must be at least 3 characters long. Please choose a different name for your store.', 'surecart' ) );
 		}
 
@@ -86,29 +86,29 @@ class ProvisionalAccount extends Model {
 			return $created;
 		}
 
-		// bulk product creation action.
-		if ( isset( $attributes['products'] ) ) {
-			$seed = $this->seed( $attributes['products'] );
-			if ( is_wp_error( $seed ) ) {
-				return $seed;
-			}
+		$import = \SureCart::account()->import( $attributes );
+		if ( is_wp_error( $import ) ) {
+			return $import;
 		}
 
-		// clear account cache first (before potential early return).
-		\SureCart::account()->clearCache();
-
-		if ( ! empty( $attributes['import_woocommerce_products'] ) ) {
-			$service = \SureCart::sync()->woocommerce_products();
-			if ( ! $service->isRunning() ) {
-				$import = $service->dispatch();
-				if ( is_wp_error( $import ) ) {
-					error_log( 'SureCart: WooCommerce import dispatch failed during onboarding - ' . $import->get_error_message() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-				}
-			}
-		}
-
-		// create the products.
 		return $created;
+	}
+
+	/**
+	 * Site name, else the site host, padded so the platform's 3-character minimum passes.
+	 *
+	 * @return string
+	 */
+	protected function defaultAccountName() {
+		$name = get_bloginfo( 'name' );
+		if ( empty( $name ) ) {
+			$name = (string) wp_parse_url( home_url(), PHP_URL_HOST );
+		}
+		if ( mb_strlen( $name ) < 3 ) {
+			/* translators: %s: site name, or its host when the site has no name. */
+			$name = trim( sprintf( _x( '%s Store', 'default store name', 'surecart' ), $name ) );
+		}
+		return $name;
 	}
 
 	/**

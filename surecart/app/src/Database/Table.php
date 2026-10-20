@@ -55,14 +55,16 @@ class Table {
 	/**
 	 * Drops the table and database option
 	 *
-	 * @param string $name The name of the table to drop.
+	 * @param string $name The prefixed name of the table to drop.
 	 * @return boolean Whether the table was dropped.
 	 */
 	public function drop( $name ) {
 		global $wpdb;
-		$dropped = $wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS `%s`', $name ) );
+		$dropped = $wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $name ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 		if ( true === $dropped ) {
-			delete_option( "{$name}_database_version" );
+			// create() keys the version option on the unprefixed name.
+			$unprefixed = 0 === strpos( $name, $wpdb->prefix ) ? substr( $name, strlen( $wpdb->prefix ) ) : $name;
+			delete_option( "{$unprefixed}_database_version" );
 		}
 		return true === $dropped;
 	}

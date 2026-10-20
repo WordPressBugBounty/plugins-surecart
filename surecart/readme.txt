@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.9.6
+Stable tag: 4.10.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -338,6 +338,17 @@ You may now contribute to the plugin on Github: [SureCart WordPress Plugin on Gi
 [Terms And Conditions](https://surecart.com/terms)
 [Privacy Policy](https://surecart.com/privacy)
 
+== External services ==
+
+SureCart is a hosted ecommerce platform. The plugin connects to the SureCart platform (api.surecart.com) to provide its ecommerce features: products, checkouts, orders, subscriptions, customers and payments are stored and processed there. Store data is sent when you create or edit it in the admin, and checkout data when a customer places an order.
+
+**Usage data.** If you opt in (during onboarding, under SureCart → Settings → Advanced, or from a one-time notice), the plugin sends usage data to api.surecart.com. This includes basic information about your site, such as its URL, software versions, theme and related plugins, and how you use SureCart's setup screens. Customer, order and payment data are never included. You can turn this off at any time under SureCart → Settings → Advanced.
+
+Without opting in, the plugin only sends your opt-in choice, the answers you give during onboarding, and your deactivation feedback if you submit it.
+
+[Terms of Service](https://surecart.com/terms)
+[Privacy Policy](https://surecart.com/privacy)
+
 == Installation ==
 
 1. Upload the SureCart folder to the /wp-content/plugins/ directory
@@ -442,6 +453,17 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.10.0 - October 20th, 2026 =
+- New: A redesigned onboarding helps you create a new store or connect an existing one in a few steps.
+- New: A Setup guide page walks you through adding a product, branding, a test order, connecting your store, payments and launching.
+- New: Browse and import Starter Templates from Settings → Design & Branding.
+- Fix: The Shippo shipping label screen crashed when the order's shipping method had no description.
+- Fix: The default Checkout page now uses the wide layout, so the two-column checkout form is no longer cramped on block themes. This applies to newly created or restored Checkout pages.
+- Fix: The Product Review List block no longer includes reviewer data in the page source.
+- Fix: Strengthened security of the passwordless login code flow (props to PatchStack).
+- Fix: Hardened REST API request handling so requests only reach the intended endpoints (props to PatchStack).
+- Fix: Improved validation of block icons and checkout redirect URLs (props to PatchStack).
 
 = 4.9.6 - October 16th, 2026 =
 - New: Product variants can now appear as individual listings in Google rich results and Google Merchant Center.

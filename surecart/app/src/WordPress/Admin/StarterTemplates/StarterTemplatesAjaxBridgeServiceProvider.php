@@ -48,5 +48,12 @@ class StarterTemplatesAjaxBridgeServiceProvider implements ServiceProviderInterf
 			[ $interop, 'clearStaleWxrImportLock' ],
 			0
 		);
+
+		// The reset clears the SureCart token; the setup guide's import keeps it.
+		add_action(
+			'wp_ajax_astra-sites-reset_site_options',
+			[ $interop, 'keepApiTokenThroughReset' ],
+			0
+		);
 	}
 }

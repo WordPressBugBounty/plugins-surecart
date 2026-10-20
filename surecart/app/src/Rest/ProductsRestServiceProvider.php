@@ -97,6 +97,18 @@ class ProductsRestServiceProvider extends RestServiceProvider implements RestSer
 				],
 			]
 		);
+		register_rest_route(
+			"$this->name/v$this->version",
+			$this->endpoint . '/woocommerce_import_status',
+			[
+				[
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => $this->callback( $this->controller, 'wooCommerceImportStatus' ),
+					// Same gate as woocommerce_count: this is the import feature's own state.
+					'permission_callback' => [ $this, 'update_item_permissions_check' ],
+				],
+			]
+		);
 	}
 
 	/**

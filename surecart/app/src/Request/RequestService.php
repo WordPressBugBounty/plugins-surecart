@@ -211,6 +211,11 @@ class RequestService {
 	 * @return mixed
 	 */
 	public function makeRequest( $endpoint, $args = [], $cachable = false, $cache_key = '', $optimized_caching = false ) {
+		// an id like "../webhook_endpoints" or "x?y" must not reach another endpoint.
+		if ( preg_match( '~(^|/)\.{1,2}(/|$)|[?#]~', rawurldecode( $endpoint ) ) ) {
+			return new \WP_Error( 'invalid_endpoint', __( 'Invalid endpoint.', 'surecart' ), [ 'status' => 400 ] );
+		}
+
 		$cache = $this->cache( $endpoint, $args, $cache_key );
 
 		// check if we should get a cached version of this.

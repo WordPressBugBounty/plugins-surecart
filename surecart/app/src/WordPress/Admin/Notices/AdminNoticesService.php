@@ -41,6 +41,17 @@ class AdminNoticesService {
 	}
 
 	/**
+	 * Mark the notice as dismissed.
+	 *
+	 * @param string $name Notice name.
+	 *
+	 * @return void
+	 */
+	public function markDismissed( $name ) {
+		update_option( $this->notice_key . '_' . sanitize_text_field( $name ), 1 );
+	}
+
+	/**
 	 * Is the notice dismissed.
 	 *
 	 * @param string $name Notice name.
@@ -80,7 +91,7 @@ class AdminNoticesService {
 		}
 
 		// notice is dismissed.
-		update_option( $this->notice_key . '_' . sanitize_text_field( $notice ), 1 );
+		$this->markDismissed( $notice );
 	}
 
 	/**

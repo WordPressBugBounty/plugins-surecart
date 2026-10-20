@@ -104,7 +104,6 @@ class FormPostTypeService {
 					],
 				],
 				'claim_url'           => ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',
-				'claim_expired'       => \SureCart::account()->claim_expired ?? false,
 				'enhanced_view_promo' => admin_url( 'admin.php?page=sc-forms' ),
 			]
 		);

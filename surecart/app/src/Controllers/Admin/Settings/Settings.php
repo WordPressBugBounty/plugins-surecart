@@ -22,9 +22,7 @@ class Settings {
 
 		return \SureCart::view( 'admin/settings-page' )->with(
 			[
-				'breadcrumb'    => '',
-				'claim_url'     => ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',
-				'claim_expired' => \SureCart::account()->claim_expired ?? false,
+				'breadcrumb' => '',
 			]
 		);
 	}
@@ -74,6 +72,8 @@ class Settings {
 				'locale'                       => str_replace( '_', '-', get_locale() ),
 				'api_url'                      => \SureCart::requests()->getBaseUrl(),
 				'ajax_url'                     => admin_url( 'admin-ajax.php' ),
+				'admin_ajax_url'               => esc_url_raw( admin_url( 'admin-ajax.php' ) ),
+				'plugin_url'                   => \SureCart::core()->assets()->getUrl(),
 				'home_url'                     => esc_url_raw( home_url() ),
 				'root_url'                     => esc_url_raw( get_rest_url() ),
 				'plugin_installer_nonce'       => wp_create_nonce( 'updates' ),
@@ -87,8 +87,9 @@ class Settings {
 				'is_block_theme'               => (bool) wp_is_block_theme(),
 				'should_load_on_demand_assets' => (bool) \SureCart::theme()->shouldLoadOnDemandBlockAssets(),
 				'claim_url'                    => ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',
-				'claim_expired'                => \SureCart::account()->claim_expired ?? false,
 				'is_woocommerce_active'        => class_exists( 'WooCommerce' ),
+				'can_import_templates'         => current_user_can( 'manage_options' ),
+				'telemetry_consent'            => \SureCart::telemetry()->consent(),
 				'google_map_api_key'           => \SureCart::googleMaps()->getApiKey(),
 				'shop_page_edit_url'           => \SureCart::pages()->getId( 'shop' )
 					? admin_url( 'post.php?post=' . \SureCart::pages()->getId( 'shop' ) . '&action=edit' )
@@ -97,6 +98,7 @@ class Settings {
 					? admin_url( 'post.php?post=' . \SureCart::pages()->getId( 'dashboard' ) . '&action=edit' )
 					: '',
 				'show_order_bump_design_toggle' => false !== get_option( 'surecart_order_bump_design' ),
+				'telemetry_privacy_url'         => \SureCart\Telemetry\TelemetryService::PRIVACY_URL,
 			]
 		);
 

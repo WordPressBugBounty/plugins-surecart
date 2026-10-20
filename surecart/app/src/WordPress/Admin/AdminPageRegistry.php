@@ -17,6 +17,7 @@ class AdminPageRegistry {
 	 */
 	const UNIFIED_SPA_PAGES = array(
 		'sc-dashboard',
+		'sc-setup-guide',
 		'sc-products',
 		'sc-bundles',
 		'sc-product-collections',
@@ -51,6 +52,7 @@ class AdminPageRegistry {
 	 */
 	const SPA_ONLY_PAGES = array(
 		'sc-dashboard',
+		'sc-setup-guide',
 		'sc-learn',
 	);
 
@@ -89,6 +91,7 @@ class AdminPageRegistry {
 	public static function pageTitle( string $slug ): string {
 		$titles = array(
 			'sc-dashboard'               => __( 'Dashboard', 'surecart' ),
+			'sc-setup-guide'             => __( 'Setup guide', 'surecart' ),
 			'sc-products'                => __( 'Products', 'surecart' ),
 			'sc-bundles'                 => __( 'Bundles', 'surecart' ),
 			'sc-product-collections'     => __( 'Product Collections', 'surecart' ),

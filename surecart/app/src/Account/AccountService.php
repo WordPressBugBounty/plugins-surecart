@@ -3,6 +3,7 @@ namespace SureCart\Account;
 
 use SureCart\Models\Account;
 use SureCart\Models\ApiToken;
+use SureCart\Models\ProvisionalAccount;
 
 /**
  * Service for plugin activation.
@@ -30,6 +31,20 @@ class AccountService {
 	protected $app = null;
 
 	/**
+	 * Whether the account was requested from the API during this request.
+	 *
+	 * @var bool
+	 */
+	protected $fetched_live = false;
+
+	/**
+	 * Why this request's refresh failed, so a repeat call doesn't report the kept account as fresh.
+	 *
+	 * @var \WP_Error|null
+	 */
+	protected $refresh_error = null;
+
+	/**
 	 * Bootstrap the service.
 	 *
 	 * @return void
@@ -48,6 +63,41 @@ class AccountService {
 	 */
 	public function seed( $products = [] ) {
 		return $this->app->resolve( 'surecart.account.seed' )->seed( $products );
+	}
+
+	/**
+	 * Import products (and optionally WooCommerce products) into the account.
+	 *
+	 * @param array $data Data with optional `products` and `import_woocommerce_products`.
+	 *
+	 * @return true|\WP_Error
+	 */
+	public function import( $data = [] ) {
+		return $this->app->resolve( 'surecart.account.seed' )->import( $data );
+	}
+
+	/**
+	 * Set up a store for a third party (e.g. Starter Templates) without ever replacing a connected account.
+	 *
+	 * Callers can tell the outcomes apart with `instanceof ProvisionalAccount` (created) vs `Account` (existing).
+	 *
+	 * @param array $data Provisional account attributes. When connected, only `products` and `import_woocommerce_products` are used.
+	 *
+	 * @return Account|ProvisionalAccount|\WP_Error
+	 */
+	public function setup( $data = [] ) {
+		// The platform never de-duplicates, so a second provisional account would orphan this store.
+		if ( ! $this->isConnected() ) {
+			return ProvisionalAccount::create( $data );
+		}
+
+		// A stale or revoked token surfaces here as the platform's error; we never fall back to creating.
+		$import = $this->import( $data );
+		if ( is_wp_error( $import ) ) {
+			return $import;
+		}
+
+		return Account::find();
 	}
 
 	/**
@@ -141,8 +191,41 @@ class AccountService {
 	 * @return \SureCart\Models\Account
 	 */
 	protected function fetchAccount() {
-		$this->account = Account::with( array( 'brand', 'brand.address', 'brand.logo', 'brand.dark_logo', 'customer_portal_protocol', 'order_protocol', 'tax_protocol', 'tax_protocol.address', 'subscription_protocol', 'review_protocol', 'shipping_protocol', 'affiliation_protocol' ) )->find();
+		$this->account      = Account::with( array( 'brand', 'brand.address', 'brand.logo', 'brand.dark_logo', 'customer_portal_protocol', 'order_protocol', 'tax_protocol', 'tax_protocol.address', 'subscription_protocol', 'review_protocol', 'shipping_protocol', 'affiliation_protocol' ) )->find();
+		$this->fetched_live = true;
 		return $this->account;
+	}
+
+	/**
+	 * Replace the account with a live one from the API and re-cache it.
+	 *
+	 * Skips the request when this request already fetched live, e.g. right after the transient expired.
+	 * On failure the account already in memory is kept, so the rest of the request still reads something.
+	 *
+	 * @return \SureCart\Models\Account|\WP_Error
+	 */
+	public function refresh() {
+		if ( $this->fetched_live ) {
+			return $this->refresh_error ?? $this->account;
+		}
+
+		$previous = $this->account;
+		$account  = $this->fetchAccount();
+
+		if ( is_wp_error( $account ) || ! ( $account instanceof Account ) || empty( $account->id ) ) {
+			if ( $previous instanceof Account ) {
+				$this->account = $previous;
+			}
+			$this->refresh_error = is_wp_error( $account ) ? $account : new \WP_Error( 'account_not_found', __( 'The store account could not be loaded.', 'surecart' ) );
+			return $this->refresh_error;
+		}
+
+		$this->refresh_error = null;
+
+		update_option( 'sc_previous_account', $account->toArray() );
+		set_transient( $this->cache_key, $account->toArray(), 15 * MINUTE_IN_SECONDS );
+
+		return $account;
 	}
 
 	/**
@@ -151,6 +234,9 @@ class AccountService {
 	 * @return boolean
 	 */
 	public function clearCache() {
+		// The next refresh() must ask the API again.
+		$this->fetched_live  = false;
+		$this->refresh_error = null;
 		return delete_transient( $this->cache_key );
 	}
 

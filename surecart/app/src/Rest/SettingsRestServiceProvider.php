@@ -46,6 +46,15 @@ class SettingsRestServiceProvider extends RestServiceProvider implements RestSer
 						'methods'             => \WP_REST_Server::EDITABLE,
 						'callback'            => $this->callback( $this->controller, 'edit' ),
 						'permission_callback' => [ $this, 'update_item_permissions_check' ],
+						'args'                => [
+							'telemetry_consent'        => [
+								'type' => 'boolean',
+							],
+							'telemetry_consent_screen' => [
+								'type' => 'string',
+								'enum' => [ 'settings', 'onboarding' ],
+							],
+						],
 					],
 					'schema' => [ $this, 'get_item_schema' ],
 				]

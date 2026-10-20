@@ -21,45 +21,15 @@ class OnboardingController {
 	}
 
 	/**
-	 * Complete Step
+	 * The hosted signup used to return here with a token form; connected stores go to the setup guide, the rest to onboarding.
 	 *
-	 * @param \SureCartCore\Requests\RequestInterface $request Request.
-	 * @return function
+	 * @return \SureCartCore\Responses\RedirectResponse
 	 */
-	public function complete( \SureCartCore\Requests\RequestInterface $request ) {
-		return \SureCart::view( 'admin/onboarding/complete' )->with( [ 'status' => $request->query( 'status' ) ] );
-	}
-
-
-	/**
-	 * Save the API Token.
-	 *
-	 * @param \SureCartCore\Requests\RequestInterface $request Request.
-	 * @return function
-	 */
-	public function save( \SureCartCore\Requests\RequestInterface $request ) {
-		$url       = $request->getHeaderLine( 'Referer' );
-		$api_token = $request->body( 'api_token' );
-
-		if ( empty( $api_token ) ) {
-			return \SureCart::redirect()->to( esc_url_raw( add_query_arg( 'status', 'missing', $url ) ) );
+	public function completeSignup() {
+		if ( ApiToken::get() ) {
+			return \SureCart::redirect()->to( esc_url_raw( \SureCart::routeUrl( 'setup_guide.show' ) ) );
 		}
 
-		// get the saved token.
-		$old_token = ApiToken::get();
-
-		// save token.
-		ApiToken::save( $api_token );
-
-		// check if the token is valid.
-		$account = \SureCart::account();
-
-		if ( is_wp_error( $account ) ) {
-			// save token.
-			ApiToken::save( $old_token );
-			wp_die( esc_html__( 'Invalid API Token', 'surecart' ) );
-		}
-
-		return \SureCart::redirect()->to( esc_url( admin_url( 'admin.php?page=sc-dashboard' ) ) );
+		return \SureCart::redirect()->to( esc_url_raw( \SureCart::routeUrl( 'onboarding.show' ) ) );
 	}
 }

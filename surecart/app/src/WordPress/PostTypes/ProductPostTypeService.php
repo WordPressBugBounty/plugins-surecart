@@ -404,7 +404,13 @@ class ProductPostTypeService {
 			return;
 		}
 
-		$model->sync();
+		if ( ! is_wp_error( $model->sync() ) ) {
+			return;
+		}
+
+		// retry later so a transient API error does not drop the webhook.
+		$product = $model instanceof \SureCart\Models\Product ? $model : new \SureCart\Models\Product( [ 'id' => $model->product_id ] );
+		$product->queueSync();
 	}
 
 	/**

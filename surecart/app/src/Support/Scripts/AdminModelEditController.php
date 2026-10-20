@@ -103,7 +103,6 @@ abstract class AdminModelEditController {
 					'google_map_api_key',
 					'claimed',
 					'claim_url',
-					'claim_expired',
 					'tax_protocol',
 				)
 			)
@@ -112,10 +111,13 @@ abstract class AdminModelEditController {
 		$this->data['invoice_create_url']            = \SureCart::getUrl()->create( 'invoices' );
 		$this->data['bulk_delete_nonce']             = wp_create_nonce( 'bulk_delete_nonce' );
 		$this->data['can_manage_abandoned_settings'] = current_user_can( 'manage_sc_shop_settings' );
+		$this->data['can_use_setup_guide']           = current_user_can( 'manage_options' );
+		$this->data['setup_guide_dismissed']         = current_user_can( 'manage_options' ) && \SureCart::setupGuide()->isDismissed( 'guide' );
+		$this->data['setup_remaining']               = current_user_can( 'manage_options' ) ? \SureCart::setupGuide()->computedRemaining() : null;
 		$this->data['spa_pages']                     = AdminPageRegistry::UNIFIED_SPA_PAGES;
 		$this->data['menu_families']                 = \SureCart\WordPress\Admin\Menus\AdminMenuPageService::MENU_FAMILIES;
 		// Per-page header data for menuSync.js after a client-side swap.
-		$this->data['page_chrome']                   = AdminPageRegistry::pageChrome();
+		$this->data['page_chrome'] = AdminPageRegistry::pageChrome();
 
 		// Show the JSON code editor for the unified SPA pages, which is used in the order meta and other places.
 		wp_enqueue_code_editor(
@@ -326,7 +328,6 @@ abstract class AdminModelEditController {
 		$this->data['collection_page_slug']  = untrailingslashit( \SureCart::settings()->permalinks()->getBase( 'collection_page' ) );
 		$this->data['is_block_theme']        = \SureCart::utility()->blockTemplates()->isFSETheme();
 		$this->data['claim_url']             = ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '';
-		$this->data['claim_expired']         = \SureCart::account()->claim_expired ?? false;
 		$this->data['is_woocommerce_active'] = class_exists( 'WooCommerce' );
 
 		if ( in_array( 'currency', $this->with_data ) ) {

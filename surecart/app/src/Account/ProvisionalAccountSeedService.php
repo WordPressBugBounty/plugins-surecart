@@ -10,6 +10,36 @@ use SureCart\Models\ProductImport;
  */
 class ProvisionalAccountSeedService {
 	/**
+	 * Import the passed products and dispatch the WooCommerce import, if requested.
+	 *
+	 * @param array $data Data with optional `products` and `import_woocommerce_products`.
+	 *
+	 * @return true|\WP_Error
+	 */
+	public function import( $data = [] ) {
+		if ( ! empty( $data['products'] ) ) {
+			$seed = $this->seed( $data['products'] );
+			if ( is_wp_error( $seed ) ) {
+				return $seed;
+			}
+		}
+
+		\SureCart::account()->clearCache();
+
+		if ( ! empty( $data['import_woocommerce_products'] ) ) {
+			$service = \SureCart::sync()->woocommerce_products();
+			if ( ! $service->isRunning() ) {
+				$import = $service->dispatch();
+				if ( is_wp_error( $import ) ) {
+					error_log( 'SureCart: WooCommerce import dispatch failed during account setup - ' . $import->get_error_message() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				}
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Seed the account with products and collections.
 	 *
 	 * @param array $products The products to seed.

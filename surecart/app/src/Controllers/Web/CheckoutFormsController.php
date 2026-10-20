@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace SureCart\Controllers\Web;
 
+use SureCart\WordPress\PostTypes\FormModeService;
+
 /**
  * Handles Checkout related routes.
  */
 class CheckoutFormsController {
 
 	/**
-	 * Change the mode of the checkout form.
+	 * Toggle the checkout form between test and live mode.
 	 */
 	public function changeMode() {
 		$form_post_id       = get_query_var( 'sc_checkout_change_mode' );
@@ -27,19 +29,12 @@ class CheckoutFormsController {
 			wp_die( esc_html__( 'There is no checkout form block on this page.', 'surecart' ) );
 		}
 
-		// Get the mode.
-		$mode = $form_block['attrs']['mode'] ?? 'live';
-
-		// Change the mode.
-		$form_block['attrs']['mode'] = 'test' === $mode ? 'live' : 'test';
-
-		// Update the post.
-		wp_update_post(
-			array(
-				'ID'           => $form_post_id,
-				'post_content' => serialize_blocks( [ $form_block ] ),
-			)
-		);
+		// Flip the mode.
+		$mode    = $form_block['attrs']['mode'] ?? 'live';
+		$updated = FormModeService::set( (int) $form_post_id, 'test' === $mode ? 'live' : 'test' );
+		if ( is_wp_error( $updated ) ) {
+			wp_die( esc_html( $updated->get_error_message() ) );
+		}
 
 		// Redirect to the checkout page.
 		return \SureCart::redirect()->to( get_permalink( $checkout_post_id ) );

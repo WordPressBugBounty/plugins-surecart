@@ -61,9 +61,11 @@ class CheckoutRedirectMiddleware {
 		}
 
 		// get checkout from page_url.
-		if ( ! empty( $checkout->metadata->page_url ) ) {
+		$page_url = $checkout->metadata->page_url ?? '';
+		$page_url = is_string( $page_url ) ? wp_validate_redirect( $page_url, '' ) : '';
+		if ( ! empty( $page_url ) ) {
 			return ( new RedirectResponse( $request ) )->to(
-				esc_url_raw( $this->buildUrl( $checkout->metadata->page_url, $request ) )
+				esc_url_raw( $this->buildUrl( $page_url, $request ) )
 			);
 		}
 

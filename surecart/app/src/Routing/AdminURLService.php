@@ -194,7 +194,7 @@ class AdminURLService {
 			$query_args['session_id'] = sanitize_key( $session_id );
 		}
 
-		return esc_url( add_query_arg( $query_args, $this->index( $name ) ) );
+		return esc_url_raw( add_query_arg( $query_args, $this->index( $name ) ) );
 	}
 
 	/**
@@ -206,7 +206,7 @@ class AdminURLService {
 	 * @return string URL for the page.
 	 */
 	public function importResultsBySession( $name, $session_id ) {
-		return esc_url(
+		return esc_url_raw(
 			add_query_arg(
 				[
 					'action'     => 'import_results',

@@ -119,7 +119,7 @@ class InstallService {
 				'checkout'           => array(
 					'name'    => _x( 'checkout', 'Page slug', 'surecart' ),
 					'title'   => _x( 'Checkout', 'Page title', 'surecart' ),
-					'content' => '<!-- wp:surecart/checkout-form {"id":' . (int) $form->ID . '} -->
+					'content' => '<!-- wp:surecart/checkout-form {"id":' . (int) $form->ID . ',"align":"wide"} -->
 					<!-- wp:surecart/form {"mode":"test"} /-->
 					<!-- /wp:surecart/checkout-form -->',
 				),

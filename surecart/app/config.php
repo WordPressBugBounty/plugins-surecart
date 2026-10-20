@@ -49,13 +49,17 @@ return array(
 		\SureCart\BlockLibrary\BlockServiceProvider::class,
 		\SureCart\Support\Errors\ErrorsServiceProvider::class,
 		\SureCart\Activation\ActivationServiceProvider::class,
+		\SureCart\SetupGuide\SetupGuideServiceProvider::class,
 		\SureCart\Background\BackgroundServiceProvider::class,
+		\SureCart\Telemetry\TelemetryServiceProvider::class,
 		\SureCart\Sync\SyncServiceProvider::class,
 		\SureCart\Svg\SvgServiceProvider::class,
 
 		// REST providers.
 		\SureCart\Rest\SiteHealthRestServiceProvider::class,
 		\SureCart\Rest\LearnBootRestServiceProvider::class,
+		\SureCart\Rest\SetupGuideBootRestServiceProvider::class,
+		\SureCart\Rest\SetupGuideRestServiceProvider::class,
 		\SureCart\Rest\AbandonedCheckoutRestServiceProvider::class,
 		\SureCart\Rest\AbandonedCheckoutProtocolRestServiceProvider::class,
 		\SureCart\Rest\BlockPatternsRestServiceProvider::class,
@@ -157,6 +161,7 @@ return array(
 		\SureCart\Rest\RuleSchemaRestServiceProvider::class,
 		\SureCart\Rest\StarterTemplatesRestServiceProvider::class,
 		\SureCart\Rest\OnboardingRestServiceProvider::class,
+		\SureCart\Rest\TelemetryEventsRestServiceProvider::class,
 
 		// integrations.
 		\SureCart\Integrations\DiviServiceProvider::class,

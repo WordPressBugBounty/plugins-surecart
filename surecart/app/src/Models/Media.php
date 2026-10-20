@@ -67,6 +67,7 @@ class Media extends Model {
 		$html = '<img ';
 
 		foreach ( $attr as $name => $value ) {
+			$value = 'src' === $name ? esc_url( $value ) : esc_attr( $value );
 			$html .= " $name=" . '"' . $value . '"';
 		}
 

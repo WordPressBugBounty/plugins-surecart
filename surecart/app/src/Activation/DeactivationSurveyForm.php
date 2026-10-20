@@ -6,11 +6,18 @@ namespace SureCart\Activation;
  */
 class DeactivationSurveyForm {
 	/**
-	 * Feedback URL.
+	 * Reasons the platform accepts for plugin_deactivated.
 	 *
-	 * @var string
+	 * @var string[]
 	 */
-	private $feedback_api_endpoint = 'api/plugin-deactivate';
+	const REASONS = [
+		'temporary',
+		'not_working',
+		'found_alternative',
+		'missing_feature',
+		'too_complex',
+		'other',
+	];
 
 	/**
 	 * Bootstrap.
@@ -40,13 +47,11 @@ class DeactivationSurveyForm {
 	public function showFeedbackForm() {
 		// Set default arguments for the feedback form.
 		$args = array(
-			'source'            => 'User Deactivation Survey',
 			'popup_reasons'     => $this->getDefaultReasons(),
-			'popup_description' => __( 'If you have a moment, please share why you are deactivating the plugin.', 'surecart' ),
+			'popup_description' => __( 'If you have a moment, please share why you are deactivating the plugin. Your answer is sent to SureCart.', 'surecart' ),
 			'id'                => 'deactivation-survey-surecart',
 			'popup_logo'        => esc_url( trailingslashit( plugin_dir_url( SURECART_PLUGIN_FILE ) ) . 'images/icon.svg' ),
 			'plugin_slug'       => 'surecart',
-			'plugin_version'    => \SureCart::plugin()->version(),
 			'popup_title'       => __( 'Quick Feedback', 'surecart' ),
 			'support_url'       => 'https://surecart.com/support/',
 		);
@@ -104,9 +109,6 @@ class DeactivationSurveyForm {
 						<div class="uds-feedback-form-sumbit--actions">
 						<button class="button button-primary uds-feedback-submit" data-action="submit"><?php esc_html_e( 'Submit & Deactivate', 'surecart' ); ?></button>
 						<button class="button button-secondary uds-feedback-skip" data-action="skip"><?php esc_html_e( 'Skip & Deactivate', 'surecart' ); ?></button>
-							<input type="hidden" name="referer" value="<?php echo esc_url( get_site_url() ); ?>">
-							<input type="hidden" name="version" value="<?php echo esc_attr( $args['plugin_version'] ); ?>">
-							<input type="hidden" name="source" value="<?php echo esc_attr( $args['plugin_slug'] ); ?>">
 						</div>
 					</form>
 				</div>
@@ -149,10 +151,11 @@ class DeactivationSurveyForm {
 	}
 
 	/**
-	 * Sends plugin deactivation feedback to the server.
+	 * Record the deactivation reason as a plugin_deactivated telemetry event.
 	 *
-	 * This function checks the user's permission and verifies the nonce for the request.
-	 * If the checks pass, it sends the feedback data to the server for processing.
+	 * An unknown reason records nothing but still answers success,
+	 * so the survey never blocks deactivation. The comment is dropped
+	 * for reasons whose textarea is hidden, as it may be left over from another choice.
 	 *
 	 * @return void
 	 */
@@ -171,31 +174,27 @@ class DeactivationSurveyForm {
 			wp_send_json_error( array( 'message' => __( 'Sorry, you are not allowed to do this operation.', 'surecart' ) ) );
 		}
 
-		/**
-		 * Get the feedback data.
-		 */
-		$feedback_data = array(
-			'reason'      => isset( $_POST['reason'] ) ? sanitize_text_field( wp_unslash( $_POST['reason'] ) ) : '',
-			'feedback'    => isset( $_POST['feedback'] ) ? sanitize_text_field( wp_unslash( $_POST['feedback'] ) ) : '',
-			'domain_name' => isset( $_POST['referer'] ) ? sanitize_text_field( wp_unslash( $_POST['referer'] ) ) : '',
-			'version'     => isset( $_POST['version'] ) ? sanitize_text_field( wp_unslash( $_POST['version'] ) ) : '',
-			'plugin'      => isset( $_POST['source'] ) ? sanitize_text_field( wp_unslash( $_POST['source'] ) ) : '',
-		);
+		$reason   = isset( $_POST['reason'] ) ? sanitize_key( wp_unslash( $_POST['reason'] ) ) : '';
+		// Capped so an oversized comment can't get the whole event rejected.
+		$feedback = isset( $_POST['feedback'] ) ? mb_substr( sanitize_text_field( wp_unslash( $_POST['feedback'] ) ), 0, 1000 ) : '';
 
-		/**
-		 * Send the feedback data to the server.
-		 */
-		wp_safe_remote_post(
-			$this->getApiUrl() . $this->feedback_api_endpoint,
-			array(
-				'body'     => wp_json_encode( $feedback_data ),
-				'headers'  => array(
-					'Content-Type' => 'application/json',
-					'Accept'       => 'application/json',
-				),
-				'blocking' => false, // don't wait for the response.
-			)
-		);
+		if ( in_array( $reason, self::REASONS, true ) ) {
+			$reasons = $this->getDefaultReasons();
+			if ( 'false' === ( $reasons[ $reason ]['accept_feedback'] ?? 'true' ) ) {
+				$feedback = '';
+			}
+
+			\SureCart::telemetry()->record(
+				'plugin_deactivated',
+				[
+					'reason'         => $reason,
+					'reason_comment' => '' !== $feedback ? $feedback : null,
+				]
+			);
+
+			// WordPress deactivates the plugin right after this, and Action Scheduler stops running our hook.
+			\SureCart::telemetrySender()->flush();
+		}
 
 		/**
 		 * Send success response.
@@ -209,34 +208,45 @@ class DeactivationSurveyForm {
 	 * @return array Default reasons.
 	 */
 	public function getDefaultReasons() {
+		/**
+		 * Filter the deactivation survey reasons. Keys must be platform reason values.
+		 *
+		 * @param array $reasons Reasons keyed by platform value.
+		 */
 		return apply_filters(
-			'uds_default_deactivation_reasons',
+			'surecart/deactivation_reasons',
 			array(
-				'temporary_deactivation' => array(
+				'temporary'         => array(
 					'label'           => esc_html__( 'This is a temporary deactivation for testing.', 'surecart' ),
 					'placeholder'     => esc_html__( 'How can we assist you?', 'surecart' ),
 					'show_cta'        => 'false',
 					'accept_feedback' => 'false',
 				),
-				'plugin_not_working'     => array(
+				'not_working'       => array(
 					'label'           => esc_html__( 'Something isn\'t working properly.', 'surecart' ),
 					'placeholder'     => esc_html__( 'Please tell us more about what went wrong?', 'surecart' ),
 					'show_cta'        => 'true',
 					'accept_feedback' => 'true',
 				),
-				'found_better_plugin'    => array(
+				'found_alternative' => array(
 					'label'           => esc_html__( 'I found a better alternative.', 'surecart' ),
 					'placeholder'     => esc_html__( 'Could you please specify which solution?', 'surecart' ),
 					'show_cta'        => 'false',
 					'accept_feedback' => 'true',
 				),
-				'missing_a_feature'      => array(
+				'missing_feature'   => array(
 					'label'           => esc_html__( 'It\'s missing a specific feature.', 'surecart' ),
 					'placeholder'     => esc_html__( 'Please tell us more about the feature.', 'surecart' ),
 					'show_cta'        => 'false',
 					'accept_feedback' => 'true',
 				),
-				'other'                  => array(
+				'too_complex'       => array(
+					'label'           => esc_html__( 'It\'s too complicated to set up or use.', 'surecart' ),
+					'placeholder'     => esc_html__( 'What was hard to set up or use?', 'surecart' ),
+					'show_cta'        => 'false',
+					'accept_feedback' => 'true',
+				),
+				'other'             => array(
 					'label'           => esc_html__( 'Other', 'surecart' ),
 					'placeholder'     => esc_html__( 'Please tell us more details.', 'surecart' ),
 					'show_cta'        => 'false',
@@ -285,14 +295,5 @@ class DeactivationSurveyForm {
 
 		// Check for both regular and network admin plugins screens.
 		return ! empty( $screen_id ) && ( 'plugins' === $screen_id || 'plugins-network' === $screen_id );
-	}
-
-	/**
-	 * Get API URL for sending analytics.
-	 *
-	 * @return string API URL.
-	 */
-	public function getApiUrl() {
-		return defined( 'BSF_ANALYTICS_API_BASE_URL' ) ? BSF_ANALYTICS_API_BASE_URL : 'https://analytics.brainstormforce.com/';
 	}
 }

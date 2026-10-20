@@ -3,6 +3,7 @@
 namespace SureCart\WordPress\Admin\StarterTemplates;
 
 use SureCart\Concerns\FindsPluginFile;
+use SureCart\Models\ApiToken;
 
 /**
  * Interop patches for the third-party Starter Templates (Astra Sites) plugin's
@@ -14,6 +15,13 @@ use SureCart\Concerns\FindsPluginFile;
  */
 class StarterTemplatesAjaxInterop {
 	use FindsPluginFile;
+
+	/**
+	 * API token held across the site options reset.
+	 *
+	 * @var string
+	 */
+	protected $kept_token = '';
 
 	/**
 	 * Remap Starter Templates' required-plugin `init` paths to the plugin
@@ -80,5 +88,44 @@ class StarterTemplatesAjaxInterop {
 		}
 
 		delete_transient( 'st_wxr_importer_progress' );
+	}
+
+	/**
+	 * Keep the SureCart API token through every Starter Templates site options reset.
+	 *
+	 * The reset deletes `sc_api_token` whenever the template requires SureCart,
+	 * which disconnects a store that already exists. A later SureCart step then
+	 * finds no store and creates a second one, orphaning the first, so a
+	 * connected store keeps its token whichever screen runs the import.
+	 *
+	 * Runs at priority 0 on `wp_ajax_astra-sites-reset_site_options`. The handler
+	 * ends with wp_send_json(), so the token is put back on `shutdown`.
+	 *
+	 * @return void
+	 */
+	public function keepApiTokenThroughReset() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$this->kept_token = ApiToken::get();
+		if ( empty( $this->kept_token ) ) {
+			return;
+		}
+
+		add_action( 'shutdown', [ $this, 'restoreApiToken' ] );
+	}
+
+	/**
+	 * Put the token kept by keepApiTokenThroughReset() back if the reset removed it.
+	 *
+	 * @return void
+	 */
+	public function restoreApiToken() {
+		if ( empty( $this->kept_token ) || ApiToken::get() === $this->kept_token ) {
+			return;
+		}
+
+		ApiToken::save( $this->kept_token );
 	}
 }

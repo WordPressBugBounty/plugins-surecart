@@ -337,6 +337,7 @@ class AdminMenuPageService {
 		 */
 		$this->pages += array(
 			'get-started'     => \add_submenu_page( $this->slug, __( 'Dashboard', 'surecart' ), '<span class="sc-menu-divider">' . __( 'Dashboard', 'surecart' ) . '</span>', 'manage_sc_shop_settings', 'sc-dashboard', '__return_false' ),
+			'setup-guide'     => $this->addSetupGuidePage(),
 			'complete-signup' => \add_submenu_page( '', __( 'Complete Signup', 'surecart' ), __( 'Complete Signup', 'surecart' ), 'manage_options', 'sc-complete-signup', '__return_false' ),
 			'claim-account'   => \add_submenu_page( '', __( 'Claim Account', 'surecart' ), __( 'Claim Account', 'surecart' ), 'manage_options', 'sc-claim-account', '__return_false' ),
 		);
@@ -615,6 +616,38 @@ class AdminMenuPageService {
 		$remaining = \SureCart::settings()->getLearnRemainingSteps();
 		return $remaining > 0
 			? sprintf( ' <span class="awaiting-mod">%d</span>', $remaining )
+			: '';
+	}
+
+	/**
+	 * Register the setup guide page; out of the menu once the merchant hid it, though its URL still works.
+	 *
+	 * @return string|false The page hook suffix, or false without the capability.
+	 */
+	protected function addSetupGuidePage() {
+		if ( current_user_can( 'manage_options' ) && \SureCart::setupGuide()->isDismissed( 'guide' ) ) {
+			return \add_submenu_page( '', __( 'Setup guide', 'surecart' ), __( 'Setup guide', 'surecart' ), 'manage_options', 'sc-setup-guide', '__return_false' );
+		}
+
+		return \add_submenu_page( $this->slug, __( 'Setup guide', 'surecart' ), __( 'Setup guide', 'surecart' ) . $this->getSetupGuideBadge(), 'manage_options', 'sc-setup-guide', '__return_false' );
+	}
+
+	/**
+	 * Get the setup guide menu badge showing remaining steps count.
+	 *
+	 * Reads progress already computed for this store and never seeds it, so the menu costs no API call.
+	 * Stores without computed progress show no badge until the guide or bar computes it.
+	 *
+	 * @return string
+	 */
+	protected function getSetupGuideBadge() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return '';
+		}
+
+		$remaining = \SureCart::setupGuide()->computedRemaining();
+		return $remaining > 0
+			? sprintf( ' <span class="awaiting-mod">%s</span>', esc_html( number_format_i18n( $remaining ) ) )
 			: '';
 	}
 }

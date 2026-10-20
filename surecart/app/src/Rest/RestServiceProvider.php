@@ -89,6 +89,33 @@ abstract class RestServiceProvider extends \WP_REST_Controller implements RestSe
 	 */
 	public function bootstrap( $container ) {
 		add_action( 'rest_api_init', [ $this, 'registerModelRoutes' ] );
+		add_filter( 'rest_request_before_callbacks', [ __CLASS__, 'forceUrlParams' ], 10, 3 );
+	}
+
+	/**
+	 * Make route captures win over body and query values of the same name.
+	 *
+	 * WP_REST_Request reads JSON, POST and GET before URL captures, so a body of
+	 * `{"id":"<uuid>/manually_pay"}` would turn an update into a different upstream call.
+	 *
+	 * @param \WP_REST_Response|\WP_Error|mixed $response Result to send to the client.
+	 * @param array                             $handler  Route handler used for the request.
+	 * @param \WP_REST_Request                  $request  Request used to generate the response.
+	 *
+	 * @return \WP_REST_Response|\WP_Error|mixed
+	 */
+	public static function forceUrlParams( $response, $handler, $request ) {
+		if ( 0 !== stripos( $request->get_route(), '/surecart/v1/' ) ) {
+			return $response;
+		}
+
+		foreach ( $request->get_url_params() as $key => $value ) {
+			if ( $value !== $request->get_param( $key ) ) {
+				$request->set_param( $key, $value );
+			}
+		}
+
+		return $response;
 	}
 
 	/**

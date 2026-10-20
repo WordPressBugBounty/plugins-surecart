@@ -37,10 +37,11 @@
 	}
 </style>
 
+<?php
+// Outside the header: the dashboard hides the header but still shows the bar.
+\SureCart::render( 'layouts/partials/setup-bar' );
+?>
 <div id="sc-admin-header"<?php echo ! empty( $hidden ) ? ' style="display:none"' : ''; ?>>
-	<?php if ( ! empty( $claim_url ) || ! empty( $claim_expired ) ) : ?>
-		<sc-provisional-banner claim-url="<?php echo esc_url( $claim_url ); ?>" expired="<?php echo ! empty( $claim_expired ) ? 'true' : 'false'; ?>"></sc-provisional-banner>
-	<?php endif; ?>
 	<div id="sc-admin-container">
 		<?php if ( ! empty( $breadcrumbs ) ) : ?>
 			<sc-breadcrumbs style="font-size: 16px">

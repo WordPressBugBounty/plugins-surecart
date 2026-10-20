@@ -30,10 +30,11 @@ class QueueService {
 	 * @param string $hook The hook to trigger.
 	 * @param array  $args Arguments to pass when the hook triggers.
 	 * @param string $group The group to assign this job to.
+	 * @param bool   $unique If true, ensure this action is not already scheduled.
 	 * @return string $this.
 	 */
-	public function scheduleSingle( $timestamp, $hook, $args = array(), $group = '' ) {
-		\as_schedule_single_action( $timestamp, $hook, $args, $group );
+	public function scheduleSingle( $timestamp, $hook, $args = array(), $group = '', $unique = false ) {
+		\as_schedule_single_action( $timestamp, $hook, $args, $group, $unique );
 		return $this;
 	}
 
@@ -45,10 +46,11 @@ class QueueService {
 	 * @param string $hook The hook to trigger.
 	 * @param array  $args Arguments to pass when the hook triggers.
 	 * @param string $group The group to assign this job to.
+	 * @param bool   $unique If true, ensure this action is not already scheduled.
 	 * @return string $this.
 	 */
-	public function scheduleRecurring( $timestamp, $interval_in_seconds, $hook, $args = array(), $group = '' ) {
-		\as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group );
+	public function scheduleRecurring( $timestamp, $interval_in_seconds, $hook, $args = array(), $group = '', $unique = false ) {
+		\as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group, $unique );
 		return $this;
 	}
 

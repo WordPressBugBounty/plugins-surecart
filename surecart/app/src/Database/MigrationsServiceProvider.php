@@ -4,6 +4,7 @@ namespace SureCart\Database;
 
 use SureCart\Database\Tables\IncomingWebhook;
 use SureCart\Database\Tables\Integrations;
+use SureCart\Database\Tables\TelemetryEvents;
 use SureCart\Database\Tables\VariantOptionValues;
 use SureCartCore\ServiceProviders\ServiceProviderInterface;
 
@@ -27,6 +28,10 @@ class MigrationsServiceProvider implements ServiceProviderInterface {
 
 		$container['surecart.tables.variant_option_values'] = function () {
 			return new VariantOptionValues( new Table() );
+		};
+
+		$container['surecart.tables.telemetry_events'] = function () {
+			return new TelemetryEvents( new Table() );
 		};
 
 		$container['surecart.migrations.usermeta'] = function () {
@@ -63,6 +68,7 @@ class MigrationsServiceProvider implements ServiceProviderInterface {
 		$container['surecart.tables.integrations']->install();
 		$container['surecart.tables.webhooks.incoming']->install();
 		$container['surecart.tables.variant_option_values']->install();
+		$container['surecart.tables.telemetry_events']->install();
 		$container['surecart.migrations.usermeta']->bootstrap();
 		$container['surecart.migrations.webhook']->bootstrap();
 		$container['surecart.migrations.rewrites']->bootstrap();

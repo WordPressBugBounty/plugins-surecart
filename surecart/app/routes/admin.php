@@ -74,22 +74,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /*
 |--------------------------------------------------------------------------
+| Setup Guide
+|--------------------------------------------------------------------------
+*/
+\SureCart::route()
+->get()
+->where( 'admin', 'sc-setup-guide' )
+->name( 'setup_guide.show' )
+->middleware( 'user.can:manage_options' )
+->middleware( 'assets.components' )
+->setNamespace( '\\SureCart\\Controllers\\Admin\\SetupGuide\\' )
+->handle( 'SetupGuideController@index' );
+
+/*
+|--------------------------------------------------------------------------
 | Complete Signup
 |--------------------------------------------------------------------------
+|
+| The hosted signup's return URL. Kept as a redirect to onboarding for a few
+| releases so stale links still land somewhere useful.
+|
 */
 \SureCart::route()
 ->get()
 ->where( 'admin', 'sc-complete-signup' )
 ->middleware( 'user.can:manage_options' )
-->middleware( 'assets.components' )
-->middleware( 'assets.brand_colors' )
 ->setNamespace( '\\SureCart\\Controllers\\Admin\\Onboarding\\' )
-->group(
-	function () {
-		\SureCart::route()->get()->handle( 'OnboardingController@complete' );
-		\SureCart::route()->post()->middleware( 'nonce:update_plugin_settings' )->handle( 'OnboardingController@save' );
-	}
-);
+->handle( 'OnboardingController@completeSignup' );
 
 
 /*

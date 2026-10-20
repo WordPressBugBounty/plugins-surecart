@@ -340,4 +340,13 @@ class ProductsController extends RestController {
 
 		return rest_ensure_response( [ 'count' => $count ] );
 	}
+
+	/**
+	 * WooCommerce import state, for the setup guide's poll.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function wooCommerceImportStatus() {
+		return rest_ensure_response( \SureCart::sync()->woocommerce_products()->status() );
+	}
 }

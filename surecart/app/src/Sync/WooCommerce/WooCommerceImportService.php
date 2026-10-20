@@ -81,6 +81,15 @@ class WooCommerceImportService {
 	}
 
 	/**
+	 * Products the platform accepted from the latest import, kept until the next one starts.
+	 *
+	 * @return int
+	 */
+	public function importedCount(): int {
+		return $this->import_state->getImportedCount();
+	}
+
+	/**
 	 * Dispatch the import job.
 	 *
 	 * Only one import can run at a time — isRunning() prevents concurrent dispatches.
@@ -92,18 +101,55 @@ class WooCommerceImportService {
 	 * @return array|\WP_Error
 	 */
 	public function dispatch( $batch_size = 100 ) {
+		$this->recordStarted();
+
 		// Clear previously accumulated import IDs and session tracking.
 		$this->import_state->reset();
+		$this->import_state->markCompletionUnreported();
 
 		$batch_size = apply_filters( 'surecart/sync/woocommerce_products/batch_size', $batch_size );
 		$batch_size = max( 1, min( 500, (int) $batch_size ) );
 
-		return $this->job()->push_to_queue(
+		$dispatched = $this->job()->push_to_queue(
 			[
 				'page'       => 1,
 				'batch_size' => $batch_size,
 			]
 		)->save()->dispatch();
+
+		if ( is_wp_error( $dispatched ) ) {
+			$this->import_state->claimCompletionReport();
+			\SureCart::telemetry()->record(
+				'product_import_failed',
+				[
+					'origin'     => 'woocommerce',
+					'stage'      => 'dispatch',
+					'error_code' => (string) $dispatched->get_error_code(),
+				]
+			);
+		}
+
+		return $dispatched;
+	}
+
+	/**
+	 * Record the import start, with how many products it will try.
+	 *
+	 * @return void
+	 */
+	protected function recordStarted() {
+		// The count costs a meta query, so it is skipped when the event would be dropped anyway.
+		if ( true !== \SureCart::telemetry()->consent() ) {
+			return;
+		}
+
+		\SureCart::telemetry()->record(
+			'product_import_started',
+			[
+				'origin'             => 'woocommerce',
+				'products_attempted' => $this->getImportableCount(),
+			]
+		);
 	}
 
 	/**
@@ -266,6 +312,64 @@ class WooCommerceImportService {
 	}
 
 	/**
+	 * Import state for the REST layer and the completion notice, so both agree.
+	 *
+	 * `results_url` is set only once the run has finished and there is something
+	 * to show. `getImportableCount()` stays out on purpose — it is expensive.
+	 *
+	 * @return array{running: bool, import_ids: array, session_id: string|null, skipped_count: int, results_url: string}
+	 */
+	public function status() {
+		$state      = $this->import_state;
+		$import_ids = $state->getResultIds();
+		$skipped    = $state->getSkippedItems();
+
+		$status = [
+			'running'       => $this->isRunning(),
+			'import_ids'    => $import_ids,
+			'session_id'    => $state->getSessionId(),
+			'skipped_count' => count( $skipped ),
+			'results_url'   => '',
+		];
+
+		if ( $status['running'] ) {
+			return $status;
+		}
+
+		$all_skipped_session_id = $state->getAllSkippedSessionId();
+
+		// Lazily detect the all-skipped case: no imports created but skipped products exist.
+		// This mutation lives here (not in Job::complete()) because the Job finishes before
+		// tasks complete — tasks run async via Action Scheduler, so result IDs aren't available
+		// yet at Job::complete() time. The write is idempotent (same session_id every time), so
+		// concurrent admin page loads are harmless.
+		if ( empty( $import_ids ) && ! $all_skipped_session_id && $status['session_id'] && ! empty( $skipped ) ) {
+			$state->markAllSkipped();
+			$all_skipped_session_id = $state->getAllSkippedSessionId();
+		}
+
+		if ( ! empty( $import_ids ) ) {
+			$status['results_url'] = \SureCart::getUrl()->importResults( 'products', $import_ids, $status['session_id'] );
+		} elseif ( $all_skipped_session_id ) {
+			$status['results_url'] = \SureCart::getUrl()->importResultsBySession( 'products', $all_skipped_session_id );
+		}
+
+		// Polls and admin notices all land here; only the first one after the run finishes reports it.
+		if ( $state->claimCompletionReport() ) {
+			\SureCart::telemetry()->record(
+				'product_import_completed',
+				[
+					'origin'            => 'woocommerce',
+					'products_imported' => $state->getImportedCount(),
+					'products_failed'   => $status['skipped_count'],
+				]
+			);
+		}
+
+		return $status;
+	}
+
+	/**
 	 * Show a completion notice after import finishes.
 	 *
 	 * @return void
@@ -276,41 +380,19 @@ class WooCommerceImportService {
 			return;
 		}
 
-		// don't show if import is still running.
-		if ( $this->isRunning() ) {
+		$status = $this->status();
+
+		// still running, or nothing to show.
+		if ( $status['running'] ) {
+			return;
+		}
+		if ( empty( $status['results_url'] ) ) {
 			return;
 		}
 
-		$state                  = $this->import_state;
-		$import_ids             = $state->getResultIds();
-		$all_skipped_session_id = $state->getAllSkippedSessionId();
-
-		// Lazily detect the all-skipped case: no imports created but skipped products exist.
-		// This mutation lives in the notice renderer (not in Job::complete()) because the Job
-		// finishes before tasks complete — tasks run async via Action Scheduler, so result IDs
-		// aren't available yet at Job::complete() time. The write is idempotent (same session_id
-		// every time), so concurrent admin page loads are harmless.
-		if ( empty( $import_ids ) && ! $all_skipped_session_id ) {
-			if ( $state->getSessionId() && ! empty( $state->getSkippedItems() ) ) {
-				$state->markAllSkipped();
-				$all_skipped_session_id = $state->getAllSkippedSessionId();
-			}
-		}
-
-		// Generate results URL and notice name per branch.
-		$notice_name = '';
-		if ( ! empty( $import_ids ) ) {
-			// Normal case: has import_ids.
-			$results_url = \SureCart::getUrl()->importResults( 'products', $import_ids, $state->getSessionId() );
-			$notice_name = 'woo_import_complete_' . md5( implode( ',', $import_ids ) );
-		} elseif ( $all_skipped_session_id ) {
-			// All-skipped case: use session_id.
-			$results_url = \SureCart::getUrl()->importResultsBySession( 'products', $all_skipped_session_id );
-			$notice_name = 'woo_import_complete_' . md5( $all_skipped_session_id );
-		} else {
-			// No data available, skip notice.
-			return;
-		}
+		// Keyed by what the URL points at, so each run gets its own dismissable notice.
+		$notice_key  = ! empty( $status['import_ids'] ) ? implode( ',', $status['import_ids'] ) : (string) $this->import_state->getAllSkippedSessionId();
+		$notice_name = 'woo_import_complete_' . md5( $notice_key );
 
 		echo wp_kses_post(
 			\SureCart::notices()->render(
@@ -321,7 +403,7 @@ class WooCommerceImportService {
 					'text'  => '<p>' . sprintf(
 						/* translators: %s: URL to import results page */
 						__( 'The import has finished. <a href="%s">View Import Results</a>', 'surecart' ),
-						esc_url( $results_url )
+						esc_url( $status['results_url'] )
 					) . '</p>',
 				]
 			)

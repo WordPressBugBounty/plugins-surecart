@@ -135,6 +135,7 @@ class WooCommerceImportTask extends Task {
 			}
 
 			$this->import_state->appendResultId( $import->id );
+			$this->import_state->addImportedCount( count( $imported_product_ids ) );
 		}
 	}
 

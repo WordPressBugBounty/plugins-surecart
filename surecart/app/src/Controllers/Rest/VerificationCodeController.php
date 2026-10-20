@@ -94,7 +94,7 @@ class VerificationCodeController extends RestController {
 			);
 		}
 
-		$created = $model->where( $request->get_query_params() )->create(
+		$created = $model->create(
 			[
 				'email' => $email,
 			]
@@ -291,7 +291,7 @@ class VerificationCodeController extends RestController {
 		set_transient( $key, $attempts + 1, self::LOCKOUT_WINDOW );
 
 		// verify the code.
-		$verify = $model->where( $request->get_query_params() )->verify(
+		$verify = $model->verify(
 			[
 				'email' => $email,
 				'code'  => $request->get_param( 'code' ),
@@ -305,6 +305,11 @@ class VerificationCodeController extends RestController {
 
 		// code is invalid or not verified.
 		if ( empty( $verify->verified ) ) {
+			return new \WP_Error( 'invalid_code', __( 'Invalid verification code', 'surecart' ), [ 'status' => 400 ] );
+		}
+
+		// the code must belong to this user.
+		if ( 0 !== strcasecmp( (string) ( $verify->email ?? '' ), $email ) ) {
 			return new \WP_Error( 'invalid_code', __( 'Invalid verification code', 'surecart' ), [ 'status' => 400 ] );
 		}
 
