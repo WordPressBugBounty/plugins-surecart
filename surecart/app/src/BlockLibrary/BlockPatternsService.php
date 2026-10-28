@@ -53,6 +53,10 @@ class BlockPatternsService {
 			'surecart_shop'             => [ 'label' => __( 'Shop', 'surecart' ) ],
 			'surecart_product_page'     => [ 'label' => __( 'Product Page', 'surecart' ) ],
 			'surecart_related_products' => [ 'label' => __( 'Related Products', 'surecart' ) ],
+			'surecart_cart'             => [ 'label' => __( 'Cart', 'surecart' ) ],
+			'surecart_review_list'      => [ 'label' => __( 'Product Reviews', 'surecart' ) ],
+			'surecart_sticky_purchase'  => [ 'label' => __( 'Sticky Purchase', 'surecart' ) ],
+			'surecart_upsell'           => [ 'label' => __( 'Upsell', 'surecart' ) ],
 		];
 		$this->registerCategories();
 		$this->registerPatterns();
@@ -92,24 +96,24 @@ class BlockPatternsService {
 	 * @return void
 	 */
 	public function registerPatterns() {
-		// register the block patterns from patterns directory.
-		$patterns = glob( plugin_dir_path( SURECART_PLUGIN_FILE ) . 'templates/patterns/*.php' );
+		// Register the block patterns from the patterns directory.
+		// Load each file exactly once — a `require` inside the sort
+		// comparator would re-evaluate every file O(n log n) times.
+		$patterns = [];
+		foreach ( glob( plugin_dir_path( SURECART_PLUGIN_FILE ) . 'templates/patterns/*.php' ) as $pattern_file ) {
+			$patterns[ 'surecart-' . basename( $pattern_file, '.php' ) ] = require $pattern_file;
+		}
 
 		// sort by priority key.
-		usort(
+		uasort(
 			$patterns,
 			function ( $a, $b ) {
-				$a = require $a;
-				$b = require $b;
 				return ( $a['priority'] ?? 0 ) <=> ( $b['priority'] ?? 0 );
 			}
 		);
 
-		foreach ( $patterns as $pattern_file ) {
-			register_block_pattern(
-				'surecart-' . basename( $pattern_file, '.php' ),
-				require $pattern_file
-			);
+		foreach ( $patterns as $name => $pattern ) {
+			register_block_pattern( $name, $pattern );
 		}
 
 		/**

@@ -58,14 +58,4 @@ class PerfmattersCacheService extends CacheService {
 	protected function isCachePluginActive(): bool {
 		return defined( 'PERFMATTERS_VERSION' );
 	}
-
-	/**
-	 * Disable cache for the current page.
-	 *
-	 * No-op — Perfmatters does not cache pages.
-	 *
-	 * @param string $reason Reason for disabling cache.
-	 * @return void
-	 */
-	protected function disableCache( string $reason ): void {}
 }

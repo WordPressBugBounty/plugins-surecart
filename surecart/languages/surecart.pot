@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: SureCart 4.11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-20T18:56:24+00:00\n"
+"POT-Creation-Date: 2026-10-28T19:10:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -15,43 +15,16 @@ msgstr ""
 msgid "No matching template found"
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:197
-msgid "Filter rule tree is too deeply nested."
-msgstr ""
-
-#: src/Abilities/Abilities/AbstractAbility.php:201
-#: src/Abilities/Abilities/FilterCustomers.php:116
-#: src/Abilities/Abilities/FilterOrders.php:116
-#: src/Abilities/Abilities/FilterSubscriptions.php:116
-msgid "The filter must be a condition or group object."
-msgstr ""
-
-#: src/Abilities/Abilities/AbstractAbility.php:209
-msgid "A group combinator must be \"and\" or \"or\"."
-msgstr ""
-
-#: src/Abilities/Abilities/AbstractAbility.php:214
-msgid "A group must have at least one condition."
-msgstr ""
-
-#: src/Abilities/Abilities/AbstractAbility.php:218
-msgid "A group has too many conditions (max 50)."
-msgstr ""
-
-#: src/Abilities/Abilities/AbstractAbility.php:247
-msgid "Each rule must have a type of \"condition\" or \"group\"."
-msgstr ""
-
 #. translators: %s: comma-separated list of valid interval values
-#: src/Abilities/Abilities/AbstractAbility.php:279
+#: src/Abilities/Abilities/AbstractAbility.php:213
 msgid "Invalid interval. Allowed values: %s"
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:288
+#: src/Abilities/Abilities/AbstractAbility.php:222
 msgid "start_date must be in YYYY-MM-DD format."
 msgstr ""
 
-#: src/Abilities/Abilities/AbstractAbility.php:296
+#: src/Abilities/Abilities/AbstractAbility.php:230
 msgid "end_date must be in YYYY-MM-DD format."
 msgstr ""
 
@@ -683,21 +656,21 @@ msgstr ""
 msgid "The product ID to duplicate."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterCustomers.php:23
+#: src/Abilities/Abilities/FilterCustomers.php:24
 msgid "Filter Customers"
 msgstr ""
 
-#: src/Abilities/Abilities/FilterCustomers.php:30
+#: src/Abilities/Abilities/FilterCustomers.php:31
 msgid "Retrieve a paginated list of customers matching a rule tree. Supports single conditions and nested and/or groups across any filterable attribute. Call get-customers-filter-schema first to discover valid attribute_name, operator_label, and supported_values."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterCustomers.php:67
+#: src/Abilities/Abilities/FilterCustomers.php:68
 msgid "The rule tree to filter by. A single condition is { \"type\":\"condition\", \"attribute_name\":<key from filter schema>, \"operator_label\":<one of the attribute operators>, \"comparison_value\":<string value> }. A group is { \"type\":\"group\", \"combinator\":\"and\"|\"or\", \"conditions\":[ <condition or nested group>, ... ] }. Groups may be nested. Call get-customers-filter-schema to discover valid attribute_name, operator_label, and supported_values."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterCustomers.php:71
-#: src/Abilities/Abilities/FilterOrders.php:71
-#: src/Abilities/Abilities/FilterSubscriptions.php:71
+#: src/Abilities/Abilities/FilterCustomers.php:72
+#: src/Abilities/Abilities/FilterOrders.php:72
+#: src/Abilities/Abilities/FilterSubscriptions.php:72
 #: src/Abilities/Abilities/ListAbandonedCheckouts.php:81
 #: src/Abilities/Abilities/ListCoupons.php:81
 #: src/Abilities/Abilities/ListCustomers.php:76
@@ -712,41 +685,48 @@ msgstr ""
 msgid "Page number for pagination."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterCustomers.php:76
+#: src/Abilities/Abilities/FilterCustomers.php:77
 #: src/Abilities/Abilities/ListCustomers.php:81
 msgid "Number of customers per page (max 100)."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterOrders.php:23
+#: src/Abilities/Abilities/FilterCustomers.php:117
+#: src/Abilities/Abilities/FilterOrders.php:117
+#: src/Abilities/Abilities/FilterSubscriptions.php:117
+#: src/Support/RuleTree.php:40
+msgid "The filter must be a condition or group object."
+msgstr ""
+
+#: src/Abilities/Abilities/FilterOrders.php:24
 msgid "Filter Orders"
 msgstr ""
 
-#: src/Abilities/Abilities/FilterOrders.php:30
+#: src/Abilities/Abilities/FilterOrders.php:31
 msgid "Retrieve a paginated list of orders matching a rule tree. Supports single conditions and nested and/or groups across any filterable attribute. Call get-orders-filter-schema first to discover valid attribute_name, operator_label, and supported_values."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterOrders.php:67
+#: src/Abilities/Abilities/FilterOrders.php:68
 msgid "The rule tree to filter by. A single condition is { \"type\":\"condition\", \"attribute_name\":<key from filter schema>, \"operator_label\":<one of the attribute operators>, \"comparison_value\":<string value> }. A group is { \"type\":\"group\", \"combinator\":\"and\"|\"or\", \"conditions\":[ <condition or nested group>, ... ] }. Groups may be nested. Call get-orders-filter-schema to discover valid attribute_name, operator_label, and supported_values."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterOrders.php:76
+#: src/Abilities/Abilities/FilterOrders.php:77
 #: src/Abilities/Abilities/ListOrders.php:83
 msgid "Number of orders per page (max 100)."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterSubscriptions.php:23
+#: src/Abilities/Abilities/FilterSubscriptions.php:24
 msgid "Filter Subscriptions"
 msgstr ""
 
-#: src/Abilities/Abilities/FilterSubscriptions.php:30
+#: src/Abilities/Abilities/FilterSubscriptions.php:31
 msgid "Retrieve a paginated list of subscriptions matching a rule tree. Supports single conditions and nested and/or groups across any filterable attribute. Call get-subscriptions-filter-schema first to discover valid attribute_name, operator_label, and supported_values."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterSubscriptions.php:67
+#: src/Abilities/Abilities/FilterSubscriptions.php:68
 msgid "The rule tree to filter by. A single condition is { \"type\":\"condition\", \"attribute_name\":<key from filter schema>, \"operator_label\":<one of the attribute operators>, \"comparison_value\":<string value> }. A group is { \"type\":\"group\", \"combinator\":\"and\"|\"or\", \"conditions\":[ <condition or nested group>, ... ] }. Groups may be nested. Call get-subscriptions-filter-schema to discover valid attribute_name, operator_label, and supported_values."
 msgstr ""
 
-#: src/Abilities/Abilities/FilterSubscriptions.php:76
+#: src/Abilities/Abilities/FilterSubscriptions.php:77
 #: src/Abilities/Abilities/ListSubscriptions.php:80
 msgid "Number of subscriptions per page (max 100)."
 msgstr ""
@@ -1101,7 +1081,7 @@ msgid "List Orders"
 msgstr ""
 
 #: src/Abilities/Abilities/ListOrders.php:30
-msgid "Retrieve a paginated list of SureCart orders. Supports filtering by order status and customer ID. Returns order summaries with IDs, amounts, statuses, and timestamps."
+msgid "Retrieve a paginated list of SureCart orders. Supports filtering by order status and customer ID. Each order includes its expanded checkout with buyer name/email and any redeemed coupon or promotion code."
 msgstr ""
 
 #: src/Abilities/Abilities/ListOrders.php:69
@@ -1663,6 +1643,44 @@ msgstr ""
 msgid "Related Products"
 msgstr ""
 
+#: src/BlockLibrary/BlockPatternsService.php:56
+#: src/BlockLibrary/BlockServiceProvider.php:126
+#: src/Support/Blocks/TemplateUtilityService.php:375
+#: src/WordPress/Admin/Menus/AdminMenuPageService.php:458
+#: src/WordPress/PostTypes/CartPostTypeService.php:153
+#: cart.php:6
+#: settings/brand/BrandSettings.js:183
+#: Blocks/CartHeader/Block.php:21
+#: Blocks/CartHeader/edit.js:39
+#: src/blocks/cart-header/view.php:21
+#: src/blocks/cart-header/edit.js:40
+#: src/blocks/cart-header/edit.js:54
+msgid "Cart"
+msgstr ""
+
+#: src/BlockLibrary/BlockPatternsService.php:57
+#: src/Integrations/Bricks/Elements/ProductReviews.php:58
+#: src/Integrations/Bricks/Elements/ProductReviews.php:70
+#: src/Integrations/Elementor/ElementorTemplatesService.php:64
+#: src/Integrations/Elementor/Widgets/ProductReviews.php:28
+#: settings/review-protocol/ReviewProtocolSettings.js:49
+#: settings/review-protocol/ReviewProtocolSettings.js:77
+msgid "Product Reviews"
+msgstr ""
+
+#: src/BlockLibrary/BlockPatternsService.php:58
+#: src/Support/Blocks/TemplateUtilityService.php:381
+#: patterns/sticky-purchase.php:6
+msgid "Sticky Purchase"
+msgstr ""
+
+#: src/BlockLibrary/BlockPatternsService.php:59
+#: src/WordPress/Admin/Menus/AdminToolbarService.php:203
+#: products/modules/Prices/Price/Swap.js:20
+#: store/add-entities.js:40
+msgid "Upsell"
+msgstr ""
+
 #: src/BlockLibrary/BlockServiceProvider.php:118
 #: src/Controllers/Admin/AutoFees/AutoFeesListTable.php:227
 #: src/Controllers/Admin/Orders/OrdersListTable.php:261
@@ -1671,8 +1689,8 @@ msgstr ""
 #: forms/checkout.php:6
 #: auto-fees/list/fields/index.js:25
 #: auto-fees/utils/constants.js:178
-#: orders/list/fields/index.js:42
-#: orders/list/fields/index.js:215
+#: orders/list/fields/index.js:62
+#: orders/list/fields/index.js:240
 #: settings/advanced/AdvancedSettings.js:464
 #: settings/dynamic-pricing/utils.js:6
 #: settings/order/OrderProtocol.js:149
@@ -1698,20 +1716,6 @@ msgstr ""
 msgid "Customer Dashboard"
 msgstr ""
 
-#: src/BlockLibrary/BlockServiceProvider.php:126
-#: src/Support/Blocks/TemplateUtilityService.php:375
-#: src/WordPress/Admin/Menus/AdminMenuPageService.php:458
-#: src/WordPress/PostTypes/CartPostTypeService.php:153
-#: cart.php:6
-#: settings/brand/BrandSettings.js:183
-#: Blocks/CartHeader/Block.php:21
-#: Blocks/CartHeader/edit.js:39
-#: src/blocks/cart-header/view.php:21
-#: src/blocks/cart-header/edit.js:40
-#: src/blocks/cart-header/edit.js:54
-msgid "Cart"
-msgstr ""
-
 #: src/BlockLibrary/BlockServiceProvider.php:134
 #: src/Controllers/Admin/Reviews/ReviewsListTable.php:118
 #: src/Integrations/ThriveAutomator/DataFields/ProductDataField.php:109
@@ -1728,11 +1732,13 @@ msgstr ""
 #: customers/modules/Subscriptions.js:58
 #: invoices/modules/Prices.js:52
 #: licenses/list/fields/index.js:114
+#: orders/list/fields/index.js:264
 #: orders/modules/Refund/RefundHistory.js:129
 #: orders/modules/Subscriptions.js:49
 #: products/hooks/useBundleLabels.js:17
 #: reviews/list/fields/product.js:20
 #: store/add-entities.js:290
+#: subscriptions/list/fields/index.js:225
 #: subscriptions/show/modules/PendingUpdate.js:56
 #: upsell-funnels/modules/NewCondition.js:86
 #: Blocks/CheckoutForm/components/PriceChoices.js:46
@@ -1943,7 +1949,7 @@ msgstr ""
 #: customers/modules/Orders.js:65
 #: dashboard/Orders.js:151
 #: forms/list/fields/index.js:102
-#: orders/list/fields/index.js:220
+#: orders/list/fields/index.js:245
 #: orders/modules/Charges.js:79
 #: orders/modules/Dispute/DisputeHistory.js:66
 #: orders/modules/Refund/RefundHistory.js:132
@@ -1978,7 +1984,7 @@ msgstr ""
 #: invoices/list/fields/index.js:149
 #: invoices/modules/Payment.js:51
 #: invoices/modules/Prices.js:61
-#: orders/list/fields/index.js:177
+#: orders/list/fields/index.js:197
 #: orders/modules/LineItems/index.js:154
 #: subscriptions/edit/modules/Modals/UpdateRecentPrice.js:291
 #: subscriptions/edit/modules/Price.js:125
@@ -2057,7 +2063,7 @@ msgstr ""
 #: src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php:233
 #: src/Controllers/Admin/Orders/OrdersListTable.php:341
 #: abandoned-checkouts/list/fields/index.js:99
-#: orders/list/fields/index.js:88
+#: orders/list/fields/index.js:108
 msgid "By %s"
 msgstr ""
 
@@ -2225,7 +2231,7 @@ msgstr ""
 #: invoices/components/Status.js:18
 #: invoices/list/fields/index.js:83
 #: licenses/list/fields/index.js:138
-#: orders/list/fields/index.js:98
+#: orders/list/fields/index.js:118
 #: orders/modules/Charges.js:86
 #: orders/modules/Dispute/DisputeHistory.js:60
 #: orders/modules/InvoiceDetails/InvoiceStatus.js:15
@@ -2238,7 +2244,7 @@ msgstr ""
 #: reviews/list/fields/status.js:27
 #: settings/connection/IncomingWebhooks.js:144
 #: shipping-labels/list/fields/status.js:41
-#: subscriptions/list/fields/index.js:108
+#: subscriptions/list/fields/index.js:111
 #: subscriptions/show/modules/Periods.js:105
 #: upsell-funnels/list/fields/index.js:60
 msgid "Status"
@@ -2396,7 +2402,7 @@ msgstr ""
 #: src/Models/Payout.php:128
 #: affiliation-payouts/list/fields/index.js:14
 #: affiliation-payouts/list/useStatusTabs.js:18
-#: orders/list/fields/index.js:19
+#: orders/list/fields/index.js:24
 #: orders/list/useStatusTabs.js:25
 #: orders/modules/LineItems/index.js:34
 #: util.js:99
@@ -2410,7 +2416,7 @@ msgstr ""
 #: affiliation-payouts/list/fields/index.js:15
 #: affiliation-payouts/list/useStatusTabs.js:23
 #: setup-guide/components/StepRow.js:86
-#: subscriptions/list/fields/index.js:21
+#: subscriptions/list/fields/index.js:24
 #: sc-subscription-status-badge2.js:67
 msgid "Completed"
 msgstr ""
@@ -2477,7 +2483,7 @@ msgstr ""
 #: affiliations/modules/Referrals.js:64
 #: dashboard/Orders.js:111
 #: invoices/components/OrderPageLink.js:19
-#: orders/list/fields/index.js:65
+#: orders/list/fields/index.js:85
 #: reviews/modules/Product.js:64
 #: shipping-labels/components/RateTable.js:96
 #: shipping-labels/list/fields/order.js:44
@@ -2663,12 +2669,12 @@ msgstr ""
 #: src/Controllers/Admin/AffiliationReferrals/AffiliationReferralsListTable.php:439
 #: src/Controllers/Admin/Orders/OrdersListTable.php:80
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:67
-#: orders/list/fields/index.js:22
+#: orders/list/fields/index.js:27
 #: orders/list/useStatusTabs.js:40
 #: orders/modules/LineItems/index.js:37
 #: orders/modules/LineItems/index.js:38
 #: orders/modules/Refund/RefundHistory.js:40
-#: subscriptions/list/fields/index.js:20
+#: subscriptions/list/fields/index.js:23
 #: subscriptions/list/useStatusTabs.js:34
 #: sc-order-status-badge2.js:42
 #: sc-order-status-badge2.js:44
@@ -2716,9 +2722,9 @@ msgstr ""
 #: bumps/list/fields/index.js:69
 #: bumps/modules/Name.js:7
 #: coupons/list/fields/index.js:45
-#: customers/list/fields/index.js:24
+#: customers/list/fields/index.js:27
 #: licenses/modules/Activations/Activation.js:147
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:238
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:240
 #: product-collections/components/SelectTemplate/create-modal.js:75
 #: product-collections/components/SelectTemplatePart/create-modal.js:75
 #: product-collections/list/fields/name.js:15
@@ -2769,11 +2775,12 @@ msgstr ""
 #: checkouts/modules/SelectCustomer/CreateCustomer.js:108
 #: coupons/modules/CustomerSelector.js:132
 #: coupons/modules/SelectCustomer.js:229
-#: customers/list/fields/index.js:47
+#: customers/list/fields/index.js:50
 #: customers/modules/Details.js:61
 #: export/Export.js:118
 #: invoices/modules/SelectCustomer/CreateCustomer.js:111
 #: orders/modules/ContactInfo/EditContactInfo.js:146
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:249
 #: settings/account/AccountSettings.js:380
 #: settings/shipping/warehouse/WarehouseForm.js:166
 #: Blocks/Email/Block.php:27
@@ -2901,7 +2908,7 @@ msgstr ""
 #: licenses/modules/Details/index.js:21
 #: product-groups/list/fields/archive_status.js:4
 #: products/list/fields/archive_status.js:4
-#: subscriptions/list/fields/index.js:15
+#: subscriptions/list/fields/index.js:18
 #: subscriptions/list/useStatusTabs.js:19
 #: util.js:93
 #: Blocks/Dashboard/CustomerLicenses/edit.js:77
@@ -2989,7 +2996,7 @@ msgstr ""
 #: auto-fees/list/fields/index.js:99
 #: bumps/list/fields/index.js:127
 #: customers/modules/Balance/ViewTransactions.js:105
-#: orders/list/fields/index.js:204
+#: orders/list/fields/index.js:229
 #: orders/modules/Fulfillment/components/PackageSelector/CustomPackageTab.js:141
 #: upsell-funnels/modules/Upsell/Discount.js:36
 #: Blocks/CustomerDashboardButton/edit.js:92
@@ -3019,7 +3026,7 @@ msgstr ""
 #: invoices/modules/SelectShipping.js:43
 #: invoices/modules/SelectShipping.js:59
 #: invoices/modules/SelectShipping.js:79
-#: orders/list/fields/index.js:127
+#: orders/list/fields/index.js:147
 #: orders/modules/LineItems/index.js:319
 #: products/modules/Shipping.js:30
 #: products/modules/Shipping.js:42
@@ -3163,8 +3170,8 @@ msgstr ""
 #: src/Controllers/Admin/Products/ProductsListTable.php:513
 #: src/Controllers/Admin/Upsells/UpsellsListTable.php:192
 #: bumps/list/fields/index.js:43
-#: orders/list/fields/index.js:43
-#: orders/list/fields/index.js:212
+#: orders/list/fields/index.js:63
+#: orders/list/fields/index.js:237
 #: products/components/price/parts/PaymentType.js:138
 #: products/modules/Prices/Price/Header.js:83
 #: store/add-entities.js:505
@@ -3334,7 +3341,7 @@ msgstr ""
 #: bumps/list/fields/index.js:143
 #: coupons/list/fields/index.js:155
 #: coupons/Sidebar.js:96
-#: customers/list/fields/index.js:75
+#: customers/list/fields/index.js:78
 #: customers/modules/Subscriptions.js:65
 #: invoices/list/fields/index.js:156
 #: licenses/list/fields/index.js:159
@@ -3343,7 +3350,7 @@ msgstr ""
 #: product-groups/list/fields/created.js:5
 #: products/list/fields/created_at.js:5
 #: shipping-labels/list/fields/created.js:21
-#: subscriptions/list/fields/index.js:212
+#: subscriptions/list/fields/index.js:215
 #: upsell-funnels/list/fields/index.js:75
 msgid "Created"
 msgstr ""
@@ -3376,11 +3383,12 @@ msgstr[1] ""
 #: invoices/modules/SelectCustomer/index.js:51
 #: licenses/list/fields/index.js:89
 #: licenses/modules/Customer.js:42
+#: orders/list/fields/index.js:254
 #: reviews/list/fields/customer.js:15
 #: reviews/modules/Reviewer.js:33
 #: shipping-labels/list/fields/customer.js:27
 #: store/add-entities.js:107
-#: subscriptions/list/fields/index.js:75
+#: subscriptions/list/fields/index.js:78
 #: subscriptions/show/modules/Customer.js:16
 msgid "Customer"
 msgstr ""
@@ -3389,7 +3397,7 @@ msgstr ""
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:111
 #: cancellations/list/fields/index.js:59
 #: orders/modules/Subscriptions.js:52
-#: subscriptions/list/fields/index.js:120
+#: subscriptions/list/fields/index.js:123
 #: Blocks/Dashboard/CustomerSubscriptions/Block.php:79
 #: Controllers/SubscriptionController.php:182
 #: Controllers/SubscriptionController.php:311
@@ -3798,7 +3806,7 @@ msgstr ""
 #: customers/modules/Charges.js:69
 #: customers/modules/PaymentMethods/index.js:52
 #: invoices/list/fields/index.js:125
-#: orders/list/fields/index.js:155
+#: orders/list/fields/index.js:175
 #: orders/modules/Charges.js:82
 msgid "Method"
 msgstr ""
@@ -3810,7 +3818,7 @@ msgstr ""
 #: invoices/list/fields/index.js:17
 #: invoices/list/useStatusTabs.js:19
 #: invoices/modules/Payment.js:94
-#: orders/list/fields/index.js:18
+#: orders/list/fields/index.js:23
 #: orders/list/useStatusTabs.js:20
 #: orders/modules/LineItems/index.js:36
 #: orders/modules/LineItems/index.js:201
@@ -3831,7 +3839,7 @@ msgstr ""
 #: forms/list/fields/index.js:15
 #: invoices/list/fields/index.js:19
 #: invoices/list/useStatusTabs.js:29
-#: orders/list/fields/index.js:20
+#: orders/list/fields/index.js:25
 #: orders/list/useStatusTabs.js:30
 #: orders/modules/LineItems/index.js:39
 #: products/components/Status/index.js:75
@@ -3861,7 +3869,7 @@ msgstr ""
 #: components/data-tables/charges-data-table/index.js:103
 #: invoices/list/fields/index.js:92
 #: invoices/modules/Payment.js:103
-#: orders/list/fields/index.js:107
+#: orders/list/fields/index.js:127
 #: Blocks/Dashboard/CustomerOrders/edit.js:125
 #: sc-charges-list.js:85
 #: sc-order-confirmation-totals2.js:88
@@ -4002,12 +4010,12 @@ msgstr ""
 msgid "Toggle Product Archive"
 msgstr ""
 
-#: src/Controllers/Admin/Onboarding/OnboardingScriptsController.php:62
+#: src/Controllers/Admin/Onboarding/OnboardingScriptsController.php:61
 msgid "My WordPress Website"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:79
-#: orders/list/fields/index.js:21
+#: orders/list/fields/index.js:26
 #: orders/list/useStatusTabs.js:35
 #: orders/modules/Fulfillment/utils.js:19
 #: orders/modules/Refund/RefundHistory.js:37
@@ -4018,7 +4026,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:117
 #: dashboard/Orders.js:119
-#: orders/list/fields/index.js:116
+#: orders/list/fields/index.js:136
 #: store/add-entities.js:144
 msgid "Fulfillment"
 msgstr ""
@@ -4039,7 +4047,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:378
 #: src/Controllers/Admin/Orders/ShippingLabelsListTable.php:336
-#: orders/list/fields/index.js:26
+#: orders/list/fields/index.js:31
 #: shipping-labels/list/fields/fulfillment_status.js:12
 #: sc-order-fulfillment-badge.js:8
 msgid "Unfulfilled"
@@ -4047,7 +4055,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:379
 #: src/Controllers/Admin/Orders/ShippingLabelsListTable.php:344
-#: orders/list/fields/index.js:27
+#: orders/list/fields/index.js:32
 #: orders/modules/Fulfillment/FulfilledGroup.js:65
 #: shipping-labels/list/fields/fulfillment_status.js:17
 #: sc-order-fulfillment-badge.js:9
@@ -4056,7 +4064,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:380
 #: src/Controllers/Admin/Orders/ShippingLabelsListTable.php:340
-#: orders/list/fields/index.js:30
+#: orders/list/fields/index.js:35
 #: shipping-labels/list/fields/fulfillment_status.js:15
 #: sc-order-fulfillment-badge.js:12
 msgid "Partially Fulfilled"
@@ -4072,7 +4080,7 @@ msgid "All Shipment Statuses"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:414
-#: orders/list/fields/index.js:35
+#: orders/list/fields/index.js:40
 #: orders/modules/Fulfillment/utils.js:13
 #: sc-fulfillment-shipping-status-badge2.js:8
 #: sc-order-shipment-badge2.js:8
@@ -4080,7 +4088,7 @@ msgid "Not Shipped"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:415
-#: orders/list/fields/index.js:36
+#: orders/list/fields/index.js:43
 #: orders/modules/Fulfillment/utils.js:15
 #: sc-fulfillment-shipping-status-badge2.js:9
 #: sc-order-shipment-badge2.js:9
@@ -4088,13 +4096,13 @@ msgid "Shipped"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:416
-#: orders/list/fields/index.js:37
+#: orders/list/fields/index.js:42
 #: sc-order-shipment-badge2.js:10
 msgid "Partially Shipped"
 msgstr ""
 
 #: src/Controllers/Admin/Orders/OrdersListTable.php:417
-#: orders/list/fields/index.js:38
+#: orders/list/fields/index.js:45
 #: orders/modules/Fulfillment/utils.js:17
 #: sc-fulfillment-shipping-status-badge2.js:10
 #: sc-order-shipment-badge2.js:11
@@ -4112,9 +4120,9 @@ msgstr ""
 #: customers/modules/Orders.js:48
 #: dashboard/chart/index.js:295
 #: orders/Order.js:370
-#: orders/OrdersList.js:98
-#: orders/OrdersList.js:106
-#: orders/OrdersList.js:133
+#: orders/OrdersList.js:110
+#: orders/OrdersList.js:118
+#: orders/OrdersList.js:145
 #: settings/export/ExportSettings.js:27
 #: Controllers/OrderController.php:62
 #: Controllers/OrderController.php:123
@@ -4570,7 +4578,7 @@ msgid "Search Subscriptions"
 msgstr ""
 
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:65
-#: subscriptions/list/fields/index.js:16
+#: subscriptions/list/fields/index.js:19
 #: subscriptions/list/useStatusTabs.js:24
 #: Blocks/Dashboard/CustomerSubscriptions/edit.js:126
 #: sc-subscription-status-badge2.js:56
@@ -4578,14 +4586,14 @@ msgid "Trialing"
 msgstr ""
 
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:66
-#: subscriptions/list/fields/index.js:17
+#: subscriptions/list/fields/index.js:20
 #: subscriptions/list/useStatusTabs.js:29
 #: sc-subscription-status-badge2.js:60
 msgid "Past Due"
 msgstr ""
 
 #: src/Controllers/Admin/Subscriptions/SubscriptionsListTable.php:112
-#: subscriptions/list/fields/index.js:166
+#: subscriptions/list/fields/index.js:169
 msgid "Remaining Payments"
 msgstr ""
 
@@ -4598,7 +4606,7 @@ msgstr ""
 #: src/Telemetry/SiteHealth.php:86
 #: src/Telemetry/SiteHealth.php:137
 #: coupons/modules/SelectAffiliate.js:131
-#: subscriptions/list/fields/index.js:48
+#: subscriptions/list/fields/index.js:51
 #: sc-product-item-list.js:259
 msgid "None"
 msgstr ""
@@ -5481,6 +5489,10 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/BuyButton.php:273
 #: src/Integrations/Bricks/Elements/Product.php:291
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:538
+#: patterns/product-alderleaf-meadow-rest.php:98
+#: patterns/product-hearth-hollow-almanac.php:72
+#: patterns/product-heirloom-wool-throw.php:69
+#: patterns/product-quick-view.php:90
 #: settings/brand/components/CheckoutPreview.js:188
 #: Blocks/AddToCartButton/Block.php:81
 #: Blocks/BuyButton/Block.php:36
@@ -5775,6 +5787,11 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/AddToCartButton.php:538
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:362
 #: src/Models/Blocks/ProductPageBlock.php:235
+#: patterns/product-alderleaf-meadow-rest.php:96
+#: patterns/product-hearth-hollow-almanac.php:70
+#: patterns/product-heirloom-wool-throw.php:67
+#: patterns/product-quick-view.php:88
+#: patterns/product-velia-noir-atelier-solene.php:65
 #: src/blocks/product-buy-button/view.php:16
 #: src/blocks/product-quick-view-button/button-cart.php:13
 msgid "Add to Cart"
@@ -5970,6 +5987,7 @@ msgstr ""
 
 #: src/Integrations/Bricks/Elements/ProductQuickAddButton.php:60
 #: src/Integrations/Elementor/Widgets/ProductQuickAddButton.php:72
+#: patterns/sticky-purchase.php:41
 #: orders/modules/Fulfillment/components/AddTracking.js:114
 #: products/modules/Media/AddMedia.js:69
 #: settings/shipping/method/ShippingMethodForm.js:146
@@ -6370,7 +6388,9 @@ msgstr ""
 #: src/Integrations/Bricks/Elements/ProductReviewList.php:723
 #: src/Integrations/Elementor/Widgets/ProductReviewList.php:1008
 #: patterns/list-sidebar.php:12
+#: patterns/product-heirloom-wool-throw.php:238
 #: patterns/product-review-standard.php:8
+#: patterns/product-solstice-studio-design-system.php:303
 #: components/dataview-list/StatusSidebar.js:112
 #: src/blocks/product-list-sidebar/view.php:1
 #: src/blocks/product-review-list-sidebar/view.php:1
@@ -6488,15 +6508,6 @@ msgstr ""
 msgid "Rating Container"
 msgstr ""
 
-#: src/Integrations/Bricks/Elements/ProductReviews.php:58
-#: src/Integrations/Bricks/Elements/ProductReviews.php:70
-#: src/Integrations/Elementor/ElementorTemplatesService.php:64
-#: src/Integrations/Elementor/Widgets/ProductReviews.php:28
-#: settings/review-protocol/ReviewProtocolSettings.js:49
-#: settings/review-protocol/ReviewProtocolSettings.js:77
-msgid "Product Reviews"
-msgstr ""
-
 #: src/Integrations/Bricks/Elements/ProductReviews.php:74
 msgid "Review List"
 msgstr ""
@@ -6571,7 +6582,7 @@ msgstr ""
 #: products/modules/BundleItems/BundleItem.js:79
 #: products/modules/BundleItems/BundleItemDrawer.js:120
 #: products/modules/Variations/Variants.js:138
-#: subscriptions/list/fields/index.js:189
+#: subscriptions/list/fields/index.js:192
 #: Blocks/CheckoutForm/components/PriceChoices.js:55
 #: components/PriceChoices.js:15
 #: src/blocks/product-quantity-input/view.php:14
@@ -8465,7 +8476,7 @@ msgstr ""
 #: src/Rest/CouponRestServiceProvider.php:46
 #: src/Rest/CustomerNotificationProtocolRestServiceProvider.php:81
 #: src/Rest/CustomerPortalProtocolRestServiceProvider.php:82
-#: src/Rest/CustomerRestServiceProvider.php:47
+#: src/Rest/CustomerRestServiceProvider.php:54
 #: src/Rest/DisplayCurrencyRestServiceProvider.php:54
 #: src/Rest/DisputesRestServiceProvider.php:54
 #: src/Rest/DownloadRestServiceProvider.php:54
@@ -8482,7 +8493,7 @@ msgstr ""
 #: src/Rest/ManualPaymentMethodsRestServiceProvider.php:47
 #: src/Rest/MediaRestServiceProvider.php:53
 #: src/Rest/OrderProtocolRestServiceProvider.php:81
-#: src/Rest/OrderRestServiceProvider.php:75
+#: src/Rest/OrderRestServiceProvider.php:82
 #: src/Rest/ParcelTemplateRestServiceProvider.php:53
 #: src/Rest/PaymentIntentsRestServiceProvider.php:76
 #: src/Rest/PaymentMethodsRestServiceProvider.php:76
@@ -8502,7 +8513,7 @@ msgstr ""
 #: src/Rest/ReferralsRestServiceProvider.php:101
 #: src/Rest/RefundsRestServiceProvider.php:54
 #: src/Rest/RegisteredWebhookRestServiceProvider.php:74
-#: src/Rest/RestServiceProvider.php:233
+#: src/Rest/RestServiceProvider.php:246
 #: src/Rest/ReturnItemsRestServiceProvider.php:52
 #: src/Rest/ReturnReasonsRestServiceProvider.php:52
 #: src/Rest/ReturnRequestsRestServiceProvider.php:88
@@ -8519,7 +8530,7 @@ msgstr ""
 #: src/Rest/ShippingZoneRestServiceProvider.php:54
 #: src/Rest/StatisticRestServiceProvider.php:53
 #: src/Rest/SubscriptionProtocolRestServiceProvider.php:82
-#: src/Rest/SubscriptionRestServiceProvider.php:157
+#: src/Rest/SubscriptionRestServiceProvider.php:164
 #: src/Rest/SwapRestServiceProvider.php:54
 #: src/Rest/TaxOverrideRestServiceProvider.php:46
 #: src/Rest/TaxProtocolRestServiceProvider.php:81
@@ -9022,19 +9033,19 @@ msgstr ""
 msgid "The terms of service link that is shown to customers on the customer portal."
 msgstr ""
 
-#: src/Rest/CustomerRestServiceProvider.php:78
+#: src/Rest/CustomerRestServiceProvider.php:85
 msgid "Create the WordPress user."
 msgstr ""
 
-#: src/Rest/CustomerRestServiceProvider.php:84
+#: src/Rest/CustomerRestServiceProvider.php:91
 msgid "Run any purchase syncing actions."
 msgstr ""
 
-#: src/Rest/CustomerRestServiceProvider.php:90
+#: src/Rest/CustomerRestServiceProvider.php:97
 msgid "Dry run the sync."
 msgstr ""
 
-#: src/Rest/CustomerRestServiceProvider.php:182
+#: src/Rest/CustomerRestServiceProvider.php:189
 msgid "You must be logged in to access your customer record."
 msgstr ""
 
@@ -9256,7 +9267,7 @@ msgstr ""
 msgid "Only return objects that belong to the given product collections."
 msgstr ""
 
-#: src/Rest/RestServiceProvider.php:351
+#: src/Rest/RestServiceProvider.php:364
 msgid "Sorry, you are not allowed to edit this resource."
 msgstr ""
 
@@ -9430,11 +9441,11 @@ msgstr ""
 msgid "Whether or not existing subscription reminders should be recalculated. Only applicable when remind_at_period_percent_remaining or remind_after_days are changed."
 msgstr ""
 
-#: src/Rest/SubscriptionRestServiceProvider.php:184
+#: src/Rest/SubscriptionRestServiceProvider.php:191
 msgid "Only return subscriptions scheduled to cancel at the end of the current period."
 msgstr ""
 
-#: src/Rest/SubscriptionRestServiceProvider.php:189
+#: src/Rest/SubscriptionRestServiceProvider.php:196
 msgid "Only return canceled subscriptions that can still be restored."
 msgstr ""
 
@@ -9752,10 +9763,6 @@ msgstr ""
 
 #: src/Support/Blocks/TemplateUtilityService.php:378
 msgid "Product Review Form"
-msgstr ""
-
-#: src/Support/Blocks/TemplateUtilityService.php:381
-msgid "Sticky Purchase"
 msgstr ""
 
 #: src/Support/Blocks/TemplateUtilityService.php:399
@@ -10489,12 +10496,12 @@ msgid "Reason"
 msgstr ""
 
 #: src/Support/Errors/Translations/attributes.php:28
-#: customers/list/fields/index.js:55
+#: customers/list/fields/index.js:58
 #: customers/modules/Details.js:77
 #: invoices/modules/PhoneNumber.js:50
 #: invoices/modules/PhoneNumberDisplay.js:37
 #: orders/modules/ContactInfo/EditContactInfo.js:134
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:246
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:257
 #: settings/account/AccountSettings.js:389
 #: settings/shipping/warehouse/WarehouseForm.js:196
 #: Blocks/Phone/Block.php:23
@@ -10521,7 +10528,7 @@ msgstr ""
 #: abandoned-checkouts/modules/Address.js:10
 #: customers/EditCustomer.js:208
 #: invoices/modules/Address.js:289
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:255
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:266
 #: orders/Sidebar.js:101
 #: settings/account/AccountSettings.js:409
 #: settings/shipping/warehouse/WarehouseForm.js:210
@@ -10566,6 +10573,16 @@ msgid "Tracking number"
 msgid_plural "Tracking numbers"
 msgstr[0] ""
 msgstr[1] ""
+
+#: src/Support/Errors/Translations/attributes.php:38
+#: src/Support/Errors/Translations/attributes.php:40
+msgid "Recipient email"
+msgstr ""
+
+#: src/Support/Errors/Translations/attributes.php:39
+#: src/Support/Errors/Translations/attributes.php:41
+msgid "Recipient phone"
+msgstr ""
 
 #: src/Support/Errors/Translations/codes.php:9
 msgid "Could not complete the request. Please try again."
@@ -11365,6 +11382,35 @@ msgid "%d yr"
 msgid_plural "%d yrs"
 msgstr[0] ""
 msgstr[1] ""
+
+#: src/Support/RuleTree.php:36
+msgid "Filter rule tree is too deeply nested."
+msgstr ""
+
+#: src/Support/RuleTree.php:48
+msgid "A group combinator must be \"and\" or \"or\"."
+msgstr ""
+
+#: src/Support/RuleTree.php:53
+msgid "A group must have at least one condition."
+msgstr ""
+
+#. translators: %d: maximum number of conditions in one group.
+#: src/Support/RuleTree.php:60
+msgid "A group has too many conditions (max %d)."
+msgstr ""
+
+#: src/Support/RuleTree.php:86
+msgid "A condition comparison_value must be a single value; use an \"or\" group to match several."
+msgstr ""
+
+#: src/Support/RuleTree.php:96
+msgid "Each rule must have a type of \"condition\" or \"group\"."
+msgstr ""
+
+#: src/Support/RuleTree.php:106
+msgid "Rule tree (condition or and/or group) evaluated by the platform filter endpoint. When set, customer_ids is ignored; sort and query still apply."
+msgstr ""
 
 #. translators: %s: human-readable time difference
 #: src/Support/TimeDate.php:102
@@ -12345,12 +12391,6 @@ msgstr ""
 msgid "SureCart Upsell"
 msgstr ""
 
-#: src/WordPress/Admin/Menus/AdminToolbarService.php:203
-#: products/modules/Prices/Price/Swap.js:20
-#: store/add-entities.js:40
-msgid "Upsell"
-msgstr ""
-
 #: src/WordPress/Admin/Menus/AdminToolbarService.php:215
 msgid "SureCart Coupon"
 msgstr ""
@@ -12358,7 +12398,7 @@ msgstr ""
 #: src/WordPress/Admin/Menus/AdminToolbarService.php:215
 #: auto-fees/utils/constants.js:117
 #: auto-fees/utils/constants.js:123
-#: orders/list/fields/index.js:184
+#: orders/list/fields/index.js:204
 #: store/add-entities.js:84
 msgid "Coupon"
 msgstr ""
@@ -12390,16 +12430,16 @@ msgid "Sticky Purchase Template"
 msgstr ""
 
 #. translators: 1: plugin name, 2: plugin version
-#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:109
+#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:87
 msgid "Action Required: Configure %s for SureCart"
 msgstr ""
 
 #. translators: 1: plugin name, 2: plugin version
-#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:114
+#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:92
 msgid "%1$s (%2$s) detected. To ensure optimal performance with SureCart, configure the plugin properly."
 msgstr ""
 
-#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:119
+#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:97
 msgid "Review Configuration Guide"
 msgstr ""
 
@@ -13118,7 +13158,7 @@ msgstr ""
 #: coupons/modules/SelectCustomer.js:173
 #: invoices/InvoicesList.js:159
 #: invoices/modules/SelectCustomer/index.js:89
-#: orders/OrdersList.js:99
+#: orders/OrdersList.js:111
 #: products/modules/Collection/index.js:73
 #: settings/display-currency/components/DisplayCurrenciesSettings.js:241
 #: settings/processors/ManualPaymentMethods.js:80
@@ -13250,7 +13290,7 @@ msgstr[1] ""
 #: orders/modules/ContactInfo/EditContactInfo.js:164
 #: orders/modules/Fulfillment/components/AddTracking.js:117
 #: orders/modules/Fulfillment/components/ShipmentDrawer.js:476
-#: orders/modules/Fulfillment/CreateFulfillment.js:417
+#: orders/modules/Fulfillment/CreateFulfillment.js:421
 #: orders/modules/MetaDataModal.js:175
 #: orders/modules/OrderStatusConfirmModal.js:73
 #: orders/modules/Refund/CreateRefund.js:467
@@ -13377,7 +13417,7 @@ msgstr ""
 #: affiliations/modules/Commission.js:119
 #: affiliations/modules/EditAffiliate.js:161
 #: invoices/modules/LineItemNote/LineItemNoteInput.js:71
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:278
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:289
 #: orders/modules/MetaDataModal.js:167
 #: orders/modules/TaxInfo/EditTaxInfo.js:106
 #: products/modules/Affiliation.js:118
@@ -13506,7 +13546,7 @@ msgid "This Is A Duplicate Or Staging Site"
 msgstr ""
 
 #: admin/orders/index.php:16
-#: orders/OrdersList.js:110
+#: orders/OrdersList.js:122
 #: store/add-entities.js:225
 msgid "Line Items"
 msgstr ""
@@ -13514,13 +13554,13 @@ msgstr ""
 #: admin/orders/index.php:20
 #: components/data-tables/charges-data-table/index.js:80
 #: customers/modules/Charges.js:60
-#: orders/OrdersList.js:114
+#: orders/OrdersList.js:126
 #: settings/export/ExportSettings.js:15
 msgid "Charges"
 msgstr ""
 
 #: admin/orders/index.php:24
-#: orders/OrdersList.js:118
+#: orders/OrdersList.js:130
 #: settings/export/ExportSettings.js:39
 msgid "Refunds"
 msgstr ""
@@ -13528,7 +13568,7 @@ msgstr ""
 #: admin/orders/index.php:28
 #: affiliation-referrals/modules/ReferralItems.js:71
 #: components/data-tables/purchases-data-table/index.js:19
-#: orders/OrdersList.js:122
+#: orders/OrdersList.js:134
 #: products/modules/Variations/Purchases.js:22
 msgid "Purchases"
 msgstr ""
@@ -14224,13 +14264,39 @@ msgstr ""
 msgid "Product List with Variants"
 msgstr ""
 
+#: patterns/product-alderleaf-meadow-rest.php:6
+msgid "Alderleaf Meadow Rest"
+msgstr ""
+
 #: patterns/product-alternate.php:6
 msgid "Classic Product (Alternate)"
 msgstr ""
 
+#: patterns/product-hearth-hollow-almanac.php:6
+msgid "The Hearth & Hollow Almanac"
+msgstr ""
+
+#: patterns/product-heirloom-wool-throw.php:6
+msgid "Heirloom Wool Throw — Atlas & Field"
+msgstr ""
+
+#: patterns/product-heirloom-wool-throw.php:53
+#: orders/modules/Refund/RefundHistory.js:135
+#: subscriptions/edit/modules/Price.js:115
+#: subscriptions/show/modules/CurrentPlan.js:91
+#: subscriptions/show/modules/PendingUpdate.js:59
+msgid "Qty"
+msgstr ""
+
+#: patterns/product-heirloom-wool-throw.php:298
 #: patterns/product-review-standard.php:6
+#: patterns/product-solstice-studio-design-system.php:361
 #: src/blocks/product-review-list/template.js:804
 msgid "No reviews yet."
+msgstr ""
+
+#: patterns/product-quick-view.php:6
+msgid "Product Quick View"
 msgstr ""
 
 #: patterns/product-review-standard.php:12
@@ -14243,8 +14309,24 @@ msgstr ""
 msgid "Add text or blocks that will display when a query returns no reviews."
 msgstr ""
 
+#: patterns/product-solstice-studio-design-system.php:6
+msgid "Solstice Studio Design System"
+msgstr ""
+
+#: patterns/product-solstice-studio-design-system.php:50
+msgid "Buy and Download"
+msgstr ""
+
 #: patterns/product-standard.php:6
 msgid "Classic Product"
+msgstr ""
+
+#: patterns/product-velia-noir-atelier-solene.php:6
+msgid "Velia Noir — Atelier Solène"
+msgstr ""
+
+#: patterns/product-velia-noir-atelier-solene.php:67
+msgid "Buy It Now"
 msgstr ""
 
 #: patterns/related-carousel-alternate.php:6
@@ -14258,6 +14340,15 @@ msgstr ""
 
 #: patterns/related-carousel.php:6
 msgid "Related Products Carousel"
+msgstr ""
+
+#: patterns/upsell-info.php:6
+msgid "Upsell Info"
+msgstr ""
+
+#: patterns/upsell-info.php:20
+#: patterns/upsell-info.php:40
+msgid "One Time Discount"
 msgstr ""
 
 #: abandoned-checkouts/AbandonedCheckout.js:102
@@ -15297,7 +15388,7 @@ msgstr ""
 #: affiliations/modules/Urls.js:28
 #: components/data-tables/affiliates/ClicksDataTable.js:44
 #: components/data-tables/affiliates/ClicksDataTable.js:53
-#: orders/modules/Fulfillment/CreateFulfillment.js:215
+#: orders/modules/Fulfillment/CreateFulfillment.js:219
 #: products/modules/BuyLink.js:65
 #: products/modules/Prices/Price/CopyInput.js:12
 #: settings/affiliation-protocol/AffiliationProtocolSettings.js:48
@@ -15452,7 +15543,7 @@ msgstr ""
 
 #: auto-fees/EditAutoFee.js:239
 #: coupons/modules/Limits.js:129
-#: subscriptions/list/fields/index.js:204
+#: subscriptions/list/fields/index.js:207
 msgid "End Date"
 msgstr ""
 
@@ -17204,7 +17295,7 @@ msgstr[1] ""
 msgid "No results found"
 msgstr ""
 
-#: components/dataview-list/DataViewListLayout.js:32
+#: components/dataview-list/DataViewListLayout.js:33
 msgid "Loading…"
 msgstr ""
 
@@ -17218,6 +17309,31 @@ msgstr ""
 
 #: components/dataview-list/EnhancedViewToggle.js:16
 msgid "Enter enhanced view"
+msgstr ""
+
+#: components/dataview-list/ListFooter.js:36
+#: components/dataview-list/ListFooter.js:57
+msgid "Current page"
+msgstr ""
+
+#. translators: 1: Current page control, 2: Total number of pages.
+#: components/dataview-list/ListFooter.js:75
+msgctxt "paging"
+msgid "<div>Page</div>%1$s<div>of %2$d</div>"
+msgstr ""
+
+#: components/dataview-list/ListFooter.js:145
+#: onboarding/complete-site/PreviewModal.js:196
+#: ui/SimplePagination.js:26
+#: ui/SimplePagination.js:38
+#: src/blocks/cart-order-bump-pagination-previous/view.php:15
+msgid "Previous page"
+msgstr ""
+
+#: components/dataview-list/ListFooter.js:155
+#: onboarding/complete-site/PreviewModal.js:223
+#: src/blocks/cart-order-bump-pagination-next/view.php:15
+msgid "Next page"
 msgstr ""
 
 #: components/dataview-list/ModernViewIntroModal.js:95
@@ -18013,21 +18129,29 @@ msgid_plural "Are you sure you want to permanently delete %d customers?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: customers/list/fields/index.js:41
+#: customers/list/fields/index.js:44
 #: product-groups/list/fields/name.js:34
 msgid "(no name)"
 msgstr ""
 
-#: customers/list/fields/index.js:62
+#: customers/list/fields/index.js:65
 msgid "Email Subscription"
 msgstr ""
 
-#: customers/list/fields/index.js:68
+#: customers/list/fields/index.js:71
 msgid "Unsubscribed"
 msgstr ""
 
-#: customers/list/fields/index.js:70
+#: customers/list/fields/index.js:73
 msgid "Subscribed"
+msgstr ""
+
+#: customers/list/fields/index.js:88
+msgid "Purchased Product"
+msgstr ""
+
+#: customers/list/fields/index.js:98
+msgid "Purchase Date"
 msgstr ""
 
 #: customers/modules/Balance/index.js:16
@@ -19223,21 +19347,9 @@ msgstr ""
 msgid "Page %d"
 msgstr ""
 
-#: onboarding/complete-site/PreviewModal.js:196
-#: ui/SimplePagination.js:26
-#: ui/SimplePagination.js:38
-#: src/blocks/cart-order-bump-pagination-previous/view.php:15
-msgid "Previous page"
-msgstr ""
-
 #. translators: 1: current page, 2: total pages, 3: page title.
 #: onboarding/complete-site/PreviewModal.js:215
 msgid "%1$d / %2$d · %3$s"
-msgstr ""
-
-#: onboarding/complete-site/PreviewModal.js:223
-#: src/blocks/cart-order-bump-pagination-next/view.php:15
-msgid "Next page"
 msgstr ""
 
 #: onboarding/complete-site/PreviewModal.js:253
@@ -19587,6 +19699,48 @@ msgstr ""
 msgid "Enter the API token from your SureCart dashboard."
 msgstr ""
 
+#: orders/list/fields/index.js:41
+#: orders/modules/Fulfillment/components/ShipmentConfirmation.js:37
+#: orders/modules/Fulfillment/utils.js:14
+#: sc-fulfillment-shipping-status-badge2.js:11
+#: sc-order-shipment-badge2.js:12
+msgid "Label Purchased"
+msgstr ""
+
+#: orders/list/fields/index.js:44
+#: orders/modules/Fulfillment/utils.js:16
+#: sc-fulfillment-shipping-status-badge2.js:12
+#: sc-order-shipment-badge2.js:13
+msgid "In Transit"
+msgstr ""
+
+#: orders/list/fields/index.js:49
+msgid "Not Returned"
+msgstr ""
+
+#: orders/list/fields/index.js:50
+msgid "Return Requested"
+msgstr ""
+
+#: orders/list/fields/index.js:53
+msgid "Partially Returned"
+msgstr ""
+
+#: orders/list/fields/index.js:55
+#: orders/modules/Fulfillment/utils.js:18
+#: sc-fulfillment-shipping-status-badge2.js:13
+#: sc-order-return-badge.js:9
+msgid "Returned"
+msgstr ""
+
+#: orders/list/fields/index.js:277
+msgid "Product variant"
+msgstr ""
+
+#: orders/list/fields/index.js:285
+msgid "Returns"
+msgstr ""
+
 #: orders/modules/ContactInfo/EditContactInfo.js:81
 msgid "Update Contact Information"
 msgstr ""
@@ -19659,41 +19813,45 @@ msgstr ""
 msgid "A phone number is required."
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:201
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:26
+msgid "An email is required."
+msgstr ""
+
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:203
 msgid "Incomplete address"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:227
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:229
 msgid "Discard changes"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:228
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:230
 msgid "Edit address"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:287
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:298
 msgid "No address selected."
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:353
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:364
 msgid "Select…"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:354
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:387
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:365
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:398
 msgid "Add warehouse"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:362
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:373
 #: shipping-labels/list/fields/from.js:79
 msgid "Select warehouse"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:397
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:408
 msgid "From address"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:407
+#: orders/modules/Fulfillment/components/CombinedAddressEditor.js:418
 msgid "To address"
 msgstr ""
 
@@ -19953,13 +20111,6 @@ msgstr ""
 msgid "Label Voided"
 msgstr ""
 
-#: orders/modules/Fulfillment/components/ShipmentConfirmation.js:37
-#: orders/modules/Fulfillment/utils.js:14
-#: sc-fulfillment-shipping-status-badge2.js:11
-#: sc-order-shipment-badge2.js:12
-msgid "Label Purchased"
-msgstr ""
-
 #: orders/modules/Fulfillment/components/ShipmentConfirmation.js:42
 msgid "This shipment label has been voided. Cancel this fulfillment and create a new one to ship these items."
 msgstr ""
@@ -20188,29 +20339,33 @@ msgstr ""
 msgid "To address needs a phone number — carriers require one for the recipient."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:220
+#: orders/modules/Fulfillment/CreateFulfillment.js:107
+msgid "To address needs an email — carriers require one for the recipient."
+msgstr ""
+
+#: orders/modules/Fulfillment/CreateFulfillment.js:224
 #: products/modules/BuyLink.js:70
 #: products/modules/Prices/Price/CopyInput.js:17
 msgid "Error copying to clipboard."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:282
+#: orders/modules/Fulfillment/CreateFulfillment.js:286
 msgid "Fulfillment created. Buy a label to finish."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:317
+#: orders/modules/Fulfillment/CreateFulfillment.js:321
 msgid "Fulfillment created."
 msgstr ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:352
-#: orders/modules/Fulfillment/CreateFulfillment.js:401
+#: orders/modules/Fulfillment/CreateFulfillment.js:356
+#: orders/modules/Fulfillment/CreateFulfillment.js:405
 #: orders/modules/Fulfillment/Unfulfilled.js:118
 msgid "Fulfill Item"
 msgid_plural "Fulfill Items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: orders/modules/Fulfillment/CreateFulfillment.js:400
+#: orders/modules/Fulfillment/CreateFulfillment.js:404
 msgid "Fulfill & get rates"
 msgstr ""
 
@@ -20268,18 +20423,6 @@ msgstr[1] ""
 
 #: orders/modules/Fulfillment/utils.js:12
 msgid "Unshippable"
-msgstr ""
-
-#: orders/modules/Fulfillment/utils.js:16
-#: sc-fulfillment-shipping-status-badge2.js:12
-#: sc-order-shipment-badge2.js:13
-msgid "In Transit"
-msgstr ""
-
-#: orders/modules/Fulfillment/utils.js:18
-#: sc-fulfillment-shipping-status-badge2.js:13
-#: sc-order-return-badge.js:9
-msgid "Returned"
 msgstr ""
 
 #: orders/modules/Fulfillment/utils.js:62
@@ -20357,6 +20500,14 @@ msgstr ""
 
 #: orders/modules/Fulfillment/utils/validationMessages.js:60
 msgid "Open the To address panel and add a phone number for the recipient."
+msgstr ""
+
+#: orders/modules/Fulfillment/utils/validationMessages.js:64
+msgid "To contact email is required for shipping labels."
+msgstr ""
+
+#: orders/modules/Fulfillment/utils/validationMessages.js:68
+msgid "Open the To address panel and add an email for the recipient."
 msgstr ""
 
 #: orders/modules/FulfillmentProgress/index.js:21
@@ -20566,13 +20717,6 @@ msgstr ""
 msgid "Succeeded"
 msgstr ""
 
-#: orders/modules/Refund/RefundHistory.js:135
-#: subscriptions/edit/modules/Price.js:115
-#: subscriptions/show/modules/CurrentPlan.js:91
-#: subscriptions/show/modules/PendingUpdate.js:59
-msgid "Qty"
-msgstr ""
-
 #: orders/modules/Refund/RefundHistory.js:162
 msgid "Refund History"
 msgstr ""
@@ -20758,7 +20902,7 @@ msgstr ""
 msgid "Fulfill Items"
 msgstr ""
 
-#: orders/OrdersList.js:134
+#: orders/OrdersList.js:146
 msgid "View and manage the orders placed in your store."
 msgstr ""
 
@@ -28530,21 +28674,21 @@ msgstr[1] ""
 msgid "Ends on"
 msgstr ""
 
-#: subscriptions/list/fields/index.js:18
+#: subscriptions/list/fields/index.js:21
 #: sc-subscription-status-badge2.js:50
 msgid "Cancelling"
 msgstr ""
 
-#: subscriptions/list/fields/index.js:19
+#: subscriptions/list/fields/index.js:22
 #: sc-subscription-status-badge2.js:63
 msgid "Paused"
 msgstr ""
 
-#: subscriptions/list/fields/index.js:173
+#: subscriptions/list/fields/index.js:176
 msgid "Next Payment"
 msgstr ""
 
-#: subscriptions/list/fields/index.js:196
+#: subscriptions/list/fields/index.js:199
 msgid "Trial End"
 msgstr ""
 
@@ -37564,23 +37708,23 @@ msgstr ""
 msgid "Nothing Found"
 msgstr ""
 
-#: sc-session-provider2.js:222
+#: sc-session-provider2.js:226
 msgid "Payment unsuccessful. Please try again."
 msgstr ""
 
-#: sc-session-provider2.js:227
+#: sc-session-provider2.js:231
 msgid "Could not find checkout. Please contact us before attempting to purchase again."
 msgstr ""
 
-#: sc-session-provider2.js:289
+#: sc-session-provider2.js:330
 msgid "Payment unsuccessful."
 msgstr ""
 
-#: sc-session-provider2.js:299
+#: sc-session-provider2.js:340
 msgid "Payment canceled. Please try again."
 msgstr ""
 
-#: sc-session-provider2.js:411
+#: sc-session-provider2.js:452
 msgid "Some products in your order were outdated and have been updated. Please review your order summary before proceeding to payment."
 msgstr ""
 

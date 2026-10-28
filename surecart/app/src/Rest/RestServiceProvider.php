@@ -4,6 +4,7 @@ namespace SureCart\Rest;
 
 use SureCart\Models\Model;
 use SureCart\Rest\RestServiceInterface;
+use SureCart\Support\RuleTree;
 
 /**
  * Abstract Rest Service Provider interface
@@ -27,6 +28,16 @@ abstract class RestServiceProvider extends \WP_REST_Controller implements RestSe
 	 * @var boolean
 	 */
 	protected $filters_list_items = false;
+
+	/**
+	 * Whether the index route accepts a `filter` rule tree (model must use CanFilter).
+	 *
+	 * The platform filter endpoint can't be scoped to one customer, so a provider
+	 * opting in must require the full list capability when `filter` is present.
+	 *
+	 * @var boolean
+	 */
+	protected $filterable = false;
 
 	/**
 	 * Mark specific properties that need additional permissions checks
@@ -160,7 +171,9 @@ abstract class RestServiceProvider extends \WP_REST_Controller implements RestSe
 							'methods'             => \WP_REST_Server::READABLE,
 							'callback'            => $this->callback( $this->controller, 'index' ),
 							'permission_callback' => [ $this, 'get_items_permissions_check' ],
-							'args'                => $this->get_collection_params(),
+							'args'                => $this->filterable
+								? array_merge( $this->get_collection_params(), [ 'filter' => RuleTree::restArg() ] )
+								: $this->get_collection_params(),
 						] : [] ),
 						( $this->hasMethod( 'create' ) ? [
 							'methods'             => \WP_REST_Server::CREATABLE,

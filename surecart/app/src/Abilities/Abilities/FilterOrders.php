@@ -3,6 +3,7 @@
 namespace SureCart\Abilities\Abilities;
 
 use SureCart\Models\Order;
+use SureCart\Support\RuleTree;
 
 /**
  * Filter orders with a rule tree.
@@ -45,7 +46,7 @@ class FilterOrders extends AbstractAbility {
 	 * {@inheritDoc}
 	 */
 	public function get_instructions(): string {
-		return 'Returns orders matching a rule tree. Call get-orders-filter-schema FIRST to discover valid attribute_name, operator_label, and supported_values. Enum/dropdown fields require an EXACT supported_value (even when the operator is "contains"). Dates use YYYY-MM-DD. comparison_value is always a string. A single condition looks like {"type":"condition","attribute_name":"status","operator_label":"is","comparison_value":"paid"}. A group looks like {"type":"group","combinator":"and","conditions":[{"type":"condition","attribute_name":"status","operator_label":"is","comparison_value":"paid"},{"type":"condition","attribute_name":"order_type","operator_label":"is","comparison_value":"checkout"}]}. Use filter-orders for multi-condition, AND/OR, nested, or non-status attributes; use list-orders for a simple single-status browse.';
+		return 'Returns orders matching a rule tree. Call get-orders-filter-schema FIRST to discover valid attribute_name, operator_label, and supported_values. Enum/dropdown fields require an EXACT supported_value (even when the operator is "contains"). Dates use YYYY-MM-DD. comparison_value is always a string. A single condition looks like {"type":"condition","attribute_name":"status","operator_label":"is","comparison_value":"paid"}. A group looks like {"type":"group","combinator":"and","conditions":[{"type":"condition","attribute_name":"status","operator_label":"is","comparison_value":"paid"},{"type":"condition","attribute_name":"order_type","operator_label":"is","comparison_value":"checkout"}]}. Use filter-orders for multi-condition, AND/OR, nested, or non-status attributes; use list-orders for a simple single-status browse. Each matched order already includes checkout.email, checkout.name, and checkout.discount with its promotion/coupon — no follow-up get-order is needed to read buyer or coupon info.';
 	}
 
 	/**
@@ -116,7 +117,7 @@ class FilterOrders extends AbstractAbility {
 			return $this->error( 'invalid_filter', __( 'The filter must be a condition or group object.', 'surecart' ) );
 		}
 
-		$rules = $this->sanitize_rule_tree( $rules );
+		$rules = RuleTree::sanitize( $rules );
 		if ( is_wp_error( $rules ) ) {
 			return $rules;
 		}
@@ -124,7 +125,7 @@ class FilterOrders extends AbstractAbility {
 		$page     = max( 1, absint( $input['page'] ?? 1 ) );
 		$per_page = max( 1, min( absint( $input['per_page'] ?? 10 ), 100 ) );
 
-		$result = Order::filter(
+		$result = Order::with( array( 'checkout', 'checkout.discount', 'discount.promotion', 'discount.coupon' ) )->filter(
 			$rules,
 			array(
 				'page'     => $page,

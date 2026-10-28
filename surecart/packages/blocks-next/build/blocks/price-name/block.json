@@ -41,6 +41,14 @@
         "fontAppearance": true,
         "textTransform": true
       }
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "__experimentalDefaultControls": {
+        "padding": true,
+        "margin": true
+      }
     }
   },
   "textdomain": "surecart",

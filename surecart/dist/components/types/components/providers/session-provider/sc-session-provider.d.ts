@@ -52,6 +52,13 @@ export declare class ScSessionProvider {
     findOrCreateOrder(): Promise<void | NodeJS.Timeout>;
     /** Handle payment instrument redirect status */
     handleRedirectStatus(status: any, id: any): Promise<void>;
+    /**
+     * Reopen a 3D Secure challenge the page lost mid-flight, e.g. a mobile browser reloading the tab
+     * while the shopper approves in their banking app.
+     *
+     * Returns false unless Stripe confirms a challenge is pending, so every other case keeps the regular flow.
+     */
+    maybeResumeStripePayment(): Promise<boolean>;
     /** Handle abandoned checkout from URL */
     handleCheckoutIdFromUrl(id: any, promotion_code?: string, query?: {}): Promise<void | NodeJS.Timeout>;
     /** Handle line items (and maybe ) */

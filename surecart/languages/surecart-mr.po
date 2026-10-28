@@ -7,19 +7,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.1\n"
+"X-Generator: GlotPress/4.1.0\n"
 "Language: mr\n"
 "Project-Id-Version: SureCart\n"
 
-#: app/src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php:105
+#: src/blocks/product-list-sort-radio-group-template/controller.php:23
+#: src/blocks/product-list-sort/controller.php:23
+#: src/blocks/product-list-related/inspector-controls/index.js:25
+#: src/blocks/product-list-sort-radio-group-template/edit.js:27
+#: src/blocks/product-list/inspector-controls/index.js:32
+#: sc-product-item-list.js:229 sc-product-item-list.js:260
+msgid "Alphabetical, A-Z"
+msgstr "अल्फाबेटिकल A  ते  Z "
+
+#: starter-templates/components/SortSelect.js:15
+#: src/blocks/product-list-sort-radio-group-template/controller.php:17
+#: src/blocks/product-list-sort/controller.php:17
+#: src/blocks/product-list-related/inspector-controls/index.js:21
+#: src/blocks/product-list-sort-radio-group-template/edit.js:23
+#: src/blocks/product-list/inspector-controls/index.js:28
+#: sc-product-item-list.js:227 sc-product-item-list.js:260
+msgid "Oldest"
+msgstr "सर्वात जुन"
+
+#: starter-templates/components/SortSelect.js:14
+#: src/blocks/product-list-sort-radio-group-template/controller.php:11
+#: src/blocks/product-list-sort/controller.php:11
+#: src/blocks/product-list-related/inspector-controls/index.js:17
+#: src/blocks/product-list-sort-radio-group-template/edit.js:19
+#: src/blocks/product-list/inspector-controls/index.js:24
+#: sc-product-item-list.js:225 sc-product-item-list.js:260
+msgid "Latest"
+msgstr "नवीन"
+
+#: src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php:105
+#: abandoned-checkouts/list/fields/index.js:116
 msgid "Email Status"
 msgstr "ई-मेल  स्थिती "
 
-#: app/src/Controllers/Admin/Products/ProductsListTable.php:347
-#: packages/admin/checkouts/modules/SelectShipping.js:130
+#: src/Models/Checkout.php:728 src/Models/Price.php:142
+#: checkouts/modules/SelectShipping.js:130
+#: invoices/modules/SelectShipping.js:95
+#: orders/modules/Fulfillment/components/ShipmentRates.js:361
+#: sc-order-bump2.js:99 sc-order-bump2.js:106 sc-price2.js:35
+#: sc-shipping-choices2.js:74 sc-upsell-totals.js:21
 msgid "Free"
 msgstr "फुकट"
 
-#: app/src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php:106
+#: src/Controllers/Admin/Abandoned/AbandonedCheckoutListTable.php:106
+#: abandoned-checkouts/list/fields/index.js:129
 msgid "Recovery Status"
 msgstr "रिकव्हरीस्थिती "

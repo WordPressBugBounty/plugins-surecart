@@ -26,6 +26,14 @@
         "background": true
       }
     },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "__experimentalDefaultControls": {
+        "padding": true,
+        "margin": true
+      }
+    },
     "typography": {
       "fontSize": true,
       "lineHeight": true,

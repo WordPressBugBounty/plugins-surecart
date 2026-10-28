@@ -3,7 +3,6 @@
  */
 /** Response shape from POST surecart/v1/verification_codes. */
 export interface VerificationCodeResponse {
-    email?: string;
     /** False when an in-window request resumed an existing code instead of sending a new email. */
     email_sent?: boolean;
     resend_available_at?: number;

@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.10.0
+Stable tag: 4.11.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -453,6 +453,17 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.11.0 - October 28th, 2026 =
+- New: Advanced filters for Orders, Subscriptions and Customers, including customer, product, coupon, return status and date. Filtered views are saved in the URL.
+- New: Patterns library in the Site Editor with new product page, quick view, sticky purchase and upsell patterns.
+- New: Automatic compatibility with WP Super Cache, Autoptimize, Breeze, Cache Enabler and Hummingbird. No manual cache exclusions needed.
+- New: AI assistant (MCP) order abilities now include the buyer's name, email and redeemed coupon or promotion code.
+- Fix: Card payments were lost when the checkout page reloaded during 3D Secure approval on mobile devices.
+- Fix: The Shippo fulfillment drawer failed with a generic "Can't be blank" error when the order had no customer email, with no way to add one.
+- Fix: Admin lists froze for stores with very large totals. Lists with more than 100 pages now use a page number input.
+- Fix: Login code emails are now rate-limited and no longer reveal a user's email address.
+- Fix: Customer email redirect links can no longer be used to send customers to another site.
 
 = 4.10.0 - October 20th, 2026 =
 - New: A redesigned onboarding helps you create a new store or connect an existing one in a few steps.

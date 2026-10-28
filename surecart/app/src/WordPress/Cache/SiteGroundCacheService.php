@@ -81,20 +81,6 @@ class SiteGroundCacheService extends CacheService {
 	}
 
 	/**
-	 * Disable cache for the current page.
-	 *
-	 * No-op — SG Optimizer's File Caching skips caching a response carrying
-	 * a Cache-Control: no-cache header (already sent by DoNotCachePageService's
-	 * shared nocache_headers() call) when apache_response_headers() is
-	 * available, and SiteGround's server-level Dynamic Cache honors the same
-	 * standard header.
-	 *
-	 * @param string $reason Reason for disabling cache.
-	 * @return void
-	 */
-	protected function disableCache( string $reason ): void {}
-
-	/**
 	 * Add SureCart session cookies to SG Optimizer's cache-bypass cookie list.
 	 *
 	 * Unlike LiteSpeed's vary-cookies (which cache a variant per cookie

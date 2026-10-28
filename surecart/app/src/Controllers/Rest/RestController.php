@@ -127,12 +127,19 @@ abstract class RestController {
 			$args = apply_filters( "surecart/{$this->resource}/list/query_args", $args, $request );
 		}
 
-		$items = $model->where( $args )->paginate(
-			[
-				'per_page' => $request->get_param( 'per_page' ),
-				'page'     => $request->get_param( 'page' ),
-			]
-		);
+		$pagination = [
+			'per_page' => $request->get_param( 'per_page' ),
+			'page'     => $request->get_param( 'page' ),
+		];
+
+		// A rule tree goes in the POST body of the platform filter endpoint, not the query string.
+		if ( ! empty( $args['filter'] ) && method_exists( $model, 'filter' ) ) {
+			$rules = $args['filter'];
+			unset( $args['filter'] );
+			$items = $model->where( $args )->filter( $rules, $pagination );
+		} else {
+			$items = $model->where( $args )->paginate( $pagination );
+		}
 
 		if ( is_wp_error( $items ) ) {
 			return $items;

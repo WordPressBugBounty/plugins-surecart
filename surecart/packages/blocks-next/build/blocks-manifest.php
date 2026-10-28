@@ -2585,6 +2585,14 @@ return array(
 					'background' => true
 				)
 			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
+			),
 			'typography' => array(
 				'fontSize' => true,
 				'lineHeight' => true,
@@ -2634,6 +2642,14 @@ return array(
 				'__experimentalDefaultControls' => array(
 					'text' => true,
 					'background' => true
+				)
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
 				)
 			),
 			'typography' => array(
@@ -2701,6 +2717,14 @@ return array(
 					'fontAppearance' => true,
 					'textTransform' => true
 				)
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
 			)
 		),
 		'textdomain' => 'surecart',
@@ -2750,6 +2774,14 @@ return array(
 					'fontAppearance' => true,
 					'textTransform' => true,
 					'textAlign' => true
+				)
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
 				)
 			),
 			'currencyConversion' => true
@@ -2805,6 +2837,14 @@ return array(
 					'textTransform' => true
 				)
 			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
+			),
 			'currencyConversion' => true
 		),
 		'textdomain' => 'surecart',
@@ -2853,6 +2893,14 @@ return array(
 					'fontSize' => true,
 					'fontAppearance' => true,
 					'textTransform' => true
+				)
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
 				)
 			),
 			'currencyConversion' => true
@@ -2934,6 +2982,7 @@ return array(
 			'__experimentalSelector' => '.wp-block-button .wp-block-button__link',
 			'typography' => array(
 				'fontSize' => true,
+				'lineHeight' => true,
 				'__experimentalFontFamily' => true,
 				'__experimentalFontWeight' => true,
 				'__experimentalFontStyle' => true,
@@ -9638,6 +9687,14 @@ return array(
 				'fontSize' => true,
 				'lineHeight' => true,
 				'textAlign' => true
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
 			)
 		),
 		'textdomain' => 'surecart',
@@ -9674,6 +9731,14 @@ return array(
 				'__experimentalDefaultControls' => array(
 					'text' => true,
 					'button' => true
+				)
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
 				)
 			),
 			'typography' => array(
@@ -9722,6 +9787,14 @@ return array(
 				'fontSize' => true,
 				'lineHeight' => true,
 				'textAlign' => true
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
 			)
 		),
 		'textdomain' => 'surecart',
@@ -9766,7 +9839,15 @@ return array(
 				'textAlign' => true,
 				'__experimentalTextDecoration' => true
 			),
-			'currencyConversion' => true
+			'currencyConversion' => true,
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
+			)
 		),
 		'textdomain' => 'surecart',
 		'render' => 'file:./view.php',
@@ -9810,6 +9891,14 @@ return array(
 				'fontSize' => true,
 				'lineHeight' => true,
 				'textAlign' => true
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'padding' => true,
+					'margin' => true
+				)
 			),
 			'currencyConversion' => true
 		),

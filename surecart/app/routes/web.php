@@ -14,7 +14,6 @@ use SureCart\Middleware\CustomerDashboardLinkRedirectMiddleware;
 use SureCart\Middleware\InvoiceRedirectMiddleware;
 use SureCart\Middleware\LoginLinkMiddleware;
 use SureCart\Middleware\OrderRedirectMiddleware;
-use SureCart\Middleware\PathRedirectMiddleware;
 use SureCart\Middleware\PaymentFailureRedirectMiddleware;
 use SureCart\Middleware\ProductReviewRedirectMiddleware;
 use SureCart\Middleware\PurchaseRedirectMiddleware;
@@ -82,7 +81,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	->middleware( LoginLinkMiddleware::class )
 	// redirect in this order.
 	->middleware( ProductReviewRedirectMiddleware::class )
-	->middleware( PathRedirectMiddleware::class )
 	->middleware( OrderRedirectMiddleware::class )
 	->middleware( InvoiceRedirectMiddleware::class )
 	->middleware( PurchaseRedirectMiddleware::class )

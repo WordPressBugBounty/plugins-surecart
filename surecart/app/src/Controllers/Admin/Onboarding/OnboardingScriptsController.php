@@ -58,8 +58,7 @@ class OnboardingScriptsController extends AdminModelEditController {
 
 		$defaults = [
 			'My WordPress Website',
-			// phpcs:ignore WordPress.WP.I18n.MissingArgDomain -- WordPress core's own default site title.
-			__( 'My WordPress Website' ),
+			__( 'My WordPress Website', 'surecart' ),
 		];
 
 		return in_array( $name, $defaults, true ) ? '' : $name;

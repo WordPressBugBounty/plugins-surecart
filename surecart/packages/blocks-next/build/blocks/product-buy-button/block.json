@@ -69,6 +69,7 @@
     "__experimentalSelector": ".wp-block-button .wp-block-button__link",
     "typography": {
       "fontSize": true,
+      "lineHeight": true,
       "__experimentalFontFamily": true,
       "__experimentalFontWeight": true,
       "__experimentalFontStyle": true,

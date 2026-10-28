@@ -25,6 +25,13 @@ class CustomerRestServiceProvider extends RestServiceProvider implements RestSer
 	protected $controller = CustomerController::class;
 
 	/**
+	 * Accept a `filter` rule tree on the index route (listing already needs the full cap).
+	 *
+	 * @var boolean
+	 */
+	protected $filterable = true;
+
+	/**
 	 * Get our sample schema for a post.
 	 *
 	 * @return array The sample schema for a post

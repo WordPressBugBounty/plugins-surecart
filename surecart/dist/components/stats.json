@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-20T18:51:22",
+  "timestamp": "2026-10-28T19:06:07",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3623,8 +3623,6 @@
           "./dist/surecart/p-6d70117c.entry.js.map",
           "./dist/surecart/p-6d7cb33d.entry.js",
           "./dist/surecart/p-6d7cb33d.entry.js.map",
-          "./dist/surecart/p-6ec415c6.entry.js",
-          "./dist/surecart/p-6ec415c6.entry.js.map",
           "./dist/surecart/p-7096fc6a.js",
           "./dist/surecart/p-7096fc6a.js.map",
           "./dist/surecart/p-7256a71f.js",
@@ -3815,6 +3813,8 @@
           "./dist/surecart/p-c8ffd103.entry.js.map",
           "./dist/surecart/p-c9553dbd.entry.js",
           "./dist/surecart/p-c9553dbd.entry.js.map",
+          "./dist/surecart/p-c9c21bfd.entry.js",
+          "./dist/surecart/p-c9c21bfd.entry.js.map",
           "./dist/surecart/p-ccdff44b.entry.js",
           "./dist/surecart/p-ccdff44b.entry.js.map",
           "./dist/surecart/p-ce50caea.entry.js",
@@ -4089,8 +4089,6 @@
           "./www/build/p-6d70117c.entry.js.map",
           "./www/build/p-6d7cb33d.entry.js",
           "./www/build/p-6d7cb33d.entry.js.map",
-          "./www/build/p-6ec415c6.entry.js",
-          "./www/build/p-6ec415c6.entry.js.map",
           "./www/build/p-7096fc6a.js",
           "./www/build/p-7096fc6a.js.map",
           "./www/build/p-7256a71f.js",
@@ -4281,6 +4279,8 @@
           "./www/build/p-c8ffd103.entry.js.map",
           "./www/build/p-c9553dbd.entry.js",
           "./www/build/p-c9553dbd.entry.js.map",
+          "./www/build/p-c9c21bfd.entry.js",
+          "./www/build/p-c9c21bfd.entry.js.map",
           "./www/build/p-ccdff44b.entry.js",
           "./www/build/p-ccdff44b.entry.js.map",
           "./www/build/p-ce50caea.entry.js",
@@ -6575,8 +6575,8 @@
           "sc-order-confirm-provider",
           "sc-session-provider"
         ],
-        "bundleId": "p-6ec415c6",
-        "fileName": "p-6ec415c6.entry.js",
+        "bundleId": "p-c9c21bfd",
+        "fileName": "p-c9c21bfd.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-b6a933a1.js",
@@ -6597,6 +6597,7 @@
           "p-830ab1a3.js",
           "p-78468e45.js",
           "p-401e165e.js",
+          "p-9ef0f73f.js",
           "p-8b323bfb.js",
           "p-d3366af3.js",
           "p-2b28ea49.js",
@@ -6607,7 +6608,7 @@
           "p-fb28f84f.js",
           "p-e2e1fe1f.js"
         ],
-        "originalByteSize": 86762
+        "originalByteSize": 88882
       },
       {
         "key": "sc-checkout-mollie-payment.sc-checkout-paystack-payment-provider.sc-checkout-razorpay-payment-provider.entry",
@@ -9800,6 +9801,7 @@
           "index-c5a96d53.js",
           "mutations-7458343f.js",
           "add-query-args-0e2a8393.js",
+          "pure-963214cb.js",
           "form-data-76641f16.js",
           "remove-query-args-938c53ea.js",
           "index-18f5a1bc.js",
@@ -9810,7 +9812,7 @@
           "util-dfbf863e.js",
           "address-b8e2e4c8.js"
         ],
-        "originalByteSize": 86937
+        "originalByteSize": 89060
       },
       {
         "key": "sc-checkout-mollie-payment.sc-checkout-paystack-payment-provider.sc-checkout-razorpay-payment-provider.entry",
@@ -13005,6 +13007,7 @@
           "index-fb76df07.js",
           "mutations-d5d6ddf1.js",
           "add-query-args-49dcb630.js",
+          "pure-bd6f0a6e.js",
           "form-data-0da9940f.js",
           "remove-query-args-b57e8cd3.js",
           "index-c3de642f.js",
@@ -13015,7 +13018,7 @@
           "util-a15c420c.js",
           "address-7404695f.js"
         ],
-        "originalByteSize": 89064
+        "originalByteSize": 91236
       },
       {
         "key": "sc-checkout-mollie-payment.sc-checkout-paystack-payment-provider.sc-checkout-razorpay-payment-provider.entry",
@@ -122393,6 +122396,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -122433,6 +122437,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -122592,6 +122597,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -122622,6 +122628,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -122652,6 +122659,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -123016,6 +123024,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -123051,6 +123060,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -123084,6 +123094,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -123468,6 +123479,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -123626,6 +123638,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",
@@ -124350,6 +124363,7 @@
       "p-830ab1a3.js",
       "p-78468e45.js",
       "p-401e165e.js",
+      "p-9ef0f73f.js",
       "p-8b323bfb.js",
       "p-d3366af3.js",
       "p-2b28ea49.js",

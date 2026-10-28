@@ -17,6 +17,7 @@ import { a as apiFetch } from './index-824c562b.js';
 import { s as speak } from './index-c5a96d53.js';
 import { c as createErrorNotice, r as removeNotice, a as createInfoNotice } from './mutations-7458343f.js';
 import { a as addQueryArgs, g as getQueryArgs } from './add-query-args-0e2a8393.js';
+import { p as pure } from './pure-963214cb.js';
 import { p as parseFormData } from './form-data-76641f16.js';
 import { r as removeQueryArgs, g as getQueryArg } from './remove-query-args-938c53ea.js';
 import './index-18f5a1bc.js';
@@ -1278,6 +1279,9 @@ const ScSessionProvider = class {
         // we have an existing saved checkout id in the session, and we are persisting.
         const id = (_a = state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout) === null || _a === void 0 ? void 0 : _a.id;
         if (id && this.persist) {
+            // A coupon in the url means a new attempt, which the regular flow applies.
+            if (!coupon && (await this.maybeResumeStripePayment()))
+                return;
             return this.handleExistingCheckout(id, coupon);
         }
         return this.handleNewCheckout(coupon);
@@ -1315,6 +1319,43 @@ const ScSessionProvider = class {
         }
         catch (e) {
             this.handleErrorResponse(e);
+        }
+    }
+    /**
+     * Reopen a 3D Secure challenge the page lost mid-flight, e.g. a mobile browser reloading the tab
+     * while the shopper approves in their banking app.
+     *
+     * Returns false unless Stripe confirms a challenge is pending, so every other case keeps the regular flow.
+     */
+    async maybeResumeStripePayment() {
+        var _a, _b, _c, _d;
+        const stripeData = (_c = (_b = (_a = state$1.checkout) === null || _a === void 0 ? void 0 : _a.payment_intent) === null || _b === void 0 ? void 0 : _b.processor_data) === null || _c === void 0 ? void 0 : _c.stripe;
+        if (((_d = state$1.checkout) === null || _d === void 0 ? void 0 : _d.status) !== 'finalized' || (stripeData === null || stripeData === void 0 ? void 0 : stripeData.type) !== 'payment' || !(stripeData === null || stripeData === void 0 ? void 0 : stripeData.client_secret))
+            return false;
+        let stripe;
+        try {
+            stripe = await pure.loadStripe(stripeData.publishable_key, { stripeAccount: stripeData.account_id });
+            const { paymentIntent } = await stripe.retrievePaymentIntent(stripeData.client_secret);
+            if ((paymentIntent === null || paymentIntent === void 0 ? void 0 : paymentIntent.status) !== 'requires_action')
+                return false;
+        }
+        catch (e) {
+            console.error(e);
+            return false;
+        }
+        try {
+            updateFormState('FINALIZE');
+            const { error } = await stripe.handleNextAction({ clientSecret: stripeData.client_secret });
+            if (error)
+                throw error;
+            this.scPaid.emit();
+            return true;
+        }
+        catch (e) {
+            console.error(e);
+            createErrorNotice(e);
+            updateFormState('REJECT');
+            return false; // Let the regular flow refresh the checkout for a new attempt.
         }
     }
     /** Handle abandoned checkout from URL */
@@ -1629,7 +1670,7 @@ const ScSessionProvider = class {
         }
     }
     render() {
-        return (h("sc-line-items-provider", { key: '2390c7744f8a1848a01bc15ede9c549c92b573e8', order: state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: 'c95c4a4e20edf2807c812ca71cf403c8ae4173e3' })));
+        return (h("sc-line-items-provider", { key: 'a28483004483f7d565086bc300bc764d96b53d75', order: state$1 === null || state$1 === void 0 ? void 0 : state$1.checkout, onScUpdateLineItems: e => this.loadUpdate({ line_items: e.detail }) }, h("slot", { key: '53725d7fb43b7ffb3d55bb5471534ff6cabbde02' })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {

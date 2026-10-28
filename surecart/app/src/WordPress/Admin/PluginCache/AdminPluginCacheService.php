@@ -12,13 +12,6 @@ class AdminPluginCacheService {
 	private const DEFAULT_DOCS_URL = 'https://surecart.com/docs/caching/';
 
 	/**
-	 * Plugin-specific documentation URLs.
-	 */
-	private const PLUGIN_DOCS_URLS = [
-		// 'litespeed-cache/litespeed-cache.php' => 'https://surecart.com/docs/lsp-config/', // we added support for this in the plugin
-	];
-
-	/**
 	 * Bootstrap related hooks.
 	 *
 	 * @return void
@@ -41,35 +34,23 @@ class AdminPluginCacheService {
 				// 'sg-cachepress/sg-cachepress.php', // we added support for this in the plugin
 				// 'wp-fastest-cache/wpFastestCache.php', // we added support for this in the plugin
 				// 'wp-rocket/wp-rocket.php', // we added support for this in the plugin
-				'wp-super-cache/wp-cache.php',
-				'autoptimize/autoptimize.php',
-				'cache-enabler/cache-enabler.php',
+				// 'wp-super-cache/wp-cache.php', // we added support for this in the plugin
+				// 'autoptimize/autoptimize.php', // we added support for this in the plugin
+				// 'cache-enabler/cache-enabler.php', // we added support for this in the plugin
+				// 'breeze/breeze.php', // we added support for this in the plugin
+				// 'perfmatters/perfmatters.php', // we added support for this in the plugin
+				// 'hummingbird-performance/wp-hummingbird.php', // we added support for this in the plugin
 				'swift-performance-lite/performance.php',
-				'hummingbird-performance/wp-hummingbird.php',
 				'wp-optimize/wp-optimize.php',
 				'nitropack/main.php',
-				// 'perfmatters/perfmatters.php', // we added support for this in the plugin
 				'wp-asset-clean-up/wpacu.php',
 				'flying-pages/flying-pages.php',
 				'fast-velocity-minify/fvm.php',
-				'breeze/breeze.php',
 				'wp-performance-score-booster/wp-performance-score-booster.php',
 				'clearfy/clearfy.php',
 				'psn-pagespeed-ninja/pagespeedninja.php',
 			]
 		);
-	}
-
-	/**
-	 * Get documentation URL for a specific cache plugin.
-	 *
-	 * @param string $plugin Plugin path/slug.
-	 * @return string Documentation URL.
-	 */
-	public function getDocumentationUrl( string $plugin ): string {
-		$plugin_docs = apply_filters( 'surecart_cache_plugin_documentation_urls', self::PLUGIN_DOCS_URLS );
-
-		return $plugin_docs[ $plugin ] ?? self::DEFAULT_DOCS_URL;
 	}
 
 	/**
@@ -95,9 +76,6 @@ class AdminPluginCacheService {
 				continue;
 			}
 
-			// Get the documentation URL for this plugin.
-			$docs_url = $this->getDocumentationUrl( $plugin );
-
 			// Render the notice.
 			echo wp_kses_post(
 				\SureCart::notices()->render(
@@ -116,7 +94,7 @@ class AdminPluginCacheService {
 							$plugin_data['Version']
 						)
 						.
-						'<p><a href="' . esc_url( $docs_url ) . '" target="_blank">' . esc_html__( 'Review Configuration Guide', 'surecart' ) . '</a></p>',
+						'<p><a href="' . esc_url( self::DEFAULT_DOCS_URL ) . '" target="_blank">' . esc_html__( 'Review Configuration Guide', 'surecart' ) . '</a></p>',
 					]
 				)
 			);

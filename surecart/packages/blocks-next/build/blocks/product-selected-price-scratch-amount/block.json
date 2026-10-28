@@ -33,7 +33,15 @@
       "textAlign": true,
       "__experimentalTextDecoration": true
     },
-    "currencyConversion": true
+    "currencyConversion": true,
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "__experimentalDefaultControls": {
+        "padding": true,
+        "margin": true
+      }
+    }
   },
   "textdomain": "surecart",
   "render": "file:./view.php",

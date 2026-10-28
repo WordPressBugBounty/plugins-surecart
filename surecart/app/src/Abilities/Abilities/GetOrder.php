@@ -45,7 +45,7 @@ class GetOrder extends AbstractAbility {
 	 * {@inheritDoc}
 	 */
 	public function get_instructions(): string {
-		return 'Use this when you need full details about a specific order. The response includes expanded checkout and line items. For browsing multiple orders, use list-orders instead.';
+		return 'Use this when you need full details about a specific order. The response includes expanded checkout, line items, and the discount with its promotion/coupon — so you can see which coupon or promotion code an order redeemed (checkout.discount.promotion.code) and who placed it (checkout.email, checkout.name). For browsing multiple orders, use list-orders instead.';
 	}
 
 	/**
@@ -93,7 +93,8 @@ class GetOrder extends AbstractAbility {
 			return $this->error( 'missing_id', __( 'An order ID is required.', 'surecart' ) );
 		}
 
-		$order = Order::with( array( 'checkout', 'checkout.line_items' ) )->find( $id );
+		// Discount expansions let the response show which coupon/promotion code was redeemed.
+		$order = Order::with( array( 'checkout', 'checkout.line_items', 'checkout.discount', 'discount.promotion', 'discount.coupon' ) )->find( $id );
 		if ( is_wp_error( $order ) ) {
 			return $order;
 		}

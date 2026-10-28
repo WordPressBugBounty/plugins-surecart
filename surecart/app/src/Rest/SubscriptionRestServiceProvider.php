@@ -30,6 +30,13 @@ class SubscriptionRestServiceProvider extends RestServiceProvider implements Res
 	protected $methods = [ 'index', 'find', 'edit' ];
 
 	/**
+	 * Accept a `filter` rule tree on the index route.
+	 *
+	 * @var boolean
+	 */
+	protected $filterable = true;
+
+	/**
 	 * Register REST Routes
 	 *
 	 * @return void
@@ -210,6 +217,10 @@ class SubscriptionRestServiceProvider extends RestServiceProvider implements Res
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
+		// The filter endpoint ignores customer_ids, so own-subscriptions access can't cover it.
+		if ( $request->has_param( 'filter' ) ) {
+			return current_user_can( 'read_sc_subscriptions' );
+		}
 		return current_user_can( 'read_sc_subscriptions', $request->get_params() );
 	}
 

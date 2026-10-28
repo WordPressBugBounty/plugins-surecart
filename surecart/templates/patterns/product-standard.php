@@ -13,23 +13,23 @@ return [
 	<div class="wp-block-column"><!-- wp:surecart/product-media /--></div>
 	<!-- /wp:column -->
 
-	<!-- wp:column {"width":"36%","style":{"spacing":{"blockGap":"0.75rem"}}} -->
+	<!-- wp:column {"width":"36%"} -->
 	<div class="wp-block-column" style="flex-basis:36%"><!-- wp:surecart/product-collection-tags -->
 		<!-- wp:surecart/product-collection-tag /-->
 		<!-- /wp:surecart/product-collection-tags -->
 
-		<!-- wp:group {"style":{"spacing":{"blockGap":"10px","padding":{"right":"0px","left":"0px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group" style="padding-right:0px;padding-left:0px">
+		<!-- wp:group {"style":{"spacing":{"blockGap":"10px","margin":{"top":"18px"},"padding":{"right":"0px","left":"0px"}}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group" style="margin-top:18px;padding-right:0px;padding-left:0px">
 			<!-- wp:surecart/product-review-average-rating-stars /-->
 
 			<!-- wp:surecart/product-review-total-rating {"className":"is-style-plus-sign","style":{"spacing":{"blockGap":"4px"}}} /-->
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:surecart/product-title {"style":{"typography":{"fontSize":"32px"}}} /-->
+		<!-- wp:surecart/product-title {"style":{"typography":{"fontSize":"32px"},"spacing":{"margin":{"top":"18px"}}}} /-->
 
-		<!-- wp:group {"style":{"spacing":{"blockGap":"0","padding":{"right":"0px","left":"0px"}}}} -->
-		<div class="wp-block-group" style="padding-right:0px;padding-left:0px">
+		<!-- wp:group {"style":{"spacing":{"blockGap":"0","margin":{"top":"18px"},"padding":{"right":"0px","left":"0px"}}}} -->
+		<div class="wp-block-group" style="margin-top:18px;padding-right:0px;padding-left:0px">
 			<!-- wp:group {"style":{"spacing":{"blockGap":"0.5em","padding":{"right":"0px","left":"0px"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left","verticalAlignment":"bottom"}} -->
 			<div class="wp-block-group" style="padding-right:0px;padding-left:0px">
 				<!-- wp:surecart/product-selected-price-scratch-amount {"style":{"typography":{"textDecoration":"line-through","fontSize":"24px","lineHeight":"1.5"},"color":{"text":"#686868"},"elements":{"link":{"color":{"text":"#686868"}}}}} /-->
@@ -51,13 +51,13 @@ return [
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:surecart/product-description /-->
+		<!-- wp:surecart/product-description {"style":{"spacing":{"margin":{"top":"18px"}}}} /-->
 
-		<!-- wp:surecart/product-variant-pills -->
+		<!-- wp:surecart/product-variant-pills {"style":{"spacing":{"margin":{"top":"18px"}}}} -->
 		<!-- wp:surecart/product-variant-pill /-->
 		<!-- /wp:surecart/product-variant-pills -->
 
-		<!-- wp:surecart/product-price-chooser -->
+		<!-- wp:surecart/product-price-chooser {"style":{"spacing":{"margin":{"top":"18px"}}}} -->
 		<!-- wp:surecart/product-price-choice-template {"layout":{"type":"flex","justifyContent":"left","flexWrap":"nowrap","orientation":"horizontal"}} -->
 		<!-- wp:surecart/price-name {"style":{"layout":{"selfStretch":"fixed","flexSize":"50%"},"typography":{"fontStyle":"normal","fontWeight":"600"}}} /-->
 
@@ -81,12 +81,12 @@ return [
 		<!-- /wp:surecart/product-price-choice-template -->
 		<!-- /wp:surecart/product-price-chooser -->
 
-		<!-- wp:surecart/product-quantity /-->
+		<!-- wp:surecart/product-quantity {"style":{"spacing":{"margin":{"top":"18px"}}}} /-->
 
 		<!-- wp:surecart/product-selected-price-ad-hoc-amount /-->
 
-		<!-- wp:surecart/product-buy-buttons {"style":{"spacing":{"blockGap":"5px"}}} -->
-		<div class="wp-block-surecart-product-buy-buttons wp-block-buttons sc-block-buttons is-layout-flex">
+		<!-- wp:surecart/product-buy-buttons {"style":{"spacing":{"blockGap":"5px","margin":{"top":"18px"}}}} -->
+		<div class="wp-block-surecart-product-buy-buttons wp-block-buttons sc-block-buttons is-layout-flex" style="margin-top:18px">
 			<!-- wp:surecart/product-buy-button {"add_to_cart":true} /-->
 
 			<!-- wp:surecart/product-buy-button {"className":"is-style-outline"} /-->
@@ -96,6 +96,10 @@ return [
 	<!-- /wp:column -->
 </div>
 <!-- /wp:columns -->
+
+<!-- wp:group {"metadata":{"name":"Product Content"},"align":"wide","style":{"spacing":{"padding":{"top":"40px"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide" style="padding-top:40px"><!-- wp:post-content {"layout":{"type":"constrained"}} /--></div>
+<!-- /wp:group -->
 <!-- /wp:surecart/product-page -->
 ',
 ];

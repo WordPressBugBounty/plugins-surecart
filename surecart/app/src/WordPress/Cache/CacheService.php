@@ -52,10 +52,13 @@ abstract class CacheService {
 	/**
 	 * Disable cache for the current page.
 	 *
+	 * No-op by default: DoNotCachePageService defines DONOTCACHEPAGE on every site, which
+	 * most page caches honor. Override only for plugins that need their own call.
+	 *
 	 * @param string $reason Reason for disabling cache.
 	 * @return void
 	 */
-	abstract protected function disableCache( string $reason ): void;
+	protected function disableCache( string $reason ): void {}
 
 	/**
 	 * Check if the cache plugin is active.
@@ -417,6 +420,25 @@ abstract class CacheService {
 		}
 
 		return array_merge( $excludes, $this->getJsDeferExcludes() );
+	}
+
+	/**
+	 * Whether a script handle or URL is one of the critical core scripts.
+	 *
+	 * For optimizers that decide per WordPress handle (Breeze's tag wrapping, Hummingbird).
+	 *
+	 * @param string $handle Script handle.
+	 * @param string $src    Script source URL.
+	 * @return bool
+	 */
+	protected function isCriticalScript( $handle, $src = '' ): bool {
+		foreach ( $this->getJsDeferExcludes() as $pattern ) {
+			if ( false !== strpos( (string) $handle, $pattern ) || false !== strpos( (string) $src, $pattern ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

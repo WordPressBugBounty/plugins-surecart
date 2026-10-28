@@ -27,7 +27,7 @@ class ListOrders extends AbstractAbility {
 	 * {@inheritDoc}
 	 */
 	public function get_description(): string {
-		return __( 'Retrieve a paginated list of SureCart orders. Supports filtering by order status and customer ID. Returns order summaries with IDs, amounts, statuses, and timestamps.', 'surecart' );
+		return __( 'Retrieve a paginated list of SureCart orders. Supports filtering by order status and customer ID. Each order includes its expanded checkout with buyer name/email and any redeemed coupon or promotion code.', 'surecart' );
 	}
 
 	/**
@@ -45,7 +45,7 @@ class ListOrders extends AbstractAbility {
 	 * {@inheritDoc}
 	 */
 	public function get_instructions(): string {
-		return 'Use this to browse or search orders. Filter by status (paid, processing, draft, payment_failed, void, canceled, requires_approval) and customer. Use canceled for orders shown as Canceled in the dashboard; it is applied as void in the API. For full details on a single order, use get-order instead. Only known parameters are accepted: status, customer, page, per_page.';
+		return 'Use this to browse or search orders. Filter by status (paid, processing, draft, payment_failed, void, canceled, requires_approval) and customer. Use canceled for orders shown as Canceled in the dashboard; it is applied as void in the API. Each order already includes checkout.email, checkout.name, and checkout.discount with its promotion/coupon (code at checkout.discount.promotion.code) — do NOT call get-order per order just to read buyer or coupon info. Use get-order only for full line-item detail. To find orders by any other attribute (e.g. a coupon or promotion code, when the filter schema supports it), do NOT paginate through this list — call get-orders-filter-schema then filter-orders instead. Only known parameters are accepted: status, customer, page, per_page.';
 	}
 
 	/**
@@ -148,7 +148,7 @@ class ListOrders extends AbstractAbility {
 			$args['customer_ids'] = array( sanitize_text_field( $input['customer_id'] ) );
 		}
 
-		$orders = Order::where( $args )->paginate(
+		$orders = Order::where( $args )->with( array( 'checkout', 'checkout.discount', 'discount.promotion', 'discount.coupon' ) )->paginate(
 			array(
 				'page'     => $page,
 				'per_page' => $per_page,

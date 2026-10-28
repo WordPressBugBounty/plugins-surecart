@@ -48,6 +48,21 @@ class CacheServiceProvider implements ServiceProviderInterface {
 		$container['surecart.siteground_cache']             = function () use ( $container ) {
 			return new SiteGroundCacheService( $container['surecart.migrations.siteground_config'] );
 		};
+		$container['surecart.wpsupercache_cache']           = function () {
+			return new WpSuperCacheService();
+		};
+		$container['surecart.autoptimize_cache']            = function () {
+			return new AutoptimizeCacheService();
+		};
+		$container['surecart.breeze_cache']                 = function () {
+			return new BreezeCacheService();
+		};
+		$container['surecart.cacheenabler_cache']           = function () {
+			return new CacheEnablerCacheService();
+		};
+		$container['surecart.hummingbird_cache']            = function () {
+			return new HummingbirdCacheService();
+		};
 	}
 
 	/**
@@ -68,6 +83,11 @@ class CacheServiceProvider implements ServiceProviderInterface {
 				$container['surecart.wprocket_cache']->bootstrap();
 				$container['surecart.perfmatters_cache']->bootstrap();
 				$container['surecart.siteground_cache']->bootstrap();
+				$container['surecart.wpsupercache_cache']->bootstrap();
+				$container['surecart.autoptimize_cache']->bootstrap();
+				$container['surecart.breeze_cache']->bootstrap();
+				$container['surecart.cacheenabler_cache']->bootstrap();
+				$container['surecart.hummingbird_cache']->bootstrap();
 			},
 			999 // Late priority to ensure it runs after most plugins have loaded.
 		);

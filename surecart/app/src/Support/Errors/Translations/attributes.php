@@ -35,4 +35,8 @@ return [
 	'fulfillment_items'           => __( 'Fulfillment items', 'surecart' ),
 	'line_item'                   => __( 'Line item', 'surecart' ),
 	'tracking_number'             => __( 'Tracking number', 'surecart' ),
+	'shipments.to_contact.email'  => __( 'Recipient email', 'surecart' ),
+	'shipments.to_contact.phone'  => __( 'Recipient phone', 'surecart' ),
+	'to_contact.email'            => __( 'Recipient email', 'surecart' ),
+	'to_contact.phone'            => __( 'Recipient phone', 'surecart' ),
 ];

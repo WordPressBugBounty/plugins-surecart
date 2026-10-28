@@ -18,9 +18,9 @@ The `/v1` segment comes from `RequestService::getBaseUrl()` (`app/src/Request/Re
 
 Three base classes, not two:
 
-- `Model` — API-backed (96 models).
-- `DatabaseModel` — WP custom table. **Also requires `protected $table_name`** (e.g. `Integration.php:15`); its inherited `$endpoint` is vestigial, since queries go through `Query::init($this->object_name)->from($this->table_name)` (`DatabaseModel.php:169`).
-- `ExternalApiModel` — third-party API. Different contract: `protected $base_url` plus `$endpoint`, its own `makeRequest()` with transient caching, never touches `RequestService` or `SURECART_API_URL`. One subclass repo-wide (`IntegrationCatalog.php`).
+-   `Model` — API-backed (96 models).
+-   `DatabaseModel` — WP custom table. **Also requires `protected $table_name`** (e.g. `Integration.php:15`); its inherited `$endpoint` is vestigial, since queries go through `Query::init($this->object_name)->from($this->table_name)` (`DatabaseModel.php:169`).
+-   `ExternalApiModel` — third-party API. Different contract: `protected $base_url` plus `$endpoint`, its own `makeRequest()` with transient caching, never touches `RequestService` or `SURECART_API_URL`. One subclass repo-wide (`IntegrationCatalog.php`).
 
 Traits live in `SureCart\Models\Traits` and must be imported by FQCN — `use SureCart\Models\Traits\HasDates;`.
 
@@ -68,6 +68,8 @@ The capability is not always derived from the endpoint name — `manage_sc_shop_
 
 **The base class defaults every permission check to `false`** (`RestServiceProvider.php:349-399`), so a provider that omits them registers a fully locked endpoint rather than an open one.
 
+**`$filterable = true` routes a `filter` rule tree on the index route to the platform's `POST /{resource}/filter`** (model must use `CanFilter`; tree sanitized by `Support\RuleTree`). That endpoint ignores `customer_ids`, `sort` and `query`, so a provider whose list cap allows own-records access via `customer_ids` must require the unconditional cap when `filter` is present (see `OrderRestServiceProvider::get_items_permissions_check`).
+
 ## Error Handling
 
 ```php
@@ -106,11 +108,11 @@ The dispatcher passes a **third** argument the interface does not declare — `$
 
 Implementing `PurchaseSyncInterface` also auto-subscribes you to a **fourth** event: `surecart/purchase_updated` → `onPurchaseUpdated(Purchase $purchase, $request)` (`IntegrationService.php:143`, method at `:179-248`), which fans out to `onPurchaseProductAdded`, `onPurchaseProductRemoved`, `onPurchaseQuantityUpdated` and `onPurchaseProductUpdated`. This is the plan-change path — an integration that ignores it will not revoke access on a product swap.
 
-- Any provider whose `integration_id` is later used to grant access/roles/memberships must implement `isValidItem($id)` to validate the id against its real items — the base default returns `true` and validates nothing, so arbitrary ids are silently accepted
-- Never gate on a provider slug with a plain string compare alone — `provider` is a `varchar` under the site collation, so `andWhere('provider', ...)` on dispatch matches `SureCart/User-Role` to `surecart/user-role`. The REST layer only accepts slugs with a registered `surecart/integrations/providers/find/{slug}` filter; keep that as the canonicalization point
-- Integration data (product/price/variant -> third-party item mapping) stored in `surecart_integrations` table via `Integration` model (DatabaseModel)
-- Register service provider in `app/config.php` under `'providers'`
-- Actions fire from **five** places, not two: `DraftCheckoutsController::finalize()` (`:94`) and `::manuallyPay()` (`:43`), `CheckoutsController::finalize()` (`:243`) and `::manuallyPay()` (`:159`), and the webhook processor (`AsyncWebhookService.php:102`). Do not hook them manually — and when tracing "where does this fire", do not stop at the draft controller
+-   Any provider whose `integration_id` is later used to grant access/roles/memberships must implement `isValidItem($id)` to validate the id against its real items — the base default returns `true` and validates nothing, so arbitrary ids are silently accepted
+-   Never gate on a provider slug with a plain string compare alone — `provider` is a `varchar` under the site collation, so `andWhere('provider', ...)` on dispatch matches `SureCart/User-Role` to `surecart/user-role`. The REST layer only accepts slugs with a registered `surecart/integrations/providers/find/{slug}` filter; keep that as the canonicalization point
+-   Integration data (product/price/variant -> third-party item mapping) stored in `surecart_integrations` table via `Integration` model (DatabaseModel)
+-   Register service provider in `app/config.php` under `'providers'`
+-   Actions fire from **five** places, not two: `DraftCheckoutsController::finalize()` (`:94`) and `::manuallyPay()` (`:43`), `CheckoutsController::finalize()` (`:243`) and `::manuallyPay()` (`:159`), and the webhook processor (`AsyncWebhookService.php:102`). Do not hook them manually — and when tracing "where does this fire", do not stop at the draft controller
 
 ## Routes and Middleware
 
@@ -142,14 +144,14 @@ Much of `app/routes/web.php` applies middleware by FQCN rather than alias, so th
 
 ## Webhook Event -> WordPress Action Mapping
 
-| API Event | WordPress Action |
-|---|---|
-| `purchase.created` | `surecart/purchase_created` |
-| `purchase.revoked` | `surecart/purchase_revoked` |
-| `purchase.invoked` | `surecart/purchase_invoked` |
-| `purchase.updated` | `surecart/purchase_updated` |
-| `customer.updated` | `surecart/customer_updated` |
-| `account.updated` | `surecart/account_updated` |
+| API Event              | WordPress Action                |
+| ---------------------- | ------------------------------- |
+| `purchase.created`     | `surecart/purchase_created`     |
+| `purchase.revoked`     | `surecart/purchase_revoked`     |
+| `purchase.invoked`     | `surecart/purchase_invoked`     |
+| `purchase.updated`     | `surecart/purchase_updated`     |
+| `customer.updated`     | `surecart/customer_updated`     |
+| `account.updated`      | `surecart/account_updated`      |
 | `subscription.renewed` | `surecart/subscription_renewed` |
 
 Price/product CRUD events also fire but are rarely hooked externally.

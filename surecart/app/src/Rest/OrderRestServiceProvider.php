@@ -32,6 +32,13 @@ class OrderRestServiceProvider extends RestServiceProvider implements RestServic
 	protected $methods = [ 'index', 'find' ];
 
 	/**
+	 * Accept a `filter` rule tree on the index route.
+	 *
+	 * @var boolean
+	 */
+	protected $filterable = true;
+
+	/**
 	 * Register Additional REST Routes
 	 *
 	 * @return void
@@ -142,6 +149,10 @@ class OrderRestServiceProvider extends RestServiceProvider implements RestServic
 	 * @return true|\WP_Error True if the request has access to create items, WP_Error object otherwise.
 	 */
 	public function get_items_permissions_check( $request ) {
+		// The filter endpoint ignores customer_ids, so own-orders access can't cover it.
+		if ( $request->has_param( 'filter' ) ) {
+			return current_user_can( 'read_sc_orders' );
+		}
 		return current_user_can( 'read_sc_orders', $request->get_params() );
 	}
 

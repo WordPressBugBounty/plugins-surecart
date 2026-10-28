@@ -79,17 +79,6 @@ class WpRocketCacheService extends CacheService {
 	}
 
 	/**
-	 * Disable cache for the current page.
-	 *
-	 * No-op — WP Rocket honors the DONOTCACHEPAGE constant set by
-	 * DoNotCachePageService on dynamic SureCart pages.
-	 *
-	 * @param string $reason Reason for disabling cache.
-	 * @return void
-	 */
-	protected function disableCache( string $reason ): void {}
-
-	/**
 	 * Exclude dynamic SureCart page URIs from caching and preloading.
 	 *
 	 * Shared between `rocket_cache_reject_uri` and `rocket_preload_exclude_urls`:

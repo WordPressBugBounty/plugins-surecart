@@ -3,6 +3,7 @@
 namespace SureCart\Abilities\Abilities;
 
 use SureCart\Models\Customer;
+use SureCart\Support\RuleTree;
 
 /**
  * Filter customers with a rule tree.
@@ -116,7 +117,7 @@ class FilterCustomers extends AbstractAbility {
 			return $this->error( 'invalid_filter', __( 'The filter must be a condition or group object.', 'surecart' ) );
 		}
 
-		$rules = $this->sanitize_rule_tree( $rules );
+		$rules = RuleTree::sanitize( $rules );
 		if ( is_wp_error( $rules ) ) {
 			return $rules;
 		}
