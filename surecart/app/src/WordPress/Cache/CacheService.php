@@ -77,6 +77,7 @@ abstract class CacheService {
 			|| $this->isCheckoutPage()
 			|| $this->hasCheckoutFormBlock()
 			|| $this->hasCustomerDashboardBlock()
+			|| $this->hasCustomerSavedItems()
 			|| $this->isBuyPage();
 	}
 
@@ -103,6 +104,11 @@ abstract class CacheService {
 
 		if ( $this->hasCustomerDashboardBlock() ) {
 			$this->disableCacheWithBrowserHeaders( 'SureCart customer dashboard block' );
+			return;
+		}
+
+		if ( $this->hasCustomerSavedItems() ) {
+			$this->disableCacheWithBrowserHeaders( 'SureCart customer saved items' );
 			return;
 		}
 
@@ -215,7 +221,7 @@ abstract class CacheService {
 	 * @return string[]
 	 */
 	protected function getDynamicPageKeys(): array {
-		return [ 'checkout', 'dashboard' ];
+		return [ 'checkout', 'dashboard', 'saved_items' ];
 	}
 
 	/**
@@ -325,6 +331,18 @@ abstract class CacheService {
 		}
 
 		return has_block( 'surecart/dashboard-area', $post ) || has_block( 'surecart/customer-dashboard', $post );
+	}
+
+	/**
+	 * Whether this request renders a customer's saved items into the HTML.
+	 *
+	 * Guests' lists load in the browser, so only signed-in requests carry personal data.
+	 *
+	 * @return bool
+	 */
+	protected function hasCustomerSavedItems(): bool {
+		$post = get_post();
+		return $post && is_user_logged_in() && has_block( 'surecart/customer-saved-items', $post );
 	}
 
 	/**

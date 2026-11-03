@@ -22,7 +22,8 @@ class Block extends DashboardPage {
 		'customer'       => \SureCartBlocks\Controllers\CustomerController::class,
 		'download'       => \SureCartBlocks\Controllers\DownloadController::class,
 		'invoice'        => \SureCartBlocks\Controllers\InvoiceController::class,
-		'license'		 => \SureCartBlocks\Controllers\LicenseController::class,
+		'license'        => \SureCartBlocks\Controllers\LicenseController::class,
+		'saved_item'     => \SureCartBlocks\Controllers\SavedItemController::class,
 	];
 
 	/**
@@ -71,16 +72,38 @@ class Block extends DashboardPage {
 		$after = apply_filters( 'surecart/dashboard/block/after', '', $attributes, $content );
 
 		// call the correct block controller.
-		if ( ! empty( $this->blocks[ $model ] ) ) {
+		if ( ! empty( $this->blocks[ $model ] ) && ( 'saved_item' !== $model || \SureCart::saved_items()->enabled() ) ) {
 			$action = isset( $_GET['action'] ) ? sanitize_text_field( wp_unslash( $_GET['action'] ) ) : false;
 
-			if ( method_exists( $this->blocks[ $model ], $action ) ) {
+			if ( $this->isRoutable( $this->blocks[ $model ], $action ) ) {
 				$block = new $this->blocks[ $model ]();
 				return $this->passwordNag() . '<sc-spacing class="sc-customer-dashboard" style="--spacing: var(--sc-spacing-xx-large); font-size: 15px;">' . $before . $block->handle( $action ) . $after . '</sc-spacing>';
 			}
 		}
 
 		return $this->passwordNag() . '<sc-spacing class="sc-customer-dashboard" style="--spacing: var(--sc-spacing-xx-large); font-size: 15px;">' . $before . filter_block_content( $content ) . $after . '</sc-spacing>';
+	}
+
+	/**
+	 * Whether a URL `action` may run on a controller.
+	 *
+	 * Only the controller's own public actions that take no arguments: anything else (base
+	 * plumbing, helpers that need input) would fatal or bypass middleware when named in the URL.
+	 *
+	 * @param string       $controller Controller class.
+	 * @param string|false $action     Action from the URL.
+	 *
+	 * @return bool
+	 */
+	protected function isRoutable( $controller, $action ) {
+		if ( ! $action || ! method_exists( $controller, $action ) ) {
+			return false;
+		}
+		$method = new \ReflectionMethod( $controller, $action );
+		return $method->isPublic()
+			&& ! $method->isStatic()
+			&& \SureCartBlocks\Controllers\BaseController::class !== $method->getDeclaringClass()->getName()
+			&& 0 === $method->getNumberOfRequiredParameters();
 	}
 
 	/**

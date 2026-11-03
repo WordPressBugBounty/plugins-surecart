@@ -118,12 +118,7 @@ const ScCustomerLogin = class {
                 speak(this.error, 'assertive');
             }
             else {
-                if (e.code === 'not_found') {
-                    this.error = wp.i18n.__('Incorrect code. Please try again.', 'surecart');
-                }
-                else {
-                    this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Incorrect code. Please try again.', 'surecart');
-                }
+                this.error = (e === null || e === void 0 ? void 0 : e.message) || wp.i18n.__('Incorrect code. Please try again.', 'surecart');
                 state.verificationStatus = UNVERIFIED;
                 speak(this.error, 'assertive');
             }
@@ -302,7 +297,7 @@ const ScCustomerLogin = class {
             } }, wp.i18n.__('Send new code', 'surecart')))), !isExpired && (!!this.error || !!this.codeError) && h("p", { class: "customer-code__error", role: "alert", innerHTML: this.error || this.codeError }), this.renderCodeFooter()));
     }
     render() {
-        return (h(Host, { key: '6060769aa096e03774f0b4dea7a81082cf5adeaf' }, h("div", { key: '348c822b81d84c15b5dcba5cf080e1cd3047901a', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
+        return (h(Host, { key: '5fa1e02e88b31202460eb4f2a29f7049a1213504' }, h("div", { key: 'e3c30e459cf6848943f302b6d9a78ee03d49eaa4', class: "customer-login" }, this.mode === 'code' ? this.renderCodeView() : this.renderPasswordView())));
     }
     static get watchers() { return {
         "mode": ["handleModeChange"]

@@ -59,6 +59,14 @@ them to a subfolder called @surecart.
 yarn plugin:release
 ```
 
+### Translations
+Before tagging a release, fill any new strings on translate.surecart.com so the release ships
+complete language packs. Setup is in [.dev/ai-translate/README.md](.dev/ai-translate/README.md).
+
+```
+yarn i18n:sync
+```
+
 ## Troubleshooting
 
 ### Error running `yarn dev` even after running `yarn bootstrap`.

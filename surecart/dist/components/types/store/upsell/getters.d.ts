@@ -3,7 +3,7 @@
  */
 export declare const isBusy: () => boolean;
 /**
- * Get the exit url.
+ * Get the exit url; after instant checkout the metadata override only counts while same-origin (anyone can write it).
  */
 export declare const getExitUrl: () => any;
 /**

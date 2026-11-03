@@ -131,6 +131,10 @@ class PageService {
 			$states[] = __( 'Shop Page', 'surecart' );
 		}
 
+		if ( $post->ID === $this->getId( 'saved_items' ) ) {
+			$states[] = __( 'Saved Items Page', 'surecart' );
+		}
+
 		return $states;
 	}
 

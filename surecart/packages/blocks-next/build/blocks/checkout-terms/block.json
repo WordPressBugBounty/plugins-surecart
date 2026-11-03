@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-terms",
+  "title": "Terms",
+  "description": "Required terms-of-service checkbox shown before the submit button.",
+  "keywords": [
+    "terms",
+    "agreement",
+    "checkout"
+  ],
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form"
+  ],
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "file:./style-index.css",
+    "surecart-theme-base",
+    "surecart-form-control"
+  ],
+  "style": [
+    "file:./style-index.css",
+    "surecart-theme-base",
+    "surecart-form-control"
+  ]
+}

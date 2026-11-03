@@ -1,0 +1,110 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-textarea",
+  "title": "Text Area",
+  "description": "Collect a longer custom text value at checkout, such as a gift note. The value is saved on the order under the field name you choose.",
+  "keywords": [
+    "custom",
+    "field",
+    "textarea",
+    "note",
+    "metadata"
+  ],
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form"
+  ],
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "help": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "rows": {
+      "type": "number",
+      "default": 4
+    },
+    "size": {
+      "type": "string",
+      "default": "medium",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ]
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "surecart-theme-base",
+    "surecart-form-group",
+    "surecart-form-control",
+    "surecart-label"
+  ],
+  "style": [
+    "surecart-theme-base",
+    "surecart-form-group",
+    "surecart-form-control",
+    "surecart-label"
+  ]
+}

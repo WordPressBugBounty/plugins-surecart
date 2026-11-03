@@ -640,6 +640,40 @@
 					"isInner": false,
 					"widgetType": "surecart-add-to-cart-button",
 					"elType": "widget"
+				},
+				{
+					"id": "5a7e3c21",
+					"settings": {
+						"_title": "Save for Later Button",
+						"align": "center",
+						"change_list_position": "inline",
+						"button_padding": {
+							"unit": "px",
+							"top": "0",
+							"right": "0",
+							"bottom": "0",
+							"left": "0",
+							"isLinked": true
+						},
+						"button_border_border": "none",
+						"button_background_color": "#00000000",
+						"button_hover_background_color": "#00000000",
+						"__globals__": {
+							"button_text_color": "globals/colors?id=text",
+							"button_hover_text_color": "globals/colors?id=text",
+							"saved_icon_color": "globals/colors?id=primary"
+						},
+						"button_typography_typography": "custom",
+						"button_typography_font_size": {
+							"unit": "px",
+							"size": 16,
+							"sizes": []
+						}
+					},
+					"elements": [],
+					"isInner": false,
+					"widgetType": "surecart-product-save-button",
+					"elType": "widget"
 				}
 			],
 			"isInner": true,

@@ -9,11 +9,11 @@ use SureCartCore\Requests\RequestInterface;
 use SureCartCore\Responses\RedirectResponse;
 
 /**
- * Middleware for handling model archiving.
+ * Send an abandoned-checkout recovery link back to the page the checkout started on.
  */
 class CheckoutRedirectMiddleware {
 	/**
-	 * Enqueue component assets.
+	 * Redirect to the checkout's originating page, falling back to the checkout page.
 	 *
 	 * @param RequestInterface $request Request.
 	 * @param Closure          $next Next.
@@ -29,9 +29,12 @@ class CheckoutRedirectMiddleware {
 
 		$checkout = Checkout::find( $id );
 
+		// an unknown checkout still lands on the default checkout page below.
+		$metadata = ( ! is_wp_error( $checkout ) && ! empty( $checkout ) ) ? $checkout->metadata : (object) [];
+
 		// get checkout from page id.
-		if ( ! empty( $checkout->metadata->buy_page_product_id ) ) {
-			$product = Product::find( $checkout->metadata->buy_page_product_id );
+		if ( ! empty( $metadata->buy_page_product_id ) ) {
+			$product = Product::find( $metadata->buy_page_product_id );
 			// handle error.
 			if ( is_wp_error( $product ) ) {
 				wp_die( esc_html( $product->get_error_message() ) );
@@ -51,8 +54,8 @@ class CheckoutRedirectMiddleware {
 		}
 
 		// get checkout from page id.
-		if ( ! empty( $checkout->metadata->page_id ) ) {
-			$url = get_permalink( (int) $checkout->metadata->page_id );
+		if ( ! empty( $metadata->page_id ) ) {
+			$url = get_permalink( (int) $metadata->page_id );
 			if ( $url ) {
 				return ( new RedirectResponse( $request ) )->to(
 					esc_url_raw( $this->buildUrl( $url, $request ) )
@@ -60,8 +63,8 @@ class CheckoutRedirectMiddleware {
 			}
 		}
 
-		// get checkout from page_url.
-		$page_url = $checkout->metadata->page_url ?? '';
+		// get checkout from page_url. Anyone can write this key, so keep it on-site.
+		$page_url = $metadata->page_url ?? '';
 		$page_url = is_string( $page_url ) ? wp_validate_redirect( $page_url, '' ) : '';
 		if ( ! empty( $page_url ) ) {
 			return ( new RedirectResponse( $request ) )->to(
@@ -83,6 +86,8 @@ class CheckoutRedirectMiddleware {
 	/**
 	 * Build the url.
 	 *
+	 * @param string           $url Destination url.
+	 * @param RequestInterface $request Request.
 	 * @return string
 	 */
 	public function buildUrl( $url, RequestInterface $request ) {

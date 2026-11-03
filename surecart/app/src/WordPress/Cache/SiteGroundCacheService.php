@@ -126,6 +126,8 @@ class SiteGroundCacheService extends CacheService {
 		$exclude_ids[] = '@surecart/dropdown-js-module';
 		$exclude_ids[] = '@surecart/google-events-js-module';
 		$exclude_ids[] = '@surecart/facebook-events-js-module';
+		$exclude_ids[] = '@surecart/google-checkout-events-js-module';
+		$exclude_ids[] = '@surecart/facebook-checkout-events-js-module';
 		$exclude_ids[] = '@surecart/product-page-js-module';
 		$exclude_ids[] = '@surecart/product-review-js-module';
 		$exclude_ids[] = '@surecart/product-review-form-js-module';

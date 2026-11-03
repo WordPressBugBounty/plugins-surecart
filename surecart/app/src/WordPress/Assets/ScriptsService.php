@@ -67,13 +67,60 @@ class ScriptsService {
 	}
 
 	/**
+	 * The `scData` payload for the frontend JS.
+	 *
+	 * Static so render paths that skip the Stencil enqueue can localize it.
+	 *
+	 * @return array
+	 */
+	public static function getScData(): array {
+		return apply_filters(
+			'surecart-components/scData', // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores,WordPress.NamingConventions.ValidHookName.NotLowercase
+			[
+				'cdn_root'                  => SURECART_CDN_IMAGE_BASE,
+				'root_url'                  => esc_url_raw( get_rest_url() ),
+				'plugin_url'                => \SureCart::core()->assets()->getUrl(),
+				'home_url'                  => esc_url_raw( home_url() ),
+				'api_url'                   => \SureCart::requests()->getBaseUrl(),
+				'locale'                    => str_replace( '_', '-', determine_locale() ),
+				'currency'                  => \SureCart::account()->currency,
+				'currency_symbol'           => html_entity_decode( Currency::getCurrencySymbol( \SureCart::account()->currency ) ),
+				'theme'                     => \SureCart::theme()->mode(),
+				'pages'                     => [
+					'dashboard' => \SureCart::pages()->url( 'dashboard' ),
+					'checkout'  => \SureCart::pages()->url( 'checkout' ),
+				],
+				'page_id'                   => get_the_ID(),
+				'nonce'                     => ( wp_installing() && ! is_multisite() ) ? '' : wp_create_nonce( 'wp_rest' ),
+				'nonce_endpoint'            => admin_url( 'admin-ajax.php?action=sc-rest-nonce' ),
+				'recaptcha_site_key'        => \SureCart::settings()->recaptcha()->getSiteKey(),
+				'claim_url'                 => ! wp_doing_ajax() && is_admin() && ! \SureCart::account()->claimed ? \SureCart::routeUrl( 'account.claim' ) : '',
+				'admin_url'                 => trailingslashit( admin_url() ),
+				'getting_started_url'       => untrailingslashit( admin_url( 'admin.php?page=sc-getting-started' ) ),
+				'user_permissions'          => array(
+					'manage_sc_shop_settings' => current_user_can( 'manage_sc_shop_settings' ),
+				),
+				'is_account_connected'      => \SureCart::account()->isConnected(),
+				'modern_order_bump'         => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
+				'google_map_api_key'        => \SureCart::googleMaps()->getApiKey(),
+				// Nested so wp_localize_script() keeps the booleans; it string-casts
+				// top-level scalars.
+				'tracking'                  => array(
+					'facebook' => self::isFacebookTrackingEnabled(),
+					'google'   => self::isGoogleTrackingEnabled(),
+				),
+			]
+		);
+	}
+
+	/**
 	 * Whether SureCart should automatically send Facebook Pixel (fbq) events.
 	 *
 	 * Stores running their own Pixel/CAPI stack can opt out to avoid double-tracking.
 	 *
 	 * @return bool
 	 */
-	public function isFacebookTrackingEnabled() {
+	public static function isFacebookTrackingEnabled() {
 		/**
 		 * Filter whether SureCart automatically sends Facebook Pixel (fbq) events.
 		 *
@@ -89,7 +136,7 @@ class ScriptsService {
 	 *
 	 * @return bool
 	 */
-	public function isGoogleTrackingEnabled() {
+	public static function isGoogleTrackingEnabled() {
 		/**
 		 * Filter whether SureCart automatically sends Google Analytics (gtag/dataLayer) events.
 		 *
@@ -134,46 +181,7 @@ class ScriptsService {
 
 		wp_set_script_translations( 'surecart-components', 'surecart' );
 
-		wp_localize_script(
-			'surecart-components',
-			'scData',
-			apply_filters(
-				'surecart-components/scData',  // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores,WordPress.NamingConventions.ValidHookName.NotLowercase
-				[
-					'cdn_root'                  => SURECART_CDN_IMAGE_BASE,
-					'root_url'                  => esc_url_raw( get_rest_url() ),
-					'plugin_url'                => \SureCart::core()->assets()->getUrl(),
-					'home_url'                  => esc_url_raw( home_url() ),
-					'api_url'                   => \SureCart::requests()->getBaseUrl(),
-					'locale'                    => str_replace( '_', '-', determine_locale() ),
-					'currency'                  => \SureCart::account()->currency,
-					'currency_symbol'           => html_entity_decode( Currency::getCurrencySymbol( \SureCart::account()->currency ) ),
-					'theme'                     => \SureCart::theme()->mode(),
-					'pages'                     => [
-						'dashboard' => \SureCart::pages()->url( 'dashboard' ),
-						'checkout'  => \SureCart::pages()->url( 'checkout' ),
-					],
-					'page_id'                   => get_the_ID(),
-					'nonce'                     => ( wp_installing() && ! is_multisite() ) ? '' : wp_create_nonce( 'wp_rest' ),
-					'nonce_endpoint'            => admin_url( 'admin-ajax.php?action=sc-rest-nonce' ),
-					'recaptcha_site_key'        => \SureCart::settings()->recaptcha()->getSiteKey(),
-					'claim_url'                 => $this->getAccountClaimUrl(),
-					'admin_url'                 => trailingslashit( admin_url() ),
-					'getting_started_url'       => untrailingslashit( admin_url( 'admin.php?page=sc-getting-started' ) ),
-					'user_permissions'          => array(
-						'manage_sc_shop_settings' => current_user_can( 'manage_sc_shop_settings' ),
-					),
-					'is_account_connected'      => \SureCart::account()->isConnected(),
-					'modern_order_bump'         => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
-					'google_map_api_key'        => \SureCart::googleMaps()->getApiKey(),
-					// Nested so wp_localize_script() keeps the booleans — it string-casts top-level scalars.
-					'tracking'                  => array(
-						'facebook' => $this->isFacebookTrackingEnabled(),
-						'google'   => $this->isGoogleTrackingEnabled(),
-					),
-				]
-			)
-		);
+		wp_localize_script( 'surecart-components', 'scData', self::getScData() );
 
 		wp_localize_script( 'surecart-components', 'scIcons', [ 'path' => esc_url_raw( plugin_dir_url( SURECART_PLUGIN_FILE ) . 'dist/icon-assets' ) ] );
 
@@ -369,6 +377,7 @@ class ScriptsService {
 					'locale'                    => str_replace( '_', '-', determine_locale() ),
 					'currency_symbol'           => html_entity_decode( Currency::getCurrencySymbol( \SureCart::account()->currency ) ),
 					'theme'                     => \SureCart::theme()->mode(),
+					'logo_url'                  => \SureCart::theme()->logoUrl(),
 					'pages'                     => [
 						'dashboard' => \SureCart::pages()->url( 'dashboard' ),
 						'checkout'  => \SureCart::pages()->url( 'checkout' ),

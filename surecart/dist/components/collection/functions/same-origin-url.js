@@ -1,0 +1,1 @@
+export const sameOriginUrl=n=>{if(!n)return null;try{const o=new URL(n,window.location.href);return"http:"!==o.protocol&&"https:"!==o.protocol||o.origin!==new URL(window.location.href).origin?null:n}catch(n){return null}};

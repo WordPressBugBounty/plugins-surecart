@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-address",
+  "title": "Address",
+  "description": "Shipping and billing address fields for the checkout form. Inserts both address blocks together.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form"
+  ],
+  "attributes": {},
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "layout": {
+      "allowSwitching": false,
+      "allowEditing": false,
+      "default": {
+        "type": "flow"
+      }
+    },
+    "spacing": {
+      "margin": true,
+      "blockGap": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js"
+}

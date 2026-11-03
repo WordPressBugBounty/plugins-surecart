@@ -70,6 +70,27 @@
 	display: none !important;
 }
 
+/* Hello Elementor borders every <button>; start borderless like Elementor's own Button (the widget's Border control still wins).
+   Core's `.wp-block-button__link { height: 100% }` would stretch it over the "Change list" row below. */
+.elementor-widget-surecart-product-save-button .sc-product-save-button {
+	border: 0;
+	height: auto;
+}
+
+/* "Change" takes the kit's primary colour unless the widget sets one */
+.elementor-widget-surecart-product-save-button {
+	--sc-saved-items-change-accent: var(--e-global-color-primary);
+}
+
+/* "Change list" follows the widget's Position, else centers (most save buttons here are full width) */
+.elementor-widget-surecart-product-save-button .sc-saved-items-change-row {
+	text-align: var(--sc-saved-items-change-align, center);
+}
+
+.elementor-widget-surecart-product-save-button .sc-saved-items-change-row > .sc-saved-items-change:not([hidden]) {
+	display: inline-block;
+}
+
 /* Hide the icon in the busy state of the SureCart button link */
 .sc-button__link--busy .elementor-button-icon {
 	opacity: 0;

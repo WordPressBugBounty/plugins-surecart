@@ -4,7 +4,7 @@ import './watchers-c2958e52.js';
 import { s as state, h as hasOtherAvailableCreditCardProcessor, p as processorSupportsCurrentCurrency, c as availableMethodTypes, d as hasMultipleProcessorChoices, e as hasMultipleMethodChoices, f as getAvailableProcessor, a as availableProcessors, b as availableManualPaymentMethods } from './getters-476a5a84.js';
 import { s as state$2 } from './watchers-c7bbc6b2.js';
 import { M as ManualPaymentMethods, a as MockProcessor } from './MockProcessor-5c5e066a.js';
-import { g as getRazorpayMethodLabel, a as getRazorpayMethodIcon } from './razorpay-4c4a3d31.js';
+import { g as getRazorpayMethodLabel, a as getRazorpayMethodIcon } from './razorpay-417957db.js';
 import { a as addQueryArgs } from './add-query-args-0e2a8393.js';
 import './index-18f5a1bc.js';
 import './utils-2fd36c2c.js';

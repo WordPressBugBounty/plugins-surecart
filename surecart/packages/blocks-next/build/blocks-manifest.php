@@ -1,6 +1,146 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'buy-customer-dropdown' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/buy-customer-dropdown',
+		'title' => 'Customer Dropdown',
+		'description' => 'Display the logged-in customer avatar with Dashboard and Logout links on the Instant Checkout page.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'inserter' => false,
+			'reusable' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => false
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'radius' => true,
+					'color' => true,
+					'style' => true,
+					'width' => true
+				)
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base'
+		),
+		'style' => 'file:./style-index.css'
+	),
+	'buy-logo' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/buy-logo',
+		'title' => 'Store Logo',
+		'description' => 'Display the store brand logo linked to the home page on the Instant Checkout page.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'width' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'inserter' => false,
+			'reusable' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => false
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'radius' => true,
+					'color' => true,
+					'style' => true,
+					'width' => true
+				)
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'file:./style-index.css'
+		),
+		'style' => 'file:./style-index.css'
+	),
 	'cart' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1089,6 +1229,89 @@ return array(
 		'textdomain' => 'surecart',
 		'style' => 'file:./style-index.css',
 		'editorScript' => 'file:./index.js'
+	),
+	'cart-line-item-save' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/cart-line-item-save',
+		'title' => 'Line item save for later',
+		'description' => 'Move the line item from the cart to the shopper\'s saved items.',
+		'version' => '1.0.0',
+		'category' => 'surecart-cart',
+		'icon' => 'heart',
+		'keywords' => array(
+			'wishlist',
+			'favorites',
+			'saved',
+			'heart'
+		),
+		'ancestor' => array(
+			'surecart/slide-out-cart-items',
+			'surecart/slide-out-cart-line-items'
+		),
+		'usesContext' => array(
+			'removable'
+		),
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'show_label' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'show_icon' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'anchor' => true,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true,
+					'background' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true,
+					'textTransform' => true
+				)
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'style' => array(
+			'surecart-saved-items',
+			'file:./style-index.css'
+		),
+		'editorScript' => 'file:./index.js',
+		'viewScript' => array(
+			'wp-url',
+			'wp-api-fetch',
+			'wp-i18n'
+		),
+		'viewScriptModule' => array(
+			'@surecart/saved-items'
+		)
 	),
 	'cart-line-item-scratch-amount' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -2426,6 +2649,4104 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'style' => 'file:./style-index.css'
 	),
+	'checkout-address' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-address',
+		'title' => 'Address',
+		'description' => 'Shipping and billing address fields for the checkout form. Inserts both address blocks together.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'layout' => array(
+				'allowSwitching' => false,
+				'allowEditing' => false,
+				'default' => array(
+					'type' => 'flow'
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'blockGap' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js'
+	),
+	'checkout-billing-address' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-billing-address',
+		'title' => 'Billing Address',
+		'description' => 'Billing address fields, with a \'same as shipping\' toggle.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'toggleLabel' => array(
+				'type' => 'string'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showName' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'requireName' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLine2' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'defaultCountry' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-address',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-address',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-checkbox' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-checkbox',
+		'title' => 'Checkbox Field',
+		'description' => 'A yes/no checkbox saved on the order under the field name you choose.',
+		'keywords' => array(
+			'custom',
+			'field',
+			'checkbox',
+			'consent',
+			'metadata'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'value' => array(
+				'type' => 'string',
+				'default' => 'on'
+			),
+			'checked' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'surecart-radio-checkbox'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'surecart-radio-checkbox'
+		)
+	),
+	'checkout-choice' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-choice',
+		'title' => 'Choice',
+		'description' => 'One option inside Choices. Its value is saved on the order when the customer picks it.',
+		'keywords' => array(
+			'custom',
+			'field',
+			'radio',
+			'option',
+			'choice'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'parent' => array(
+			'surecart/checkout-choices'
+		),
+		'usesContext' => array(
+			'surecart/checkout-choices/name',
+			'surecart/checkout-choices/required'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'value' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-label',
+			'surecart-radio-checkbox'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-label',
+			'surecart-radio-checkbox'
+		)
+	),
+	'checkout-choices' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-choices',
+		'title' => 'Choices',
+		'description' => 'Let the customer pick one option, saved on the order under the field name you choose.',
+		'keywords' => array(
+			'custom',
+			'field',
+			'radio',
+			'choice',
+			'select',
+			'metadata'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'allowedBlocks' => array(
+			'surecart/checkout-choice'
+		),
+		'providesContext' => array(
+			'surecart/checkout-choices/name' => 'name',
+			'surecart/checkout-choices/required' => 'required'
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'surecart-radio-checkbox'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'surecart-radio-checkbox'
+		)
+	),
+	'checkout-coupon' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-coupon',
+		'title' => 'Coupon',
+		'description' => 'Apply a discount code on the instant checkout form.',
+		'keywords' => array(
+			'coupon',
+			'promo',
+			'discount'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form',
+			'surecart/checkout-totals'
+		),
+		'attributes' => array(
+			'text' => array(
+				'type' => 'string'
+			),
+			'button_text' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'collapsed' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => true,
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-line-item',
+			'surecart-coupon-form',
+			'surecart-form-control',
+			'surecart-input-group',
+			'surecart-tag',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-line-item',
+			'surecart-coupon-form',
+			'surecart-form-control',
+			'surecart-input-group',
+			'surecart-tag',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		)
+	),
+	'checkout-email' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-email',
+		'title' => 'Email',
+		'description' => 'Email input field for the instant checkout form.',
+		'keywords' => array(
+			'email',
+			'login',
+			'customer'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			),
+			'autoFocus' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => array(
+			'@surecart/checkout-form',
+			'@surecart/checkout-login'
+		),
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'surecart-button',
+			'surecart-button-reset',
+			'file:./style-index.css'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'surecart-button',
+			'surecart-button-reset',
+			'file:./style-index.css'
+		)
+	),
+	'checkout-first-name' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-first-name',
+		'title' => 'First Name',
+		'description' => 'Customer first name input for the instant checkout form.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-form-errors' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-form-errors',
+		'title' => 'Checkout Errors',
+		'description' => 'Displays checkout-level error messages on the instant checkout form.',
+		'keywords' => array(
+			'error',
+			'notice',
+			'alert'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => true,
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'radius' => true
+				)
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-alert'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-alert'
+		)
+	),
+	'checkout-input' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-input',
+		'title' => 'Text Field',
+		'description' => 'Collect a custom text value at checkout. The value is saved on the order under the field name you choose.',
+		'keywords' => array(
+			'custom',
+			'field',
+			'input',
+			'text',
+			'metadata'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-last-name' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-last-name',
+		'title' => 'Last Name',
+		'description' => 'Customer last name input for the instant checkout form.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-line-item-amount' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-amount',
+		'title' => 'Line Item Amount',
+		'description' => 'Display the line item price, interval and original price.',
+		'keywords' => array(
+			'line item',
+			'price',
+			'amount'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-fees' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-fees',
+		'title' => 'Line Item Fees',
+		'description' => 'Display per-item fee rows (e.g. order-bump fees) for the line item.',
+		'keywords' => array(
+			'line item',
+			'fee',
+			'setup'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-image' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-image',
+		'title' => 'Line Item Image',
+		'description' => 'Display the line item product image.',
+		'keywords' => array(
+			'line item',
+			'product',
+			'thumbnail'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'spacing' => array(
+				'margin' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'color' => true,
+					'radius' => true,
+					'width' => true
+				)
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-quantity' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-quantity',
+		'title' => 'Line Item Quantity',
+		'description' => 'Quantity stepper (or a read-only "Qty: N") for a checkout line item.',
+		'keywords' => array(
+			'line item',
+			'quantity',
+			'qty'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'usesContext' => array(
+			'editable'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-input-group',
+			'surecart-quantity-selector',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-input-group',
+			'surecart-quantity-selector',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-remove' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-remove',
+		'title' => 'Remove Line Item',
+		'description' => 'Remove button for a checkout line item.',
+		'keywords' => array(
+			'line item',
+			'remove',
+			'delete'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'usesContext' => array(
+			'removable'
+		),
+		'inserter' => false,
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'icon' => array(
+				'type' => 'string',
+				'default' => 'x'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-title' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-title',
+		'title' => 'Line Item Title',
+		'description' => 'Display the line item product name.',
+		'keywords' => array(
+			'line item',
+			'product',
+			'name'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-trial' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-trial',
+		'title' => 'Line Item Trial',
+		'description' => 'Display the line item trial text (e.g. "Starting in 120 days").',
+		'keywords' => array(
+			'line item',
+			'trial',
+			'subscription'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-item-variant' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-item-variant',
+		'title' => 'Line Item Variant',
+		'description' => 'Display the line item variant options (e.g. "Small / Red").',
+		'keywords' => array(
+			'line item',
+			'variant',
+			'option'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-line-items'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'surecart-product-line-item',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-line-items' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-line-items',
+		'title' => 'Line Items',
+		'description' => 'Display the checkout\'s line items with optional quantity edit and remove.',
+		'keywords' => array(
+			'line item',
+			'cart',
+			'products'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-totals'
+		),
+		'attributes' => array(
+			'removable' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'editable' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'providesContext' => array(
+			'editable' => 'editable',
+			'removable' => 'removable'
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-line-item',
+			'surecart-product-line-item',
+			'surecart-input-group',
+			'surecart-quantity-selector',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-line-item',
+			'surecart-product-line-item',
+			'surecart-input-group',
+			'surecart-quantity-selector',
+			'surecart-theme-base'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-name' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-name',
+		'title' => 'Name',
+		'description' => 'Customer name input for the instant checkout form.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-order-bump-cta' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-cta',
+		'title' => 'Order Bump CTA',
+		'description' => 'Display the order bump call-to-action line. Hidden when the bump has no CTA.',
+		'keywords' => array(
+			'order bump',
+			'upsell',
+			'button'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-order-bump-description' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-description',
+		'title' => 'Order Bump Description',
+		'description' => 'Display the order bump product description.',
+		'keywords' => array(
+			'order bump',
+			'upsell'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-order-bump-discount-badge' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-discount-badge',
+		'title' => 'Order Bump Discount Badge',
+		'description' => 'Display the order bump savings tag. Hidden when the bump has no discount.',
+		'keywords' => array(
+			'order bump',
+			'upsell',
+			'sale'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true,
+					'background' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-order-bump-image' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-image',
+		'title' => 'Order Bump Image',
+		'description' => 'Display the order bump product image.',
+		'keywords' => array(
+			'order bump',
+			'upsell',
+			'thumbnail'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'spacing' => array(
+				'margin' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'color' => true,
+					'radius' => true,
+					'width' => true
+				)
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-order-bump-price' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-price',
+		'title' => 'Order Bump Price',
+		'description' => 'Display the order bump price, original price and interval.',
+		'keywords' => array(
+			'order bump',
+			'upsell',
+			'amount'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-order-bump-template' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-template',
+		'title' => 'Order Bump Card',
+		'description' => 'The card shown for each recommended add-on.',
+		'keywords' => array(
+			'order bump',
+			'upsell'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bumps'
+		),
+		'usesContext' => array(
+			'surecart/showControl'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'blockGap' => true
+			),
+			'color' => array(
+				'background' => true,
+				'text' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-button-reset',
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		)
+	),
+	'checkout-order-bump-title' => array(
+		'$schema' => 'https://json.schemastore.org/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bump-title',
+		'title' => 'Order Bump Title',
+		'description' => 'Display the order bump product name.',
+		'keywords' => array(
+			'order bump',
+			'upsell',
+			'name'
+		),
+		'category' => 'surecart',
+		'version' => '1.0.0',
+		'textdomain' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'reusable' => false,
+			'color' => array(
+				'gradients' => true,
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-spinner'
+		),
+		'viewScriptModule' => '@surecart/checkout-form'
+	),
+	'checkout-order-bumps' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-order-bumps',
+		'title' => 'Checkout Order Bumps',
+		'description' => 'Recommended add-ons for the instant checkout form. Hidden when no bumps are available.',
+		'keywords' => array(
+			'order bump',
+			'upsell',
+			'cross-sell'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'allowedBlocks' => array(
+			'surecart/checkout-order-bump-template'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showControl' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'hideAddedItems' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'providesContext' => array(
+			'surecart/showControl' => 'showControl'
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-label',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-choice',
+			'surecart-tag',
+			'surecart-label',
+			'surecart-spinner'
+		)
+	),
+	'checkout-password' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-password',
+		'title' => 'Password',
+		'description' => 'Let a new customer set an account password at checkout. Hidden automatically for a customer who is already logged in.',
+		'keywords' => array(
+			'password',
+			'account',
+			'signup',
+			'input'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'file:./style-index.css'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label',
+			'file:./style-index.css'
+		)
+	),
+	'checkout-payment' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-payment',
+		'title' => 'Payment',
+		'description' => 'Payment methods for the instant checkout form.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'allowedBlocks' => array(
+			'surecart/checkout-payment-label'
+		),
+		'attributes' => array(
+			'defaultProcessor' => array(
+				'type' => 'string',
+				'default' => 'stripe',
+				'enum' => array(
+					'stripe',
+					'paypal',
+					'paystack',
+					'razorpay',
+					'mollie',
+					'manual'
+				)
+			),
+			'disabledMethods' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-tag',
+			'surecart-alert',
+			'surecart-choice',
+			'surecart-label',
+			'file:./style-index.css'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-tag',
+			'surecart-alert',
+			'surecart-choice',
+			'surecart-label',
+			'file:./style-index.css'
+		)
+	),
+	'checkout-payment-label' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-payment-label',
+		'title' => 'Payment Label',
+		'description' => 'The payment section label and the test-mode badge for the instant checkout payment block.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-payment'
+		),
+		'inserter' => false,
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-tag',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-tag',
+			'surecart-label'
+		)
+	),
+	'checkout-phone' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-phone',
+		'title' => 'Phone',
+		'description' => 'Phone number input. Shown when the checkout requires a phone number.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'visibility' => array(
+				'type' => 'string',
+				'default' => 'auto',
+				'enum' => array(
+					'auto',
+					'always'
+				)
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-shipping-address' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-shipping-address',
+		'title' => 'Shipping Address',
+		'description' => 'Shipping address fields for the instant checkout form. Hidden when the checkout does not require a shipping address.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showName' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'requireName' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLine2' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'defaultCountry' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-address',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-address',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-shipping-choices' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-shipping-choices',
+		'title' => 'Shipping Choices',
+		'description' => 'Shipping method picker for the instant checkout form. Hidden when shipping is not required.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showDescription' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'freeLabel' => array(
+				'type' => 'string'
+			),
+			'emptyCountryText' => array(
+				'type' => 'string'
+			),
+			'emptyChoicesText' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-radio-checkbox',
+			'surecart-label',
+			'surecart-form-control'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-radio-checkbox',
+			'surecart-label',
+			'surecart-form-control'
+		)
+	),
+	'checkout-submit' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-submit',
+		'title' => 'Submit',
+		'description' => 'Submit button for the instant checkout form.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'text' => array(
+				'type' => 'string'
+			),
+			'showTotal' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showSecureNotice' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'secureNoticeText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showIcon' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'full' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'large',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalSkipSerialization' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true,
+					'background' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalSkipSerialization' => true
+			),
+			'spacing' => array(
+				'__experimentalSkipSerialization' => true,
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalSelector' => '.sc-checkout-submit__button',
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalSkipSerialization' => true
+			),
+			'shadow' => array(
+				'__experimentalSkipSerialization' => true
+			),
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-secure-notice',
+			'file:./style-index.css'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-secure-notice',
+			'file:./style-index.css'
+		)
+	),
+	'checkout-subtotal' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-subtotal',
+		'title' => 'Subtotal',
+		'description' => 'Subtotal line item for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-totals'
+		),
+		'allowedBlocks' => array(
+			'core/group',
+			'surecart/checkout-subtotal-label',
+			'surecart/checkout-subtotal-amount'
+		),
+		'attributes' => array(
+			'totalPaymentsText' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => true,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item',
+			'surecart-tag'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item',
+			'surecart-tag'
+		)
+	),
+	'checkout-subtotal-amount' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-subtotal-amount',
+		'title' => 'Subtotal Amount',
+		'description' => 'The subtotal amount for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-subtotal'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-subtotal-label' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-subtotal-label',
+		'title' => 'Subtotal Label',
+		'description' => 'The subtotal row label for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-subtotal'
+		),
+		'inserter' => false,
+		'attributes' => array(
+			'description' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-summary-extras' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-summary-extras',
+		'title' => 'Discounts & Shipping',
+		'description' => 'Discount, trial and shipping rows for the order summary. Empty rows are hidden.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-totals'
+		),
+		'attributes' => array(
+			'bumpLabel' => array(
+				'type' => 'string'
+			),
+			'shippingLabel' => array(
+				'type' => 'string'
+			),
+			'trialLabel' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-switch' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-switch',
+		'title' => 'Switch',
+		'description' => 'A yes/no toggle saved on the order under the field name you choose.',
+		'keywords' => array(
+			'custom',
+			'field',
+			'switch',
+			'toggle',
+			'metadata'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'value' => array(
+				'type' => 'string',
+				'default' => 'on'
+			),
+			'checked' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-tax' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-tax',
+		'title' => 'Tax',
+		'description' => 'Tax line item for the instant checkout order summary. Hidden when tax is zero.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-totals'
+		),
+		'allowedBlocks' => array(
+			'core/group',
+			'surecart/checkout-tax-label',
+			'surecart/checkout-tax-amount'
+		),
+		'attributes' => array(
+			'includedLabel' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => true,
+			'anchor' => true,
+			'layout' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-tax-amount' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-tax-amount',
+		'title' => 'Tax Amount',
+		'description' => 'The tax amount for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-tax'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-tax-id' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-tax-id',
+		'title' => 'Tax ID',
+		'description' => 'Tax ID type + number input for the instant checkout form. Hidden until a tax ID is required.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			),
+			'taxIdTypes' => array(
+				'type' => 'array',
+				'default' => array(
+					'eu_vat',
+					'gb_vat',
+					'ca_gst',
+					'au_abn',
+					'other'
+				),
+				'items' => array(
+					'type' => 'string'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-tax-label' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-tax-label',
+		'title' => 'Tax Label',
+		'description' => 'The tax row label for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-tax'
+		),
+		'inserter' => false,
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'estimatedLabel' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-terms' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-terms',
+		'title' => 'Terms',
+		'description' => 'Required terms-of-service checkbox shown before the submit button.',
+		'keywords' => array(
+			'terms',
+			'agreement',
+			'checkout'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-control'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-form-control'
+		)
+	),
+	'checkout-textarea' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-textarea',
+		'title' => 'Text Area',
+		'description' => 'Collect a longer custom text value at checkout, such as a gift note. The value is saved on the order under the field name you choose.',
+		'keywords' => array(
+			'custom',
+			'field',
+			'textarea',
+			'note',
+			'metadata'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'help' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'rows' => array(
+				'type' => 'number',
+				'default' => 4
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => 'medium',
+				'enum' => array(
+					'small',
+					'medium',
+					'large'
+				)
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-form-group',
+			'surecart-form-control',
+			'surecart-label'
+		)
+	),
+	'checkout-total' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-total',
+		'title' => 'Total',
+		'description' => 'Grand total line item for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-totals'
+		),
+		'allowedBlocks' => array(
+			'core/group',
+			'surecart/checkout-total-label',
+			'surecart/checkout-total-scratch-amount',
+			'surecart/checkout-total-amount'
+		),
+		'attributes' => array(
+			'size' => array(
+				'type' => 'string',
+				'default' => 'large',
+				'enum' => array(
+					'default',
+					'large'
+				)
+			),
+			'subscriptionText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'dueAmountText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'freeTrialText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'firstPaymentTotalText' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => true,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-total-amount' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-total-amount',
+		'title' => 'Total Amount',
+		'description' => 'The total amount for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-total'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-total-label' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-total-label',
+		'title' => 'Total Label',
+		'description' => 'The total row label for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-total'
+		),
+		'inserter' => false,
+		'attributes' => array(
+			'description' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-total-scratch-amount' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-total-scratch-amount',
+		'title' => 'Original Total',
+		'description' => 'The struck-through original total for the instant checkout order summary.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/checkout-total'
+		),
+		'inserter' => false,
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-line-item'
+		)
+	),
+	'checkout-totals' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/checkout-totals',
+		'title' => 'Order Summary',
+		'description' => 'Collapsible container for line items, subtotal, tax, and total.',
+		'keywords' => array(
+			'summary',
+			'cart',
+			'totals'
+		),
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/instant-checkout-form'
+		),
+		'attributes' => array(
+			'orderSummaryText' => array(
+				'type' => 'string'
+			),
+			'collapsible' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'collapsedOnMobile' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'collapsedOnDesktop' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'gradients' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true,
+				'blockGap' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			),
+			'shadow' => true,
+			'dimensions' => array(
+				'minHeight' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'file:./style-index.css',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		),
+		'style' => array(
+			'file:./style-index.css',
+			'surecart-button-reset',
+			'surecart-theme-base'
+		)
+	),
 	'currency-switcher' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2475,6 +6796,108 @@ return array(
 		'viewScriptModule' => array(
 			'@surecart/dropdown',
 			'file:./view.js'
+		)
+	),
+	'customer-saved-items' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/customer-saved-items',
+		'title' => 'Customer Saved Items',
+		'description' => 'The shopper\'s saved items: a short overview, or the full list with their lists.',
+		'version' => '1.0.0',
+		'category' => 'surecart-customer-dashboard',
+		'icon' => 'heart',
+		'keywords' => array(
+			'saved',
+			'wishlist',
+			'favorites',
+			'customer',
+			'dashboard'
+		),
+		'textdomain' => 'surecart',
+		'variations' => array(
+			array(
+				'name' => 'full',
+				'title' => 'Saved Items',
+				'description' => 'The shopper\'s saved items with their lists. For the Saved Items page or the dashboard\'s Saved tab.',
+				'icon' => 'heart',
+				'attributes' => array(
+					'show_all' => true
+				),
+				'isActive' => array(
+					'show_all'
+				),
+				'scope' => array(
+					'inserter',
+					'transform'
+				)
+			),
+			array(
+				'name' => 'overview',
+				'title' => 'Saved Items Overview',
+				'description' => 'A short preview of the shopper\'s saved items with a View all link. For the dashboard home.',
+				'icon' => 'heart',
+				'attributes' => array(
+					'show_all' => false
+				),
+				'isActive' => array(
+					'show_all'
+				),
+				'scope' => array(
+					'inserter',
+					'transform'
+				)
+			)
+		),
+		'attributes' => array(
+			'title' => array(
+				'type' => 'string'
+			),
+			'show_all' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'reusable' => false,
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'color' => array(
+				'text' => true,
+				'background' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-saved-items',
+			'surecart-dropdown',
+			'surecart-alert',
+			'surecart-tag',
+			'wp-block-button',
+			'surecart-wp-button',
+			'surecart-spinner'
+		),
+		'viewScript' => array(
+			'wp-url',
+			'wp-api-fetch',
+			'wp-i18n'
+		),
+		'viewScriptModule' => array(
+			'@surecart/saved-items'
 		)
 	),
 	'icon' => array(
@@ -2556,6 +6979,109 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
+	),
+	'instant-checkout-form' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/instant-checkout-form',
+		'title' => 'Instant Checkout Form',
+		'description' => 'The instant checkout form.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'string',
+				'default' => 'two',
+				'enum' => array(
+					'one',
+					'two'
+				)
+			),
+			'showOrderSummary' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'inserter' => false,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'html' => false,
+			'multiple' => false,
+			'anchor' => true,
+			'layout' => array(
+				'allowSwitching' => false,
+				'allowEditing' => true
+			),
+			'color' => array(
+				'background' => true,
+				'text' => true,
+				'gradients' => true,
+				'link' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => true,
+					'text' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalFontStyle' => true,
+				'__experimentalTextTransform' => true,
+				'__experimentalTextDecoration' => true,
+				'__experimentalLetterSpacing' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true,
+					'fontAppearance' => true
+				)
+			),
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true,
+				'blockGap' => true
+			),
+			'dimensions' => array(
+				'minHeight' => true
+			),
+			'__experimentalBorder' => array(
+				'radius' => true,
+				'color' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'radius' => true,
+					'color' => true,
+					'style' => true,
+					'width' => true
+				)
+			),
+			'shadow' => true
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'viewScriptModule' => '@surecart/checkout-form',
+		'editorStyle' => array(
+			'surecart-theme-base',
+			'surecart-instant-checkout-form',
+			'surecart-block-ui',
+			'surecart-spinner'
+		),
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-instant-checkout-form',
+			'surecart-block-ui',
+			'surecart-spinner'
+		)
 	),
 	'price-amount' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -9523,6 +14049,114 @@ return array(
 			'file:./style-index.css'
 		)
 	),
+	'product-save-button' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/product-save-button',
+		'title' => 'Save for Later Button',
+		'description' => 'Let shoppers save the product for later.',
+		'version' => '1.0.0',
+		'category' => 'surecart-product-page',
+		'icon' => 'heart',
+		'keywords' => array(
+			'wishlist',
+			'favorites',
+			'saved',
+			'heart'
+		),
+		'ancestor' => array(
+			'surecart/product-page',
+			'surecart/product-template',
+			'surecart/product-quick-view'
+		),
+		'usesContext' => array(
+			'postId'
+		),
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'show_label' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'label' => array(
+				'type' => 'string'
+			),
+			'saved_label' => array(
+				'type' => 'string'
+			),
+			'saved_color' => array(
+				'type' => 'string'
+			),
+			'show_change_list' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'anchor' => true,
+			'color' => array(
+				'text' => true,
+				'background' => true,
+				'__experimentalDefaultControls' => array(
+					'text' => true,
+					'background' => true
+				)
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalDefaultControls' => array(
+					'fontSize' => true
+				)
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true
+			)
+		),
+		'styles' => array(
+			array(
+				'name' => 'default',
+				'label' => 'Default',
+				'isDefault' => true
+			),
+			array(
+				'name' => 'overlay',
+				'label' => 'Image overlay'
+			),
+			array(
+				'name' => 'button',
+				'label' => 'Button'
+			)
+		),
+		'textdomain' => 'surecart',
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-wp-button',
+			'surecart-saved-items',
+			'file:./style-index.css'
+		),
+		'viewScript' => array(
+			'wp-url',
+			'wp-api-fetch',
+			'wp-i18n'
+		),
+		'viewScriptModule' => array(
+			'@surecart/saved-items'
+		)
+	),
 	'product-scratch-price' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -10364,6 +14998,240 @@ return array(
 			'file:./style-index.css',
 			'surecart-label',
 			'surecart-product-variants'
+		)
+	),
+	'saved-items-dialog' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/saved-items-dialog',
+		'title' => 'Save to List Dialog',
+		'description' => 'The dialog shoppers use to choose which saved-item lists a product is in.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'icon' => 'heart',
+		'keywords' => array(
+			'saved',
+			'wishlist',
+			'list'
+		),
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'width' => array(
+				'type' => 'string'
+			),
+			'done_text' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'inserter' => false,
+			'html' => false,
+			'multiple' => false,
+			'interactivity' => true,
+			'color' => array(
+				'background' => true,
+				'text' => true,
+				'__experimentalDefaultControls' => array(
+					'background' => true,
+					'text' => true
+				)
+			),
+			'spacing' => array(
+				'padding' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true
+			),
+			'__experimentalBorder' => array(
+				'radius' => true,
+				'__experimentalDefaultControls' => array(
+					'radius' => true
+				)
+			)
+		),
+		'textdomain' => 'surecart',
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'surecart-dialog',
+			'surecart-form-control',
+			'wp-block-button',
+			'surecart-wp-button'
+		),
+		'editorStyle' => array(
+			'surecart-saved-items'
+		)
+	),
+	'saved-items-dialog-product-name' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/saved-items-dialog-product-name',
+		'title' => 'Save to List Product Name',
+		'description' => 'The name of the product being saved.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'icon' => 'products',
+		'ancestor' => array(
+			'surecart/saved-items-dialog'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'interactivity' => true,
+			'color' => array(
+				'text' => true,
+				'background' => false
+			),
+			'spacing' => array(
+				'margin' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'__experimentalFontWeight' => true
+			)
+		),
+		'textdomain' => 'surecart',
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js'
+	),
+	'saved-items-icon' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/saved-items-icon',
+		'title' => 'Saved Items Icon',
+		'description' => 'A heart icon linking to the shopper\'s saved items, with an optional count.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'icon' => 'heart',
+		'keywords' => array(
+			'wishlist',
+			'favorites',
+			'saved',
+			'heart',
+			'header'
+		),
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'show_count' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'interactivity' => true,
+			'html' => false,
+			'spacing' => array(
+				'padding' => true,
+				'margin' => true
+			),
+			'color' => array(
+				'text' => true,
+				'background' => false
+			),
+			'typography' => array(
+				'fontSize' => true
+			)
+		),
+		'render' => 'file:./view.php',
+		'textdomain' => 'surecart',
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'surecart-theme-base',
+			'file:./style-index.css'
+		),
+		'viewScript' => array(
+			'wp-url',
+			'wp-api-fetch',
+			'wp-i18n'
+		),
+		'viewScriptModule' => array(
+			'@surecart/saved-items'
+		)
+	),
+	'saved-items-list-picker' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/saved-items-list-picker',
+		'title' => 'Save to List Choices',
+		'description' => 'A checkbox for each of the shopper\'s lists, with how many products each holds.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/saved-items-dialog'
+		),
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'multiple' => false,
+			'interactivity' => true,
+			'color' => array(
+				'text' => true,
+				'background' => false
+			),
+			'spacing' => array(
+				'margin' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true
+			)
+		),
+		'textdomain' => 'surecart',
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'surecart-theme-base',
+			'surecart-radio-checkbox'
+		)
+	),
+	'saved-items-new-list' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'surecart/saved-items-new-list',
+		'title' => 'Save to List New List',
+		'description' => 'Lets shoppers create a list and save the product to it. Hidden once they reach the list limit.',
+		'version' => '1.0.0',
+		'category' => 'surecart',
+		'ancestor' => array(
+			'surecart/saved-items-dialog'
+		),
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'placeholder' => array(
+				'type' => 'string'
+			),
+			'button_text' => array(
+				'type' => 'string'
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'multiple' => false,
+			'interactivity' => true,
+			'spacing' => array(
+				'margin' => true
+			),
+			'typography' => array(
+				'fontSize' => true
+			)
+		),
+		'textdomain' => 'surecart',
+		'render' => 'file:./view.php',
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'surecart-form-control'
 		)
 	),
 	'sticky-purchase' => array(

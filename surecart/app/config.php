@@ -45,6 +45,7 @@ return array(
 		\SureCart\Request\RequestServiceProvider::class,
 		\SureCart\View\ViewServiceProvider::class,
 		\SureCart\Cart\CartServiceProvider::class,
+		\SureCart\SavedItems\SavedItemsServiceProvider::class,
 		\SureCart\Webhooks\WebhooksServiceProvider::class,
 		\SureCart\BlockLibrary\BlockServiceProvider::class,
 		\SureCart\Support\Errors\ErrorsServiceProvider::class,
@@ -155,6 +156,7 @@ return array(
 		\SureCart\Rest\ExportsRestServiceProvider::class,
 		\SureCart\Rest\SwapRestServiceProvider::class,
 		\SureCart\Rest\ReviewsRestServiceProvider::class,
+		\SureCart\Rest\SavedItemsRestServiceProvider::class,
 		\SureCart\Rest\ReviewProtocolRestServiceProvider::class,
 		\SureCart\Rest\AutoFeeRestServiceProvider::class,
 		\SureCart\Rest\AutoFeeProtocolRestServiceProvider::class,
@@ -312,7 +314,7 @@ return array(
 		'surecart/customer-dashboard-button' => array( 'sc-button' ),
 		'surecart/customer-dashboard'        => array( 'sc-tab-group' ),
 		'surecart/customer-subscriptions'    => array( 'sc-subscriptions-list', 'sc-dialog', 'sc-card', 'sc-stacked-list', 'sc-stacked-list-row', 'sc-flex' ),
-		'surecart/dashboard-page'            => array( 'sc-spacing' ),
+		'surecart/dashboard-page'            => array( 'sc-spacing', 'sc-breadcrumbs', 'sc-breadcrumb' ),
 		'surecart/dashboard-tab'             => array( 'sc-tab' ),
 		'surecart/customer-billing-details'  => array( 'sc-dashboard-customer-details', 'sc-breadcrumbs', 'sc-breadcrumb', 'sc-customer-edit' ),
 		'surecart/divider'                   => array( 'sc-divider' ),
@@ -322,6 +324,7 @@ return array(
 		'surecart/phone'                     => array( 'sc-input', 'sc-phone-input', 'sc-customer-phone' ),
 		'surecart/express-payment'           => array( 'sc-express-payment', 'sc-divider', 'sc-stripe-payment-request' ),
 		'surecart/form'                      => array( 'sc-checkout', 'sc-form', 'sc-checkout-unsaved-changes-warning', 'sc-line-items-provider', 'sc-block-ui' ),
+		// Instant checkout blocks are pure Interactivity (no sc-* elements), so no preload entries.
 		'surecart/heading'                   => array( 'sc-heading' ),
 		'surecart/input'                     => array( 'sc-input' ),
 		'surecart/line-items'                => array( 'sc-line-items', 'sc-line-item', 'sc-line-item-tax', 'sc-product-line-item', 'sc-format-number', 'sc-skeleton' ),
@@ -373,6 +376,7 @@ return array(
 		\SureCart\Permissions\Models\DownloadPermissionsController::class,
 		\SureCart\Permissions\Models\RefundPermissionsController::class,
 		\SureCart\Permissions\Models\SubscriptionPermissionsController::class,
+		\SureCart\Permissions\Models\SavedItemPermissionsController::class,
 	),
 
 	/**

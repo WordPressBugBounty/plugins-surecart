@@ -41,6 +41,7 @@ class PageSeeder {
 		$this->createPages();
 		$this->createCartPost();
 		$this->createShopPage();
+		$this->createSavedItemsPage();
 	}
 
 	/**
@@ -96,6 +97,37 @@ class PageSeeder {
 		);
 
 		$this->createPosts( $shop );
+	}
+
+	/**
+	 * Create the Saved Items (wishlist) page, which works for guests and customers alike.
+	 *
+	 * Seeded once: unlike the shop page it's optional, so a merchant who deletes it keeps it
+	 * deleted (links then fall back to the dashboard's Saved tab).
+	 *
+	 * @return void
+	 */
+	public function createSavedItemsPage() {
+		if ( ! \SureCart::saved_items()->enabled() || false !== get_option( $this->pages->getOptionName( 'saved_items', 'page' ) ) ) {
+			return;
+		}
+
+		$saved_items = apply_filters(
+			'surecart/create_saved_items',
+			[
+				'saved_items' => [
+					'name'          => _x( 'saved-items', 'Saved items page slug', 'surecart' ),
+					'title'         => _x( 'Saved Items', 'Saved items page title', 'surecart' ),
+					'content'       => wp_is_block_theme()
+						? '<!-- wp:surecart/customer-saved-items {"show_all":true,"align":"wide"} /-->'
+						: '<!-- wp:surecart/customer-saved-items {"show_all":true} /-->',
+					'post_type'     => 'page',
+					'page_template' => wp_is_block_theme() ? 'saved-items' : '',
+				],
+			]
+		);
+
+		$this->createPosts( $saved_items );
 	}
 
 	/**

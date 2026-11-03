@@ -145,6 +145,14 @@ class ShortcodesServiceProvider implements ServiceProviderInterface {
 			]
 		);
 
+		$this->container['surecart.shortcodes']->registerBlockShortcodeByName(
+			'sc_saved_items_icon',
+			'surecart/saved-items-icon',
+			[
+				'show_count' => true,
+			]
+		);
+
 		// confirmation.
 		$this->container['surecart.shortcodes']->registerBlockShortcodeByName(
 			'sc_order_confirmation',

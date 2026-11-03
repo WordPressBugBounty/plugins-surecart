@@ -26,6 +26,8 @@ Traits live in `SureCart\Models\Traits` and must be imported by FQCN — `use Su
 
 48 traits exist. The ones most used across real models: `HasDates`, `HasCustomer`, `HasPrice`, `HasCheckout`, `HasProduct`, `HasSubscription`, `HasPurchases`, `HasLineItem`, `HasAffiliation`, `CanFilter`, `HasBillingAddress`, `HasShippingAddress`, `HasPaymentIntent`, `HasPaymentMethod`, `HasImageSizes`, `CanDuplicate`, `HasOrder`, `HasCharge`, `HasLicense`, `CanResendNotifications`, `SyncsCustomer` (the Customer↔WP_User sync), `HasAttributes` (fillable/guarded machinery).
 
+**`empty( $collection->data )` is always true** on what `paginate()` returns — the `Collection`'s magic property has no `__isset`. Read it into a local first (`$rows = $items->data ?? [];`).
+
 Note the singular/plural pairs are different traits: `HasSubscription` (4 uses) vs `HasSubscriptions` (1), `HasPurchase` (2) vs `HasPurchases` (3). Check which one you actually want. Rarely used but real: `HasDiscount`, `CanFinalize`, `HasProcessorType`, `HasShippingChoices`, `HasCommissionStructure`. `HasServiceFee` exists but is dead.
 
 ## Adding a New REST Endpoint
@@ -164,3 +166,9 @@ Two gates decide whether a documented event actually fires:
 2. **Object-model gate** — `AsyncWebhookService::handle()` bails before `do_action` if the payload's `object` has no entry in its `$models` map (`:93-99`). An unmapped object is marked processed and **dropped silently**.
 
 Handlers receive two arguments, `($model, $webhook->data)` (`:102`) — which is why `onPurchaseUpdated()` takes a `$request` second parameter.
+
+## Translations
+
+- Merchant translations (Loco) are **layered over** ours, never swapped in: swapping hides every string the merchant file lacks, including ones added in later releases.
+- Translations ship only as language packs from translate.surecart.com; never commit or bundle `.po`/`.mo`/`.json` (`languages/` holds just the POT).
+- For locales we serve, the wordpress.org SureCart pack is dropped from updates: both install to the same `WP_LANG_DIR/plugins/surecart-{locale}.*` files and would overwrite each other.

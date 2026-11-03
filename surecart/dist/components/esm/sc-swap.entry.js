@@ -1,6 +1,6 @@
 import { r as registerInstance, h } from './index-25e5af33.js';
 import { u as updateFormState, s as state } from './mutations-54fc7af1.js';
-import { t as toggleSwap } from './index-396e50a3.js';
+import { t as toggleSwap } from './index-5658daa7.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import './index-18f5a1bc.js';
 import './utils-2fd36c2c.js';

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/saved-items-icon",
+  "title": "Saved Items Icon",
+  "description": "A heart icon linking to the shopper's saved items, with an optional count.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "icon": "heart",
+  "keywords": [
+    "wishlist",
+    "favorites",
+    "saved",
+    "heart",
+    "header"
+  ],
+  "example": {},
+  "attributes": {
+    "show_count": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    },
+    "color": {
+      "text": true,
+      "background": false
+    },
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "style": [
+    "surecart-theme-base",
+    "file:./style-index.css"
+  ],
+  "viewScript": [
+    "wp-url",
+    "wp-api-fetch",
+    "wp-i18n"
+  ],
+  "viewScriptModule": [
+    "@surecart/saved-items"
+  ]
+}

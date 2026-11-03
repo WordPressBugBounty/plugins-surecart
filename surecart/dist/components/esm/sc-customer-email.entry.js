@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, F as Fragment } from './index-25e5af33.js';
 import { s as speak } from './index-c5a96d53.js';
 import { a as apiFetch } from './index-824c562b.js';
-import { c as createOrUpdateCheckout } from './index-396e50a3.js';
+import { c as createOrUpdateCheckout } from './index-5658daa7.js';
 import { a as getValueFromUrl, b as isRateLimited } from './util-dfbf863e.js';
 import { r as resendAnchorFrom, g as getBlockedDuplicateSeconds } from './verification-00df9439.js';
 import { s as state$1, C as CODE_SENT, o as onChange$1, U as UNVERIFIED, r as resetUser, V as VERIFYING, a as CODE_EXPIRED } from './store-ea636731.js';

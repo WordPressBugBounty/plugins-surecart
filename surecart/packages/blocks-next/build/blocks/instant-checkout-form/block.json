@@ -1,0 +1,101 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/instant-checkout-form",
+  "title": "Instant Checkout Form",
+  "description": "The instant checkout form.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "example": {},
+  "attributes": {
+    "columns": {
+      "type": "string",
+      "default": "two",
+      "enum": [
+        "one",
+        "two"
+      ]
+    },
+    "showOrderSummary": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "inserter": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "layout": {
+      "allowSwitching": false,
+      "allowEditing": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true,
+      "link": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true,
+        "fontAppearance": true
+      }
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "dimensions": {
+      "minHeight": true
+    },
+    "__experimentalBorder": {
+      "radius": true,
+      "color": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "radius": true,
+        "color": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "shadow": true
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "surecart-theme-base",
+    "surecart-instant-checkout-form",
+    "surecart-block-ui",
+    "surecart-spinner"
+  ],
+  "style": [
+    "surecart-theme-base",
+    "surecart-instant-checkout-form",
+    "surecart-block-ui",
+    "surecart-spinner"
+  ]
+}

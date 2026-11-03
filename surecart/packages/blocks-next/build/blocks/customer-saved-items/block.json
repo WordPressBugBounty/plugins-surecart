@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/customer-saved-items",
+  "title": "Customer Saved Items",
+  "description": "The shopper's saved items: a short overview, or the full list with their lists.",
+  "version": "1.0.0",
+  "category": "surecart-customer-dashboard",
+  "icon": "heart",
+  "keywords": [
+    "saved",
+    "wishlist",
+    "favorites",
+    "customer",
+    "dashboard"
+  ],
+  "textdomain": "surecart",
+  "variations": [
+    {
+      "name": "full",
+      "title": "Saved Items",
+      "description": "The shopper's saved items with their lists. For the Saved Items page or the dashboard's Saved tab.",
+      "icon": "heart",
+      "attributes": {
+        "show_all": true
+      },
+      "isActive": [
+        "show_all"
+      ],
+      "scope": [
+        "inserter",
+        "transform"
+      ]
+    },
+    {
+      "name": "overview",
+      "title": "Saved Items Overview",
+      "description": "A short preview of the shopper's saved items with a View all link. For the dashboard home.",
+      "icon": "heart",
+      "attributes": {
+        "show_all": false
+      },
+      "isActive": [
+        "show_all"
+      ],
+      "scope": [
+        "inserter",
+        "transform"
+      ]
+    }
+  ],
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "show_all": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "reusable": false,
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "style": [
+    "surecart-theme-base",
+    "surecart-saved-items",
+    "surecart-dropdown",
+    "surecart-alert",
+    "surecart-tag",
+    "wp-block-button",
+    "surecart-wp-button",
+    "surecart-spinner"
+  ],
+  "viewScript": [
+    "wp-url",
+    "wp-api-fetch",
+    "wp-i18n"
+  ],
+  "viewScriptModule": [
+    "@surecart/saved-items"
+  ]
+}

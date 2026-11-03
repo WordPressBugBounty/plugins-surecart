@@ -1,5 +1,5 @@
 import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
-import { b as getFormattedRemainingTime } from './getters-30f4a3d4.js';
+import { b as getFormattedRemainingTime } from './getters-bed0624f.js';
 import './store-3e08528c.js';
 import './utils-2fd36c2c.js';
 import './index-18f5a1bc.js';

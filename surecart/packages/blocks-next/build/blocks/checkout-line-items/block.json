@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-line-items",
+  "title": "Line Items",
+  "description": "Display the checkout's line items with optional quantity edit and remove.",
+  "keywords": [
+    "line item",
+    "cart",
+    "products"
+  ],
+  "category": "surecart",
+  "version": "1.0.0",
+  "textdomain": "surecart",
+  "ancestor": [
+    "surecart/checkout-totals"
+  ],
+  "attributes": {
+    "removable": {
+      "type": "boolean",
+      "default": false
+    },
+    "editable": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "providesContext": {
+    "editable": "editable",
+    "removable": "removable"
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "editorStyle": [
+    "file:./style-index.css",
+    "surecart-line-item",
+    "surecart-product-line-item",
+    "surecart-input-group",
+    "surecart-quantity-selector",
+    "surecart-theme-base"
+  ],
+  "style": [
+    "file:./style-index.css",
+    "surecart-line-item",
+    "surecart-product-line-item",
+    "surecart-input-group",
+    "surecart-quantity-selector",
+    "surecart-theme-base"
+  ],
+  "viewScriptModule": "@surecart/checkout-form"
+}

@@ -213,6 +213,15 @@ class AssetsService {
 	}
 
 	/**
+	 * Attach the merchant brand inline style to the blocks-next theme base handle.
+	 *
+	 * @return void
+	 */
+	public function addBlockThemeInlineStyle() {
+		$this->styles->addThemeInlineStyle( 'surecart-theme-base' );
+	}
+
+	/**
 	 * Shortcodes scripts add.
 	 *
 	 * @return void

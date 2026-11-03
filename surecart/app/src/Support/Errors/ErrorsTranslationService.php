@@ -19,6 +19,12 @@ class ErrorsTranslationService {
 			return false;
 		}
 
+		// Checked first because this message includes the store currency, which codes.php can't hold.
+		$translated = $this->currencyMismatchTranslation( $code );
+		if ( $translated ) {
+			return $translated;
+		}
+
 		// very specific.
 		$code_translations = include 'Translations/codes.php';
 		if ( ! empty( $code_translations[ $code ] ) ) {
@@ -26,6 +32,29 @@ class ErrorsTranslationService {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Name the store currency when a line item's price is in a different one.
+	 *
+	 * Returns false (so the static codes.php message is used) when the
+	 * store currency is unavailable.
+	 *
+	 * @param string $code The error code.
+	 * @return string|false
+	 */
+	public function currencyMismatchTranslation( $code ) {
+		if ( ! in_array( $code, [ 'checkout.line_items.price.currency_mismatch', 'line_item.price.currency_mismatch' ], true ) ) {
+			return false;
+		}
+
+		$currency = strtoupper( (string) ( \SureCart::account()->currency ?? '' ) );
+		if ( ! $currency ) {
+			return false;
+		}
+
+		// translators: %s is the store currency code, e.g. USD.
+		return sprintf( __( 'This product is priced in a different currency than the store (%s).', 'surecart' ), $currency );
 	}
 
 	/**
@@ -184,14 +213,26 @@ class ErrorsTranslationService {
 	 * @return \WP_Error
 	 */
 	public function translateErrorMessage( $response, $fallback = null ) {
-		// translate attribute.
-		$translated = $this->attributeTranslation( $response['attribute'] ?? '', $response['type'] ?? '', $response['options'] ?? [] );
-		if ( $translated ) {
-			return apply_filters( 'surecart/translated_error', $translated, $response );
+		$attribute = $response['attribute'] ?? '';
+		$type      = $response['type'] ?? '';
+		$options   = $response['options'] ?? [];
+
+		// options-aware messages are the most specific, so they beat the code.
+		if ( ! empty( $options ) ) {
+			$translated = $this->attributeOptionsTranslation( $attribute, $type, $options );
+			if ( $translated ) {
+				return apply_filters( 'surecart/translated_error', $translated, $response );
+			}
 		}
 
 		// translate specific error code.
 		$translated = $this->codeTranslation( $response['code'] ?? '' );
+		if ( $translated ) {
+			return apply_filters( 'surecart/translated_error', $translated, $response );
+		}
+
+		// translate attribute.
+		$translated = $this->attributeTranslation( $attribute, $type );
 		if ( $translated ) {
 			return apply_filters( 'surecart/translated_error', $translated, $response );
 		}

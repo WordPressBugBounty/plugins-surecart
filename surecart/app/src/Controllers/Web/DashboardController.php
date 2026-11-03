@@ -17,21 +17,29 @@ class DashboardController {
 	public function getEnabledNavigation( $id ) {
 		return array_values(
 			array_filter(
-				[ 'orders', 'invoices', 'subscriptions', 'downloads', 'account', 'billing' ],
+				[ 'orders', 'invoices', 'subscriptions', 'downloads', 'saved', 'account', 'billing' ],
 				function( $name ) use ( $id ) {
-					if ( 'billing' === $name ) {
-						if ( ! get_post_meta( $id, '_surecart_dashboard_navigation_billing', true ) ) {
-							return false;
-						}
-						if ( empty( User::current()->customerId( 'live' ) ) && empty( User::current()->customerId( 'test' ) ) ) {
-							return false;
-						}
-						return true;
+					if ( ! get_post_meta( $id, '_surecart_dashboard_navigation_' . $name, true ) ) {
+						return false;
 					}
-					return get_post_meta( $id, '_surecart_dashboard_navigation_' . $name, true );
+					// Billing lives on a customer record; users without one have nothing to show.
+					// Saved stays visible: the first save creates the customer.
+					if ( 'billing' === $name ) {
+						return $this->hasCustomer();
+					}
+					return true;
 				}
 			)
 		);
+	}
+
+	/**
+	 * Does the current user have a live or test customer?
+	 *
+	 * @return boolean
+	 */
+	private function hasCustomer() {
+		return ! empty( User::current()->customerId( 'live' ) ) || ! empty( User::current()->customerId( 'test' ) );
 	}
 
 	/**
@@ -114,7 +122,7 @@ class DashboardController {
 		$dashboard_url      = get_permalink( get_the_ID() );
 		$enabled_navigation = $this->getEnabledNavigation( get_the_ID() );
 
-		return array_filter(
+		$navigation = array_filter(
 			[
 				'dashboard'     => [
 					'icon_name' => 'server',
@@ -170,12 +178,43 @@ class DashboardController {
 						$dashboard_url
 					),
 				],
+				'saved'         => \SureCart::saved_items()->enabled() ? [
+					'icon_name' => 'heart',
+					'name'      => __( 'Saved', 'surecart' ),
+					'active'    => $this->isActive( 'saved_item' ),
+					'href'      => add_query_arg(
+						[
+							'action' => 'index',
+							'model'  => 'saved_item',
+						],
+						$dashboard_url
+					),
+				] : null,
 			],
 			function( $item, $key ) use ( $enabled_navigation ) {
 				return $item && ( 'dashboard' === $key || in_array( $key, $enabled_navigation, true ) );
 			},
 			ARRAY_FILTER_USE_BOTH
 		);
+
+		/**
+		 * Filters the customer dashboard sidebar navigation.
+		 *
+		 * Add, remove or reorder tabs. Each item is keyed by a unique slug.
+		 *
+		 * @since 4.10.0
+		 *
+		 * @param array  $navigation {
+		 *     Navigation items keyed by slug.
+		 *
+		 *     @type string $icon_name Icon name (sc-icon).
+		 *     @type string $name      Label.
+		 *     @type bool   $active    Whether this tab is the current page.
+		 *     @type string $href      Link URL.
+		 * }
+		 * @param string $dashboard_url The dashboard page URL.
+		 */
+		return apply_filters( 'surecart/dashboard/navigation', $navigation, $dashboard_url );
 	}
 
 	/**

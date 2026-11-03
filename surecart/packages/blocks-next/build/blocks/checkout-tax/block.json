@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-tax",
+  "title": "Tax",
+  "description": "Tax line item for the instant checkout order summary. Hidden when tax is zero.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/checkout-totals"
+  ],
+  "allowedBlocks": [
+    "core/group",
+    "surecart/checkout-tax-label",
+    "surecart/checkout-tax-amount"
+  ],
+  "attributes": {
+    "includedLabel": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "multiple": true,
+    "anchor": true,
+    "layout": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "surecart-theme-base",
+    "surecart-line-item"
+  ],
+  "style": [
+    "surecart-theme-base",
+    "surecart-line-item"
+  ]
+}

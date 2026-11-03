@@ -215,6 +215,16 @@ class SettingService {
 		);
 		$this->register(
 			'surecart',
+			'customizable_instant_checkout_enabled',
+			[
+				'type'              => 'boolean',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'boolval',
+				'default'           => false,
+			]
+		);
+		$this->register(
+			'surecart',
 			'cart_menu_alignment',
 			[
 				'type'              => 'string',
@@ -247,6 +257,57 @@ class SettingService {
 						],
 					],
 				],
+			]
+		);
+		$this->register(
+			'surecart',
+			'saved_items_enabled',
+			[
+				'type'              => 'boolean',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'boolval',
+				'default'           => true,
+			]
+		);
+		$this->register(
+			'surecart',
+			'saved_items_default_list_name',
+			[
+				'type'              => 'string',
+				'show_in_rest'      => true,
+				'sanitize_callback' => fn( $value ) => mb_substr( sanitize_text_field( $value ), 0, \SureCart\Models\SavedList::MAX_NAME_LENGTH ),
+				'default'           => '',
+			]
+		);
+		$this->register(
+			'surecart',
+			'saved_items_menu_selected_ids',
+			[
+				'type'         => 'array',
+				'items'        => 'integer',
+				'default'      => [],
+				'show_in_rest' => [
+					'schema' => [
+						'type'  => 'array',
+						'items' => [
+							'type' => 'integer',
+						],
+					],
+				],
+			]
+		);
+		$this->register(
+			'surecart',
+			'saved_items_menu_alignment',
+			[
+				'type'              => 'string',
+				'show_in_rest'      => [
+					'schema' => [
+						'enum' => [ 'left', 'right' ],
+					],
+				],
+				'sanitize_callback' => fn( $value ) => 'left' === $value ? 'left' : 'right',
+				'default'           => 'right',
 			]
 		);
 		$this->register(

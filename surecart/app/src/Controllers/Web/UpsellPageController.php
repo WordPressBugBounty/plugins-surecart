@@ -30,7 +30,7 @@ class UpsellPageController extends BasePageController {
 	}
 
 	/**
-	 * We don't wamt to index the upsell page.
+	 * We don't want to index the upsell page.
 	 *
 	 * @return void
 	 */
@@ -83,6 +83,11 @@ class UpsellPageController extends BasePageController {
 		// this is typically cached.
 		$this->product = \SureCart\Models\Product::with( [ 'image', 'prices', 'product_medias', 'product_media.media', 'variants', 'variant_options' ] )->find( $this->model->price->product );
 
+		// A WP_Error is non-empty, so it would slip past the empty() check below.
+		if ( is_wp_error( $this->product ) ) {
+			return $this->handleError( $this->product );
+		}
+
 		// Stop if the product is not found.
 		if ( empty( $this->product ) ) {
 			return $this->notFound();
@@ -93,6 +98,8 @@ class UpsellPageController extends BasePageController {
 
 		// add the filters.
 		$this->filters();
+
+		$form_id = $this->getFormId( $request );
 
 		// the upsell expands its price — strip catalog data before it hits public state.
 		$upsell = json_decode( wp_json_encode( $this->model ), true );
@@ -110,10 +117,10 @@ class UpsellPageController extends BasePageController {
 				'upsell'  => [
 					'product'     => PublicCatalogData::product( $this->product ),
 					'upsell'      => $upsell,
-					'form_id'     => (int) $request->query( 'sc_form_id' ) ?? null,
-					'checkout_id' => esc_attr( $request->query( 'sc_checkout_id' ) ?? null ),
-					'text'        => $this->getCheckoutText( (int) $request->query( 'sc_form_id' ) ?? '' ),
-					'success_url' => esc_url( $this->getCheckoutSuccessUrl( (int) $request->query( 'sc_form_id' ) ?? '' ) ),
+					'form_id'     => $form_id,
+					'checkout_id' => esc_attr( $request->query( 'sc_checkout_id' ) ?? '' ),
+					'text'        => $this->getCheckoutText( $form_id ),
+					'success_url' => esc_url( $this->getCheckoutSuccessUrl( $form_id ) ),
 				],
 			]
 		);
@@ -131,12 +138,35 @@ class UpsellPageController extends BasePageController {
 	}
 
 	/**
+	 * Get the checkout form id from the request.
+	 *
+	 * Classic forms keep their int post id (0 when absent); only instant checkout
+	 * sends the `instant-checkout` string constant.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
+	 *
+	 * @return int|string
+	 */
+	public function getFormId( $request ) {
+		$form_id = sanitize_text_field( $request->query( 'sc_form_id' ) ?? '' );
+
+		return 'instant-checkout' === $form_id ? $form_id : (int) $form_id;
+	}
+
+	/**
 	 * Get the checkout success text.
 	 *
-	 * @return array
+	 * @param int|string $form_id Checkout form post id or the `instant-checkout` constant.
+	 *
+	 * @return array|string
 	 */
-	public function getCheckoutText( int $form_id ) {
-		$form = get_post( $form_id );
+	public function getCheckoutText( $form_id ) {
+		// The instant-checkout form has no post; its block supplies the text.
+		if ( ! is_numeric( $form_id ) ) {
+			return '';
+		}
+
+		$form = get_post( (int) $form_id );
 
 		if ( is_wp_error( $form ) || empty( $form ) ) {
 			return '';
@@ -155,11 +185,23 @@ class UpsellPageController extends BasePageController {
 	/**
 	 * Get the success url by form id.
 	 *
-	 * @param  int $form_id Checkout form id.
+	 * @param  int|string $form_id Checkout form post id or the `instant-checkout` constant.
 	 * @return string         The success url.
 	 */
-	public function getCheckoutSuccessUrl( int $form_id ): string {
-		$form = get_post( $form_id );
+	public function getCheckoutSuccessUrl( $form_id ): string {
+		// No post to read from: default to the order-confirmation page
+		// (metadata.success_url still wins client-side).
+		if ( 'instant-checkout' === $form_id ) {
+			return \SureCart::pages()->url( 'order-confirmation' );
+		}
+
+		// The classic /buy form sends no id (getFormId() casts it to 0, and get_post( 0 ) would
+		// return the global post): '' keeps sc-upsell's Thank-you dialog.
+		if ( empty( $form_id ) || ! is_numeric( $form_id ) ) {
+			return '';
+		}
+
+		$form = get_post( (int) $form_id );
 
 		if ( is_wp_error( $form ) || empty( $form ) ) {
 			return '';

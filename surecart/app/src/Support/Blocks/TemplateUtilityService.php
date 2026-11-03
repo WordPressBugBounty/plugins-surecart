@@ -66,6 +66,12 @@ class TemplateUtilityService {
 			),
 			'cart'                    => array(),
 			'checkout'                => array(),
+			'saved-items'             => array(
+				'custom'     => true,
+				'post_types' => array( 'page' ),
+			),
+			'instant-checkout'        => array(),
+			'instant-checkout-info'   => array( 'site-editor' => false ),
 			'product-quick-view'      => array(),
 			'sticky-purchase'         => array(),
 		);
@@ -349,7 +355,8 @@ class TemplateUtilityService {
 		$template->status         = 'publish';
 		$template->has_theme_file = true;
 		$template->origin         = $template_file->source;
-		$template->is_custom      = false; // Templates loaded from the filesystem aren't custom, ones that have been edited and loaded from the DB are.
+		// Filesystem templates are hierarchy templates unless flagged; only custom ones can be assigned to a post.
+		$template->is_custom      = ! empty( $this->plugin_template_types[ $template_file->slug ]['custom'] );
 		$template->post_types     = $template_file->post_types ?? array(); // Set the post type.
 		$template->area           = 'uncategorized';
 
@@ -374,11 +381,15 @@ class TemplateUtilityService {
 			'product-collection-part' => class_exists( 'WooCommerce' ) ? __( 'SureCart Product Collections', 'surecart' ) : __( 'Product Collections', 'surecart' ),
 			'cart'                    => class_exists( 'WooCommerce' ) ? __( 'SureCart Cart', 'surecart' ) : __( 'Cart', 'surecart' ),
 			'checkout'                => class_exists( 'WooCommerce' ) ? __( 'SureCart Checkout', 'surecart' ) : __( 'Checkout', 'surecart' ),
+			'instant-checkout'        => class_exists( 'WooCommerce' ) ? __( 'SureCart Instant Checkout', 'surecart' ) : __( 'Instant Checkout', 'surecart' ),
+			'instant-checkout-info'   => class_exists( 'WooCommerce' ) ? __( 'SureCart Instant Checkout', 'surecart' ) : __( 'Instant Checkout', 'surecart' ),
 			'product-quick-view'      => class_exists( 'WooCommerce' ) ? __( 'SureCart Product Quick Add', 'surecart' ) : __( 'Product Quick Add', 'surecart' ),
 			'product-review-form'     => class_exists( 'WooCommerce' ) ? __( 'SureCart Product Review Form', 'surecart' ) : __( 'Product Review Form', 'surecart' ),
 			'single-upsell'           => __( 'Upsells', 'surecart' ),
 			'upsell-info'             => __( 'Upsells', 'surecart' ),
 			'sticky-purchase'         => __( 'Sticky Purchase', 'surecart' ),
+			'saved-items-dialog'      => __( 'Save to List Dialog', 'surecart' ),
+			'saved-items'             => __( 'Saved Items', 'surecart' ),
 		);
 
 		if ( isset( $translations[ $template_slug ] ) ) {
@@ -404,9 +415,13 @@ class TemplateUtilityService {
 			'product-collection-part' => __( 'Display all individual product collections content unless a custom template has been applied.', 'surecart' ),
 			'cart'                    => __( 'The slide-out cart template.', 'surecart' ),
 			'checkout'                => __( 'Display the checkout content unless a custom template has been applied.', 'surecart' ),
+			'instant-checkout'        => __( 'Display the instant checkout (buy link) page unless a custom template has been applied.', 'surecart' ),
+			'instant-checkout-info'   => __( 'Display the instant checkout (buy link) page content unless a custom template has been applied.', 'surecart' ),
 			'product-quick-view'      => __( 'Display product quick add.', 'surecart' ),
 			'product-review-form'     => __( 'Display product review form modal.', 'surecart' ),
 			'sticky-purchase'         => __( 'Display a sticky purchase button when the product form is scrolled out of view.', 'surecart' ),
+			'saved-items-dialog'      => __( 'The dialog shoppers use to choose which saved-item lists a product is in.', 'surecart' ),
+			'saved-items'             => __( 'The Saved Items page, with its title and lists at wide width.', 'surecart' ),
 		);
 
 		if ( isset( $translations[ $template_slug ] ) ) {
@@ -452,6 +467,8 @@ class TemplateUtilityService {
 			'source'      => $template_is_from_theme ? 'theme' : 'plugin',
 			'title'       => $this->getBlockTemplateTitle( $template_slug ),
 			'description' => $this->getBlockTemplateDescription( $template_slug ),
+			// Same as the saved-in-DB version, so an unedited template is assignable too.
+			'post_types'  => $this->plugin_template_types[ $template_slug ]['post_types'] ?? array(),
 		);
 
 		return (object) $new_template_item;

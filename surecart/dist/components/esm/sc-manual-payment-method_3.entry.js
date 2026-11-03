@@ -1,5 +1,5 @@
 import { r as registerInstance, h, H as Host } from './index-25e5af33.js';
-import { g as getRazorpayMethodLabel, a as getRazorpayMethodIcon } from './razorpay-4c4a3d31.js';
+import { a as getRazorpayMethodIcon, g as getRazorpayMethodLabel } from './razorpay-417957db.js';
 
 const scManualPaymentMethodCss = ":host {\n  display: block;\n}\n\n.manual-payment-method {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: var(--sc-spacing-x-small);\n  flex-wrap: wrap;\n\n  &__title {\n    font-weight: var(--sc-font-weight-bold);\n    color: var(--sc-primary-color-900);\n  }\n\n  &__description {\n    color: var(--sc-primary-color-600);\n  }\n}\n";
 const ScManualPaymentMethodStyle0 = scManualPaymentMethodCss;

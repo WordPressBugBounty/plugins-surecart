@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-line-item-quantity",
+  "title": "Line Item Quantity",
+  "description": "Quantity stepper (or a read-only \"Qty: N\") for a checkout line item.",
+  "keywords": [
+    "line item",
+    "quantity",
+    "qty"
+  ],
+  "category": "surecart",
+  "version": "1.0.0",
+  "textdomain": "surecart",
+  "ancestor": [
+    "surecart/checkout-line-items"
+  ],
+  "usesContext": [
+    "editable"
+  ],
+  "inserter": false,
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "reusable": false,
+    "color": {
+      "gradients": true,
+      "text": true,
+      "background": true,
+      "__experimentalDefaultControls": {
+        "text": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true,
+        "fontAppearance": true
+      }
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "editorStyle": [
+    "surecart-product-line-item",
+    "surecart-input-group",
+    "surecart-quantity-selector",
+    "surecart-theme-base"
+  ],
+  "style": [
+    "surecart-product-line-item",
+    "surecart-input-group",
+    "surecart-quantity-selector",
+    "surecart-button-reset",
+    "surecart-theme-base"
+  ],
+  "viewScriptModule": "@surecart/checkout-form"
+}

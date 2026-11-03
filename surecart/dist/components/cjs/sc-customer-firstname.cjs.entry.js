@@ -6,7 +6,7 @@ const index = require('./index-be4abba1.js');
 const util = require('./util-a15c420c.js');
 const store = require('./store-5cd165ea.js');
 const mutations = require('./mutations-4133422f.js');
-const index$1 = require('./index-c5bd66ae.js');
+const index$1 = require('./index-7e8821a7.js');
 require('./index-c3de642f.js');
 require('./utils-f5ea3c23.js');
 require('./remove-query-args-b57e8cd3.js');

@@ -267,6 +267,61 @@ add_action(
 	},
 );
 
+// Rendered once, and before the dialog part's layout CSS is collected.
+$sc_render_saved_items_ui = function () {
+	static $html = null;
+	if ( null !== $html || ! \SureCart::saved_items()->needsUi() ) {
+		return (string) $html;
+	}
+
+	$part    = get_block_template( 'surecart/surecart//saved-items-dialog', 'wp_template_part' );
+	$content = $part->content ?? '';
+	// A part whose list choices were removed can't save to lists; use the shipped one. The shipped
+	// part holds a pattern (for its translated heading) until it's customised.
+	if ( ! has_block( 'surecart/saved-items-list-picker', $content ) && ! has_block( 'core/pattern', $content ) ) {
+		$content = (string) file_get_contents( dirname( __DIR__, 2 ) . '/templates/parts/saved-items-dialog.html' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	}
+
+	// The store's caps, so they live in one place (the models).
+	wp_interactivity_config(
+		'surecart/saved-items',
+		[
+			'maxItems'        => \SureCart\Models\SavedItem::MAX_PER_LIST,
+			'maxLists'        => \SureCart\Models\SavedList::MAX_PER_CUSTOMER,
+			'defaultListName' => \SureCart::saved_items()->defaultListName(),
+			'savedUrl'        => \SureCart::saved_items()->url(),
+		]
+	);
+
+	// The dialogs' theme buttons and their busy spinner.
+	wp_enqueue_style( 'wp-block-button' );
+	wp_enqueue_style( 'surecart-wp-button' );
+	wp_enqueue_style( 'surecart-spinner' );
+	ob_start();
+	\SureCart::render( 'blocks/saved-items-toast' );
+	return ob_get_clean() . do_blocks( $content );
+};
+
+// Block themes render the page before wp_head, and only collect layout CSS there.
+add_action(
+	'wp_head',
+	function () use ( $sc_render_saved_items_ui ) {
+		if ( wp_is_block_theme() ) {
+			$sc_render_saved_items_ui();
+		}
+	},
+	0
+);
+
+// Classic themes render the page after wp_head; priority 0 is before their footer CSS pass.
+add_action(
+	'wp_footer',
+	function () use ( $sc_render_saved_items_ui ) {
+		echo $sc_render_saved_items_ui(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	},
+	0
+);
+
 add_action(
 	'init',
 	function () {
@@ -347,6 +402,23 @@ add_action(
 		wp_register_script_module(
 			'@surecart/facebook-events',
 			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/facebook/index.js',
+			[],
+			$static_assets['version']
+		);
+
+		// Checkout-lifecycle analytics, loaded only by the Interactivity checkout form.
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/google/checkout/index.asset.php' );
+		wp_register_script_module(
+			'@surecart/google-checkout-events',
+			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/google/checkout/index.js',
+			[],
+			$static_assets['version']
+		);
+
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/facebook/checkout/index.asset.php' );
+		wp_register_script_module(
+			'@surecart/facebook-checkout-events',
+			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/facebook/checkout/index.js',
 			[],
 			$static_assets['version']
 		);
@@ -641,6 +713,94 @@ add_action(
 			$static_assets['version']
 		);
 
+		// Shared address helpers (pure Places/region utilities).
+		$address_asset = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/address/index.asset.php';
+		if ( file_exists( $address_asset ) ) {
+			$static_assets = include $address_asset;
+			wp_register_script_module(
+				'@surecart/address',
+				trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/address/index.js',
+				array(
+					array(
+						'id'     => '@wordpress/interactivity',
+						'import' => 'dynamic',
+					),
+				),
+				$static_assets['version']
+			);
+		}
+
+		// Returning-customer login + profile autofill, shipped only with the email block.
+		$login_asset = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout-login/index.asset.php';
+		if ( file_exists( $login_asset ) ) {
+			$static_assets = include $login_asset;
+			wp_register_script_module(
+				'@surecart/checkout-login',
+				trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/checkout-login/index.js',
+				array(
+					array(
+						'id'     => '@wordpress/interactivity',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@surecart/api-fetch',
+						'import' => 'static',
+					),
+					array(
+						'id'     => '@surecart/checkout-service',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@wordpress/a11y',
+						'import' => 'dynamic',
+					),
+				),
+				$static_assets['version']
+			);
+		}
+
+		// Instant Checkout form.
+		$checkout_form_asset = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/checkout-form/index.asset.php';
+		if ( file_exists( $checkout_form_asset ) ) {
+			$static_assets = include $checkout_form_asset;
+			wp_register_script_module(
+				'@surecart/checkout-form',
+				trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/checkout-form/index.js',
+				array(
+					array(
+						// Static so it is modulepreloaded rather than fetched serially after parse.
+						'id'     => '@surecart/address',
+						'import' => 'static',
+					),
+					array(
+						'id'     => '@wordpress/interactivity',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@surecart/checkout-service',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@surecart/checkout-events',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@surecart/google-checkout-events',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@surecart/facebook-checkout-events',
+						'import' => 'dynamic',
+					),
+					array(
+						'id'     => '@wordpress/a11y',
+						'import' => 'dynamic',
+					),
+				),
+				$static_assets['version']
+			);
+		}
+
 		// Line Item Details (collapsible container for bundle items).
 		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/line-item-details/index.asset.php' );
 		wp_register_script_module(
@@ -663,6 +823,32 @@ add_action(
 			array(
 				array(
 					'id'     => '@wordpress/interactivity',
+					'import' => 'dynamic',
+				),
+			),
+			$static_assets['version']
+		);
+
+		// Saved items (wishlist / save for later).
+		$static_assets = sc_get_asset_file( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'build/scripts/saved-items/index.asset.php' );
+		wp_register_script_module(
+			'@surecart/saved-items',
+			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'build/scripts/saved-items/index.js',
+			array(
+				array(
+					'id'     => '@surecart/api-fetch',
+					'import' => 'dynamic',
+				),
+				array(
+					'id'     => '@wordpress/interactivity',
+					'import' => 'dynamic',
+				),
+				array(
+					'id'     => '@wordpress/a11y',
+					'import' => 'dynamic',
+				),
+				array(
+					'id'     => '@surecart/checkout-service',
 					'import' => 'dynamic',
 				),
 			),

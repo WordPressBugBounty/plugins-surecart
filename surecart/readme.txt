@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.11.0
+Stable tag: 4.12.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -453,6 +453,17 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.12.0 - November 3rd, 2026 =
+- New: Save for later. Shoppers can save products to named lists from product pages, product cards, Quick View and the slide-out cart, and view them on a new Saved Items page and in the customer dashboard.
+- New: Customizable Instant Checkout. Design buy link pages in the Site Editor with blocks, including custom checkout fields. Turn it on under Settings → Orders & Invoices.
+- Improvement: The Orders list shows "Awaiting Label" in the Shipping column when a shipment is waiting for a shipping label to be bought.
+- Improvement: SureCart is now fully translated into 33 languages, and translation updates arrive through WordPress without waiting for a plugin update.
+- Improvement: Adding a product priced in a different currency from the store now explains the mismatch instead of showing "Product is invalid." Errors like out of stock or purchase limit reached also show their specific message again.
+- Improvement: Strengthened security of the passwordless login code flow.
+- Improvement: The AI assistant (MCP) settings now warn that ChatGPT is retiring custom GPTs on December 11, 2026, which stops the ChatGPT connection. Claude, Cursor and VS Code keep working.
+- Fix: Custom translations from Loco Translate or your own files now keep priority, and anything they don't cover uses SureCart's translation instead of English.
+- Fix: Entering a wrong login code now shows a clear message instead of "Not found."
 
 = 4.11.0 - October 28th, 2026 =
 - New: Advanced filters for Orders, Subscriptions and Customers, including customer, product, coupon, return status and date. Filtered views are saved in the URL.

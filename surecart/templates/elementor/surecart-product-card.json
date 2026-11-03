@@ -130,6 +130,57 @@
 					"isInner": false,
 					"widgetType": "surecart-product-quick-add-button",
 					"elType": "widget"
+				},
+				{
+					"id": "6c2d9e4b",
+					"settings": {
+						"_title": "Save for Later Button",
+						"display": "icon",
+						"icon_size": {
+							"unit": "px",
+							"size": 16,
+							"sizes": []
+						},
+						"button_padding": {
+							"unit": "px",
+							"top": "10",
+							"right": "10",
+							"bottom": "10",
+							"left": "10",
+							"isLinked": true
+						},
+						"button_border_radius": {
+							"unit": "px",
+							"top": "100",
+							"right": "100",
+							"bottom": "100",
+							"left": "100",
+							"isLinked": true
+						},
+						"button_text_color": "#212121",
+						"button_background_color": "#FFFFFF",
+						"button_hover_background_color": "#F5F5F5",
+						"__globals__": {
+							"saved_icon_color": "globals/colors?id=primary"
+						},
+						"_element_width": "initial",
+						"_position": "absolute",
+						"_offset_orientation_h": "end",
+						"_offset_x_end": {
+							"unit": "px",
+							"size": 20,
+							"sizes": []
+						},
+						"_offset_y": {
+							"unit": "px",
+							"size": 20,
+							"sizes": []
+						}
+					},
+					"elements": [],
+					"isInner": false,
+					"widgetType": "surecart-product-save-button",
+					"elType": "widget"
 				}
 			],
 			"isInner": true,

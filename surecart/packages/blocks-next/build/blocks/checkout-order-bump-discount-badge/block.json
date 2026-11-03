@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-order-bump-discount-badge",
+  "title": "Order Bump Discount Badge",
+  "description": "Display the order bump savings tag. Hidden when the bump has no discount.",
+  "keywords": [
+    "order bump",
+    "upsell",
+    "sale"
+  ],
+  "category": "surecart",
+  "version": "1.0.0",
+  "textdomain": "surecart",
+  "ancestor": [
+    "surecart/checkout-order-bump-template"
+  ],
+  "inserter": false,
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "reusable": false,
+    "color": {
+      "gradients": true,
+      "text": true,
+      "background": true,
+      "__experimentalDefaultControls": {
+        "text": true,
+        "background": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  },
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "editorStyle": [
+    "surecart-theme-base",
+    "surecart-choice",
+    "surecart-tag",
+    "surecart-spinner"
+  ],
+  "style": [
+    "surecart-theme-base",
+    "surecart-choice",
+    "surecart-tag",
+    "surecart-spinner"
+  ],
+  "viewScriptModule": "@surecart/checkout-form"
+}

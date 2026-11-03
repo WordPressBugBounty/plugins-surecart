@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 require('./fetch-5e8dc1d5.js');
-const razorpay = require('./razorpay-88fe8897.js');
+const razorpay = require('./razorpay-36d046f6.js');
 const index$1 = require('./index-7ced8198.js');
 require('./add-query-args-49dcb630.js');
 require('./remove-query-args-b57e8cd3.js');

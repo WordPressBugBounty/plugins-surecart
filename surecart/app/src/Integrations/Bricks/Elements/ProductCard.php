@@ -176,6 +176,37 @@ class ProductCard extends \Bricks\Element {
 							],
 						],
 					],
+					[
+						'name'     => 'surecart-product-save-button',
+						'settings' => [
+							'display'     => 'icon',
+							'style'       => '',
+							'circle'      => true,
+							'icon'        => [
+								'library' => 'fontawesomeRegular',
+								'icon'    => 'far fa-heart',
+							],
+							'saved_icon'  => [
+								'library' => 'fontawesomeSolid',
+								'icon'    => 'fas fa-heart',
+							],
+							'_position'   => 'absolute',
+							'_bottom'     => '20px',
+							'_right'      => '20px',
+							'_padding'    => [
+								'top'    => '10',
+								'right'  => '10',
+								'bottom' => '10',
+								'left'   => '10',
+							],
+							'_background' => [
+								'color' => [ 'hex' => '#ffffff' ],
+							],
+							'_typography' => [
+								'color' => [ 'hex' => '#212121' ],
+							],
+						],
+					],
 				],
 			],
 			[

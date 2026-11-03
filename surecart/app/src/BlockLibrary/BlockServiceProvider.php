@@ -37,6 +37,8 @@ class BlockServiceProvider implements ServiceProviderInterface {
 
 		$container['block.support.anchor']   = fn () => new BlockAnchorSupportService();
 		$container['block.support.currency'] = fn () => new BlockCurrencyConversionSupportService();
+		$container['blocks.address']         = fn () => new AddressBlockService();
+		$container['blocks.payment']         = fn () => new PaymentBlockService();
 		$container['blocks.quick_view']      = fn () => new ProductQuickViewService();
 		$container['blocks.review_form']     = fn () => new ProductReviewFormService();
 		$container['blocks.patterns']        = fn () => new BlockPatternsService( $app );
@@ -51,9 +53,11 @@ class BlockServiceProvider implements ServiceProviderInterface {
 		);
 
 		$app->alias( 'block', 'block' );
+		$app->alias( 'addressBlock', 'blocks.address' );
+		$app->alias( 'paymentBlock', 'blocks.payment' );
 
-		// Register blocks.
-		include plugin_dir_path( SURECART_PLUGIN_FILE ) . 'packages/blocks-next/index.php';
+		// Register blocks. include_once: the file declares top-level functions.
+		include_once plugin_dir_path( SURECART_PLUGIN_FILE ) . 'packages/blocks-next/index.php';
 	}
 
 	/**

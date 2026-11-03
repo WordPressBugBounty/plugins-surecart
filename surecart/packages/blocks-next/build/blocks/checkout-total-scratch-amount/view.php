@@ -1,0 +1,1 @@
+<span <?php echo wp_kses_data( get_block_wrapper_attributes( array( 'class' => 'sc-line-item__scratch-price' ) ) ); ?> data-wp-bind--hidden="!state.hasTotalSavings" data-wp-text="state.checkout.total_scratch_display_amount" hidden></span>

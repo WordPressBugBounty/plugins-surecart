@@ -1,0 +1,1 @@
+export const RAZORPAY_METHOD_META={card:{icon:"razorpay",label:"Credit Card"},upi:{icon:"upi",label:"UPI"}};export const getRazorpayMethodLabel=o=>o&&RAZORPAY_METHOD_META[o]?RAZORPAY_METHOD_META[o].label:void 0;export const getRazorpayMethodIcon=o=>o&&RAZORPAY_METHOD_META[o]&&RAZORPAY_METHOD_META[o].icon||"razorpay";

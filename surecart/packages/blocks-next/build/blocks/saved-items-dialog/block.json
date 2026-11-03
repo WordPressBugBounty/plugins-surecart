@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/saved-items-dialog",
+  "title": "Save to List Dialog",
+  "description": "The dialog shoppers use to choose which saved-item lists a product is in.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "icon": "heart",
+  "keywords": [
+    "saved",
+    "wishlist",
+    "list"
+  ],
+  "example": {},
+  "attributes": {
+    "width": {
+      "type": "string"
+    },
+    "done_text": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "inserter": false,
+    "html": false,
+    "multiple": false,
+    "interactivity": true,
+    "color": {
+      "background": true,
+      "text": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    },
+    "spacing": {
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "__experimentalBorder": {
+      "radius": true,
+      "__experimentalDefaultControls": {
+        "radius": true
+      }
+    }
+  },
+  "textdomain": "surecart",
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "style": [
+    "surecart-dialog",
+    "surecart-form-control",
+    "wp-block-button",
+    "surecart-wp-button"
+  ],
+  "editorStyle": [
+    "surecart-saved-items"
+  ]
+}

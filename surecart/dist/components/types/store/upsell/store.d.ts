@@ -9,7 +9,7 @@ interface Store {
     amount_due: number;
     checkout_id: string;
     checkout: Checkout;
-    form_id: number;
+    form_id: number | string;
     busy: boolean;
     disabled: boolean;
     success_url: string;

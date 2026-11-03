@@ -14,6 +14,7 @@ class ElementorWidgetsService {
 	protected $free_widgets = [
 		'ReusableFormWidget',
 		'CartMenuIcon',
+		'SavedItemsIcon',
 	];
 
 	/**
@@ -34,7 +35,7 @@ class ElementorWidgetsService {
 	 * @return void
 	 */
 	public function registerStyles() {
-		wp_register_style( 'surecart-elementor-container-style', plugins_url( 'assets/container.css', __FILE__ ), [], '1.0', 'all' );
+		wp_register_style( 'surecart-elementor-container-style', plugins_url( 'assets/container.css', __FILE__ ), [], \SureCart::plugin()->version(), 'all' );
 	}
 
 	/**

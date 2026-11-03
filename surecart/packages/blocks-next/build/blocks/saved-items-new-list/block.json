@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/saved-items-new-list",
+  "title": "Save to List New List",
+  "description": "Lets shoppers create a list and save the product to it. Hidden once they reach the list limit.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/saved-items-dialog"
+  ],
+  "example": {},
+  "attributes": {
+    "placeholder": {
+      "type": "string"
+    },
+    "button_text": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false,
+    "multiple": false,
+    "interactivity": true,
+    "spacing": {
+      "margin": true
+    },
+    "typography": {
+      "fontSize": true
+    }
+  },
+  "textdomain": "surecart",
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "style": [
+    "surecart-form-control"
+  ]
+}

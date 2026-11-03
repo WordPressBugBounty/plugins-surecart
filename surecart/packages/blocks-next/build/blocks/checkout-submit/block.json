@@ -1,0 +1,109 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-submit",
+  "title": "Submit",
+  "description": "Submit button for the instant checkout form.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form"
+  ],
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "showTotal": {
+      "type": "boolean",
+      "default": false
+    },
+    "showSecureNotice": {
+      "type": "boolean",
+      "default": true
+    },
+    "secureNoticeText": {
+      "type": "string",
+      "default": ""
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "full": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "string",
+      "default": "large",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ]
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "__experimentalSkipSerialization": true,
+      "__experimentalDefaultControls": {
+        "text": true,
+        "background": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalSkipSerialization": true
+    },
+    "spacing": {
+      "__experimentalSkipSerialization": true,
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalSelector": ".sc-checkout-submit__button",
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalSkipSerialization": true
+    },
+    "shadow": {
+      "__experimentalSkipSerialization": true
+    },
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "surecart-theme-base",
+    "surecart-secure-notice",
+    "file:./style-index.css"
+  ],
+  "style": [
+    "surecart-theme-base",
+    "surecart-secure-notice",
+    "file:./style-index.css"
+  ]
+}

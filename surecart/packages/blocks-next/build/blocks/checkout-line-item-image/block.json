@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-line-item-image",
+  "title": "Line Item Image",
+  "description": "Display the line item product image.",
+  "keywords": [
+    "line item",
+    "product",
+    "thumbnail"
+  ],
+  "category": "surecart",
+  "version": "1.0.0",
+  "textdomain": "surecart",
+  "ancestor": [
+    "surecart/checkout-line-items"
+  ],
+  "inserter": false,
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "reusable": false,
+    "spacing": {
+      "margin": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "width": true
+      }
+    }
+  },
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "editorStyle": [
+    "surecart-product-line-item",
+    "surecart-theme-base"
+  ],
+  "style": [
+    "surecart-product-line-item",
+    "surecart-theme-base"
+  ],
+  "viewScriptModule": "@surecart/checkout-form"
+}

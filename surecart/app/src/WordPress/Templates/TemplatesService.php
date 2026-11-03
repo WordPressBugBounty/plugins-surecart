@@ -114,6 +114,7 @@ class TemplatesService {
 			'navigation_invoices',
 			'navigation_subscriptions',
 			'navigation_downloads',
+			'navigation_saved',
 			'navigation_billing',
 			'navigation_account',
 		] as $toggle ) {

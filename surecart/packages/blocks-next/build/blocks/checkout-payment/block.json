@@ -1,0 +1,91 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-payment",
+  "title": "Payment",
+  "description": "Payment methods for the instant checkout form.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form"
+  ],
+  "allowedBlocks": [
+    "surecart/checkout-payment-label"
+  ],
+  "attributes": {
+    "defaultProcessor": {
+      "type": "string",
+      "default": "stripe",
+      "enum": [
+        "stripe",
+        "paypal",
+        "paystack",
+        "razorpay",
+        "mollie",
+        "manual"
+      ]
+    },
+    "disabledMethods": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "surecart-theme-base",
+    "surecart-tag",
+    "surecart-alert",
+    "surecart-choice",
+    "surecart-label",
+    "file:./style-index.css"
+  ],
+  "style": [
+    "surecart-theme-base",
+    "surecart-tag",
+    "surecart-alert",
+    "surecart-choice",
+    "surecart-label",
+    "file:./style-index.css"
+  ]
+}

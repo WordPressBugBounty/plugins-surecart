@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/saved-items-dialog-product-name",
+  "title": "Save to List Product Name",
+  "description": "The name of the product being saved.",
+  "version": "1.0.0",
+  "category": "surecart",
+  "icon": "products",
+  "ancestor": [
+    "surecart/saved-items-dialog"
+  ],
+  "example": {},
+  "supports": {
+    "html": false,
+    "interactivity": true,
+    "color": {
+      "text": true,
+      "background": false
+    },
+    "spacing": {
+      "margin": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontWeight": true
+    }
+  },
+  "textdomain": "surecart",
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js"
+}

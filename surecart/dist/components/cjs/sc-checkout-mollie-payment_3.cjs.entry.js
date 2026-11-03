@@ -8,7 +8,7 @@ require('./watchers-3a87bc45.js');
 const getters = require('./getters-d8754292.js');
 const mutations = require('./mutations-4133422f.js');
 const getters$1 = require('./getters-1ff518bc.js');
-const mutations$1 = require('./mutations-fdb67675.js');
+const mutations$1 = require('./mutations-cf02b54a.js');
 require('./fetch-5e8dc1d5.js');
 const MockProcessor = require('./MockProcessor-ad11752f.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
@@ -17,7 +17,7 @@ const index$1 = require('./index-7ced8198.js');
 const inline = require('./inline-aa15f113.js');
 const store = require('./store-29627d6b.js');
 const getters$2 = require('./getters-ade46b86.js');
-const razorpay = require('./razorpay-88fe8897.js');
+const razorpay = require('./razorpay-36d046f6.js');
 require('./index-c3de642f.js');
 require('./util-a15c420c.js');
 require('./utils-f5ea3c23.js');
@@ -28,7 +28,7 @@ require('./currency-b438c76d.js');
 require('./price-9dddd853.js');
 require('./store-5cd165ea.js');
 require('./address-7404695f.js');
-require('./index-c5bd66ae.js');
+require('./index-7e8821a7.js');
 
 const listenTo = (prop, propKey, callback) => mutations.on('set', (key, newValue, oldValue) => {
     // ignore non-keys

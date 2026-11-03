@@ -1,0 +1,97 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-coupon",
+  "title": "Coupon",
+  "description": "Apply a discount code on the instant checkout form.",
+  "keywords": [
+    "coupon",
+    "promo",
+    "discount"
+  ],
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form",
+    "surecart/checkout-totals"
+  ],
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "button_text": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "collapsed": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "multiple": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "surecart-line-item",
+    "surecart-coupon-form",
+    "surecart-form-control",
+    "surecart-input-group",
+    "surecart-tag",
+    "surecart-button-reset",
+    "surecart-theme-base"
+  ],
+  "style": [
+    "surecart-line-item",
+    "surecart-coupon-form",
+    "surecart-form-control",
+    "surecart-input-group",
+    "surecart-tag",
+    "surecart-button-reset",
+    "surecart-theme-base"
+  ]
+}

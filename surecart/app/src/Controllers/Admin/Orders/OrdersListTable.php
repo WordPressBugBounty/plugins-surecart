@@ -177,7 +177,7 @@ class OrdersListTable extends ListTable {
 		}
 
 		return Order::where( $conditions )
-			->with( [ 'checkout', 'checkout.charge', 'checkout.customer', 'checkout.payment_method', 'checkout.manual_payment_method', 'checkout.purchases', 'checkout.selected_shipping_choice', 'shipping_choice.shipping_method', 'payment_method.card', 'payment_method.payment_instrument', 'payment_method.paypal_account', 'payment_method.bank_account' ] )
+			->with( [ 'checkout', 'checkout.charge', 'checkout.customer', 'checkout.payment_method', 'checkout.manual_payment_method', 'checkout.purchases', 'checkout.selected_shipping_choice', 'shipping_choice.shipping_method', 'payment_method.card', 'payment_method.payment_instrument', 'payment_method.paypal_account', 'payment_method.bank_account', 'fulfillments' ] )
 			->paginate(
 				[
 					'per_page' => $this->get_items_per_page( 'orders' ),
@@ -312,13 +312,34 @@ class OrdersListTable extends ListTable {
 		<?php if ( 'unshippable' === $order->shipment_status ) : ?>
 			-
 		<?php else : ?>
-			<sc-order-shipment-badge status="<?php echo esc_attr( $order->shipment_status ); ?>"></sc-order-shipment-badge>
+			<?php if ( 'unshipped' === $order->shipment_status && $this->isAwaitingLabel( $order ) ) : ?>
+				<sc-tag type="warning"><?php echo esc_html__( 'Awaiting Label', 'surecart' ); ?></sc-tag>
+			<?php else : ?>
+				<sc-order-shipment-badge status="<?php echo esc_attr( $order->shipment_status ); ?>"></sc-order-shipment-badge>
+			<?php endif; ?>
 			<?php if ( $shipping_method_name ) : ?>
 				<div><small>(<?php echo esc_attr( $shipping_method_name ); ?>)</small></div>
 			<?php endif; ?>
 		<?php endif; ?>
 		<?php
 		return ob_get_clean();
+	}
+
+	/**
+	 * Whether any of the order's fulfillments has a shipment waiting on a label.
+	 *
+	 * @param \SureCart\Models\Order $order Order Model.
+	 *
+	 * @return bool
+	 */
+	protected function isAwaitingLabel( object $order ): bool {
+		$fulfillments = $order->fulfillments->data ?? $order->fulfillments ?? [];
+		foreach ( $fulfillments as $fulfillment ) {
+			if ( is_object( $fulfillment ) && ! empty( $fulfillment->awaiting_label ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

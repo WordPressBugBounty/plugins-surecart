@@ -1,7 +1,7 @@
 import { r as registerInstance, c as createEvent, h, a as getElement } from './index-25e5af33.js';
 import { l as loadScript, g as getScriptLoadParams } from './functions-4f009ce1.js';
 import './fetch-cdff67be.js';
-import { g as fetchCheckout } from './index-396e50a3.js';
+import { g as fetchCheckout } from './index-5658daa7.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { a as apiFetch } from './index-824c562b.js';
 import './add-query-args-0e2a8393.js';

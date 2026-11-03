@@ -34,6 +34,21 @@ class StylesService {
 			array(),
 			filemtime( trailingslashit( $this->container[ SURECART_CONFIG_KEY ]['app_core']['path'] ) . 'dist/components/surecart/surecart.css' ),
 		);
+
+		$style = $this->getThemeStyle();
+
+		wp_add_inline_style( 'surecart-themes-default', $style );
+
+		// blocks-next.
+		wp_add_inline_style( 'surecart-theme-base', $style );
+	}
+
+	/**
+	 * Build the theme inline style (cloak + merchant brand color custom properties).
+	 *
+	 * @return string
+	 */
+	public function getThemeStyle(): string {
 		$brand   = \SureCart::account()->brand;
 		$color   = preg_replace( '/[^a-fA-F0-9]/', '', \SureCart::theme()->brandColor() );
 		$heading = preg_replace( '/[^a-fA-F0-9]/', '', $brand->heading ?? '000' );
@@ -49,16 +64,18 @@ class StylesService {
 		$style .= '--wp--preset--color--surecart: #' . $color . ';';
 		$style .= '}';
 
-		wp_add_inline_style(
-			'surecart-themes-default',
-			$style
-		);
+		return $style;
+	}
 
-		// blocks-next.
-		wp_add_inline_style(
-			'surecart-theme-base',
-			$style
-		);
+	/**
+	 * Attach the theme inline style (brand colors) to a registered style handle.
+	 *
+	 * @param string $handle The registered style handle to attach to.
+	 *
+	 * @return void
+	 */
+	public function addThemeInlineStyle( $handle ) {
+		wp_add_inline_style( $handle, $this->getThemeStyle() );
 	}
 
 	/**

@@ -8,7 +8,7 @@ require('./watchers-3a87bc45.js');
 const getters = require('./getters-d8754292.js');
 const watchers = require('./watchers-517825ae.js');
 const MockProcessor = require('./MockProcessor-ad11752f.js');
-const razorpay = require('./razorpay-88fe8897.js');
+const razorpay = require('./razorpay-36d046f6.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./index-c3de642f.js');
 require('./utils-f5ea3c23.js');

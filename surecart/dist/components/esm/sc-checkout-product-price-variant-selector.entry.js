@@ -2,7 +2,7 @@ import { r as registerInstance, h, F as Fragment, a as getElement } from './inde
 import { g as getLineItemByProductId } from './getters-ed04d1c9.js';
 import { u as updateFormState, s as state, o as onChange } from './mutations-54fc7af1.js';
 import { g as getVariantFromValues } from './util-dfbf863e.js';
-import { u as updateLineItem, a as addLineItem } from './index-396e50a3.js';
+import { u as updateLineItem, a as addLineItem } from './index-5658daa7.js';
 import { c as createErrorNotice } from './mutations-7458343f.js';
 import { i as isProductVariantOptionSoldOut, a as isProductVariantOptionMissing } from './utils-2fd36c2c.js';
 import './store-ea636731.js';

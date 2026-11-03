@@ -55,6 +55,8 @@ class PostSyncService {
 		'wp_buy_link_product_image_disabled',
 		'wp_buy_link_success_page_enabled',
 		'wp_buy_link_success_page_url',
+		'wp_buy_link_template_id',
+		'wp_buy_link_template_part_id',
 		'wp_buy_link_terms_disabled',
 		'wp_buy_link_test_mode_enabled',
 		'wp_created_by',

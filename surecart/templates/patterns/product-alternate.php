@@ -87,6 +87,8 @@ return [
 			<!-- wp:surecart/product-buy-button {"add_to_cart":true} /-->
 
 			<!-- wp:surecart/product-buy-button {"className":"is-style-outline"} /-->
+
+			<!-- wp:surecart/product-save-button {"show_label":true,"style":{"spacing":{"margin":{"top":"10px","left":"auto","right":"auto"}}}} /-->
 		</div>
 		<!-- /wp:surecart/product-buy-buttons -->
 	</div>

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-line-item-trial",
+  "title": "Line Item Trial",
+  "description": "Display the line item trial text (e.g. \"Starting in 120 days\").",
+  "keywords": [
+    "line item",
+    "trial",
+    "subscription"
+  ],
+  "category": "surecart",
+  "version": "1.0.0",
+  "textdomain": "surecart",
+  "ancestor": [
+    "surecart/checkout-line-items"
+  ],
+  "inserter": false,
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "reusable": false,
+    "color": {
+      "gradients": true,
+      "text": true,
+      "background": true,
+      "__experimentalDefaultControls": {
+        "text": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "render": "file:./view.php",
+  "editorScript": "file:./index.js",
+  "editorStyle": [
+    "surecart-product-line-item",
+    "surecart-theme-base"
+  ],
+  "style": [
+    "surecart-product-line-item",
+    "surecart-theme-base"
+  ],
+  "viewScriptModule": "@surecart/checkout-form"
+}

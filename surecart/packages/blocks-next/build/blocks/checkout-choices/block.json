@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "surecart/checkout-choices",
+  "title": "Choices",
+  "description": "Let the customer pick one option, saved on the order under the field name you choose.",
+  "keywords": [
+    "custom",
+    "field",
+    "radio",
+    "choice",
+    "select",
+    "metadata"
+  ],
+  "version": "1.0.0",
+  "category": "surecart",
+  "ancestor": [
+    "surecart/instant-checkout-form"
+  ],
+  "allowedBlocks": [
+    "surecart/checkout-choice"
+  ],
+  "providesContext": {
+    "surecart/checkout-choices/name": "name",
+    "surecart/checkout-choices/required": "required"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "label": {
+      "type": "string"
+    },
+    "help": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "interactivity": true,
+    "html": false,
+    "anchor": true,
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalLetterSpacing": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": true,
+    "dimensions": {
+      "minHeight": true
+    }
+  },
+  "render": "file:./view.php",
+  "textdomain": "surecart",
+  "editorScript": "file:./index.js",
+  "viewScriptModule": "@surecart/checkout-form",
+  "editorStyle": [
+    "file:./style-index.css",
+    "surecart-theme-base",
+    "surecart-form-group",
+    "surecart-form-control",
+    "surecart-label",
+    "surecart-radio-checkbox"
+  ],
+  "style": [
+    "file:./style-index.css",
+    "surecart-theme-base",
+    "surecart-form-group",
+    "surecart-form-control",
+    "surecart-label",
+    "surecart-radio-checkbox"
+  ]
+}

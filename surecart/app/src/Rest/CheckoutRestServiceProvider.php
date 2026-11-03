@@ -223,14 +223,17 @@ class CheckoutRestServiceProvider extends RestServiceProvider implements RestSer
 			}
 		}
 
+		// Instant checkout sends a non-numeric 'instant-checkout' form_id; treat it as absent.
+		$form_id = is_numeric( $request['form_id'] ) ? (int) $request['form_id'] : 0;
+
 		// form id or a product id is required.
-		if ( empty( $request['form_id'] ) && empty( $request['product_id'] ) ) {
+		if ( empty( $form_id ) && empty( $request['product_id'] ) ) {
 			return new \WP_Error( 'form_id_required', esc_html__( 'Form ID is required.', 'surecart' ), array( 'status' => 400 ) );
 		}
 
 		// get form.
-		if ( ! empty( $request['form_id'] ) ) {
-			$form = get_post( $request['form_id'] );
+		if ( ! empty( $form_id ) ) {
+			$form = get_post( $form_id );
 			if ( ! $form || 'sc_form' !== $form->post_type ) {
 				return new \WP_Error( 'form_id_invalid', esc_html__( 'Form ID is invalid.', 'surecart' ), array( 'status' => 400 ) );
 			}

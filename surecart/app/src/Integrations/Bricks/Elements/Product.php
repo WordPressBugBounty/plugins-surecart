@@ -291,6 +291,30 @@ class Product extends \Bricks\Element {
 					'content' => esc_html__( 'Buy Now', 'surecart' ),
 				),
 			),
+			array(
+				'name'     => 'surecart-product-save-button',
+				'settings' => array(
+					'style'       => '',
+					'_alignSelf'  => 'center',
+					'_padding'    => array(
+						'top'    => '0',
+						'right'  => '0',
+						'bottom' => '0',
+						'left'   => '0',
+					),
+					'_background' => array(
+						'color' => array( 'raw' => 'transparent' ),
+					),
+					'icon'        => array(
+						'library' => 'fontawesomeRegular',
+						'icon'    => 'far fa-heart',
+					),
+					'saved_icon'  => array(
+						'library' => 'fontawesomeSolid',
+						'icon'    => 'fas fa-heart',
+					),
+				),
+			),
 		);
 
 		return array(

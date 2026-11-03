@@ -255,6 +255,7 @@ class ActivationService {
 		$this->roles->delete();
 		// remove pages that were automatically seeded.
 		$this->seeder->delete();
+		\SureCart::saved_items()->uninstall();
 		// remove all forms.
 		$this->removeFormPosts();
 		// remove all options from the options table.
