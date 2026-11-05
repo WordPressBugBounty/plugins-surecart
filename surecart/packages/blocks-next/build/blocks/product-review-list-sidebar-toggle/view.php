@@ -47,6 +47,6 @@ $buttons = array(
 			sc_allowed_svg_html()
 		) : '';
 	?>
-	<span aria-hidden="true"><?php echo wp_kses_post( $attributes['label'] ?? __( 'Filter', 'surecart' ) ); ?></span>
+	<span aria-hidden="true"><?php echo wp_kses_post( ! empty( $attributes['label'] ) ? $attributes['label'] : __( 'Filters', 'surecart' ) ); ?></span>
 </div>
 <?php endforeach; ?>

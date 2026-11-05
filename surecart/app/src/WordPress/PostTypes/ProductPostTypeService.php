@@ -189,8 +189,10 @@ class ProductPostTypeService {
 			$template_id = wp_is_block_theme() ? 'surecart/surecart//single-sc_product' : 'surecart/surecart//product-info';
 		}
 
-		$block_template                      = get_block_template( $template_id, wp_is_block_theme() ? 'wp_template' : 'wp_template_part' );
-		$response->data['has_content_block'] = has_block( 'core/post-content', $block_template->content ?? '' );
+		$block_template = get_block_template( $template_id, wp_is_block_theme() ? 'wp_template' : 'wp_template_part' );
+		// The default templates keep their markup in a pattern, so look inside it.
+		$template_content                    = serialize_blocks( resolve_pattern_blocks( parse_blocks( $block_template->content ?? '' ) ) );
+		$response->data['has_content_block'] = has_block( 'core/post-content', $template_content );
 		$response->data['block_template']    = $block_template;
 		return $response;
 	}

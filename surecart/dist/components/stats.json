@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-03T16:03:47",
+  "timestamp": "2026-11-04T21:09:02",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3547,8 +3547,6 @@
           "./dist/surecart/p-42161e3c.entry.js.map",
           "./dist/surecart/p-426c19c8.entry.js",
           "./dist/surecart/p-426c19c8.entry.js.map",
-          "./dist/surecart/p-447dee3b.entry.js",
-          "./dist/surecart/p-447dee3b.entry.js.map",
           "./dist/surecart/p-45d9a463.entry.js",
           "./dist/surecart/p-45d9a463.entry.js.map",
           "./dist/surecart/p-464d50d1.entry.js",
@@ -3855,6 +3853,8 @@
           "./dist/surecart/p-dc541a98.entry.js.map",
           "./dist/surecart/p-df26f7fd.entry.js",
           "./dist/surecart/p-df26f7fd.entry.js.map",
+          "./dist/surecart/p-e124752f.entry.js",
+          "./dist/surecart/p-e124752f.entry.js.map",
           "./dist/surecart/p-e1c7cbe4.entry.js",
           "./dist/surecart/p-e1c7cbe4.entry.js.map",
           "./dist/surecart/p-e2e1fe1f.js",
@@ -3863,8 +3863,6 @@
           "./dist/surecart/p-e37124a8.entry.js.map",
           "./dist/surecart/p-e37a99d2.entry.js",
           "./dist/surecart/p-e37a99d2.entry.js.map",
-          "./dist/surecart/p-e3ee24fa.entry.js",
-          "./dist/surecart/p-e3ee24fa.entry.js.map",
           "./dist/surecart/p-e5327e10.entry.js",
           "./dist/surecart/p-e5327e10.entry.js.map",
           "./dist/surecart/p-e6491b86.entry.js",
@@ -3873,6 +3871,8 @@
           "./dist/surecart/p-e7722034.entry.js.map",
           "./dist/surecart/p-e8cd31cf.js",
           "./dist/surecart/p-e8cd31cf.js.map",
+          "./dist/surecart/p-e8d14d8b.entry.js",
+          "./dist/surecart/p-e8d14d8b.entry.js.map",
           "./dist/surecart/p-e8faf508.entry.js",
           "./dist/surecart/p-e8faf508.entry.js.map",
           "./dist/surecart/p-e9ae48d3.js",
@@ -4013,8 +4013,6 @@
           "./www/build/p-42161e3c.entry.js.map",
           "./www/build/p-426c19c8.entry.js",
           "./www/build/p-426c19c8.entry.js.map",
-          "./www/build/p-447dee3b.entry.js",
-          "./www/build/p-447dee3b.entry.js.map",
           "./www/build/p-45d9a463.entry.js",
           "./www/build/p-45d9a463.entry.js.map",
           "./www/build/p-464d50d1.entry.js",
@@ -4321,6 +4319,8 @@
           "./www/build/p-dc541a98.entry.js.map",
           "./www/build/p-df26f7fd.entry.js",
           "./www/build/p-df26f7fd.entry.js.map",
+          "./www/build/p-e124752f.entry.js",
+          "./www/build/p-e124752f.entry.js.map",
           "./www/build/p-e1c7cbe4.entry.js",
           "./www/build/p-e1c7cbe4.entry.js.map",
           "./www/build/p-e2e1fe1f.js",
@@ -4329,8 +4329,6 @@
           "./www/build/p-e37124a8.entry.js.map",
           "./www/build/p-e37a99d2.entry.js",
           "./www/build/p-e37a99d2.entry.js.map",
-          "./www/build/p-e3ee24fa.entry.js",
-          "./www/build/p-e3ee24fa.entry.js.map",
           "./www/build/p-e5327e10.entry.js",
           "./www/build/p-e5327e10.entry.js.map",
           "./www/build/p-e6491b86.entry.js",
@@ -4339,6 +4337,8 @@
           "./www/build/p-e7722034.entry.js.map",
           "./www/build/p-e8cd31cf.js",
           "./www/build/p-e8cd31cf.js.map",
+          "./www/build/p-e8d14d8b.entry.js",
+          "./www/build/p-e8d14d8b.entry.js.map",
           "./www/build/p-e8faf508.entry.js",
           "./www/build/p-e8faf508.entry.js.map",
           "./www/build/p-e9ae48d3.js",
@@ -6077,8 +6077,8 @@
         "components": [
           "sc-stripe-payment-element"
         ],
-        "bundleId": "p-e3ee24fa",
-        "fileName": "p-e3ee24fa.entry.js",
+        "bundleId": "p-e124752f",
+        "fileName": "p-e124752f.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-9ef0f73f.js",
@@ -6102,7 +6102,7 @@
           "p-e8cd31cf.js",
           "p-e2e1fe1f.js"
         ],
-        "originalByteSize": 20049
+        "originalByteSize": 22198
       },
       {
         "key": "sc-subscription.entry",
@@ -7248,8 +7248,8 @@
           "sc-phone-input",
           "sc-tax-id-input"
         ],
-        "bundleId": "p-447dee3b",
-        "fileName": "p-447dee3b.entry.js",
+        "bundleId": "p-e8d14d8b",
+        "fileName": "p-e8d14d8b.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-e2e1fe1f.js",
@@ -7263,7 +7263,7 @@
           "p-401e165e.js",
           "p-2b28ea49.js"
         ],
-        "originalByteSize": 618541
+        "originalByteSize": 618829
       },
       {
         "key": "sc-format-bytes.entry",
@@ -9306,7 +9306,7 @@
           "store-ea636731.js",
           "address-b8e2e4c8.js"
         ],
-        "originalByteSize": 20178
+        "originalByteSize": 22327
       },
       {
         "key": "sc-subscription.entry",
@@ -10467,7 +10467,7 @@
           "add-query-args-0e2a8393.js",
           "index-18f5a1bc.js"
         ],
-        "originalByteSize": 618613
+        "originalByteSize": 618901
       },
       {
         "key": "sc-format-bytes.entry",
@@ -12512,7 +12512,7 @@
           "store-5cd165ea.js",
           "address-7404695f.js"
         ],
-        "originalByteSize": 21035
+        "originalByteSize": 23200
       },
       {
         "key": "sc-subscription.entry",
@@ -13673,7 +13673,7 @@
           "add-query-args-49dcb630.js",
           "index-c3de642f.js"
         ],
-        "originalByteSize": 619264
+        "originalByteSize": 619552
       },
       {
         "key": "sc-format-bytes.entry",
@@ -14523,9 +14523,13 @@
             "text": "Address changed — emitted to parent to update address state."
           },
           "complexType": {
-            "original": "Address",
-            "resolved": "Address",
+            "original": "Partial<Address>",
+            "resolved": "{ name?: string; line_1?: string; line_2?: string; city?: string; state?: string; postal_code?: string; country?: string; constructor?: Function; toString?: () => string; toLocaleString?: () => string; valueOf?: () => Object; hasOwnProperty?: (v: PropertyKey) => boolean; isPrototypeOf?: (v: Object) => boolean; propertyIsEnumerable?: (v: PropertyKey) => boolean; }",
             "references": {
+              "Partial": {
+                "location": "global",
+                "id": "global::Partial"
+              },
               "Address": {
                 "location": "import",
                 "path": "../../../types",
@@ -107580,9 +107584,13 @@
                 "text": "Address changed — emitted to parent to update address state."
               },
               "complexType": {
-                "original": "Address",
-                "resolved": "Address",
+                "original": "Partial<Address>",
+                "resolved": "{ name?: string; line_1?: string; line_2?: string; city?: string; state?: string; postal_code?: string; country?: string; constructor?: Function; toString?: () => string; toLocaleString?: () => string; valueOf?: () => Object; hasOwnProperty?: (v: PropertyKey) => boolean; isPrototypeOf?: (v: Object) => boolean; propertyIsEnumerable?: (v: PropertyKey) => boolean; }",
                 "references": {
+                  "Partial": {
+                    "location": "global",
+                    "id": "global::Partial"
+                  },
                   "Address": {
                     "location": "import",
                     "path": "../../../types",
@@ -125986,6 +125994,7 @@
     ],
     "./src/components/ui/stripe-payment-element/sc-stripe-payment-element.tsx": [],
     "./src/components/ui/stripe-payment-element/test/sc-stripe-payment-element.spec.tsx": [
+      "./src/components/ui/stripe-payment-element/sc-stripe-payment-element",
       "./src/store/checkout",
       "./src/store/processors"
     ],

@@ -243,7 +243,10 @@ const ScAddress = class {
             case 'name':
                 return (h("sc-input", { exportparts: "base:input__base, input, form-control, label, help-text", value: (_e = (_d = this === null || this === void 0 ? void 0 : this.address) === null || _d === void 0 ? void 0 : _d.name) !== null && _e !== void 0 ? _e : '', onScChange: (e) => this.updateAddress({ name: e.target.value || null }), onScInput: (e) => this.handleAddressInput({ name: e.target.value || null }), autocomplete: "name", placeholder: field.label, name: (_f = this.names) === null || _f === void 0 ? void 0 : _f.name, disabled: this.disabled, required: this.requireName, "aria-label": field.label, ...roundedProps }));
             case 'line_1':
-                return (h("sc-address-suggestions", { address: this.address, names: this.names, regions: this.regions(), label: field.label, disabled: this.disabled, required: isRequired, inputProps: roundedProps, onScChangeAddress: (e) => this.updateAddress(e.detail), onScShowAddressFields: () => this.toggleAddressFieldsVisibility(true), onScHideAddressFields: () => this.toggleAddressFieldsVisibility(false) }));
+                return (h("sc-address-suggestions", { address: this.address, names: this.names, regions: this.regions(), label: field.label, disabled: this.disabled, required: isRequired, inputProps: roundedProps, onScChangeAddress: (e) => {
+                        e.stopPropagation();
+                        this.updateAddress(e.detail);
+                    }, onScShowAddressFields: () => this.toggleAddressFieldsVisibility(true), onScHideAddressFields: () => this.toggleAddressFieldsVisibility(false) }));
             case 'line_2':
                 return (h("sc-input", { exportparts: "base:input__base, input, form-control, label, help-text", value: (_h = (_g = this === null || this === void 0 ? void 0 : this.address) === null || _g === void 0 ? void 0 : _g.line_2) !== null && _h !== void 0 ? _h : '', onScChange: (e) => this.updateAddress({ line_2: e.target.value || null }), onScInput: (e) => this.handleAddressInput({ line_2: e.target.value || null }), autocomplete: "address-line2", placeholder: field.label, name: (_j = this.names) === null || _j === void 0 ? void 0 : _j.line_2, disabled: this.disabled, "aria-label": field.label, ...roundedProps }));
             case 'city':
@@ -265,10 +268,10 @@ const ScAddress = class {
         const bottomFields = allFields.filter(f => this.collapsibleFieldNames.includes(f.name));
         // Compute rounded props based on visible field count.
         const totalForRounding = isExpanded ? allFields.length : topFields.length;
-        return (h("div", { key: 'ea1b671525f5e3aa6c60e1f9ba2168647ac496cf', class: "sc-address", part: "base" }, h("sc-form-control", { key: '17ac343b0aa99ba3359ac99488b2b1df0451f5c6', label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, topFields.map((field, index) => {
+        return (h("div", { key: 'b638a5961c0342149d449d8b9a16e3c1f8d70db8', class: "sc-address", part: "base" }, h("sc-form-control", { key: 'd1f78ffa80a7e53c074e20f65892595f3bef7e9c', label: this.label, exportparts: "label, help-text, form-control", class: "sc-address__control", required: this.required }, topFields.map((field, index) => {
             const roundedProps = this.getRoundedProps(index, totalForRounding);
             return this.renderField(field, roundedProps, this.required);
-        }), h("div", { key: 'd2a00c9ffb99aadf4271c96b4c4e5c5da2bfac68', class: {
+        }), h("div", { key: 'd1d26fae49b333f4d5208ee9404852931bc2c514', class: {
                 'sc-address__collapsible': true,
                 'sc-address__collapsible--expanded': isExpanded,
             }, "aria-hidden": !isExpanded ? 'true' : 'false' }, bottomFields.map((field, index) => {
@@ -277,7 +280,7 @@ const ScAddress = class {
             // Don't require fields when collapsed — prevents hidden required validation errors.
             const isRequired = this.required && isExpanded;
             return this.renderField(field, roundedProps, isRequired);
-        }))), this.loading && h("sc-block-ui", { key: '82822557100abc94f15387e32b6044319468be6b', exportparts: "base:block-ui, content:block-ui__content" })));
+        }))), this.loading && h("sc-block-ui", { key: '78e4935dc156519f9579927b2c75865f455ca22d', exportparts: "base:block-ui, content:block-ui__content" })));
     }
     get el() { return getElement(this); }
     static get watchers() { return {
@@ -17721,6 +17724,8 @@ const ScAddressSuggestions = class {
     }
     handleAddressChange() {
         var _a;
+        // Visibility doesn't depend on country — autofill can fill line_1 before (or without) a country.
+        this.updateFieldVisibility();
         if (!((_a = this.address) === null || _a === void 0 ? void 0 : _a.country))
             return;
         if (this.showSuggestions) {
@@ -17735,14 +17740,11 @@ const ScAddressSuggestions = class {
             this.hasUnsyncedLocalValue = false;
             this.value = this.address.line_1 || '';
         }
-        this.updateFieldVisibility();
     }
-    /** Emit an address update to the parent, merging changes with current address. */
+    /** Emit only the changed fields — the parent merges them. Spreading our `address` prop here would send a stale
+     *  snapshot during browser autofill and wipe sibling fields (country, city…) filled in the same tick. */
     emitAddressUpdate(changes) {
-        this.scChangeAddress.emit({
-            ...this.address,
-            ...changes,
-        });
+        this.scChangeAddress.emit(changes);
     }
     /** Select a suggestion by place ID — used by both click and keyboard. */
     async selectSuggestion(placeId) {
@@ -17891,7 +17893,7 @@ const ScAddressSuggestions = class {
     render() {
         var _a;
         const suggestionsVisible = this.isSuggestionsVisible();
-        return (h("div", { key: 'e671e3d7a5d27f96f07f1dff46e836c2705c74ac', part: "base" }, this.isGoogleMapsActive() && h("span", { key: '9a09da1df55d985b1827003f52832b2fb45944f0', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), h("sc-input", { key: 'b14e4a980b661cacc6ebe86d143c4754159cb814', ref: el => (this.input = el), exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), h("div", { key: '514037b633f098ce46cd2f200da3f105a8721a67', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), h("div", { key: 'e1f0b8ac77f05c24885f489e8e87daf2e111a298', class: {
+        return (h("div", { key: '465aeb31482d1d688807b5ac611060543b2cb937', part: "base" }, this.isGoogleMapsActive() && h("span", { key: 'e99e324f10c1131f4d3fc0cf338deec98987be54', class: "sr-only" }, wp.i18n.__('Start typing to see address suggestions, or select one to auto-fill your address.', 'surecart')), h("sc-input", { key: '24347468c1e21f6e77f643b6f5adb53d6fec8b61', ref: el => (this.input = el), exportparts: "base:input__base, input, form-control, label, help-text", value: this === null || this === void 0 ? void 0 : this.value, onScInput: (e) => this.handleInputChange(e), onScChange: (e) => this.handleInputValueChange(e), autocomplete: "address-line1", placeholder: this.label, "aria-label": this.label, "aria-expanded": suggestionsVisible ? 'true' : 'false', "aria-controls": suggestionsVisible ? 'address-suggestions-listbox' : undefined, "aria-activedescendant": this.getActiveDescendantId(), role: "combobox", name: (_a = this.names) === null || _a === void 0 ? void 0 : _a.line_1, disabled: this.disabled, required: this.required, ...this.inputProps }), h("div", { key: '59584990d0cd7c4ec1878dc1b334087738655601', role: "status", "aria-live": "polite", "aria-atomic": "true", class: "sr-only" }, this.getSuggestionsStatusText()), h("div", { key: 'cbf04f6b677bcb3a16eb34a1f115fc055b0e2acd', class: {
                 'sc-address__suggestions': true,
                 'sc-address__suggestions--visible': suggestionsVisible,
             }, part: "suggestions", "aria-hidden": !suggestionsVisible ? 'true' : 'false' }, this.renderAddressSuggestions())));

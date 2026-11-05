@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.12.0
+Stable tag: 4.12.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -453,6 +453,13 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.12.1 - November 4th, 2026 =
+- New: Developers can customize the Stripe Payment Element per checkout with the `surecart_stripe_payment_element_elements_config` JavaScript filter, for example to hide payment methods like Klarna for specific products.
+- Improvement: Store setup can connect a site to an existing store using an API token instead of always creating a new store.
+- Improvement: Saved Items settings now show where the Save for Later Button and Saved Items Icon blocks go, with links to edit the Shop page and open the Site Editor.
+- Fix: Browser autofill on the address field didn't reveal the remaining address fields, and could clear the country or city filled in at the same time.
+- Fix: Some block labels and default template text (cart, product page, product collection, reviews and upsell) were hard-coded in English and couldn't be translated.
 
 = 4.12.0 - November 3rd, 2026 =
 - New: Save for later. Shoppers can save products to named lists from product pages, product cards, Quick View and the slide-out cart, and view them on a new Saved Items page and in the customer dashboard.

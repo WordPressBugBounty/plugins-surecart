@@ -43,7 +43,7 @@ export declare class ScAddressSuggestions {
     /** Loading state for suggestions */
     loading: boolean;
     /** Address changed — emitted to parent to update address state. */
-    scChangeAddress: EventEmitter<Address>;
+    scChangeAddress: EventEmitter<Partial<Address>>;
     /** Event to show address fields manually */
     scShowAddressFields: EventEmitter<void>;
     /** Event to hide address fields */
@@ -60,7 +60,8 @@ export declare class ScAddressSuggestions {
     /** Close the suggestions list and cancel in-flight fetch. */
     private closeSuggestionsDropdown;
     handleAddressChange(): void;
-    /** Emit an address update to the parent, merging changes with current address. */
+    /** Emit only the changed fields — the parent merges them. Spreading our `address` prop here would send a stale
+     *  snapshot during browser autofill and wipe sibling fields (country, city…) filled in the same tick. */
     private emitAddressUpdate;
     /** Select a suggestion by place ID — used by both click and keyboard. */
     selectSuggestion(placeId: string): Promise<void>;

@@ -9,6 +9,8 @@ export declare class ScStripePaymentElement {
     private element;
     private unlistenToFormState;
     private unlistenToCheckout;
+    /** Whether the current Elements instance uses a paymentMethodTypes allowlist. */
+    private hasPaymentMethodAllowlist;
     /** The error. */
     error: string;
     /** Are we confirming the order? */
@@ -39,31 +41,10 @@ export declare class ScStripePaymentElement {
     componentDidLoad(): Promise<void>;
     initializeStripe(): Promise<void>;
     clearStripeInstances(): void;
+    /** Tear down the Payment Element so the next createOrUpdateElements() builds a fresh one. */
+    destroyElements(): void;
     disconnectedCallback(): void;
-    getElementsConfig(): {
-        mode: string;
-        amount: number;
-        currency: string;
-        setupFutureUsage: string;
-        appearance: {
-            variables: {
-                colorPrimary: string;
-                colorText: string;
-                borderRadius: string;
-                colorBackground: string;
-                fontSizeBase: string;
-                colorLogo: string;
-                colorLogoTab: string;
-                colorLogoTabSelected: string;
-                colorTextPlaceholder: string;
-            };
-            rules: {
-                '.Input': {
-                    border: string;
-                };
-            };
-        };
-    };
+    getElementsConfig(): any;
     maybeApplyFilters(options: any): any;
     /** Update the payment element mode, amount and currency when it changes. */
     createOrUpdateElements(): void;

@@ -79,16 +79,30 @@ class AccountService {
 	/**
 	 * Set up a store for a third party (e.g. Starter Templates) without ever replacing a connected account.
 	 *
+	 * An `api_token` connects the site to that existing store instead; a connected site keeps its store.
 	 * Callers can tell the outcomes apart with `instanceof ProvisionalAccount` (created) vs `Account` (existing).
 	 *
-	 * @param array $data Provisional account attributes. When connected, only `products` and `import_woocommerce_products` are used.
+	 * @param array $data Provisional account attributes, plus an optional `api_token`. Once connected, only `products` and `import_woocommerce_products` are used.
 	 *
 	 * @return Account|ProvisionalAccount|\WP_Error
 	 */
 	public function setup( $data = [] ) {
-		// The platform never de-duplicates, so a second provisional account would orphan this store.
+		$token = is_string( $data['api_token'] ?? null ) ? trim( $data['api_token'] ) : '';
+		// A credential, so it must never reach the public provisional accounts endpoint.
+		unset( $data['api_token'] );
+
 		if ( ! $this->isConnected() ) {
-			return ProvisionalAccount::create( $data );
+			// The platform never de-duplicates, so a second provisional account would orphan this store.
+			if ( empty( $token ) ) {
+				return ProvisionalAccount::create( $data );
+			}
+
+			$connected = $this->connect( $token );
+			if ( is_wp_error( $connected ) ) {
+				return $connected;
+			}
+		} elseif ( ! empty( $token ) && ApiToken::get() !== $token ) {
+			return new \WP_Error( 'already_connected', __( 'This site is already connected to a different store.', 'surecart' ) );
 		}
 
 		// A stale or revoked token surfaces here as the platform's error; we never fall back to creating.
@@ -98,6 +112,35 @@ class AccountService {
 		}
 
 		return Account::find();
+	}
+
+	/**
+	 * Connect this site to an existing store, saving the token only once the platform accepts it.
+	 *
+	 * @param string $token The store's API token.
+	 *
+	 * @return true|\WP_Error
+	 */
+	protected function connect( $token ) {
+		try {
+			$account = \SureCart::requests()->setToken( $token )->get( 'account' );
+		} finally {
+			// Put the shared service back so a rejected token isn't reused.
+			\SureCart::requests()->setToken( ApiToken::get() );
+		}
+
+		if ( is_wp_error( $account ) ) {
+			return $account;
+		}
+
+		if ( empty( $account->id ) ) {
+			return new \WP_Error( 'invalid_token', __( 'Invalid API token.', 'surecart' ) );
+		}
+
+		ApiToken::save( $token );
+		$this->clearCache();
+
+		return true;
 	}
 
 	/**

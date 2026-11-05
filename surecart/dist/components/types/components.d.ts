@@ -4687,7 +4687,7 @@ declare global {
         new (): HTMLScAddressElement;
     };
     interface HTMLScAddressSuggestionsElementEventMap {
-        "scChangeAddress": Address;
+        "scChangeAddress": Partial<Address>;
         "scShowAddressFields": void;
         "scHideAddressFields": void;
     }
@@ -7339,7 +7339,7 @@ declare namespace LocalJSX {
         /**
           * Address changed — emitted to parent to update address state.
          */
-        "onScChangeAddress"?: (event: ScAddressSuggestionsCustomEvent<Address>) => void;
+        "onScChangeAddress"?: (event: ScAddressSuggestionsCustomEvent<Partial<Address>>) => void;
         /**
           * Event to hide address fields
          */
