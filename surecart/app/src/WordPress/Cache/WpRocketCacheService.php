@@ -97,21 +97,15 @@ class WpRocketCacheService extends CacheService {
 		}
 
 		// Page-based exclusions share their page-key list with the runtime cache check (shouldExcludeFromCache()) so the two can't drift.
-		foreach ( $this->getDynamicPageKeys() as $page ) {
-			$path = $this->getPagePath( (int) \SureCart::pages()->getId( $page ) );
-			if ( $path ) {
-				// (?:[/?].*)? requires a path/query boundary before the wildcard tail, so
-				// e.g. "/checkout" doesn't also match an unrelated "/checkout-guide" page.
-				$uris[] = preg_quote( $path, '#' ) . '(?:[/?].*)?';
-			}
+		foreach ( $this->getDynamicPagePaths() as $path ) {
+			// (?:[/?].*)? requires a path/query boundary before the wildcard tail, so
+			// e.g. "/checkout" doesn't also match an unrelated "/checkout-guide" page.
+			$uris[] = preg_quote( $path, '#' ) . '(?:[/?].*)?';
 		}
 
-		// Pretty buy permalinks (/buy/{product-slug}/) only exist with a permalink structure — plain-permalink and legacy ?sc-buy links are query-based and not cached by WP Rocket.
-		if ( get_option( 'permalink_structure' ) ) {
-			$buy_base = (string) \SureCart::settings()->permalinks()->getBase( 'buy_page' );
-			if ( ! empty( $buy_base ) ) {
-				$uris[] = '/' . preg_quote( trim( $buy_base, '/' ), '#' ) . '/(.*)';
-			}
+		$buy_base = $this->getBuyPageBasePath();
+		if ( $buy_base ) {
+			$uris[] = preg_quote( $buy_base, '#' ) . '/(.*)';
 		}
 
 		return array_values( array_unique( $uris ) );

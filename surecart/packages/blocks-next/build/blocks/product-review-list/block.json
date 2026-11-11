@@ -268,10 +268,7 @@
             },
             "innerBlocks": [
               {
-                "name": "surecart/product-review-list-sidebar-toggle",
-                "attributes": {
-                  "label": "Filters"
-                }
+                "name": "surecart/product-review-list-sidebar-toggle"
               },
               {
                 "name": "surecart/product-review-add-button",

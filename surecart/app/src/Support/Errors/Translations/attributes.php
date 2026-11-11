@@ -39,4 +39,5 @@ return [
 	'shipments.to_contact.phone'  => __( 'Recipient phone', 'surecart' ),
 	'to_contact.email'            => __( 'Recipient email', 'surecart' ),
 	'to_contact.phone'            => __( 'Recipient phone', 'surecart' ),
+	'manual_rate'                 => __( 'Tax rate', 'surecart' ),
 ];

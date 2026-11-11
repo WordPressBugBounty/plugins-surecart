@@ -3,7 +3,7 @@
 namespace SureCart\Controllers\Admin\Settings;
 
 /**
- * Data for the client-side MCP settings tab (localized via the main Settings controller).
+ * Data for the client-side AI Assistants settings tab (localized via the main Settings controller).
  *
  * The MCP Adapter is installed from WordPress.org through core's `/wp/v2/plugins` REST endpoint,
  * so it gets core updates and core's capability checks; there is no custom installer here.
@@ -24,6 +24,13 @@ class MCPSettings {
 	const MCP_ADAPTER_URL = 'https://wordpress.org/plugins/mcp-adapter/';
 
 	/**
+	 * Agent-Ready Catalog docs, the scanner's "Learn more" target.
+	 *
+	 * @var string
+	 */
+	const AGENT_CATALOG_DOCS_URL = 'https://surecart.com/docs/agent-ready-catalog/';
+
+	/**
 	 * Get the data required by the client-side MCP settings tab.
 	 *
 	 * Called from the main Settings controller to localize `scMCPData` on
@@ -40,6 +47,9 @@ class MCPSettings {
 		$is_installed = isset( $all_plugins[ self::MCP_ADAPTER_SLUG ] );
 		$is_active    = is_plugin_active( self::MCP_ADAPTER_SLUG );
 
+		$catalog       = \SureCart::agentCatalog();
+		$checkout_form = $catalog->checkoutForm();
+
 		return [
 			'mcp_adapter_installed'   => $is_installed,
 			'mcp_adapter_active'      => $is_active,
@@ -51,6 +61,13 @@ class MCPSettings {
 			'wp_version'              => get_bloginfo( 'version' ),
 			'abilities_api_available' => function_exists( 'wp_register_ability_category' ),
 			'current_username'        => wp_get_current_user()->user_login,
+			'agent_catalog_url'       => $catalog->url(),
+			'agent_catalog_docs_url'  => self::AGENT_CATALOG_DOCS_URL,
+			'agent_catalog_hidden'    => $catalog->hiddenCount(),
+			'agent_catalog_checkout'  => [
+				'mode'     => $catalog->checkoutMode(),
+				'edit_url' => $checkout_form ? get_edit_post_link( $checkout_form->ID, 'raw' ) : admin_url( 'admin.php?page=sc-restore&restore=checkout' ),
+			],
 		];
 	}
 }

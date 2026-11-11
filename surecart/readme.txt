@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.12.1
+Stable tag: 4.13.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -453,6 +453,22 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.13.0 - November 11th, 2026 =
+- New: Multiple tax components. A manual tax rate can be split into up to 5 named components (for example GST + PST), and each one shows as its own tax line at checkout and on invoices.
+- New: Agent-Ready Catalog. Your store publishes a public, read-only product list that shopping AIs such as ChatGPT, Gemini, Copilot and Perplexity can read instead of scraping your store. It's on by default and can be turned off under Settings → AI Assistants, which also has a scan showing what AI shoppers see.
+- New: Connect your AI. A guided 4-step wizard connects Claude, ChatGPT, Cursor, VS Code and other AI assistants to your store, with separate switches for editing and deleting store data. The MCP settings tab is renamed AI Assistants.
+- Improvement: SureCart now works out of the box with WP-Optimize, NitroPack, Fast Velocity Minify, Flying Pages and Asset CleanUp. Dynamic pages like checkout and the customer dashboard are no longer cached or have their scripts delayed, and cached product pages are cleared when stock changes.
+- Fix: Strengthened security of product page and product review form navigation (props to Filip Kowalski from Patchstack).
+- Fix: Paying an invoice as a guest with Stripe could fail with an email error when the invoice was already linked to a customer.
+- Fix: The SureCart Media modal collapsed to its content, leaving most of it blank with the footer under the file list.
+- Fix: Adding a payment method from the customer dashboard could fail because the return URL was rejected as invalid.
+- Fix: The "Filters" button label in the product reviews list couldn't be translated.
+
+= 4.12.2 - November 6th, 2026 =
+- Fix: Strengthened security of product page and product review navigation (props to PatchStack).
+- Fix: Adding to cart from Quick View left the page focusable behind the open cart drawer and dropped keyboard focus.
+- Fix: Screen readers announced a product as added to the cart when the store had rejected it.
 
 = 4.12.1 - November 4th, 2026 =
 - New: Developers can customize the Stripe Payment Element per checkout with the `surecart_stripe_payment_element_elements_config` JavaScript filter, for example to hide payment methods like Klarna for specific products.

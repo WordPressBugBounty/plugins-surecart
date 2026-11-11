@@ -146,6 +146,8 @@ return array(
 		\SureCart\Rest\VariantValuesRestServiceProvider::class,
 		\SureCart\Rest\ClicksRestServiceProvider::class,
 		\SureCart\Rest\VisitsRestServiceProvider::class,
+		\SureCart\Rest\AgentCatalogRestServiceProvider::class,
+		\SureCart\Rest\AIConnectionsRestServiceProvider::class,
 		\SureCart\Rest\ReferralItemsRestServiceProvider::class,
 		\SureCart\Rest\PayoutsRestServiceProvider::class,
 		\SureCart\Rest\PayoutGroupsRestServiceProvider::class,
@@ -192,6 +194,8 @@ return array(
 		\SureCart\Integrations\Yoast\YoastServiceProvider::class,
 		\SureCart\Integrations\NpsSurvey\NpsSurveyServiceProvider::class,
 		\SureCart\Abilities\AbilitiesServiceProvider::class,
+		\SureCart\MCP\McpServerServiceProvider::class,
+		\SureCart\AgentCatalog\AgentCatalogServiceProvider::class,
 	),
 
 	/**

@@ -818,6 +818,7 @@ export interface Checkout extends Object {
     first_name?: string;
     last_name?: string;
     email?: string;
+    inherited_email?: string;
     phone?: string;
     live_mode?: boolean;
     currency?: string;

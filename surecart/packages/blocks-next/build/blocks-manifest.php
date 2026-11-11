@@ -12022,10 +12022,7 @@ return array(
 							),
 							'innerBlocks' => array(
 								array(
-									'name' => 'surecart/product-review-list-sidebar-toggle',
-									'attributes' => array(
-										'label' => 'Filters'
-									)
+									'name' => 'surecart/product-review-list-sidebar-toggle'
 								),
 								array(
 									'name' => 'surecart/product-review-add-button',

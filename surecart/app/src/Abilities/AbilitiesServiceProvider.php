@@ -50,10 +50,11 @@ class AbilitiesServiceProvider implements ServiceProviderInterface {
 		$registrar = $container['surecart.abilities.registrar'];
 
 		// Pass toggle settings to the registrar so it can filter abilities.
+		$edit_enabled = (bool) get_option( 'surecart_mcp_edit_abilities_enabled', true );
 		$registrar->set_settings(
 			array(
-				'edit_enabled'   => (bool) get_option( 'surecart_mcp_edit_abilities_enabled', true ),
-				'delete_enabled' => (bool) get_option( 'surecart_mcp_delete_abilities_enabled', true ),
+				'edit_enabled'   => $edit_enabled,
+				'delete_enabled' => $edit_enabled && (bool) get_option( 'surecart_mcp_delete_abilities_enabled', true ),
 			)
 		);
 

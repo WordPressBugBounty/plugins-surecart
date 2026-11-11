@@ -40,15 +40,17 @@ class AdminPluginCacheService {
 				// 'breeze/breeze.php', // we added support for this in the plugin
 				// 'perfmatters/perfmatters.php', // we added support for this in the plugin
 				// 'hummingbird-performance/wp-hummingbird.php', // we added support for this in the plugin
-				'swift-performance-lite/performance.php',
-				'wp-optimize/wp-optimize.php',
-				'nitropack/main.php',
-				'wp-asset-clean-up/wpacu.php',
-				'flying-pages/flying-pages.php',
-				'fast-velocity-minify/fvm.php',
-				'wp-performance-score-booster/wp-performance-score-booster.php',
-				'clearfy/clearfy.php',
-				'psn-pagespeed-ninja/pagespeedninja.php',
+				// 'wp-optimize/wp-optimize.php', // we added support for this in the plugin
+				// 'nitropack/main.php', // we added support for this in the plugin
+				// 'wp-asset-clean-up/wpacu.php', // we added support for this in the plugin
+				// 'flying-pages/flying-pages.php', // we added support for this in the plugin
+				// 'fast-velocity-minify/fvm.php', // we added support for this in the plugin
+
+				// Not planned for first party support list.
+				'swift-performance-lite/performance.php', // It's under WP review now.
+				'clearfy/clearfy.php', // lower maintained plugin: don't add first party support, last updated 3 months ago.
+				'wp-performance-score-booster/wp-performance-score-booster.php', // lower maintained plugin: don't add first party support, last updated 2 months ago.
+				'psn-pagespeed-ninja/pagespeedninja.php', // lower maintained plugin: don't add first party support, last updated 2 years ago.
 			]
 		);
 	}

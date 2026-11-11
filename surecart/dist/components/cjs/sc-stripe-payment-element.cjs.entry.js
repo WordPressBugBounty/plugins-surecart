@@ -11,7 +11,7 @@ require('./watchers-3a87bc45.js');
 const getters = require('./getters-d8754292.js');
 const getters$1 = require('./getters-ade46b86.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
-const getters$2 = require('./getters-1ff518bc.js');
+const getters$2 = require('./getters-03f118bc.js');
 const addQueryArgs = require('./add-query-args-49dcb630.js');
 require('./index-c3de642f.js');
 require('./utils-f5ea3c23.js');

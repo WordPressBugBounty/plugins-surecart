@@ -152,4 +152,11 @@ return array(
 	'shipment.weight.not_a_number'                         => __( 'The package weight must be a number.', 'surecart' ),
 	'shipment.g_weight.blank'                              => __( 'Please provide the package weight.', 'surecart' ),
 	'shipment.g_weight.not_a_number'                       => __( 'The package weight must be a number.', 'surecart' ),
+	'tax_registration.tax_components.too_few'              => __( 'Please add at least 2 tax components.', 'surecart' ),
+	'tax_registration.tax_components.too_many'             => __( 'You can add at most 5 tax components.', 'surecart' ),
+	'tax_registration.tax_components.blank_label'          => __( 'Each tax component needs a label.', 'surecart' ),
+	'tax_registration.tax_components.label_too_long'       => __( 'Tax component labels must be 50 characters or fewer.', 'surecart' ),
+	'tax_registration.tax_components.duplicate_label'      => __( 'Each tax component must have a different label.', 'surecart' ),
+	'tax_registration.tax_components.invalid_rate'         => __( 'Each tax component rate must be greater than 0.', 'surecart' ),
+	'tax_registration.tax_components.rates_mismatch'       => __( 'The tax component rates must add up to the tax rate.', 'surecart' ),
 );

@@ -57,6 +57,8 @@ export declare const getResolvedBillingAddress: (checkout?: Checkout) => Address
  * The Stripe Payment Element is created with `fields.billing_details.email = 'never'`,
  * so an email must always be passed on confirm. Logged-in customers never fill the email
  * input, so fall back to the linked customer and the logged-in user session.
+ * An attached customer nulls `email` and `/finalize` returns `customer` unexpanded,
+ * so `inherited_email` is the only source for guest-paid invoices.
  */
 export declare const getResolvedBillingEmail: (checkout?: Checkout) => string | undefined;
 /**

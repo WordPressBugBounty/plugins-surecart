@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const index = require('./index-be4abba1.js');
 const price = require('./price-9dddd853.js');
-const getters = require('./getters-1ff518bc.js');
+const getters = require('./getters-03f118bc.js');
 const getters$1 = require('./getters-ade46b86.js');
 const mutations = require('./mutations-4133422f.js');
 require('./currency-b438c76d.js');

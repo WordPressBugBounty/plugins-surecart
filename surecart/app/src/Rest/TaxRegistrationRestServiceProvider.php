@@ -76,6 +76,22 @@ class TaxRegistrationRestServiceProvider extends RestServiceProvider implements 
 					'type'        => [ 'number', 'null' ],
 					'context'     => [ 'view', 'edit', 'embed' ],
 				],
+				'tax_components' => [
+					'description' => esc_html__( 'The separate taxes that make up the manual rate, each shown as its own line. Empty or null for a single tax line.', 'surecart' ),
+					'type'        => [ 'array', 'null' ],
+					'context'     => [ 'view', 'edit', 'embed' ],
+					'items'       => [
+						'type'       => 'object',
+						'properties' => [
+							'label' => [
+								'type' => 'string',
+							],
+							'rate'  => [
+								'type' => 'number',
+							],
+						],
+					],
+				],
 			],
 		];
 

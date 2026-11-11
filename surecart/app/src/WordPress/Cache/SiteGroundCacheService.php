@@ -168,24 +168,18 @@ class SiteGroundCacheService extends CacheService {
 		}
 
 		// Page-based exclusions share their page-key list with the runtime cache check (shouldExcludeFromCache()) so the two can't drift.
-		foreach ( $this->getDynamicPageKeys() as $page ) {
-			$path = $this->getPagePath( (int) \SureCart::pages()->getId( $page ) );
-			if ( $path ) {
-				// `*` is the only wildcard token SG Optimizer recognizes here (everything
-				// else is preg_quote()d verbatim), so a boundary has to be two literal
-				// entries: the exact path, and the path with a trailing slash before the
-				// wildcard — otherwise "/checkout*" would also match "/checkout-guide".
-				$urls[] = $path;
-				$urls[] = $path . '/*';
-			}
+		foreach ( $this->getDynamicPagePaths() as $path ) {
+			// `*` is the only wildcard token SG Optimizer recognizes here (everything
+			// else is preg_quote()d verbatim), so a boundary has to be two literal
+			// entries: the exact path, and the path with a trailing slash before the
+			// wildcard — otherwise "/checkout*" would also match "/checkout-guide".
+			$urls[] = $path;
+			$urls[] = $path . '/*';
 		}
 
-		// Pretty buy permalinks (/buy/{product-slug}/) only exist with a permalink structure — plain-permalink and legacy ?sc-buy links are query-based and already covered by SG Optimizer's own query-string handling.
-		if ( get_option( 'permalink_structure' ) ) {
-			$buy_base = (string) \SureCart::settings()->permalinks()->getBase( 'buy_page' );
-			if ( ! empty( $buy_base ) ) {
-				$urls[] = '/' . trim( $buy_base, '/' ) . '/*';
-			}
+		$buy_base = $this->getBuyPageBasePath();
+		if ( $buy_base ) {
+			$urls[] = $buy_base . '/*';
 		}
 
 		return array_values( array_unique( $urls ) );

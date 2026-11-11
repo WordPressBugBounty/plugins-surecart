@@ -10,7 +10,7 @@ import { d as getPerBundleQuantity } from './index-17aac936.js';
 import './watchers-c2958e52.js';
 import { s as state$2, f as getAvailableProcessor } from './getters-476a5a84.js';
 import { s as state$3 } from './watchers-c7bbc6b2.js';
-import { s as shippingAddressRequired, f as fullShippingAddressRequired, p as phoneRequired } from './getters-ed04d1c9.js';
+import { s as shippingAddressRequired, f as fullShippingAddressRequired, p as phoneRequired } from './getters-b147a23d.js';
 import { v, c as checkoutMachine, s as state$4 } from './store-fd165874.js';
 import './fetch-cdff67be.js';
 import { a as apiFetch } from './index-824c562b.js';

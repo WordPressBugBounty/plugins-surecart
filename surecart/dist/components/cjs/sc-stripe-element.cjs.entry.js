@@ -9,7 +9,7 @@ const watchers = require('./watchers-517825ae.js');
 const getters = require('./getters-d8754292.js');
 const mutations$1 = require('./mutations-d5d6ddf1.js');
 const mutations = require('./mutations-4133422f.js');
-const getters$1 = require('./getters-1ff518bc.js');
+const getters$1 = require('./getters-03f118bc.js');
 require('./index-c3de642f.js');
 require('./util-a15c420c.js');
 require('./utils-f5ea3c23.js');

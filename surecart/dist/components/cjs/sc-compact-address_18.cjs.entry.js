@@ -16,7 +16,7 @@ const index$2 = require('./index-7e8821a7.js');
 const index$1 = require('./index-a4a4f390.js');
 const index$3 = require('./index-fb76df07.js');
 const price = require('./price-9dddd853.js');
-const getters$1 = require('./getters-1ff518bc.js');
+const getters$1 = require('./getters-03f118bc.js');
 const mutations$2 = require('./mutations-d5d6ddf1.js');
 const pageAlign = require('./page-align-5a2ab493.js');
 require('./add-query-args-49dcb630.js');

@@ -258,6 +258,45 @@ abstract class CacheService {
 	}
 
 	/**
+	 * Relative paths of the published dynamic pages from getDynamicPageKeys().
+	 *
+	 * For optimizers that take a static list of URLs to skip; each one wraps
+	 * these in its own pattern syntax.
+	 *
+	 * @return string[]
+	 */
+	protected function getDynamicPagePaths(): array {
+		$paths = [];
+
+		foreach ( $this->getDynamicPageKeys() as $page ) {
+			$path = $this->getPagePath( (int) \SureCart::pages()->getId( $page ) );
+			if ( $path ) {
+				$paths[] = $path;
+			}
+		}
+
+		return $paths;
+	}
+
+	/**
+	 * Base path of pretty buy links (/buy/{product-slug}/), without a trailing slash.
+	 *
+	 * Only exists with a permalink structure — plain-permalink and legacy ?sc-buy
+	 * links are query-based, which page caches already skip.
+	 *
+	 * @return string Empty string when there is no pretty buy base.
+	 */
+	protected function getBuyPageBasePath(): string {
+		if ( ! get_option( 'permalink_structure' ) ) {
+			return '';
+		}
+
+		$buy_base = trim( (string) \SureCart::settings()->permalinks()->getBase( 'buy_page' ), '/' );
+
+		return '' !== $buy_base ? '/' . $buy_base : '';
+	}
+
+	/**
 	 * Determine which dynamic SureCart page (if any) the current request matches.
 	 *
 	 * Iterates getDynamicPageKeys() so isCustomerDashboardPage()/isCheckoutPage()

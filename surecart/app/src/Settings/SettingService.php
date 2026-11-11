@@ -595,6 +595,18 @@ class SettingService {
 		);
 		$this->register(
 			'surecart',
+			'agent_catalog_enabled',
+			[
+				'type'              => 'boolean',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'boolval',
+				'default'           => true,
+				// read on every REST boot and front-end head.
+				'autoload'          => true,
+			]
+		);
+		$this->register(
+			'surecart',
 			'enhanced_admin_views',
 			[
 				'type'              => 'boolean',

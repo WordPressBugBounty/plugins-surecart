@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: SureCart 4.12.1\n"
+"Project-Id-Version: SureCart 4.13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T21:13:47+00:00\n"
+"POT-Creation-Date: 2026-11-11T03:37:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 
@@ -1602,7 +1602,7 @@ msgstr ""
 
 #: src/Activation/DeactivationSurveyForm.php:250
 #: orders/modules/TaxInfo/index.js:39
-#: settings/mcp/components/AIClientInstructions.js:63
+#: settings/mcp/connect/clients.js:109
 #: Blocks/Donation/edit.js:218
 #: Blocks/Donation/save.js:17
 #: Blocks/TaxIdInput/edit.js:40
@@ -1610,6 +1610,10 @@ msgstr ""
 #: src/blocks/checkout-tax-id/edit.js:19
 #: tax.js:59
 msgid "Other"
+msgstr ""
+
+#: src/AgentCatalog/AgentCatalogService.php:179
+msgid "Product catalog for AI agents"
 msgstr ""
 
 #: src/Background/BackgroundProcess.php:681
@@ -1803,7 +1807,7 @@ msgstr ""
 #: subscriptions/show/modules/Details.js:176
 #: Blocks/Payment/Block.php:71
 #: Blocks/Payment/Block.php:77
-#: Controllers/PaymentMethodController.php:182
+#: Controllers/PaymentMethodController.php:203
 #: Blocks/Payment/edit.js:36
 #: src/blocks/checkout-payment-label/view.php:34
 #: src/blocks/checkout-payment-label/view.php:71
@@ -2411,7 +2415,7 @@ msgstr ""
 #: settings/subscription-preservation/Reason.js:111
 #: settings/tax-override/TaxOverrideDeleteModal.js:120
 #: settings/tax-override/TaxOverrideRows.js:72
-#: settings/tax-region/RegistrationForm.js:338
+#: settings/tax-region/RegistrationForm.js:626
 #: upsell-funnels/EditFunnel.js:271
 #: upsell-funnels/list/actions/index.js:112
 #: sc-license.js:189
@@ -2902,6 +2906,7 @@ msgstr ""
 #: affiliations/ViewAffiliation.js:245
 #: components/data-tables/subscriptions-data-table/StartPlan.js:73
 #: settings/integrations/Suretriggers.js:118
+#: settings/mcp/connect/HelperPluginCheck.js:85
 msgid "Activate"
 msgstr ""
 
@@ -2943,6 +2948,7 @@ msgstr ""
 #: licenses/modules/Details/index.js:21
 #: product-groups/list/fields/archive_status.js:4
 #: products/list/fields/archive_status.js:4
+#: settings/mcp/connect/HelperPluginCheck.js:80
 #: subscriptions/list/fields/index.js:18
 #: subscriptions/list/useStatusTabs.js:19
 #: util.js:93
@@ -3365,7 +3371,7 @@ msgstr ""
 #: products/list/fields/featured.js:14
 #: products/modules/Media/MediaDisplay.js:44
 #: products/modules/Media/WordPressMedia.js:225
-#: products/modules/Publishing.js:61
+#: products/modules/Publishing.js:62
 msgid "Featured"
 msgstr ""
 
@@ -3811,7 +3817,7 @@ msgstr ""
 #: Controllers/LicenseController.php:115
 #: Controllers/OrderController.php:59
 #: Controllers/OrderController.php:107
-#: Controllers/PaymentMethodController.php:156
+#: Controllers/PaymentMethodController.php:177
 #: Controllers/SavedItemController.php:21
 #: Controllers/SubscriptionController.php:111
 #: Controllers/SubscriptionController.php:163
@@ -3917,7 +3923,6 @@ msgstr ""
 #: src/Controllers/Admin/Invoices/InvoicesListTable.php:140
 #: invoices/list/fields/index.js:18
 #: invoices/list/useStatusTabs.js:24
-#: settings/mcp/components/ClaudeDesktopSteps.js:19
 #: Blocks/Dashboard/CustomerInvoices/edit.js:87
 #: sc-icon2.js:69
 #: sc-invoice-status-badge2.js:32
@@ -4195,6 +4200,7 @@ msgstr ""
 #: orders/OrdersList.js:118
 #: orders/OrdersList.js:145
 #: settings/export/ExportSettings.js:27
+#: settings/mcp/connect/clients.js:321
 #: Controllers/OrderController.php:62
 #: Controllers/OrderController.php:123
 msgid "Orders"
@@ -4639,6 +4645,7 @@ msgstr ""
 #: customers/modules/Subscriptions.js:51
 #: onboarding/steps/Selling.js:32
 #: settings/export/ExportSettings.js:43
+#: settings/mcp/connect/clients.js:332
 #: settings/SettingsSidebar.js:81
 #: settings/subscription/SubscriptionSettings.js:142
 #: subscriptions/edit/EditSubscription.js:258
@@ -4754,7 +4761,7 @@ msgstr ""
 
 #: src/Controllers/Admin/Tables/ListTable.php:123
 #: settings/shipping/profile/ShippingProfile.js:119
-#: settings/tax-region/TaxRegionSettings.js:232
+#: settings/tax-region/TaxRegionSettings.js:239
 msgid "Updated"
 msgstr ""
 
@@ -4961,7 +4968,7 @@ msgstr ""
 #: src/Controllers/Web/DashboardController.php:97
 #: Controllers/CustomerController.php:54
 #: Controllers/CustomerController.php:106
-#: Controllers/PaymentMethodController.php:173
+#: Controllers/PaymentMethodController.php:194
 msgid "Billing"
 msgstr ""
 
@@ -5109,7 +5116,6 @@ msgstr ""
 #: layouts/partials/admin-settings-header.php:79
 #: invoices/modules/Tax/index.js:52
 #: products/modules/Media/EditMedia.js:266
-#: settings/mcp/components/ClaudeDesktopSteps.js:27
 #: Blocks/CartMenuButton/edit.js:31
 #: Blocks/StoreLogo/edit.js:166
 #: src/blocks/buy-logo/edit.js:29
@@ -7110,7 +7116,7 @@ msgstr ""
 #: components/coupon/CouponDiscountDuration.js:100
 #: onboarding/steps/Details.js:111
 #: settings/advanced/AdvancedSettings.js:676
-#: settings/mcp/MCPSettings.js:99
+#: settings/mcp/agent-catalog/ScanResult.js:56
 #: upsell-funnels/EditFunnel.js:344
 msgid "Learn more"
 msgstr ""
@@ -7738,6 +7744,7 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/ProductReviewList.php:247
 #: src/Integrations/Elementor/Widgets/ProductReviewTotalRating.php:76
 #: src/Integrations/Elementor/Widgets/ProductReviewTotalRating.php:89
+#: settings/mcp/connect/AfterConnect.js:301
 msgid "Show"
 msgstr ""
 
@@ -7749,6 +7756,8 @@ msgstr ""
 #: src/Integrations/Elementor/Widgets/ProductReviewList.php:248
 #: src/Integrations/Elementor/Widgets/ProductReviewTotalRating.php:77
 #: src/Integrations/Elementor/Widgets/ProductReviewTotalRating.php:90
+#: settings/mcp/agent-catalog/ScanResult.js:46
+#: settings/mcp/connect/AfterConnect.js:301
 msgid "Hide"
 msgstr ""
 
@@ -8366,6 +8375,7 @@ msgstr ""
 
 #: src/Models/IntegrationCatalog.php:106
 #: settings/integrations/Suretriggers.js:114
+#: settings/mcp/connect/HelperPluginCheck.js:86
 msgid "Install & Activate"
 msgstr ""
 
@@ -8430,8 +8440,8 @@ msgid "Belfius"
 msgstr ""
 
 #: src/Models/PaymentInstrument.php:35
-#: Controllers/PaymentMethodController.php:206
-#: Controllers/PaymentMethodController.php:236
+#: Controllers/PaymentMethodController.php:227
+#: Controllers/PaymentMethodController.php:257
 #: Blocks/Payment/components/PayPal.js:51
 #: Blocks/Payment/components/Stripe.js:37
 #: src/blocks/checkout-payment/view.php:159
@@ -9037,6 +9047,14 @@ msgstr ""
 
 #: src/Rest/ActivationRestServiceProvider.php:105
 msgid "Ensure result set excludes specific license IDs."
+msgstr ""
+
+#: src/Rest/AgentCatalogRestServiceProvider.php:49
+msgid "Page of the catalog to return."
+msgstr ""
+
+#: src/Rest/AgentCatalogRestServiceProvider.php:55
+msgid "Products per page."
 msgstr ""
 
 #: src/Rest/AutoFeeProtocolRestServiceProvider.php:59
@@ -9890,6 +9908,10 @@ msgstr ""
 msgid "The tax rate for zones that require a manual rate."
 msgstr ""
 
+#: src/Rest/TaxRegistrationRestServiceProvider.php:80
+msgid "The separate taxes that make up the manual rate, each shown as its own line. Empty or null for a single tax line."
+msgstr ""
+
 #: src/Rest/TelemetryEventsRestServiceProvider.php:90
 msgid "Properties must be an object."
 msgstr ""
@@ -10183,7 +10205,7 @@ msgstr ""
 #: onboarding/complete-site/CompleteSiteBrowser.js:175
 #: onboarding/steps/Details.js:118
 #: onboarding/steps/StoreDetails.js:120
-#: settings/mcp/components/AIClientInstructions.js:62
+#: settings/mcp/connect/ConnectWizard.js:280
 #: Blocks/Form/Block.php:118
 #: Blocks/Form/edit.js:541
 #: sc-cancel-survey2.js:90
@@ -10365,7 +10387,7 @@ msgstr ""
 #: src/Support/Errors/Translations/attributes.php:32
 #: blocks/checkout-address-fields.php:246
 #: blocks/checkout-address-fields.php:258
-#: settings/tax-region/RegistrationForm.js:37
+#: settings/tax-region/RegistrationForm.js:76
 #: src/scripts/checkout-form/getters.js:974
 #: src/scripts/checkout-form/getters.js:1162
 msgid "State"
@@ -11668,9 +11690,9 @@ msgstr ""
 #: blocks/checkout-address-fields.php:47
 #: blocks/checkout-address-fields.php:54
 #: onboarding/steps/StoreDetails.js:51
-#: settings/tax-region/RegistrationForm.js:33
-#: settings/tax-region/RegistrationForm.js:34
-#: settings/tax-region/RegistrationForm.js:35
+#: settings/tax-region/RegistrationForm.js:72
+#: settings/tax-region/RegistrationForm.js:73
+#: settings/tax-region/RegistrationForm.js:74
 #: Blocks/Address/edit.js:157
 #: src/blocks/checkout-billing-address/edit.js:112
 #: src/blocks/checkout-billing-address/edit.js:171
@@ -11713,6 +11735,10 @@ msgstr ""
 #: src/Support/Errors/Translations/attributes.php:39
 #: src/Support/Errors/Translations/attributes.php:41
 msgid "Recipient phone"
+msgstr ""
+
+#: src/Support/Errors/Translations/attributes.php:42
+msgid "Tax rate"
 msgstr ""
 
 #: src/Support/Errors/Translations/codes.php:9
@@ -12255,6 +12281,34 @@ msgstr ""
 msgid "Failed to update the shipment. Please check for errors and try again."
 msgstr ""
 
+#: src/Support/Errors/Translations/codes.php:155
+msgid "Please add at least 2 tax components."
+msgstr ""
+
+#: src/Support/Errors/Translations/codes.php:156
+msgid "You can add at most 5 tax components."
+msgstr ""
+
+#: src/Support/Errors/Translations/codes.php:157
+msgid "Each tax component needs a label."
+msgstr ""
+
+#: src/Support/Errors/Translations/codes.php:158
+msgid "Tax component labels must be 50 characters or fewer."
+msgstr ""
+
+#: src/Support/Errors/Translations/codes.php:159
+msgid "Each tax component must have a different label."
+msgstr ""
+
+#: src/Support/Errors/Translations/codes.php:160
+msgid "Each tax component rate must be greater than 0."
+msgstr ""
+
+#: src/Support/Errors/Translations/codes.php:161
+msgid "The tax component rates must add up to the tax rate."
+msgstr ""
+
 #. translators: attribute.
 #: src/Support/Errors/Translations/types-replaceable.php:12
 msgid "%s can't be blank."
@@ -12325,6 +12379,7 @@ msgid "Invalid."
 msgstr ""
 
 #: src/Support/Errors/Translations/types.php:10
+#: settings/tax-region/taxComponents.js:94
 msgid "There were some validation errors."
 msgstr ""
 
@@ -13562,16 +13617,16 @@ msgid "Sticky Purchase Template"
 msgstr ""
 
 #. translators: 1: plugin name, 2: plugin version
-#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:87
+#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:89
 msgid "Action Required: Configure %s for SureCart"
 msgstr ""
 
 #. translators: 1: plugin name, 2: plugin version
-#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:92
+#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:94
 msgid "%1$s (%2$s) detected. To ensure optimal performance with SureCart, configure the plugin properly."
 msgstr ""
 
-#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:97
+#: src/WordPress/Admin/PluginCache/AdminPluginCacheService.php:99
 msgid "Review Configuration Guide"
 msgstr ""
 
@@ -14220,6 +14275,7 @@ msgstr ""
 
 #: src/WordPress/Taxonomies/StoreTaxonomyService.php:38
 #: src/WordPress/Taxonomies/StoreTaxonomyService.php:39
+#: settings/mcp/connect/clients.js:314
 #: store/add-entities.js:10
 #: src/blocks/checkout-terms/edit.js:34
 #: src/blocks/checkout-terms/edit.js:45
@@ -14473,6 +14529,8 @@ msgstr[1] ""
 #: settings/advanced/components/CustomerSyncModal.js:106
 #: settings/advanced/components/WooCommerceImportModal.js:113
 #: settings/display-currency/components/DisplayCurrenciesSettings.js:316
+#: settings/mcp/connect/AfterConnect.js:211
+#: settings/mcp/connect/ConnectWizard.js:255
 #: settings/processors/CreateEditPaymentMethod.js:152
 #: settings/shipping/method/ShippingMethodForm.js:153
 #: settings/shipping/parcel/ParcelTemplateForm.js:462
@@ -14573,7 +14631,7 @@ msgstr ""
 #: orders/modules/TaxInfo/EditTaxInfo.js:106
 #: products/modules/Affiliation.js:118
 #: router/NavigationConfirmProvider.js:204
-#: settings/SettingsBox.js:59
+#: settings/SettingsBox.js:61
 #: settings/SettingsTemplate.js:89
 #: settings/shipping/zone/ShippingZoneForm.js:362
 #: settings/tax-override/TaxOverrideModal.js:299
@@ -15798,7 +15856,6 @@ msgstr ""
 
 #: abandoned-checkouts/components/Link.js:52
 #: licenses/modules/Details/Copy.js:10
-#: settings/mcp/components/CodeBlockWithCopy.js:46
 #: sc-license.js:185
 msgid "Copied!"
 msgstr ""
@@ -15811,7 +15868,7 @@ msgstr ""
 #: products/modules/Prices/Price/CopyInput.js:32
 #: settings/affiliation-protocol/AffiliationProtocolSettings.js:338
 #: settings/display-currency/components/CurrencySwitcherSettings.js:198
-#: settings/mcp/components/CodeBlockWithCopy.js:47
+#: settings/mcp/components/CopyTextButton.js:21
 #: sc-license.js:185
 msgid "Copy"
 msgstr ""
@@ -16115,8 +16172,8 @@ msgstr[1] ""
 
 #: affiliation-referrals/list/fields/index.js:22
 #: affiliation-referrals/list/fields/index.js:177
-#: settings/tax-region/RegistrationForm.js:251
-#: settings/tax-region/TaxRegionSettings.js:252
+#: settings/tax-region/RegistrationForm.js:337
+#: settings/tax-region/TaxRegionSettings.js:284
 msgid "Automatic"
 msgstr ""
 
@@ -16124,7 +16181,7 @@ msgstr ""
 #: affiliation-referrals/list/fields/index.js:176
 #: affiliation-referrals/modules/Summary.js:18
 #: orders/modules/Refund/CreateRefund.js:360
-#: settings/tax-region/RegistrationForm.js:247
+#: settings/tax-region/RegistrationForm.js:333
 #: src/blocks/checkout-payment/edit.js:34
 msgid "Manual"
 msgstr ""
@@ -17453,7 +17510,8 @@ msgstr ""
 #: product-groups/CreateProductGroup.js:33
 #: product-groups/modules/NewProduct.js:45
 #: products/CreateProduct.js:45
-#: settings/mcp/components/MCPAdapterNotice.js:38
+#: settings/mcp/connect/CreatePasswordButton.js:59
+#: settings/mcp/connect/HelperPluginCheck.js:44
 #: store/notices/reducer.js:25
 #: store/ui/reducer.js:138
 #: upsell-funnels/CreateFunnel.js:41
@@ -18006,8 +18064,8 @@ msgstr ""
 #: checkouts/modules/PaymentMethods.js:138
 #: subscriptions/edit/modules/PaymentMethod/EditPaymentMethod.js:96
 #: subscriptions/edit/modules/PaymentMethod/index.js:57
-#: Controllers/PaymentMethodController.php:176
-#: Controllers/PaymentMethodController.php:181
+#: Controllers/PaymentMethodController.php:197
+#: Controllers/PaymentMethodController.php:202
 #: sc-mollie-add-method.js:104
 #: sc-subscription-next-payment2.js:126
 #: sc-subscription.js:199
@@ -18035,7 +18093,7 @@ msgstr ""
 #: checkouts/modules/PaymentMethods.js:150
 #: components/DatePicker.js:101
 #: components/DateTimePicker.js:110
-#: components/MediaLibrary/index.js:351
+#: components/MediaLibrary/index.js:381
 #: invoices/modules/PaymentMethods.js:164
 #: Blocks/CheckoutForm/components/Empty.js:143
 #: src/blocks/product-list-related/list-placeholder.js:90
@@ -18096,7 +18154,7 @@ msgstr ""
 #: products/modules/Tax/index.js:44
 #: products/modules/Variations/Tax.js:30
 #: settings/tax-override/TaxOverrideModal.js:275
-#: settings/tax-region/RegistrationForm.js:289
+#: settings/tax-region/RegistrationForm.js:565
 #: subscriptions/show/modules/Tax.js:55
 #: util/tax.js:6
 #: Blocks/Upsell/UpsellTotals/edit.js:31
@@ -18542,6 +18600,7 @@ msgid "Archive status"
 msgstr ""
 
 #: components/dataview-list/CopyButton.js:46
+#: settings/mcp/components/CopyTextButton.js:64
 msgid "Copied"
 msgstr ""
 
@@ -18644,6 +18703,7 @@ msgstr ""
 #: onboarding/steps/Connect.js:137
 #: onboarding/steps/Selling.js:85
 #: onboarding/steps/StoreDetails.js:117
+#: settings/mcp/connect/ConnectWizard.js:251
 #: settings/shipping/rate/ShippingRateForm.js:453
 #: shipping-labels/components/BulkShippingDrawer.js:483
 #: shipping-labels/components/OrderConfigModal.js:189
@@ -18676,56 +18736,72 @@ msgstr ""
 msgid "Could not download the file."
 msgstr ""
 
-#: components/MediaLibrary/index.js:99
-msgid "No items found"
+#: components/MediaLibrary/index.js:115
+msgid "Drop files to upload"
 msgstr ""
 
-#: components/MediaLibrary/index.js:113
+#: components/MediaLibrary/index.js:117
+#: onboarding/steps/Details.js:121
+#: Blocks/ExpressPayment/Block.php:23
+#: Blocks/ExpressPayment/edit.js:19
+#: sc-login-form.js:163
+msgid "or"
+msgstr ""
+
+#: components/MediaLibrary/index.js:123
+msgid "Select Files"
+msgstr ""
+
+#: components/MediaLibrary/index.js:132
+msgid "Maximum upload file size:"
+msgstr ""
+
+#: components/MediaLibrary/index.js:148
 #: components/MediaLibrary/Preview.js:160
 msgid "Added"
 msgstr ""
 
-#: components/MediaLibrary/index.js:197
+#: components/MediaLibrary/index.js:226
 msgid "Upload Media"
 msgstr ""
 
-#: components/MediaLibrary/index.js:199
+#: components/MediaLibrary/index.js:228
 msgid "or drag and drop a file to upload."
 msgstr ""
 
-#: components/MediaLibrary/index.js:203
+#: components/MediaLibrary/index.js:232
 msgid "Max"
 msgstr ""
 
-#: components/MediaLibrary/index.js:263
+#: components/MediaLibrary/index.js:293
 #: src/blocks/product-media/slideshow.php:45
 #: src/blocks/product-pagination-previous/view.php:11
 #: src/blocks/product-review-pagination-previous/view.php:11
 msgid "Previous Page"
 msgstr ""
 
-#: components/MediaLibrary/index.js:271
+#: components/MediaLibrary/index.js:301
 #: src/blocks/product-media/slideshow.php:83
 #: src/blocks/product-pagination-next/view.php:11
 #: src/blocks/product-review-pagination-next/view.php:11
 msgid "Next Page"
 msgstr ""
 
-#: components/MediaLibrary/index.js:303
+#: components/MediaLibrary/index.js:333
 msgid "SureCart Media"
 msgstr ""
 
-#: components/MediaLibrary/index.js:309
+#: components/MediaLibrary/index.js:339
 #: components/MediaLibrary/MediaItem.js:97
 msgid "Private"
 msgstr ""
 
-#: components/MediaLibrary/index.js:316
+#: components/MediaLibrary/index.js:346
 #: components/MediaLibrary/MediaItem.js:95
 msgid "Public"
 msgstr ""
 
-#: components/MediaLibrary/index.js:353
+#: components/MediaLibrary/index.js:383
 #: sc-purchase-downloads-list2.js:59
 msgid "%s file"
 msgid_plural "%s files"
@@ -19063,6 +19139,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: coupons/list/fields/index.js:93
+#: settings/mcp/connect/StepConfig.js:152
 msgid "Copy code"
 msgstr ""
 
@@ -19575,6 +19652,7 @@ msgstr ""
 
 #: customers/modules/User/index.js:199
 #: customers/modules/User/WPUser.js:67
+#: settings/mcp/connect/AfterConnect.js:220
 msgid "Disconnect"
 msgstr ""
 
@@ -20756,6 +20834,7 @@ msgstr ""
 
 #: onboarding/steps/Connect.js:129
 #: settings/learn/data/learnSections.js:35
+#: settings/mcp/connect/ConnectWizard.js:16
 msgid "Connect"
 msgstr ""
 
@@ -20797,14 +20876,6 @@ msgstr ""
 
 #: onboarding/steps/Details.js:101
 msgid "Share usage data to help improve SureCart. We never collect customer, order or payment data."
-msgstr ""
-
-#: onboarding/steps/Details.js:121
-#: settings/mcp/components/GenericClientSteps.js:93
-#: Blocks/ExpressPayment/Block.php:23
-#: Blocks/ExpressPayment/edit.js:19
-#: sc-login-form.js:163
-msgid "or"
 msgstr ""
 
 #: onboarding/steps/Details.js:124
@@ -22390,7 +22461,7 @@ msgid "Replace"
 msgstr ""
 
 #: product-collections/modules/Publishing.js:52
-#: products/modules/Publishing.js:40
+#: products/modules/Publishing.js:41
 msgid "Publishing"
 msgstr ""
 
@@ -22564,6 +22635,10 @@ msgstr ""
 
 #: products/BulkDeleteConfirm.js:71
 msgid "Failed to load products."
+msgstr ""
+
+#: products/components/AgentCatalog/index.js:10
+msgid "Show to AI agents"
 msgstr ""
 
 #: products/components/Availability/index.js:25
@@ -23329,7 +23404,7 @@ msgstr ""
 
 #: products/modules/integrations/IntegrationForm.js:315
 #: settings/subscription/SubscriptionSettings.js:584
-#: settings/tax-region/RegistrationForm.js:344
+#: settings/tax-region/RegistrationForm.js:632
 msgid "Save Changes"
 msgstr ""
 
@@ -24380,13 +24455,13 @@ msgstr ""
 #: settings/customer/CustomerSettings.js:36
 #: settings/display-currency/DisplayCurrencySettings.js:44
 #: settings/dynamic-pricing/DynamicPricingSettings.js:28
-#: settings/mcp/MCPSettings.js:46
+#: settings/mcp/MCPSettings.js:88
 #: settings/order/OrderProtocol.js:77
 #: settings/review-protocol/ReviewProtocolSettings.js:39
 #: settings/shipping/ShippingSettings.js:166
 #: settings/subscription-preservation/PreservationSettings.js:135
 #: settings/subscription/SubscriptionSettings.js:94
-#: settings/tax-region/TaxRegionSettings.js:140
+#: settings/tax-region/TaxRegionSettings.js:143
 #: settings/tax/TaxSettings.js:32
 msgid "Settings Updated."
 msgstr ""
@@ -26379,411 +26454,710 @@ msgstr ""
 msgid "Completed (%d)"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:52
-#: settings/mcp/components/ClaudeDesktopSteps.js:20
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:59
+msgid "Let shoppers' AI find your products"
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:60
+msgid "Shopping AIs read this public list instead of scraping your store, so they quote accurate prices and send buyers straight to checkout."
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:70
+msgid "Publish a public product list"
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:72
+msgid "Anyone can read it. It never includes stock counts, SKUs, files or private data."
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:89
+msgid "What's shared"
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:98
+msgid "Published products with an active price: name, description, price, availability, product and checkout links, image and license terms. Stock counts, SKUs, files and other private data are never shared. To leave out a single product, turn off \"Show to AI agents\" in its Publishing settings."
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:104
+msgid "When this is off, the list doesn't exist and AI shoppers can't find it."
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:115
+msgid "Catalog address"
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:153
+msgid "Preview what AI shoppers see"
+msgstr ""
+
+#: settings/mcp/agent-catalog/AgentCatalogSettings.js:175
+msgid "This scan reads your store as a logged-out visitor. It cannot detect firewalls or CDN bot protection that block AI crawlers by user agent. Check those settings with your host."
+msgstr ""
+
+#. translators: %d: number of products
+#: settings/mcp/agent-catalog/ScanResult.js:49
+msgid "Show all %d"
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:34
+msgid "Off. AI assistants can't see your store."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:36
+msgid "Your AI can only view store data."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:38
+msgid "Your AI can view, edit and delete store data."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:39
+msgid "Your AI can view and edit store data, but not delete it."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:47
+#: settings/mcp/MCPSettings.js:112
+#: settings/mcp/MCPSettings.js:144
+#: settings/SettingsSidebar.js:150
+msgid "AI Assistants"
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:48
+msgid "Connect an AI assistant like Claude to your store. It can answer questions about your orders and products. You stay in control."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:71
+#: settings/mcp/components/PermissionsCard.js:102
+msgid "Let AI assistants use my store"
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:88
+msgid "Manage permissions"
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:116
+msgid "Edit store data"
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:118
+msgid "Create products, update prices, manage coupons and change other store data. Off means assistants can only view it."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:130
+msgid "Delete store data"
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:132
+msgid "Permanently delete customers, coupons, promotions and fulfillments. Deleted data cannot be recovered."
+msgstr ""
+
+#: settings/mcp/components/PermissionsCard.js:137
+msgid "Needs edit access."
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:20
+msgid "your AI chat"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:51
+msgid "Ready. Ask your AI a question to finish."
+msgstr ""
+
+#. translators: %s: where to chat, e.g. "the Claude Desktop chat window".
+#: settings/mcp/connect/AfterConnect.js:54
+msgid "Paste one of these into %s. Once it answers, you're all set."
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:63
+msgid "These only read your store. Nothing will change."
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:65
+msgid "Review permissions"
+msgstr ""
+
+#. translators: %s: AI client name.
+#: settings/mcp/connect/AfterConnect.js:106
+msgid "It worked. %s answered a question about your store."
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:114
+msgid "You're all set. Try a few more questions about your store."
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:120
+msgid "Got it"
+msgstr ""
+
+#. translators: %s: relative time, e.g. "3 hours ago".
+#: settings/mcp/connect/AfterConnect.js:165
+msgid "Last used %s"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:171
+msgid "Not used yet"
+msgstr ""
+
+#. translators: %s: AI client name.
+#: settings/mcp/connect/AfterConnect.js:186
+msgid "Disconnect %s? It won't be able to use your store anymore."
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:203
+msgid "Disconnecting…"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:204
+msgid "Yes, disconnect"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:237
+msgid "Connected AIs"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:242
+msgid "Helper plugin active"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:282
+msgid "Connect another AI"
+msgstr ""
+
+#: settings/mcp/connect/AfterConnect.js:294
+msgid "Ideas to try"
+msgstr ""
+
+#. translators: %s: where to chat, e.g. "the Claude Desktop chat window".
+#: settings/mcp/connect/AfterConnect.js:310
+msgid "Paste one of these into %s:"
+msgstr ""
+
+#: settings/mcp/connect/clients.js:18
 msgid "Claude Desktop"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:55
+#: settings/mcp/connect/clients.js:25
+msgid "Open Claude Desktop, then go to <strong>Settings → Developer → Edit Config</strong>."
+msgstr ""
+
+#: settings/mcp/connect/clients.js:29
+msgid "Fully quit Claude Desktop (not just the window) and open it again."
+msgstr ""
+
+#: settings/mcp/connect/clients.js:33
+msgid "the Claude Desktop chat window"
+msgstr ""
+
+#: settings/mcp/connect/clients.js:37
 msgid "Claude Code"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:56
+#: settings/mcp/connect/clients.js:44
+msgid "In your project folder, open the file <strong>.mcp.json</strong>. Create it if it doesn't exist."
+msgstr ""
+
+#: settings/mcp/connect/clients.js:48
+msgid "Close Claude Code and start it again."
+msgstr ""
+
+#: settings/mcp/connect/clients.js:49
+msgid "your Claude Code session"
+msgstr ""
+
+#: settings/mcp/connect/clients.js:53
+msgid "ChatGPT"
+msgstr ""
+
+#: settings/mcp/connect/clients.js:58
+msgid "Save your GPT, then start a chat with it."
+msgstr ""
+
+#: settings/mcp/connect/clients.js:59
+msgid "a chat with your GPT"
+msgstr ""
+
+#: settings/mcp/connect/clients.js:63
 msgid "Cursor"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:57
-msgid "VS Code (Copilot)"
+#: settings/mcp/connect/clients.js:70
+msgid "Open Cursor, then go to <strong>Settings → MCP → Add new MCP server</strong>. It opens a file."
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:59
-msgid "ChatGPT (Custom GPT)"
+#: settings/mcp/connect/clients.js:74
+msgid "Restart Cursor."
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:170
-msgid "Connect Your AI Client"
+#: settings/mcp/connect/clients.js:75
+msgid "the Cursor chat panel"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:171
-msgid "Follow the instructions below to connect your AI client to SureCart."
+#: settings/mcp/connect/clients.js:79
+msgid "VS Code"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:185
-msgid "AI Client"
+#: settings/mcp/connect/clients.js:85
+msgid "In VS Code press <strong>Ctrl/⌘ + Shift + P</strong>, type <strong>MCP: Open User Configuration</strong> and press Enter."
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:196
-msgid "The example below uses the official MCP Adapter endpoint. If you are running a different MCP server, replace the URL value with your server's REST endpoint — the rest of the setup stays the same."
+#: settings/mcp/connect/clients.js:89
+msgid "Reload the VS Code window."
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:209
-msgid "ChatGPT is retiring custom GPTs on December 11, 2026."
+#: settings/mcp/connect/clients.js:90
+msgid "the VS Code chat panel"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:216
-msgid "This connection uses a custom GPT, so it will stop working on that date, and OpenAI may already have stopped new GPTs from being created. ChatGPT's replacement needs a sign-in method WordPress doesn't support yet. For a connection that keeps working, choose Claude, Cursor or VS Code. Until then, creating a GPT needs a Plus, Business, Enterprise or Edu plan."
+#: settings/mcp/connect/clients.js:94
+msgid "Continue.dev"
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:246
-msgid "Your site is running over HTTP (likely a local dev environment). The config above includes the"
+#: settings/mcp/connect/clients.js:100
+msgid "Open your Continue configuration file (<strong>config.yaml</strong>) and find the MCP servers section."
 msgstr ""
 
-#: settings/mcp/components/AIClientInstructions.js:251
-msgid "flag to allow the connection. This flag is not needed — and will not appear — on production sites using HTTPS."
+#: settings/mcp/connect/clients.js:104
+msgid "Reload your editor."
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:7
-msgid "Create an Application Password"
+#: settings/mcp/connect/clients.js:105
+msgid "the Continue chat panel"
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:11
-msgid "Open Application Passwords"
+#: settings/mcp/connect/clients.js:113
+msgid "Open your app's settings and find where to add an MCP server."
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:13
-msgid "to go to your WordPress profile."
+#: settings/mcp/connect/clients.js:117
+msgid "Restart the app."
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:16
-msgid "In the \"New Application Password Name\" field, enter a recognizable name (e.g."
+#: settings/mcp/connect/clients.js:118
+msgid "your app's chat"
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:24
-msgid "Click"
+#: settings/mcp/connect/clients.js:315
+msgid "Give me a summary of my store this month: revenue, order count and best-selling products."
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:26
-msgid "Add Application Password"
+#: settings/mcp/connect/clients.js:322
+msgid "Which orders from the last 7 days have not been fulfilled yet?"
 msgstr ""
 
-#: settings/mcp/components/AppPasswordStep.js:31
-msgid "Copy the generated password immediately — it will not be shown again."
+#: settings/mcp/connect/clients.js:333
+msgid "List subscriptions that are past due or set to cancel."
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:136
-msgid "Create a Custom GPT"
+#: settings/mcp/connect/clients.js:339
+msgid "Marketing"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:138
-msgid "Use the ChatGPT website on a computer. The ChatGPT apps can use GPTs but cannot create them."
+#: settings/mcp/connect/clients.js:340
+msgid "Create a 20% off coupon that expires in two weeks."
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:146
-msgid "Open <a>My GPTs</a>, then click <strong>Create a GPT</strong> → <strong>Configure</strong>."
+#: settings/mcp/connect/ConnectWizard.js:14
+msgid "Choose your AI"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:160
-msgid "Under \"Actions\", click <strong>Create new action</strong>."
+#: settings/mcp/connect/ConnectWizard.js:15
+msgid "Create a password"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:172
-msgid "Configure authentication"
+#: settings/mcp/connect/ConnectWizard.js:17
+msgid "Check"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:176
-msgid "Under Authentication, choose <strong>API Key</strong> with Auth Type <strong>Basic</strong>."
+#: settings/mcp/connect/ConnectWizard.js:24
+msgid "Progress"
 msgstr ""
 
-#. translators: %s: username:application-password example.
-#: settings/mcp/components/ChatGPTSteps.js:187
-msgid "The API key is the Base64-encoded value of <code>%s</code>. Generate it in a terminal, then paste the output as the key:"
+#: settings/mcp/connect/ConnectWizard.js:138
+msgid "Save your settings to continue"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:198
-#: settings/mcp/components/ClaudeCodeSteps.js:134
-#: settings/mcp/components/GenericClientSteps.js:22
-#: settings/mcp/components/GenericClientSteps.js:91
-msgid "macOS / Linux:"
+#: settings/mcp/connect/ConnectWizard.js:141
+msgid "Choose your AI to continue"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:208
-msgid "Windows (PowerShell):"
+#: settings/mcp/connect/ConnectWizard.js:144
+msgid "Install the helper plugin to continue"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:219
-msgid "Paste the Action schema"
+#: settings/mcp/connect/ConnectWizard.js:147
+msgid "Confirm you have Node.js to continue"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:221
-msgid "Copy the schema below into the Schema field of your Action. The server URL is prefilled for this site."
+#: settings/mcp/connect/ConnectWizard.js:152
+msgid "Fix the password to continue"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:236
-msgid "Your site is running over HTTP (likely a local dev environment). ChatGPT can only call sites that are publicly reachable over HTTPS, so this Action will not work until the store is on a live HTTPS site."
+#: settings/mcp/connect/ConnectWizard.js:153
+msgid "Create a password to continue"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:250
-msgid "Add instructions to your GPT"
+#: settings/mcp/connect/ConnectWizard.js:175
+msgid "Connect your AI"
 msgstr ""
 
-#: settings/mcp/components/ChatGPTSteps.js:253
-msgid "Paste this into the Instructions field so the GPT picks the correct operation for each ability:"
+#: settings/mcp/connect/ConnectWizard.js:178
+msgid "Four short steps, about five minutes. You can stop and come back."
 msgstr ""
 
-#: settings/mcp/components/ClaudeCodeSteps.js:17
-msgid "Register the MCP server via CLI (required)"
+#: settings/mcp/connect/ConnectWizard.js:182
+msgid "Four short steps, about ten minutes. You can stop and come back."
 msgstr ""
 
-#: settings/mcp/components/ClaudeCodeSteps.js:24
-msgid "Open your terminal:"
+#. translators: %s: AI client name.
+#: settings/mcp/connect/CreatePasswordButton.js:49
+msgid "Create password for %s"
 msgstr ""
 
-#: settings/mcp/components/ClaudeCodeSteps.js:34
-msgid "macOS"
+#: settings/mcp/connect/CreatePasswordButton.js:57
+msgid "Couldn't create the password."
 msgstr ""
 
-#: settings/mcp/components/ClaudeCodeSteps.js:36
-msgid "Terminal app (Applications → Utilities → Terminal)"
+#: settings/mcp/connect/CreatePasswordButton.js:60
+msgid "You can create it yourself instead."
 msgstr ""
 
-#: settings/mcp/components/ClaudeCodeSteps.js:42
-msgid "Windows"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:44
-msgid "Command Prompt or PowerShell"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:47
-msgid "Linux"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:49
-msgid "your preferred terminal emulator"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:57
-msgid "Run the following command:"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:76
-msgid "This registers the SureCart MCP server but does"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:80
-msgid "NOT"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:81
-msgid "set your credentials. You must also complete Step 3."
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:92
-msgid "Add your credentials to the JSON config (required)"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:99
-msgid "Locate and open the MCP config file in a text editor:"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:106
-msgid "Per project (applies only to that project):"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:113
-msgid "in your project root folder"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:121
-msgid "Global (applies to all projects):"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:143
-msgid "Tip: ~ means your home folder, e.g. /Users/yourname/.claude.json"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:148
-msgid "Note: files starting with . are hidden — press Cmd + Shift + . in Finder to show them."
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:160
-#: settings/mcp/components/GenericClientSteps.js:30
-#: settings/mcp/components/GenericClientSteps.js:101
-msgid "Windows:"
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:170
-msgid "Tip: open File Explorer, paste this path in the address bar, replacing \"YourUsername\" with your Windows username."
-msgstr ""
-
-#: settings/mcp/components/ClaudeCodeSteps.js:179
-#: settings/mcp/components/ClaudeDesktopSteps.js:44
-#: settings/mcp/components/GenericClientSteps.js:38
-#: settings/mcp/components/GenericClientSteps.js:73
-#: settings/mcp/components/GenericClientSteps.js:111
-#: settings/mcp/components/GenericClientSteps.js:129
-msgid "Paste the JSON config below into the file and save it."
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:15
-msgid "Add the config to Claude Desktop"
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:23
-msgid "Click the dropdown next to your name (bottom-left)"
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:30
-msgid "In the left sidebar, click"
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:31
-msgid "Developer"
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:34
-msgid "Under \"Local MCP Servers\", click"
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:35
-msgid "Edit Config"
-msgstr ""
-
-#: settings/mcp/components/ClaudeDesktopSteps.js:38
-msgid "Open the file in your preferred text editor (e.g. TextEdit, Notepad, VS Code)."
-msgstr ""
-
-#: settings/mcp/components/EnvVarsStep.js:7
-msgid "Update the environment variables"
-msgstr ""
-
-#: settings/mcp/components/EnvVarsStep.js:13
-msgid "your WordPress username (prefilled)."
-msgstr ""
-
-#: settings/mcp/components/EnvVarsStep.js:18
-msgid "replace \"your-application-password\" with the password from Step 1."
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:16
-msgid "Locate and open your Cursor MCP config file:"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:50
-msgid "Choose where to add the config:"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:53
-msgid "Per project:"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:55
-msgid "in your project root"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:63
-msgid "Global (all projects):"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:65
-msgid "Open VS Code Settings"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:68
-msgid "search"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:85
-msgid "Locate and open your Continue config file:"
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:123
-msgid "Refer to your AI client's documentation for the MCP configuration file location."
-msgstr ""
-
-#: settings/mcp/components/GenericClientSteps.js:151
-msgid "Copy the JSON config into your config file"
-msgstr ""
-
-#: settings/mcp/components/MCPAdapterNotice.js:38
+#: settings/mcp/connect/HelperPluginCheck.js:44
 msgid "You can install it manually:"
 msgstr ""
 
-#: settings/mcp/components/MCPAdapterNotice.js:45
+#: settings/mcp/connect/HelperPluginCheck.js:51
 msgid "View on WordPress.org"
 msgstr ""
 
-#: settings/mcp/components/MCPAdapterNotice.js:57
-msgid "MCP Server"
+#: settings/mcp/connect/HelperPluginCheck.js:66
+msgid "Helper plugin"
 msgstr ""
 
-#: settings/mcp/components/MCPAdapterNotice.js:58
-msgid "Recommended: install the official MCP Adapter to expose abilities to AI assistants."
+#: settings/mcp/connect/HelperPluginCheck.js:70
+msgid "Installing the helper plugin…"
 msgstr ""
 
-#: settings/mcp/components/MCPAdapterNotice.js:72
-msgid "The MCP Adapter plugin is the easiest way to connect AI assistants like ChatGPT or Claude to your store. SureCart abilities are registered automatically — the adapter exposes them over a REST endpoint AI clients can call."
+#: settings/mcp/connect/HelperPluginCheck.js:71
+msgid "Official WordPress plugin (called MCP Adapter) that lets your AI reach your store."
 msgstr ""
 
-#: settings/mcp/components/MCPAdapterNotice.js:92
-msgid "Activate MCP Adapter"
+#: settings/mcp/connect/StepCheck.js:47
+msgid "Restart and check"
 msgstr ""
 
-#: settings/mcp/components/MCPAdapterNotice.js:100
-msgid "Install & Activate MCP Adapter"
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepCheck.js:53
+msgid "Close and reopen %s, then test."
 msgstr ""
 
-#: settings/mcp/components/NodeVersionStep.js:6
-msgid "Verify Node.js version"
+#: settings/mcp/connect/StepCheck.js:64
+msgid "Test connection"
 msgstr ""
 
-#: settings/mcp/components/NodeVersionStep.js:9
-msgid "In your terminal, run:"
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepCheck.js:71
+msgid "Waiting for %s to connect…"
 msgstr ""
 
-#: settings/mcp/components/NodeVersionStep.js:12
-msgid "The version must be 20.1 or higher."
+#: settings/mcp/connect/StepCheck.js:81
+msgid "Not connected yet. Try these, most likely first:"
 msgstr ""
 
-#: settings/mcp/components/NodeVersionStep.js:14
-msgid "If it is lower, run:"
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepCheck.js:103
+msgid "You haven't fully restarted %s."
 msgstr ""
 
-#: settings/mcp/MCPSettings.js:58
-#: settings/mcp/MCPSettings.js:84
-#: settings/SettingsSidebar.js:150
-msgid "MCP"
+#: settings/mcp/connect/StepCheck.js:114
+msgid "I've restarted it, test again"
 msgstr ""
 
-#: settings/mcp/MCPSettings.js:64
+#: settings/mcp/connect/StepCheck.js:124
+msgid "The password has a typo."
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:133
+msgid "Create a new password."
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:140
+msgid "Go back to step 3 and paste the new sign-in code into your GPT."
+msgstr ""
+
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepCheck.js:146
+msgid "Copy the new setup text and paste it into %s, replacing the old one."
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:162
+msgid "Create a new password"
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:175
+msgid "Copy new setup text"
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:182
+msgid "Test again"
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:190
+msgid "Node.js is missing or too old."
+msgstr ""
+
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepCheck.js:198
+msgid "Download Node.js (choose the version marked LTS), install it, then restart %s. To check the version, open Terminal (Mac) or Command Prompt (Windows), type node -v and press Enter."
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:210
+#: settings/mcp/connect/StepChoose.js:179
+msgid "Download Node.js"
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:223
+msgid "I've installed it, test again"
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:237
+msgid "Still stuck?"
+msgstr ""
+
+#: settings/mcp/connect/StepCheck.js:240
+msgid "Read the setup guide"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:80
+msgid "Most popular"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:93
+#: settings/mcp/connect/StepChoose.js:98
+msgid "Which AI do you use?"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:94
+msgid "We'll show only the steps for it."
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:106
+msgid "More AI apps"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:118
+msgid "ChatGPT is retiring custom GPTs on December 11, 2026."
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:123
+msgid "This connection uses a custom GPT, so it will stop working on that date, and OpenAI may already have stopped new GPTs from being created. ChatGPT's replacement needs a sign-in method WordPress doesn't support yet. For a connection that keeps working, choose Claude, Cursor or VS Code. Until then, creating a GPT needs a Plus, Business, Enterprise or Edu plan."
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:136
+msgid "Before you continue"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:140
+msgid "Two quick checks, so the next steps work the first time."
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:144
+msgid "One quick check, so the next steps work the first time."
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:161
+msgid "Node.js 20.1 or newer"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:168
+msgid "A free program your AI uses to talk to your store."
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:191
+msgid "I have Node.js 20.1 or newer"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:194
+msgid "Not sure if you have it?"
+msgstr ""
+
+#: settings/mcp/connect/StepChoose.js:199
+msgid "On a Mac open Terminal. On Windows open Command Prompt. Type node -v and press Enter. If you see v20.1 or a higher number, you're set. If you see an error or a lower number, download Node.js with the link above and install it."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:34
+msgid "In ChatGPT on the web, create a new GPT: <strong>Explore GPTs → Create</strong>, then open <strong>Configure</strong>."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:38
+msgid "Paste the instructions below into the <strong>Instructions</strong> field."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:42
+msgid "Choose <strong>Create new action</strong>."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:43
+msgid "Under <strong>Authentication</strong>, choose <strong>API key</strong>, then <strong>Basic</strong>, and paste the sign-in code below."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:47
+msgid "Paste the schema below into the <strong>Schema</strong> field."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:51
+msgid "Set sharing to <strong>Only me</strong>. Never choose <strong>Anyone with a link</strong> or <strong>Public</strong>, because this GPT holds your store key. Then save the GPT."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:81
+msgid "Password included"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:88
+#: settings/mcp/connect/StepPassword.js:53
+msgid "Hide password"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:89
+#: settings/mcp/connect/StepPassword.js:54
+#: src/blocks/checkout-password/view.php:57
+#: src/blocks/checkout-password/edit.js:136
+msgid "Show password"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:95
+msgid "Password missing"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:98
+msgid "Add it in step 2"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:114
+msgid "Add SureCart to ChatGPT"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:116
+msgid "These steps connect a custom GPT to your store. You do them inside ChatGPT."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:135
+msgid "Sign-in code"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:142
+msgid "Add your password in step 2"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:158
+msgid "Instructions"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:162
+msgid "Schema"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:168
+msgid "Your site is running over HTTP (likely a local dev environment). ChatGPT can only call sites that are publicly reachable over HTTPS, so this will not work until the store is on a live HTTPS site."
+msgstr ""
+
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepConfig.js:186
+msgid "Add SureCart to %s"
+msgstr ""
+
+#. translators: %s: AI client name.
+#: settings/mcp/connect/StepConfig.js:193
+msgid "This text tells %s where your store is and how to sign in, so it can work with it."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:205
+msgid "Paste this text into the file and save it."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:220
+msgid "Technical details"
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:223
+msgid "Your AI app starts a small helper on your computer that signs in to your store for you. That helper needs Node.js, which is why we asked about it."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:227
+msgid "Your AI app connects straight to your store and signs in with your password. Nothing extra is installed on your computer."
+msgstr ""
+
+#: settings/mcp/connect/StepConfig.js:233
+msgid "Using a different server? Replace the web address in the text with your server's REST endpoint. The rest stays the same."
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:21
+msgid "Paste your new password here"
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:35
+msgid "That doesn't look like an application password. It has 24 letters and numbers, usually in groups of four."
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:39
+msgid "It stays in this tab and is only added to the text you copy. It is not saved."
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:81
+msgid "Password created and added."
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:83
+msgid "WordPress shows it only once, so we've filled it in for you. It is not saved anywhere else."
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:114
+msgid "or create it yourself"
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:127
+msgid "Create it yourself"
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:132
+msgid "Open Application Passwords"
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:137
+msgid "in a new tab."
+msgstr ""
+
+#. translators: %s: AI client name used as the password name.
+#: settings/mcp/connect/StepPassword.js:143
+msgid "Type <code>%s</code> as the name and click <strong>Add Application Password</strong>."
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:153
+msgid "Copy the password WordPress shows you and paste it below. It only appears once."
+msgstr ""
+
+#. translators: %s: AI client name, e.g. Claude Desktop.
+#: settings/mcp/connect/StepPassword.js:179
+msgid "Create a password for %s"
+msgstr ""
+
+#: settings/mcp/connect/StepPassword.js:184
+msgid "WordPress makes a special password so your AI can sign in without using your real one."
+msgstr ""
+
+#: settings/mcp/MCPSettings.js:117
 msgid "WordPress Update Required"
 msgstr ""
 
-#: settings/mcp/MCPSettings.js:65
+#: settings/mcp/MCPSettings.js:118
 msgid "AI integration requires a newer version of WordPress."
 msgstr ""
 
-#: settings/mcp/MCPSettings.js:72
+#: settings/mcp/MCPSettings.js:125
 msgid "Please update WordPress to version 6.9 or later to use MCP and AI features. Your current WordPress version does not support the required AI integration APIs."
 msgstr ""
 
-#: settings/mcp/MCPSettings.js:91
-#: settings/mcp/MCPSettings.js:108
-msgid "Enable Abilities"
-msgstr ""
-
-#: settings/mcp/MCPSettings.js:94
-msgid "Choose what AI assistants are allowed to do with your store data."
-msgstr ""
-
-#: settings/mcp/MCPSettings.js:110
-msgid "Allow AI assistants to interact with your store. When enabled, they can view, create, edit, and delete store data depending on the permissions below. When disabled, AI assistants cannot access your store at all."
-msgstr ""
-
-#: settings/mcp/MCPSettings.js:125
-msgid "Enable Edit Abilities"
-msgstr ""
-
-#: settings/mcp/MCPSettings.js:130
-msgid "Allow AI assistants to create new products, update prices, manage coupons, and modify other store data. When disabled, AI assistants can only view your data."
-msgstr ""
-
-#: settings/mcp/MCPSettings.js:143
-msgid "Enable Delete Abilities"
-msgstr ""
-
-#: settings/mcp/MCPSettings.js:148
-msgid "Allow AI assistants to permanently delete customers, coupons, promotions, and fulfillments. Deleted data cannot be recovered. When disabled, AI assistants cannot remove any data."
+#: settings/mcp/MCPSettings.js:180
+msgid "Your AI"
 msgstr ""
 
 #: settings/order/GeoCapturableCountries.js:36
@@ -28353,20 +28727,20 @@ msgid "create a new one"
 msgstr ""
 
 #: settings/tax-override/TaxOverrideModal.js:221
-#: settings/tax-region/RegistrationForm.js:197
-#: settings/tax-region/TaxRegionSettings.js:215
+#: settings/tax-region/RegistrationForm.js:277
+#: settings/tax-region/TaxRegionSettings.js:218
 msgid "Region"
 msgstr ""
 
 #: settings/tax-override/TaxOverrideModal.js:253
-#: settings/tax-region/RegistrationForm.js:266
-#: settings/tax-region/TaxRegionSettings.js:222
+#: settings/tax-region/RegistrationForm.js:377
+#: settings/tax-region/TaxRegionSettings.js:229
 msgid "Tax Rate"
 msgstr ""
 
 #: settings/tax-override/TaxOverrideModal.js:267
-#: settings/tax-region/RegistrationForm.js:280
-#: settings/tax-region/TaxRegionSettings.js:226
+#: settings/tax-region/RegistrationForm.js:547
+#: settings/tax-region/TaxRegionSettings.js:233
 msgid "Tax Label"
 msgstr ""
 
@@ -28375,7 +28749,6 @@ msgid "Shown to customers for this rate at checkout and on receipts, e.g. \"GST 
 msgstr ""
 
 #: settings/tax-region/RegionSettings.js:9
-#: settings/tax-region/TaxRegionSettings.js:40
 msgid "Canada GST/HST"
 msgstr ""
 
@@ -28393,7 +28766,7 @@ msgstr ""
 
 #: settings/tax-region/RegionSettings.js:38
 #: settings/tax-region/RegionSettings.js:104
-#: settings/tax-region/RegistrationForm.js:298
+#: settings/tax-region/RegistrationForm.js:585
 msgid "In applicable tax jurisdictions, your tax ID will show on invoices. If you don't have your tax ID number yet, you can enter it later."
 msgstr ""
 
@@ -28418,40 +28791,139 @@ msgstr ""
 msgid "Enable this if your business makes up to €10,000 EUR in sales to other EU countries and you only plan to submit a domestic VAT return. If enabled, your home country VAT rate will apply to all EU orders."
 msgstr ""
 
-#: settings/tax-region/RegistrationDialog.js:26
+#: settings/tax-region/RegistrationDialog.js:29
 msgid "%s Tax"
 msgstr ""
 
-#: settings/tax-region/RegistrationDialog.js:30
-#: settings/tax-region/RegistrationForm.js:345
-#: settings/tax-region/TaxRegionSettings.js:206
+#: settings/tax-region/RegistrationDialog.js:33
+#: settings/tax-region/RegistrationForm.js:633
+#: settings/tax-region/TaxRegionSettings.js:209
 #: subscriptions/show/modules/Tax.js:60
 msgid "Collect Tax"
 msgstr ""
 
-#: settings/tax-region/RegistrationForm.js:36
+#: settings/tax-region/RegistrationForm.js:57
+msgid "e.g. GST"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:58
+msgid "e.g. PST"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:59
+msgid "e.g. HST"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:60
+msgid "e.g. QST"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:61
+msgid "e.g. RST"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:75
 msgid "Province"
 msgstr ""
 
 #. translators: %s: state/region name
-#: settings/tax-region/RegistrationForm.js:228
+#: settings/tax-region/RegistrationForm.js:308
 msgid "Please specify a tax rate for %s, as it requires manual entry"
 msgstr ""
 
-#: settings/tax-region/RegistrationForm.js:241
+#: settings/tax-region/RegistrationForm.js:319
+msgid "This rate replaces the automatic GST/HST for this province, so enter the combined rate (e.g. GST 5% + PST 7% = 12%), or use multiple components to show each tax as its own line."
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:327
 msgid "Tax Calculation"
 msgstr ""
 
-#: settings/tax-region/RegistrationForm.js:282
+#: settings/tax-region/RegistrationForm.js:347
+msgid "Tax Rate Type"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:354
+msgid "Single rate"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:358
+msgid "Multiple components (e.g. GST + PST)"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:410
+msgid "Component Label"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:418
+#: shipping-labels/components/RateTable.js:99
+msgid "Rate"
+msgstr ""
+
+#. translators: %d: component row number
+#: settings/tax-region/RegistrationForm.js:436
+msgid "Component %d label"
+msgstr ""
+
+#. translators: %d: component row number
+#: settings/tax-region/RegistrationForm.js:462
+msgid "Component %d rate"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:477
+msgid "Remove component"
+msgstr ""
+
+#. translators: %d: component row number
+#: settings/tax-region/RegistrationForm.js:480
+msgid "Remove tax component %d"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:514
+msgid "Add Component"
+msgstr ""
+
+#. translators: %s: total tax rate
+#: settings/tax-region/RegistrationForm.js:519
+msgid "Total tax rate: %s%%"
+msgstr ""
+
+#. translators: 1: minimum components, 2: maximum components
+#: settings/tax-region/RegistrationForm.js:534
+msgid "Each component is shown as its own tax line at checkout and on invoices. Use %1$d to %2$d components; their rates add up to the tax rate."
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:551
+msgid "A name for this combined rate. It defaults to the component labels joined with “+”; customers see each component as its own tax line."
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:555
 msgid "The name of the tax that is displayed to customers during checkout and on invoices and receipts."
 msgstr ""
 
-#: settings/tax-region/RegistrationForm.js:324
+#: settings/tax-region/RegistrationForm.js:562
+msgid "e.g. GST + PST"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:575
+msgid "Provincial Tax Number"
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:581
+msgid "Your provincial tax registration number (PST/QST), separate from the GST/HST number in your Canada GST/HST settings. If you don't have it yet, you can enter it later."
+msgstr ""
+
+#: settings/tax-region/RegistrationForm.js:612
 msgid "Make sure you’re registered with the appropriate tax jurisdictions before enabling tax collection."
 msgstr ""
 
-#: settings/tax-region/RegistrationForm.js:328
+#: settings/tax-region/RegistrationForm.js:616
 msgid "Tax is automatically calculated and applied to orders. Make sure you’re registered with the appropriate tax jurisdictions before enabling tax collection."
+msgstr ""
+
+#. translators: %d: maximum total rate
+#: settings/tax-region/taxComponents.js:100
+msgid "The combined tax rate cannot exceed %d%%."
 msgstr ""
 
 #: settings/tax-region/TaxRegionSettings.js:30
@@ -28486,6 +28958,10 @@ msgstr ""
 
 #: settings/tax-region/TaxRegionSettings.js:39
 msgid "GST Registration"
+msgstr ""
+
+#: settings/tax-region/TaxRegionSettings.js:40
+msgid "Provincial Tax Registrations"
 msgstr ""
 
 #: settings/tax-region/TaxRegionSettings.js:41
@@ -28544,16 +29020,16 @@ msgstr ""
 msgid "You're not collecting sales tax for any states. Add a tax registration to start collecting tax."
 msgstr ""
 
-#: settings/tax-region/TaxRegionSettings.js:165
+#: settings/tax-region/TaxRegionSettings.js:168
 msgid "%s Tax Region"
 msgstr ""
 
-#: settings/tax-region/TaxRegionSettings.js:193
+#: settings/tax-region/TaxRegionSettings.js:196
 #: store/add-entities.js:372
 msgid "Tax Registration"
 msgstr ""
 
-#: settings/tax-region/TaxRegionSettings.js:279
+#: settings/tax-region/TaxRegionSettings.js:311
 msgid "You don't have any tax registrations. Add a tax registration to start collecting tax."
 msgstr ""
 
@@ -29430,10 +29906,6 @@ msgstr ""
 
 #: shipping-labels/components/RateTable.js:90
 msgid "Select all shipments with rates"
-msgstr ""
-
-#: shipping-labels/components/RateTable.js:99
-msgid "Rate"
 msgstr ""
 
 #. translators: %d: label count
@@ -31142,31 +31614,31 @@ msgstr ""
 msgid "Order History"
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:114
+#: Controllers/PaymentMethodController.php:135
 msgid "You are not a live mode customer."
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:117
+#: Controllers/PaymentMethodController.php:138
 msgid "Switch to test mode."
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:121
+#: Controllers/PaymentMethodController.php:142
 msgid "You are not a test mode customer."
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:124
+#: Controllers/PaymentMethodController.php:145
 msgid "Switch to live mode."
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:128
+#: Controllers/PaymentMethodController.php:149
 msgid "You are not currently a customer."
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:147
+#: Controllers/PaymentMethodController.php:168
 msgid "You cannot currently add a payment method. Please contact us for support."
 msgstr ""
 
-#: Controllers/PaymentMethodController.php:253
+#: Controllers/PaymentMethodController.php:274
 #: src/blocks/checkout-payment/view.php:267
 #: sc-payment.js:61
 msgid "Cards, Netbanking, Wallet & UPI"
@@ -35324,11 +35796,6 @@ msgstr ""
 msgid "Choose a password"
 msgstr ""
 
-#: src/blocks/checkout-password/view.php:57
-#: src/blocks/checkout-password/edit.js:136
-msgid "Show password"
-msgstr ""
-
 #: src/blocks/checkout-payment-label/view.php:38
 #: sc-test-mode-info.js:17
 msgid "How to switch from Test to Live mode"
@@ -37348,46 +37815,46 @@ msgstr ""
 msgid "Item added to cart."
 msgstr ""
 
-#: src/scripts/product-page/index.js:58
+#: src/scripts/product-page/index.js:59
 msgid "Please enter a valid amount."
 msgstr ""
 
 #. translators: %s: minimum amount.
-#: src/scripts/product-page/index.js:67
+#: src/scripts/product-page/index.js:68
 msgid "Please enter %s or more."
 msgstr ""
 
 #. translators: %s: maximum amount.
-#: src/scripts/product-page/index.js:75
+#: src/scripts/product-page/index.js:76
 msgid "Please enter %s or less."
 msgstr ""
 
 #. translators: %s: product name
-#: src/scripts/product-page/index.js:498
+#: src/scripts/product-page/index.js:499
 msgid "%s has been added to your cart."
 msgstr ""
 
-#: src/scripts/product-review-form/index.js:115
+#: src/scripts/product-review-form/index.js:119
 msgid "Product review form opened."
 msgstr ""
 
-#: src/scripts/product-review-form/index.js:132
+#: src/scripts/product-review-form/index.js:136
 msgid "Discard your review?"
 msgstr ""
 
-#: src/scripts/product-review-form/index.js:150
+#: src/scripts/product-review-form/index.js:154
 msgid "Product review form closed."
 msgstr ""
 
-#: src/scripts/product-review-form/index.js:236
+#: src/scripts/product-review-form/index.js:240
 msgid "Submitting your review."
 msgstr ""
 
-#: src/scripts/product-review-form/index.js:254
+#: src/scripts/product-review-form/index.js:258
 msgid "Failed to submit review, please try again."
 msgstr ""
 
-#: src/scripts/product-review-form/index.js:285
+#: src/scripts/product-review-form/index.js:289
 msgid "Failed to submit review. Please try again."
 msgstr ""
 

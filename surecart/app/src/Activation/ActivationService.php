@@ -1,6 +1,8 @@
 <?php
 namespace SureCart\Activation;
 
+use SureCart\AgentCatalog\AgentCatalogService;
+use SureCart\MCP\AIConnectionsService;
 use SureCart\Integrations\NpsSurvey\NpsSurveyNotice;
 use SureCart\Models\ApiToken;
 use SureCart\Models\RegisteredWebhook;
@@ -320,6 +322,10 @@ class ActivationService {
 		delete_option( 'surecart_mcp_abilities_enabled' );
 		delete_option( 'surecart_mcp_edit_abilities_enabled' );
 		delete_option( 'surecart_mcp_delete_abilities_enabled' );
+		delete_option( AgentCatalogService::ENABLED_OPTION );
+		delete_option( AgentCatalogService::CACHE_VERSION_OPTION );
+		\SureCart::agentCatalog()->deleteCache();
+		delete_metadata( 'user', 0, AIConnectionsService::META_KEY, '', true );
 		delete_option( SetupGuideService::OPTION );
 		delete_option( SetupGuideService::REPORTED_OPTION );
 

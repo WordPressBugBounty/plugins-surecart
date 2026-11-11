@@ -14,7 +14,7 @@ const index$3 = require('./index-f3933112.js');
 require('./watchers-3a87bc45.js');
 const getters$1 = require('./getters-d8754292.js');
 const watchers = require('./watchers-517825ae.js');
-const getters$2 = require('./getters-1ff518bc.js');
+const getters$2 = require('./getters-03f118bc.js');
 const store$1 = require('./store-29627d6b.js');
 require('./fetch-5e8dc1d5.js');
 const index$4 = require('./index-7ced8198.js');

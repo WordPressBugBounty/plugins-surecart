@@ -114,13 +114,13 @@ if ( ! function_exists( 'sc_query_products' ) ) {
 	 */
 	function sc_query_products( $args = [] ) {
 		return new \WP_Query(
-			[
+			wp_parse_args(
 				$args,
 				[
 					'post_type'   => 'sc_product',
 					'post_status' => 'publish',
-				],
-			]
+				]
+			)
 		);
 	}
 }

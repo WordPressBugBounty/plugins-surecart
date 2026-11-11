@@ -63,6 +63,21 @@ class CacheServiceProvider implements ServiceProviderInterface {
 		$container['surecart.hummingbird_cache']            = function () {
 			return new HummingbirdCacheService();
 		};
+		$container['surecart.wpoptimize_cache']             = function () {
+			return new WpOptimizeCacheService();
+		};
+		$container['surecart.nitropack_cache']              = function () {
+			return new NitroPackCacheService();
+		};
+		$container['surecart.fastvelocityminify_cache']     = function () {
+			return new FastVelocityMinifyCacheService();
+		};
+		$container['surecart.flyingpages_cache']            = function () {
+			return new FlyingPagesCacheService();
+		};
+		$container['surecart.assetcleanup_cache']           = function () {
+			return new AssetCleanUpCacheService();
+		};
 	}
 
 	/**
@@ -88,6 +103,11 @@ class CacheServiceProvider implements ServiceProviderInterface {
 				$container['surecart.breeze_cache']->bootstrap();
 				$container['surecart.cacheenabler_cache']->bootstrap();
 				$container['surecart.hummingbird_cache']->bootstrap();
+				$container['surecart.wpoptimize_cache']->bootstrap();
+				$container['surecart.nitropack_cache']->bootstrap();
+				$container['surecart.fastvelocityminify_cache']->bootstrap();
+				$container['surecart.flyingpages_cache']->bootstrap();
+				$container['surecart.assetcleanup_cache']->bootstrap();
 			},
 			999 // Late priority to ensure it runs after most plugins have loaded.
 		);
