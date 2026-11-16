@@ -109,6 +109,7 @@ class Settings {
 			[
 				'has_api_token'           => (bool) \SureCart\Models\ApiToken::get(),
 				'abilities_api_available' => function_exists( 'wp_register_ability_category' ),
+				'can_manage_account'      => current_user_can( 'manage_sc_account_settings' ),
 			]
 		);
 

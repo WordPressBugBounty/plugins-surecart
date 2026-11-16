@@ -4,7 +4,7 @@ Donate link: https://surecart.com
 Tags: ecommerce, online store, subscriptions, recurring payments, shopping cart
 Requires at least: 6.8
 Tested up to: 7.1
-Stable tag: 4.13.0
+Stable tag: 4.13.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -453,6 +453,16 @@ Yes, the checkout form can be customized using our visual builder. You can chang
 Accessibility is a huge priority for the entire team building SureCart. As you know, accessibility is an ongoing improvement task. Our development and QA teams are trained in accessibility best practices and build/test each new feature for accessibility. If you come across any edge issues, we want to know about it and will prioritize its resolution. Please contact us via our website.
 
 == Changelog ==
+
+= 4.13.1 - November 16th, 2026 =
+- New: Duplicate coupons, order bumps and upsell funnels from their list or edit screen. Duplicated coupons don't copy promotion codes, and duplicated upsell funnels start disabled.
+- Improvement: The "No Thanks" opt-out link under the checkout email field can now be changed under Settings → Abandoned Checkout → GDPR Settings.
+- Improvement: Shop Managers can now open SureCart Settings and manage store settings. Admin-only tabs such as Connection, Advanced, Payment Processors and AI Assistants stay hidden.
+- Improvement: Shipping labels can be created without a recipient phone number, because some carriers (such as USPS domestic) don't need one. A note recommends adding it, since most carriers do.
+- Fix: Customer links that include a page path, such as checkout or subscription links from SureCart-powered apps, opened the customer dashboard home instead of the requested page since 4.11.0.
+- Fix: MemberPress members could keep access after their purchase was cancelled or revoked.
+- Fix: A webhook delivered twice at the same moment could be processed twice.
+- Fix: A failed product duplicate left the duplicate dialog stuck loading.
 
 = 4.13.0 - November 11th, 2026 =
 - New: Multiple tax components. A manual tax rate can be split into up to 5 named components (for example GST + PST), and each one shows as its own tax line at checkout and on invoices.

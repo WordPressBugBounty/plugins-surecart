@@ -203,18 +203,50 @@ class MemberPressService extends IntegrationService implements IntegrationInterf
 
 		// get order, invoice needed to sync the purchase.
 		$purchase = Purchase::with( [ 'order', 'invoice' ] )->find( $this->getPurchaseId() );
-		$status   = $add ? 'completed' : 'failed';
-		$existing = false;
-
-		// older fallback.
-		$transaction_num      = $purchase->id;
-		$existing_transaction = \MeprTransaction::get_one_by_trans_num( $transaction_num );
-
-		if ( ! isset( $existing_transaction->id ) || empty( $existing_transaction->id ) ) {
-			$transaction_num      = $purchase->id . '-' . $membership_id;
-			$existing_transaction = \MeprTransaction::get_one_by_trans_num( $transaction_num );
+		if ( is_wp_error( $purchase ) ) {
+			return;
 		}
 
+		global $wpdb;
+
+		// Grant and revoke for the same purchase/membership run from concurrent paths (checkout confirm, webhooks, customer sync); one named lock keeps them from interleaving and double-creating. md5 keeps the name under MySQL's 64-char lock limit.
+		$lock   = 'surecart_mepr_' . md5( $purchase->id . '_' . $membership_id );
+		$locked = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, %d)', $lock, 10 ) );
+		if ( 1 !== $locked ) {
+			// Proceed unguarded rather than dropping the access change, but leave a trace.
+			error_log( 'SureCart: MemberPress access lock not acquired for purchase ' . $purchase->id . '; proceeding without it.' );
+		}
+
+		// finally: createTransaction fires third-party-hookable actions that may throw; the lock must be released on any exit or retries of this purchase stall for the full lock timeout.
+		try {
+			$existing_ids = $this->getTransactionIds( $purchase->id, $membership_id );
+
+			if ( ! $add ) {
+				// Revoking must flip every matching row (duplicates included) and never create one.
+				$stored = $this->setTransactionsStatus( $existing_ids, \MeprTransaction::$failed_str );
+			} elseif ( ! empty( $existing_ids ) ) {
+				// Already provisioned - make sure every matching row grants access.
+				$stored = $this->setTransactionsStatus( $existing_ids, \MeprTransaction::$complete_str );
+			} else {
+				$stored = $this->createTransaction( $purchase, $membership_id, $wp_user );
+			}
+		} finally {
+			$wpdb->query( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) );
+		}
+
+		return $stored;
+	}
+
+	/**
+	 * Create and complete a MemberPress transaction for a purchase.
+	 *
+	 * @param \SureCart\Models\Purchase $purchase The purchase, with order/invoice loaded.
+	 * @param integer                   $membership_id The membership product id.
+	 * @param \WP_User                  $wp_user The user.
+	 *
+	 * @return boolean The store result.
+	 */
+	protected function createTransaction( $purchase, $membership_id, $wp_user ) {
 		// get purchase order or invoice.
 		if ( ! empty( $purchase->order->id ) ) {
 			$object = $purchase->order;
@@ -223,41 +255,63 @@ class MemberPressService extends IntegrationService implements IntegrationInterf
 			$object = $purchase->invoice;
 		}
 
-		// It doesn't exist.
-		if ( ! isset( $existing_transaction->id ) || empty( $existing_transaction->id ) ) {
-			$transaction             = new \MeprTransaction();
-			$transaction->amount     = $this->convertAmount( $object->amount_due, $object->currency );
-			$transaction->total      = $this->convertAmount( $object->total_amount, $object->currency );
-			$transaction->tax_amount = $this->convertAmount( $object->tax_amount, $object->currency );
-			$transaction->user_id    = $wp_user->ID;
-			$transaction->product_id = $membership_id;
-			$transaction->trans_num  = $transaction_num;
-			$transaction->txn_type   = \MeprTransaction::$payment_str;
-			$transaction->gateway    = 'manual';
-			$transaction->created_at = gmdate( 'c' );
-			$transaction->expires_at = \MeprUtils::mysql_lifetime();
-		} else {
-			// It does exist.
-			$transaction = new \MeprTransaction( $existing_transaction->id );
-			$existing    = true;
-		}
+		$transaction             = new \MeprTransaction();
+		$transaction->amount     = $this->convertAmount( $object->amount_due, $object->currency );
+		$transaction->total      = $this->convertAmount( $object->total_amount, $object->currency );
+		$transaction->tax_amount = $this->convertAmount( $object->tax_amount, $object->currency );
+		$transaction->user_id    = $wp_user->ID;
+		$transaction->product_id = $membership_id;
+		$transaction->trans_num  = $purchase->id . '-' . $membership_id;
+		$transaction->txn_type   = \MeprTransaction::$payment_str;
+		$transaction->gateway    = 'manual';
+		$transaction->created_at = gmdate( 'c' );
+		$transaction->expires_at = \MeprUtils::mysql_lifetime();
 
 		// Fire some hooks for Corporate Accounts.
-		if ( ! $existing ) {
-			$transaction->status = \MeprTransaction::$pending_str;
-			$transaction->store();
-			do_action( 'mepr-signup', $transaction );
-		}
+		$transaction->status = \MeprTransaction::$pending_str;
+		$transaction->store();
+		do_action( 'mepr-signup', $transaction );
 
-		// Set the txn's status.
-		if ( 'failed' === $status ) {
-			$transaction->status = \MeprTransaction::$failed_str;
-		} else {
-			$transaction->status = \MeprTransaction::$complete_str;
-		}
-
-		// Store the transaction.
+		// Complete the transaction.
+		$transaction->status = \MeprTransaction::$complete_str;
 		return $transaction->store();
+	}
+
+	/**
+	 * Get all MemberPress transaction ids for a purchase and membership.
+	 *
+	 * Matches both the legacy trans_num (purchase id alone) and the current one
+	 * (purchase id + membership id), scoped to the membership so a purchase mapped
+	 * to several memberships never resolves to another membership's row. Returns
+	 * every match because duplicates can exist and each one grants access.
+	 *
+	 * @param string  $purchase_id The SureCart purchase id.
+	 * @param integer $membership_id The membership product id.
+	 *
+	 * @return array Transaction ids.
+	 */
+	protected function getTransactionIds( $purchase_id, $membership_id ) {
+		global $wpdb;
+		$table = \MeprDb::fetch()->transactions;
+		return array_map( 'intval', $wpdb->get_col( $wpdb->prepare( "SELECT id FROM {$table} WHERE trans_num IN (%s, %s) AND product_id = %d", $purchase_id, $purchase_id . '-' . $membership_id, $membership_id ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	}
+
+	/**
+	 * Set the status on a list of MemberPress transactions.
+	 *
+	 * @param array  $ids Transaction ids.
+	 * @param string $status The MemberPress transaction status.
+	 *
+	 * @return boolean|void The last store result, if any rows matched.
+	 */
+	protected function setTransactionsStatus( $ids, $status ) {
+		$stored = null;
+		foreach ( $ids as $id ) {
+			$transaction         = new \MeprTransaction( $id );
+			$transaction->status = $status;
+			$stored              = $transaction->store();
+		}
+		return $stored;
 	}
 
 	/**

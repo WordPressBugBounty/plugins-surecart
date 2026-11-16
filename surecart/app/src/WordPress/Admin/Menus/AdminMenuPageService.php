@@ -458,7 +458,7 @@ class AdminMenuPageService {
 			'cart'      => $this->addTemplateSubMenuPage( 'cart', __( 'Cart', 'surecart' ), 'surecart/surecart//cart' ),
 			'dashboard' => $this->getPage( 'dashboard', __( 'Customer Area', 'surecart' ) ),
 			'forms'     => $this->addFormsSubMenuPage(),
-			'settings'  => \add_submenu_page( $this->slug, __( 'Settings', 'surecart' ), __( 'Settings', 'surecart' ), 'manage_options', 'sc-settings', '__return_false' ),
+			'settings'  => \add_submenu_page( $this->slug, __( 'Settings', 'surecart' ), __( 'Settings', 'surecart' ), 'manage_sc_shop_settings', 'sc-settings', '__return_false' ),
 			'learn'     => get_option( 'surecart_learn_admin_menu', true ) ? \add_submenu_page( $this->slug, __( 'Learn', 'surecart' ), __( 'Learn', 'surecart' ) . $this->getLearnBadge(), 'manage_options', 'sc-learn', '__return_false' ) : null,
 		);
 	}

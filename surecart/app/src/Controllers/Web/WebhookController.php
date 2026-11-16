@@ -106,26 +106,41 @@ class WebhookController {
 			return new \WP_Error( 'missing_id', 'Missing id.' );
 		}
 
-		// make sure we don't have a duplicate webhook.
-		$webhook = IncomingWebhook::where( 'webhook_id', $body['id'] )->first();
-		if ( ! empty( $webhook->id ) ) {
-			return \SureCart::json(
-				[
-					'status' => 'already_handled',
-				]
-			)
-			->withHeader( 'X-SURECART-WP-PLUGIN-VERSION', \SureCart::plugin()->version() )
-			->withStatus( 200 );
+		global $wpdb;
+
+		// The duplicate check below is check-then-insert; a named lock keeps concurrent deliveries of the same webhook from both passing it. Short timeout: the critical section is milliseconds, and the sender must not time out waiting on us.
+		$lock   = 'surecart_webhook_' . md5( $body['id'] );
+		$locked = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, %d)', $lock, 5 ) );
+		if ( 1 !== $locked ) {
+			// Proceed unguarded rather than rejecting the delivery, but leave a trace.
+			error_log( 'SureCart: webhook dedup lock not acquired for webhook ' . $body['id'] . '; proceeding without it.' );
 		}
 
-		// create incoming webhook.
-		$incoming = IncomingWebhook::create(
-			[
-				'webhook_id' => $body['id'],
-				'data'       => $body,
-				'source'     => 'surecart',
-			]
-		);
+		// finally: the lock must be released on every exit (early return or throw), or the next delivery of this webhook stalls for the full lock timeout.
+		try {
+			// make sure we don't have a duplicate webhook.
+			$webhook = IncomingWebhook::where( 'webhook_id', $body['id'] )->first();
+			if ( ! empty( $webhook->id ) ) {
+				return \SureCart::json(
+					[
+						'status' => 'already_handled',
+					]
+				)
+				->withHeader( 'X-SURECART-WP-PLUGIN-VERSION', \SureCart::plugin()->version() )
+				->withStatus( 200 );
+			}
+
+			// create incoming webhook.
+			$incoming = IncomingWebhook::create(
+				[
+					'webhook_id' => $body['id'],
+					'data'       => $body,
+					'source'     => 'surecart',
+				]
+			);
+		} finally {
+			$wpdb->query( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $lock ) );
+		}
 
 		if ( is_wp_error( $incoming ) ) {
 			return \SureCart::json(

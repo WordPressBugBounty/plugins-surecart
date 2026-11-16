@@ -52,7 +52,7 @@ class MyModelRestServiceProvider extends RestServiceProvider {
 // 4. Add MyModelRestServiceProvider::class to 'providers' array in app/config.php
 ```
 
-`$methods` supports exactly these five — there is no `batch` or `archive`. **Extra endpoints do not go in `$methods`**; override `registerRoutes()` and call `register_rest_route()` directly (44 providers do this, e.g. `ProductsRestServiceProvider.php:41-54` for `products/{id}/sync/`).
+`$methods` supports these five plus opt-in `duplicate` (adds `POST {endpoint}/{id}/duplicate` → `RestController::duplicate()`, gated by `create_item_permissions_check`; the model needs `CanDuplicate`) — there is no `batch` or `archive`. **Other extra endpoints do not go in `$methods`**; override `registerRoutes()` and call `register_rest_route()` directly (e.g. `ProductsRestServiceProvider` for `products/{id}/sync/`).
 
 Most real providers omit `$methods` entirely and inherit the default.
 
@@ -66,7 +66,9 @@ update_item_permissions_check -> edit_sc_coupons
 delete_item_permissions_check -> delete_sc_coupons
 ```
 
-The capability is not always derived from the endpoint name — `manage_sc_shop_settings` (39 uses) and `manage_options` (22) are the two most common strings overall, used by settings and protocol providers.
+Settings and protocol providers don't derive the cap from the endpoint name. Gate store settings on `manage_sc_shop_settings` (Shop Manager + Admin), and secrets/connection/processors/plugin-level options on `manage_sc_account_settings` (Admin). Don't use `manage_options` for SureCart settings — it locks out Shop Managers and implies WP-wide admin.
+
+**Settings UI must not save through core `/wp/v2/settings`** for anything a Shop Manager can see — core hardcodes `manage_options`. Register the option with `'capability' => 'manage_sc_shop_settings'` in `SettingService` and use the `surecart/site_settings` entity (`SiteSettingsRestServiceProvider`). Unmarked options stay admin-only.
 
 **The base class defaults every permission check to `false`** (`RestServiceProvider.php:349-399`), so a provider that omits them registers a fully locked endpoint rather than an open one.
 

@@ -60,18 +60,4 @@ class PricesController extends RestController {
 		}
 		return $class;
 	}
-
-	/**
-	 * Duplicate model.
-	 *
-	 * @param \WP_REST_Request $request Rest Request.
-	 * @return \WP_REST_Response|\WP_Error
-	 */
-	public function duplicate( \WP_REST_Request $request ) {
-		$model = $this->middleware( new $this->class(), $request );
-		if ( is_wp_error( $model ) ) {
-			return $model;
-		}
-		return $model->duplicate( $request['id'] );
-	}
 }

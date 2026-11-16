@@ -261,7 +261,8 @@ class CouponsListTable extends ListTable {
 		<?php
 		echo $this->row_actions(
 			[
-				'edit' => '<a href="' . esc_url( \SureCart::getUrl()->edit( 'coupon', $coupon->id ) ) . '" aria-label="' . esc_attr__( 'Edit Coupon', 'surecart' ) . '">' . __( 'Edit', 'surecart' ) . '</a>',
+				'edit'      => '<a href="' . esc_url( \SureCart::getUrl()->edit( 'coupon', $coupon->id ) ) . '" aria-label="' . esc_attr__( 'Edit Coupon', 'surecart' ) . '">' . __( 'Edit', 'surecart' ) . '</a>',
+				'duplicate' => '<a href="' . esc_url( \SureCart::getUrl()->duplicate( 'coupon', $coupon->id ) ) . '" aria-label="' . esc_attr__( 'Duplicate Coupon', 'surecart' ) . '">' . esc_html__( 'Duplicate', 'surecart' ) . '</a>',
 			],
 		);
 

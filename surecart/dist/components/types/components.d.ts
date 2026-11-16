@@ -987,6 +987,10 @@ export namespace Components {
          */
         "size": 'small' | 'medium' | 'large';
         /**
+          * The opt-out link text for tracking confirmation.
+         */
+        "trackingConfirmationLinkText": string;
+        /**
           * A message for tracking confirmation.
          */
         "trackingConfirmationMessage": string;
@@ -8331,6 +8335,10 @@ declare namespace LocalJSX {
           * The input's size.
          */
         "size"?: 'small' | 'medium' | 'large';
+        /**
+          * The opt-out link text for tracking confirmation.
+         */
+        "trackingConfirmationLinkText"?: string;
         /**
           * A message for tracking confirmation.
          */

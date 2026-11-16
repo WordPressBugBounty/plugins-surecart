@@ -24,6 +24,13 @@ class CouponRestServiceProvider extends RestServiceProvider implements RestServi
 	protected $controller = CouponsController::class;
 
 	/**
+	 * Methods allowed for the model.
+	 *
+	 * @var array
+	 */
+	protected $methods = [ 'index', 'create', 'find', 'edit', 'delete', 'duplicate' ];
+
+	/**
 	 * Get our sample schema for a post.
 	 *
 	 * @return array The sample schema for a post

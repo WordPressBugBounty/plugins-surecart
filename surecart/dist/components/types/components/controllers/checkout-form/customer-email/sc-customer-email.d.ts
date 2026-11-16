@@ -6,6 +6,8 @@ export declare class ScCustomerEmail {
     private removeUserListener;
     /** A message for tracking confirmation. */
     trackingConfirmationMessage: string;
+    /** The opt-out link text for tracking confirmation. */
+    trackingConfirmationLinkText: string;
     /** The input's size. */
     size: 'small' | 'medium' | 'large';
     /** The input's value attribute. */

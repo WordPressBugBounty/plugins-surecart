@@ -241,6 +241,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'CouponsController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'export', 'action' )->handle( '\\SureCart\\Controllers\\Admin\\Export\\ExportController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'CouponsController@edit' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'duplicate', 'action' )->middleware( 'nonce:duplicate_coupon' )->handle( 'CouponsController@duplicate' );
 	}
 );
 
@@ -407,6 +408,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'BumpsController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'BumpsController@edit' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'duplicate', 'action' )->middleware( 'nonce:duplicate_bump' )->handle( 'BumpsController@duplicate' );
 	}
 );
 
@@ -426,6 +428,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	function () {
 		\SureCart::route()->get()->where( 'sc_url_var', false, 'action' )->handle( 'UpsellsController@index' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'edit', 'action' )->handle( 'UpsellsController@edit' );
+		\SureCart::route()->get()->where( 'sc_url_var', 'duplicate', 'action' )->middleware( 'nonce:duplicate_upsell' )->handle( 'UpsellsController@duplicate' );
 		\SureCart::route()->get()->where( 'sc_url_var', 'toggle_enabled', 'action' )->middleware( 'archive_model:product' )->handle( 'UpsellsController@toggleEnabled' );
 	}
 );
@@ -574,7 +577,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 \SureCart::route()
 ->get()
 ->where( 'admin', 'sc-settings' )
-->middleware( 'user.can:manage_sc_account_settings' )
+->middleware( 'user.can:manage_sc_shop_settings' )
 ->middleware( 'assets.components' )
 ->middleware( 'assets.brand_colors' )
 ->setNamespace( '\\SureCart\\Controllers\\Admin\\Settings\\' )
@@ -584,7 +587,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		\SureCart::route()->get()->name( 'settings' )->handle( 'Settings@show' );
 
 		// POST routes still need server-side handling.
-		\SureCart::route()->post()->where( 'sc_url_var', 'clear', 'cache' )->middleware( 'nonce:update_plugin_settings' )->handle( 'CacheSettings@clear' );
+		\SureCart::route()->post()->where( 'sc_url_var', 'clear', 'cache' )->middleware( 'user.can:manage_sc_account_settings' )->middleware( 'nonce:update_plugin_settings' )->handle( 'CacheSettings@clear' );
 	}
 );
 

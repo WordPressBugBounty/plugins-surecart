@@ -112,6 +112,7 @@ return array(
 		\SureCart\Rest\SubscriptionProtocolRestServiceProvider::class,
 		\SureCart\Rest\PeriodRestServiceProvider::class,
 		\SureCart\Rest\SettingsRestServiceProvider::class,
+		\SureCart\Rest\SiteSettingsRestServiceProvider::class,
 		\SureCart\Rest\CustomerPortalProtocolRestServiceProvider::class,
 		\SureCart\Rest\TaxProtocolRestServiceProvider::class,
 		\SureCart\Rest\OrderProtocolRestServiceProvider::class,

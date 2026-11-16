@@ -78,7 +78,8 @@ abstract class CacheService {
 			|| $this->hasCheckoutFormBlock()
 			|| $this->hasCustomerDashboardBlock()
 			|| $this->hasCustomerSavedItems()
-			|| $this->isBuyPage();
+			|| $this->isBuyPage()
+			|| $this->isRedirectRoute();
 	}
 
 	/**
@@ -114,6 +115,11 @@ abstract class CacheService {
 
 		if ( $this->isBuyPage() ) {
 			$this->disableCacheWithBrowserHeaders( 'SureCart buy page' );
+			return;
+		}
+
+		if ( $this->isRedirectRoute() ) {
+			$this->disableCacheWithBrowserHeaders( 'SureCart redirect' );
 			return;
 		}
 	}
@@ -397,6 +403,17 @@ abstract class CacheService {
 		return isset( $_GET['sc-buy'] )
 			|| ! empty( get_query_var( 'sc-buy' ) )
 			|| ! empty( get_query_var( 'sc_checkout_product_id' ) );
+	}
+
+	/**
+	 * Is this the /surecart/redirect route?
+	 *
+	 * Its redirect can carry a customer-link login cookie and is per-customer, so no cache may store it.
+	 *
+	 * @return bool
+	 */
+	protected function isRedirectRoute(): bool {
+		return ! empty( get_query_var( 'sc_redirect' ) );
 	}
 
 	/**

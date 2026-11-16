@@ -5,6 +5,7 @@ namespace SureCart\Controllers\Admin\Coupons;
 use SureCart\Controllers\Admin\AdminController;
 use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Controllers\Admin\Coupons\CouponsListTable;
+use SureCart\Models\Coupon;
 
 /**
  * Handles coupon admin requests.
@@ -27,6 +28,12 @@ class CouponsController extends AdminController {
 					],
 				],
 				'enhanced_view_promo' => $this->currentAdminPageUrl(),
+			)
+		);
+
+		$this->withNotices(
+			array(
+				'duplicated' => __( 'Coupon duplicated successfully.', 'surecart' ),
 			)
 		);
 
@@ -72,5 +79,31 @@ class CouponsController extends AdminController {
 
 		// The React detail component renders its own breadcrumbs.
 		return $this->renderSpaShell( 'admin/coupons/spa' );
+	}
+
+	/**
+	 * Duplicate a coupon.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
+	 *
+	 * @return \SureCartCore\Responses\RedirectResponse
+	 */
+	public function duplicate( $request ) {
+		$duplicated = Coupon::duplicate( $request->query( 'id' ) );
+
+		if ( is_wp_error( $duplicated ) ) {
+			wp_die( implode( ' ', array_map( 'esc_html', $duplicated->get_error_messages() ) ) );
+		}
+
+		return \SureCart::redirect()->to(
+			esc_url_raw(
+				add_query_arg(
+					[
+						'duplicated' => true,
+					],
+					\SureCart::getUrl()->index( 'coupon' )
+				)
+			)
+		);
 	}
 }

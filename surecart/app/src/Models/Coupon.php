@@ -2,6 +2,7 @@
 
 namespace SureCart\Models;
 
+use SureCart\Models\Traits\CanDuplicate;
 use SureCart\Models\Traits\HasDates;
 use SureCart\Support\Currency;
 use SureCart\Support\TimeDate;
@@ -10,6 +11,7 @@ use SureCart\Support\TimeDate;
  * Price model
  */
 class Coupon extends Model {
+	use CanDuplicate;
 	use HasDates;
 
 	/**

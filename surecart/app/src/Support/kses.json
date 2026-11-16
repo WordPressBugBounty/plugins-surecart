@@ -519,6 +519,7 @@
     "required": true,
     "show-label": true,
     "size": true,
+    "tracking-confirmation-link-text": true,
     "tracking-confirmation-message": true,
     "value": true,
     "style": true,

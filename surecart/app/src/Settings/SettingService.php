@@ -170,6 +170,7 @@ class SettingService {
 			'surecart',
 			'google_map_api_key_enabled',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -179,6 +180,7 @@ class SettingService {
 			'surecart',
 			'google_map_api_key',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -188,6 +190,7 @@ class SettingService {
 			'surecart',
 			'tracking_confirmation',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -197,9 +200,20 @@ class SettingService {
 			'surecart',
 			'tracking_confirmation_message',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'default'           => esc_html__( 'Your email and cart are saved so we can send email reminders about this order.', 'surecart' ),
+				'sanitize_callback' => 'sanitize_text_field',
+			]
+		);
+		$this->register(
+			'surecart',
+			'tracking_confirmation_link_text',
+			[
+				'type'              => 'string',
+				'show_in_rest'      => true,
+				'default'           => esc_html__( 'No Thanks', 'surecart' ),
 				'sanitize_callback' => 'sanitize_text_field',
 			]
 		);
@@ -217,6 +231,7 @@ class SettingService {
 			'surecart',
 			'customizable_instant_checkout_enabled',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -227,6 +242,7 @@ class SettingService {
 			'surecart',
 			'cart_menu_alignment',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -237,6 +253,7 @@ class SettingService {
 			'surecart',
 			'cart_menu_always_shown',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -247,6 +264,7 @@ class SettingService {
 			'surecart',
 			'cart_menu_selected_ids',
 			[
+				'capability'   => 'manage_sc_shop_settings',
 				'type'         => 'array',
 				'items'        => 'integer',
 				'show_in_rest' => [
@@ -263,6 +281,7 @@ class SettingService {
 			'surecart',
 			'saved_items_enabled',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -273,6 +292,7 @@ class SettingService {
 			'surecart',
 			'saved_items_default_list_name',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => fn( $value ) => mb_substr( sanitize_text_field( $value ), 0, \SureCart\Models\SavedList::MAX_NAME_LENGTH ),
@@ -283,6 +303,7 @@ class SettingService {
 			'surecart',
 			'saved_items_menu_selected_ids',
 			[
+				'capability'   => 'manage_sc_shop_settings',
 				'type'         => 'array',
 				'items'        => 'integer',
 				'default'      => [],
@@ -300,6 +321,7 @@ class SettingService {
 			'surecart',
 			'saved_items_menu_alignment',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => [
 					'schema' => [
@@ -314,6 +336,7 @@ class SettingService {
 			'surecart',
 			'cart_icon',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -324,6 +347,7 @@ class SettingService {
 			'surecart',
 			'cart_icon_type',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -354,6 +378,7 @@ class SettingService {
 			'surecart',
 			'checkout_show_login_prompt',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -364,6 +389,7 @@ class SettingService {
 			'surecart',
 			'checkout_geo_capture_title',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -373,6 +399,7 @@ class SettingService {
 			'surecart',
 			'checkout_geo_capture_content',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => [ $this, 'sanitizeRichContent' ],
@@ -382,6 +409,7 @@ class SettingService {
 			'surecart',
 			'checkout_geo_capture_allow_label',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -391,6 +419,7 @@ class SettingService {
 			'surecart',
 			'checkout_geo_capture_decline_label',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -459,6 +488,7 @@ class SettingService {
 			'surecart',
 			'currency_switcher_alignment',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -469,6 +499,7 @@ class SettingService {
 			'surecart',
 			'currency_switcher_selected_ids',
 			[
+				'capability'   => 'manage_sc_shop_settings',
 				'type'         => 'array',
 				'items'        => 'integer',
 				'show_in_rest' => [
@@ -485,6 +516,7 @@ class SettingService {
 			'surecart',
 			'currency_geolocation_enabled',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -495,6 +527,7 @@ class SettingService {
 			'surecart',
 			'currency_locale',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'string',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'sanitize_text_field',
@@ -504,6 +537,7 @@ class SettingService {
 			'surecart',
 			'hide_verified_buyer_badge',
 			[
+				'capability'        => 'manage_sc_shop_settings',
 				'type'              => 'boolean',
 				'show_in_rest'      => true,
 				'sanitize_callback' => 'boolval',
@@ -635,6 +669,8 @@ class SettingService {
 	 *                                         When registering complex settings, this argument may optionally be an
 	 *                                         array with a 'schema' key.
 	 *     @type mixed      $default           Default value when calling `get_option()`.
+	 *     @type string     $capability        Capability that may read/write it via surecart/v1/site_settings.
+	 *                                         Omit to keep it admin-only (core /wp/v2/settings).
 	 */
 	public function register( $option_group, $option_name, $args = [] ) {
 		$service = new RegisterSettingService( $option_group, $option_name, $args );

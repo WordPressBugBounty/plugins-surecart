@@ -38,6 +38,11 @@ class UpsellsController extends AdminController {
 				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
+		$this->withNotices(
+			array(
+				'duplicated' => __( 'Upsell funnel duplicated successfully.', 'surecart' ),
+			)
+		);
 		return \SureCart::view( 'admin/upsell-funnels/index' )->with( [ 'table' => $table ] );
 	}
 
@@ -121,6 +126,32 @@ class UpsellsController extends AdminController {
 
 		return \SureCart::redirect()->to(
 			esc_url_raw( add_query_arg( 'status', $status, admin_url( 'admin.php?page=sc-upsell-funnels' ) ) )
+		);
+	}
+
+	/**
+	 * Duplicate an upsell funnel.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
+	 *
+	 * @return \SureCartCore\Responses\RedirectResponse
+	 */
+	public function duplicate( $request ) {
+		$duplicated = UpsellFunnel::duplicate( $request->query( 'id' ) );
+
+		if ( is_wp_error( $duplicated ) ) {
+			wp_die( implode( ' ', array_map( 'esc_html', $duplicated->get_error_messages() ) ) );
+		}
+
+		return \SureCart::redirect()->to(
+			esc_url_raw(
+				add_query_arg(
+					[
+						'duplicated' => true,
+					],
+					\SureCart::getUrl()->index( 'upsell' )
+				)
+			)
 		);
 	}
 }

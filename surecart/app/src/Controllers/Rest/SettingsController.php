@@ -9,38 +9,51 @@ use SureCart\Models\ApiToken;
  */
 class SettingsController {
 	/**
-	 * Index
+	 * Fields a user with only `manage_sc_shop_settings` may read and write.
+	 * Everything else (API token, uninstall, telemetry, performance flags)
+	 * requires `manage_sc_account_settings`, so new fields are admin-only by default.
+	 *
+	 * @var string[]
+	 */
+	const SHOP_FIELDS = [ 'object', 'stripe_payment_element', 'checkout_show_login_prompt', 'slide_out_cart_disabled' ];
+
+	/**
+	 * Get the settings, limited to the fields the current user may see.
 	 *
 	 * @param \WP_REST_Request $request Rest Request.
 	 *
 	 * @return \WP_REST_Response
 	 */
 	public function find( \WP_REST_Request $request ) {
-		return rest_ensure_response(
-			[
-				'object'                      => 'settings',
-				'api_token'                   => ApiToken::get(),
-				'uninstall'                   => (bool) get_option( 'sc_uninstall', false ),
-				'stripe_payment_element'      => (bool) get_option( 'sc_stripe_payment_element', true ),
-				'auto_sync_user_to_customer'  => (bool) get_option( 'surecart_auto_sync_user_to_customer', false ),
-				'checkout_show_login_prompt'  => (bool) get_option( 'surecart_checkout_show_login_prompt', false ),
-				'use_esm_loader'              => (bool) get_option( 'surecart_use_esm_loader', false ),
-				'slide_out_cart_disabled'     => (bool) get_option( 'sc_slide_out_cart_disabled', false ),
-				'load_block_assets_on_demand' => (bool) get_option( 'surecart_load_block_assets_on_demand', false ),
-				'modern_order_bump'           => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
-				'telemetry_consent'           => true === \SureCart::telemetry()->consent(),
-			]
-		);
+		$settings = $this->getSettings();
+
+		if ( ! current_user_can( 'manage_sc_account_settings' ) ) {
+			$settings = array_intersect_key( $settings, array_flip( self::SHOP_FIELDS ) );
+		}
+
+		return rest_ensure_response( $settings );
 	}
 
 	/**
-	 * Update
+	 * Update the settings.
 	 *
 	 * @param \WP_REST_Request $request Rest Request.
 	 *
-	 * @return \WP_REST_Response
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function edit( \WP_REST_Request $request ) {
+		if ( ! current_user_can( 'manage_sc_account_settings' ) ) {
+			foreach ( array_diff( array_keys( $this->getSettings() ), self::SHOP_FIELDS ) as $field ) {
+				if ( $request->has_param( $field ) ) {
+					return new \WP_Error(
+						'rest_forbidden',
+						__( 'Sorry, you are not allowed to change this setting.', 'surecart' ),
+						[ 'status' => rest_authorization_required_code() ]
+					);
+				}
+			}
+		}
+
 		// save api token.
 		if ( isset( $request['api_token'] ) ) {
 			if ( ! empty( $request['api_token'] ) ) {
@@ -101,6 +114,27 @@ class SettingsController {
 		}
 
 		return rest_ensure_response( $this->find( $request ) );
+	}
+
+	/**
+	 * All plugin settings handled by this endpoint, unfiltered.
+	 *
+	 * @return array
+	 */
+	protected function getSettings() {
+		return [
+			'object'                      => 'settings',
+			'api_token'                   => ApiToken::get(),
+			'uninstall'                   => (bool) get_option( 'sc_uninstall', false ),
+			'stripe_payment_element'      => (bool) get_option( 'sc_stripe_payment_element', true ),
+			'auto_sync_user_to_customer'  => (bool) get_option( 'surecart_auto_sync_user_to_customer', false ),
+			'checkout_show_login_prompt'  => (bool) get_option( 'surecart_checkout_show_login_prompt', false ),
+			'use_esm_loader'              => (bool) get_option( 'surecart_use_esm_loader', false ),
+			'slide_out_cart_disabled'     => (bool) get_option( 'sc_slide_out_cart_disabled', false ),
+			'load_block_assets_on_demand' => (bool) get_option( 'surecart_load_block_assets_on_demand', false ),
+			'modern_order_bump'           => get_option( 'surecart_order_bump_design', 'modern' ) === 'modern',
+			'telemetry_consent'           => true === \SureCart::telemetry()->consent(),
+		];
 	}
 
 	/**

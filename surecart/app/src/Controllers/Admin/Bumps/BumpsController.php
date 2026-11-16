@@ -5,6 +5,7 @@ namespace SureCart\Controllers\Admin\Bumps;
 use SureCart\Controllers\Admin\AdminController;
 use SureCart\Controllers\Admin\RendersEnhancedAdminView;
 use SureCart\Controllers\Admin\Bumps\BumpsListTable;
+use SureCart\Models\Bump;
 
 /**
  * Handles product admin requests.
@@ -37,6 +38,11 @@ class BumpsController extends AdminController {
 				'enhanced_view_promo' => $this->currentAdminPageUrl(),
 			)
 		);
+		$this->withNotices(
+			array(
+				'duplicated' => __( 'Order bump duplicated successfully.', 'surecart' ),
+			)
+		);
 		return \SureCart::view( 'admin/bumps/index' )->with( [ 'table' => $table ] );
 	}
 
@@ -63,5 +69,31 @@ class BumpsController extends AdminController {
 
 		// The React detail component renders its own breadcrumbs.
 		return $this->renderSpaShell( 'admin/bumps/spa' );
+	}
+
+	/**
+	 * Duplicate an order bump.
+	 *
+	 * @param \SureCartCore\Requests\RequestInterface $request Request.
+	 *
+	 * @return \SureCartCore\Responses\RedirectResponse
+	 */
+	public function duplicate( $request ) {
+		$duplicated = Bump::duplicate( $request->query( 'id' ) );
+
+		if ( is_wp_error( $duplicated ) ) {
+			wp_die( implode( ' ', array_map( 'esc_html', $duplicated->get_error_messages() ) ) );
+		}
+
+		return \SureCart::redirect()->to(
+			esc_url_raw(
+				add_query_arg(
+					[
+						'duplicated' => true,
+					],
+					\SureCart::getUrl()->index( 'bump' )
+				)
+			)
+		);
 	}
 }

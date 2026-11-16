@@ -28,7 +28,7 @@ class UpsellFunnelRestServiceProvider extends RestServiceProvider implements Res
 	 *
 	 * @var array
 	 */
-	protected $methods = [ 'index', 'create', 'find', 'edit', 'delete' ];
+	protected $methods = [ 'index', 'create', 'find', 'edit', 'delete', 'duplicate' ];
 
 	/**
 	 * Get our sample schema for a post.

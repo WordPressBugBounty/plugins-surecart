@@ -3,6 +3,7 @@
 namespace SureCart\Middleware;
 
 use Closure;
+use SureCart\Middleware\Concerns\AddsCheckoutQueryArgs;
 use SureCart\Models\Checkout;
 use SureCart\Models\Product;
 use SureCartCore\Requests\RequestInterface;
@@ -12,6 +13,8 @@ use SureCartCore\Responses\RedirectResponse;
  * Send an abandoned-checkout recovery link back to the page the checkout started on.
  */
 class CheckoutRedirectMiddleware {
+	use AddsCheckoutQueryArgs;
+
 	/**
 	 * Redirect to the checkout's originating page, falling back to the checkout page.
 	 *
@@ -81,41 +84,5 @@ class CheckoutRedirectMiddleware {
 
 		// cannot find checkout page.
 		return $next( $request );
-	}
-
-	/**
-	 * Build the url.
-	 *
-	 * @param string           $url Destination url.
-	 * @param RequestInterface $request Request.
-	 * @return string
-	 */
-	public function buildUrl( $url, RequestInterface $request ) {
-		if ( empty( $url ) ) {
-			return $url;
-		}
-
-		// add checkout id.
-		$id = $request->query( 'checkout_id' );
-		if ( $id ) {
-			$url = add_query_arg(
-				[
-					'checkout_id' => $id,
-				],
-				$url
-			);
-		}
-
-		$promotion_code = $request->query( 'promotion_code' );
-		if ( $promotion_code ) {
-			$url = add_query_arg(
-				[
-					'coupon' => $promotion_code,
-				],
-				$url
-			);
-		}
-
-		return $url;
 	}
 }

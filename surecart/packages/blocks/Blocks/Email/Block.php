@@ -18,7 +18,8 @@ class Block extends BaseBlock {
 	public function render( $attributes, $content = '' ) {
 		$tracking_confirmation = \SureCart::settings()->get( 'tracking_confirmation', false );
 		if ( $tracking_confirmation ) {
-			$tracking_confirmation_message = \SureCart::settings()->get( 'tracking_confirmation_message', esc_html__( 'Your email and cart are saved so we can send email reminders about this order.', 'surecart' ) );
+			$tracking_confirmation_message   = \SureCart::settings()->get( 'tracking_confirmation_message', esc_html__( 'Your email and cart are saved so we can send email reminders about this order.', 'surecart' ) );
+			$tracking_confirmation_link_text = \SureCart::settings()->get( 'tracking_confirmation_link_text', esc_html__( 'No Thanks', 'surecart' ) );
 		}
 		ob_start(); ?>
 
@@ -29,6 +30,7 @@ class Block extends BaseBlock {
 			<?php echo ! empty( $attributes['help'] ) ? 'help="' . esc_attr( $attributes['help'] ) . '"' : false; ?>
 			<?php echo ! empty( $attributes['autofocus'] ) ? 'autofocus' : false; ?>
 			<?php echo ! empty( $tracking_confirmation_message ) ? 'tracking-confirmation-message="' . esc_attr( $tracking_confirmation_message ) . '"' : false; ?>
+			<?php echo ! empty( $tracking_confirmation_link_text ) ? 'tracking-confirmation-link-text="' . esc_attr( $tracking_confirmation_link_text ) . '"' : false; ?>
 			required
 			autocomplete='email'
 			inputmode='email'

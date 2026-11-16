@@ -81,6 +81,11 @@ class AsyncWebhookService extends AsyncRequest {
 			throw new \Exception( $webhook->get_error_message() );
 		}
 
+		// A re-dispatched job for an already processed webhook must not fire its action again.
+		if ( ! empty( $webhook->processed_at ) ) {
+			return $webhook;
+		}
+
 		// get the event name.
 		if ( empty( $webhook->data->type ) ) {
 			error_log( 'No event specified for webhook' );

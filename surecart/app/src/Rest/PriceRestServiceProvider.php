@@ -34,21 +34,11 @@ class PriceRestServiceProvider extends RestServiceProvider implements RestServic
 	protected $filters_list_items = true;
 
 	/**
-	 * Register Additional REST Routes
+	 * Methods allowed for the model.
 	 *
-	 * @return void
+	 * @var array
 	 */
-	public function registerRoutes() {
-		register_rest_route(
-			"$this->name/v$this->version",
-			$this->endpoint . '/(?P<id>\S+)/duplicate',
-			[
-				'methods'             => \WP_REST_Server::CREATABLE,
-				'callback'            => $this->callback( $this->controller, 'duplicate' ),
-				'permission_callback' => [ $this, 'create_item_permissions_check' ],
-			]
-		);
-	}
+	protected $methods = [ 'index', 'create', 'find', 'edit', 'delete', 'duplicate' ];
 
 	/**
 	 * Get our sample schema for a post.

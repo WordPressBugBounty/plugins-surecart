@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-11T03:32:28",
+  "timestamp": "2026-11-16T15:42:58",
   "compiler": {
     "name": "node",
     "version": "16.20.2"
@@ -3709,8 +3709,6 @@
           "./dist/surecart/p-95f9394c.entry.js.map",
           "./dist/surecart/p-97493254.entry.js",
           "./dist/surecart/p-97493254.entry.js.map",
-          "./dist/surecart/p-988cf324.entry.js",
-          "./dist/surecart/p-988cf324.entry.js.map",
           "./dist/surecart/p-99464e32.entry.js",
           "./dist/surecart/p-99464e32.entry.js.map",
           "./dist/surecart/p-9a4f67c8.entry.js",
@@ -3857,6 +3855,8 @@
           "./dist/surecart/p-d9a5a136.entry.js.map",
           "./dist/surecart/p-dc541a98.entry.js",
           "./dist/surecart/p-dc541a98.entry.js.map",
+          "./dist/surecart/p-de6614ef.entry.js",
+          "./dist/surecart/p-de6614ef.entry.js.map",
           "./dist/surecart/p-df26f7fd.entry.js",
           "./dist/surecart/p-df26f7fd.entry.js.map",
           "./dist/surecart/p-e1c7cbe4.entry.js",
@@ -4175,8 +4175,6 @@
           "./www/build/p-95f9394c.entry.js.map",
           "./www/build/p-97493254.entry.js",
           "./www/build/p-97493254.entry.js.map",
-          "./www/build/p-988cf324.entry.js",
-          "./www/build/p-988cf324.entry.js.map",
           "./www/build/p-99464e32.entry.js",
           "./www/build/p-99464e32.entry.js.map",
           "./www/build/p-9a4f67c8.entry.js",
@@ -4323,6 +4321,8 @@
           "./www/build/p-d9a5a136.entry.js.map",
           "./www/build/p-dc541a98.entry.js",
           "./www/build/p-dc541a98.entry.js.map",
+          "./www/build/p-de6614ef.entry.js",
+          "./www/build/p-de6614ef.entry.js.map",
           "./www/build/p-df26f7fd.entry.js",
           "./www/build/p-df26f7fd.entry.js.map",
           "./www/build/p-e1c7cbe4.entry.js",
@@ -4842,8 +4842,8 @@
         "components": [
           "sc-customer-email"
         ],
-        "bundleId": "p-988cf324",
-        "fileName": "p-988cf324.entry.js",
+        "bundleId": "p-de6614ef",
+        "fileName": "p-de6614ef.entry.js",
         "imports": [
           "p-9add63ef.js",
           "p-830ab1a3.js",
@@ -4863,7 +4863,7 @@
           "p-9cd438cc.js",
           "p-297962fd.js"
         ],
-        "originalByteSize": 13537
+        "originalByteSize": 13629
       },
       {
         "key": "sc-customer-firstname.entry",
@@ -8067,7 +8067,7 @@
           "store-fd165874.js",
           "price-39d60d32.js"
         ],
-        "originalByteSize": 13640
+        "originalByteSize": 13732
       },
       {
         "key": "sc-customer-firstname.entry",
@@ -11273,7 +11273,7 @@
           "store-29627d6b.js",
           "price-9dddd853.js"
         ],
-        "originalByteSize": 14146
+        "originalByteSize": 14238
       },
       {
         "key": "sc-customer-firstname.entry",
@@ -23202,6 +23202,25 @@
           "docs": {
             "tags": [],
             "text": "A message for tracking confirmation."
+          },
+          "internal": false
+        },
+        {
+          "name": "trackingConfirmationLinkText",
+          "type": "string",
+          "attribute": "tracking-confirmation-link-text",
+          "reflect": false,
+          "mutable": false,
+          "required": false,
+          "optional": false,
+          "complexType": {
+            "original": "string",
+            "resolved": "string",
+            "references": {}
+          },
+          "docs": {
+            "tags": [],
+            "text": "The opt-out link text for tracking confirmation."
           },
           "internal": false
         },
@@ -63703,6 +63722,25 @@
               "docs": {
                 "tags": [],
                 "text": "A message for tracking confirmation."
+              },
+              "internal": false
+            },
+            {
+              "name": "trackingConfirmationLinkText",
+              "type": "string",
+              "attribute": "tracking-confirmation-link-text",
+              "reflect": false,
+              "mutable": false,
+              "required": false,
+              "optional": false,
+              "complexType": {
+                "original": "string",
+                "resolved": "string",
+                "references": {}
+              },
+              "docs": {
+                "tags": [],
+                "text": "The opt-out link text for tracking confirmation."
               },
               "internal": false
             },

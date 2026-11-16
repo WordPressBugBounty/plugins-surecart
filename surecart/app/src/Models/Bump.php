@@ -2,6 +2,7 @@
 
 namespace SureCart\Models;
 
+use SureCart\Models\Traits\CanDuplicate;
 use SureCart\Models\Traits\HasDates;
 use SureCart\Models\Traits\HasPrice;
 use SureCart\Support\Currency;
@@ -10,6 +11,7 @@ use SureCart\Support\Currency;
  * Holds the data of the order bump.
  */
 class Bump extends Model {
+	use CanDuplicate;
 	use HasDates;
 	use HasPrice;
 

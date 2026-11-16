@@ -31,6 +31,7 @@ const ScCustomerEmail = class {
         this.scUpdateAbandonedCart = createEvent(this, "scUpdateAbandonedCart", 7);
         this.scLoginPrompt = createEvent(this, "scLoginPrompt", 7);
         this.trackingConfirmationMessage = undefined;
+        this.trackingConfirmationLinkText = undefined;
         this.size = 'medium';
         this.value = getValueFromUrl('email');
         this.pill = false;
@@ -215,7 +216,7 @@ const ScCustomerEmail = class {
             return (h("div", { class: "tracking-confirmation-message" }, h("span", null, this.trackingConfirmationMessage), ' ', h("a", { href: "#", onClick: e => {
                     e.preventDefault();
                     this.scUpdateAbandonedCart.emit(false);
-                } }, wp.i18n.__('No Thanks', 'surecart'))));
+                } }, this.trackingConfirmationLinkText || wp.i18n.__('No Thanks', 'surecart'))));
         }
         return (h("div", { class: "tracking-confirmation-message" }, h("span", null, " ", wp.i18n.__("You won't receive further emails from us.", 'surecart'))));
     }

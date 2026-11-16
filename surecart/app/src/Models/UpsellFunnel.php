@@ -2,12 +2,14 @@
 
 namespace SureCart\Models;
 
+use SureCart\Models\Traits\CanDuplicate;
 use SureCart\Models\Traits\HasDates;
 
 /**
  * The upsell funnel model.
  */
 class UpsellFunnel extends Model {
+	use CanDuplicate;
 	use HasDates;
 
 	/**
